@@ -1,0 +1,30 @@
+# Project Context
+You are building a corporate website for "DMF", a Vietnamese company specializing in recruitment and training for the German market.
+The target audience is German partners (B2B). The design must be "German standard": clean, minimalist, trustworthy (Vertrauen), and professional.
+
+# Tech Stack & Guidelines
+- **Framework:** Next.js 14 (App Router) with TypeScript.
+- **Styling:** Tailwind CSS.
+- **Components:** Shadcn/UI (use `npx shadcn@latest add [component]` syntax).
+- **Icons:** Lucide React.
+- **Animation:** Framer Motion.
+
+# Coding Rules (Strict Enforcement)
+1. **Separation of Concerns (Crucial):** NEVER hardcode text content inside TSX components.
+   - All text/images must be stored in `@/config/site-content.ts`.
+   - This allows non-tech staff to update content easily.
+2. **Component Structure:**
+   - Use Functional Components with Arrow Functions.
+   - Use `export default` for pages, `export const` for components.
+3. **Design System:**
+   - Use a corporate color palette (Dark Blue/White/Grey).
+   - Responsive design is mandatory.
+4. **Directory Structure:**
+   - `/app`: Pages and Layouts.
+   - `/components/ui`: Shadcn primitives.
+   - `/components/sections`: Landing page sections.
+   - `/config`: Configuration and CONTENT strings.
+
+# Tone & Language
+- Primary Language: German (Deutsch).
+- Tone: Formal, Professional.
