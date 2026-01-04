@@ -12,7 +12,8 @@ import {
 } from "@/components/ui/card";
 
 // Animation variants - German precision style
-const containerVariants = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const containerVariants: any = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -23,7 +24,8 @@ const containerVariants = {
   },
 };
 
-const cardVariants = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const cardVariants: any = {
   hidden: { 
     opacity: 0, 
     y: 40,
@@ -33,12 +35,13 @@ const cardVariants = {
     y: 0,
     transition: {
       duration: 0.5,
-      ease: [0.25, 0.1, 0.25, 1], // Custom easing - smooth, no bounce
+      ease: [0.25, 0.1, 0.25, 1],
     },
   },
 };
 
-const headerVariants = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const headerVariants: any = {
   hidden: { opacity: 0, y: 20 },
   visible: { 
     opacity: 1, 

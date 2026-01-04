@@ -13,7 +13,8 @@ import {
 } from "lucide-react";
 
 // Animation variants - German precision style
-const headerVariants = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const headerVariants: any = {
   hidden: { opacity: 0, y: 20 },
   visible: { 
     opacity: 1, 
@@ -25,7 +26,8 @@ const headerVariants = {
   },
 };
 
-const lineVariants = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const lineVariants: any = {
   hidden: { scaleY: 0 },
   visible: { 
     scaleY: 1,
@@ -36,7 +38,8 @@ const lineVariants = {
   },
 };
 
-const stepVariants = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const stepVariants: any = {
   hidden: { opacity: 0, y: 30 },
   visible: (index: number) => ({
     opacity: 1,
@@ -49,7 +52,8 @@ const stepVariants = {
   }),
 };
 
-const nodeVariants = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const nodeVariants: any = {
   hidden: { scale: 0, opacity: 0 },
   visible: (index: number) => ({
     scale: 1,
