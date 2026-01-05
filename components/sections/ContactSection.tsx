@@ -2,7 +2,7 @@
 
 import { siteContent } from "@/config/site-content";
 import { motion } from "framer-motion";
-import { Mail, Phone, Globe, User, Send, Building2, MapPin } from "lucide-react";
+import { Mail, Phone, Globe, User, Send, Building2, MapPin, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -13,8 +13,49 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { sendEmail } from "@/lib/actions";
+import { useRef, useState } from "react";
+import { toast } from "sonner";
 
 export const ContactSection = () => {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    if (!formRef.current) return;
+    
+    setIsSubmitting(true);
+    
+    try {
+      const formData = new FormData(formRef.current);
+      const result = await sendEmail(formData);
+      
+      if (result.success) {
+        toast.success("Erfolgreich gesendet!", {
+          description: result.message,
+          duration: 5000,
+        });
+        // Reset form after successful submission
+        formRef.current.reset();
+      } else {
+        toast.error("Fehler beim Senden", {
+          description: result.message,
+          duration: 5000,
+        });
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      toast.error("Fehler", {
+        description: "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.",
+        duration: 5000,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section id="contact" className="py-16 md:py-28 lg:py-36 bg-muted/20 relative overflow-hidden">
       {/* Background decorations - Hidden on mobile for performance */}
@@ -64,11 +105,9 @@ export const ContactSection = () => {
                 </CardHeader>
                 <CardContent className="px-4 md:px-6 pb-4 md:pb-6">
                   <form
+                    ref={formRef}
                     className="space-y-4 md:space-y-6"
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      // Form submission logic
-                    }}
+                    onSubmit={handleSubmit}
                   >
                     {/* Name & Email Row */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
@@ -84,6 +123,7 @@ export const ContactSection = () => {
                           name="name"
                           placeholder={siteContent.contact.form.namePlaceholder}
                           required
+                          disabled={isSubmitting}
                           className="h-10 md:h-12 text-sm md:text-base"
                         />
                       </div>
@@ -100,6 +140,7 @@ export const ContactSection = () => {
                           type="email"
                           placeholder={siteContent.contact.form.emailPlaceholder}
                           required
+                          disabled={isSubmitting}
                           className="h-10 md:h-12 text-sm md:text-base"
                         />
                       </div>
@@ -117,6 +158,7 @@ export const ContactSection = () => {
                         id="company"
                         name="company"
                         placeholder={siteContent.contact.form.companyPlaceholder}
+                        disabled={isSubmitting}
                         className="h-10 md:h-12 text-sm md:text-base"
                       />
                     </div>
@@ -135,6 +177,7 @@ export const ContactSection = () => {
                         placeholder={siteContent.contact.form.messagePlaceholder}
                         rows={4}
                         required
+                        disabled={isSubmitting}
                         className="min-h-[120px] md:min-h-[140px] resize-none text-sm md:text-base"
                       />
                     </div>
@@ -143,10 +186,20 @@ export const ContactSection = () => {
                     <Button
                       type="submit"
                       size="lg"
+                      disabled={isSubmitting}
                       className="w-full h-12 md:h-14 text-sm md:text-base font-medium gap-2 group"
                     >
-                      {siteContent.contact.form.submitLabel}
-                      <Send className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                          Wird gesendet...
+                        </>
+                      ) : (
+                        <>
+                          {siteContent.contact.form.submitLabel}
+                          <Send className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        </>
+                      )}
                     </Button>
                   </form>
                 </CardContent>
