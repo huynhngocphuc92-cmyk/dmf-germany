@@ -3,6 +3,7 @@ import { AboutSection } from "@/components/sections/AboutSection";
 import { ValuesSection } from "@/components/sections/ValuesSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
+import { SalarySimulator } from "@/components/tools/SalarySimulator";
 import { ContactSection } from "@/components/sections/ContactSection";
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
       <ValuesSection />
       <ServicesSection />
       <ProcessSection />
+      <SalarySimulator />
       <ContactSection />
     </div>
   );
