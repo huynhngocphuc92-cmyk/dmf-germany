@@ -1,6 +1,7 @@
 "use server";
 
 import nodemailer from "nodemailer";
+import { appendToSheet, sanitizeForSheet } from "@/lib/google-sheets";
 
 interface SendEmailResult {
   success: boolean;
@@ -179,6 +180,36 @@ Diese E-Mail wurde automatisch über das Kontaktformular gesendet.
 
     const info = await transporter.sendMail(mailOptions);
     console.log("✓ Email đã gửi thành công! Message ID:", info.messageId);
+
+    // =========================================
+    // GOOGLE SHEETS CRM - "Fire and Forget"
+    // =========================================
+    // Save to Google Sheets as CRM backup
+    // This is non-blocking and fail-safe (won't affect user experience)
+    try {
+      console.log("[CRM] Đang lưu vào Google Sheets...");
+      
+      const sheetResult = await appendToSheet({
+        name: sanitizeForSheet(name),
+        email: sanitizeForSheet(email),
+        company: sanitizeForSheet(company || ""),
+        phone: "", // Form hiện tại chưa có trường này
+        industry: "", // Form hiện tại chưa có trường này
+        message: sanitizeForSheet(message),
+        source: "Website Contact Form",
+        language: "de", // Có thể lấy từ cookie/session sau này
+      });
+
+      if (sheetResult.error) {
+        console.warn("[CRM] ⚠️ Lưu sheet có lỗi (đã bỏ qua):", sheetResult.error);
+      } else {
+        console.log("[CRM] ✓ Đã lưu vào Google Sheets thành công!");
+      }
+    } catch (sheetError) {
+      // "Fail Safe" - Log error but don't affect user experience
+      console.error("[CRM] ❌ Lỗi lưu Google Sheets (đã bỏ qua):", sheetError);
+    }
+    // =========================================
 
     return {
       success: true,
