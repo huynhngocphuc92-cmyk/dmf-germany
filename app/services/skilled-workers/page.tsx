@@ -40,6 +40,12 @@ import {
   Eye,
   Calendar,
   MapPin,
+  Cpu,
+  Cog,
+  Heart,
+  Building2,
+  Code,
+  Server,
 } from "lucide-react";
 
 // ============================================
@@ -49,46 +55,46 @@ import {
 const heroContent = {
   de: {
     badge: "§18a/b Fachkräfteeinwanderung",
-    headline: "Qualifizierte Fachkräfte",
-    headlineAccent: "ohne Risiko.",
+    headline: "Qualifizierte Fachkräfte.",
+    headlineAccent: "Anerkannte Abschlüsse. Sofort einsatzbereit.",
     subheadline:
-      "Von der Rekrutierung bis zur Integration – wir übernehmen den kompletten Prozess für Sie. Garantierte Qualität, transparente Kosten.",
-    cta1: "Kandidaten ansehen",
+      "Schluss mit dem Behörden-Dschungel. Wir vermitteln Ingenieure, IT-Profis und Pflegekräfte aus Vietnam – rechtssicher nach §18a/b AufenthG.",
+    cta1: "Verfügbare Experten prüfen",
     cta2: "Kostenlose Beratung",
     floatingCard1: {
       name: "Nguyen Van Minh",
       role: "Pflegefachkraft",
-      badge: "Visa §18a erteilt",
+      badge: "Anabin H+ geprüft",
     },
     floatingCard2: {
       title: "Anerkennung",
-      status: "Erfolgreich abgeschlossen",
+      status: "ZAV-konform geprüft",
     },
     floatingCard3: {
       title: "Sprachniveau",
-      level: "B2 Zertifiziert",
+      level: "B2 + Fachsprache",
     },
   },
   vn: {
     badge: "§18a/b Visa lao động tay nghề",
-    headline: "Nhân sự chất lượng cao",
-    headlineAccent: "không rủi ro.",
+    headline: "Nhân sự chất lượng.",
+    headlineAccent: "Bằng cấp công nhận. Sẵn sàng làm việc.",
     subheadline:
-      "Từ tuyển dụng đến hội nhập – chúng tôi đảm nhận toàn bộ quy trình cho bạn. Chất lượng đảm bảo, chi phí minh bạch.",
-    cta1: "Xem ứng viên",
+      "Chấm dứt mê cung thủ tục. Chúng tôi giới thiệu Kỹ sư, IT và Điều dưỡng từ Việt Nam – hợp pháp theo §18a/b AufenthG.",
+    cta1: "Xem chuyên gia sẵn sàng",
     cta2: "Tư vấn miễn phí",
     floatingCard1: {
       name: "Nguyễn Văn Minh",
       role: "Điều dưỡng viên",
-      badge: "Đã cấp Visa §18a",
+      badge: "Anabin H+ đã kiểm tra",
     },
     floatingCard2: {
       title: "Công nhận bằng",
-      status: "Hoàn thành thành công",
+      status: "Đạt chuẩn ZAV",
     },
     floatingCard3: {
       title: "Trình độ ngôn ngữ",
-      level: "B2 Chứng nhận",
+      level: "B2 + Ngôn ngữ chuyên ngành",
     },
   },
 };
@@ -99,25 +105,25 @@ const comparisonContent = {
     title: "Der Unterschied ist messbar.",
     subtitle: "Vergleichen Sie selbst: Eigenrekrutierung vs. DMF Vietnam",
     oldWay: {
-      title: "Ihr aktueller Prozess",
+      title: "Risiko & Bürokratie",
       subtitle: "Eigenrekrutierung",
       items: [
-        { text: "12-18 Monate bis Arbeitsantritt", icon: Timer },
-        { text: "Hohes Risiko bei Dokumentenfehlern", icon: XCircle },
+        { text: "Unklare Anerkennung (9-12 Monate)", icon: Timer },
+        { text: "Hohes Ablehnungsrisiko bei Dokumenten", icon: XCircle },
         { text: "Versteckte Kosten: Anwälte, Übersetzungen", icon: Euro },
-        { text: "Oft nur A2 Deutschniveau", icon: Languages },
+        { text: "Sprachbarriere – oft nur A2 Niveau", icon: Languages },
         { text: "Keine Nachbetreuung", icon: HeartHandshake },
       ],
     },
     newWay: {
-      title: "Mit DMF Vietnam",
-      subtitle: "All-Inclusive Lösung",
+      title: "Sicherheit & Speed",
+      subtitle: "Mit DMF Vietnam",
       badge: "Empfohlen",
       items: [
-        { text: "6-9 Monate bis Arbeitsantritt", icon: Zap },
-        { text: "Expertenprüfung aller Dokumente", icon: Shield },
-        { text: "Transparente Pauschalgebühr", icon: Euro },
-        { text: "Mindestens B1/B2 garantiert", icon: BadgeCheck },
+        { text: "Vorab-Check der Gleichwertigkeit (Sofort)", icon: Zap },
+        { text: "Visumsgarantie dank §81a Verfahren", icon: Shield },
+        { text: "Transparente Pauschalgebühr – keine Extras", icon: Euro },
+        { text: "B1/B2 Zertifikat + Fachsprache inklusive", icon: BadgeCheck },
         { text: "12 Monate Integrationsbegleitung", icon: HeartHandshake },
       ],
     },
@@ -127,25 +133,25 @@ const comparisonContent = {
     title: "Sự khác biệt có thể đo lường.",
     subtitle: "Tự so sánh: Tự tuyển dụng vs. DMF Vietnam",
     oldWay: {
-      title: "Quy trình hiện tại",
+      title: "Rủi ro & Thủ tục",
       subtitle: "Tự tuyển dụng",
       items: [
-        { text: "12-18 tháng đến khi làm việc", icon: Timer },
-        { text: "Rủi ro cao khi hồ sơ sai sót", icon: XCircle },
+        { text: "Công nhận bằng không rõ ràng (9-12 tháng)", icon: Timer },
+        { text: "Rủi ro từ chối cao khi hồ sơ sai", icon: XCircle },
         { text: "Chi phí ẩn: luật sư, dịch thuật", icon: Euro },
-        { text: "Thường chỉ A2 tiếng Đức", icon: Languages },
+        { text: "Rào cản ngôn ngữ – thường chỉ A2", icon: Languages },
         { text: "Không có hỗ trợ sau đó", icon: HeartHandshake },
       ],
     },
     newWay: {
-      title: "Với DMF Vietnam",
-      subtitle: "Giải pháp trọn gói",
+      title: "An toàn & Nhanh chóng",
+      subtitle: "Với DMF Vietnam",
       badge: "Khuyên dùng",
       items: [
-        { text: "6-9 tháng đến khi làm việc", icon: Zap },
-        { text: "Chuyên gia kiểm tra tất cả hồ sơ", icon: Shield },
-        { text: "Phí trọn gói minh bạch", icon: Euro },
-        { text: "Đảm bảo tối thiểu B1/B2", icon: BadgeCheck },
+        { text: "Kiểm tra tương đương trước (Ngay lập tức)", icon: Zap },
+        { text: "Đảm bảo Visa nhờ quy trình §81a", icon: Shield },
+        { text: "Phí trọn gói minh bạch – không phụ phí", icon: Euro },
+        { text: "Chứng chỉ B1/B2 + Ngôn ngữ chuyên ngành", icon: BadgeCheck },
         { text: "Đồng hành hội nhập 12 tháng", icon: HeartHandshake },
       ],
     },
@@ -276,6 +282,75 @@ const ctaContent = {
 };
 
 // ============================================
+// EXPERTISE AREAS CONTENT
+// ============================================
+
+const expertiseAreasContent = {
+  de: {
+    badge: "Unsere Expertise",
+    title: "Spezialisierte Fachkräfte",
+    subtitle: "Fokussiert auf die Branchen mit höchstem Bedarf",
+    areas: [
+      {
+        icon: Heart,
+        title: "Gesundheitswesen",
+        highlight: "Pflegefachkräfte",
+        description: "Mit Anerkennungsbescheid, B2-Zertifikat und Berufserfahrung in Krankenhäusern",
+        roles: ["Pflegefachkräfte", "Altenpfleger", "Krankenpfleger", "OP-Pflege"],
+        badges: ["Anabin H+", "ZAV-konform", "B2 Goethe/Telc"],
+      },
+      {
+        icon: Cog,
+        title: "Ingenieurwesen",
+        highlight: "Technische Experten",
+        description: "Bachelor/Master von renommierten technischen Universitäten in Vietnam",
+        roles: ["Maschinenbau", "Elektrotechnik", "Bauingenieure", "Mechatronik"],
+        badges: ["Anabin H+", "Berufserfahrung", "CAD/CAM"],
+      },
+      {
+        icon: Code,
+        title: "IT & Software",
+        highlight: "Digital-Talente",
+        description: "Praxiserfahrene Entwickler mit starkem technischen Hintergrund",
+        roles: ["Fullstack Developer", "Systemadministratoren", "DevOps", "Data Engineers"],
+        badges: ["Portfolio geprüft", "Englisch + Deutsch", "Zertifiziert"],
+      },
+    ],
+  },
+  vn: {
+    badge: "Chuyên môn của chúng tôi",
+    title: "Nhân sự chuyên ngành",
+    subtitle: "Tập trung vào các ngành có nhu cầu cao nhất",
+    areas: [
+      {
+        icon: Heart,
+        title: "Y tế",
+        highlight: "Điều dưỡng viên",
+        description: "Với giấy công nhận, chứng chỉ B2 và kinh nghiệm tại bệnh viện",
+        roles: ["Điều dưỡng", "Chăm sóc người cao tuổi", "Y tá", "Hộ lý phẫu thuật"],
+        badges: ["Anabin H+", "Đạt chuẩn ZAV", "B2 Goethe/Telc"],
+      },
+      {
+        icon: Cog,
+        title: "Kỹ thuật",
+        highlight: "Chuyên gia kỹ thuật",
+        description: "Cử nhân/Thạc sĩ từ các trường đại học kỹ thuật uy tín",
+        roles: ["Cơ khí", "Điện", "Xây dựng", "Cơ điện tử"],
+        badges: ["Anabin H+", "Có kinh nghiệm", "CAD/CAM"],
+      },
+      {
+        icon: Code,
+        title: "IT & Phần mềm",
+        highlight: "Nhân tài số",
+        description: "Lập trình viên có kinh nghiệm thực tế và nền tảng kỹ thuật vững",
+        roles: ["Fullstack Developer", "System Admin", "DevOps", "Data Engineers"],
+        badges: ["Portfolio đã kiểm tra", "Tiếng Anh + Tiếng Đức", "Có chứng chỉ"],
+      },
+    ],
+  },
+};
+
+// ============================================
 // AVAILABLE EXPERTS CONTENT
 // ============================================
 
@@ -305,9 +380,9 @@ interface ExpertProfile {
 
 const expertsContent = {
   de: {
-    badge: "Talent Pool",
+    badge: "Sofort verfügbar",
     title: "Verfügbare Fachkräfte",
-    subtitle: "Geprüfte Profile mit Berufserfahrung & Sprachzertifikat",
+    subtitle: "Anabin H+ geprüft • ZAV-konform • Berufserfahrung verifiziert",
     viewProfile: "Profil ansehen",
     bookInterview: "Interview buchen",
     education: "Ausbildung",
@@ -316,9 +391,9 @@ const expertsContent = {
     years: "Jahre",
   },
   vn: {
-    badge: "Talent Pool",
+    badge: "Sẵn sàng ngay",
     title: "Nhân sự sẵn sàng",
-    subtitle: "Hồ sơ đã được kiểm tra với kinh nghiệm & chứng chỉ ngôn ngữ",
+    subtitle: "Anabin H+ đã kiểm tra • Đạt chuẩn ZAV • Kinh nghiệm đã xác minh",
     viewProfile: "Xem hồ sơ",
     bookInterview: "Đặt phỏng vấn",
     education: "Trình độ",
@@ -337,8 +412,8 @@ const expertProfiles: ExpertProfile[] = [
     roleVn: "Kỹ sư Cơ khí",
     avatar: "TDA",
     badges: [
-      { textDe: "Diplom anerkannt", textVn: "Bằng đã công nhận", type: "recognition" },
-      { textDe: "Visum bereit", textVn: "Visa sẵn sàng", type: "visa" },
+      { textDe: "Anabin H+ geprüft", textVn: "Anabin H+ đã kiểm tra", type: "recognition" },
+      { textDe: "ZAV-konform", textVn: "Đạt chuẩn ZAV", type: "visa" },
     ],
     specs: {
       educationDe: "Bachelor - TU Hanoi",
@@ -347,8 +422,8 @@ const expertProfiles: ExpertProfile[] = [
       germanLevel: "B2",
       certType: "Telc",
     },
-    highlightDe: "CAD/CAM, CNC-Programmierung, Qualitätsmanagement",
-    highlightVn: "CAD/CAM, Lập trình CNC, Quản lý chất lượng",
+    highlightDe: "CAD/CAM, CNC-Programmierung, 5 Jahre Berufserfahrung",
+    highlightVn: "CAD/CAM, Lập trình CNC, 5 năm kinh nghiệm",
     icon: Wrench,
   },
   {
@@ -359,8 +434,8 @@ const expertProfiles: ExpertProfile[] = [
     roleVn: "Điều dưỡng viên",
     avatar: "NTM",
     badges: [
-      { textDe: "Anerkennungsbescheid", textVn: "Đã có Anerkennungsbescheid", type: "recognition" },
-      { textDe: "Visum bereit", textVn: "Visa sẵn sàng", type: "visa" },
+      { textDe: "Anerkennungsbescheid erteilt", textVn: "Đã có Anerkennungsbescheid", type: "recognition" },
+      { textDe: "§81a Visum bereit", textVn: "Visa §81a sẵn sàng", type: "visa" },
     ],
     specs: {
       educationDe: "Krankenpflege - Cho Ray",
@@ -369,31 +444,31 @@ const expertProfiles: ExpertProfile[] = [
       germanLevel: "B2",
       certType: "Goethe",
     },
-    highlightDe: "Intensivpflege, Notaufnahme, Altenpflege",
-    highlightVn: "Hồi sức tích cực, Cấp cứu, Chăm sóc người cao tuổi",
+    highlightDe: "Intensivpflege, 3 Jahre Berufserfahrung, Fachsprache",
+    highlightVn: "Hồi sức tích cực, 3 năm kinh nghiệm, Ngôn ngữ chuyên ngành",
     icon: Stethoscope,
   },
   {
-    id: "KOC-03",
-    nameDe: "Le Van Hung",
-    nameVn: "Lê Văn Hùng",
-    roleDe: "Koch (Europäische Küche)",
-    roleVn: "Đầu bếp Âu",
-    avatar: "LVH",
+    id: "IT-03",
+    nameDe: "Pham Quoc Bao",
+    nameVn: "Phạm Quốc Bảo",
+    roleDe: "Fullstack Developer",
+    roleVn: "Lập trình viên Fullstack",
+    avatar: "PQB",
     badges: [
-      { textDe: "IHK-Abschluss", textVn: "Bằng IHK", type: "recognition" },
+      { textDe: "Portfolio geprüft", textVn: "Portfolio đã kiểm tra", type: "recognition" },
       { textDe: "Sofort verfügbar", textVn: "Sẵn sàng ngay", type: "visa" },
     ],
     specs: {
-      educationDe: "Berufsausbildung Koch",
-      educationVn: "Đào tạo nghề Đầu bếp",
-      experienceYears: 7,
+      educationDe: "Informatik - FPT University",
+      educationVn: "CNTT - ĐH FPT",
+      experienceYears: 4,
       germanLevel: "B1",
       certType: "Telc",
     },
-    highlightDe: "5-Sterne Hotel, Feine Küche, Teamleitung",
-    highlightVn: "Khách sạn 5 sao, Ẩm thực cao cấp, Trưởng bếp",
-    icon: ChefHat,
+    highlightDe: "React, Node.js, 4 Jahre Berufserfahrung, AWS",
+    highlightVn: "React, Node.js, 4 năm kinh nghiệm, AWS",
+    icon: Code,
   },
 ];
 
@@ -1230,6 +1305,114 @@ function StatsSection() {
 }
 
 // ============================================
+// EXPERTISE AREAS SECTION
+// ============================================
+
+function ExpertiseAreasSection() {
+  const { language } = useLanguage();
+  const content = language === "de" ? expertiseAreasContent.de : expertiseAreasContent.vn;
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  return (
+    <section className="py-24 md:py-32 bg-white">
+      <div className="container mx-auto px-4 max-w-7xl">
+        {/* Header */}
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <Badge
+            variant="outline"
+            className="mb-6 px-4 py-2 border-emerald-200 text-emerald-700 bg-emerald-50"
+          >
+            <Target className="w-4 h-4 mr-2" />
+            {content.badge}
+          </Badge>
+
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
+            {content.title}
+          </h2>
+
+          <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto">
+            {content.subtitle}
+          </p>
+        </motion.div>
+
+        {/* Expertise Cards */}
+        <div className="grid md:grid-cols-3 gap-8">
+          {content.areas.map((area, index) => {
+            const Icon = area.icon;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.2 + index * 0.15 }}
+                whileHover={{ y: -8 }}
+                className="group"
+              >
+                <div className="h-full bg-gradient-to-br from-slate-50 to-slate-100 rounded-3xl p-8 border border-slate-200 hover:border-emerald-300 hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-300">
+                  {/* Icon & Title */}
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center shadow-lg shadow-emerald-500/20 group-hover:scale-110 transition-transform">
+                      <Icon className="w-7 h-7 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-slate-900">{area.title}</h3>
+                      <p className="text-sm text-emerald-600 font-medium">{area.highlight}</p>
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-slate-600 leading-relaxed mb-6">{area.description}</p>
+
+                  {/* Roles */}
+                  <div className="mb-6">
+                    <p className="text-xs text-slate-400 uppercase tracking-wider mb-3 font-semibold">
+                      {language === "de" ? "Berufe" : "Nghề nghiệp"}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {area.roles.map((role, idx) => (
+                        <span
+                          key={idx}
+                          className="px-3 py-1 bg-white rounded-full text-xs font-medium text-slate-700 border border-slate-200"
+                        >
+                          {role}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Trust Badges */}
+                  <div className="pt-4 border-t border-slate-200">
+                    <div className="flex flex-wrap gap-2">
+                      {area.badges.map((badge, idx) => (
+                        <Badge
+                          key={idx}
+                          variant="outline"
+                          className="text-xs bg-emerald-50 text-emerald-700 border-emerald-200"
+                        >
+                          <BadgeCheck className="w-3 h-3 mr-1" />
+                          {badge}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ============================================
 // CTA SECTION
 // ============================================
 
@@ -1295,6 +1478,7 @@ export default function SkilledWorkersPage() {
     <main className="min-h-screen">
       <HeroSection />
       <ComparisonSection />
+      <ExpertiseAreasSection />
       <AvailableExpertsSection />
       <ProcessSection />
       <StatsSection />

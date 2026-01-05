@@ -47,10 +47,10 @@ import {
 const heroContent = {
   de: {
     badge: "Ausbildung §16a AufenthG",
-    headline: "Investition in die Zukunft:",
-    headlineAccent: "Ihre Fachkräfte von morgen.",
+    headline: "Langfristige Personalsicherung",
+    headlineAccent: "durch motivierte Auszubildende.",
     subheadline:
-      "Motivierte Auszubildende aus Vietnam. 3 Jahre Ausbildung – Langfristige Loyalität. Nachhaltige Lösung für den Fachkräftemangel.",
+      "Verbinden Sie deutsche Ausbildungsqualität mit vietnamesischem Fleiß. Eine Investition in Loyalität und Zukunft.",
     cta1: "Azubi-Profile entdecken",
     cta2: "Beratung anfordern",
     stats: [
@@ -61,10 +61,10 @@ const heroContent = {
   },
   vn: {
     badge: "Du học nghề §16a AufenthG",
-    headline: "Đầu tư cho tương lai:",
-    headlineAccent: "Chuyên gia của ngày mai.",
+    headline: "Đảm bảo nhân sự dài hạn",
+    headlineAccent: "qua học viên đầy động lực.",
     subheadline:
-      "Học viên Việt Nam đầy động lực. 3 năm đào tạo – Gắn bó lâu dài. Giải pháp bền vững cho tình trạng thiếu hụt nhân sự.",
+      "Kết hợp chất lượng đào tạo Đức với sự cần cù Việt Nam. Một khoản đầu tư vào sự trung thành và tương lai.",
     cta1: "Khám phá hồ sơ học viên",
     cta2: "Yêu cầu tư vấn",
     stats: [
@@ -78,63 +78,189 @@ const heroContent = {
 const advantagesContent = {
   de: {
     badge: "Warum Azubis aus Vietnam?",
-    title: "Das Duale System – Ihr Vorteil",
-    subtitle: "Qualifizierte, motivierte Nachwuchskräfte für Ihre Zukunft",
+    title: "3 Gründe für vietnamesische Azubis",
+    subtitle: "Nachhaltige Lösung für Ihren Fachkräftemangel",
     advantages: [
       {
         icon: Heart,
-        title: "Motivation & Kultur",
+        title: "Hohe Arbeitsmoral",
         description:
-          "Junge Vietnamesen bringen eine tiefe Wertschätzung für Bildung und Respekt gegenüber Ausbildern mit. Fleißig, lernbegierig und teamfähig.",
+          "Diszipliniert, respektvoll und lernbereit – kulturell verankerte Werte, besonders wertvoll in der Pflege und im Handwerk.",
         highlight: "Tôn sư trọng đạo",
-        highlightDesc: "Respekt vor Lehrern",
-      },
-      {
-        icon: Languages,
-        title: "Sprachkompetenz",
-        description:
-          "Alle Kandidaten erreichen mindestens B1-Niveau vor der Einreise. Intensive Vorbereitung auf Fachsprache und Alltagskommunikation.",
-        highlight: "B1/B2 garantiert",
-        highlightDesc: "Vor Ausreise",
+        highlightDesc: "Kulturelle Stärke",
       },
       {
         icon: Handshake,
         title: "Langfristige Bindung",
         description:
-          "Statistiken zeigen: 90% der vietnamesischen Azubis bleiben nach Abschluss im Ausbildungsbetrieb. Investition, die sich auszahlt.",
+          "Vietnamesische Azubis suchen eine neue Heimat. Hohe Bleibequote nach der Ausbildung statt Job-Hopping.",
         highlight: "90% Bleibequote",
-        highlightDesc: "Nach Ausbildung",
+        highlightDesc: "Kein Job-Hopping",
+      },
+      {
+        icon: Shield,
+        title: "Rundum-Betreuung",
+        description:
+          "Wir übernehmen Behördengänge und Integration. Sie konzentrieren sich zu 100% auf die fachliche Ausbildung.",
+        highlight: "100% Fokus",
+        highlightDesc: "Auf Ihre Kernaufgabe",
       },
     ],
   },
   vn: {
     badge: "Tại sao chọn học viên Việt Nam?",
-    title: "Hệ thống Đào tạo Kép – Lợi thế của bạn",
-    subtitle: "Nhân lực trẻ có chất lượng và động lực cho tương lai",
+    title: "3 lý do chọn học viên Việt Nam",
+    subtitle: "Giải pháp bền vững cho tình trạng thiếu hụt nhân sự",
     advantages: [
       {
         icon: Heart,
-        title: "Động lực & Văn hóa",
+        title: "Tinh thần làm việc cao",
         description:
-          "Thanh niên Việt Nam mang theo sự trân trọng sâu sắc với giáo dục và tôn kính người thầy. Chăm chỉ, ham học và làm việc nhóm tốt.",
+          "Kỷ luật, tôn trọng và ham học – những giá trị văn hóa sâu sắc, đặc biệt quý trong ngành Điều dưỡng và Thủ công.",
         highlight: "Tôn sư trọng đạo",
-        highlightDesc: "Kính trọng thầy cô",
-      },
-      {
-        icon: Languages,
-        title: "Năng lực ngôn ngữ",
-        description:
-          "Tất cả ứng viên đạt tối thiểu B1 trước khi nhập cảnh. Chuẩn bị kỹ lưỡng về ngôn ngữ chuyên ngành và giao tiếp hàng ngày.",
-        highlight: "Đảm bảo B1/B2",
-        highlightDesc: "Trước khi xuất cảnh",
+        highlightDesc: "Sức mạnh văn hóa",
       },
       {
         icon: Handshake,
         title: "Gắn bó lâu dài",
         description:
-          "Thống kê cho thấy: 90% học viên Việt Nam ở lại doanh nghiệp sau khi tốt nghiệp. Đầu tư xứng đáng.",
+          "Học viên Việt Nam tìm kiếm một ngôi nhà mới. Tỷ lệ ở lại cao sau đào tạo thay vì nhảy việc.",
         highlight: "90% ở lại",
-        highlightDesc: "Sau đào tạo",
+        highlightDesc: "Không nhảy việc",
+      },
+      {
+        icon: Shield,
+        title: "Hỗ trợ toàn diện",
+        description:
+          "Chúng tôi đảm nhận thủ tục hành chính và hội nhập. Bạn tập trung 100% vào đào tạo chuyên môn.",
+        highlight: "100% Tập trung",
+        highlightDesc: "Vào nhiệm vụ chính",
+      },
+    ],
+  },
+};
+
+// ============================================
+// DMF QUALITY STANDARD CONTENT
+// ============================================
+
+const qualityStandardContent = {
+  de: {
+    badge: "DMF Qualitäts-Standard",
+    title: "Ganzheitliche Vorbereitung & Begleitung",
+    subtitle: "Von der Sprachausbildung bis zur erfolgreichen Integration",
+    leftColumn: {
+      title: "Vorbereitung in Vietnam",
+      icon: GraduationCap,
+      items: [
+        { text: "Intensiv-Sprachkurse (B1/B2)", icon: Languages },
+        { text: "Fachsprache-Training (Medizin/Technik)", icon: BookOpen },
+        { text: "Interkulturelle Workshops", icon: Users },
+        { text: "Deutsche Arbeitskultur", icon: Building2 },
+      ],
+    },
+    rightColumn: {
+      title: "Begleitung in Deutschland",
+      icon: HeartHandshake,
+      items: [
+        { text: "24/7 Ansprechpartner", icon: MessageCircle },
+        { text: "Wohnungssuche & Einzug", icon: Home },
+        { text: "Behördenservice komplett", icon: FileCheck },
+        { text: "Laufende Betreuung (3 Jahre)", icon: Shield },
+      ],
+    },
+  },
+  vn: {
+    badge: "Tiêu chuẩn chất lượng DMF",
+    title: "Chuẩn bị & Đồng hành toàn diện",
+    subtitle: "Từ đào tạo ngôn ngữ đến hội nhập thành công",
+    leftColumn: {
+      title: "Chuẩn bị tại Việt Nam",
+      icon: GraduationCap,
+      items: [
+        { text: "Khóa tiếng Đức chuyên sâu (B1/B2)", icon: Languages },
+        { text: "Đào tạo ngôn ngữ chuyên ngành (Y tế/Kỹ thuật)", icon: BookOpen },
+        { text: "Hội thảo giao thoa văn hóa", icon: Users },
+        { text: "Văn hóa làm việc Đức", icon: Building2 },
+      ],
+    },
+    rightColumn: {
+      title: "Đồng hành tại Đức",
+      icon: HeartHandshake,
+      items: [
+        { text: "Hỗ trợ 24/7", icon: MessageCircle },
+        { text: "Tìm & dọn nhà", icon: Home },
+        { text: "Dịch vụ thủ tục trọn gói", icon: FileCheck },
+        { text: "Đồng hành liên tục (3 năm)", icon: Shield },
+      ],
+    },
+  },
+};
+
+// ============================================
+// SIMPLE PROCESS CONTENT
+// ============================================
+
+const processContent = {
+  de: {
+    badge: "Einfacher Prozess",
+    title: "4 Schritte zu Ihrem Azubi",
+    subtitle: "Schnell, transparent und unkompliziert",
+    steps: [
+      {
+        number: "01",
+        title: "Bedarfsanalyse",
+        description: "Wir besprechen Ihre Anforderungen und den Zeitplan",
+        icon: Target,
+      },
+      {
+        number: "02",
+        title: "Video-Interview",
+        description: "Sie lernen passende Kandidaten persönlich kennen",
+        icon: MessageCircle,
+      },
+      {
+        number: "03",
+        title: "Visa-Service",
+        description: "Wir kümmern uns um alle Formalitäten",
+        icon: FileCheck,
+      },
+      {
+        number: "04",
+        title: "Ausbildungsstart",
+        description: "Ihr Azubi beginnt motiviert in Deutschland",
+        icon: Rocket,
+      },
+    ],
+  },
+  vn: {
+    badge: "Quy trình đơn giản",
+    title: "4 bước để có học viên",
+    subtitle: "Nhanh chóng, minh bạch và đơn giản",
+    steps: [
+      {
+        number: "01",
+        title: "Phân tích nhu cầu",
+        description: "Chúng tôi trao đổi về yêu cầu và lịch trình của bạn",
+        icon: Target,
+      },
+      {
+        number: "02",
+        title: "Phỏng vấn Video",
+        description: "Bạn gặp gỡ trực tiếp các ứng viên phù hợp",
+        icon: MessageCircle,
+      },
+      {
+        number: "03",
+        title: "Dịch vụ Visa",
+        description: "Chúng tôi lo tất cả thủ tục giấy tờ",
+        icon: FileCheck,
+      },
+      {
+        number: "04",
+        title: "Bắt đầu đào tạo",
+        description: "Học viên của bạn bắt đầu với tinh thần cao tại Đức",
+        icon: Rocket,
       },
     ],
   },
@@ -755,6 +881,211 @@ function AdvantagesSection() {
 }
 
 // ============================================
+// DMF QUALITY STANDARD SECTION
+// ============================================
+
+function QualityStandardSection() {
+  const { language } = useLanguage();
+  const content = language === "de" ? qualityStandardContent.de : qualityStandardContent.vn;
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  const LeftIcon = content.leftColumn.icon;
+  const RightIcon = content.rightColumn.icon;
+
+  return (
+    <section className="py-24 md:py-32 bg-slate-50">
+      <div className="container mx-auto px-4 max-w-6xl">
+        {/* Header */}
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <Badge
+            variant="outline"
+            className="mb-6 px-4 py-2 border-blue-200 text-blue-700 bg-blue-50"
+          >
+            <BadgeCheck className="w-4 h-4 mr-2" />
+            {content.badge}
+          </Badge>
+
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
+            {content.title}
+          </h2>
+
+          <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto">
+            {content.subtitle}
+          </p>
+        </motion.div>
+
+        {/* Two Column Grid */}
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Left Column - Vietnam */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <div className="h-full bg-white rounded-3xl p-8 border border-blue-200 shadow-lg">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-500 flex items-center justify-center shadow-lg shadow-blue-500/20">
+                  <LeftIcon className="w-7 h-7 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-slate-900">{content.leftColumn.title}</h3>
+                  <p className="text-sm text-blue-600">🇻🇳 Vietnam</p>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                {content.leftColumn.items.map((item, index) => {
+                  const ItemIcon = item.icon;
+                  return (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={isInView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                      className="flex items-center gap-4 p-4 bg-blue-50 rounded-xl border border-blue-100"
+                    >
+                      <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center shadow-sm">
+                        <ItemIcon className="w-5 h-5 text-blue-600" />
+                      </div>
+                      <span className="font-medium text-slate-700">{item.text}</span>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right Column - Germany */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <div className="h-full bg-white rounded-3xl p-8 border border-indigo-200 shadow-lg">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+                  <RightIcon className="w-7 h-7 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-slate-900">{content.rightColumn.title}</h3>
+                  <p className="text-sm text-indigo-600">🇩🇪 Deutschland</p>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                {content.rightColumn.items.map((item, index) => {
+                  const ItemIcon = item.icon;
+                  return (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={isInView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
+                      className="flex items-center gap-4 p-4 bg-indigo-50 rounded-xl border border-indigo-100"
+                    >
+                      <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center shadow-sm">
+                        <ItemIcon className="w-5 h-5 text-indigo-600" />
+                      </div>
+                      <span className="font-medium text-slate-700">{item.text}</span>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ============================================
+// SIMPLE PROCESS SECTION
+// ============================================
+
+function SimpleProcessSection() {
+  const { language } = useLanguage();
+  const content = language === "de" ? processContent.de : processContent.vn;
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  return (
+    <section className="py-24 md:py-32 bg-white">
+      <div className="container mx-auto px-4 max-w-6xl">
+        {/* Header */}
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <Badge
+            variant="outline"
+            className="mb-6 px-4 py-2 border-blue-200 text-blue-700 bg-blue-50"
+          >
+            <Target className="w-4 h-4 mr-2" />
+            {content.badge}
+          </Badge>
+
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
+            {content.title}
+          </h2>
+
+          <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto">
+            {content.subtitle}
+          </p>
+        </motion.div>
+
+        {/* Process Steps - Horizontal on Desktop */}
+        <div className="grid md:grid-cols-4 gap-6">
+          {content.steps.map((step, index) => {
+            const Icon = step.icon;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.2 + index * 0.15 }}
+                className="relative"
+              >
+                {/* Connection Line (except last) */}
+                {index < content.steps.length - 1 && (
+                  <div className="hidden md:block absolute top-12 left-[60%] w-[80%] h-0.5 bg-gradient-to-r from-blue-300 to-blue-100" />
+                )}
+
+                <div className="text-center">
+                  {/* Step Number & Icon */}
+                  <div className="relative inline-block mb-4">
+                    <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-500 flex items-center justify-center shadow-xl shadow-blue-500/20 mx-auto">
+                      <Icon className="w-10 h-10 text-white" />
+                    </div>
+                    <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-white border-2 border-blue-500 flex items-center justify-center font-bold text-blue-600 text-sm shadow-md">
+                      {step.number}
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <h3 className="text-lg font-bold text-slate-900 mb-2">{step.title}</h3>
+                  <p className="text-sm text-slate-500">{step.description}</p>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ============================================
 // AZUBI TALENT SHOWCASE SECTION
 // ============================================
 
@@ -1257,6 +1588,8 @@ export default function AzubiPage() {
     <main className="min-h-screen">
       <HeroSection />
       <AdvantagesSection />
+      <QualityStandardSection />
+      <SimpleProcessSection />
       <TalentShowcaseSection />
       <SupportEcosystemSection />
       <ComparisonSection />

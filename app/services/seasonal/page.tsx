@@ -40,24 +40,24 @@ import {
 
 const heroContent = {
   de: {
-    badge: "Schnelle Verfügbarkeit",
-    headline: "Saisonkräfte zur Verstärkung",
-    headlineAccent: "Schnell & Flexibel.",
+    badge: "100% ZAV-konform",
+    headline: "Erntehelfer & Servicekräfte",
+    headlineAccent: "Schnell verfügbar.",
     subheadline:
-      "Unterstützung für Landwirtschaft & Gastronomie. Einreisefertig in 4-8 Wochen. Legale Beschäftigung garantiert.",
-    cta1: "Personal jetzt anfordern",
+      "Sichern Sie Ihre Ernte und Ihren Service. Körperlich belastbares Personal für die Hochsaison – einsatzbereit in 4-8 Wochen.",
+    cta1: "Verfügbarkeit jetzt prüfen",
     cta2: "Rückruf anfordern",
-    urgencyBadge: "Saison 2026 – Jetzt planen!",
+    urgencyBadge: "Saison 2026 – Jetzt sichern!",
   },
   vn: {
-    badge: "Sẵn sàng nhanh chóng",
-    headline: "Lao động thời vụ hỗ trợ",
-    headlineAccent: "Nhanh & Linh hoạt.",
+    badge: "100% đạt chuẩn ZAV",
+    headline: "Nhân sự thu hoạch & phục vụ",
+    headlineAccent: "Sẵn sàng nhanh chóng.",
     subheadline:
-      "Hỗ trợ cho Nông nghiệp & Nhà hàng khách sạn. Sẵn sàng nhập cảnh trong 4-8 tuần. Đảm bảo việc làm hợp pháp.",
-    cta1: "Yêu cầu nhân sự ngay",
+      "Đảm bảo mùa vụ và dịch vụ của bạn. Nhân sự khỏe mạnh cho mùa cao điểm – sẵn sàng làm việc trong 4-8 tuần.",
+    cta1: "Kiểm tra ngay",
     cta2: "Yêu cầu gọi lại",
-    urgencyBadge: "Mùa vụ 2026 – Lên kế hoạch ngay!",
+    urgencyBadge: "Mùa vụ 2026 – Đặt ngay!",
   },
 };
 
@@ -70,19 +70,19 @@ const timelineContent = {
       {
         week: "1",
         title: "Auswahl",
-        description: "Schnelle Vorauswahl passender Kandidaten",
+        description: "Wir stellen Ihnen passende Teams vor",
         icon: Users,
       },
       {
         week: "2-4",
-        title: "ZAV-Zustimmung",
-        description: "Genehmigung durch die Bundesagentur für Arbeit",
+        title: "ZAV-Antrag",
+        description: "Behördliche Genehmigung durch Arbeitsagentur",
         icon: FileCheck,
       },
       {
         week: "5-8",
-        title: "Visum & Einreise",
-        description: "Visumerteilung und organisierte Anreise",
+        title: "Anreise",
+        description: "Gruppenflug und Transfer zum Einsatzort",
         icon: Plane,
       },
     ],
@@ -96,19 +96,19 @@ const timelineContent = {
       {
         week: "1",
         title: "Tuyển chọn",
-        description: "Sàng lọc nhanh ứng viên phù hợp",
+        description: "Chúng tôi giới thiệu đội ngũ phù hợp",
         icon: Users,
       },
       {
         week: "2-4",
-        title: "Phê duyệt ZAV",
-        description: "Chấp thuận từ Cơ quan Lao động Liên bang",
+        title: "Hồ sơ ZAV",
+        description: "Phê duyệt từ Cơ quan Lao động",
         icon: FileCheck,
       },
       {
         week: "5-8",
-        title: "Visa & Nhập cảnh",
-        description: "Cấp visa và tổ chức di chuyển",
+        title: "Di chuyển",
+        description: "Bay theo nhóm và đưa đón đến nơi làm việc",
         icon: Plane,
       },
     ],
@@ -118,9 +118,9 @@ const timelineContent = {
 
 const talentPoolContent = {
   de: {
-    badge: "Talent Pool",
-    title: "Einsatzbereite Arbeitskräfte",
-    subtitle: "Körperlich fit, motiviert und sofort verfügbar",
+    badge: "Sofort verfügbar",
+    title: "Belastbare Arbeitskräfte",
+    subtitle: "ZAV-konform • Körperlich fit • Einsatzbereit in Wochen",
     availableBadge: "50+ Verfügbar",
     viewAll: "Alle Kandidaten ansehen",
     profiles: [
@@ -208,8 +208,10 @@ const sectorsContent = {
         icon: Tractor,
         secondaryIcon: Grape,
         color: "amber",
-        jobs: ["Erntehilfe", "Pflanzarbeiten", "Verpackung", "Sortierung"],
-        jobsVn: ["Thu hoạch", "Trồng trọt", "Đóng gói", "Phân loại"],
+        jobs: ["Spargel", "Erdbeeren", "Weinbau", "Gemüseernte"],
+        jobsVn: ["Măng tây", "Dâu tây", "Nho", "Rau củ"],
+        description: "Erntehelfer für Spargel, Erdbeeren, Weinbau & Gemüse.",
+        descriptionVn: "Nhân sự thu hoạch măng tây, dâu, nho và rau củ.",
         stats: { workers: "150+", time: "4-6 Wo." },
       },
       {
@@ -218,8 +220,10 @@ const sectorsContent = {
         icon: UtensilsCrossed,
         secondaryIcon: Hotel,
         color: "orange",
-        jobs: ["Küchenhilfe", "Service", "Housekeeping", "Spülkraft"],
-        jobsVn: ["Phụ bếp", "Phục vụ", "Buồng phòng", "Rửa bát"],
+        jobs: ["Spüler", "Küchenhilfen", "Zimmermädchen", "Servicekräfte"],
+        jobsVn: ["Rửa bát", "Phụ bếp", "Dọn phòng", "Phục vụ"],
+        description: "Spüler, Küchenhilfen & Zimmermädchen für Hotels & Restaurants.",
+        descriptionVn: "Rửa bát, phụ bếp và dọn phòng cho khách sạn & nhà hàng.",
         stats: { workers: "100+", time: "6-8 Wo." },
       },
     ],
@@ -229,6 +233,69 @@ const sectorsContent = {
     title: "Ngành nghề chúng tôi phục vụ",
     subtitle: "Chuyên về mùa cao điểm",
     sectors: [],
+  },
+};
+
+// ============================================
+// ADVANTAGES CONTENT
+// ============================================
+
+const advantagesContent = {
+  de: {
+    badge: "Warum Vietnam?",
+    title: "Ihre Vorteile auf einen Blick",
+    subtitle: "Belastbares Personal für harte Arbeit",
+    advantages: [
+      {
+        icon: Dumbbell,
+        title: "Körperlich Belastbar",
+        description: "Gewohnt an harte Arbeit und Hitze. Ideal für Feldarbeit und Gewächshäuser.",
+        highlight: "100%",
+        highlightDesc: "Einsatzbereit",
+      },
+      {
+        icon: Zap,
+        title: "Hohe Motivation",
+        description: "Maximale Einsatzbereitschaft für 3-6 Monate. Wenig Fehlzeiten, hohe Produktivität.",
+        highlight: "< 2%",
+        highlightDesc: "Fehlzeiten",
+      },
+      {
+        icon: Shield,
+        title: "Rechtssicher",
+        description: "Wir garantieren die Einhaltung aller Vorgaben (Mindestlohn, ZAV, Visum). Kein Risiko für Sie.",
+        highlight: "100%",
+        highlightDesc: "ZAV-konform",
+      },
+    ],
+  },
+  vn: {
+    badge: "Tại sao Việt Nam?",
+    title: "Lợi thế của bạn",
+    subtitle: "Nhân sự chịu được công việc nặng",
+    advantages: [
+      {
+        icon: Dumbbell,
+        title: "Chịu được việc nặng",
+        description: "Quen việc nặng và chịu nhiệt. Lý tưởng cho đồng ruộng và nhà kính.",
+        highlight: "100%",
+        highlightDesc: "Sẵn sàng làm việc",
+      },
+      {
+        icon: Zap,
+        title: "Động lực cao",
+        description: "Sẵn sàng làm việc tối đa 3-6 tháng. Ít nghỉ, năng suất cao.",
+        highlight: "< 2%",
+        highlightDesc: "Tỷ lệ nghỉ",
+      },
+      {
+        icon: Shield,
+        title: "An toàn pháp lý",
+        description: "Chúng tôi đảm bảo tuân thủ mọi quy định (Lương tối thiểu, ZAV, Visa). Không rủi ro cho bạn.",
+        highlight: "100%",
+        highlightDesc: "Đạt chuẩn ZAV",
+      },
+    ],
   },
 };
 
@@ -253,17 +320,17 @@ const statsContent = {
 
 const ctaContent = {
   de: {
-    title: "Saisonkräfte benötigt?",
-    subtitle: "Sichern Sie sich jetzt Ihre Arbeitskräfte für die kommende Saison.",
-    cta1: "Jetzt Bedarf melden",
-    cta2: "Kostenlose Beratung",
+    title: "Hochsaison steht bevor?",
+    subtitle: "Sichern Sie sich jetzt belastbares Personal – bevor es andere tun.",
+    cta1: "Verfügbarkeit prüfen",
+    cta2: "Rückruf anfordern",
     urgency: "Frühbucher-Vorteil: Priorisierte Bearbeitung",
   },
   vn: {
-    title: "Cần lao động thời vụ?",
-    subtitle: "Đảm bảo nguồn nhân lực cho mùa vụ sắp tới ngay bây giờ.",
-    cta1: "Báo nhu cầu ngay",
-    cta2: "Tư vấn miễn phí",
+    title: "Mùa cao điểm đang đến?",
+    subtitle: "Đảm bảo nhân sự khỏe mạnh ngay – trước khi đối thủ làm điều đó.",
+    cta1: "Kiểm tra số lượng",
+    cta2: "Yêu cầu gọi lại",
     urgency: "Ưu đãi đặt sớm: Xử lý ưu tiên",
   },
 };
@@ -519,6 +586,84 @@ function HeroSection() {
           <motion.div className="w-1.5 h-1.5 bg-amber-400 rounded-full" />
         </motion.div>
       </motion.div>
+    </section>
+  );
+}
+
+// ============================================
+// ADVANTAGES SECTION
+// ============================================
+
+function AdvantagesSection() {
+  const { language } = useLanguage();
+  const content = language === "de" ? advantagesContent.de : advantagesContent.vn;
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  return (
+    <section className="py-24 md:py-32 bg-slate-50">
+      <div className="container mx-auto px-4 max-w-7xl">
+        {/* Header */}
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <Badge
+            variant="outline"
+            className="mb-6 px-4 py-2 border-amber-200 text-amber-700 bg-amber-50"
+          >
+            <Zap className="w-4 h-4 mr-2" />
+            {content.badge}
+          </Badge>
+
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
+            {content.title}
+          </h2>
+
+          <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto">
+            {content.subtitle}
+          </p>
+        </motion.div>
+
+        {/* Advantage Cards */}
+        <div className="grid md:grid-cols-3 gap-8">
+          {content.advantages.map((advantage, index) => {
+            const Icon = advantage.icon;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.2 + index * 0.15 }}
+                whileHover={{ y: -8 }}
+                className="group"
+              >
+                <div className="h-full bg-white rounded-3xl p-8 border border-slate-200 hover:border-amber-300 hover:shadow-2xl hover:shadow-amber-500/10 transition-all duration-300">
+                  {/* Icon */}
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center mb-6 shadow-lg shadow-amber-500/20 group-hover:scale-110 transition-transform">
+                    <Icon className="w-8 h-8 text-white" />
+                  </div>
+
+                  {/* Content */}
+                  <h3 className="text-xl font-bold text-slate-900 mb-4">{advantage.title}</h3>
+                  <p className="text-slate-600 leading-relaxed mb-6">{advantage.description}</p>
+
+                  {/* Highlight Badge */}
+                  <div className="bg-amber-50 rounded-xl p-4 border border-amber-100">
+                    <div className="text-2xl font-bold text-amber-600 mb-1">
+                      {advantage.highlight}
+                    </div>
+                    <div className="text-sm text-slate-500">{advantage.highlightDesc}</div>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
     </section>
   );
 }
@@ -1036,6 +1181,7 @@ export default function SeasonalWorkersPage() {
   return (
     <main className="min-h-screen">
       <HeroSection />
+      <AdvantagesSection />
       <SpeedTimelineSection />
       <TalentPoolSection />
       <SectorsSection />
