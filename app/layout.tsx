@@ -5,6 +5,9 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
 import { LanguageProvider } from "@/lib/language-context";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { CookieConsent } from "@/components/CookieConsent";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -45,12 +48,21 @@ export const metadata: Metadata = {
     title: "DMF Vietnam | Brücke zwischen vietnamesischen Talenten & Deutschland",
     description:
       "DMF Vietnam vermittelt qualifizierte Fachkräfte und Auszubildende aus Vietnam an deutsche Unternehmen. Sprachausbildung, interkulturelles Training und umfassende Betreuung.",
+    images: [
+      {
+        url: "https://dmf.edu.vn/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "DMF Vietnam - Brücken bauen zwischen Vietnam und Deutschland",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "DMF Vietnam | Fachkräfte für Deutschland",
     description:
       "Ihr zuverlässiger Partner für qualifizierte vietnamesische Fachkräfte.",
+    images: ["https://dmf.edu.vn/og-image.jpg"],
   },
   icons: {
     icon: "/favicon.ico",
@@ -79,10 +91,21 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <LanguageProvider defaultLanguage="de">
+          {/* SEO: Structured Data (Schema.org JSON-LD) */}
+          <JsonLd />
+          
+          {/* Analytics: Google Analytics 4 (DSGVO compliant - requires cookie consent) */}
+          <GoogleAnalytics />
+          
           <Header />
           <main>{children}</main>
           <Footer />
+          
+          {/* UI: Toast notifications */}
           <Toaster richColors position="top-center" />
+          
+          {/* DSGVO: Cookie Consent Banner */}
+          <CookieConsent />
         </LanguageProvider>
       </body>
     </html>
