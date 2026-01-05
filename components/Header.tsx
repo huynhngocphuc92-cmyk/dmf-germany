@@ -13,6 +13,7 @@ import {
   Phone,
   X,
   ChevronRight,
+  Newspaper,
 } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -103,6 +104,7 @@ const navContent = {
   de: {
     home: "Startseite",
     solutions: "Lösungen",
+    blog: "Blog",
     about: "Über uns",
     contact: "Kontakt",
     downloadProfile: "Unternehmensprofil (PDF)",
@@ -112,6 +114,7 @@ const navContent = {
   vn: {
     home: "Trang chủ",
     solutions: "Giải pháp",
+    blog: "Tin tức",
     about: "Về chúng tôi",
     contact: "Liên hệ",
     downloadProfile: "Hồ sơ năng lực (PDF)",
@@ -304,6 +307,23 @@ export const Header = () => {
               </NavigationMenuContent>
             </NavigationMenuItem>
 
+            {/* Blog */}
+            <NavigationMenuItem>
+              <NavigationMenuLink asChild>
+                <Link
+                  href="/blog"
+                  className={cn(
+                    navigationMenuTriggerStyle(),
+                    "bg-transparent",
+                    isActive("/blog") && "text-primary font-semibold"
+                  )}
+                >
+                  <Newspaper className="w-4 h-4 mr-2" />
+                  {nav.blog}
+                </Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+
             {/* About */}
             <NavigationMenuItem>
               <NavigationMenuLink asChild>
@@ -452,6 +472,21 @@ export const Header = () => {
                       </AccordionContent>
                     </AccordionItem>
                   </Accordion>
+
+                  {/* Blog */}
+                  <Link
+                    href="/blog"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={cn(
+                      "flex items-center gap-3 px-4 py-3 rounded-xl mb-2 transition-colors",
+                      isActive("/blog")
+                        ? "bg-primary/10 text-primary font-semibold"
+                        : "text-foreground/80 hover:bg-muted"
+                    )}
+                  >
+                    <Newspaper className="w-5 h-5" />
+                    {nav.blog}
+                  </Link>
 
                   {/* About */}
                   <Link
