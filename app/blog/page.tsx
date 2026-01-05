@@ -2,6 +2,9 @@ import { Metadata } from "next";
 import { getPublishedPosts } from "@/app/admin/posts/actions";
 import { BlogListClient } from "./blog-list-client";
 
+// Force dynamic rendering (uses cookies for Supabase client)
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: "Blog | DMF Vietnam",
   description: "Aktuelle Nachrichten und Artikel über Fachkräfte aus Vietnam, Visum-Informationen und Rekrutierungstipps.",
