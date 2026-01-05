@@ -1,9 +1,13 @@
-import { siteContent } from "@/config/site-content";
+"use client";
+
+import { useLanguage } from "@/lib/language-context";
 import Link from "next/link";
 import { Mail, Phone, Globe, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const Footer = () => {
+  const { content } = useLanguage();
+
   return (
     <footer className="border-t bg-primary/5">
       <div className="container mx-auto px-4 lg:px-8 py-12 md:py-16">
@@ -12,14 +16,14 @@ export const Footer = () => {
           <div className="sm:col-span-2 lg:col-span-2 space-y-4">
             <Link href="/" className="inline-block">
               <span className="text-xl md:text-2xl font-bold tracking-tight text-primary">
-                {siteContent.footer.companyName}
+                {content.footer.companyName}
               </span>
             </Link>
             <p className="text-sm md:text-base text-muted-foreground max-w-md leading-relaxed">
-              {siteContent.footer.tagline}
+              {content.footer.tagline}
             </p>
             <p className="text-xs md:text-sm text-muted-foreground italic">
-              {siteContent.footer.closing}
+              {content.footer.closing}
             </p>
             
             {/* Download Profile Button */}
@@ -35,7 +39,7 @@ export const Footer = () => {
                   download="DMF_Vietnam_Unternehmensprofil.pdf"
                 >
                   <Download className="h-4 w-4" />
-                  Unternehmensprofil herunterladen
+                  {content.footer.downloadProfile}
                 </a>
               </Button>
             </div>
@@ -44,10 +48,10 @@ export const Footer = () => {
           {/* Quick Links */}
           <div className="space-y-4">
             <h4 className="text-xs md:text-sm font-semibold text-foreground uppercase tracking-wider">
-              {siteContent.footer.quickLinks.title}
+              {content.footer.quickLinks.title}
             </h4>
             <ul className="space-y-2 md:space-y-3 text-sm text-muted-foreground">
-              {siteContent.footer.quickLinks.items.map((item) => (
+              {content.footer.quickLinks.items.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
@@ -63,36 +67,36 @@ export const Footer = () => {
           {/* Contact Info */}
           <div className="space-y-4">
             <h4 className="text-xs md:text-sm font-semibold text-foreground uppercase tracking-wider">
-              Kontakt
+              {content.footer.contactTitle}
             </h4>
             <ul className="space-y-2 md:space-y-3 text-sm text-muted-foreground">
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-primary flex-shrink-0" />
                 <a
-                  href={`mailto:${siteContent.contact.headquarters.email}`}
+                  href={`mailto:${content.contact.headquarters.email}`}
                   className="hover:text-primary transition-colors break-all"
                 >
-                  {siteContent.contact.headquarters.email}
+                  {content.contact.headquarters.email}
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-primary flex-shrink-0" />
                 <a
-                  href={`tel:${siteContent.contact.headquarters.phone}`}
+                  href={`tel:${content.contact.headquarters.phone}`}
                   className="hover:text-primary transition-colors"
                 >
-                  {siteContent.contact.headquarters.phone}
+                  {content.contact.headquarters.phone}
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <Globe className="h-4 w-4 text-primary flex-shrink-0" />
                 <a
-                  href={`https://${siteContent.contact.headquarters.website}`}
+                  href={`https://${content.contact.headquarters.website}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-primary transition-colors"
                 >
-                  {siteContent.contact.headquarters.website}
+                  {content.contact.headquarters.website}
                 </a>
               </li>
             </ul>
@@ -102,20 +106,20 @@ export const Footer = () => {
         {/* Bottom Bar */}
         <div className="mt-10 md:mt-12 pt-6 md:pt-8 border-t border-border/50 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-xs md:text-sm text-muted-foreground text-center sm:text-left">
-            {siteContent.footer.copyright}
+            {content.footer.copyright}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6 text-xs md:text-sm text-muted-foreground">
             <Link
               href="/impressum"
               className="hover:text-primary transition-colors"
             >
-              {siteContent.footer.links.legal}
+              {content.footer.links.legal}
             </Link>
             <Link
               href="/datenschutz"
               className="hover:text-primary transition-colors"
             >
-              {siteContent.footer.links.privacy}
+              {content.footer.links.privacy}
             </Link>
             <span className="text-muted-foreground/50">🇻🇳 ↔ 🇩🇪</span>
           </div>

@@ -1,11 +1,13 @@
 "use client";
 
-import { siteContent } from "@/config/site-content";
+import { useLanguage } from "@/lib/language-context";
 import { motion } from "framer-motion";
 import { Globe, Users, Heart, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export const ServicesSection = () => {
+  const { content } = useLanguage();
+
   const iconMap = {
     globe: Globe,
     users: Users,
@@ -25,20 +27,20 @@ export const ServicesSection = () => {
             className="text-center space-y-4 mb-12 md:mb-16"
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
-              {siteContent.services.title}
+              {content.services.title}
             </h2>
             {/* Decorative underline */}
             <div className="flex justify-center pt-2">
               <div className="w-16 md:w-20 h-1 bg-primary rounded-full" />
             </div>
             <p className="text-base md:text-lg text-muted-foreground mt-4 max-w-2xl mx-auto px-4">
-              {siteContent.services.subtitle}
+              {content.services.subtitle}
             </p>
           </motion.div>
 
           {/* Services Grid - Responsive: 1 col mobile, 3 cols desktop */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {siteContent.services.items.map((service, index) => {
+            {content.services.items.map((service, index) => {
               const Icon = iconMap[service.icon as keyof typeof iconMap] || Globe;
               return (
                 <motion.div
@@ -73,7 +75,7 @@ export const ServicesSection = () => {
                       href="#contact"
                       className="inline-flex items-center text-sm font-medium text-accent hover:text-accent/80 transition-colors group/link relative"
                     >
-                      Mehr erfahren
+                      {content.services.learnMore}
                       <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/link:translate-x-1" />
                     </Link>
                   </div>
@@ -91,10 +93,10 @@ export const ServicesSection = () => {
             className="mt-12 md:mt-20 p-6 md:p-8 lg:p-12 rounded-2xl bg-primary/5 border border-primary/10"
           >
             <h3 className="text-xl md:text-2xl font-semibold text-foreground text-center mb-6 md:mb-8">
-              {siteContent.industries.title}
+              {content.industries.title}
             </h3>
             <div className="flex flex-wrap justify-center gap-2 md:gap-4">
-              {siteContent.industries.items.map((industry, index) => (
+              {content.industries.items.map((industry, index) => (
                 <span
                   key={index}
                   className="px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-background border border-border text-xs md:text-sm font-medium text-foreground hover:border-primary/50 hover:bg-primary/5 transition-all cursor-default"

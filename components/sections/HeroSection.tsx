@@ -1,6 +1,6 @@
 "use client";
 
-import { siteContent } from "@/config/site-content";
+import { useLanguage } from "@/lib/language-context";
 import { motion } from "framer-motion";
 import { ArrowRight, Users, GraduationCap, HeartHandshake, Download } from "lucide-react";
 import Link from "next/link";
@@ -34,11 +34,20 @@ const highlightItem = {
 };
 
 export const HeroSection = () => {
-  const highlights = [
-    { icon: Users, text: "Qualifizierte Fachkräfte" },
-    { icon: GraduationCap, text: "Sprachausbildung B1-B2" },
-    { icon: HeartHandshake, text: "Langfristige Betreuung" },
-  ];
+  const { content, language } = useLanguage();
+
+  // Dynamic highlights based on language
+  const highlights = language === "de" 
+    ? [
+        { icon: Users, text: "Qualifizierte Fachkräfte" },
+        { icon: GraduationCap, text: "Sprachausbildung B1-B2" },
+        { icon: HeartHandshake, text: "Langfristige Betreuung" },
+      ]
+    : [
+        { icon: Users, text: "Nhân sự chất lượng cao" },
+        { icon: GraduationCap, text: "Đào tạo tiếng Đức B1-B2" },
+        { icon: HeartHandshake, text: "Hỗ trợ lâu dài" },
+      ];
 
   return (
     <section
@@ -79,7 +88,7 @@ export const HeroSection = () => {
             {/* Badge */}
             <motion.div variants={fadeInUp} transition={{ duration: 0.5, ease: "easeOut" }}>
               <span className="inline-flex items-center px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-accent/10 text-accent text-xs md:text-sm font-medium border border-accent/20">
-                🇻🇳 🇩🇪 {siteContent.hero.badge}
+                🇻🇳 🇩🇪 {content.hero.badge}
               </span>
             </motion.div>
 
@@ -89,9 +98,9 @@ export const HeroSection = () => {
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-[1.15] md:leading-[1.1]"
             >
-              <span className="text-primary">{siteContent.hero.title.split(" ").slice(0, 2).join(" ")}</span>
+              <span className="text-primary">{content.hero.title.split(" ").slice(0, 2).join(" ")}</span>
               {" "}
-              {siteContent.hero.title.split(" ").slice(2).join(" ")}
+              {content.hero.title.split(" ").slice(2).join(" ")}
             </motion.h1>
 
             {/* Subtitle */}
@@ -100,7 +109,7 @@ export const HeroSection = () => {
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-xl"
             >
-              {siteContent.hero.subtitle}
+              {content.hero.subtitle}
             </motion.p>
 
             {/* Highlights with stagger - Responsive layout */}
@@ -132,7 +141,7 @@ export const HeroSection = () => {
                 href="#contact"
                 className="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3.5 md:py-4 bg-primary text-primary-foreground rounded-lg text-sm md:text-base font-medium transition-all duration-300 hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/20 group"
               >
-                {siteContent.hero.ctaPrimary}
+                {content.hero.ctaPrimary}
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
               
@@ -148,7 +157,7 @@ export const HeroSection = () => {
                   download="DMF_Vietnam_Unternehmensprofil.pdf"
                 >
                   <Download className="h-4 w-4" />
-                  Unternehmensprofil (PDF)
+                  {content.hero.downloadProfile}
                 </a>
               </Button>
             </motion.div>
@@ -198,7 +207,7 @@ export const HeroSection = () => {
                     <span className="text-6xl">🤝</span>
                   </div>
                   <p className="text-xl font-semibold text-foreground/80">
-                    Partnerschaft & Ausbildung
+                    {language === "de" ? "Partnerschaft & Ausbildung" : "Hợp tác & Đào tạo"}
                   </p>
                   <p className="text-sm text-muted-foreground mt-2">
                     Vietnam ↔ Deutschland
@@ -220,7 +229,9 @@ export const HeroSection = () => {
                 </div>
                 <div>
                   <p className="text-2xl font-bold text-primary">B1-B2</p>
-                  <p className="text-sm text-muted-foreground">Deutschniveau</p>
+                  <p className="text-sm text-muted-foreground">
+                    {language === "de" ? "Deutschniveau" : "Trình độ tiếng Đức"}
+                  </p>
                 </div>
               </div>
             </motion.div>
@@ -237,8 +248,12 @@ export const HeroSection = () => {
                   <span className="text-lg">✓</span>
                 </div>
                 <div>
-                  <p className="font-semibold text-foreground text-sm">Zertifiziert</p>
-                  <p className="text-xs text-muted-foreground">Qualitätsstandard</p>
+                  <p className="font-semibold text-foreground text-sm">
+                    {language === "de" ? "Zertifiziert" : "Chứng nhận"}
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    {language === "de" ? "Qualitätsstandard" : "Tiêu chuẩn chất lượng"}
+                  </p>
                 </div>
               </div>
             </motion.div>

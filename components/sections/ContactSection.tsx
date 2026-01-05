@@ -1,6 +1,6 @@
 "use client";
 
-import { siteContent } from "@/config/site-content";
+import { useLanguage } from "@/lib/language-context";
 import { motion } from "framer-motion";
 import { Mail, Phone, Globe, User, Send, Building2, MapPin, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -18,6 +18,7 @@ import { useRef, useState } from "react";
 import { toast } from "sonner";
 
 export const ContactSection = () => {
+  const { content, language } = useLanguage();
   const formRef = useRef<HTMLFormElement>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -33,22 +34,24 @@ export const ContactSection = () => {
       const result = await sendEmail(formData);
       
       if (result.success) {
-        toast.success("Erfolgreich gesendet!", {
+        toast.success(language === "de" ? "Erfolgreich gesendet!" : "Gửi thành công!", {
           description: result.message,
           duration: 5000,
         });
         // Reset form after successful submission
         formRef.current.reset();
       } else {
-        toast.error("Fehler beim Senden", {
+        toast.error(language === "de" ? "Fehler beim Senden" : "Lỗi khi gửi", {
           description: result.message,
           duration: 5000,
         });
       }
     } catch (error) {
       console.error("Form submission error:", error);
-      toast.error("Fehler", {
-        description: "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.",
+      toast.error(language === "de" ? "Fehler" : "Lỗi", {
+        description: language === "de" 
+          ? "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es später erneut."
+          : "Đã xảy ra lỗi không mong muốn. Vui lòng thử lại sau.",
         duration: 5000,
       });
     } finally {
@@ -73,17 +76,17 @@ export const ContactSection = () => {
             className="text-center space-y-4 md:space-y-6 mb-12 md:mb-20"
           >
             <span className="inline-block px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-primary/10 text-primary text-xs md:text-sm font-medium">
-              Jetzt Kontakt aufnehmen
+              {content.contact.badge}
             </span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
-              {siteContent.contact.title}
+              {content.contact.title}
             </h2>
             {/* Decorative underline */}
             <div className="flex justify-center pt-2">
               <div className="w-16 md:w-24 h-1 md:h-1.5 bg-gradient-to-r from-primary to-accent rounded-full" />
             </div>
             <p className="text-sm md:text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
-              {siteContent.contact.description}
+              {content.contact.description}
             </p>
           </motion.div>
 
@@ -98,9 +101,9 @@ export const ContactSection = () => {
             >
               <Card className="border-border/50 shadow-lg">
                 <CardHeader className="pb-4 md:pb-6 px-4 md:px-6 pt-4 md:pt-6">
-                  <CardTitle className="text-xl md:text-2xl">Nachricht senden</CardTitle>
+                  <CardTitle className="text-xl md:text-2xl">{content.contact.form.title}</CardTitle>
                   <CardDescription className="text-xs md:text-sm">
-                    Füllen Sie das Formular aus und wir melden uns zeitnah bei Ihnen.
+                    {content.contact.form.description}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="px-4 md:px-6 pb-4 md:pb-6">
@@ -116,12 +119,12 @@ export const ContactSection = () => {
                           htmlFor="name"
                           className="text-xs md:text-sm font-medium text-foreground"
                         >
-                          {siteContent.contact.form.nameLabel} *
+                          {content.contact.form.nameLabel} *
                         </label>
                         <Input
                           id="name"
                           name="name"
-                          placeholder={siteContent.contact.form.namePlaceholder}
+                          placeholder={content.contact.form.namePlaceholder}
                           required
                           disabled={isSubmitting}
                           className="h-10 md:h-12 text-sm md:text-base"
@@ -132,13 +135,13 @@ export const ContactSection = () => {
                           htmlFor="email"
                           className="text-xs md:text-sm font-medium text-foreground"
                         >
-                          {siteContent.contact.form.emailLabel} *
+                          {content.contact.form.emailLabel} *
                         </label>
                         <Input
                           id="email"
                           name="email"
                           type="email"
-                          placeholder={siteContent.contact.form.emailPlaceholder}
+                          placeholder={content.contact.form.emailPlaceholder}
                           required
                           disabled={isSubmitting}
                           className="h-10 md:h-12 text-sm md:text-base"
@@ -152,12 +155,12 @@ export const ContactSection = () => {
                         htmlFor="company"
                         className="text-xs md:text-sm font-medium text-foreground"
                       >
-                        {siteContent.contact.form.companyLabel}
+                        {content.contact.form.companyLabel}
                       </label>
                       <Input
                         id="company"
                         name="company"
-                        placeholder={siteContent.contact.form.companyPlaceholder}
+                        placeholder={content.contact.form.companyPlaceholder}
                         disabled={isSubmitting}
                         className="h-10 md:h-12 text-sm md:text-base"
                       />
@@ -169,12 +172,12 @@ export const ContactSection = () => {
                         htmlFor="message"
                         className="text-xs md:text-sm font-medium text-foreground"
                       >
-                        {siteContent.contact.form.messageLabel} *
+                        {content.contact.form.messageLabel} *
                       </label>
                       <Textarea
                         id="message"
                         name="message"
-                        placeholder={siteContent.contact.form.messagePlaceholder}
+                        placeholder={content.contact.form.messagePlaceholder}
                         rows={4}
                         required
                         disabled={isSubmitting}
@@ -192,11 +195,11 @@ export const ContactSection = () => {
                       {isSubmitting ? (
                         <>
                           <Loader2 className="h-4 w-4 animate-spin" />
-                          Wird gesendet...
+                          {content.contact.form.sending}
                         </>
                       ) : (
                         <>
-                          {siteContent.contact.form.submitLabel}
+                          {content.contact.form.submitLabel}
                           <Send className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                         </>
                       )}
@@ -223,9 +226,11 @@ export const ContactSection = () => {
                     </div>
                     <div>
                       <CardTitle className="text-base md:text-lg">
-                        {siteContent.contact.headquarters.title}
+                        {content.contact.headquarters.title}
                       </CardTitle>
-                      <CardDescription className="text-xs md:text-sm">Đồng Nai, Vietnam</CardDescription>
+                      <CardDescription className="text-xs md:text-sm">
+                        {content.contact.headquarters.location}
+                      </CardDescription>
                     </div>
                   </div>
                 </CardHeader>
@@ -233,30 +238,30 @@ export const ContactSection = () => {
                   <div className="flex items-center gap-3 md:gap-4">
                     <Phone className="h-4 w-4 md:h-5 md:w-5 text-muted-foreground flex-shrink-0" />
                     <a
-                      href={`tel:${siteContent.contact.headquarters.phone}`}
+                      href={`tel:${content.contact.headquarters.phone}`}
                       className="text-sm md:text-base text-foreground hover:text-primary transition-colors"
                     >
-                      {siteContent.contact.headquarters.phone}
+                      {content.contact.headquarters.phone}
                     </a>
                   </div>
                   <div className="flex items-center gap-3 md:gap-4">
                     <Mail className="h-4 w-4 md:h-5 md:w-5 text-muted-foreground flex-shrink-0" />
                     <a
-                      href={`mailto:${siteContent.contact.headquarters.email}`}
+                      href={`mailto:${content.contact.headquarters.email}`}
                       className="text-sm md:text-base text-foreground hover:text-primary transition-colors break-all"
                     >
-                      {siteContent.contact.headquarters.email}
+                      {content.contact.headquarters.email}
                     </a>
                   </div>
                   <div className="flex items-center gap-3 md:gap-4">
                     <Globe className="h-4 w-4 md:h-5 md:w-5 text-muted-foreground flex-shrink-0" />
                     <a
-                      href={`https://${siteContent.contact.headquarters.website}`}
+                      href={`https://${content.contact.headquarters.website}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-sm md:text-base text-foreground hover:text-primary transition-colors"
                     >
-                      {siteContent.contact.headquarters.website}
+                      {content.contact.headquarters.website}
                     </a>
                   </div>
                 </CardContent>
@@ -271,10 +276,10 @@ export const ContactSection = () => {
                     </div>
                     <div>
                       <CardTitle className="text-base md:text-lg">
-                        {siteContent.contact.germanContact.title}
+                        {content.contact.germanContact.title}
                       </CardTitle>
                       <CardDescription className="text-xs md:text-sm">
-                        {siteContent.contact.germanContact.name}
+                        {content.contact.germanContact.name}
                       </CardDescription>
                     </div>
                   </div>
@@ -283,19 +288,19 @@ export const ContactSection = () => {
                   <div className="flex items-center gap-3 md:gap-4">
                     <Phone className="h-4 w-4 md:h-5 md:w-5 text-muted-foreground flex-shrink-0" />
                     <a
-                      href={`tel:${siteContent.contact.germanContact.phone}`}
+                      href={`tel:${content.contact.germanContact.phone}`}
                       className="text-sm md:text-base text-foreground hover:text-accent transition-colors"
                     >
-                      {siteContent.contact.germanContact.phone}
+                      {content.contact.germanContact.phone}
                     </a>
                   </div>
                   <div className="flex items-center gap-3 md:gap-4">
                     <Mail className="h-4 w-4 md:h-5 md:w-5 text-muted-foreground flex-shrink-0" />
                     <a
-                      href={`mailto:${siteContent.contact.germanContact.email}`}
+                      href={`mailto:${content.contact.germanContact.email}`}
                       className="text-sm md:text-base text-foreground hover:text-accent transition-colors break-all"
                     >
-                      {siteContent.contact.germanContact.email}
+                      {content.contact.germanContact.email}
                     </a>
                   </div>
                   <div className="flex items-center gap-3 md:gap-4">
@@ -314,11 +319,10 @@ export const ContactSection = () => {
                     </div>
                     <div>
                       <h4 className="font-semibold text-foreground text-sm md:text-base mb-1 md:mb-2">
-                        Fachkräfte gesucht?
+                        {content.contact.cta.title}
                       </h4>
                       <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
-                        Wir helfen Ihnen, qualifizierte vietnamesische Fachkräfte für
-                        Ihr Unternehmen zu finden.
+                        {content.contact.cta.description}
                       </p>
                     </div>
                   </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { siteContent } from "@/config/site-content";
+import { useLanguage } from "@/lib/language-context";
 import { motion } from "framer-motion";
 import { Award, Search, Eye, ShieldCheck } from "lucide-react";
 import {
@@ -54,6 +54,8 @@ const headerVariants: any = {
 };
 
 export const ValuesSection = () => {
+  const { content } = useLanguage();
+
   // Icons mapping - phù hợp với từng giá trị
   const iconMap = {
     award: Award, // Qualität
@@ -89,10 +91,10 @@ export const ValuesSection = () => {
               transition={{ duration: 0.5 }}
               className="inline-block px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-accent/10 text-accent text-xs md:text-sm font-medium"
             >
-              Unsere Philosophie
+              {content.values.badge}
             </motion.span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
-              {siteContent.values.title}
+              {content.values.title}
             </h2>
             {/* Decorative underline with animation */}
             <motion.div 
@@ -105,7 +107,7 @@ export const ValuesSection = () => {
               <div className="w-16 md:w-24 h-1 md:h-1.5 bg-gradient-to-r from-primary to-accent rounded-full" />
             </motion.div>
             <p className="text-sm md:text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
-              {siteContent.values.subtitle}
+              {content.values.subtitle}
             </p>
           </motion.div>
 
@@ -117,7 +119,7 @@ export const ValuesSection = () => {
             viewport={{ once: true, margin: "-50px" }}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8"
           >
-            {siteContent.values.items.map((value, index) => {
+            {content.values.items.map((value, index) => {
               const Icon =
                 iconMap[value.icon as keyof typeof iconMap] || ShieldCheck;
               return (

@@ -1,11 +1,25 @@
 "use client";
 
-import { siteContent } from "@/config/site-content";
+import { useLanguage } from "@/lib/language-context";
 import { motion } from "framer-motion";
 import { BookOpen, Globe2, UserCheck } from "lucide-react";
 
 export const AboutSection = () => {
+  const { content, language } = useLanguage();
   const icons = [BookOpen, Globe2, UserCheck];
+
+  // Dynamic stats based on language
+  const stats = language === "de"
+    ? [
+        { value: "500+", label: "Kandidaten" },
+        { value: "50+", label: "Partner" },
+        { value: "98%", label: "Erfolgsquote" },
+      ]
+    : [
+        { value: "500+", label: "Ứng viên" },
+        { value: "50+", label: "Đối tác" },
+        { value: "98%", label: "Tỷ lệ thành công" },
+      ];
 
   return (
     <section id="about" className="py-16 md:py-24 lg:py-32 bg-background">
@@ -20,14 +34,14 @@ export const AboutSection = () => {
             className="text-center space-y-4 mb-12 md:mb-16"
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
-              {siteContent.about.title}
+              {content.about.title}
             </h2>
             {/* Decorative underline */}
             <div className="flex justify-center pt-2">
               <div className="w-16 md:w-20 h-1 bg-primary rounded-full" />
             </div>
             <p className="text-base md:text-lg text-muted-foreground mt-4 px-4">
-              {siteContent.about.subtitle}
+              {content.about.subtitle}
             </p>
           </motion.div>
 
@@ -42,23 +56,28 @@ export const AboutSection = () => {
               className="space-y-6"
             >
               <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed">
-                {siteContent.about.description}
+                {content.about.description}
               </p>
               
               {/* Quick Stats - Responsive */}
               <div className="grid grid-cols-3 gap-2 md:gap-4 pt-4">
-                <div className="text-center p-3 md:p-4 rounded-lg bg-primary/5">
-                  <p className="text-xl md:text-3xl font-bold text-primary">500+</p>
-                  <p className="text-[10px] md:text-sm text-muted-foreground">Kandidaten</p>
-                </div>
-                <div className="text-center p-3 md:p-4 rounded-lg bg-accent/5">
-                  <p className="text-xl md:text-3xl font-bold text-accent">50+</p>
-                  <p className="text-[10px] md:text-sm text-muted-foreground">Partner</p>
-                </div>
-                <div className="text-center p-3 md:p-4 rounded-lg bg-primary/5">
-                  <p className="text-xl md:text-3xl font-bold text-primary">98%</p>
-                  <p className="text-[10px] md:text-sm text-muted-foreground">Erfolgsquote</p>
-                </div>
+                {stats.map((stat, index) => (
+                  <div 
+                    key={index}
+                    className={`text-center p-3 md:p-4 rounded-lg ${
+                      index === 1 ? "bg-accent/5" : "bg-primary/5"
+                    }`}
+                  >
+                    <p className={`text-xl md:text-3xl font-bold ${
+                      index === 1 ? "text-accent" : "text-primary"
+                    }`}>
+                      {stat.value}
+                    </p>
+                    <p className="text-[10px] md:text-sm text-muted-foreground">
+                      {stat.label}
+                    </p>
+                  </div>
+                ))}
               </div>
             </motion.div>
 
@@ -75,7 +94,9 @@ export const AboutSection = () => {
                   <div className="w-16 h-16 md:w-24 md:h-24 mx-auto mb-3 md:mb-4 rounded-full bg-primary/10 flex items-center justify-center">
                     <span className="text-3xl md:text-5xl">🎓</span>
                   </div>
-                  <p className="text-base md:text-lg font-medium text-foreground">Ausbildungszentrum</p>
+                  <p className="text-base md:text-lg font-medium text-foreground">
+                    {language === "de" ? "Ausbildungszentrum" : "Trung tâm đào tạo"}
+                  </p>
                   <p className="text-xs md:text-sm text-muted-foreground">Vietnam</p>
                 </div>
               </div>
@@ -84,7 +105,7 @@ export const AboutSection = () => {
 
           {/* Features - Responsive Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
-            {siteContent.about.features.map((feature, index) => {
+            {content.about.features.map((feature, index) => {
               const Icon = icons[index] || BookOpen;
               return (
                 <motion.div

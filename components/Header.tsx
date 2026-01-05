@@ -1,6 +1,6 @@
 "use client";
 
-import { siteContent } from "@/config/site-content";
+import { useLanguage } from "@/lib/language-context";
 import { Menu, Download } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -15,8 +15,8 @@ import {
 } from "@/components/ui/sheet";
 
 export const Header = () => {
+  const { language, setLanguage, content } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [currentLang, setCurrentLang] = useState<"DE" | "VN">("DE");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,10 +27,10 @@ export const Header = () => {
   }, []);
 
   // Tách navItems để nút Kontakt riêng biệt
-  const regularNavItems = siteContent.header.navItems.filter(
+  const regularNavItems = content.header.navItems.filter(
     (item) => item.href !== "#contact"
   );
-  const contactItem = siteContent.header.navItems.find(
+  const contactItem = content.header.navItems.find(
     (item) => item.href === "#contact"
   );
 
@@ -46,7 +46,7 @@ export const Header = () => {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
           <span className="text-xl md:text-2xl font-bold tracking-tight text-primary transition-colors group-hover:text-primary/80">
-            {siteContent.header.logo}
+            {content.header.logo}
           </span>
         </Link>
 
@@ -68,9 +68,9 @@ export const Header = () => {
           {/* Language Toggle */}
           <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-muted/50 border border-border">
             <button
-              onClick={() => setCurrentLang("DE")}
+              onClick={() => setLanguage("de")}
               className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
-                currentLang === "DE"
+                language === "de"
                   ? "bg-primary text-primary-foreground"
                   : "text-muted-foreground hover:text-foreground"
               }`}
@@ -78,9 +78,9 @@ export const Header = () => {
               DE
             </button>
             <button
-              onClick={() => setCurrentLang("VN")}
+              onClick={() => setLanguage("vn")}
               className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
-                currentLang === "VN"
+                language === "vn"
                   ? "bg-accent text-white"
                   : "text-muted-foreground hover:text-foreground"
               }`}
@@ -102,9 +102,9 @@ export const Header = () => {
           {/* Language Toggle - Mobile (compact) */}
           <div className="flex items-center gap-0.5 px-1 py-0.5 rounded-full bg-muted/50 border border-border">
             <button
-              onClick={() => setCurrentLang("DE")}
+              onClick={() => setLanguage("de")}
               className={`px-2 py-1 rounded-full text-[10px] font-semibold transition-all ${
-                currentLang === "DE"
+                language === "de"
                   ? "bg-primary text-primary-foreground"
                   : "text-muted-foreground"
               }`}
@@ -112,9 +112,9 @@ export const Header = () => {
               DE
             </button>
             <button
-              onClick={() => setCurrentLang("VN")}
+              onClick={() => setLanguage("vn")}
               className={`px-2 py-1 rounded-full text-[10px] font-semibold transition-all ${
-                currentLang === "VN"
+                language === "vn"
                   ? "bg-accent text-white"
                   : "text-muted-foreground"
               }`}
@@ -128,13 +128,13 @@ export const Header = () => {
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="h-9 w-9">
                 <Menu className="h-5 w-5" />
-                <span className="sr-only">Menü öffnen</span>
+                <span className="sr-only">{language === "de" ? "Menü öffnen" : "Mở menu"}</span>
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px] sm:w-[350px]">
               <SheetHeader className="text-left pb-6 border-b">
                 <SheetTitle className="text-xl font-bold text-primary">
-                  {siteContent.header.logo}
+                  {content.header.logo}
                 </SheetTitle>
               </SheetHeader>
 
@@ -161,7 +161,7 @@ export const Header = () => {
                     download="DMF_Vietnam_Unternehmensprofil.pdf"
                   >
                     <Download className="h-4 w-4" />
-                    Unternehmensprofil (PDF)
+                    {content.hero.downloadProfile}
                   </a>
                 </Button>
 
