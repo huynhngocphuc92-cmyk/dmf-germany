@@ -12,6 +12,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Shield,
+  Palette,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -60,6 +61,12 @@ const navItems: NavItem[] = [
     labelVn: "Thống kê",
     href: "/admin/analytics",
     icon: BarChart3,
+  },
+  {
+    labelDe: "Giao diện",
+    labelVn: "Giao diện",
+    href: "/admin/theme",
+    icon: Palette,
   },
   {
     labelDe: "Einstellungen",

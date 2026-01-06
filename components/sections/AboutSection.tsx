@@ -3,9 +3,18 @@
 import { useLanguage } from "@/lib/language-context";
 import { motion } from "framer-motion";
 import { BookOpen, Globe2, UserCheck } from "lucide-react";
+import { AssetImageWithDebug } from "@/components/ui/AssetImageWithDebug";
 
-export const AboutSection = () => {
+interface AboutSectionProps {
+  introImg?: string | null;
+  videoThumb?: string | null;
+}
+
+export const AboutSection = ({ introImg, videoThumb }: AboutSectionProps = {}) => {
   const { content, language } = useLanguage();
+  
+  // Use video thumbnail if available, otherwise use intro image
+  const displayImage = videoThumb || introImg;
   const icons = [BookOpen, Globe2, UserCheck];
 
   // Dynamic stats based on language
@@ -89,17 +98,29 @@ export const AboutSection = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="relative"
             >
-              <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/10 via-accent/5 to-secondary/10 flex items-center justify-center border border-border/50">
-                <div className="text-center p-6 md:p-8">
-                  <div className="w-16 h-16 md:w-24 md:h-24 mx-auto mb-3 md:mb-4 rounded-full bg-primary/10 flex items-center justify-center">
-                    <span className="text-3xl md:text-5xl">🎓</span>
-                  </div>
-                  <p className="text-base md:text-lg font-medium text-foreground">
-                    {language === "de" ? "Ausbildungszentrum" : "Trung tâm đào tạo"}
-                  </p>
-                  <p className="text-xs md:text-sm text-muted-foreground">Vietnam</p>
+              {displayImage ? (
+                <div className="aspect-square rounded-2xl overflow-hidden border border-border/50 shadow-lg relative">
+                  <AssetImageWithDebug
+                    src={displayImage}
+                    configKey={videoThumb ? "home_intro_video_thumb" : "home_intro_img"}
+                    alt={language === "de" ? "Ausbildungszentrum" : "Trung tâm đào tạo"}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-              </div>
+              ) : (
+                <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/10 via-accent/5 to-secondary/10 flex items-center justify-center border border-border/50">
+                  <div className="text-center p-6 md:p-8">
+                    <div className="w-16 h-16 md:w-24 md:h-24 mx-auto mb-3 md:mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+                      <span className="text-3xl md:text-5xl">🎓</span>
+                    </div>
+                    <p className="text-base md:text-lg font-medium text-foreground">
+                      {language === "de" ? "Ausbildungszentrum" : "Trung tâm đào tạo"}
+                    </p>
+                    <p className="text-xs md:text-sm text-muted-foreground">Vietnam</p>
+                  </div>
+                </div>
+              )}
             </motion.div>
           </div>
 

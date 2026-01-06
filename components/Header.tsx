@@ -7,35 +7,23 @@ import {
   GraduationCap,
   Briefcase,
   Sun,
-  ChevronDown,
   Home,
   Users,
   Phone,
-  X,
-  ChevronRight,
+  Mail,
   Newspaper,
+  ChevronDown,
 } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { Logo } from "@/components/Logo";
 import {
   Sheet,
   SheetContent,
-  SheetHeader,
-  SheetTitle,
   SheetTrigger,
-  SheetClose,
 } from "@/components/ui/sheet";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
 import {
   Accordion,
   AccordionContent,
@@ -124,56 +112,6 @@ const navContent = {
 };
 
 // ============================================
-// DESKTOP NAVIGATION LINK COMPONENT
-// ============================================
-
-interface ListItemProps {
-  service: ServiceItem;
-  language: "de" | "vn";
-}
-
-function ListItem({ service, language }: ListItemProps) {
-  const Icon = service.icon;
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <Link
-          href={service.href}
-          className={cn(
-            "block select-none rounded-xl p-4 no-underline outline-none transition-all duration-200",
-            service.bgColor,
-            "border",
-            service.borderColor,
-            "focus:shadow-md"
-          )}
-        >
-          <div className="flex items-start gap-4">
-            <div
-              className={cn(
-                "w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0",
-                service.bgColor,
-                "border",
-                service.borderColor
-              )}
-            >
-              <Icon className={cn("w-6 h-6", service.color)} />
-            </div>
-            <div className="flex-1">
-              <div className={cn("text-base font-semibold mb-1", service.color)}>
-                {language === "de" ? service.titleDe : service.titleVn}
-              </div>
-              <p className="text-sm text-muted-foreground leading-snug">
-                {language === "de" ? service.descDe : service.descVn}
-              </p>
-            </div>
-          </div>
-        </Link>
-      </NavigationMenuLink>
-    </li>
-  );
-}
-
-// ============================================
 // MOBILE SERVICE LINK COMPONENT
 // ============================================
 
@@ -213,7 +151,6 @@ function MobileServiceLink({ service, language, onClose }: MobileServiceLinkProp
           {language === "de" ? service.descDe : service.descVn}
         </p>
       </div>
-      <ChevronRight className="w-4 h-4 text-muted-foreground" />
     </Link>
   );
 }
@@ -222,311 +159,421 @@ function MobileServiceLink({ service, language, onClose }: MobileServiceLinkProp
 // MAIN HEADER COMPONENT
 // ============================================
 
-export const Header = () => {
+interface HeaderProps {
+  logoUrl?: string | null;
+  hotline?: string | null;
+  email?: string | null;
+}
+
+export const Header = ({ logoUrl, hotline, email }: HeaderProps = {}) => {
   const { language, setLanguage, content } = useLanguage();
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const nav = language === "de" ? navContent.de : navContent.vn;
 
+  // ============================================
+  // LOGIC RENDER - CHỈ HIỂN THỊ MỘT GIÁ TRỊ
+  // Conditional Rendering chặt chẽ: Nếu có DB value thì dùng, không thì dùng default
+  // ============================================
+  const displayHotline = hotline || "+84 85 507 0773";
+  const displayEmail = email || "contact@dmf.edu.vn";
+
+  // ============================================
+  // SCROLL TRACKING
+  // ============================================
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setScrollY(window.scrollY);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Check if current path is active
+  const isScrolled = scrollY > 20;
+  const shouldHideTopBar = isScrolled;
+
+  // ============================================
+  // ACTIVE ROUTE CHECKING
+  // ============================================
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
     return pathname.startsWith(href);
   };
 
-  // Check if any solution is active
   const isSolutionActive = serviceSolutions.some((s) => pathname.startsWith(s.href));
 
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-50 w-full transition-all duration-300",
-        isScrolled
-          ? "bg-background/80 backdrop-blur-xl border-b shadow-sm"
-          : "bg-background/50 backdrop-blur-sm"
-      )}
-    >
-      <div className="container mx-auto flex h-16 md:h-20 items-center justify-between px-4 lg:px-8">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group">
-          <span className="text-xl md:text-2xl font-bold tracking-tight text-primary transition-colors group-hover:text-primary/80">
-            {content.header.logo}
-          </span>
-        </Link>
+    <header className="fixed top-0 w-full z-50 transition-all duration-300">
+      {/* Top Bar - Ẩn khi scroll > 20px với hiệu ứng mượt mà */}
+      <div
+        className={cn(
+          "bg-primary text-white flex items-center justify-between px-4 transition-all duration-500 ease-in-out",
+          shouldHideTopBar ? "h-0 opacity-0 overflow-hidden" : "h-10 opacity-100"
+        )}
+      >
+        <div className="container mx-auto flex items-center justify-center md:justify-start px-4 lg:px-8 h-full">
+          <div className="flex items-center gap-4 md:gap-6">
+            {/* Hotline - CHỈ RENDER MỘT LẦN DUY NHẤT */}
+            <a
+              href={`tel:${displayHotline.replace(/\s/g, "")}`}
+              className="flex items-center gap-1.5 hover:text-primary-foreground/80 transition-colors text-xs md:text-sm"
+            >
+              <Phone className="w-3 h-3 md:w-3.5 md:h-3.5 flex-shrink-0" />
+              <span className="text-[10px] sm:text-xs md:text-sm">
+                {displayHotline}
+              </span>
+            </a>
+            {/* Email - CHỈ RENDER MỘT LẦN DUY NHẤT */}
+            <a
+              href={`mailto:${displayEmail}`}
+              className="flex items-center gap-1.5 hover:text-primary-foreground/80 transition-colors text-xs md:text-sm"
+            >
+              <Mail className="w-3 h-3 md:w-3.5 md:h-3.5 flex-shrink-0" />
+              <span className="text-[10px] sm:text-xs md:text-sm truncate max-w-[120px] sm:max-w-none">
+                {displayEmail}
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
 
-        {/* Desktop Navigation */}
-        <NavigationMenu className="hidden lg:flex">
-          <NavigationMenuList className="gap-1">
+      {/* Main Bar - Glass Effect với hiệu ứng scroll */}
+      <div
+        className={cn(
+          "flex items-center px-4 transition-all duration-500 ease-in-out",
+          isScrolled
+            ? "h-16 py-2 shadow-md bg-white/90 backdrop-blur-md"
+            : "h-20 bg-white/95 backdrop-blur-md shadow-sm"
+        )}
+      >
+        <div className="container mx-auto flex items-center justify-between w-full">
+          {/* Logo - Trái */}
+          <Link href="/" className="flex items-center gap-2 flex-shrink-0">
+            <Logo
+              logoUrl={logoUrl}
+              fallbackText={content.header.logo}
+              className="h-12 w-auto object-contain"
+              height={48}
+            />
+          </Link>
+
+          {/* Desktop Navigation - Giữa */}
+          <nav className="hidden lg:flex items-center gap-1 flex-1 justify-center">
             {/* Home */}
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild>
-                <Link
-                  href="/"
+            <Link
+              href="/"
+              className={cn(
+                "px-4 py-2 rounded-lg text-sm font-medium transition-colors relative",
+                "hover:text-primary",
+                "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full",
+                isActive("/") && "text-primary font-semibold after:w-full"
+              )}
+            >
+              <Home className="w-4 h-4 inline-block mr-2" />
+              {nav.home}
+            </Link>
+
+            {/* Solutions - Simple Dropdown với CSS group-hover */}
+            {/* Group chỉ ở div nhỏ bao quanh button, không phải container lớn */}
+            <div className="relative">
+              <div className="group inline-block">
+                <button
                   className={cn(
-                    navigationMenuTriggerStyle(),
-                    "bg-transparent",
-                    isActive("/") && "text-primary font-semibold"
+                    "px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-1 relative",
+                    "hover:text-primary",
+                    "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full",
+                    isSolutionActive && "text-primary font-semibold after:w-full"
                   )}
                 >
-                  <Home className="w-4 h-4 mr-2" />
-                  {nav.home}
-                </Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-
-            {/* Solutions Dropdown */}
-            <NavigationMenuItem>
-              <NavigationMenuTrigger
-                className={cn(
-                  "bg-transparent",
-                  isSolutionActive && "text-primary font-semibold"
-                )}
-              >
-                <Users className="w-4 h-4 mr-2" />
-                {nav.solutions}
-              </NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid w-[450px] gap-3 p-4">
-                  {serviceSolutions.map((service) => (
-                    <ListItem
-                      key={service.href}
-                      service={service}
-                      language={language}
-                    />
-                  ))}
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
+                  <Users className="w-4 h-4 inline-block mr-2" />
+                  {nav.solutions}
+                  <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
+                </button>
+                
+                {/* Dropdown Menu - Trạng thái mặc định: Ẩn hoàn toàn */}
+                <div className="absolute top-[100%] left-1/2 -translate-x-1/2 mt-2 w-96 bg-white rounded-lg shadow-lg border border-border z-50 opacity-0 invisible pointer-events-none translate-y-2 transition-all duration-200 ease-in-out group-hover:opacity-100 group-hover:visible group-hover:pointer-events-auto group-hover:translate-y-0">
+                <div className="p-4 space-y-2">
+                  {serviceSolutions.map((service) => {
+                    const Icon = service.icon;
+                    return (
+                      <Link
+                        key={service.href}
+                        href={service.href}
+                        className={cn(
+                          "flex items-start gap-3 p-3 rounded-lg border transition-all",
+                          "hover:shadow-md",
+                          service.bgColor,
+                          service.borderColor
+                        )}
+                      >
+                        <div
+                          className={cn(
+                            "w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0",
+                            "bg-white border",
+                            service.borderColor
+                          )}
+                        >
+                          <Icon className={cn("w-5 h-5", service.color)} />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className={cn("text-sm font-semibold mb-1", service.color)}>
+                            {language === "de" ? service.titleDe : service.titleVn}
+                          </div>
+                          <p className="text-xs text-muted-foreground leading-snug">
+                            {language === "de" ? service.descDe : service.descVn}
+                          </p>
+                        </div>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+              </div>
+            </div>
 
             {/* Blog */}
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild>
-                <Link
-                  href="/blog"
-                  className={cn(
-                    navigationMenuTriggerStyle(),
-                    "bg-transparent",
-                    isActive("/blog") && "text-primary font-semibold"
-                  )}
-                >
-                  <Newspaper className="w-4 h-4 mr-2" />
-                  {nav.blog}
-                </Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
+            <Link
+              href="/blog"
+              className={cn(
+                "px-4 py-2 rounded-lg text-sm font-medium transition-colors relative",
+                "hover:text-primary",
+                "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full",
+                isActive("/blog") && "text-primary font-semibold after:w-full"
+              )}
+            >
+              <Newspaper className="w-4 h-4 inline-block mr-2" />
+              {nav.blog}
+            </Link>
 
             {/* About */}
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild>
-                <Link
-                  href="/#about"
-                  className={cn(
-                    navigationMenuTriggerStyle(),
-                    "bg-transparent"
-                  )}
-                >
-                  {nav.about}
-                </Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
-
-        {/* Right Side - Language Toggle & Contact Button (Desktop) */}
-        <div className="hidden lg:flex items-center gap-3">
-          {/* Language Toggle */}
-          <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-muted/50 border border-border">
-            <button
-              onClick={() => setLanguage("de")}
+            <Link
+              href="/#about"
               className={cn(
-                "px-3 py-1.5 rounded-full text-xs font-semibold transition-all",
-                language === "de"
-                  ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground hover:text-foreground"
+                "px-4 py-2 rounded-lg text-sm font-medium transition-colors relative",
+                "hover:text-primary",
+                "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
               )}
             >
-              DE
-            </button>
-            <button
-              onClick={() => setLanguage("vn")}
-              className={cn(
-                "px-3 py-1.5 rounded-full text-xs font-semibold transition-all",
-                language === "vn"
-                  ? "bg-accent text-white"
-                  : "text-muted-foreground hover:text-foreground"
-              )}
-            >
-              VN
-            </button>
-          </div>
-
-          {/* Contact Button */}
-          <Button asChild className="px-5 gap-2">
-            <Link href="/#contact">
-              <Phone className="w-4 h-4" />
-              {nav.contact}
+              {nav.about}
             </Link>
-          </Button>
-        </div>
+          </nav>
 
-        {/* Mobile - Language Toggle & Hamburger Menu */}
-        <div className="lg:hidden flex items-center gap-2">
-          {/* Language Toggle - Mobile (compact) */}
-          <div className="flex items-center gap-0.5 px-1 py-0.5 rounded-full bg-muted/50 border border-border">
-            <button
-              onClick={() => setLanguage("de")}
-              className={cn(
-                "px-2 py-1 rounded-full text-[10px] font-semibold transition-all",
-                language === "de"
-                  ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground"
-              )}
+          {/* Right Side - Language Toggle & Contact Button (Desktop) */}
+          <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
+            {/* Language Toggle */}
+            <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-muted/50 border border-border">
+              <button
+                onClick={() => setLanguage("de")}
+                className={cn(
+                  "px-3 py-1.5 rounded-full text-xs font-semibold transition-all",
+                  language === "de"
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                )}
+              >
+                DE
+              </button>
+              <button
+                onClick={() => setLanguage("vn")}
+                className={cn(
+                  "px-3 py-1.5 rounded-full text-xs font-semibold transition-all",
+                  language === "vn"
+                    ? "bg-accent text-white"
+                    : "text-muted-foreground hover:text-foreground"
+                )}
+              >
+                VN
+              </button>
+            </div>
+
+            {/* Contact Button */}
+            <Button
+              asChild
+              className="bg-primary text-white hover:bg-primary/90 hover:shadow-lg transition-transform active:scale-95"
             >
-              DE
-            </button>
-            <button
-              onClick={() => setLanguage("vn")}
-              className={cn(
-                "px-2 py-1 rounded-full text-[10px] font-semibold transition-all",
-                language === "vn"
-                  ? "bg-accent text-white"
-                  : "text-muted-foreground"
-              )}
-            >
-              VN
-            </button>
+              <Link href="/#contact" className="flex items-center gap-2">
+                <Phone className="w-4 h-4" />
+                <span className="font-semibold">{nav.contact}</span>
+              </Link>
+            </Button>
           </div>
 
-          {/* Sheet Mobile Menu */}
-          <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="h-9 w-9">
-                <Menu className="h-5 w-5" />
-                <span className="sr-only">{nav.menuLabel}</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-[320px] sm:w-[380px] p-0">
-              {/* Header */}
-              <div className="flex items-center justify-between px-6 py-4 border-b">
-                <Link
-                  href="/"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-xl font-bold text-primary"
-                >
-                  {content.header.logo}
-                </Link>
-              </div>
+          {/* Mobile - Language Toggle & Hamburger Menu */}
+          <div className="lg:hidden flex items-center gap-2">
+            {/* Language Toggle - Mobile */}
+            <div className="flex items-center gap-0.5 px-1 py-0.5 rounded-full bg-muted/50 border border-border">
+              <button
+                onClick={() => setLanguage("de")}
+                className={cn(
+                  "px-2 py-1 rounded-full text-[10px] font-semibold transition-all",
+                  language === "de"
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground"
+                )}
+              >
+                DE
+              </button>
+              <button
+                onClick={() => setLanguage("vn")}
+                className={cn(
+                  "px-2 py-1 rounded-full text-[10px] font-semibold transition-all",
+                  language === "vn"
+                    ? "bg-accent text-white"
+                    : "text-muted-foreground"
+                )}
+              >
+                VN
+              </button>
+            </div>
 
-              {/* Mobile Navigation Links */}
-              <div className="flex flex-col h-[calc(100vh-80px)] overflow-y-auto">
-                <nav className="flex-1 px-4 py-6">
-                  {/* Home */}
+            {/* Sheet Mobile Menu */}
+            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="h-9 w-9">
+                  <Menu className="h-5 w-5" />
+                  <span className="sr-only">{nav.menuLabel}</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[320px] sm:w-[380px] p-0">
+                {/* Mobile Menu Header */}
+                <div className="flex items-center justify-between px-6 py-4 border-b">
                   <Link
                     href="/"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className={cn(
-                      "flex items-center gap-3 px-4 py-3 rounded-xl mb-2 transition-colors",
-                      isActive("/")
-                        ? "bg-primary/10 text-primary font-semibold"
-                        : "text-foreground/80 hover:bg-muted"
-                    )}
+                    className="flex items-center"
                   >
-                    <Home className="w-5 h-5" />
-                    {nav.home}
+                    <Logo
+                      logoUrl={logoUrl}
+                      fallbackText={content.header.logo}
+                      height={36}
+                    />
                   </Link>
-
-                  {/* Solutions Accordion */}
-                  <Accordion type="single" collapsible className="mb-2">
-                    <AccordionItem value="solutions" className="border-0">
-                      <AccordionTrigger
-                        className={cn(
-                          "flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-muted hover:no-underline [&[data-state=open]]:bg-muted",
-                          isSolutionActive && "text-primary font-semibold"
-                        )}
-                      >
-                        <div className="flex items-center gap-3">
-                          <Users className="w-5 h-5" />
-                          {nav.solutions}
-                        </div>
-                      </AccordionTrigger>
-                      <AccordionContent className="pt-2 pb-0">
-                        <div className="space-y-2 pl-2">
-                          {serviceSolutions.map((service) => (
-                            <MobileServiceLink
-                              key={service.href}
-                              service={service}
-                              language={language}
-                              onClose={() => setIsMobileMenuOpen(false)}
-                            />
-                          ))}
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
-                  </Accordion>
-
-                  {/* Blog */}
-                  <Link
-                    href="/blog"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className={cn(
-                      "flex items-center gap-3 px-4 py-3 rounded-xl mb-2 transition-colors",
-                      isActive("/blog")
-                        ? "bg-primary/10 text-primary font-semibold"
-                        : "text-foreground/80 hover:bg-muted"
-                    )}
-                  >
-                    <Newspaper className="w-5 h-5" />
-                    {nav.blog}
-                  </Link>
-
-                  {/* About */}
-                  <Link
-                    href="/#about"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-foreground/80 hover:bg-muted transition-colors"
-                  >
-                    <Users className="w-5 h-5" />
-                    {nav.about}
-                  </Link>
-                </nav>
-
-                {/* Mobile Actions */}
-                <div className="px-4 py-6 border-t bg-muted/30 space-y-3">
-                  {/* Download Profile Button */}
-                  <Button variant="outline" asChild className="w-full justify-start gap-2">
-                    <a
-                      href="/DMF Vietnam Handbuch.pdf"
-                      download="DMF_Vietnam_Unternehmensprofil.pdf"
-                    >
-                      <Download className="h-4 w-4" />
-                      {nav.downloadProfile}
-                    </a>
-                  </Button>
-
-                  {/* Contact Button */}
-                  <Button
-                    asChild
-                    className="w-full gap-2"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <Link href="/#contact">
-                      <Phone className="w-4 h-4" />
-                      {nav.contact}
-                    </Link>
-                  </Button>
                 </div>
-              </div>
-            </SheetContent>
-          </Sheet>
+
+                {/* Mobile Contact Info */}
+                <div className="px-6 py-4 border-b bg-muted/30">
+                  <div className="space-y-2">
+                    <a
+                      href={`tel:${displayHotline.replace(/\s/g, "")}`}
+                      className="flex items-center gap-2 text-sm text-foreground/80 hover:text-primary transition-colors"
+                    >
+                      <Phone className="w-4 h-4" />
+                      <span>{displayHotline}</span>
+                    </a>
+                    <a
+                      href={`mailto:${displayEmail}`}
+                      className="flex items-center gap-2 text-sm text-foreground/80 hover:text-primary transition-colors"
+                    >
+                      <Mail className="w-4 h-4" />
+                      <span className="truncate">{displayEmail}</span>
+                    </a>
+                  </div>
+                </div>
+
+                {/* Mobile Navigation Links */}
+                <div className="flex flex-col h-[calc(100vh-200px)] overflow-y-auto">
+                  <nav className="flex-1 px-4 py-6">
+                    {/* Home */}
+                    <Link
+                      href="/"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={cn(
+                        "flex items-center gap-3 px-4 py-3 rounded-xl mb-2 transition-colors",
+                        isActive("/")
+                          ? "bg-primary/10 text-primary font-semibold"
+                          : "text-foreground/80 hover:bg-muted hover:text-primary"
+                      )}
+                    >
+                      <Home className="w-5 h-5" />
+                      {nav.home}
+                    </Link>
+
+                    {/* Solutions Accordion */}
+                    <Accordion type="single" collapsible className="mb-2">
+                      <AccordionItem value="solutions" className="border-0">
+                        <AccordionTrigger
+                          className={cn(
+                            "flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-muted hover:no-underline [&[data-state=open]]:bg-muted",
+                            isSolutionActive && "text-primary font-semibold"
+                          )}
+                        >
+                          <div className="flex items-center gap-3">
+                            <Users className="w-5 h-5" />
+                            {nav.solutions}
+                          </div>
+                        </AccordionTrigger>
+                        <AccordionContent className="pt-2 pb-0">
+                          <div className="space-y-2 pl-2">
+                            {serviceSolutions.map((service) => (
+                              <MobileServiceLink
+                                key={service.href}
+                                service={service}
+                                language={language}
+                                onClose={() => setIsMobileMenuOpen(false)}
+                              />
+                            ))}
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
+
+                    {/* Blog */}
+                    <Link
+                      href="/blog"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={cn(
+                        "flex items-center gap-3 px-4 py-3 rounded-xl mb-2 transition-colors",
+                        isActive("/blog")
+                          ? "bg-primary/10 text-primary font-semibold"
+                          : "text-foreground/80 hover:bg-muted hover:text-primary"
+                      )}
+                    >
+                      <Newspaper className="w-5 h-5" />
+                      {nav.blog}
+                    </Link>
+
+                    {/* About */}
+                    <Link
+                      href="/#about"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl text-foreground/80 hover:bg-muted hover:text-primary transition-colors"
+                    >
+                      <Users className="w-5 h-5" />
+                      {nav.about}
+                    </Link>
+                  </nav>
+
+                  {/* Mobile Actions */}
+                  <div className="px-4 py-6 border-t bg-muted/30 space-y-3 mt-auto">
+                    {/* Download Profile Button */}
+                    <Button variant="outline" asChild className="w-full justify-start gap-2">
+                      <a
+                        href="/DMF Vietnam Handbuch.pdf"
+                        download="DMF_Vietnam_Unternehmensprofil.pdf"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        <Download className="h-4 w-4" />
+                        {nav.downloadProfile}
+                      </a>
+                    </Button>
+
+                    {/* Contact Button */}
+                    <Button
+                      asChild
+                      className="w-full gap-2 bg-primary text-white hover:bg-primary/90 hover:shadow-lg transition-transform active:scale-95"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      <Link href="/#contact">
+                        <Phone className="w-4 h-4" />
+                        {nav.contact}
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
       </div>
     </header>

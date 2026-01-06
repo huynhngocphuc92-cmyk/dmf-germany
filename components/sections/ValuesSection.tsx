@@ -2,7 +2,7 @@
 
 import { useLanguage } from "@/lib/language-context";
 import { motion } from "framer-motion";
-import { Award, Search, Eye, ShieldCheck } from "lucide-react";
+import { Award, UserCheck, Eye, ShieldCheck } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -56,10 +56,10 @@ const headerVariants: any = {
 export const ValuesSection = () => {
   const { content } = useLanguage();
 
-  // Icons mapping - phù hợp với từng giá trị
+  // Hardcoded icons mapping - đồng bộ và đẹp ngay lập tức
   const iconMap = {
     award: Award, // Qualität
-    search: Search, // Sorgfältige Auswahl
+    search: UserCheck, // Sorgfältige Auswahl (thay Search bằng UserCheck)
     eye: Eye, // Transparenz
     shield: ShieldCheck, // Verantwortung
   };
@@ -141,8 +141,8 @@ export const ValuesSection = () => {
                         <div className="relative inline-flex">
                           {/* Glow effect */}
                           <div className="absolute inset-0 bg-accent/20 blur-xl rounded-full scale-150 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                          <div className="relative p-3 md:p-4 rounded-xl md:rounded-2xl bg-gradient-to-br from-primary/10 to-accent/10 group-hover:from-primary group-hover:to-accent transition-all duration-300">
-                            <Icon className="h-6 w-6 md:h-8 md:w-8 text-primary group-hover:text-white transition-colors duration-300" />
+                          <div className="relative p-3 md:p-4 rounded-xl md:rounded-2xl bg-blue-50 group-hover:bg-gradient-to-br group-hover:from-primary group-hover:to-accent transition-all duration-300">
+                            <Icon className="w-10 h-10 text-primary group-hover:text-white transition-colors duration-300" />
                           </div>
                         </div>
                       </div>

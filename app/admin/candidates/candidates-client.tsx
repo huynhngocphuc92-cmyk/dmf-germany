@@ -44,8 +44,8 @@ import {
 } from "lucide-react";
 import { CandidateForm } from "@/components/admin/CandidateForm";
 import { deleteCandidate, getCandidates } from "./actions";
-import type { Candidate, CandidateCategory, CandidateStatus } from "./types";
-import { categoryLabels, categoryColors, statusLabels, statusColors } from "./types";
+import type { Candidate, CandidateCategory } from "./types";
+import { categoryLabels, categoryColors } from "./types";
 
 // ============================================
 // COMPONENT PROPS
@@ -76,7 +76,6 @@ export function CandidatesClient({
   // Filter state
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
-  const [statusFilter, setStatusFilter] = useState<string>("all");
 
   // Form state
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -114,10 +113,7 @@ export function CandidatesClient({
     const matchesCategory =
       categoryFilter === "all" || candidate.category === categoryFilter;
 
-    const matchesStatus =
-      statusFilter === "all" || candidate.status === statusFilter;
-
-    return matchesSearch && matchesCategory && matchesStatus;
+    return matchesSearch && matchesCategory;
   });
 
   // Handle edit
@@ -244,20 +240,6 @@ export function CandidatesClient({
               </SelectContent>
             </Select>
 
-            {/* Status Filter */}
-            <Select value={statusFilter} onValueChange={setStatusFilter}>
-              <SelectTrigger className="w-full sm:w-[180px]">
-                <SelectValue placeholder="Status" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">Alle Status</SelectItem>
-                {(Object.keys(statusLabels) as CandidateStatus[]).map((key) => (
-                  <SelectItem key={key} value={key}>
-                    {statusLabels[key]}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
           </div>
         </div>
 
@@ -322,7 +304,7 @@ export function CandidatesClient({
                   <TableHead>Kategorie</TableHead>
                   <TableHead>Beruf</TableHead>
                   <TableHead>Deutsch</TableHead>
-                  <TableHead>Status</TableHead>
+                  <TableHead>Visa Status</TableHead>
                   <TableHead className="text-right">Aktionen</TableHead>
                 </TableRow>
               </TableHeader>
@@ -383,13 +365,17 @@ export function CandidatesClient({
                       </Badge>
                     </TableCell>
 
-                    {/* Status */}
+                    {/* Visa Status */}
                     <TableCell>
                       <Badge
                         variant="outline"
-                        className={statusColors[candidate.status]}
+                        className={
+                          candidate.visa_status
+                            ? "bg-emerald-100 text-emerald-700 border-emerald-200"
+                            : "bg-amber-100 text-amber-700 border-amber-200"
+                        }
                       >
-                        {statusLabels[candidate.status]}
+                        {candidate.visa_status ? "Visa Vorhanden" : "In Bearbeitung"}
                       </Badge>
                     </TableCell>
 

@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
+import { AssetImageWithDebug } from "@/components/ui/AssetImageWithDebug";
 import { useLanguage } from "@/lib/language-context";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -183,9 +184,11 @@ interface ServiceCardItemProps {
   index: number;
   language: "de" | "vn";
   isInView: boolean;
+  serviceImage?: string | null;
+  serviceImageKey?: string; // Asset key for debug label
 }
 
-function ServiceCardItem({ service, index, language, isInView }: ServiceCardItemProps) {
+function ServiceCardItem({ service, index, language, isInView, serviceImage, serviceImageKey }: ServiceCardItemProps) {
   const Icon = service.icon;
   const SecondaryIcon = service.secondaryIcon;
   const colors = accentColors[service.accentColor];
@@ -242,6 +245,20 @@ function ServiceCardItem({ service, index, language, isInView }: ServiceCardItem
           />
 
           <CardContent className="relative z-10 p-8 h-full flex flex-col">
+            {/* Service Image (if available) */}
+            {serviceImage && (
+              <div className="mb-6 -mx-8 -mt-8 aspect-video relative overflow-hidden rounded-t-lg">
+                <AssetImageWithDebug
+                  src={serviceImage}
+                  configKey={serviceImageKey || `home_prog_${service.id}_img`}
+                  alt={title}
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-white/80 to-transparent" />
+              </div>
+            )}
+            
             {/* Header */}
             <div className="mb-6">
               {/* Tagline Badge */}
@@ -356,10 +373,30 @@ function IndustryBadge({ icon: Icon, label, delay, isInView }: IndustryBadgeProp
 // MAIN COMPONENT
 // ============================================
 
-export function ServiceGateway() {
+interface ServiceGatewayProps {
+  nursingImg?: string | null;
+  techImg?: string | null;
+  hotelImg?: string | null;
+}
+
+export function ServiceGateway({ nursingImg, techImg, hotelImg }: ServiceGatewayProps = {}) {
   const { language } = useLanguage();
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
+  
+  // Map images to services
+  const serviceImages: Record<string, string | null> = {
+    azubi: nursingImg || null,
+    skilled: techImg || null,
+    seasonal: hotelImg || null,
+  };
+
+  // Map asset keys for debug labels
+  const serviceImageKeys: Record<string, string> = {
+    azubi: "home_prog_nursing_img",
+    skilled: "home_prog_tech_img",
+    seasonal: "home_prog_hotel_img",
+  };
 
   // Content
   const content = {
@@ -435,6 +472,8 @@ export function ServiceGateway() {
               index={index}
               language={language}
               isInView={isInView}
+              serviceImage={serviceImages[service.id]}
+              serviceImageKey={serviceImageKeys[service.id]}
             />
           ))}
         </div>

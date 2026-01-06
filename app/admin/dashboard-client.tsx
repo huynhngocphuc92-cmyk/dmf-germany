@@ -46,9 +46,7 @@ import type { User } from "@supabase/supabase-js";
 import type { DashboardStats } from "./dashboard-actions";
 import { 
   categoryColors, 
-  statusColors, 
   categoryLabelsI18n,
-  statusLabelsI18n,
   adminTranslations,
   type AdminLanguage,
 } from "./candidates/types";
@@ -105,10 +103,10 @@ export function AdminDashboardClient({
       trendUp: true,
     },
     {
-      title: t.visaProcessing,
-      value: stats.visaProcessing,
-      icon: Clock,
-      color: "bg-amber-100 text-amber-600",
+      title: lang === "de" ? "Visa Bereit" : "Có Visa",
+      value: stats.visaReady,
+      icon: CheckCircle2,
+      color: "bg-emerald-100 text-emerald-600",
       trend: "+5%",
       trendUp: true,
     },
@@ -132,7 +130,7 @@ export function AdminDashboardClient({
 
   // Pie chart data - with translated labels
   const pieData = stats.categoryDistribution.map((item) => ({
-    name: categoryLabelsI18n[item.category][lang],
+    name: categoryLabelsI18n[item.category]?.[lang] || item.category,
     value: item.count,
     category: item.category,
   }));
@@ -363,7 +361,7 @@ export function AdminDashboardClient({
                   <TableRow>
                     <TableHead>{t.name}</TableHead>
                     <TableHead>{t.category}</TableHead>
-                    <TableHead>{t.status}</TableHead>
+                    <TableHead>{lang === "de" ? "Visa Status" : "Trạng thái Visa"}</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -384,15 +382,25 @@ export function AdminDashboardClient({
                           variant="outline"
                           className={categoryColors[candidate.category]}
                         >
-                          {categoryLabelsI18n[candidate.category][lang]}
+                          {categoryLabelsI18n[candidate.category]?.[lang] || candidate.category}
                         </Badge>
                       </TableCell>
                       <TableCell>
                         <Badge
                           variant="outline"
-                          className={statusColors[candidate.status]}
+                          className={
+                            candidate.visa_status
+                              ? "bg-emerald-100 text-emerald-700 border-emerald-200"
+                              : "bg-amber-100 text-amber-700 border-amber-200"
+                          }
                         >
-                          {statusLabelsI18n[candidate.status][lang]}
+                          {candidate.visa_status
+                            ? lang === "de"
+                              ? "Visa Vorhanden"
+                              : "Có Visa"
+                            : lang === "de"
+                            ? "In Bearbeitung"
+                            : "Đang xử lý"}
                         </Badge>
                       </TableCell>
                     </TableRow>

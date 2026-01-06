@@ -33,8 +33,9 @@ export interface Candidate {
   experience_years: number;
   german_level: GermanLevel;
   
-  // Status
-  status: CandidateStatus;
+  // Status (New Schema)
+  visa_status: boolean;
+  is_featured: boolean;
   notes?: string;
 }
 
@@ -47,7 +48,8 @@ export interface CandidateFormData {
   profession?: string;
   experience_years: number;
   german_level: GermanLevel;
-  status: CandidateStatus;
+  visa_status: boolean;
+  is_featured: boolean;
   notes?: string;
   avatar_url?: string;
 }

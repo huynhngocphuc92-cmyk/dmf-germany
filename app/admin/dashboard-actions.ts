@@ -1,7 +1,7 @@
 "use server";
 
 import { createClient } from "@/utils/supabase/server";
-import type { Candidate, CandidateCategory, CandidateStatus } from "./candidates/types";
+import type { Candidate, CandidateCategory } from "./candidates/types";
 
 // ============================================
 // DASHBOARD STATS TYPES
@@ -10,23 +10,16 @@ import type { Candidate, CandidateCategory, CandidateStatus } from "./candidates
 export interface DashboardStats {
   totalCandidates: number;
   newApplications: number;
-  visaProcessing: number;
-  approvedCount: number;
+  visaReady: number;
+  featuredCount: number;
   successRate: number;
   categoryDistribution: CategoryCount[];
-  statusDistribution: StatusCount[];
   monthlyData: MonthlyCount[];
   recentCandidates: Candidate[];
 }
 
 export interface CategoryCount {
   category: CandidateCategory;
-  count: number;
-  label: string;
-}
-
-export interface StatusCount {
-  status: CandidateStatus;
   count: number;
   label: string;
 }
@@ -65,11 +58,17 @@ export async function getDashboardStats(): Promise<{
 
     // Calculate basic stats
     const totalCandidates = allCandidates.length;
-    const newApplications = allCandidates.filter((c) => c.status === "new").length;
-    const visaProcessing = allCandidates.filter((c) => c.status === "visa").length;
-    const approvedCount = allCandidates.filter((c) => c.status === "approved").length;
+    // New applications: Candidates created in last 30 days
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+    const newApplications = allCandidates.filter((c) => {
+      const createdDate = new Date(c.created_at);
+      return createdDate >= thirtyDaysAgo;
+    }).length;
+    const visaReady = allCandidates.filter((c) => c.visa_status === true).length;
+    const featuredCount = allCandidates.filter((c) => c.is_featured === true).length;
     const successRate = totalCandidates > 0 
-      ? Math.round((approvedCount / totalCandidates) * 100) 
+      ? Math.round((visaReady / totalCandidates) * 100) 
       : 0;
 
     // Category distribution
@@ -91,16 +90,6 @@ export async function getDashboardStats(): Promise<{
       },
     ];
 
-    // Status distribution
-    const statusDistribution: StatusCount[] = [
-      { status: "new", count: newApplications, label: "Neu" },
-      { status: "screening", count: allCandidates.filter((c) => c.status === "screening").length, label: "Vorauswahl" },
-      { status: "interview", count: allCandidates.filter((c) => c.status === "interview").length, label: "Interview" },
-      { status: "documents", count: allCandidates.filter((c) => c.status === "documents").length, label: "Dokumente" },
-      { status: "visa", count: visaProcessing, label: "Visum" },
-      { status: "approved", count: approvedCount, label: "Genehmigt" },
-      { status: "rejected", count: allCandidates.filter((c) => c.status === "rejected").length, label: "Abgelehnt" },
-    ];
 
     // Monthly data (last 6 months)
     const monthlyData = getMonthlyData(allCandidates);
@@ -112,11 +101,10 @@ export async function getDashboardStats(): Promise<{
       data: {
         totalCandidates,
         newApplications,
-        visaProcessing,
-        approvedCount,
+        visaReady,
+        featuredCount,
         successRate,
         categoryDistribution,
-        statusDistribution,
         monthlyData,
         recentCandidates,
       },
@@ -167,22 +155,13 @@ export async function getMockDashboardStats(): Promise<DashboardStats> {
   return {
     totalCandidates: 156,
     newApplications: 23,
-    visaProcessing: 18,
-    approvedCount: 48,
+    visaReady: 48,
+    featuredCount: 12,
     successRate: 31,
     categoryDistribution: [
       { category: "azubi", count: 45, label: "Auszubildende" },
       { category: "skilled", count: 78, label: "Fachkräfte" },
       { category: "seasonal", count: 33, label: "Saisonkräfte" },
-    ],
-    statusDistribution: [
-      { status: "new", count: 23, label: "Neu" },
-      { status: "screening", count: 15, label: "Vorauswahl" },
-      { status: "interview", count: 28, label: "Interview" },
-      { status: "documents", count: 12, label: "Dokumente" },
-      { status: "visa", count: 18, label: "Visum" },
-      { status: "approved", count: 48, label: "Genehmigt" },
-      { status: "rejected", count: 12, label: "Abgelehnt" },
     ],
     monthlyData: [
       { month: "Aug", azubi: 5, skilled: 12, seasonal: 8, total: 25 },

@@ -38,12 +38,10 @@ import type {
   Candidate,
   CandidateFormData,
   CandidateCategory,
-  CandidateStatus,
   GermanLevel,
 } from "@/app/admin/candidates/types";
 import {
   categoryLabels,
-  statusLabels,
   germanLevels,
 } from "@/app/admin/candidates/types";
 
@@ -82,7 +80,8 @@ export function CandidateForm({
     profession: candidate?.profession || "",
     experience_years: candidate?.experience_years || 0,
     german_level: candidate?.german_level || "B1",
-    status: candidate?.status || "new",
+    visa_status: candidate?.visa_status ?? false,
+    is_featured: candidate?.is_featured ?? false,
     notes: candidate?.notes || "",
     avatar_url: candidate?.avatar_url || "",
   });
@@ -104,7 +103,8 @@ export function CandidateForm({
       profession: candidate?.profession || "",
       experience_years: candidate?.experience_years || 0,
       german_level: candidate?.german_level || "B1",
-      status: candidate?.status || "new",
+      visa_status: candidate?.visa_status ?? false,
+      is_featured: candidate?.is_featured ?? false,
       notes: candidate?.notes || "",
       avatar_url: candidate?.avatar_url || "",
     });
@@ -115,7 +115,7 @@ export function CandidateForm({
   // Handle input change
   const handleChange = (
     field: keyof CandidateFormData,
-    value: string | number
+    value: string | number | boolean
   ) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
     setError(null);
@@ -379,29 +379,41 @@ export function CandidateForm({
               </Select>
             </div>
 
-            {/* Status */}
+            {/* Visa Status */}
             <div className="space-y-2">
-              <Label>Status *</Label>
+              <Label>Visa Status</Label>
               <Select
-                value={formData.status}
+                value={formData.visa_status ? "true" : "false"}
                 onValueChange={(value) =>
-                  handleChange("status", value as CandidateStatus)
+                  handleChange("visa_status", value === "true")
                 }
               >
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  {(Object.keys(statusLabels) as CandidateStatus[]).map(
-                    (key) => (
-                      <SelectItem key={key} value={key}>
-                        {statusLabels[key]}
-                      </SelectItem>
-                    )
-                  )}
+                  <SelectItem value="true">Visa Vorhanden</SelectItem>
+                  <SelectItem value="false">In Bearbeitung</SelectItem>
                 </SelectContent>
               </Select>
             </div>
+          </div>
+
+          {/* Is Featured */}
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <Label htmlFor="is_featured">Als Featured markieren</Label>
+              <input
+                type="checkbox"
+                id="is_featured"
+                checked={formData.is_featured}
+                onChange={(e) => handleChange("is_featured", e.target.checked)}
+                className="w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary"
+              />
+            </div>
+            <p className="text-xs text-slate-500">
+              Featured Kandidaten werden auf der Startseite angezeigt
+            </p>
           </div>
 
           {/* Profession */}

@@ -66,12 +66,20 @@ export async function getCandidate(id: string): Promise<{
 // ============================================
 
 function sanitizeFormData(formData: CandidateFormData | Partial<CandidateFormData>) {
+  // Đảm bảo tất cả các trường bắt buộc được gửi đi
   return {
-    ...formData,
-    // Convert empty strings to null for DATE fields
-    date_of_birth: formData.date_of_birth?.trim() || null,
-    // Convert empty strings to null for optional TEXT fields
+    // Required fields - Đảm bảo có giá trị
+    full_name: formData.full_name?.trim() || "",
+    email: formData.email?.trim() || "",
+    category: formData.category || "skilled", // Default nếu không có
+    experience_years: formData.experience_years ?? 0,
+    german_level: formData.german_level || "B1", // Default nếu không có
+    visa_status: formData.visa_status ?? false,
+    is_featured: formData.is_featured ?? false,
+    
+    // Optional fields - Convert empty strings to null
     phone: formData.phone?.trim() || null,
+    date_of_birth: formData.date_of_birth?.trim() || null,
     profession: formData.profession?.trim() || null,
     notes: formData.notes?.trim() || null,
     avatar_url: formData.avatar_url?.trim() || null,
@@ -88,13 +96,50 @@ export async function createCandidate(
   try {
     const supabase = await createClient();
 
+    // Validate required fields
+    if (!formData.full_name?.trim()) {
+      return { success: false, error: "Name ist erforderlich." };
+    }
+    if (!formData.email?.trim()) {
+      return { success: false, error: "E-Mail ist erforderlich." };
+    }
+    if (!formData.category) {
+      return { success: false, error: "Kategorie ist erforderlich." };
+    }
+
     // Sanitize data before sending to database
     const sanitizedData = sanitizeFormData(formData);
+
+    // Log để debug (có thể xóa sau)
+    console.log("Creating candidate with data:", {
+      full_name: sanitizedData.full_name,
+      email: sanitizedData.email,
+      category: sanitizedData.category,
+      phone: sanitizedData.phone,
+      date_of_birth: sanitizedData.date_of_birth,
+      profession: sanitizedData.profession,
+      notes: sanitizedData.notes,
+      experience_years: sanitizedData.experience_years,
+      german_level: sanitizedData.german_level,
+      visa_status: sanitizedData.visa_status,
+      is_featured: sanitizedData.is_featured,
+    });
 
     const { data, error } = await supabase
       .from("candidates")
       .insert({
-        ...sanitizedData,
+        full_name: sanitizedData.full_name,
+        email: sanitizedData.email,
+        category: sanitizedData.category,
+        phone: sanitizedData.phone,
+        date_of_birth: sanitizedData.date_of_birth,
+        profession: sanitizedData.profession,
+        notes: sanitizedData.notes,
+        experience_years: sanitizedData.experience_years,
+        german_level: sanitizedData.german_level,
+        visa_status: sanitizedData.visa_status,
+        is_featured: sanitizedData.is_featured,
+        avatar_url: sanitizedData.avatar_url,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
       })
@@ -128,12 +173,28 @@ export async function updateCandidate(
     // Sanitize data before sending to database
     const sanitizedData = sanitizeFormData(formData);
 
+    // Build update object - chỉ cập nhật các trường có giá trị
+    const updateData: Record<string, any> = {
+      updated_at: new Date().toISOString(),
+    };
+
+    // Chỉ thêm các trường có giá trị vào update object
+    if (sanitizedData.full_name !== undefined) updateData.full_name = sanitizedData.full_name;
+    if (sanitizedData.email !== undefined) updateData.email = sanitizedData.email;
+    if (sanitizedData.category !== undefined) updateData.category = sanitizedData.category;
+    if (sanitizedData.phone !== undefined) updateData.phone = sanitizedData.phone;
+    if (sanitizedData.date_of_birth !== undefined) updateData.date_of_birth = sanitizedData.date_of_birth;
+    if (sanitizedData.profession !== undefined) updateData.profession = sanitizedData.profession;
+    if (sanitizedData.notes !== undefined) updateData.notes = sanitizedData.notes;
+    if (sanitizedData.experience_years !== undefined) updateData.experience_years = sanitizedData.experience_years;
+    if (sanitizedData.german_level !== undefined) updateData.german_level = sanitizedData.german_level;
+    if (sanitizedData.visa_status !== undefined) updateData.visa_status = sanitizedData.visa_status;
+    if (sanitizedData.is_featured !== undefined) updateData.is_featured = sanitizedData.is_featured;
+    if (sanitizedData.avatar_url !== undefined) updateData.avatar_url = sanitizedData.avatar_url;
+
     const { data, error } = await supabase
       .from("candidates")
-      .update({
-        ...sanitizedData,
-        updated_at: new Date().toISOString(),
-      })
+      .update(updateData)
       .eq("id", id)
       .select()
       .single();
@@ -283,6 +344,57 @@ export async function deleteAvatar(
   } catch (err) {
     console.error("Unexpected error:", err);
     return { success: false, error: "Ein unerwarteter Fehler ist aufgetreten." };
+  }
+}
+
+// ============================================
+// GET FEATURED CANDIDATES (For Homepage Showcase)
+// ============================================
+
+export async function getFeaturedCandidates(): Promise<{
+  data: Candidate[] | null;
+  error: string | null;
+}> {
+  try {
+    const supabase = await createClient();
+
+    // Query candidates: Ưu tiên lấy những người có is_featured = true hoặc visa_status = true
+    // Nếu không có, lấy tất cả candidates mới nhất
+    // Sắp xếp mới nhất trước, giới hạn tối đa 20 hồ sơ
+    let { data, error } = await supabase
+      .from("candidates")
+      .select("*")
+      .or("is_featured.eq.true,visa_status.eq.true")
+      .order("created_at", { ascending: false })
+      .limit(20);
+
+    // Fallback: Nếu không có candidates featured/visa, lấy tất cả
+    if (error || !data || data.length === 0) {
+      const { data: allData, error: allError } = await supabase
+        .from("candidates")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .limit(20);
+
+      if (allError) {
+        console.error("Error fetching featured candidates:", allError);
+        return { data: null, error: allError.message };
+      }
+
+      data = allData;
+    }
+
+    if (error && data && data.length === 0) {
+      // Nếu có error nhưng không có data, log và trả về mảng rỗng
+      console.warn("No featured candidates found, returning empty array");
+      return { data: [], error: null };
+    }
+
+    return { data: (data || []) as Candidate[], error: null };
+  } catch (err) {
+    console.error("Unexpected error:", err);
+    // Trả về mảng rỗng thay vì null để component có thể fallback
+    return { data: [], error: null };
   }
 }
 

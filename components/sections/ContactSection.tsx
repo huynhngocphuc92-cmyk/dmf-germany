@@ -3,6 +3,7 @@
 import { useLanguage } from "@/lib/language-context";
 import { motion } from "framer-motion";
 import { Mail, Phone, Globe, User, Send, Building2, MapPin, Loader2 } from "lucide-react";
+import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -17,7 +18,11 @@ import { sendEmail } from "@/lib/actions";
 import { useRef, useState } from "react";
 import { toast } from "sonner";
 
-export const ContactSection = () => {
+interface ContactSectionProps {
+  ctaBg?: string | null;
+}
+
+export const ContactSection = ({ ctaBg }: ContactSectionProps = {}) => {
   const { content, language } = useLanguage();
   const formRef = useRef<HTMLFormElement>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -311,8 +316,22 @@ export const ContactSection = () => {
               </Card>
 
               {/* CTA Card */}
-              <Card className="border-accent/30 bg-gradient-to-br from-accent/5 to-primary/5">
-                <CardContent className="p-4 md:p-6">
+              <Card className="border-accent/30 bg-gradient-to-br from-accent/5 to-primary/5 overflow-hidden relative">
+                {ctaBg && ctaBg.trim() !== "" ? (
+                  <div className="absolute inset-0 opacity-10">
+                    <Image
+                      src={ctaBg}
+                      alt="CTA Background"
+                      fill
+                      className="object-cover"
+                      unoptimized={ctaBg.startsWith("http")}
+                    />
+                  </div>
+                ) : (
+                  // Fallback: Gradient background nếu không có ảnh
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5" />
+                )}
+                <CardContent className="p-4 md:p-6 relative z-10">
                   <div className="flex items-start gap-3 md:gap-4">
                     <div className="p-2 md:p-3 rounded-full bg-accent/20 flex-shrink-0">
                       <span className="text-xl md:text-2xl">💼</span>
