@@ -1,6 +1,6 @@
 "use client";
 
-import { useLanguage } from "@/lib/language-context";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import { motion } from "framer-motion";
 import { ArrowRight, Download } from "lucide-react";
 import Link from "next/link";
@@ -32,7 +32,7 @@ interface HeroSectionProps {
 }
 
 export const HeroSection = ({ heroBg, heroOverlayOpacity, featuredCandidates = [] }: HeroSectionProps = {}) => {
-  const { content, language } = useLanguage();
+  const { t, lang } = useLanguage();
 
   return (
     <section
@@ -80,7 +80,7 @@ export const HeroSection = ({ heroBg, heroOverlayOpacity, featuredCandidates = [
               variants={fadeInUp}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight drop-shadow-md"
             >
-              {content.hero.title}
+              {t.hero.title}
             </motion.h1>
 
             {/* Description - Light Gray */}
@@ -88,7 +88,7 @@ export const HeroSection = ({ heroBg, heroOverlayOpacity, featuredCandidates = [
               variants={fadeInUp}
               className="text-lg md:text-xl lg:text-2xl text-gray-300 leading-relaxed max-w-2xl"
             >
-              {content.hero.subtitle}
+              {t.hero.subtitle}
             </motion.p>
 
             {/* CTA Buttons - Horizontal Layout */}
@@ -101,7 +101,7 @@ export const HeroSection = ({ heroBg, heroOverlayOpacity, featuredCandidates = [
                 href="#contact"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white rounded-lg text-base md:text-lg font-semibold transition-all duration-300 hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30 group"
               >
-                {content.hero.ctaPrimary}
+                {t.hero.cta_primary}
                 <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
 
@@ -117,7 +117,7 @@ export const HeroSection = ({ heroBg, heroOverlayOpacity, featuredCandidates = [
                   download="DMF_Vietnam_Unternehmensprofil.pdf"
                 >
                   <Download className="h-5 w-5" />
-                  {content.hero.downloadProfile}
+                  {t.hero.cta_secondary}
                 </a>
               </Button>
             </motion.div>

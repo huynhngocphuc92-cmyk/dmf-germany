@@ -3,7 +3,7 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
-import { useLanguage } from "@/lib/language-context";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -393,8 +393,18 @@ function AnimatedCounter({
 // ============================================
 
 function HeroSection() {
-  const { language } = useLanguage();
-  const content = language === "de" ? heroContent.de : heroContent.vn;
+  const { lang, t } = useLanguage();
+  
+  // Build hero content from translations
+  const content = {
+    badge: t.service_pages.seasonal.hero.badge,
+    headline: t.service_pages.seasonal.hero.headline,
+    headlineAccent: t.service_pages.seasonal.hero.headline_accent,
+    subheadline: t.service_pages.seasonal.hero.subheadline,
+    cta1: t.service_pages.seasonal.hero.cta1,
+    cta2: t.service_pages.seasonal.hero.cta2,
+    urgencyBadge: t.service_pages.seasonal.hero.urgency_badge,
+  };
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-slate-950">
@@ -524,10 +534,10 @@ function HeroSection() {
                       4-8
                     </div>
                     <div className="text-white font-medium text-lg">
-                      {language === "de" ? "Wochen" : "Tuần"}
+                      {t.service_pages.seasonal.timeline.weeks_label}
                     </div>
                     <div className="text-amber-400 text-sm mt-1">
-                      {language === "de" ? "bis Einsatz" : "đến khi làm việc"}
+                      {t.service_pages.seasonal.timeline.until_work}
                     </div>
                   </motion.div>
                 </div>
@@ -541,7 +551,7 @@ function HeroSection() {
               >
                 <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/30 px-3 py-1.5">
                   <Zap className="w-3 h-3 mr-1" />
-                  {language === "de" ? "Schnell" : "Nhanh"}
+                  {t.service_pages.seasonal.timeline.fast_label}
                 </Badge>
               </motion.div>
 
@@ -595,8 +605,37 @@ function HeroSection() {
 // ============================================
 
 function AdvantagesSection() {
-  const { language } = useLanguage();
-  const content = language === "de" ? advantagesContent.de : advantagesContent.vn;
+  const { lang, t } = useLanguage();
+  
+  // Build content from translations
+  const content = {
+    badge: t.service_pages.seasonal.advantages.badge,
+    title: t.service_pages.seasonal.advantages.title,
+    subtitle: t.service_pages.seasonal.advantages.subtitle,
+    advantages: [
+      {
+        icon: Dumbbell,
+        title: t.service_pages.seasonal.advantages.advantage_1_title,
+        description: t.service_pages.seasonal.advantages.advantage_1_desc,
+        highlight: t.service_pages.seasonal.advantages.advantage_1_highlight,
+        highlightDesc: t.service_pages.seasonal.advantages.advantage_1_highlight_desc,
+      },
+      {
+        icon: Zap,
+        title: t.service_pages.seasonal.advantages.advantage_2_title,
+        description: t.service_pages.seasonal.advantages.advantage_2_desc,
+        highlight: t.service_pages.seasonal.advantages.advantage_2_highlight,
+        highlightDesc: t.service_pages.seasonal.advantages.advantage_2_highlight_desc,
+      },
+      {
+        icon: Shield,
+        title: t.service_pages.seasonal.advantages.advantage_3_title,
+        description: t.service_pages.seasonal.advantages.advantage_3_desc,
+        highlight: t.service_pages.seasonal.advantages.advantage_3_highlight,
+        highlightDesc: t.service_pages.seasonal.advantages.advantage_3_highlight_desc,
+      },
+    ],
+  };
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
@@ -673,9 +712,36 @@ function AdvantagesSection() {
 // ============================================
 
 function SpeedTimelineSection() {
-  const { language } = useLanguage();
-  const content = language === "de" ? timelineContent.de : timelineContent.vn;
+  const { lang, t } = useLanguage();
   const ref = useRef(null);
+  
+  // Build content from translations
+  const content = {
+    badge: t.service_pages.seasonal.timeline.badge,
+    title: t.service_pages.seasonal.timeline.title,
+    subtitle: t.service_pages.seasonal.timeline.subtitle,
+    steps: [
+      {
+        week: t.service_pages.seasonal.timeline.step1_week,
+        title: t.service_pages.seasonal.timeline.step1_title,
+        description: t.service_pages.seasonal.timeline.step1_desc,
+        icon: Users,
+      },
+      {
+        week: t.service_pages.seasonal.timeline.step2_week,
+        title: t.service_pages.seasonal.timeline.step2_title,
+        description: t.service_pages.seasonal.timeline.step2_desc,
+        icon: FileCheck,
+      },
+      {
+        week: t.service_pages.seasonal.timeline.step3_week,
+        title: t.service_pages.seasonal.timeline.step3_title,
+        description: t.service_pages.seasonal.timeline.step3_desc,
+        icon: Plane,
+      },
+    ],
+    keyMessage: t.service_pages.seasonal.timeline.key_message,
+  };
   const isInView = useInView(ref, { once: true, amount: 0.3 });
   const [progress, setProgress] = useState(0);
 
@@ -754,7 +820,7 @@ function SpeedTimelineSection() {
                     </div>
                     {/* Week badge */}
                     <div className="absolute -top-2 -right-2 bg-slate-900 text-white text-xs font-bold px-2 py-1 rounded-full">
-                      {language === "de" ? "Wo." : "T."} {step.week}
+                      {t.service_pages.seasonal.timeline.week_label} {step.week}
                     </div>
                   </motion.div>
 
@@ -789,8 +855,17 @@ function SpeedTimelineSection() {
 // ============================================
 
 function TalentPoolSection() {
-  const { language } = useLanguage();
-  const content = language === "de" ? talentPoolContent.de : talentPoolContent.vn;
+  const { lang, t } = useLanguage();
+  
+  // Build content from translations - keep profiles structure from original
+  const content = {
+    badge: t.service_pages.seasonal.talent.badge,
+    title: t.service_pages.seasonal.talent.title,
+    subtitle: t.service_pages.seasonal.talent.subtitle,
+    availableBadge: t.service_pages.seasonal.talent.available_badge,
+    viewAll: t.service_pages.seasonal.talent.view_all,
+    profiles: talentPoolContent.de.profiles, // Keep original profiles data
+  };
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
@@ -849,14 +924,14 @@ function TalentPoolSection() {
                         {profile.avatar}
                       </div>
                       <Badge className="bg-amber-100 text-amber-700 border-amber-200 text-xs">
-                        {profile.available}+ {language === "de" ? "verfügbar" : "sẵn sàng"}
+                        {profile.available}+ {t.service_pages.seasonal.talent.available_label}
                       </Badge>
                     </div>
                     <h3 className="font-bold text-slate-900">
-                      {language === "de" ? profile.role : profile.roleVn}
+                      {lang === "de" ? profile.role : lang === "en" ? profile.role : profile.roleVn}
                     </h3>
                     <p className="text-sm text-amber-600">
-                      {language === "de" ? profile.category : profile.categoryVn}
+                      {lang === "de" ? profile.category : lang === "en" ? profile.category : profile.categoryVn}
                     </p>
                   </div>
 
@@ -883,7 +958,7 @@ function TalentPoolSection() {
                     >
                       <Link href="/#contact">
                         <Calendar className="w-4 h-4 mr-2" />
-                        {language === "de" ? "Anfragen" : "Yêu cầu"}
+                        {t.service_pages.seasonal.talent.request_label}
                       </Link>
                     </Button>
                   </div>
@@ -922,8 +997,15 @@ function TalentPoolSection() {
 // ============================================
 
 function SectorsSection() {
-  const { language } = useLanguage();
-  const content = language === "de" ? sectorsContent.de : sectorsContent.vn;
+  const { lang, t } = useLanguage();
+  
+  // Build content from translations - keep sectors structure from original
+  const content = {
+    badge: t.service_pages.seasonal.sectors.badge,
+    title: t.service_pages.seasonal.sectors.title,
+    subtitle: t.service_pages.seasonal.sectors.subtitle,
+    sectors: sectorsContent.de.sectors, // Keep original sectors data
+  };
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
@@ -1027,14 +1109,14 @@ function SectorsSection() {
                       <Users className={`w-5 h-5 ${isAmber ? "text-amber-600" : "text-orange-600"}`} />
                       <span className="font-bold text-slate-900">{sector.stats.workers}</span>
                       <span className="text-sm text-slate-500">
-                        {language === "de" ? "Arbeitskräfte" : "Lao động"}
+                        {t.service_pages.seasonal.sectors.workers_label}
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Timer className={`w-5 h-5 ${isAmber ? "text-amber-600" : "text-orange-600"}`} />
                       <span className="font-bold text-slate-900">{sector.stats.time}</span>
                       <span className="text-sm text-slate-500">
-                        {language === "de" ? "Vorlauf" : "Thời gian"}
+                        {t.service_pages.seasonal.sectors.lead_time_label}
                       </span>
                     </div>
                   </div>
@@ -1053,8 +1135,16 @@ function SectorsSection() {
 // ============================================
 
 function StatsSection() {
-  const { language } = useLanguage();
-  const content = language === "de" ? statsContent.de : statsContent.vn;
+  const { lang, t } = useLanguage();
+  
+  // Build content from translations
+  const content = {
+    stats: [
+      { value: "200+", label: t.service_pages.seasonal.stats.stat1_label, suffix: "", icon: Users },
+      { value: "98", label: t.service_pages.seasonal.stats.stat2_label, suffix: "%", icon: Shield },
+      { value: "4-8", label: t.service_pages.seasonal.stats.stat3_label, suffix: "", icon: Clock },
+    ],
+  };
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
@@ -1108,8 +1198,16 @@ function StatsSection() {
 // ============================================
 
 function CTASection() {
-  const { language } = useLanguage();
-  const content = language === "de" ? ctaContent.de : ctaContent.vn;
+  const { lang, t } = useLanguage();
+  
+  // Build content from translations
+  const content = {
+    title: t.service_pages.seasonal.cta.title,
+    subtitle: t.service_pages.seasonal.cta.subtitle,
+    cta1: t.service_pages.seasonal.cta.cta1,
+    cta2: t.service_pages.seasonal.cta.cta2,
+    urgency: t.service_pages.seasonal.hero.urgency_badge, // Reuse from hero
+  };
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 

@@ -3,7 +3,7 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
-import { useLanguage } from "@/lib/language-context";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -589,8 +589,22 @@ function AnimatedCounter({
 // ============================================
 
 function HeroSection() {
-  const { language } = useLanguage();
-  const content = language === "de" ? heroContent.de : heroContent.vn;
+  const { lang, t } = useLanguage();
+  
+  // Build content from translations
+  const content = {
+    badge: t.service_pages.azubi.hero.badge,
+    headline: t.service_pages.azubi.hero.headline,
+    headlineAccent: t.service_pages.azubi.hero.headline_accent,
+    subheadline: t.service_pages.azubi.hero.subheadline,
+    cta1: t.service_pages.azubi.hero.cta1,
+    cta2: t.service_pages.azubi.hero.cta2,
+    stats: [
+      { value: "18-23", label: t.service_pages.azubi.hero.stats_age },
+      { value: "B1+", label: t.service_pages.azubi.hero.stats_german },
+      { value: "90%", label: t.service_pages.azubi.hero.stats_retention },
+    ],
+  };
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-slate-950">
@@ -770,7 +784,7 @@ function HeroSection() {
                 <div className="text-center">
                   <div className="text-4xl font-bold text-white mb-1">200+</div>
                   <div className="text-blue-300 text-xs font-medium">
-                    {language === "de" ? "Azubis vermittelt" : "Học viên đã giới thiệu"}
+                    {t.service_pages.azubi.stats.stat1_label}
                   </div>
                 </div>
               </div>
@@ -807,10 +821,39 @@ function HeroSection() {
 // ============================================
 
 function AdvantagesSection() {
-  const { language } = useLanguage();
-  const content = language === "de" ? advantagesContent.de : advantagesContent.vn;
+  const { lang, t } = useLanguage();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
+  
+  // Build content from translations
+  const content = {
+    badge: t.service_pages.azubi.advantages.badge,
+    title: t.service_pages.azubi.advantages.title,
+    subtitle: t.service_pages.azubi.advantages.subtitle,
+    advantages: [
+      {
+        icon: Heart,
+        title: t.service_pages.azubi.advantages.advantage_1_title,
+        description: t.service_pages.azubi.advantages.advantage_1_desc,
+        highlight: t.service_pages.azubi.advantages.advantage_1_highlight,
+        highlightDesc: t.service_pages.azubi.advantages.advantage_1_highlight_desc,
+      },
+      {
+        icon: Handshake,
+        title: t.service_pages.azubi.advantages.advantage_2_title,
+        description: t.service_pages.azubi.advantages.advantage_2_desc,
+        highlight: t.service_pages.azubi.advantages.advantage_2_highlight,
+        highlightDesc: t.service_pages.azubi.advantages.advantage_2_highlight_desc,
+      },
+      {
+        icon: Shield,
+        title: t.service_pages.azubi.advantages.advantage_3_title,
+        description: t.service_pages.azubi.advantages.advantage_3_desc,
+        highlight: t.service_pages.azubi.advantages.advantage_3_highlight,
+        highlightDesc: t.service_pages.azubi.advantages.advantage_3_highlight_desc,
+      },
+    ],
+  };
 
   return (
     <section className="py-24 md:py-32 bg-white">
@@ -885,10 +928,36 @@ function AdvantagesSection() {
 // ============================================
 
 function QualityStandardSection() {
-  const { language } = useLanguage();
-  const content = language === "de" ? qualityStandardContent.de : qualityStandardContent.vn;
+  const { lang, t } = useLanguage();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
+  
+  // Build content from translations
+  const content = {
+    badge: t.service_pages.azubi.quality.badge,
+    title: t.service_pages.azubi.quality.title,
+    subtitle: t.service_pages.azubi.quality.subtitle,
+    leftColumn: {
+      title: t.service_pages.azubi.quality.prep_title,
+      icon: GraduationCap,
+      items: [
+        { text: t.service_pages.azubi.quality.prep_item1, icon: Languages },
+        { text: t.service_pages.azubi.quality.prep_item2, icon: BookOpen },
+        { text: t.service_pages.azubi.quality.prep_item3, icon: Users },
+        { text: t.service_pages.azubi.quality.prep_item4, icon: Building2 },
+      ],
+    },
+    rightColumn: {
+      title: t.service_pages.azubi.quality.support_title,
+      icon: HeartHandshake,
+      items: [
+        { text: t.service_pages.azubi.quality.support_item1, icon: MessageCircle },
+        { text: t.service_pages.azubi.quality.support_item2, icon: Home },
+        { text: t.service_pages.azubi.quality.support_item3, icon: FileCheck },
+        { text: t.service_pages.azubi.quality.support_item4, icon: Shield },
+      ],
+    },
+  };
 
   const LeftIcon = content.leftColumn.icon;
   const RightIcon = content.rightColumn.icon;
@@ -1011,8 +1080,40 @@ function QualityStandardSection() {
 // ============================================
 
 function SimpleProcessSection() {
-  const { language } = useLanguage();
-  const content = language === "de" ? processContent.de : processContent.vn;
+  const { lang, t } = useLanguage();
+  
+  // Build content from translations
+  const content = {
+    badge: t.service_pages.azubi.process.badge,
+    title: t.service_pages.azubi.process.title,
+    subtitle: t.service_pages.azubi.process.subtitle,
+    steps: [
+      {
+        number: "01",
+        title: t.service_pages.azubi.process.step1_title,
+        description: t.service_pages.azubi.process.step1_desc,
+        icon: Target,
+      },
+      {
+        number: "02",
+        title: t.service_pages.azubi.process.step2_title,
+        description: t.service_pages.azubi.process.step2_desc,
+        icon: MessageCircle,
+      },
+      {
+        number: "03",
+        title: t.service_pages.azubi.process.step3_title,
+        description: t.service_pages.azubi.process.step3_desc,
+        icon: FileCheck,
+      },
+      {
+        number: "04",
+        title: t.service_pages.azubi.process.step4_title,
+        description: t.service_pages.azubi.process.step4_desc,
+        icon: Rocket,
+      },
+    ],
+  };
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
@@ -1090,8 +1191,20 @@ function SimpleProcessSection() {
 // ============================================
 
 function TalentShowcaseSection() {
-  const { language } = useLanguage();
-  const content = language === "de" ? talentShowcaseContent.de : talentShowcaseContent.vn;
+  const { lang, t } = useLanguage();
+  
+  // Build content from translations
+  const content = {
+    badge: t.service_pages.azubi.talent.badge,
+    title: t.service_pages.azubi.talent.title,
+    subtitle: t.service_pages.azubi.talent.subtitle,
+    viewProfile: t.service_pages.azubi.talent.view_profile,
+    requestInterview: t.service_pages.azubi.talent.request_interview,
+    ageLabel: t.service_pages.azubi.talent.age_label,
+    educationLabel: t.service_pages.azubi.talent.education_label,
+    goalLabel: t.service_pages.azubi.talent.goal_label,
+    statusLabel: t.service_pages.azubi.talent.status_label,
+  };
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
@@ -1165,7 +1278,7 @@ function TalentShowcaseSection() {
                       <div className="flex-1">
                         <p className="text-xs text-slate-400 font-mono">#{profile.id}</p>
                         <h3 className="font-bold text-slate-900 text-sm">
-                          {language === "de" ? profile.nameDe : profile.nameVn}
+                          {lang === "de" ? profile.nameDe : lang === "en" ? profile.nameDe : profile.nameVn}
                         </h3>
                       </div>
                     </div>
@@ -1173,7 +1286,7 @@ function TalentShowcaseSection() {
                     {/* Status Badge */}
                     <Badge className={`text-xs ${getStatusColor(profile.statusType)}`}>
                       <CircleDot className="w-3 h-3 mr-1" />
-                      {language === "de" ? profile.statusDe : profile.statusVn}
+                      {lang === "de" ? profile.statusDe : lang === "en" ? profile.statusDe : profile.statusVn}
                     </Badge>
                   </div>
 
@@ -1191,7 +1304,7 @@ function TalentShowcaseSection() {
                         {content.educationLabel}
                       </span>
                       <span className="text-sm text-slate-700">
-                        {language === "de" ? profile.educationDe : profile.educationVn}
+                        {lang === "de" ? profile.educationDe : lang === "en" ? profile.educationDe : profile.educationVn}
                       </span>
                     </div>
 
@@ -1201,7 +1314,7 @@ function TalentShowcaseSection() {
                         {content.goalLabel}
                       </span>
                       <span className="font-semibold text-blue-700">
-                        {language === "de" ? profile.goalDe : profile.goalVn}
+                        {lang === "de" ? profile.goalDe : lang === "en" ? profile.goalDe : profile.goalVn}
                       </span>
                     </div>
 
@@ -1246,7 +1359,7 @@ function TalentShowcaseSection() {
             asChild
           >
             <Link href="/#contact">
-              {language === "de" ? "Weitere Profile anfordern" : "Yêu cầu thêm hồ sơ"}
+              {t.service_pages.azubi.talent.request_more}
               <ArrowRight className="w-5 h-5 ml-2" />
             </Link>
           </Button>
@@ -1261,8 +1374,52 @@ function TalentShowcaseSection() {
 // ============================================
 
 function SupportEcosystemSection() {
-  const { language } = useLanguage();
-  const content = language === "de" ? supportEcosystemContent.de : supportEcosystemContent.vn;
+  const { lang, t } = useLanguage();
+  
+  // Build content from translations
+  const content = {
+    badge: t.service_pages.azubi.support.badge,
+    title: t.service_pages.azubi.support.title,
+    subtitle: t.service_pages.azubi.support.subtitle,
+    years: [
+      {
+        year: "1",
+        title: t.service_pages.azubi.support.year1_title,
+        description: t.service_pages.azubi.support.year1_desc,
+        items: [
+          t.service_pages.azubi.support.year1_item1,
+          t.service_pages.azubi.support.year1_item2,
+          t.service_pages.azubi.support.year1_item3,
+          t.service_pages.azubi.support.year1_item4,
+        ],
+        icon: Home,
+      },
+      {
+        year: "2",
+        title: t.service_pages.azubi.support.year2_title,
+        description: t.service_pages.azubi.support.year2_desc,
+        items: [
+          t.service_pages.azubi.support.year2_item1,
+          t.service_pages.azubi.support.year2_item2,
+          t.service_pages.azubi.support.year2_item3,
+          t.service_pages.azubi.support.year2_item4,
+        ],
+        icon: BookOpen,
+      },
+      {
+        year: "3",
+        title: t.service_pages.azubi.support.year3_title,
+        description: t.service_pages.azubi.support.year3_desc,
+        items: [
+          t.service_pages.azubi.support.year3_item1,
+          t.service_pages.azubi.support.year3_item2,
+          t.service_pages.azubi.support.year3_item3,
+          t.service_pages.azubi.support.year3_item4,
+        ],
+        icon: Award,
+      },
+    ],
+  };
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
@@ -1320,7 +1477,7 @@ function SupportEcosystemSection() {
                       className="relative z-10 w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 to-indigo-500 flex items-center justify-center shadow-xl shadow-blue-500/30"
                     >
                       <span className="text-2xl font-bold text-white">
-                        {language === "de" ? "Jahr" : "Năm"} {year.year}
+                        {t.service_pages.azubi.support.year_label} {year.year}
                       </span>
                     </motion.div>
                   </div>
@@ -1361,8 +1518,20 @@ function SupportEcosystemSection() {
 // ============================================
 
 function ComparisonSection() {
-  const { language } = useLanguage();
-  const content = language === "de" ? comparisonContent.de : comparisonContent.vn;
+  const { lang, t } = useLanguage();
+  
+  // Build content from translations - keep comparison rows structure
+  const content = {
+    badge: t.service_pages.azubi.comparison.badge,
+    title: t.service_pages.azubi.comparison.title,
+    subtitle: t.service_pages.azubi.comparison.subtitle,
+    headers: {
+      criteria: t.service_pages.azubi.comparison.criteria_label,
+      vietnam: t.service_pages.azubi.comparison.vietnam_label,
+      germany: t.service_pages.azubi.comparison.germany_label,
+    },
+    rows: comparisonContent.de.rows, // Keep original data structure
+  };
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
@@ -1459,8 +1628,17 @@ function ComparisonSection() {
 // ============================================
 
 function StatsSection() {
-  const { language } = useLanguage();
-  const content = language === "de" ? statsContent.de : statsContent.vn;
+  const { lang, t } = useLanguage();
+  
+  // Build content from translations
+  const content = {
+    stats: [
+      { value: "200", label: t.service_pages.azubi.stats.stat1_label, suffix: "+", icon: Users },
+      { value: "95", label: t.service_pages.azubi.stats.stat2_label, suffix: "%", icon: Award },
+      { value: "90", label: t.service_pages.azubi.stats.stat3_label, suffix: "%", icon: Handshake },
+      { value: "3", label: t.service_pages.azubi.stats.stat4_label, suffix: "", icon: HeartHandshake },
+    ],
+  };
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
@@ -1514,8 +1692,16 @@ function StatsSection() {
 // ============================================
 
 function CTASection() {
-  const { language } = useLanguage();
-  const content = language === "de" ? ctaContent.de : ctaContent.vn;
+  const { lang, t } = useLanguage();
+  
+  // Build content from translations
+  const content = {
+    title: t.service_pages.azubi.cta.title,
+    subtitle: t.service_pages.azubi.cta.subtitle,
+    cta1: t.service_pages.azubi.cta.cta1,
+    cta2: t.service_pages.azubi.cta.cta2,
+    highlight: t.service_pages.azubi.cta.highlight,
+  };
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 

@@ -4,7 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import { motion, useInView, useAnimation, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { useLanguage } from "@/lib/language-context";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -531,8 +531,30 @@ function AnimatedCounter({
 // ============================================
 
 function HeroSection() {
-  const { language } = useLanguage();
-  const content = language === "de" ? heroContent.de : heroContent.vn;
+  const { lang, t } = useLanguage();
+  
+  // Build content from translations
+  const content = {
+    badge: t.service_pages.skilled_workers.hero.badge,
+    headline: t.service_pages.skilled_workers.hero.headline,
+    headlineAccent: t.service_pages.skilled_workers.hero.headline_accent,
+    subheadline: t.service_pages.skilled_workers.hero.subheadline,
+    cta1: t.service_pages.skilled_workers.hero.cta1,
+    cta2: t.service_pages.skilled_workers.hero.cta2,
+    floatingCard1: {
+      name: t.service_pages.skilled_workers.hero.card1_name,
+      role: t.service_pages.skilled_workers.hero.card1_role,
+      badge: t.service_pages.skilled_workers.hero.card1_badge,
+    },
+    floatingCard2: {
+      title: t.service_pages.skilled_workers.hero.card2_title,
+      status: t.service_pages.skilled_workers.hero.card2_status,
+    },
+    floatingCard3: {
+      title: t.service_pages.skilled_workers.hero.card3_title,
+      level: t.service_pages.skilled_workers.hero.card3_level,
+    },
+  };
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-slate-950">
@@ -734,7 +756,7 @@ function HeroSection() {
                 <div className="text-center">
                   <div className="text-4xl font-bold text-white mb-1">98%</div>
                   <div className="text-emerald-300 text-xs font-medium">
-                    {language === "de" ? "Erfolgsrate" : "Tỷ lệ thành công"}
+                    {t.service_pages.skilled_workers.stats.success_rate}
                   </div>
                 </div>
               </div>
@@ -771,8 +793,37 @@ function HeroSection() {
 // ============================================
 
 function ComparisonSection() {
-  const { language } = useLanguage();
-  const content = language === "de" ? comparisonContent.de : comparisonContent.vn;
+  const { lang, t } = useLanguage();
+  
+  // Build content from translations
+  const content = {
+    badge: t.service_pages.skilled_workers.comparison.badge,
+    title: t.service_pages.skilled_workers.comparison.title,
+    subtitle: t.service_pages.skilled_workers.comparison.subtitle,
+    oldWay: {
+      title: t.service_pages.skilled_workers.comparison.old_title,
+      subtitle: t.service_pages.skilled_workers.comparison.old_subtitle,
+      items: [
+        { text: t.service_pages.skilled_workers.comparison.old_item1, icon: Timer },
+        { text: t.service_pages.skilled_workers.comparison.old_item2, icon: XCircle },
+        { text: t.service_pages.skilled_workers.comparison.old_item3, icon: Euro },
+        { text: t.service_pages.skilled_workers.comparison.old_item4, icon: Languages },
+        { text: t.service_pages.skilled_workers.comparison.old_item5, icon: HeartHandshake },
+      ],
+    },
+    newWay: {
+      title: t.service_pages.skilled_workers.comparison.new_title,
+      subtitle: t.service_pages.skilled_workers.comparison.new_subtitle,
+      badge: t.service_pages.skilled_workers.comparison.new_badge,
+      items: [
+        { text: t.service_pages.skilled_workers.comparison.new_item1, icon: Zap },
+        { text: t.service_pages.skilled_workers.comparison.new_item2, icon: Shield },
+        { text: t.service_pages.skilled_workers.comparison.new_item3, icon: Euro },
+        { text: t.service_pages.skilled_workers.comparison.new_item4, icon: BadgeCheck },
+        { text: t.service_pages.skilled_workers.comparison.new_item5, icon: HeartHandshake },
+      ],
+    },
+  };
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
@@ -915,8 +966,14 @@ function ComparisonSection() {
 // ============================================
 
 function AvailableExpertsSection() {
-  const { language } = useLanguage();
-  const content = language === "de" ? expertsContent.de : expertsContent.vn;
+  const { lang, t } = useLanguage();
+  
+  // Build content from translations
+  const content = {
+    badge: t.service_pages.skilled_workers.experts.badge,
+    title: t.service_pages.skilled_workers.experts.title,
+    subtitle: t.service_pages.skilled_workers.experts.subtitle,
+  };
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
@@ -980,10 +1037,10 @@ function AvailableExpertsSection() {
                             #{expert.id}
                           </p>
                           <h3 className="font-bold text-slate-900">
-                            {language === "de" ? expert.nameDe : expert.nameVn}
+                            {lang === "de" ? expert.nameDe : lang === "en" ? expert.nameDe : expert.nameVn}
                           </h3>
                           <p className="text-sm text-emerald-600 font-medium">
-                            {language === "de" ? expert.roleDe : expert.roleVn}
+                            {lang === "de" ? expert.roleDe : lang === "en" ? expert.roleDe : expert.roleVn}
                           </p>
                         </div>
                       </div>
@@ -1001,7 +1058,7 @@ function AvailableExpertsSection() {
                           }`}
                         >
                           <CheckCircle2 className="w-3 h-3 mr-1" />
-                          {language === "de" ? badge.textDe : badge.textVn}
+                          {lang === "de" ? badge.textDe : lang === "en" ? badge.textDe : badge.textVn}
                         </Badge>
                       ))}
                     </div>
@@ -1053,7 +1110,7 @@ function AvailableExpertsSection() {
                     <div className="pt-2">
                       <p className="text-xs text-slate-400 mb-2">Expertise:</p>
                       <p className="text-sm text-slate-600 leading-relaxed">
-                        {language === "de" ? expert.highlightDe : expert.highlightVn}
+                        {lang === "de" ? expert.highlightDe : lang === "en" ? expert.highlightDe : expert.highlightVn}
                       </p>
                     </div>
                   </div>
@@ -1100,7 +1157,7 @@ function AvailableExpertsSection() {
             asChild
           >
             <Link href="/#contact">
-              {language === "de" ? "Alle Kandidaten ansehen" : "Xem tất cả ứng viên"}
+              {t.service_pages.skilled_workers.experts.view_all}
               <ArrowRight className="w-5 h-5 ml-2" />
             </Link>
           </Button>
@@ -1115,8 +1172,52 @@ function AvailableExpertsSection() {
 // ============================================
 
 function ProcessSection() {
-  const { language } = useLanguage();
-  const content = language === "de" ? processContent.de : processContent.vn;
+  const { lang, t } = useLanguage();
+  
+  // Build content from translations
+  const content = {
+    badge: t.service_pages.skilled_workers.process.badge,
+    title: t.service_pages.skilled_workers.process.title,
+    subtitle: t.service_pages.skilled_workers.process.subtitle,
+    totalTime: t.service_pages.skilled_workers.process.total_time,
+    steps: [
+      {
+        id: 1,
+        icon: Users,
+        title: t.service_pages.skilled_workers.process.step1_title,
+        description: t.service_pages.skilled_workers.process.step1_desc,
+        duration: t.service_pages.skilled_workers.process.step1_duration,
+      },
+      {
+        id: 2,
+        icon: FileCheck,
+        title: t.service_pages.skilled_workers.process.step2_title,
+        description: t.service_pages.skilled_workers.process.step2_desc,
+        duration: t.service_pages.skilled_workers.process.step2_duration,
+      },
+      {
+        id: 3,
+        icon: Handshake,
+        title: t.service_pages.skilled_workers.process.step3_title,
+        description: t.service_pages.skilled_workers.process.step3_desc,
+        duration: t.service_pages.skilled_workers.process.step3_duration,
+      },
+      {
+        id: 4,
+        icon: Scale,
+        title: t.service_pages.skilled_workers.process.step4_title,
+        description: t.service_pages.skilled_workers.process.step4_desc,
+        duration: t.service_pages.skilled_workers.process.step4_duration,
+      },
+      {
+        id: 5,
+        icon: Plane,
+        title: t.service_pages.skilled_workers.process.step5_title,
+        description: t.service_pages.skilled_workers.process.step5_desc,
+        duration: t.service_pages.skilled_workers.process.step5_duration,
+      },
+    ],
+  };
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
@@ -1256,8 +1357,17 @@ function ProcessSection() {
 // ============================================
 
 function StatsSection() {
-  const { language } = useLanguage();
-  const content = language === "de" ? statsContent.de : statsContent.vn;
+  const { lang, t } = useLanguage();
+  
+  // Build content from translations
+  const content = {
+    stats: [
+      { value: "350+", label: t.service_pages.skilled_workers.stats.stat1_label, suffix: "" },
+      { value: "98", label: t.service_pages.skilled_workers.stats.stat2_label, suffix: "%" },
+      { value: "<6", label: t.service_pages.skilled_workers.stats.stat3_label, suffix: "" },
+      { value: "100", label: t.service_pages.skilled_workers.stats.stat4_label, suffix: "%" },
+    ],
+  };
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
@@ -1309,8 +1419,23 @@ function StatsSection() {
 // ============================================
 
 function ExpertiseAreasSection() {
-  const { language } = useLanguage();
-  const content = language === "de" ? expertiseAreasContent.de : expertiseAreasContent.vn;
+  const { lang, t } = useLanguage();
+  
+  // Build content from translations - keep areas structure from original
+  const content = {
+    badge: t.service_pages.skilled_workers.expertise.badge,
+    title: t.service_pages.skilled_workers.expertise.title,
+    subtitle: t.service_pages.skilled_workers.expertise.subtitle,
+    areas: expertiseAreasContent.de.areas.map((area, idx) => ({
+      ...area,
+      title: idx === 0 ? t.service_pages.skilled_workers.expertise.health_title :
+             idx === 1 ? t.service_pages.skilled_workers.expertise.tech_title :
+             t.service_pages.skilled_workers.expertise.it_title,
+      highlight: idx === 0 ? t.service_pages.skilled_workers.expertise.health_highlight :
+                  idx === 1 ? t.service_pages.skilled_workers.expertise.tech_highlight :
+                  t.service_pages.skilled_workers.expertise.it_highlight,
+    })),
+  };
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
@@ -1417,8 +1542,15 @@ function ExpertiseAreasSection() {
 // ============================================
 
 function CTASection() {
-  const { language } = useLanguage();
-  const content = language === "de" ? ctaContent.de : ctaContent.vn;
+  const { lang, t } = useLanguage();
+  
+  // Build content from translations
+  const content = {
+    title: t.service_pages.skilled_workers.cta.title,
+    subtitle: t.service_pages.skilled_workers.cta.subtitle,
+    cta1: t.service_pages.skilled_workers.cta.cta1,
+    cta2: t.service_pages.skilled_workers.cta.cta2,
+  };
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 

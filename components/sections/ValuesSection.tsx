@@ -1,8 +1,8 @@
 "use client";
 
-import { useLanguage } from "@/lib/language-context";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import { motion } from "framer-motion";
-import { Award, UserCheck, Eye, ShieldCheck } from "lucide-react";
+import { Award, Eye, ShieldCheck } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -54,22 +54,39 @@ const headerVariants: any = {
 };
 
 export const ValuesSection = () => {
-  const { content } = useLanguage();
+  const { t } = useLanguage();
 
   // Hardcoded icons mapping - đồng bộ và đẹp ngay lập tức
   const iconMap = {
-    award: Award, // Qualität
-    search: UserCheck, // Sorgfältige Auswahl (thay Search bằng UserCheck)
-    eye: Eye, // Transparenz
-    shield: ShieldCheck, // Verantwortung
+    quality: Award,
+    transparency: Eye,
+    responsibility: ShieldCheck,
   };
+
+  // Create values array from translations
+  const values = [
+    {
+      icon: "quality" as const,
+      title: t.values.quality,
+      description: t.values.desc_quality,
+    },
+    {
+      icon: "transparency" as const,
+      title: t.values.transparency,
+      description: t.values.desc_transparency,
+    },
+    {
+      icon: "responsibility" as const,
+      title: t.values.responsibility,
+      description: t.values.desc_responsibility,
+    },
+  ];
 
   // Gradient colors cho mỗi card
   const gradients = [
     "from-primary/10 to-primary/5",
     "from-accent/10 to-accent/5",
     "from-primary/10 to-accent/5",
-    "from-accent/10 to-primary/5",
   ];
 
   return (
@@ -91,10 +108,10 @@ export const ValuesSection = () => {
               transition={{ duration: 0.5 }}
               className="inline-block px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-accent/10 text-accent text-xs md:text-sm font-medium"
             >
-              {content.values.badge}
+              {t.values.badge}
             </motion.span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
-              {content.values.title}
+              {t.values.title}
             </h2>
             {/* Decorative underline with animation */}
             <motion.div 
@@ -106,22 +123,18 @@ export const ValuesSection = () => {
             >
               <div className="w-16 md:w-24 h-1 md:h-1.5 bg-gradient-to-r from-primary to-accent rounded-full" />
             </motion.div>
-            <p className="text-sm md:text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
-              {content.values.subtitle}
-            </p>
           </motion.div>
 
-          {/* Values Grid - Responsive: 1 col mobile, 2 cols tablet, 4 cols desktop */}
+          {/* Values Grid - Responsive: 1 col mobile, 2 cols tablet, 3 cols desktop */}
           <motion.div 
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8"
           >
-            {content.values.items.map((value, index) => {
-              const Icon =
-                iconMap[value.icon as keyof typeof iconMap] || ShieldCheck;
+            {values.map((value, index) => {
+              const Icon = iconMap[value.icon] || ShieldCheck;
               return (
                 <motion.div
                   key={value.title}

@@ -1,130 +1,58 @@
-"use client";
+"use client"; // BẮT BUỘC có dòng này
 
-import { useLanguage } from "@/lib/language-context";
-import Link from "next/link";
-import { Mail, Phone, Globe, Download } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import React from 'react';
+import Link from 'next/link';
+import { useLanguage } from '@/components/providers/LanguageProvider'; // 👈 ĐÃ SỬA ĐƯỜNG DẪN ĐÚNG
 
-export const Footer = () => {
-  const { content } = useLanguage();
+export default function Footer() {
+  // Lấy bộ từ điển ra dùng
+  const { t } = useLanguage();
 
   return (
-    <footer className="border-t bg-primary/5">
-      <div className="container mx-auto px-4 lg:px-8 py-12 md:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
-          {/* Company Info */}
-          <div className="sm:col-span-2 lg:col-span-2 space-y-4">
-            <Link href="/" className="inline-block">
-              <span className="text-xl md:text-2xl font-bold tracking-tight text-primary">
-                {content.footer.companyName}
-              </span>
-            </Link>
-            <p className="text-sm md:text-base text-muted-foreground max-w-md leading-relaxed">
-              {content.footer.tagline}
+    <footer className="bg-slate-900 text-slate-300 py-12 mt-20">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          
+          {/* Cột 1: Thông tin công ty */}
+          <div>
+            <div className="text-2xl font-bold text-white mb-4">{t.footer.company_name}</div>
+            <p className="text-sm opacity-80 mb-4">
+              {t.hero.subtitle}
             </p>
-            <p className="text-xs md:text-sm text-muted-foreground italic">
-              {content.footer.closing}
-            </p>
-            
-            {/* Download Profile Button */}
-            <div className="pt-2">
-              <Button
-                variant="outline"
-                size="sm"
-                asChild
-                className="gap-2"
-              >
-                <a
-                  href="/DMF Vietnam Handbuch.pdf"
-                  download="DMF_Vietnam_Unternehmensprofil.pdf"
-                >
-                  <Download className="h-4 w-4" />
-                  {content.footer.downloadProfile}
-                </a>
-              </Button>
-            </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="space-y-4">
-            <h4 className="text-xs md:text-sm font-semibold text-foreground uppercase tracking-wider">
-              {content.footer.quickLinks.title}
-            </h4>
-            <ul className="space-y-2 md:space-y-3 text-sm text-muted-foreground">
-              {content.footer.quickLinks.items.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="hover:text-primary transition-colors"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
+          {/* Cột 2: Liên kết nhanh */}
+          <div>
+            <h3 className="text-white font-bold mb-4">{t.footer.links_title}</h3>
+            <ul className="space-y-2 text-sm">
+              <li><Link href="/" className="hover:text-white transition">{t.header.home}</Link></li>
+              <li><Link href="/about" className="hover:text-white transition">{t.header.about}</Link></li>
+              <li><Link href="/blog" className="hover:text-white transition">{t.header.blog}</Link></li>
             </ul>
           </div>
 
-          {/* Contact Info */}
-          <div className="space-y-4">
-            <h4 className="text-xs md:text-sm font-semibold text-foreground uppercase tracking-wider">
-              {content.footer.contactTitle}
-            </h4>
-            <ul className="space-y-2 md:space-y-3 text-sm text-muted-foreground">
-              <li className="flex items-center gap-2">
-                <Mail className="h-4 w-4 text-primary flex-shrink-0" />
-                <a
-                  href={`mailto:${content.contact.headquarters.email}`}
-                  className="hover:text-primary transition-colors break-all"
-                >
-                  {content.contact.headquarters.email}
-                </a>
-              </li>
-              <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4 text-primary flex-shrink-0" />
-                <a
-                  href={`tel:${content.contact.headquarters.phone}`}
-                  className="hover:text-primary transition-colors"
-                >
-                  {content.contact.headquarters.phone}
-                </a>
-              </li>
-              <li className="flex items-center gap-2">
-                <Globe className="h-4 w-4 text-primary flex-shrink-0" />
-                <a
-                  href={`https://${content.contact.headquarters.website}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-primary transition-colors"
-                >
-                  {content.contact.headquarters.website}
-                </a>
-              </li>
+          {/* Cột 3: Pháp lý */}
+          <div>
+            <h3 className="text-white font-bold mb-4">{t.footer.legal_title}</h3>
+            <ul className="space-y-2 text-sm">
+              <li><Link href="/impressum" className="hover:text-white transition">{t.footer.impressum}</Link></li>
+              <li><Link href="/datenschutz" className="hover:text-white transition">{t.footer.datenschutz}</Link></li>
             </ul>
+          </div>
+
+          {/* Cột 4: Liên hệ */}
+          <div>
+            <h3 className="text-white font-bold mb-4">{t.footer.contact_header}</h3>
+            <p className="text-sm mb-2">{t.footer.email_label} {t.footer.email}</p>
+            <p className="text-sm mb-2">{t.footer.hotline_label} {t.footer.phone}</p>
+            <p className="text-sm">{t.footer.address}</p>
           </div>
         </div>
-
-        {/* Bottom Bar */}
-        <div className="mt-10 md:mt-12 pt-6 md:pt-8 border-t border-border/50 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-xs md:text-sm text-muted-foreground text-center sm:text-left">
-            {content.footer.copyright}
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6 text-xs md:text-sm text-muted-foreground">
-            <Link
-              href="/impressum"
-              className="hover:text-primary transition-colors"
-            >
-              {content.footer.links.legal}
-            </Link>
-            <Link
-              href="/datenschutz"
-              className="hover:text-primary transition-colors"
-            >
-              {content.footer.links.privacy}
-            </Link>
-            <span className="text-muted-foreground/50">🇻🇳 ↔ 🇩🇪</span>
-          </div>
+        
+        <div className="border-t border-slate-800 mt-10 pt-6 text-center text-xs opacity-60">
+          © {new Date().getFullYear()} DMF Vietnam. {t.footer.copyright}
         </div>
       </div>
     </footer>
   );
-};
+}

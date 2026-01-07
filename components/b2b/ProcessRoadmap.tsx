@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { useLanguage } from "@/lib/language-context";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -29,109 +29,16 @@ interface ChecklistItem {
 
 interface ProcessStep {
   id: number;
-  titleDe: string;
-  titleVn: string;
+  title: string;
   icon: React.ElementType;
-  checklistDe: ChecklistItem[];
-  checklistVn: ChecklistItem[];
+  checklist: ChecklistItem[];
 }
 
 // ============================================
-// PROCESS DATA
+// ICON MAPPING
 // ============================================
 
-const processSteps: ProcessStep[] = [
-  {
-    id: 1,
-    titleDe: "Rekrutierung & Vorselektion",
-    titleVn: "Tuyển dụng & Sơ tuyển",
-    icon: Users,
-    checklistDe: [
-      { text: "Überprüfung der Qualifikationen (Abitur/Berufsausbildung)" },
-      { text: "Motivationsgespräch und Eignungstest" },
-      { text: "Vorläufige Gesundheitsprüfung" },
-      { text: "Dokumentenprüfung und Referenzen" },
-    ],
-    checklistVn: [
-      { text: "Kiểm tra bằng cấp (Tốt nghiệp THPT/Nghề)" },
-      { text: "Phỏng vấn động lực và kiểm tra năng lực" },
-      { text: "Kiểm tra sức khỏe sơ bộ" },
-      { text: "Xác minh hồ sơ và tham chiếu" },
-    ],
-  },
-  {
-    id: 2,
-    titleDe: "Intensive Sprachausbildung",
-    titleVn: "Đào tạo tiếng Đức chuyên sâu",
-    icon: BookOpen,
-    checklistDe: [
-      { text: "Deutschkurse A1 bis B2 nach Telc/Goethe-Standard" },
-      { text: "Fachsprachlicher Unterricht (Pflege, Gastronomie, etc.)" },
-      { text: "Interkulturelles Training: Deutsche Arbeitskultur" },
-      { text: "Prüfungsvorbereitung und Zertifizierung" },
-    ],
-    checklistVn: [
-      { text: "Khóa học tiếng Đức A1 đến B2 theo chuẩn Telc/Goethe" },
-      { text: "Đào tạo ngôn ngữ chuyên ngành (Điều dưỡng, Nhà hàng...)" },
-      { text: "Huấn luyện văn hóa: Văn hóa làm việc Đức" },
-      { text: "Luyện thi và cấp chứng chỉ" },
-    ],
-  },
-  {
-    id: 3,
-    titleDe: "Matching & Vertrag",
-    titleVn: "Kết nối & Ký hợp đồng",
-    icon: Handshake,
-    checklistDe: [
-      { text: "Übermittlung der Kandidatenprofile an deutsche Partner" },
-      { text: "Online-Vorstellungsgespräch (Zoom/MS Teams)" },
-      { text: "Vertragsverhandlung und Unterzeichnung" },
-      { text: "Festlegung von Starttermin und Konditionen" },
-    ],
-    checklistVn: [
-      { text: "Gửi hồ sơ ứng viên cho đối tác Đức" },
-      { text: "Phỏng vấn online (Zoom/MS Teams)" },
-      { text: "Đàm phán và ký kết hợp đồng" },
-      { text: "Xác định ngày bắt đầu và điều kiện" },
-    ],
-  },
-  {
-    id: 4,
-    titleDe: "Visum & Anerkennung",
-    titleVn: "Visa & Công nhận bằng cấp",
-    icon: FileCheck,
-    checklistDe: [
-      { text: "Beschleunigtes Fachkräfteverfahren bei der Botschaft" },
-      { text: "Beglaubigte Übersetzungen aller Dokumente" },
-      { text: "Unterstützung beim Anerkennungsverfahren" },
-      { text: "Koordination mit deutschen Behörden" },
-    ],
-    checklistVn: [
-      { text: "Thủ tục visa nhanh tại Đại sứ quán" },
-      { text: "Dịch thuật công chứng tất cả hồ sơ" },
-      { text: "Hỗ trợ quy trình công nhận bằng cấp" },
-      { text: "Phối hợp với cơ quan Đức" },
-    ],
-  },
-  {
-    id: 5,
-    titleDe: "Ankunft & Integration",
-    titleVn: "Đến Đức & Hòa nhập",
-    icon: Plane,
-    checklistDe: [
-      { text: "Flughafenabholung und erste Orientierung" },
-      { text: "Unterstützung bei der Wohnungssuche" },
-      { text: "Begleitung bei Behördengängen (Anmeldung, Bankkonto)" },
-      { text: "Langfristige Nachbetreuung und Integration" },
-    ],
-    checklistVn: [
-      { text: "Đón sân bay và hướng dẫn ban đầu" },
-      { text: "Hỗ trợ tìm kiếm nhà ở" },
-      { text: "Đồng hành thủ tục hành chính (Đăng ký cư trú, Tài khoản ngân hàng)" },
-      { text: "Hỗ trợ dài hạn và hội nhập" },
-    ],
-  },
-];
+const stepIcons = [Users, BookOpen, Handshake, FileCheck, Plane];
 
 // ============================================
 // PREMIUM TIMELINE NODE
@@ -197,16 +104,13 @@ function PremiumTimelineNode({ step, isInView }: PremiumTimelineNodeProps) {
 interface PremiumStepCardProps {
   step: ProcessStep;
   index: number;
-  language: "de" | "vn";
 }
 
-function PremiumStepCard({ step, index, language }: PremiumStepCardProps) {
+function PremiumStepCard({ step, index }: PremiumStepCardProps) {
+  const { t } = useLanguage();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
   const isLeft = index % 2 === 0;
-
-  const title = language === "de" ? step.titleDe : step.titleVn;
-  const checklist = language === "de" ? step.checklistDe : step.checklistVn;
 
   // Watermark number
   const watermarkNumber = String(step.id).padStart(2, "0");
@@ -263,18 +167,18 @@ function PremiumStepCard({ step, index, language }: PremiumStepCardProps) {
               {/* Step Label */}
               <div className="flex items-center gap-2 mb-3">
                 <span className="text-xs font-medium text-blue-600 uppercase tracking-wider">
-                  {language === "de" ? `Schritt ${step.id}` : `Bước ${step.id}`}
+                  {t.processRoadmap.step_label} {step.id}
                 </span>
               </div>
 
               {/* Title */}
               <h3 className="text-lg font-bold text-slate-800 mb-4 leading-tight">
-                {title}
+                {step.title}
               </h3>
 
               {/* Checklist */}
               <ul className="space-y-3">
-                {checklist.map((item, idx) => (
+                {step.checklist.map((item: ChecklistItem, idx: number) => (
                   <li key={idx} className="flex items-start gap-3 text-sm">
                     <CheckCircle2 className="h-5 w-5 text-emerald-500 mt-0.5 flex-shrink-0" />
                     <span className="text-slate-600 leading-relaxed">{item.text}</span>
@@ -331,18 +235,18 @@ function PremiumStepCard({ step, index, language }: PremiumStepCardProps) {
                   {/* Step Label */}
                   <div className="flex items-center justify-end gap-2 mb-3">
                     <span className="text-xs font-medium text-blue-600 uppercase tracking-wider">
-                      {language === "de" ? `Schritt ${step.id}` : `Bước ${step.id}`}
+                      {t.processRoadmap.step_label} {step.id}
                     </span>
                   </div>
 
                   {/* Title */}
                   <h3 className="text-xl font-bold text-slate-800 mb-5 leading-tight">
-                    {title}
+                    {step.title}
                   </h3>
 
                   {/* Checklist */}
                   <ul className="space-y-3">
-                    {checklist.map((item, idx) => (
+                    {step.checklist.map((item: ChecklistItem, idx: number) => (
                       <li key={idx} className="flex items-start justify-end gap-3 text-sm">
                         <span className="text-slate-600 leading-relaxed">{item.text}</span>
                         <CheckCircle2 className="h-5 w-5 text-emerald-500 mt-0.5 flex-shrink-0" />
@@ -425,18 +329,18 @@ function PremiumStepCard({ step, index, language }: PremiumStepCardProps) {
                   {/* Step Label */}
                   <div className="flex items-center gap-2 mb-3">
                     <span className="text-xs font-medium text-blue-600 uppercase tracking-wider">
-                      {language === "de" ? `Schritt ${step.id}` : `Bước ${step.id}`}
+                      {t.processRoadmap.step_label} {step.id}
                     </span>
                   </div>
 
                   {/* Title */}
                   <h3 className="text-xl font-bold text-slate-800 mb-5 leading-tight">
-                    {title}
+                    {step.title}
                   </h3>
 
                   {/* Checklist */}
                   <ul className="space-y-3">
-                    {checklist.map((item, idx) => (
+                    {step.checklist.map((item: ChecklistItem, idx: number) => (
                       <li key={idx} className="flex items-start gap-3 text-sm">
                         <CheckCircle2 className="h-5 w-5 text-emerald-500 mt-0.5 flex-shrink-0" />
                         <span className="text-slate-600 leading-relaxed">{item.text}</span>
@@ -458,20 +362,15 @@ function PremiumStepCard({ step, index, language }: PremiumStepCardProps) {
 // ============================================
 
 export function ProcessRoadmap() {
-  const { language } = useLanguage();
+  const { t } = useLanguage();
 
-  // Content
-  const title = language === "de" ? "Unser Prozess" : "Quy trình của chúng tôi";
-  const subtitle = language === "de"
-    ? "Transparenter Ablauf von der Rekrutierung bis zur erfolgreichen Integration in Deutschland"
-    : "Quy trình minh bạch từ tuyển dụng đến hội nhập thành công tại Đức";
-  const badgeText = language === "de" ? "Schritt für Schritt" : "Từng bước một";
-  const ctaText = language === "de"
-    ? "Prozess-Guide als PDF herunterladen"
-    : "Tải quy trình chi tiết (PDF)";
-  const ctaSubtext = language === "de"
-    ? "Ausführliche Dokumentation für Ihre interne Prüfung"
-    : "Tài liệu chi tiết cho đánh giá nội bộ của bạn";
+  // Build steps array from translations inside component
+  const processSteps: ProcessStep[] = t.processRoadmap.steps.map((step, index) => ({
+    id: step.id,
+    title: step.title,
+    icon: stepIcons[index] || Users,
+    checklist: step.checklist.map((item: string) => ({ text: item })),
+  }));
 
   return (
     <section
@@ -499,15 +398,15 @@ export function ProcessRoadmap() {
             className="mb-6 px-5 py-2 text-sm font-medium border-blue-200 text-blue-700 bg-blue-50/80 backdrop-blur-sm"
           >
             <Sparkles className="h-4 w-4 mr-2" />
-            {badgeText}
+            {t.processRoadmap.badge}
           </Badge>
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
-            {title}
+            {t.processRoadmap.title}
           </h2>
 
           <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            {subtitle}
+            {t.processRoadmap.subtitle}
           </p>
         </motion.div>
 
@@ -545,7 +444,6 @@ export function ProcessRoadmap() {
                 key={step.id} 
                 step={step} 
                 index={index} 
-                language={language} 
               />
             ))}
           </div>
@@ -574,10 +472,10 @@ export function ProcessRoadmap() {
               </div>
               <div>
                 <span className="text-xl font-bold text-slate-800">
-                  {language === "de" ? "Erfolg!" : "Thành công!"}
+                  {t.processRoadmap.success_title}
                 </span>
                 <p className="text-sm text-slate-500">
-                  {language === "de" ? "Integration abgeschlossen" : "Hội nhập hoàn tất"}
+                  {t.processRoadmap.success_desc_mobile}
                 </p>
               </div>
             </div>
@@ -596,10 +494,10 @@ export function ProcessRoadmap() {
               </div>
               <div className="text-center">
                 <span className="text-2xl font-bold text-slate-800 block">
-                  {language === "de" ? "Erfolg!" : "Thành công!"}
+                  {t.processRoadmap.success_title}
                 </span>
                 <p className="text-slate-500">
-                  {language === "de" ? "Integration erfolgreich abgeschlossen" : "Hội nhập thành công tại Đức"}
+                  {t.processRoadmap.success_desc}
                 </p>
               </div>
             </div>
@@ -642,7 +540,7 @@ export function ProcessRoadmap() {
                 >
                   <Download className="h-8 w-8 text-white" />
                 </div>
-                <p className="text-slate-400 text-sm">{ctaSubtext}</p>
+                <p className="text-slate-400 text-sm">{t.processRoadmap.cta_subtext}</p>
               </div>
 
               <Button
@@ -658,14 +556,12 @@ export function ProcessRoadmap() {
                 "
               >
                 <Download className="h-5 w-5" />
-                {ctaText}
+                {t.processRoadmap.cta_title}
                 <ArrowRight className="h-4 w-4" />
               </Button>
 
               <p className="mt-6 text-xs text-slate-500">
-                {language === "de"
-                  ? "PDF-Dokument • 12 Seiten • Deutsch"
-                  : "Tài liệu PDF • 12 trang • Tiếng Đức"}
+                {t.processRoadmap.cta_footer}
               </p>
             </CardContent>
           </Card>

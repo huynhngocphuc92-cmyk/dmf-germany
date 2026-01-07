@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Bell, LogOut, Loader2, UserIcon, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { signOut } from "@/app/login/actions";
-import { useLanguage } from "@/lib/language-context";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import type { User } from "@supabase/supabase-js";
 
 // ============================================

@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
-import { useLanguage } from "@/lib/language-context";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import { Badge } from "@/components/ui/badge";
 import {
   Shield,
@@ -154,48 +154,40 @@ function StatCard({ children, className = "", delay = 0, isInView }: StatCardPro
 // ============================================
 
 export function StatsDashboard() {
-  const { language } = useLanguage();
+  const { lang, t } = useLanguage();
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
-  // Content
-  const content = {
-    badge: language === "de" ? "Unsere Erfolge" : "Thành tích của chúng tôi",
-    title: language === "de" ? "Zahlen & Fakten" : "Số liệu & Sự thật",
-    subtitle: language === "de"
-      ? "Messbare Ergebnisse, die für sich sprechen"
-      : "Kết quả đo lường được, tự nói lên tất cả",
-
-    // Stats
+  // Stats data - values remain constant, labels from translations
+  const stats = {
     visaRate: {
       value: 98,
-      label: language === "de" ? "Visum-Erfolgsquote" : "Tỷ lệ đậu Visa",
-      description: language === "de"
-        ? "Dank geschlossener Dokumentenverarbeitung und erfahrener Einwanderungsanwälte"
-        : "Nhờ quy trình xử lý hồ sơ khép kín và đội ngũ luật sư di trú giàu kinh nghiệm",
+      label: t.stats_advanced.visa_rate,
+      description: t.stats_advanced.visa_desc,
     },
     candidates: {
       value: 350,
-      label: language === "de" ? "Erfolgreich vermittelt" : "Học viên đã sang Đức",
-      description: language === "de"
-        ? "Qualifizierte Fachkräfte nach Deutschland"
-        : "Nhân lực chất lượng cao sang Đức",
+      label: t.stats_advanced.students,
+      description: t.stats_advanced.students_sub,
     },
     retention: {
       value: 95,
-      label: language === "de" ? "Bleibequote" : "Tỷ lệ duy trì",
-      description: language === "de"
-        ? "Kandidaten arbeiten weiter nach 3 Jahren"
-        : "Học viên tiếp tục làm việc sau 3 năm",
+      label: t.stats_advanced.retention,
+      description: t.stats_advanced.retention_sub,
     },
     partners: {
       value: 40,
-      label: language === "de" ? "Partner-Netzwerk" : "Đối tác tại Đức",
-      description: language === "de"
-        ? "Krankenhäuser, Pflegeheime und Unternehmen deutschlandweit"
-        : "Bệnh viện, Viện dưỡng lão và Doanh nghiệp trên toàn nước Đức",
+      label: t.stats_advanced.partners,
+      description: t.stats_advanced.partners_sub,
     },
   };
+
+  // Trust indicators
+  const trustIndicators = [
+    { icon: Shield, text: t.stats_advanced.iso },
+    { icon: Award, text: t.stats_advanced.gov },
+    { icon: Sparkles, text: t.stats_advanced.exp },
+  ];
 
   return (
     <section
@@ -242,15 +234,15 @@ export function StatsDashboard() {
             "
           >
             <Award className="h-4 w-4 mr-2" />
-            {content.badge}
+            {t.stats_advanced.badge}
           </Badge>
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
-            {content.title}
+            {t.stats_advanced.title}
           </h2>
 
           <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto">
-            {content.subtitle}
+            {t.stats_advanced.subtitle}
           </p>
         </motion.div>
 
@@ -319,13 +311,13 @@ export function StatsDashboard() {
                     <Shield className="w-5 h-5 text-blue-400" />
                   </div>
                   <span className="text-sm font-medium text-slate-400 uppercase tracking-wider">
-                    {content.visaRate.label}
+                    {stats.visaRate.label}
                   </span>
                 </div>
 
                 <div className="flex items-baseline gap-2 mb-4">
                   <AnimatedNumber
-                    end={content.visaRate.value}
+                    end={stats.visaRate.value}
                     suffix="%"
                     duration={2000}
                     isInView={isInView}
@@ -335,7 +327,7 @@ export function StatsDashboard() {
               </div>
 
               <p className="text-slate-400 text-sm md:text-base leading-relaxed max-w-sm">
-                {content.visaRate.description}
+                {stats.visaRate.description}
               </p>
             </div>
           </StatCard>
@@ -368,7 +360,7 @@ export function StatsDashboard() {
 
               <div className="flex items-baseline gap-1 mb-2">
                 <AnimatedNumber
-                  end={content.candidates.value}
+                  end={stats.candidates.value}
                   suffix="+"
                   duration={2000}
                   isInView={isInView}
@@ -377,10 +369,10 @@ export function StatsDashboard() {
               </div>
 
               <p className="text-sm font-medium text-slate-300 mb-1">
-                {content.candidates.label}
+                {stats.candidates.label}
               </p>
               <p className="text-xs text-slate-500">
-                {content.candidates.description}
+                {stats.candidates.description}
               </p>
             </div>
           </StatCard>
@@ -414,7 +406,7 @@ export function StatsDashboard() {
               <div className="flex items-baseline gap-1 mb-2">
                 <span className="text-2xl font-bold text-emerald-400">&gt;</span>
                 <AnimatedNumber
-                  end={content.retention.value}
+                  end={stats.retention.value}
                   suffix="%"
                   duration={2000}
                   isInView={isInView}
@@ -423,10 +415,10 @@ export function StatsDashboard() {
               </div>
 
               <p className="text-sm font-medium text-slate-300 mb-1">
-                {content.retention.label}
+                {stats.retention.label}
               </p>
               <p className="text-xs text-slate-500">
-                {content.retention.description}
+                {stats.retention.description}
               </p>
             </div>
           </StatCard>
@@ -458,13 +450,13 @@ export function StatsDashboard() {
                     <Users className="w-5 h-5 text-purple-400" />
                   </div>
                   <span className="text-sm font-medium text-slate-400 uppercase tracking-wider">
-                    {content.partners.label}
+                    {stats.partners.label}
                   </span>
                 </div>
 
                 <div className="flex items-baseline gap-1 mb-2">
                   <AnimatedNumber
-                    end={content.partners.value}
+                    end={stats.partners.value}
                     suffix="+"
                     duration={2000}
                     isInView={isInView}
@@ -473,7 +465,7 @@ export function StatsDashboard() {
                 </div>
 
                 <p className="text-sm text-slate-400 max-w-xs">
-                  {content.partners.description}
+                  {stats.partners.description}
                 </p>
               </div>
 
@@ -509,11 +501,7 @@ export function StatsDashboard() {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="mt-12 flex flex-wrap items-center justify-center gap-6 md:gap-10"
         >
-          {[
-            { icon: Shield, text: language === "de" ? "ISO 9001 zertifiziert" : "Chứng nhận ISO 9001" },
-            { icon: Award, text: language === "de" ? "Staatlich anerkannt" : "Được nhà nước công nhận" },
-            { icon: Sparkles, text: language === "de" ? "10+ Jahre Erfahrung" : "10+ năm kinh nghiệm" },
-          ].map((item, index) => (
+          {trustIndicators.map((item, index) => (
             <div
               key={index}
               className="flex items-center gap-2 text-slate-500 hover:text-slate-300 transition-colors"

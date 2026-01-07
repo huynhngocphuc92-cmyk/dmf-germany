@@ -1,6 +1,6 @@
 "use client";
 
-import { useLanguage } from "@/lib/language-context";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import { motion } from "framer-motion";
 import { BookOpen, Globe2, UserCheck } from "lucide-react";
 import { AssetImageWithDebug } from "@/components/ui/AssetImageWithDebug";
@@ -11,24 +11,34 @@ interface AboutSectionProps {
 }
 
 export const AboutSection = ({ introImg, videoThumb }: AboutSectionProps = {}) => {
-  const { content, language } = useLanguage();
+  const { t, lang } = useLanguage();
   
   // Use video thumbnail if available, otherwise use intro image
   const displayImage = videoThumb || introImg;
   const icons = [BookOpen, Globe2, UserCheck];
 
-  // Dynamic stats based on language
-  const stats = language === "de"
-    ? [
-        { value: "500+", label: "Kandidaten" },
-        { value: "50+", label: "Partner" },
-        { value: "98%", label: "Erfolgsquote" },
-      ]
-    : [
-        { value: "500+", label: "Ứng viên" },
-        { value: "50+", label: "Đối tác" },
-        { value: "98%", label: "Tỷ lệ thành công" },
-      ];
+  // Dynamic stats from translations
+  const stats = [
+    { value: "500+", label: t.about.stat_candidates },
+    { value: "50+", label: t.about.stat_partners },
+    { value: "98%", label: t.about.stat_success },
+  ];
+
+  // Features from translations
+  const features = [
+    {
+      title: t.about.feature_1_title,
+      description: t.about.feature_1_desc,
+    },
+    {
+      title: t.about.feature_2_title,
+      description: t.about.feature_2_desc,
+    },
+    {
+      title: t.about.feature_3_title,
+      description: t.about.feature_3_desc,
+    },
+  ];
 
   return (
     <section id="about" className="py-16 md:py-24 lg:py-32 bg-background">
@@ -43,14 +53,14 @@ export const AboutSection = ({ introImg, videoThumb }: AboutSectionProps = {}) =
             className="text-center space-y-4 mb-12 md:mb-16"
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
-              {content.about.title}
+              {t.about.title}
             </h2>
             {/* Decorative underline */}
             <div className="flex justify-center pt-2">
               <div className="w-16 md:w-20 h-1 bg-primary rounded-full" />
             </div>
             <p className="text-base md:text-lg text-muted-foreground mt-4 px-4">
-              {content.about.subtitle}
+              {t.about.subtitle}
             </p>
           </motion.div>
 
@@ -65,7 +75,7 @@ export const AboutSection = ({ introImg, videoThumb }: AboutSectionProps = {}) =
               className="space-y-6"
             >
               <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed">
-                {content.about.description}
+                {t.about.description}
               </p>
               
               {/* Quick Stats - Responsive */}
@@ -103,7 +113,7 @@ export const AboutSection = ({ introImg, videoThumb }: AboutSectionProps = {}) =
                   <AssetImageWithDebug
                     src={displayImage}
                     configKey={videoThumb ? "home_intro_video_thumb" : "home_intro_img"}
-                    alt={language === "de" ? "Ausbildungszentrum" : "Trung tâm đào tạo"}
+                    alt={t.about.title}
                     fill
                     className="object-cover"
                   />
@@ -115,7 +125,7 @@ export const AboutSection = ({ introImg, videoThumb }: AboutSectionProps = {}) =
                       <span className="text-3xl md:text-5xl">🎓</span>
                     </div>
                     <p className="text-base md:text-lg font-medium text-foreground">
-                      {language === "de" ? "Ausbildungszentrum" : "Trung tâm đào tạo"}
+                      {t.about.title}
                     </p>
                     <p className="text-xs md:text-sm text-muted-foreground">Vietnam</p>
                   </div>
@@ -126,7 +136,7 @@ export const AboutSection = ({ introImg, videoThumb }: AboutSectionProps = {}) =
 
           {/* Features - Responsive Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
-            {content.about.features.map((feature, index) => {
+            {features.map((feature, index) => {
               const Icon = icons[index] || BookOpen;
               return (
                 <motion.div

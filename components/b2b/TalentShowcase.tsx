@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
-import { useLanguage } from "@/lib/language-context";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -182,6 +182,7 @@ function CandidateCard({
   onViewVideo, 
   onRequestProfile 
 }: CandidateCardProps) {
+  const { t } = useLanguage();
   const industry = industryConfig[candidate.industry];
   const germanLevel = germanLevelConfig[candidate.germanLevel];
 
@@ -229,7 +230,7 @@ function CandidateCard({
             <div className="space-y-2">
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Languages className="h-4 w-4" />
-                <span className="font-medium">Deutschkenntnisse</span>
+                <span className="font-medium">{t.talentShowcase.skills_label}</span>
               </div>
               
               <div className="flex items-center gap-3">
@@ -263,7 +264,7 @@ function CandidateCard({
             <div className="space-y-2">
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Award className="h-4 w-4" />
-                <span className="font-medium">Qualifikationen & Verfügbarkeit</span>
+                <span className="font-medium">{t.talentShowcase.qualifications_label}</span>
               </div>
               
               <ul className="space-y-2">
@@ -278,7 +279,7 @@ function CandidateCard({
                 <li className="flex items-start gap-2 text-sm pt-1">
                   <Calendar className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
                   <span className="text-foreground font-medium">
-                    Verfügbar ab {candidate.availability}
+                    {t.talentShowcase.availability_label} {candidate.availability}
                   </span>
                 </li>
               </ul>
@@ -296,7 +297,7 @@ function CandidateCard({
               onClick={() => onViewVideo(candidate)}
             >
               <PlayCircle className="h-4 w-4" />
-              Video-Vorstellung
+              {t.talentShowcase.btn_video}
             </Button>
           )}
           
@@ -308,7 +309,7 @@ function CandidateCard({
             onClick={() => onRequestProfile(candidate)}
           >
             <FileText className="h-4 w-4" />
-            Profil anfragen
+            {t.talentShowcase.btn_profile}
           </Button>
         </CardFooter>
       </Card>
@@ -324,6 +325,7 @@ interface VideoModalProps {
 }
 
 function VideoModal({ candidate, isOpen, onClose }: VideoModalProps) {
+  const { t } = useLanguage();
   if (!candidate) return null;
 
   const industry = industryConfig[candidate.industry];
@@ -342,7 +344,7 @@ function VideoModal({ candidate, isOpen, onClose }: VideoModalProps) {
               </Avatar>
               <div>
                 <DialogTitle className="text-xl">
-                  Video-Vorstellung
+                  {t.talentShowcase.video_title}
                 </DialogTitle>
                 <DialogDescription className="flex items-center gap-2 mt-1">
                   <span className="font-mono">#{candidate.code}</span>
@@ -368,8 +370,8 @@ function VideoModal({ candidate, isOpen, onClose }: VideoModalProps) {
             >
               <PlayCircle className="h-16 w-16 text-white" />
             </motion.div>
-            <p className="text-white/80 text-lg">Selbstvorstellung auf Deutsch</p>
-            <p className="text-white/50 text-sm mt-1">Dauer: ca. 2 Minuten</p>
+            <p className="text-white/80 text-lg">{t.talentShowcase.video_desc}</p>
+            <p className="text-white/50 text-sm mt-1">{t.talentShowcase.video_duration}</p>
           </div>
 
           {/* Progress Bar */}
@@ -394,20 +396,20 @@ function VideoModal({ candidate, isOpen, onClose }: VideoModalProps) {
           <div className="grid grid-cols-3 gap-4 text-center">
             <div>
               <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">
-                Deutschkenntnisse
+                {t.talentShowcase.skills_label}
               </p>
               <p className="text-2xl font-bold text-foreground">{germanLevel.label}</p>
               <p className="text-xs text-muted-foreground">{germanLevel.description}</p>
             </div>
             <div>
               <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">
-                Erfahrung
+                {t.talentShowcase.exp_label}
               </p>
               <p className="text-sm font-medium text-foreground">{candidate.experience}</p>
             </div>
             <div>
               <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">
-                Verfügbar ab
+                {t.talentShowcase.availability_label}
               </p>
               <p className="text-lg font-semibold text-primary">{candidate.availability}</p>
             </div>
@@ -418,7 +420,7 @@ function VideoModal({ candidate, isOpen, onClose }: VideoModalProps) {
         <div className="p-4 border-t flex gap-3">
           <Button variant="outline" className="flex-1" onClick={onClose}>
             <X className="h-4 w-4 mr-2" />
-            Schließen
+            {t.talentShowcase.btn_close}
           </Button>
           <Button 
             className="flex-1"
@@ -431,7 +433,7 @@ function VideoModal({ candidate, isOpen, onClose }: VideoModalProps) {
             }}
           >
             <FileText className="h-4 w-4 mr-2" />
-            Profil anfragen
+            {t.talentShowcase.btn_profile}
           </Button>
         </div>
       </DialogContent>
@@ -444,7 +446,7 @@ function VideoModal({ candidate, isOpen, onClose }: VideoModalProps) {
 // ============================================
 
 export function TalentShowcase() {
-  const { language } = useLanguage();
+  const { lang, t } = useLanguage();
   const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(null);
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 
@@ -472,37 +474,40 @@ export function TalentShowcase() {
         'textarea[name="message"]'
       );
       if (messageTextarea) {
-        const prefillText = `Sehr geehrte Damen und Herren,
+        const prefillText = lang === "de"
+          ? `Sehr geehrte Damen und Herren,
 
 ich interessiere mich für das Kandidatenprofil #${candidate.code} (${industry.labelDe}, Deutschkenntnisse ${candidate.germanLevel}).
 
 Bitte übersenden Sie mir das vollständige Bewerberprofil sowie weitere Informationen zu den Vermittlungskonditionen.
 
-Mit freundlichen Grüßen`;
+Mit freundlichen Grüßen`
+          : lang === "en"
+          ? `Dear Sir or Madam,
+
+I am interested in candidate profile #${candidate.code} (${industry.labelDe}, German level ${candidate.germanLevel}).
+
+Please send me the complete applicant profile and further information on the placement conditions.
+
+Best regards`
+          : `Kính gửi Quý công ty,
+
+Tôi quan tâm đến hồ sơ ứng viên #${candidate.code} (${industry.labelDe}, Trình độ tiếng Đức ${candidate.germanLevel}).
+
+Vui lòng gửi cho tôi hồ sơ ứng viên đầy đủ và thông tin về điều kiện giới thiệu.
+
+Trân trọng`;
 
         messageTextarea.value = prefillText;
         messageTextarea.dispatchEvent(new Event("input", { bubbles: true }));
         messageTextarea.focus();
       }
     }, 800);
-  }, []);
+  }, [lang]);
 
   const handleRequestProfile = useCallback((candidate: Candidate) => {
     scrollToContact(candidate.id);
   }, [scrollToContact]);
-
-  // Content based on language
-  const title = language === "de" 
-    ? "Verfügbare Fachkräfte" 
-    : "Nhân sự sẵn sàng";
-  
-  const subtitle = language === "de"
-    ? "Qualifizierte und sprachlich vorbereitete Kandidaten aus Vietnam – bereit für den deutschen Arbeitsmarkt"
-    : "Ứng viên chất lượng cao đã được đào tạo tiếng Đức – sẵn sàng cho thị trường Đức";
-
-  const disclaimer = language === "de"
-    ? "Hinweis: Aus Datenschutzgründen (DSGVO) sind die hier gezeigten Profile anonymisiert. Vollständige Unterlagen erhalten Sie nach Kontaktaufnahme."
-    : "Lưu ý: Theo quy định bảo vệ dữ liệu (DSGVO), hồ sơ được hiển thị ẩn danh. Hồ sơ đầy đủ sẽ được cung cấp sau khi liên hệ.";
 
   return (
     <section 
@@ -524,17 +529,17 @@ Mit freundlichen Grüßen`;
             className="mb-5 px-4 py-1.5 text-sm border-primary/30 text-primary bg-primary/5"
           >
             <Briefcase className="h-4 w-4 mr-2" />
-            B2B Talent Pool
+            {t.talentShowcase.badge}
           </Badge>
 
           {/* Title */}
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-5 tracking-tight">
-            {title}
+            {t.talentShowcase.title}
           </h2>
 
           {/* Subtitle */}
           <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            {subtitle}
+            {t.talentShowcase.subtitle}
           </p>
         </motion.div>
 
@@ -562,7 +567,7 @@ Mit freundlichen Grüßen`;
           <div className="inline-flex items-center gap-3 px-6 py-3 bg-muted/50 rounded-full border border-border">
             <ShieldCheck className="h-5 w-5 text-muted-foreground flex-shrink-0" />
             <p className="text-sm text-muted-foreground">
-              {disclaimer}
+              {t.talentShowcase.disclaimer}
             </p>
           </div>
         </motion.div>

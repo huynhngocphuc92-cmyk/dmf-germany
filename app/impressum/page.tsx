@@ -1,6 +1,6 @@
 "use client";
 
-import { useLanguage } from "@/lib/language-context";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import Link from "next/link";
 import { Building2, Mail, Phone, User, MapPin, Globe, Scale, ShieldAlert, FileText } from "lucide-react";
 

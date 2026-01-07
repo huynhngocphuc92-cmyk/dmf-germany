@@ -20,7 +20,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 
-import { useLanguage } from "@/lib/language-context";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import type { SiteConfigGrouped, ThemeSection } from "@/types/theme";
 import { sectionLabelsI18n, themeTranslations, ThemeLanguage } from "@/types/theme";
 import { AssetCard } from "@/components/admin/AssetCard";

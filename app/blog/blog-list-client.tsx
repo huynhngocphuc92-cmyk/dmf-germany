@@ -8,7 +8,7 @@ import { de, vi } from "date-fns/locale";
 import { Calendar, Clock, ArrowRight, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { useLanguage } from "@/lib/language-context";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import type { Post } from "@/app/admin/posts/types";
 
 // ============================================

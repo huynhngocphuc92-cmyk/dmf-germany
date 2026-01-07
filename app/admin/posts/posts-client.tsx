@@ -49,7 +49,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { useLanguage } from "@/lib/language-context";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import type { Post } from "./types";
 import { statusLabelsI18n, statusColors, postTranslations, type AdminLanguage } from "./types";
 import { deletePost } from "./actions";

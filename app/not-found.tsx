@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { FileQuestion, Home, ArrowLeft, Search, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useLanguage } from "@/lib/language-context";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 interface NotFoundContent {
   title: string;

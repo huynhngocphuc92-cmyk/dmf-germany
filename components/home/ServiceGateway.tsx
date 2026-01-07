@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import { AssetImageWithDebug } from "@/components/ui/AssetImageWithDebug";
-import { useLanguage } from "@/lib/language-context";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -182,22 +182,22 @@ const accentColors: Record<string, {
 interface ServiceCardItemProps {
   service: ServiceCard;
   index: number;
-  language: "de" | "vn";
   isInView: boolean;
   serviceImage?: string | null;
   serviceImageKey?: string; // Asset key for debug label
 }
 
-function ServiceCardItem({ service, index, language, isInView, serviceImage, serviceImageKey }: ServiceCardItemProps) {
+function ServiceCardItem({ service, index, isInView, serviceImage, serviceImageKey }: ServiceCardItemProps) {
+  const { lang, t } = useLanguage();
   const Icon = service.icon;
   const SecondaryIcon = service.secondaryIcon;
   const colors = accentColors[service.accentColor];
 
-  const tagline = language === "de" ? service.taglineDe : service.taglineVn;
-  const title = language === "de" ? service.titleDe : service.titleVn;
-  const description = language === "de" ? service.descriptionDe : service.descriptionVn;
-  const features = language === "de" ? service.featuresDe : service.featuresVn;
-  const ctaText = language === "de" ? "Mehr erfahren" : "Tìm hiểu thêm";
+  const tagline = lang === "de" ? service.taglineDe : lang === "en" ? service.taglineDe : service.taglineVn;
+  const title = lang === "de" ? service.titleDe : lang === "en" ? service.titleDe : service.titleVn;
+  const description = lang === "de" ? service.descriptionDe : lang === "en" ? service.descriptionDe : service.descriptionVn;
+  const features = lang === "de" ? service.featuresDe : lang === "en" ? service.featuresDe : service.featuresVn;
+  const ctaText = lang === "de" ? "Mehr erfahren" : lang === "en" ? "Learn More" : "Tìm hiểu thêm";
 
   return (
     <motion.div
@@ -289,9 +289,9 @@ function ServiceCardItem({ service, index, language, isInView, serviceImage, ser
                     {title}
                   </h3>
                   <p className="text-sm text-slate-500">
-                    {service.id === "azubi" && (language === "de" ? "Duale Ausbildung" : "Đào tạo kép")}
-                    {service.id === "skilled" && (language === "de" ? "Visa §18a/b" : "Visa §18a/b")}
-                    {service.id === "seasonal" && (language === "de" ? "3-6 Monate" : "3-6 tháng")}
+                    {service.id === "azubi" && (lang === "de" ? "Duale Ausbildung" : lang === "en" ? "Dual Training" : "Đào tạo kép")}
+                    {service.id === "skilled" && "Visa §18a/b"}
+                    {service.id === "seasonal" && (lang === "de" ? "3-6 Monate" : lang === "en" ? "3-6 Months" : "3-6 tháng")}
                   </p>
                 </div>
               </div>
@@ -380,7 +380,7 @@ interface ServiceGatewayProps {
 }
 
 export function ServiceGateway({ nursingImg, techImg, hotelImg }: ServiceGatewayProps = {}) {
-  const { language } = useLanguage();
+  const { lang, t } = useLanguage();
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
   
@@ -398,27 +398,22 @@ export function ServiceGateway({ nursingImg, techImg, hotelImg }: ServiceGateway
     seasonal: "home_prog_hotel_img",
   };
 
-  // Content
-  const content = {
-    badge: language === "de" ? "Unsere Lösungen" : "Giải pháp của chúng tôi",
-    title: language === "de"
-      ? "Welche Fachkräfte suchen Sie?"
-      : "Bạn đang tìm kiếm nhân lực nào?",
-    subtitle: language === "de"
-      ? "Wählen Sie die passende Lösung für Ihren Personalbedarf"
-      : "Chọn giải pháp phù hợp với nhu cầu nhân sự của bạn",
-    industriesTitle: language === "de"
-      ? "Für alle Branchen"
-      : "Cho mọi ngành nghề",
-  };
-
-  const industries = language === "de"
+  // Industries from translations (will add to translations.ts if needed)
+  const industries = lang === "de"
     ? [
         { icon: Building, label: "Krankenhäuser" },
         { icon: Users, label: "Pflegeheime" },
         { icon: Utensils, label: "Gastronomie" },
         { icon: Sun, label: "Landwirtschaft" },
         { icon: Building, label: "Hotellerie" },
+      ]
+    : lang === "en"
+    ? [
+        { icon: Building, label: "Hospitals" },
+        { icon: Users, label: "Nursing Homes" },
+        { icon: Utensils, label: "Restaurants" },
+        { icon: Sun, label: "Agriculture" },
+        { icon: Building, label: "Hotels" },
       ]
     : [
         { icon: Building, label: "Bệnh viện" },
@@ -451,15 +446,15 @@ export function ServiceGateway({ nursingImg, techImg, hotelImg }: ServiceGateway
             className="mb-6 px-5 py-2 text-sm font-medium border-slate-300 text-slate-700 bg-white"
           >
             <Sparkles className="h-4 w-4 mr-2 text-blue-500" />
-            {content.badge}
+            {t.program.badge}
           </Badge>
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-5 tracking-tight">
-            {content.title}
+            {t.program.title}
           </h2>
 
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            {content.subtitle}
+            {t.program.subtitle}
           </p>
         </motion.div>
 
@@ -470,7 +465,6 @@ export function ServiceGateway({ nursingImg, techImg, hotelImg }: ServiceGateway
               key={service.id}
               service={service}
               index={index}
-              language={language}
               isInView={isInView}
               serviceImage={serviceImages[service.id]}
               serviceImageKey={serviceImageKeys[service.id]}
@@ -486,7 +480,7 @@ export function ServiceGateway({ nursingImg, techImg, hotelImg }: ServiceGateway
           className="text-center"
         >
           <p className="text-sm font-medium text-slate-500 mb-4">
-            {content.industriesTitle}
+            {t.program.industries_title}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             {industries.map((industry, index) => (

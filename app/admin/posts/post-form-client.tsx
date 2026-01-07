@@ -24,7 +24,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { useLanguage } from "@/lib/language-context";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import { TiptapEditor } from "@/components/admin/TiptapEditor";
 import type { Post, PostFormData, AdminLanguage } from "./types";
 import { postTranslations, generateSlug } from "./types";

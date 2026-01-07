@@ -1,6 +1,6 @@
 "use client";
 
-import { useLanguage } from "@/lib/language-context";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import Link from "next/link";
 import { Shield, Cookie, Mail, Database, Lock, Eye, FileCheck, AlertCircle } from "lucide-react";
 

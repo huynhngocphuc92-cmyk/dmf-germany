@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useLanguage } from "@/lib/language-context";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import { useEffect, useState, useMemo } from "react";
 import Image from "next/image";
 import type { Candidate } from "@/app/admin/candidates/types";
@@ -28,7 +28,7 @@ const fallbackCandidate: Candidate = {
 };
 
 export const CandidateShowcase = ({ candidates = [] }: CandidateShowcaseProps) => {
-  const { language } = useLanguage();
+  const { lang, t } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // Sử dụng dữ liệu từ DB hoặc fallback
@@ -56,7 +56,7 @@ export const CandidateShowcase = ({ candidates = [] }: CandidateShowcaseProps) =
   // Format position text từ category và profession
   const getPositionText = (candidate: Candidate) => {
     if (!candidate) return "";
-    const categoryLabel = categoryLabelsI18n[candidate.category]?.[language] || candidate.category;
+    const categoryLabel = categoryLabelsI18n[candidate.category]?.[lang] || candidate.category;
     const profession = candidate.profession || "";
     return profession ? `${categoryLabel} - ${profession}` : categoryLabel;
   };
@@ -71,17 +71,18 @@ export const CandidateShowcase = ({ candidates = [] }: CandidateShowcaseProps) =
     if (candidate.german_level) {
       badges.push({
         icon: "🇩🇪",
-        text: `${candidate.german_level} Zertifiziert`,
-        textVn: `Chứng chỉ ${candidate.german_level}`,
+        text: `${candidate.german_level} ${t.candidate.certified}`,
       });
     }
 
     // Experience Badge
     if (candidate.experience_years && candidate.experience_years > 0) {
+      const expLabel = candidate.experience_years === 1 
+        ? t.candidate.year_experience 
+        : t.candidate.years_experience;
       badges.push({
         icon: "🎓",
-        text: `${candidate.experience_years} ${candidate.experience_years === 1 ? "Jahr" : "Jahre"} Erfahrung`,
-        textVn: `${candidate.experience_years} năm kinh nghiệm`,
+        text: `${candidate.experience_years} ${expLabel}`,
       });
     }
 
@@ -89,8 +90,7 @@ export const CandidateShowcase = ({ candidates = [] }: CandidateShowcaseProps) =
     if (candidate.visa_status === true) {
       badges.push({
         icon: "✅",
-        text: "Visa Ready",
-        textVn: "Sẵn sàng Visa",
+        text: t.candidate.visa_ready,
       });
     }
 
@@ -155,7 +155,7 @@ export const CandidateShowcase = ({ candidates = [] }: CandidateShowcaseProps) =
             >
               <span className="text-lg">{badge.icon}</span>
               <span className="text-white text-sm font-medium">
-                {language === "de" ? badge.text : badge.textVn}
+                {badge.text}
               </span>
             </motion.div>
           ))}

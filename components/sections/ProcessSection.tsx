@@ -1,6 +1,6 @@
 "use client";
 
-import { useLanguage } from "@/lib/language-context";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import {
@@ -67,7 +67,7 @@ const nodeVariants: any = {
 };
 
 export const ProcessSection = () => {
-  const { content } = useLanguage();
+  const { t } = useLanguage();
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
@@ -118,10 +118,10 @@ export const ProcessSection = () => {
               transition={{ duration: 0.5 }}
               className="inline-block px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-primary/10 text-primary text-xs md:text-sm font-medium"
             >
-              {content.process.badge}
+              {t.process.badge}
             </motion.span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
-              {content.process.title}
+              {t.process.title}
             </h2>
             {/* Decorative underline with animation */}
             <motion.div 
@@ -134,7 +134,7 @@ export const ProcessSection = () => {
               <div className="w-16 md:w-24 h-1 md:h-1.5 bg-gradient-to-r from-primary to-accent rounded-full" />
             </motion.div>
             <p className="text-sm md:text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
-              {content.process.subtitle}
+              {t.process.subtitle}
             </p>
           </motion.div>
 
@@ -161,7 +161,7 @@ export const ProcessSection = () => {
             />
 
             <div className="space-y-6 md:space-y-8 lg:space-y-0">
-              {content.process.steps.map((step, index) => {
+              {t.process.steps.map((step, index) => {
                 const isEven = index % 2 === 0;
                 const Icon = stepIcons[index] || ClipboardList;
 

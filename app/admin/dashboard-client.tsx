@@ -50,7 +50,7 @@ import {
   adminTranslations,
   type AdminLanguage,
 } from "./candidates/types";
-import { useLanguage } from "@/lib/language-context";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 // ============================================
 // CHART COLORS

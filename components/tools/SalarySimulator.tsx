@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useLanguage } from "@/lib/language-context";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { 
   Heart, 
@@ -302,8 +302,70 @@ function BarChartColumn({
 }
 
 export function SalarySimulator() {
-  const { language } = useLanguage();
-  const t = content[language];
+  const { t, lang } = useLanguage();
+  
+  // Fallback content for complex translations not yet in translations.ts
+  // This will be gradually migrated to translations.ts
+  const fallbackContent: Record<"de" | "en" | "vn", Partial<SimulatorContent>> = {
+    de: {
+      subtitle: "Entdecken Sie Ihr Verdienstpotenzial während der dualen Ausbildung in Deutschland",
+      badge: "Interaktives Tool",
+      regionLabel: "Region",
+      regions: { west: "Westdeutschland", east: "Ostdeutschland" },
+      industries: { pflege: "Pflege", gastronomie: "Gastronomie", mechatronik: "Mechatronik", bau: "Bau" },
+      livingCost: "Ø Lebenshaltungskosten",
+      disclaimer: "Durchschnittliche Bruttovergütung. Tatsächliche Werte variieren je nach Bundesland und Arbeitgeber.",
+      perMonth: "pro Monat",
+      surplus: "Überschuss",
+      callToAction: "Starten Sie Ihre Karriere in Deutschland",
+      unitEuro: "€",
+    },
+    en: {
+      subtitle: "Discover your earning potential during dual training in Germany",
+      badge: "Interactive Tool",
+      regionLabel: "Region",
+      regions: { west: "West Germany", east: "East Germany" },
+      industries: { pflege: "Nursing", gastronomie: "Hospitality", mechatronik: "Mechatronics", bau: "Construction" },
+      livingCost: "Avg. Living Costs",
+      disclaimer: "Average gross salary. Actual values vary by state and employer.",
+      perMonth: "per month",
+      surplus: "Surplus",
+      callToAction: "Start your career in Germany",
+      unitEuro: "€",
+    },
+    vn: {
+      subtitle: "Khám phá tiềm năng thu nhập trong chương trình đào tạo nghề tại Đức",
+      badge: "Công cụ tương tác",
+      regionLabel: "Khu vực",
+      regions: { west: "Tây Đức", east: "Đông Đức" },
+      industries: { pflege: "Điều dưỡng", gastronomie: "Nhà hàng/KS", mechatronik: "Cơ điện tử", bau: "Xây dựng" },
+      livingCost: "Chi phí sinh hoạt TB",
+      disclaimer: "Mức lương gộp trung bình. Thực tế có thể khác tùy theo bang và nhà tuyển dụng.",
+      perMonth: "mỗi tháng",
+      surplus: "Dư ra",
+      callToAction: "Bắt đầu sự nghiệp tại Đức",
+      unitEuro: "€",
+    },
+  };
+  
+  // Merge translations with fallback content
+  const fullContent: SimulatorContent = {
+    title: t.simulator.title,
+    subtitle: fallbackContent[lang]?.subtitle || "",
+    badge: fallbackContent[lang]?.badge || "",
+    regionLabel: fallbackContent[lang]?.regionLabel || "",
+    regions: fallbackContent[lang]?.regions || { west: "", east: "" },
+    industries: t.industries || fallbackContent[lang]?.industries || {},
+    yearLabels: t.yearLabels,
+    livingCost: fallbackContent[lang]?.livingCost || "",
+    disclaimer: fallbackContent[lang]?.disclaimer || "",
+    perMonth: fallbackContent[lang]?.perMonth || "",
+    surplus: fallbackContent[lang]?.surplus || "",
+    callToAction: fallbackContent[lang]?.callToAction || "",
+    unitEuro: fallbackContent[lang]?.unitEuro || "€",
+  };
+  
+  const t_full = fullContent;
 
   const [selectedIndustry, setSelectedIndustry] = useState<string>("pflege");
   const [selectedRegion, setSelectedRegion] = useState<"west" | "east">("west");
@@ -314,11 +376,11 @@ export function SalarySimulator() {
     : currentIndustry.salaryEast;
 
   const chartData = useMemo(() => [
-    { key: "year1", value: currentSalary.year1, label: t.yearLabels.year1 },
-    { key: "year2", value: currentSalary.year2, label: t.yearLabels.year2 },
-    { key: "year3", value: currentSalary.year3, label: t.yearLabels.year3 },
-    { key: "afterGrad", value: currentSalary.afterGraduation, label: t.yearLabels.afterGrad },
-  ], [currentSalary, t.yearLabels]);
+    { key: "year1", value: currentSalary.year1, label: t_full.yearLabels.year1 },
+    { key: "year2", value: currentSalary.year2, label: t_full.yearLabels.year2 },
+    { key: "year3", value: currentSalary.year3, label: t_full.yearLabels.year3 },
+    { key: "afterGrad", value: currentSalary.afterGraduation, label: t_full.yearLabels.afterGrad },
+  ], [currentSalary, t_full.yearLabels]);
 
   const Icon = currentIndustry.icon;
 
@@ -334,13 +396,13 @@ export function SalarySimulator() {
         >
           <span className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary text-sm font-medium rounded-full mb-4">
             <TrendingUp className="h-4 w-4" />
-            {t.badge}
+            {t_full.badge}
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 tracking-tight">
-            {t.title}
+            {t_full.title}
           </h2>
           <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-            {t.subtitle}
+            {t_full.subtitle}
           </p>
         </motion.div>
 
@@ -361,11 +423,11 @@ export function SalarySimulator() {
                   </div>
                   <div>
                     <p className="text-lg font-bold text-foreground">
-                      {t.industries[selectedIndustry]}
+                      {t.industries?.[selectedIndustry] || t_full.industries?.[selectedIndustry] || selectedIndustry}
                     </p>
                     <p className="text-sm text-muted-foreground flex items-center gap-1">
                       <MapPin className="h-3 w-3" />
-                      {t.regions[selectedRegion]}
+                      {t_full.regions[selectedRegion]}
                     </p>
                   </div>
                 </div>
@@ -380,7 +442,7 @@ export function SalarySimulator() {
                         : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
-                    {t.regions.west}
+                    {t_full.regions.west}
                   </button>
                   <button
                     onClick={() => setSelectedRegion("east")}
@@ -390,7 +452,7 @@ export function SalarySimulator() {
                         : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
-                    {t.regions.east}
+                    {t_full.regions.east}
                   </button>
                 </div>
               </CardTitle>
@@ -413,7 +475,7 @@ export function SalarySimulator() {
                       }`}
                     >
                       <TabIcon className="h-4 w-4" />
-                      <span className="hidden sm:inline">{t.industries[key]}</span>
+                      <span className="hidden sm:inline">{t_full.industries?.[key] || key}</span>
                     </button>
                   );
                 })}
@@ -433,11 +495,11 @@ export function SalarySimulator() {
                   <div className="flex items-center justify-center gap-4 mb-6 text-sm">
                     <div className="flex items-center gap-2">
                       <div className={`w-4 h-4 rounded bg-gradient-to-r ${currentIndustry.gradient}`} />
-                      <span className="text-muted-foreground">{t.industries[selectedIndustry]}</span>
+                      <span className="text-muted-foreground">{t_full.industries?.[selectedIndustry] || selectedIndustry}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <div className="w-8 border-t-2 border-dashed border-amber-500" />
-                      <span className="text-muted-foreground">{t.livingCost} ({LIVING_COST_AVERAGE}€)</span>
+                      <span className="text-muted-foreground">{t_full.livingCost} ({LIVING_COST_AVERAGE}€)</span>
                     </div>
                   </div>
 
@@ -453,7 +515,7 @@ export function SalarySimulator() {
                         gradient={currentIndustry.gradient}
                         delay={index * 0.1}
                         livingCost={LIVING_COST_AVERAGE}
-                        content={t}
+                        content={t_full}
                       />
                     ))}
                   </div>
@@ -467,22 +529,22 @@ export function SalarySimulator() {
                   >
                     <div className="p-3 bg-primary/5 rounded-xl text-center">
                       <Euro className="h-5 w-5 mx-auto mb-1 text-primary" />
-                      <p className="text-xs text-muted-foreground">{t.yearLabels.year1}</p>
+                      <p className="text-xs text-muted-foreground">{t_full.yearLabels.year1}</p>
                       <p className="font-bold text-foreground">{currentSalary.year1.toLocaleString("de-DE")}€</p>
                     </div>
                     <div className="p-3 bg-primary/5 rounded-xl text-center">
                       <Euro className="h-5 w-5 mx-auto mb-1 text-primary" />
-                      <p className="text-xs text-muted-foreground">{t.yearLabels.year3}</p>
+                      <p className="text-xs text-muted-foreground">{t_full.yearLabels.year3}</p>
                       <p className="font-bold text-foreground">{currentSalary.year3.toLocaleString("de-DE")}€</p>
                     </div>
                     <div className="p-3 bg-emerald-500/10 rounded-xl text-center">
                       <GraduationCap className="h-5 w-5 mx-auto mb-1 text-emerald-600" />
-                      <p className="text-xs text-muted-foreground">{t.yearLabels.afterGrad}</p>
+                      <p className="text-xs text-muted-foreground">{t_full.yearLabels.afterGrad}</p>
                       <p className="font-bold text-emerald-600">{currentSalary.afterGraduation.toLocaleString("de-DE")}€</p>
                     </div>
                     <div className="p-3 bg-amber-500/10 rounded-xl text-center">
                       <TrendingUp className="h-5 w-5 mx-auto mb-1 text-amber-600" />
-                      <p className="text-xs text-muted-foreground">{t.surplus}</p>
+                      <p className="text-xs text-muted-foreground">{t_full.surplus}</p>
                       <p className="font-bold text-amber-600">
                         +{(currentSalary.afterGraduation - LIVING_COST_AVERAGE).toLocaleString("de-DE")}€
                       </p>
@@ -501,7 +563,7 @@ export function SalarySimulator() {
               >
                 <Info className="h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
                 <p className="text-xs text-muted-foreground">
-                  {t.disclaimer}
+                  {t_full.disclaimer}
                 </p>
               </motion.div>
             </CardContent>
@@ -521,7 +583,7 @@ export function SalarySimulator() {
             className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-medium rounded-xl shadow-lg hover:bg-primary/90 transition-all hover:shadow-xl hover:scale-105"
           >
             <GraduationCap className="h-5 w-5" />
-            {t.callToAction}
+            {t_full.callToAction}
           </a>
         </motion.div>
       </div>
