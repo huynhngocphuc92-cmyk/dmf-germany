@@ -5,8 +5,20 @@ import Link from "next/link";
 import { Shield, Cookie, Mail, Database, Lock, Eye, FileCheck, AlertCircle } from "lucide-react";
 
 export default function DatenschutzPage() {
-  const { content } = useLanguage();
-  const datenschutz = content.legal.datenschutz;
+  const { t } = useLanguage();
+  const datenschutz = t.legal?.datenschutz;
+
+  // Early return if legal content is not available
+  if (!datenschutz) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold mb-4">Datenschutz</h1>
+          <p className="text-muted-foreground">Content wird geladen...</p>
+        </div>
+      </div>
+    );
+  }
 
   const sections = [
     {
@@ -227,25 +239,25 @@ export default function DatenschutzPage() {
               </div>
               <div className="flex-1">
                 <h3 className="text-xl font-semibold text-foreground mb-3">
-                  {content.contact.title}
+                  {t.contact?.title || "Kontakt"}
                 </h3>
                 <p className="text-base text-muted-foreground mb-4">
-                  {content.contact.description}
+                  {t.contact?.subtitle || "Kontaktieren Sie uns für weitere Informationen."}
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <a
-                    href={`mailto:${content.contact.headquarters.email}`}
+                    href={`mailto:${t.contact?.email || "contact@dmf.edu.vn"}`}
                     className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
                   >
                     <Mail className="h-4 w-4" />
-                    {content.contact.headquarters.email}
+                    {t.contact?.email || "contact@dmf.edu.vn"}
                   </a>
                   <a
                     href="/impressum"
                     className="inline-flex items-center gap-2 px-4 py-2 bg-muted text-foreground rounded-lg text-sm font-medium hover:bg-muted/80 transition-colors"
                   >
                     <FileCheck className="h-4 w-4" />
-                    {content.footer.links.legal}
+                    {t.footer?.impressum || "Impressum"}
                   </a>
                 </div>
               </div>

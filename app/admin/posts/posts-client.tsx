@@ -68,8 +68,8 @@ interface PostsClientProps {
 
 export function PostsClient({ initialPosts }: PostsClientProps) {
   const router = useRouter();
-  const { language } = useLanguage();
-  const lang = language as AdminLanguage;
+  const { lang: currentLang } = useLanguage();
+  const lang = currentLang as AdminLanguage;
   const t = postTranslations[lang];
   const dateLocale = lang === "vn" ? vi : de;
   

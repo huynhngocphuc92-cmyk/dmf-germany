@@ -96,7 +96,91 @@ export const TRANSLATIONS = {
         banner_text: "Kontaktieren Sie uns für eine unverbindliche Beratung.",
         btn_submitting: "Wird gesendet...",
         success_message: "Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet. Wir melden uns in Kürze bei Ihnen.",
-        error_message: "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns direkt per E-Mail."
+        error_message: "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns direkt per E-Mail.",
+        email: "contact@dmf.edu.vn",
+        phone: "+84 251 6609 500"
+      },
+      legal: {
+        datenschutz: {
+          title: "Datenschutzerklärung",
+          subtitle: "Informationen zum Datenschutz",
+          backToHome: "Zurück zur Startseite",
+          lastUpdated: "Stand: Januar 2024",
+          sections: {
+            overview: {
+              title: "1. Datenschutz auf einen Blick",
+              generalTitle: "Allgemeine Hinweise",
+              generalText: "Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.",
+              responsibleTitle: "Verantwortliche Stelle",
+              responsibleText: "Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist DMF Vietnam. Die verantwortliche Stelle entscheidet allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten."
+            },
+            dataCollection: {
+              title: "2. Datenerfassung auf dieser Website",
+              whoTitle: "Wer ist verantwortlich für die Datenerfassung?",
+              whoText: "Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Impressum dieser Website entnehmen.",
+              howTitle: "Wie erfassen wir Ihre Daten?",
+              howText: "Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z. B. um Daten handeln, die Sie in ein Kontaktformular eingeben. Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch der Website durch unsere IT-Systeme erfasst.",
+              purposeTitle: "Wofür nutzen wir Ihre Daten?",
+              purposeText: "Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Andere Daten können zur Analyse Ihres Nutzerverhaltens verwendet werden."
+            },
+            cookies: {
+              title: "3. Cookies",
+              whatTitle: "Was sind Cookies?",
+              whatText: "Cookies sind kleine Textdateien, die auf Ihrem Endgerät gespeichert werden. Einige Cookies sind unbedingt erforderlich, damit die Website ordnungsgemäß funktioniert. Andere Cookies dienen dazu, das Nutzerverhalten zu analysieren oder Werbung zu schalten.",
+              whichTitle: "Welche Cookies verwenden wir?",
+              whichText: "Diese Website verwendet technisch notwendige Cookies, die für den Betrieb der Website erforderlich sind. Darüber hinaus können Analyse-Cookies eingesetzt werden, um die Nutzung der Website zu verbessern.",
+              typesTitle: "Cookie-Arten",
+              typesText: "Wir verwenden verschiedene Arten von Cookies: Notwendige Cookies für die Grundfunktionen der Website sowie optionale Cookies für Analyse- und Marketingzwecke. Sie können jederzeit Ihre Cookie-Einstellungen anpassen."
+            },
+            contactForm: {
+              title: "4. Kontaktformular",
+              processingTitle: "Datenverarbeitung bei Kontaktaufnahme",
+              processingText: "Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert.",
+              legalBasisTitle: "Rechtsgrundlage",
+              legalBasisText: "Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt. Die Daten werden gelöscht, sobald sie für die Erreichung des Zweckes ihrer Erhebung nicht mehr erforderlich sind.",
+              storageTitle: "Speicherdauer",
+              storageText: "Die von Ihnen im Kontaktformular eingegebenen Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt.",
+              nodemailerTitle: "E-Mail-Versand über Nodemailer",
+              nodemailerText: "Für den Versand der Formulardaten verwenden wir den SMTP-Dienst von Gmail über die Bibliothek Nodemailer. Die von Ihnen eingegebenen Daten werden verschlüsselt über TLS/SSL an unsere E-Mail-Adresse übertragen. Empfänger der E-Mail ist ausschließlich DMF Vietnam."
+            },
+            rights: {
+              title: "5. Ihre Rechte als betroffene Person",
+              informationTitle: "Recht auf Auskunft (Art. 15 DSGVO)",
+              informationText: "Sie haben das Recht, Auskunft über Ihre bei uns gespeicherten personenbezogenen Daten zu erhalten. Diese Auskunft umfasst insbesondere die Verarbeitungszwecke, die Kategorien personenbezogener Daten, die Empfänger, die geplante Speicherdauer sowie das Bestehen eines Beschwerderechts.",
+              rectificationTitle: "Recht auf Berichtigung (Art. 16 DSGVO)",
+              rectificationText: "Sie haben das Recht, die unverzügliche Berichtigung unrichtiger oder unvollständiger personenbezogener Daten zu verlangen.",
+              erasureTitle: "Recht auf Löschung (Art. 17 DSGVO)",
+              erasureText: "Sie haben das Recht, die Löschung Ihrer bei uns gespeicherten personenbezogenen Daten zu verlangen, soweit nicht die weitere Verarbeitung zur Erfüllung einer rechtlichen Verpflichtung erforderlich ist.",
+              restrictionTitle: "Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)",
+              restrictionText: "Sie haben das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen, wenn die Richtigkeit der Daten bestritten wird oder die Verarbeitung unrechtmäßig ist.",
+              portabilityTitle: "Recht auf Datenübertragbarkeit (Art. 20 DSGVO)",
+              portabilityText: "Sie haben das Recht, die Sie betreffenden personenbezogenen Daten in einem strukturierten, gängigen und maschinenlesbaren Format zu erhalten und diese Daten einem anderen Verantwortlichen zu übermitteln.",
+              objectionTitle: "Widerspruchsrecht (Art. 21 DSGVO)",
+              objectionText: "Sie haben das Recht, aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit gegen die Verarbeitung Sie betreffender personenbezogener Daten Widerspruch einzulegen.",
+              complaintTitle: "Beschwerderecht bei einer Aufsichtsbehörde",
+              complaintText: "Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde über die Verarbeitung Ihrer personenbezogenen Daten durch uns zu beschweren. In Deutschland können Sie sich an die für Ihren Wohnort zuständige Landesdatenschutzbehörde wenden."
+            },
+            ssl: {
+              title: "6. SSL- bzw. TLS-Verschlüsselung",
+              text: "Diese Website nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine SSL- bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von 'http://' auf 'https://' wechselt und an dem Schloss-Symbol in Ihrer Browserzeile. Wenn die SSL- bzw. TLS-Verschlüsselung aktiviert ist, können die Daten, die Sie an uns übermitteln, nicht von Dritten mitgelesen werden."
+            }
+          }
+        },
+        impressum: {
+          title: "Impressum",
+          subtitle: "Angaben gemäß § 5 TMG",
+          backToHome: "Zurück zur Startseite",
+          sections: {
+            company: { title: "", name: "", legalForm: "" },
+            address: { title: "", street: "", city: "", province: "", country: "" },
+            representative: { title: "", name: "", role: "" },
+            contact: { title: "", vietnamHQ: "", germanContact: "" },
+            responsibleContent: { title: "", description: "" },
+            disputeResolution: { title: "", description: "", platformLink: "", platformText: "", disclaimer: "" },
+            liability: { title: "", contentTitle: "", contentText: "", linksTitle: "", linksText: "" },
+            copyright: { title: "", text: "" }
+          }
+        }
       },
       footer: {
         company: "Unternehmen",
@@ -457,7 +541,13 @@ export const TRANSLATIONS = {
             badge: "Verfügbare Experten",
             title: "Qualifizierte Fachkräfte",
             subtitle: "Ingenieure, IT-Profis und Pflegekräfte mit anerkannten Abschlüssen",
-            view_all: "Alle Kandidaten ansehen"
+            view_all: "Alle Kandidaten ansehen",
+            view_profile: "Profil ansehen",
+            book_interview: "Interview buchen",
+            education: "Ausbildung",
+            experience: "Erfahrung",
+            years: "Jahre",
+            german: "Deutsch"
           },
           expertise: {
             badge: "Unsere Expertise",
@@ -646,7 +736,91 @@ export const TRANSLATIONS = {
         banner_text: "Contact us for a non-binding consultation.",
         btn_submitting: "Sending...",
         success_message: "Thank you! Your message has been sent successfully. We will get back to you shortly.",
-        error_message: "An error occurred. Please try again later or contact us directly by email."
+        error_message: "An error occurred. Please try again later or contact us directly by email.",
+        email: "contact@dmf.edu.vn",
+        phone: "+84 251 6609 500"
+      },
+      legal: {
+        datenschutz: {
+          title: "Privacy Policy",
+          subtitle: "Privacy Information",
+          backToHome: "Back to Home",
+          lastUpdated: "Last Updated: January 2024",
+          sections: {
+            overview: {
+              title: "1. Data Protection Overview",
+              generalTitle: "General Information",
+              generalText: "The following information provides a simple overview of what happens to your personal data when you visit this website. Personal data is any data with which you can be personally identified.",
+              responsibleTitle: "Responsible Party",
+              responsibleText: "The responsible party for data processing on this website is DMF Vietnam. The responsible party decides alone or jointly with others on the purposes and means of processing personal data."
+            },
+            dataCollection: {
+              title: "2. Data Collection on This Website",
+              whoTitle: "Who is responsible for data collection?",
+              whoText: "Data processing on this website is carried out by the website operator. You can find their contact details in the imprint of this website.",
+              howTitle: "How do we collect your data?",
+              howText: "Your data is collected in part by you providing it to us. This can be data that you enter into a contact form, for example. Other data is collected automatically or after your consent when you visit the website by our IT systems.",
+              purposeTitle: "What do we use your data for?",
+              purposeText: "Some of the data is collected to ensure error-free provision of the website. Other data may be used to analyze your user behavior."
+            },
+            cookies: {
+              title: "3. Cookies",
+              whatTitle: "What are cookies?",
+              whatText: "Cookies are small text files that are stored on your device. Some cookies are strictly necessary for the website to function properly. Other cookies are used to analyze user behavior or to display advertising.",
+              whichTitle: "Which cookies do we use?",
+              whichText: "This website uses technically necessary cookies that are required for the operation of the website. In addition, analysis cookies may be used to improve website usage.",
+              typesTitle: "Types of Cookies",
+              typesText: "We use different types of cookies: Necessary cookies for the basic functions of the website as well as optional cookies for analysis and marketing purposes. You can adjust your cookie settings at any time."
+            },
+            contactForm: {
+              title: "4. Contact Form",
+              processingTitle: "Data Processing When Contacting Us",
+              processingText: "If you contact us via contact form, your details from the inquiry form, including the contact details you provided there, will be stored by us for the purpose of processing the inquiry and in case of follow-up questions.",
+              legalBasisTitle: "Legal Basis",
+              legalBasisText: "The processing of this data is based on Art. 6 para. 1 lit. b GDPR, if your inquiry is related to the fulfillment of a contract. The data will be deleted as soon as it is no longer required for achieving the purpose of its collection.",
+              storageTitle: "Storage Duration",
+              storageText: "The data you enter in the contact form will remain with us until you ask us to delete it, revoke your consent to storage, or the purpose for data storage no longer applies.",
+              nodemailerTitle: "Email Sending via Nodemailer",
+              nodemailerText: "For sending the form data, we use Gmail's SMTP service via the Nodemailer library. The data you enter is transmitted encrypted via TLS/SSL to our email address. The recipient of the email is exclusively DMF Vietnam."
+            },
+            rights: {
+              title: "5. Your Rights as a Data Subject",
+              informationTitle: "Right to Information (Art. 15 GDPR)",
+              informationText: "You have the right to obtain information about your personal data stored by us. This information includes in particular the processing purposes, the categories of personal data, the recipients, the planned storage duration, and the existence of a right to complain.",
+              rectificationTitle: "Right to Rectification (Art. 16 GDPR)",
+              rectificationText: "You have the right to demand the immediate correction of incorrect or incomplete personal data.",
+              erasureTitle: "Right to Erasure (Art. 17 GDPR)",
+              erasureText: "You have the right to demand the deletion of your personal data stored by us, unless further processing is necessary to fulfill a legal obligation.",
+              restrictionTitle: "Right to Restriction of Processing (Art. 18 GDPR)",
+              restrictionText: "You have the right to demand the restriction of processing of your personal data if the accuracy of the data is contested or the processing is unlawful.",
+              portabilityTitle: "Right to Data Portability (Art. 20 GDPR)",
+              portabilityText: "You have the right to receive the personal data concerning you in a structured, commonly used, and machine-readable format and to transmit this data to another controller.",
+              objectionTitle: "Right to Object (Art. 21 GDPR)",
+              objectionText: "You have the right to object at any time to the processing of personal data concerning you for reasons arising from your particular situation.",
+              complaintTitle: "Right to Lodge a Complaint with a Supervisory Authority",
+              complaintText: "You have the right to lodge a complaint with a data protection supervisory authority about our processing of your personal data. In Germany, you can contact the state data protection authority responsible for your place of residence."
+            },
+            ssl: {
+              title: "6. SSL or TLS Encryption",
+              text: "This website uses SSL or TLS encryption for security reasons and to protect the transmission of confidential content. An encrypted connection can be recognized by the browser address bar changing from 'http://' to 'https://' and by the lock symbol in your browser bar. When SSL or TLS encryption is activated, the data you transmit to us cannot be read by third parties."
+            }
+          }
+        },
+        impressum: {
+          title: "Imprint",
+          subtitle: "Information according to § 5 TMG",
+          backToHome: "Back to Home",
+          sections: {
+            company: { title: "", name: "", legalForm: "" },
+            address: { title: "", street: "", city: "", province: "", country: "" },
+            representative: { title: "", name: "", role: "" },
+            contact: { title: "", vietnamHQ: "", germanContact: "" },
+            responsibleContent: { title: "", description: "" },
+            disputeResolution: { title: "", description: "", platformLink: "", platformText: "", disclaimer: "" },
+            liability: { title: "", contentTitle: "", contentText: "", linksTitle: "", linksText: "" },
+            copyright: { title: "", text: "" }
+          }
+        }
       },
       footer: {
         company: "Company",
@@ -1007,7 +1181,13 @@ export const TRANSLATIONS = {
             badge: "Available Experts",
             title: "Qualified Professionals",
             subtitle: "Engineers, IT professionals and nurses with recognized qualifications",
-            view_all: "View All Candidates"
+            view_all: "View All Candidates",
+            view_profile: "View Profile",
+            book_interview: "Book Interview",
+            education: "Education",
+            experience: "Experience",
+            years: "Years",
+            german: "German"
           },
           expertise: {
             badge: "Our Expertise",
@@ -1196,7 +1376,91 @@ export const TRANSLATIONS = {
         banner_text: "Liên hệ với chúng tôi để được tư vấn miễn phí.",
         btn_submitting: "Đang gửi...",
         success_message: "Cảm ơn bạn! Tin nhắn của bạn đã được gửi thành công. Chúng tôi sẽ liên hệ lại với bạn sớm nhất.",
-        error_message: "Đã xảy ra lỗi. Vui lòng thử lại sau hoặc liên hệ trực tiếp với chúng tôi qua email."
+        error_message: "Đã xảy ra lỗi. Vui lòng thử lại sau hoặc liên hệ trực tiếp với chúng tôi qua email.",
+        email: "contact@dmf.edu.vn",
+        phone: "+84 251 6609 500"
+      },
+      legal: {
+        datenschutz: {
+          title: "Chính sách Bảo mật",
+          subtitle: "Thông tin về Bảo mật",
+          backToHome: "Về trang chủ",
+          lastUpdated: "Cập nhật: Tháng 1 năm 2024",
+          sections: {
+            overview: {
+              title: "1. Tổng quan về Bảo mật",
+              generalTitle: "Thông tin chung",
+              generalText: "Thông tin sau đây cung cấp cái nhìn tổng quan đơn giản về những gì xảy ra với dữ liệu cá nhân của bạn khi bạn truy cập website này. Dữ liệu cá nhân là bất kỳ dữ liệu nào có thể được sử dụng để nhận dạng bạn.",
+              responsibleTitle: "Bên chịu trách nhiệm",
+              responsibleText: "Bên chịu trách nhiệm xử lý dữ liệu trên website này là DMF Vietnam. Bên chịu trách nhiệm quyết định một mình hoặc cùng với các bên khác về mục đích và phương tiện xử lý dữ liệu cá nhân."
+            },
+            dataCollection: {
+              title: "2. Thu thập Dữ liệu trên Website này",
+              whoTitle: "Ai chịu trách nhiệm thu thập dữ liệu?",
+              whoText: "Việc xử lý dữ liệu trên website này được thực hiện bởi người vận hành website. Bạn có thể tìm thấy thông tin liên hệ của họ trong phần Impressum của website này.",
+              howTitle: "Chúng tôi thu thập dữ liệu của bạn như thế nào?",
+              howText: "Dữ liệu của bạn được thu thập một phần do bạn cung cấp cho chúng tôi. Đây có thể là dữ liệu bạn nhập vào biểu mẫu liên hệ, chẳng hạn. Dữ liệu khác được tự động thu thập hoặc sau khi bạn đồng ý khi truy cập website bởi các hệ thống IT của chúng tôi.",
+              purposeTitle: "Chúng tôi sử dụng dữ liệu của bạn để làm gì?",
+              purposeText: "Một phần dữ liệu được thu thập để đảm bảo website hoạt động không có lỗi. Dữ liệu khác có thể được sử dụng để phân tích hành vi người dùng của bạn."
+            },
+            cookies: {
+              title: "3. Cookies",
+              whatTitle: "Cookies là gì?",
+              whatText: "Cookies là các tệp văn bản nhỏ được lưu trữ trên thiết bị của bạn. Một số cookies là bắt buộc để website hoạt động đúng. Cookies khác được sử dụng để phân tích hành vi người dùng hoặc hiển thị quảng cáo.",
+              whichTitle: "Chúng tôi sử dụng cookies nào?",
+              whichText: "Website này sử dụng cookies kỹ thuật cần thiết để website hoạt động. Ngoài ra, cookies phân tích có thể được sử dụng để cải thiện việc sử dụng website.",
+              typesTitle: "Các loại Cookies",
+              typesText: "Chúng tôi sử dụng các loại cookies khác nhau: Cookies cần thiết cho các chức năng cơ bản của website cũng như cookies tùy chọn cho mục đích phân tích và marketing. Bạn có thể điều chỉnh cài đặt cookies của mình bất cứ lúc nào."
+            },
+            contactForm: {
+              title: "4. Biểu mẫu Liên hệ",
+              processingTitle: "Xử lý Dữ liệu khi Liên hệ",
+              processingText: "Khi bạn gửi yêu cầu cho chúng tôi qua biểu mẫu liên hệ, thông tin của bạn từ biểu mẫu yêu cầu, bao gồm thông tin liên hệ bạn đã cung cấp, sẽ được chúng tôi lưu trữ để xử lý yêu cầu và trong trường hợp có câu hỏi tiếp theo.",
+              legalBasisTitle: "Cơ sở Pháp lý",
+              legalBasisText: "Việc xử lý dữ liệu này được thực hiện dựa trên Điều 6 Khoản 1 Mục b GDPR, nếu yêu cầu của bạn liên quan đến việc thực hiện hợp đồng. Dữ liệu sẽ được xóa ngay khi không còn cần thiết để đạt được mục đích thu thập.",
+              storageTitle: "Thời gian Lưu trữ",
+              storageText: "Dữ liệu bạn nhập vào biểu mẫu liên hệ sẽ được lưu trữ với chúng tôi cho đến khi bạn yêu cầu chúng tôi xóa, thu hồi sự đồng ý của bạn về lưu trữ, hoặc mục đích lưu trữ dữ liệu không còn nữa.",
+              nodemailerTitle: "Gửi Email qua Nodemailer",
+              nodemailerText: "Để gửi dữ liệu biểu mẫu, chúng tôi sử dụng dịch vụ SMTP của Gmail thông qua thư viện Nodemailer. Dữ liệu bạn nhập được truyền mã hóa qua TLS/SSL đến địa chỉ email của chúng tôi. Người nhận email chỉ là DMF Vietnam."
+            },
+            rights: {
+              title: "5. Quyền của Bạn với tư cách là Người bị ảnh hưởng",
+              informationTitle: "Quyền được Thông tin (Điều 15 GDPR)",
+              informationText: "Bạn có quyền được thông tin về dữ liệu cá nhân của mình được chúng tôi lưu trữ. Thông tin này bao gồm đặc biệt là mục đích xử lý, các danh mục dữ liệu cá nhân, người nhận, thời gian lưu trữ dự kiến và việc tồn tại quyền khiếu nại.",
+              rectificationTitle: "Quyền được Sửa đổi (Điều 16 GDPR)",
+              rectificationText: "Bạn có quyền yêu cầu sửa đổi ngay lập tức dữ liệu cá nhân không chính xác hoặc không đầy đủ.",
+              erasureTitle: "Quyền được Xóa (Điều 17 GDPR)",
+              erasureText: "Bạn có quyền yêu cầu xóa dữ liệu cá nhân của mình được chúng tôi lưu trữ, trừ khi việc xử lý thêm là cần thiết để thực hiện nghĩa vụ pháp lý.",
+              restrictionTitle: "Quyền được Giới hạn Xử lý (Điều 18 GDPR)",
+              restrictionText: "Bạn có quyền yêu cầu giới hạn xử lý dữ liệu cá nhân của mình nếu tính chính xác của dữ liệu bị tranh chấp hoặc việc xử lý là bất hợp pháp.",
+              portabilityTitle: "Quyền được Chuyển Dữ liệu (Điều 20 GDPR)",
+              portabilityText: "Bạn có quyền nhận dữ liệu cá nhân liên quan đến bạn ở định dạng có cấu trúc, phổ biến và có thể đọc bằng máy và truyền dữ liệu này cho một bên điều khiển khác.",
+              objectionTitle: "Quyền Phản đối (Điều 21 GDPR)",
+              objectionText: "Bạn có quyền phản đối bất cứ lúc nào việc xử lý dữ liệu cá nhân liên quan đến bạn vì lý do phát sinh từ tình huống đặc biệt của bạn.",
+              complaintTitle: "Quyền Khiếu nại với Cơ quan Giám sát",
+              complaintText: "Bạn có quyền khiếu nại với cơ quan giám sát bảo vệ dữ liệu về việc chúng tôi xử lý dữ liệu cá nhân của bạn. Tại Đức, bạn có thể liên hệ với cơ quan bảo vệ dữ liệu tiểu bang chịu trách nhiệm cho nơi cư trú của bạn."
+            },
+            ssl: {
+              title: "6. Mã hóa SSL hoặc TLS",
+              text: "Website này sử dụng mã hóa SSL hoặc TLS vì lý do bảo mật và để bảo vệ việc truyền nội dung bí mật. Một kết nối được mã hóa có thể được nhận biết bởi thanh địa chỉ trình duyệt thay đổi từ 'http://' sang 'https://' và bởi biểu tượng khóa trong thanh trình duyệt của bạn. Khi mã hóa SSL hoặc TLS được kích hoạt, dữ liệu bạn truyền cho chúng tôi không thể được đọc bởi bên thứ ba."
+            }
+          }
+        },
+        impressum: {
+          title: "Thông tin pháp lý",
+          subtitle: "Thông tin theo § 5 TMG",
+          backToHome: "Về trang chủ",
+          sections: {
+            company: { title: "", name: "", legalForm: "" },
+            address: { title: "", street: "", city: "", province: "", country: "" },
+            representative: { title: "", name: "", role: "" },
+            contact: { title: "", vietnamHQ: "", germanContact: "" },
+            responsibleContent: { title: "", description: "" },
+            disputeResolution: { title: "", description: "", platformLink: "", platformText: "", disclaimer: "" },
+            liability: { title: "", contentTitle: "", contentText: "", linksTitle: "", linksText: "" },
+            copyright: { title: "", text: "" }
+          }
+        }
       },
       footer: {
         company: "Công ty",
@@ -1557,7 +1821,13 @@ export const TRANSLATIONS = {
             badge: "Chuyên gia sẵn sàng",
             title: "Ứng viên chất lượng cao",
             subtitle: "Kỹ sư, IT và Điều dưỡng với bằng cấp được công nhận",
-            view_all: "Xem tất cả ứng viên"
+            view_all: "Xem tất cả ứng viên",
+            view_profile: "Xem hồ sơ",
+            book_interview: "Đặt phỏng vấn",
+            education: "Trình độ",
+            experience: "Kinh nghiệm",
+            years: "năm",
+            german: "Tiếng Đức"
           },
           expertise: {
             badge: "Chuyên môn của chúng tôi",

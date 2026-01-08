@@ -595,7 +595,7 @@ function HeroSection() {
   const content = {
     badge: t.service_pages.azubi.hero.badge,
     headline: t.service_pages.azubi.hero.headline,
-    headlineAccent: t.service_pages.azubi.hero.headline_accent,
+    headline_accent: t.service_pages.azubi.hero.headline_accent,
     subheadline: t.service_pages.azubi.hero.subheadline,
     cta1: t.service_pages.azubi.hero.cta1,
     cta2: t.service_pages.azubi.hero.cta2,
@@ -651,7 +651,7 @@ function HeroSection() {
               <span className="text-white">{content.headline}</span>
               <br />
               <span className="bg-gradient-to-r from-blue-400 via-sky-400 to-indigo-400 bg-clip-text text-transparent">
-                {content.headlineAccent}
+                {content.headline_accent}
               </span>
             </h1>
 
@@ -937,7 +937,7 @@ function QualityStandardSection() {
     badge: t.service_pages.azubi.quality.badge,
     title: t.service_pages.azubi.quality.title,
     subtitle: t.service_pages.azubi.quality.subtitle,
-    leftColumn: {
+    left_column: {
       title: t.service_pages.azubi.quality.prep_title,
       icon: GraduationCap,
       items: [
@@ -947,7 +947,7 @@ function QualityStandardSection() {
         { text: t.service_pages.azubi.quality.prep_item4, icon: Building2 },
       ],
     },
-    rightColumn: {
+    right_column: {
       title: t.service_pages.azubi.quality.support_title,
       icon: HeartHandshake,
       items: [
@@ -959,8 +959,8 @@ function QualityStandardSection() {
     },
   };
 
-  const LeftIcon = content.leftColumn.icon;
-  const RightIcon = content.rightColumn.icon;
+  const LeftIcon = content.left_column.icon;
+  const RightIcon = content.right_column.icon;
 
   return (
     <section className="py-24 md:py-32 bg-slate-50">
@@ -1004,13 +1004,13 @@ function QualityStandardSection() {
                   <LeftIcon className="w-7 h-7 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-slate-900">{content.leftColumn.title}</h3>
+                  <h3 className="text-xl font-bold text-slate-900">{content.left_column.title}</h3>
                   <p className="text-sm text-blue-600">🇻🇳 Vietnam</p>
                 </div>
               </div>
 
               <div className="space-y-4">
-                {content.leftColumn.items.map((item, index) => {
+                {content.left_column.items.map((item, index) => {
                   const ItemIcon = item.icon;
                   return (
                     <motion.div
@@ -1043,13 +1043,13 @@ function QualityStandardSection() {
                   <RightIcon className="w-7 h-7 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-slate-900">{content.rightColumn.title}</h3>
+                  <h3 className="text-xl font-bold text-slate-900">{content.right_column.title}</h3>
                   <p className="text-sm text-indigo-600">🇩🇪 Deutschland</p>
                 </div>
               </div>
 
               <div className="space-y-4">
-                {content.rightColumn.items.map((item, index) => {
+                {content.right_column.items.map((item, index) => {
                   const ItemIcon = item.icon;
                   return (
                     <motion.div
@@ -1199,10 +1199,10 @@ function TalentShowcaseSection() {
     title: t.service_pages.azubi.talent.title,
     subtitle: t.service_pages.azubi.talent.subtitle,
     viewProfile: t.service_pages.azubi.talent.view_profile,
-    requestInterview: t.service_pages.azubi.talent.request_interview,
-    ageLabel: t.service_pages.azubi.talent.age_label,
-    educationLabel: t.service_pages.azubi.talent.education_label,
-    goalLabel: t.service_pages.azubi.talent.goal_label,
+    request_interview: t.service_pages.azubi.talent.request_interview,
+    age_label: t.service_pages.azubi.talent.age_label,
+    education_label: t.service_pages.azubi.talent.education_label,
+    goal_label: t.service_pages.azubi.talent.goal_label,
     statusLabel: t.service_pages.azubi.talent.status_label,
   };
   const ref = useRef(null);
@@ -1294,14 +1294,14 @@ function TalentShowcaseSection() {
                   <div className="p-5 space-y-4">
                     {/* Age */}
                     <div className="flex items-center justify-between">
-                      <span className="text-xs text-slate-400 uppercase">{content.ageLabel}</span>
+                      <span className="text-xs text-slate-400 uppercase">{content.age_label}</span>
                       <span className="font-bold text-slate-900">{profile.age} Jahre</span>
                     </div>
 
                     {/* Education */}
                     <div>
                       <span className="text-xs text-slate-400 uppercase block mb-1">
-                        {content.educationLabel}
+                        {content.education_label}
                       </span>
                       <span className="text-sm text-slate-700">
                         {lang === "de" ? profile.educationDe : lang === "en" ? profile.educationDe : profile.educationVn}
@@ -1311,7 +1311,7 @@ function TalentShowcaseSection() {
                     {/* Goal */}
                     <div className="bg-blue-50 rounded-xl p-3">
                       <span className="text-xs text-blue-600 uppercase block mb-1">
-                        {content.goalLabel}
+                        {content.goal_label}
                       </span>
                       <span className="font-semibold text-blue-700">
                         {lang === "de" ? profile.goalDe : lang === "en" ? profile.goalDe : profile.goalVn}
@@ -1335,7 +1335,7 @@ function TalentShowcaseSection() {
                     >
                       <Link href="/#contact">
                         <Calendar className="w-4 h-4 mr-2" />
-                        {content.requestInterview}
+                        {content.request_interview}
                       </Link>
                     </Button>
                   </div>

@@ -24,6 +24,14 @@ const translations = {
     noPosts: "Noch keine Beiträge vorhanden",
     noPostsDesc: "Schauen Sie bald wieder vorbei für neue Inhalte.",
   },
+  en: {
+    title: "Blog & News",
+    subtitle: "News, insights and expertise about skilled workers from Vietnam",
+    readMore: "Read More",
+    readTime: "min read",
+    noPosts: "No posts yet",
+    noPostsDesc: "Please come back later for new content.",
+  },
   vn: {
     title: "Blog & Tin Tức",
     subtitle: "Tin tức, góc nhìn và kiến thức chuyên môn về nhân sự Việt Nam",
@@ -82,8 +90,8 @@ function calculateReadTime(content: string): number {
 // ============================================
 
 export function BlogListClient({ posts }: BlogListClientProps) {
-  const { language } = useLanguage();
-  const lang = language as "de" | "vn";
+  const { lang: currentLang } = useLanguage();
+  const lang = currentLang as "de" | "vn";
   const t = translations[lang];
   const dateLocale = lang === "vn" ? vi : de;
 

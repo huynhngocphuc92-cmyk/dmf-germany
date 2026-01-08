@@ -399,11 +399,11 @@ function HeroSection() {
   const content = {
     badge: t.service_pages.seasonal.hero.badge,
     headline: t.service_pages.seasonal.hero.headline,
-    headlineAccent: t.service_pages.seasonal.hero.headline_accent,
+    headline_accent: t.service_pages.seasonal.hero.headline_accent,
     subheadline: t.service_pages.seasonal.hero.subheadline,
     cta1: t.service_pages.seasonal.hero.cta1,
     cta2: t.service_pages.seasonal.hero.cta2,
-    urgencyBadge: t.service_pages.seasonal.hero.urgency_badge,
+    urgency_badge: t.service_pages.seasonal.hero.urgency_badge,
   };
 
   return (
@@ -443,7 +443,7 @@ function HeroSection() {
             >
               <Badge className="px-4 py-2 bg-amber-500/20 border border-amber-500/30 text-amber-400 backdrop-blur-sm animate-pulse">
                 <Sparkles className="w-4 h-4 mr-2" />
-                {content.urgencyBadge}
+                {content.urgency_badge}
               </Badge>
             </motion.div>
 
@@ -464,7 +464,7 @@ function HeroSection() {
               <span className="text-white">{content.headline}</span>
               <br />
               <span className="bg-gradient-to-r from-amber-400 via-orange-400 to-yellow-400 bg-clip-text text-transparent">
-                {content.headlineAccent}
+                {content.headline_accent}
               </span>
             </h1>
 
@@ -740,7 +740,7 @@ function SpeedTimelineSection() {
         icon: Plane,
       },
     ],
-    keyMessage: t.service_pages.seasonal.timeline.key_message,
+    key_message: t.service_pages.seasonal.timeline.key_message,
   };
   const isInView = useInView(ref, { once: true, amount: 0.3 });
   const [progress, setProgress] = useState(0);
@@ -842,7 +842,7 @@ function SpeedTimelineSection() {
         >
           <div className="inline-flex items-center gap-3 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-full px-6 py-3">
             <CircleCheck className="w-6 h-6 text-amber-600" />
-            <span className="text-amber-800 font-semibold text-lg">{content.keyMessage}</span>
+            <span className="text-amber-800 font-semibold text-lg">{content.key_message}</span>
           </div>
         </motion.div>
       </div>
@@ -862,8 +862,8 @@ function TalentPoolSection() {
     badge: t.service_pages.seasonal.talent.badge,
     title: t.service_pages.seasonal.talent.title,
     subtitle: t.service_pages.seasonal.talent.subtitle,
-    availableBadge: t.service_pages.seasonal.talent.available_badge,
-    viewAll: t.service_pages.seasonal.talent.view_all,
+    available_badge: t.service_pages.seasonal.talent.available_badge,
+    view_all: t.service_pages.seasonal.talent.view_all,
     profiles: talentPoolContent.de.profiles, // Keep original profiles data
   };
   const ref = useRef(null);
@@ -899,7 +899,7 @@ function TalentPoolSection() {
           {/* Available Badge */}
           <Badge className="bg-amber-500 text-white border-0 px-4 py-2 text-base shadow-lg shadow-amber-500/30">
             <Users className="w-4 h-4 mr-2" />
-            {content.availableBadge}
+            {content.available_badge}
           </Badge>
         </motion.div>
 
@@ -982,7 +982,7 @@ function TalentPoolSection() {
             asChild
           >
             <Link href="/#contact">
-              {content.viewAll}
+              {content.view_all}
               <ArrowRight className="w-5 h-5 ml-2" />
             </Link>
           </Button>

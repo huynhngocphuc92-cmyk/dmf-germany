@@ -45,8 +45,8 @@ interface PostFormClientProps {
 
 export function PostFormClient({ mode, initialPost }: PostFormClientProps) {
   const router = useRouter();
-  const { language } = useLanguage();
-  const lang = language as AdminLanguage;
+  const { lang: currentLang } = useLanguage();
+  const lang = currentLang as AdminLanguage;
   const t = postTranslations[lang];
 
   // Form state

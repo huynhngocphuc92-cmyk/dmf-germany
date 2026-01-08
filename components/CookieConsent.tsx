@@ -25,7 +25,7 @@ interface CookieConsentContent {
   analytics: string;
 }
 
-const content: Record<"de" | "vn", CookieConsentContent> = {
+const content: Record<"de" | "en" | "vn", CookieConsentContent> = {
   de: {
     title: "Cookie-Einstellungen",
     description:
@@ -36,6 +36,17 @@ const content: Record<"de" | "vn", CookieConsentContent> = {
     privacyLink: "Datenschutzerklärung",
     necessary: "Notwendige Cookies (erforderlich)",
     analytics: "Analyse-Cookies (Google Analytics)",
+  },
+  en: {
+    title: "Cookie Settings",
+    description:
+      "We use cookies to improve your experience on our website. For analytics cookies (Google Analytics), we need your explicit consent according to GDPR.",
+    acceptAll: "Accept All",
+    declineOptional: "Necessary Only",
+    settings: "Settings",
+    privacyLink: "Privacy Policy",
+    necessary: "Necessary Cookies (required)",
+    analytics: "Analytics Cookies (Google Analytics)",
   },
   vn: {
     title: "Cài đặt Cookie",
@@ -93,13 +104,13 @@ export function hasAnalyticsConsent(): boolean {
 }
 
 export function CookieConsent() {
-  const { language } = useLanguage();
+  const { lang } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [analyticsEnabled, setAnalyticsEnabled] = useState(true);
   const { hasConsented, setConsent } = useCookieConsent();
 
-  const t = content[language];
+  const t = content[lang];
 
   useEffect(() => {
     // Delay showing banner slightly for better UX
@@ -243,7 +254,7 @@ export function CookieConsent() {
                   variant="secondary"
                   className="flex-1"
                 >
-                  {language === "de" ? "Speichern" : "Lưu"}
+                  {lang === "de" ? "Speichern" : lang === "en" ? "Save" : "Lưu"}
                 </Button>
               )}
             </div>

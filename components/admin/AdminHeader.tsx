@@ -43,7 +43,7 @@ interface AdminHeaderProps {
 }
 
 export function AdminHeader({ user, onMenuClick }: AdminHeaderProps) {
-  const { language, setLanguage } = useLanguage();
+  const { lang, setLang } = useLanguage();
 
   return (
     <header className="sticky top-0 z-30 bg-white border-b border-slate-200 h-16">
@@ -65,9 +65,9 @@ export function AdminHeader({ user, onMenuClick }: AdminHeaderProps) {
           {/* Language Toggle */}
           <div className="flex items-center gap-0.5 px-1 py-0.5 rounded-full bg-slate-100 border border-slate-200">
             <button
-              onClick={() => setLanguage("de")}
+              onClick={() => setLang("de")}
               className={`px-2 py-1 rounded-full text-xs font-medium transition-all ${
-                language === "de"
+                lang === "de"
                   ? "bg-slate-900 text-white"
                   : "text-slate-500 hover:text-slate-700"
               }`}
@@ -75,9 +75,9 @@ export function AdminHeader({ user, onMenuClick }: AdminHeaderProps) {
               DE
             </button>
             <button
-              onClick={() => setLanguage("vn")}
+              onClick={() => setLang("vn")}
               className={`px-2 py-1 rounded-full text-xs font-medium transition-all ${
-                language === "vn"
+                lang === "vn"
                   ? "bg-emerald-500 text-white"
                   : "text-slate-500 hover:text-slate-700"
               }`}
@@ -106,7 +106,7 @@ export function AdminHeader({ user, onMenuClick }: AdminHeaderProps) {
 
           {/* Logout */}
           <form action={signOut}>
-            <LogoutButton label={language === "de" ? "Abmelden" : "Đăng xuất"} />
+            <LogoutButton label={lang === "de" ? "Abmelden" : "Đăng xuất"} />
           </form>
         </div>
       </div>

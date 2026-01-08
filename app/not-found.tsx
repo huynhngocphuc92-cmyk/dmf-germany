@@ -17,7 +17,7 @@ interface NotFoundContent {
   contact: string;
 }
 
-const content: Record<"de" | "vn", NotFoundContent> = {
+const content: Record<"de" | "en" | "vn", NotFoundContent> = {
   de: {
     title: "Seite nicht gefunden",
     errorCode: "404",
@@ -30,6 +30,19 @@ const content: Record<"de" | "vn", NotFoundContent> = {
     goBack: "Zurück",
     searchTip: "Tipp: Nutzen Sie die Navigation oben, um die gewünschte Seite zu finden.",
     contact: "Kontakt aufnehmen",
+  },
+  en: {
+    title: "Page Not Found",
+    errorCode: "404",
+    heading: "Page Not Found",
+    description:
+      "We're sorry, but the page you are looking for does not exist or has been moved.",
+    suggestion:
+      "The page may have been renamed, deleted, or never existed. Please check the URL or navigate back to the homepage.",
+    backToHome: "Back to Home",
+    goBack: "Go Back",
+    searchTip: "Tip: Use the navigation above to find the page you need.",
+    contact: "Contact Support",
   },
   vn: {
     title: "Không tìm thấy trang",
@@ -47,8 +60,8 @@ const content: Record<"de" | "vn", NotFoundContent> = {
 };
 
 export default function NotFound() {
-  const { language, content: siteContent } = useLanguage();
-  const t = content[language];
+  const { lang, t: translations } = useLanguage();
+  const t = content[lang];
 
   return (
     <div className="min-h-[calc(100vh-200px)] flex items-center justify-center px-4 py-16">
@@ -134,18 +147,33 @@ export default function NotFound() {
         {/* Quick Links */}
         <div className="mt-8 pt-8 border-t border-border">
           <p className="text-sm text-muted-foreground mb-4">
-            {language === "de" ? "Schnellzugriff:" : "Liên kết nhanh:"}
+            {lang === "de" ? "Schnellzugriff:" : lang === "en" ? "Quick Links:" : "Liên kết nhanh:"}
           </p>
           <div className="flex flex-wrap justify-center gap-3">
-            {siteContent.header.navItems.slice(0, 4).map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="px-4 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-colors"
-              >
-                {item.label}
-              </Link>
-            ))}
+            <Link
+              href="/"
+              className="px-4 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-colors"
+            >
+              {translations.header.home}
+            </Link>
+            <Link
+              href="/#about"
+              className="px-4 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-colors"
+            >
+              {translations.header.about}
+            </Link>
+            <Link
+              href="/#contact"
+              className="px-4 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-colors"
+            >
+              {translations.header.contact}
+            </Link>
+            <Link
+              href="/blog"
+              className="px-4 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-colors"
+            >
+              {translations.header.blog}
+            </Link>
           </div>
         </div>
       </div>

@@ -140,7 +140,7 @@ interface SimulatorContent {
   unitEuro: string;
 }
 
-const content: Record<"de" | "vn", SimulatorContent> = {
+const content: Record<"de" | "en" | "vn", SimulatorContent> = {
   de: {
     title: "Gehaltsrechner",
     subtitle: "Entdecken Sie Ihr Verdienstpotenzial während der dualen Ausbildung in Deutschland",
@@ -167,6 +167,34 @@ const content: Record<"de" | "vn", SimulatorContent> = {
     perMonth: "pro Monat",
     surplus: "Überschuss",
     callToAction: "Starten Sie Ihre Karriere in Deutschland",
+    unitEuro: "€",
+  },
+  en: {
+    title: "Salary Calculator",
+    subtitle: "Discover your earning potential during dual training in Germany",
+    badge: "Interactive Tool",
+    regionLabel: "Region",
+    regions: {
+      west: "West Germany",
+      east: "East Germany",
+    },
+    industries: {
+      pflege: "Nursing",
+      gastronomie: "Hospitality",
+      mechatronik: "Mechatronics",
+      bau: "Construction",
+    },
+    yearLabels: {
+      year1: "Year 1",
+      year2: "Year 2",
+      year3: "Year 3",
+      afterGrad: "After Graduation",
+    },
+    livingCost: "Avg. Living Costs",
+    disclaimer: "Average gross salary. Actual values vary by state and employer.",
+    perMonth: "per month",
+    surplus: "Surplus",
+    callToAction: "Start your career in Germany",
     unitEuro: "€",
   },
   vn: {
@@ -423,7 +451,7 @@ export function SalarySimulator() {
                   </div>
                   <div>
                     <p className="text-lg font-bold text-foreground">
-                      {t.industries?.[selectedIndustry] || t_full.industries?.[selectedIndustry] || selectedIndustry}
+                      {t.industries?.[selectedIndustry as keyof typeof t.industries] || t_full.industries?.[selectedIndustry as keyof typeof t_full.industries] || selectedIndustry}
                     </p>
                     <p className="text-sm text-muted-foreground flex items-center gap-1">
                       <MapPin className="h-3 w-3" />
@@ -475,7 +503,7 @@ export function SalarySimulator() {
                       }`}
                     >
                       <TabIcon className="h-4 w-4" />
-                      <span className="hidden sm:inline">{t_full.industries?.[key] || key}</span>
+                      <span className="hidden sm:inline">{t_full.industries?.[key as keyof typeof t_full.industries] || key}</span>
                     </button>
                   );
                 })}
@@ -495,7 +523,7 @@ export function SalarySimulator() {
                   <div className="flex items-center justify-center gap-4 mb-6 text-sm">
                     <div className="flex items-center gap-2">
                       <div className={`w-4 h-4 rounded bg-gradient-to-r ${currentIndustry.gradient}`} />
-                      <span className="text-muted-foreground">{t_full.industries?.[selectedIndustry] || selectedIndustry}</span>
+                      <span className="text-muted-foreground">{t_full.industries?.[selectedIndustry as keyof typeof t_full.industries] || selectedIndustry}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <div className="w-8 border-t-2 border-dashed border-amber-500" />

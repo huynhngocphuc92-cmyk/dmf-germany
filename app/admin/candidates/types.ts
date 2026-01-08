@@ -58,13 +58,13 @@ export interface CandidateFormData {
 // UI HELPERS
 // ============================================
 
-export type AdminLanguage = "de" | "vn";
+export type AdminLanguage = "de" | "en" | "vn";
 
 // Bilingual labels for category
 export const categoryLabelsI18n: Record<CandidateCategory, Record<AdminLanguage, string>> = {
-  azubi: { de: "Auszubildende", vn: "Học viên" },
-  skilled: { de: "Fachkräfte", vn: "Chuyên gia" },
-  seasonal: { de: "Saisonkräfte", vn: "Thời vụ" },
+  azubi: { de: "Auszubildende", en: "Apprentices", vn: "Học viên" },
+  skilled: { de: "Fachkräfte", en: "Skilled Workers", vn: "Chuyên gia" },
+  seasonal: { de: "Saisonkräfte", en: "Seasonal Workers", vn: "Thời vụ" },
 };
 
 // Legacy single-language labels (German only)
@@ -82,13 +82,13 @@ export const categoryColors: Record<CandidateCategory, string> = {
 
 // Bilingual labels for status
 export const statusLabelsI18n: Record<CandidateStatus, Record<AdminLanguage, string>> = {
-  new: { de: "Neu", vn: "Mới" },
-  screening: { de: "Vorauswahl", vn: "Sàng lọc" },
-  interview: { de: "Interview", vn: "Phỏng vấn" },
-  documents: { de: "Dokumente", vn: "Hồ sơ" },
-  visa: { de: "Visum", vn: "Visa" },
-  approved: { de: "Genehmigt", vn: "Đã duyệt" },
-  rejected: { de: "Abgelehnt", vn: "Từ chối" },
+  new: { de: "Neu", en: "New", vn: "Mới" },
+  screening: { de: "Vorauswahl", en: "Screening", vn: "Sàng lọc" },
+  interview: { de: "Interview", en: "Interview", vn: "Phỏng vấn" },
+  documents: { de: "Dokumente", en: "Documents", vn: "Hồ sơ" },
+  visa: { de: "Visum", en: "Visa", vn: "Visa" },
+  approved: { de: "Genehmigt", en: "Approved", vn: "Đã duyệt" },
+  rejected: { de: "Abgelehnt", en: "Rejected", vn: "Từ chối" },
 };
 
 // Legacy single-language labels (German only)
@@ -145,6 +145,33 @@ export const adminTranslations = {
     status: "Status",
     logout: "Abmelden",
     demoDataWarning: "Demo-Daten werden angezeigt",
+  },
+  en: {
+    // Dashboard
+    dashboardTitle: "Dashboard Overview",
+    dashboardDesc: "Here is an overview of your current metrics.",
+    totalCandidates: "Total Candidates",
+    newApplications: "New Applications",
+    visaProcessing: "Visa Processing",
+    successRate: "Success Rate",
+    candidatesPerMonth: "Candidates per Month",
+    monthlyOverview: "Monthly Overview of Applications",
+    categoryDistribution: "Category Distribution",
+    categoryDesc: "Share by Candidate Type",
+    quickAccess: "Quick Access",
+    quickAccessDesc: "Frequently Used Functions",
+    recentCandidates: "Latest Candidates",
+    recentDesc: "Recently Added Profiles",
+    manageInquiries: "Manage Inquiries",
+    candidates: "Candidates",
+    blog: "Manage Blog",
+    statistics: "Statistics",
+    settings: "Settings",
+    name: "Name",
+    category: "Category",
+    status: "Status",
+    logout: "Logout",
+    demoDataWarning: "Demo data is being displayed",
   },
   vn: {
     // Dashboard

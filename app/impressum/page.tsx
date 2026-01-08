@@ -5,8 +5,20 @@ import Link from "next/link";
 import { Building2, Mail, Phone, User, MapPin, Globe, Scale, ShieldAlert, FileText } from "lucide-react";
 
 export default function ImpressumPage() {
-  const { content } = useLanguage();
-  const impressum = content.legal.impressum;
+  const { t } = useLanguage();
+  const impressum = t.legal?.impressum;
+
+  // Early return if legal content is not available
+  if (!impressum) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold mb-4">Impressum</h1>
+          <p className="text-muted-foreground">Content wird geladen...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -113,30 +125,30 @@ export default function ImpressumPage() {
                       <div className="flex items-center gap-3">
                         <Phone className="h-4 w-4 text-primary flex-shrink-0" />
                         <a 
-                          href={`tel:${content.contact.headquarters.phone}`}
+                          href={`tel:${t.contact?.phone || "+84 251 6609 500"}`}
                           className="text-base text-foreground hover:text-primary transition-colors"
                         >
-                          {content.contact.headquarters.phone}
+                          {t.contact?.phone || "+84 251 6609 500"}
                         </a>
                       </div>
                       <div className="flex items-center gap-3">
                         <Mail className="h-4 w-4 text-primary flex-shrink-0" />
                         <a 
-                          href={`mailto:${content.contact.headquarters.email}`}
+                          href={`mailto:${t.contact?.email || "contact@dmf.edu.vn"}`}
                           className="text-base text-foreground hover:text-primary transition-colors break-all"
                         >
-                          {content.contact.headquarters.email}
+                          {t.contact?.email || "contact@dmf.edu.vn"}
                         </a>
                       </div>
                       <div className="flex items-center gap-3">
                         <Globe className="h-4 w-4 text-primary flex-shrink-0" />
                         <a 
-                          href={`https://${content.contact.headquarters.website}`}
+                          href="https://dmf.edu.vn"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-base text-foreground hover:text-primary transition-colors"
                         >
-                          {content.contact.headquarters.website}
+                          dmf.edu.vn
                         </a>
                       </div>
                     </div>
@@ -145,28 +157,28 @@ export default function ImpressumPage() {
                   {/* German Contact */}
                   <div>
                     <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">
-                      {impressum.sections.contact.germanContact}
+                      {impressum?.sections?.contact?.germanContact || "Ansprechpartner Deutschland"}
                     </p>
                     <p className="text-base font-medium text-foreground mb-3">
-                      {content.contact.germanContact.name}
+                      {t.contact?.de_name || "Herr Achim Betticher"}
                     </p>
                     <div className="space-y-3">
                       <div className="flex items-center gap-3">
                         <Phone className="h-4 w-4 text-primary flex-shrink-0" />
                         <a 
-                          href={`tel:${content.contact.germanContact.phone}`}
+                          href="tel:+84855070773"
                           className="text-base text-foreground hover:text-primary transition-colors"
                         >
-                          {content.contact.germanContact.phone}
+                          +84 85 507 0773
                         </a>
                       </div>
                       <div className="flex items-center gap-3">
                         <Mail className="h-4 w-4 text-primary flex-shrink-0" />
                         <a 
-                          href={`mailto:${content.contact.germanContact.email}`}
+                          href="mailto:achim@betticher.de"
                           className="text-base text-foreground hover:text-primary transition-colors"
                         >
-                          {content.contact.germanContact.email}
+                          achim@betticher.de
                         </a>
                       </div>
                     </div>

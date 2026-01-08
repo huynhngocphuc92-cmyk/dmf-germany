@@ -41,11 +41,11 @@ export interface PostFormData {
 // UI HELPERS
 // ============================================
 
-export type AdminLanguage = "de" | "vn";
+export type AdminLanguage = "de" | "en" | "vn";
 
 export const statusLabelsI18n: Record<PostStatus, Record<AdminLanguage, string>> = {
-  draft: { de: "Entwurf", vn: "Bản nháp" },
-  published: { de: "Veröffentlicht", vn: "Đã xuất bản" },
+  draft: { de: "Entwurf", en: "Draft", vn: "Bản nháp" },
+  published: { de: "Veröffentlicht", en: "Published", vn: "Đã xuất bản" },
 };
 
 export const statusColors: Record<PostStatus, string> = {
@@ -98,6 +98,47 @@ export const postTranslations = {
     saveError: "Fehler beim Speichern",
     deleteSuccess: "Beitrag erfolgreich gelöscht",
     deleteError: "Fehler beim Löschen",
+  },
+  en: {
+    // List page
+    pageTitle: "Manage Posts",
+    pageDesc: "Create and manage blog posts",
+    newPost: "New Post",
+    title: "Title",
+    status: "Status",
+    createdAt: "Created At",
+    actions: "Actions",
+    edit: "Edit",
+    delete: "Delete",
+    deleteConfirm: "Are you sure you want to delete this post?",
+    deleteDesc: "This action cannot be undone.",
+    cancel: "Cancel",
+    noPosts: "No posts yet.",
+    
+    // Form page
+    createTitle: "Create New Post",
+    editTitle: "Edit Post",
+    formTitle: "Title",
+    formTitlePlaceholder: "Enter the title...",
+    formSlug: "URL Slug",
+    formSlugPlaceholder: "url-slug-here",
+    formExcerpt: "Excerpt",
+    formExcerptPlaceholder: "A short summary...",
+    formCoverImage: "Cover Image",
+    formUpload: "Upload Image",
+    formUploading: "Uploading...",
+    formContent: "Content",
+    formContentPlaceholder: "Write your post...",
+    formPublish: "Publish",
+    formSave: "Save",
+    formSaving: "Saving...",
+    formBack: "Back to List",
+    
+    // Messages
+    saveSuccess: "Post saved successfully",
+    saveError: "Error saving post",
+    deleteSuccess: "Post deleted successfully",
+    deleteError: "Error deleting post",
   },
   vn: {
     // List page

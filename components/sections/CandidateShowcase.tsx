@@ -24,7 +24,7 @@ const fallbackCandidate: Candidate = {
   german_level: "B2",
   visa_status: true,
   is_featured: true,
-  avatar_url: null,
+  avatar_url: undefined,
 };
 
 export const CandidateShowcase = ({ candidates = [] }: CandidateShowcaseProps) => {

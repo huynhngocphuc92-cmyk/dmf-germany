@@ -537,20 +537,20 @@ function HeroSection() {
   const content = {
     badge: t.service_pages.skilled_workers.hero.badge,
     headline: t.service_pages.skilled_workers.hero.headline,
-    headlineAccent: t.service_pages.skilled_workers.hero.headline_accent,
+    headline_accent: t.service_pages.skilled_workers.hero.headline_accent,
     subheadline: t.service_pages.skilled_workers.hero.subheadline,
     cta1: t.service_pages.skilled_workers.hero.cta1,
     cta2: t.service_pages.skilled_workers.hero.cta2,
-    floatingCard1: {
+    floating_card1: {
       name: t.service_pages.skilled_workers.hero.card1_name,
       role: t.service_pages.skilled_workers.hero.card1_role,
       badge: t.service_pages.skilled_workers.hero.card1_badge,
     },
-    floatingCard2: {
+    floating_card2: {
       title: t.service_pages.skilled_workers.hero.card2_title,
       status: t.service_pages.skilled_workers.hero.card2_status,
     },
-    floatingCard3: {
+    floating_card3: {
       title: t.service_pages.skilled_workers.hero.card3_title,
       level: t.service_pages.skilled_workers.hero.card3_level,
     },
@@ -602,7 +602,7 @@ function HeroSection() {
               <span className="text-white">{content.headline}</span>
               <br />
               <span className="bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-300 bg-clip-text text-transparent">
-                {content.headlineAccent}
+                {content.headline_accent}
               </span>
             </h1>
 
@@ -663,17 +663,17 @@ function HeroSection() {
                   </div>
                   <div className="flex-1">
                     <h4 className="font-semibold text-white text-sm">
-                      {content.floatingCard1.name}
+                      {content.floating_card1.name}
                     </h4>
                     <p className="text-slate-400 text-xs">
-                      {content.floatingCard1.role}
+                      {content.floating_card1.role}
                     </p>
                   </div>
                 </div>
                 <div className="mt-4">
                   <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30 text-xs">
                     <CheckCircle2 className="w-3 h-3 mr-1" />
-                    {content.floatingCard1.badge}
+                    {content.floating_card1.badge}
                   </Badge>
                 </div>
               </div>
@@ -699,10 +699,10 @@ function HeroSection() {
                   </div>
                   <div>
                     <p className="text-slate-400 text-xs">
-                      {content.floatingCard2.title}
+                      {content.floating_card2.title}
                     </p>
                     <p className="text-white font-medium text-sm">
-                      {content.floatingCard2.status}
+                      {content.floating_card2.status}
                     </p>
                   </div>
                 </div>
@@ -729,10 +729,10 @@ function HeroSection() {
                   </div>
                   <div>
                     <p className="text-slate-400 text-xs">
-                      {content.floatingCard3.title}
+                      {content.floating_card3.title}
                     </p>
                     <p className="text-white font-semibold text-sm">
-                      {content.floatingCard3.level}
+                      {content.floating_card3.level}
                     </p>
                   </div>
                 </div>
@@ -800,7 +800,7 @@ function ComparisonSection() {
     badge: t.service_pages.skilled_workers.comparison.badge,
     title: t.service_pages.skilled_workers.comparison.title,
     subtitle: t.service_pages.skilled_workers.comparison.subtitle,
-    oldWay: {
+    old_way: {
       title: t.service_pages.skilled_workers.comparison.old_title,
       subtitle: t.service_pages.skilled_workers.comparison.old_subtitle,
       items: [
@@ -811,7 +811,7 @@ function ComparisonSection() {
         { text: t.service_pages.skilled_workers.comparison.old_item5, icon: HeartHandshake },
       ],
     },
-    newWay: {
+    new_way: {
       title: t.service_pages.skilled_workers.comparison.new_title,
       subtitle: t.service_pages.skilled_workers.comparison.new_subtitle,
       badge: t.service_pages.skilled_workers.comparison.new_badge,
@@ -872,15 +872,15 @@ function ComparisonSection() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-slate-700">
-                      {content.oldWay.title}
+                      {content.old_way.title}
                     </h3>
-                    <p className="text-sm text-slate-500">{content.oldWay.subtitle}</p>
+                    <p className="text-sm text-slate-500">{content.old_way.subtitle}</p>
                   </div>
                 </div>
               </div>
 
               <div className="space-y-5">
-                {content.oldWay.items.map((item, index) => {
+                {content.old_way.items.map((item, index) => {
                   const Icon = item.icon;
                   return (
                     <motion.div
@@ -913,7 +913,7 @@ function ComparisonSection() {
             <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
               <Badge className="px-4 py-2 bg-emerald-600 text-white border-0 shadow-lg shadow-emerald-500/30">
                 <Star className="w-4 h-4 mr-1.5 fill-current" />
-                {content.newWay.badge}
+                {content.new_way.badge}
               </Badge>
             </div>
 
@@ -925,17 +925,17 @@ function ComparisonSection() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-slate-900">
-                      {content.newWay.title}
+                      {content.new_way.title}
                     </h3>
                     <p className="text-sm text-emerald-600 font-medium">
-                      {content.newWay.subtitle}
+                      {content.new_way.subtitle}
                     </p>
                   </div>
                 </div>
               </div>
 
               <div className="space-y-5">
-                {content.newWay.items.map((item, index) => {
+                {content.new_way.items.map((item, index) => {
                   const Icon = item.icon;
                   return (
                     <motion.div
@@ -973,6 +973,12 @@ function AvailableExpertsSection() {
     badge: t.service_pages.skilled_workers.experts.badge,
     title: t.service_pages.skilled_workers.experts.title,
     subtitle: t.service_pages.skilled_workers.experts.subtitle,
+    view_profile: t.service_pages.skilled_workers.experts.view_profile,
+    book_interview: t.service_pages.skilled_workers.experts.book_interview,
+    education: t.service_pages.skilled_workers.experts.education,
+    experience: t.service_pages.skilled_workers.experts.experience,
+    years: t.service_pages.skilled_workers.experts.years,
+    german: t.service_pages.skilled_workers.experts.german
   };
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
@@ -1076,7 +1082,7 @@ function AvailableExpertsSection() {
                           {content.education}
                         </p>
                         <p className="text-sm font-medium text-slate-700">
-                          {language === "de"
+                          {lang === "de" || lang === "en"
                             ? expert.specs.educationDe
                             : expert.specs.educationVn}
                         </p>
@@ -1124,7 +1130,7 @@ function AvailableExpertsSection() {
                     >
                       <Link href="/#contact">
                         <Eye className="w-4 h-4 mr-2" />
-                        {content.viewProfile}
+                        {content.view_profile}
                       </Link>
                     </Button>
                     <Button
@@ -1133,7 +1139,7 @@ function AvailableExpertsSection() {
                     >
                       <Link href="/#contact">
                         <Calendar className="w-4 h-4 mr-2" />
-                        {content.bookInterview}
+                        {content.book_interview}
                       </Link>
                     </Button>
                   </div>
@@ -1179,7 +1185,7 @@ function ProcessSection() {
     badge: t.service_pages.skilled_workers.process.badge,
     title: t.service_pages.skilled_workers.process.title,
     subtitle: t.service_pages.skilled_workers.process.subtitle,
-    totalTime: t.service_pages.skilled_workers.process.total_time,
+    total_time: t.service_pages.skilled_workers.process.total_time,
     steps: [
       {
         id: 1,
@@ -1250,7 +1256,7 @@ function ProcessSection() {
 
           <Badge className="bg-emerald-100 text-emerald-800 border-0">
             <Clock className="w-4 h-4 mr-2" />
-            {content.totalTime}
+            {content.total_time}
           </Badge>
         </motion.div>
 
@@ -1426,6 +1432,7 @@ function ExpertiseAreasSection() {
     badge: t.service_pages.skilled_workers.expertise.badge,
     title: t.service_pages.skilled_workers.expertise.title,
     subtitle: t.service_pages.skilled_workers.expertise.subtitle,
+    roles_label: t.service_pages.skilled_workers.expertise.roles_label,
     areas: expertiseAreasContent.de.areas.map((area, idx) => ({
       ...area,
       title: idx === 0 ? t.service_pages.skilled_workers.expertise.health_title :
@@ -1498,7 +1505,7 @@ function ExpertiseAreasSection() {
                   {/* Roles */}
                   <div className="mb-6">
                     <p className="text-xs text-slate-400 uppercase tracking-wider mb-3 font-semibold">
-                      {language === "de" ? "Berufe" : "Nghề nghiệp"}
+                      {content.roles_label}
                     </p>
                     <div className="flex flex-wrap gap-2">
                       {area.roles.map((role, idx) => (

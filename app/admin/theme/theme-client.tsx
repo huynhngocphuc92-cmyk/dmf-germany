@@ -21,7 +21,7 @@ import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import type { SiteConfigGrouped, ThemeSection } from "@/types/theme";
+import type { SiteConfigItem, SiteConfigGrouped, ThemeSection } from "@/types/theme";
 import { sectionLabelsI18n, themeTranslations, ThemeLanguage } from "@/types/theme";
 import { AssetCard } from "@/components/admin/AssetCard";
 
@@ -35,8 +35,8 @@ interface ThemeManagerClientProps {
 
 export function ThemeManagerClient({ initialConfigs }: ThemeManagerClientProps) {
   const router = useRouter();
-  const { language } = useLanguage();
-  const lang = (language === "de" ? "de" : "vn") as ThemeLanguage;
+  const { lang: currentLang } = useLanguage();
+  const lang = (currentLang === "de" ? "de" : "vn") as ThemeLanguage;
   const t = themeTranslations[lang];
 
   const [configs, setConfigs] = useState<SiteConfigGrouped>(initialConfigs);

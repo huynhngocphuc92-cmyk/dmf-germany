@@ -32,6 +32,13 @@ const translations = {
     relatedPosts: "Verwandte Beiträge",
     readMore: "Weiterlesen",
   },
+  en: {
+    backToBlog: "Back to Blog",
+    readTime: "min read",
+    share: "Share",
+    relatedPosts: "Related Posts",
+    readMore: "Read More",
+  },
   vn: {
     backToBlog: "Quay lại Blog",
     readTime: "phút đọc",
@@ -65,8 +72,8 @@ function calculateReadTime(content: string): number {
 // ============================================
 
 export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) {
-  const { language } = useLanguage();
-  const lang = language as "de" | "vn";
+  const { lang: currentLang } = useLanguage();
+  const lang = currentLang as "de" | "vn";
   const t = translations[lang];
   const dateLocale = lang === "vn" ? vi : de;
 

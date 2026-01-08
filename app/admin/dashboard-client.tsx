@@ -80,8 +80,8 @@ export function AdminDashboardClient({
   isUsingMockData = false,
 }: AdminDashboardClientProps) {
   // Get language from context
-  const { language } = useLanguage();
-  const lang = language as AdminLanguage;
+  const { lang: currentLang } = useLanguage();
+  const lang = currentLang as AdminLanguage;
   const t = adminTranslations[lang];
 
   // Key metrics cards data

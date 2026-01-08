@@ -82,7 +82,7 @@ const navItems: NavItem[] = [
 
 export function AdminSidebar() {
   const pathname = usePathname();
-  const { language } = useLanguage();
+  const { lang } = useLanguage();
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const isActive = (href: string) => {
@@ -129,12 +129,12 @@ export function AdminSidebar() {
                       : "text-slate-400 hover:bg-slate-800 hover:text-white",
                     isCollapsed && "justify-center px-2"
                   )}
-                  title={isCollapsed ? (language === "de" ? item.labelDe : item.labelVn) : undefined}
+                  title={isCollapsed ? (lang === "de" ? item.labelDe : item.labelVn) : undefined}
                 >
                   <Icon className={cn("w-5 h-5 flex-shrink-0", active && "text-emerald-400")} />
                   {!isCollapsed && (
                     <span className="truncate">
-                      {language === "de" ? item.labelDe : item.labelVn}
+                      {lang === "de" ? item.labelDe : item.labelVn}
                     </span>
                   )}
                   {!isCollapsed && item.badge && (
@@ -165,7 +165,7 @@ export function AdminSidebar() {
           ) : (
             <>
               <ChevronLeft className="w-5 h-5 mr-2" />
-              <span>{language === "de" ? "Einklappen" : "Thu gọn"}</span>
+              <span>{lang === "de" ? "Einklappen" : "Thu gọn"}</span>
             </>
           )}
         </Button>
