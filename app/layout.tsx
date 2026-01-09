@@ -4,6 +4,7 @@ import { LanguageProvider } from '@/components/providers/LanguageProvider';
 import { HeaderWrapper } from '@/components/HeaderWrapper';
 import Footer from '@/components/Footer';
 import JsonLd from '@/components/seo/JsonLd';
+import { RecruitBot } from '@/components/bot/RecruitBot';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -23,6 +24,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </main>
             
             <Footer />
+            
+            {/* DMF Recruiting Assistant - Chat Bot Widget */}
+            <RecruitBot />
             
         </LanguageProvider>
       </body>
