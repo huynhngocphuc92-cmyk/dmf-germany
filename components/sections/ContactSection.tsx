@@ -157,10 +157,10 @@ export function ContactSection() {
                     className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-slate-900"
                     disabled={isSubmitting}
                   />
-                </div>
+              </div>
 
                 {/* Message Field */}
-                <div>
+              <div>
                   <label className="block text-sm font-semibold text-slate-700 mb-2">
                     {t.contact.label_message}
                   </label>
@@ -193,7 +193,7 @@ export function ContactSection() {
                     }`}>
                       {statusMessage}
                     </p>
-                  </div>
+              </div>
                 )}
 
                 {/* Submit Button */}
@@ -234,23 +234,23 @@ export function ContactSection() {
                 
                 <div className="flex items-start gap-3">
                   <Mail className="w-5 h-5 text-slate-500 mt-0.5 flex-shrink-0" />
-                  <div>
+              <div>
                     <p className="text-sm text-slate-500 mb-0.5">{t.contact.info_email}</p>
                     <p className="text-slate-900 font-semibold">contact@dmf.edu.vn</p>
-                  </div>
-                </div>
-                
+              </div>
+            </div>
+
                 <div className="flex items-start gap-3">
                   <Globe className="w-5 h-5 text-slate-500 mt-0.5 flex-shrink-0" />
                   <div>
                     <p className="text-sm text-slate-500 mb-0.5">Website</p>
                     <p className="text-slate-900 font-semibold">dmf.edu.vn</p>
                   </div>
-                </div>
+              </div>
                 
                 <div className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-slate-500 mt-0.5 flex-shrink-0" />
-                  <div>
+              <div>
                     <p className="text-sm text-slate-500 mb-0.5">{t.contact.info_address}</p>
                     <p className="text-slate-900 font-semibold">{t.contact.vn_address}</p>
                   </div>
@@ -263,7 +263,7 @@ export function ContactSection() {
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
                   <User className="w-6 h-6 text-white" />
-                </div>
+          </div>
                 <h3 className="text-lg font-bold text-slate-900">
                   {t.contact.de_office}
                 </h3>
@@ -288,15 +288,15 @@ export function ContactSection() {
                 
                 <div className="flex items-start gap-3">
                   <Mail className="w-5 h-5 text-slate-500 mt-0.5 flex-shrink-0" />
-                  <div>
+              <div>
                     <p className="text-sm text-slate-500 mb-0.5">{t.contact.info_email}</p>
                     <p className="text-slate-900 font-semibold">achim@betticher.de</p>
                   </div>
-                </div>
-                
+              </div>
+
                 <div className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-slate-500 mt-0.5 flex-shrink-0" />
-                  <div>
+              <div>
                     <p className="text-sm text-slate-500 mb-0.5">{t.contact.info_address}</p>
                     <p className="text-slate-900 font-semibold">{t.contact.de_location}</p>
                   </div>
@@ -310,7 +310,7 @@ export function ContactSection() {
               <p className="text-sm text-blue-100">
                 {t.contact.banner_text}
               </p>
-            </div>
+              </div>
 
           </div>
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import './globals.css';
 import { LanguageProvider } from '@/components/providers/LanguageProvider';
-import { Header } from '@/components/Header';
+import { HeaderWrapper } from '@/components/HeaderWrapper';
 import Footer from '@/components/Footer';
 import JsonLd from '@/components/seo/JsonLd';
 
@@ -15,7 +15,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {/* JsonLd nằm trong này mới có dữ liệu ngôn ngữ */}
             <JsonLd /> 
             
-            <Header />
+            {/* HeaderWrapper fetches logo from database (key: site_logo, header_logo, or logo_url) */}
+            <HeaderWrapper />
             
             <main className="min-h-screen">
               {children}
