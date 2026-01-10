@@ -1,10 +1,86 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import './globals.css';
 import { LanguageProvider } from '@/components/providers/LanguageProvider';
 import { HeaderWrapper } from '@/components/HeaderWrapper';
 import Footer from '@/components/Footer';
 import JsonLd from '@/components/seo/JsonLd';
 import { RecruitBot } from '@/components/bot/RecruitBot';
+import { CookieConsent } from '@/components/CookieConsent';
+
+// Base URL for absolute URLs in metadata
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://dmf-vietnam.de';
+
+export const metadata: Metadata = {
+  metadataBase: new URL(baseUrl),
+  title: {
+    default: 'DMF Manpower | Fachkräfte aus Vietnam für Deutschland',
+    template: '%s | DMF Manpower'
+  },
+  description: 'Spezialisierte Personalvermittlung für Pflege, Handwerk & Industrie. Full-Service von Rekrutierung bis Visum. Jetzt Fachkräfte finden!',
+  keywords: [
+    'Personalvermittlung Vietnam',
+    'Fachkräfte Deutschland',
+    'Pflegekräfte',
+    'Azubi Vietnam',
+    'Manpower Agency',
+    'Fachkräftevermittlung',
+    'Vietnam Recruiting',
+    'Deutschland Personal',
+    'Arbeitskräfte Vietnam',
+    'Krankenpflege Personal',
+    'Handwerk Personal',
+    'Industrie Personal'
+  ],
+  authors: [{ name: 'DMF Vietnam' }],
+  creator: 'DMF Vietnam',
+  publisher: 'DMF Vietnam',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'de_DE',
+    url: baseUrl,
+    siteName: 'DMF Manpower',
+    title: 'DMF Manpower | Fachkräfte aus Vietnam für Deutschland',
+    description: 'Spezialisierte Personalvermittlung für Pflege, Handwerk & Industrie. Full-Service von Rekrutierung bis Visum. Jetzt Fachkräfte finden!',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'DMF Manpower - Fachkräfte aus Vietnam für Deutschland',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'DMF Manpower | Fachkräfte aus Vietnam für Deutschland',
+    description: 'Spezialisierte Personalvermittlung für Pflege, Handwerk & Industrie. Full-Service von Rekrutierung bis Visum.',
+    images: ['/og-image.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: baseUrl,
+  },
+  verification: {
+    // Add Google Search Console verification if available
+    // google: 'verification_token_here',
+  },
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -24,6 +100,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </main>
             
             <Footer />
+            
+            {/* Cookie Consent Banner */}
+            <CookieConsent />
             
             {/* DMF Recruiting Assistant - Chat Bot Widget */}
             <RecruitBot />

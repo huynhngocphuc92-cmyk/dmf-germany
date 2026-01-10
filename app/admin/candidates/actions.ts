@@ -83,6 +83,7 @@ function sanitizeFormData(formData: CandidateFormData | Partial<CandidateFormDat
     profession: formData.profession?.trim() || null,
     notes: formData.notes?.trim() || null,
     avatar_url: formData.avatar_url?.trim() || null,
+    video_url: formData.video_url?.trim() || null, // YouTube video URL
   };
 }
 
@@ -140,6 +141,7 @@ export async function createCandidate(
         visa_status: sanitizedData.visa_status,
         is_featured: sanitizedData.is_featured,
         avatar_url: sanitizedData.avatar_url,
+        video_url: sanitizedData.video_url,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
       })
@@ -191,6 +193,7 @@ export async function updateCandidate(
     if (sanitizedData.visa_status !== undefined) updateData.visa_status = sanitizedData.visa_status;
     if (sanitizedData.is_featured !== undefined) updateData.is_featured = sanitizedData.is_featured;
     if (sanitizedData.avatar_url !== undefined) updateData.avatar_url = sanitizedData.avatar_url;
+    if (sanitizedData.video_url !== undefined) updateData.video_url = sanitizedData.video_url;
 
     const { data, error } = await supabase
       .from("candidates")

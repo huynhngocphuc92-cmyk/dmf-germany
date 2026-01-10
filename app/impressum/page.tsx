@@ -188,6 +188,49 @@ export default function ImpressumPage() {
             </div>
           </section>
 
+          {/* Register Entry */}
+          {impressum.sections.registerEntry && (
+            <section className="p-6 md:p-8 rounded-xl bg-card border border-border shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-lg bg-primary/10 flex-shrink-0">
+                  <FileText className="h-6 w-6 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h2 className="text-xl md:text-2xl font-semibold text-foreground mb-4">
+                    {impressum.sections.registerEntry.title}
+                  </h2>
+                  <div className="space-y-2">
+                    <p className="text-base text-muted-foreground">
+                      <span className="font-medium text-foreground">Registergericht:</span> {impressum.sections.registerEntry.court}
+                    </p>
+                    <p className="text-base text-muted-foreground">
+                      <span className="font-medium text-foreground">Registernummer:</span> {impressum.sections.registerEntry.number}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+          )}
+
+          {/* VAT ID */}
+          {impressum.sections.vatId && (
+            <section className="p-6 md:p-8 rounded-xl bg-card border border-border shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-lg bg-primary/10 flex-shrink-0">
+                  <FileText className="h-6 w-6 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h2 className="text-xl md:text-2xl font-semibold text-foreground mb-4">
+                    {impressum.sections.vatId.title}
+                  </h2>
+                  <p className="text-base text-muted-foreground">
+                    {impressum.sections.vatId.number}
+                  </p>
+                </div>
+              </div>
+            </section>
+          )}
+
           {/* Responsible for Content (§ 55 Abs. 2 RStV) */}
           <section className="p-6 md:p-8 rounded-xl bg-muted/50 border border-border shadow-sm">
             <div className="flex items-start gap-4">

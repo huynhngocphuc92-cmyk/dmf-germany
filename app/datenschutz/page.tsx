@@ -96,6 +96,28 @@ export default function DatenschutzPage() {
       ],
     },
     {
+      icon: Database,
+      title: datenschutz.sections.thirdParty?.title || "5. Drittanbieter-Tools und Datentransfer",
+      subsections: [
+        {
+          subtitle: datenschutz.sections.thirdParty?.hostingTitle || "Hosting (Vercel Inc.)",
+          text: datenschutz.sections.thirdParty?.hostingText || "Diese Website wird auf Servern von Vercel Inc. gehostet.",
+        },
+        {
+          subtitle: datenschutz.sections.thirdParty?.telegramTitle || "Telegram API",
+          text: datenschutz.sections.thirdParty?.telegramText || "Zur internen Benachrichtigung nutzen wir Telegram API.",
+        },
+        {
+          subtitle: datenschutz.sections.thirdParty?.mapsTitle || "Leaflet/OpenStreetMap",
+          text: datenschutz.sections.thirdParty?.mapsText || "Wir verwenden Leaflet/OpenStreetMap für Karten.",
+        },
+        {
+          subtitle: datenschutz.sections.thirdParty?.calendlyTitle || "Calendly",
+          text: datenschutz.sections.thirdParty?.calendlyText || "Für Terminvereinbarungen nutzen wir Calendly.",
+        },
+      ],
+    },
+    {
       icon: FileCheck,
       title: datenschutz.sections.rights.title,
       subsections: [

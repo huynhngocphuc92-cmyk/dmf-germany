@@ -26,6 +26,7 @@ export interface Candidate {
   phone?: string;
   date_of_birth?: string;
   avatar_url?: string;
+  video_url?: string; // YouTube video URL for candidate introduction video
   
   // Professional Info
   category: CandidateCategory;
@@ -52,6 +53,7 @@ export interface CandidateFormData {
   is_featured: boolean;
   notes?: string;
   avatar_url?: string;
+  video_url?: string; // YouTube video URL for candidate introduction video
 }
 
 // ============================================

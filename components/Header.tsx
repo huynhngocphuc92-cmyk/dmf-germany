@@ -12,6 +12,11 @@ import {
   Home,
   Users,
   Newspaper,
+  Award,
+  Building2,
+  Calculator,
+  MapPin,
+  Calendar,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/Logo";
@@ -35,6 +40,7 @@ interface HeaderProps {
 export const Header = ({ logoUrl, hotline, email }: HeaderProps = {}) => {
   const { lang, setLang, t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
+  const [isEmployerMenuOpen, setIsEmployerMenuOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const pathname = usePathname();
 
@@ -185,6 +191,85 @@ export const Header = ({ logoUrl, hotline, email }: HeaderProps = {}) => {
               {t.header.blog}
             </Link>
 
+            {/* Für Arbeitgeber - Dropdown */}
+            <div className="relative group">
+              <button
+                className={cn(
+                  "px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-1 relative",
+                  "hover:text-primary",
+                  "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full",
+                  (isActive("/referenzen") || isActive("/roi-rechner") || isActive("/fuer-arbeitgeber/zeitplan") || isActive("/fuer-arbeitgeber/kandidaten")) && "text-primary font-semibold after:w-full"
+                )}
+              >
+                <Building2 className="w-4 h-4 inline-block mr-2" />
+                {t.nav?.employers || "Für Arbeitgeber"}
+                <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
+              </button>
+
+              {/* Dropdown Content */}
+              <div className="absolute top-full left-1/2 -translate-x-1/2 w-72 pt-4 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 translate-y-2 group-hover:translate-y-0 z-50">
+                <div className="bg-white rounded-xl shadow-xl border border-gray-100 p-2">
+                  <div className="space-y-1">
+                    <Link 
+                      href="/referenzen" 
+                      className={cn(
+                        "flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors",
+                        isActive("/referenzen") && "bg-primary/10 text-primary font-medium"
+                      )}
+                      onClick={(e) => {
+                        // Allow link to work normally
+                      }}
+                    >
+                      <MapPin className="w-4 h-4 flex-shrink-0" />
+                      <div>
+                        <div className="font-semibold">{t.nav?.references || "Referenzen"}</div>
+                        <div className="text-xs text-gray-500">{t.nav?.references_desc || "Erfolgreiche Vermittlungen"}</div>
+                      </div>
+                    </Link>
+                    <Link 
+                      href="/roi-rechner" 
+                      className={cn(
+                        "flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors",
+                        isActive("/roi-rechner") && "bg-primary/10 text-primary font-medium"
+                      )}
+                    >
+                      <Calculator className="w-4 h-4 flex-shrink-0" />
+                      <div>
+                        <div className="font-semibold">{t.nav?.roi_calculator || "ROI-Rechner"}</div>
+                        <div className="text-xs text-gray-500">{t.nav?.roi_calculator_desc || "Kostenvergleich berechnen"}</div>
+                      </div>
+                    </Link>
+                    <Link 
+                      href="/fuer-arbeitgeber/zeitplan" 
+                      className={cn(
+                        "flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors",
+                        isActive("/fuer-arbeitgeber/zeitplan") && "bg-primary/10 text-primary font-medium"
+                      )}
+                    >
+                      <Calendar className="w-4 h-4 flex-shrink-0" />
+                      <div>
+                        <div className="font-semibold">{t.nav?.timeline || "Ablauf & Zeitplan"}</div>
+                        <div className="text-xs text-gray-500">{t.nav?.timeline_desc || "Prozessdauer simulieren"}</div>
+                      </div>
+                    </Link>
+                    <Link 
+                      href="/fuer-arbeitgeber/kandidaten" 
+                      className={cn(
+                        "flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors",
+                        isActive("/fuer-arbeitgeber/kandidaten") && "bg-primary/10 text-primary font-medium"
+                      )}
+                    >
+                      <Users className="w-4 h-4 flex-shrink-0" />
+                      <div>
+                        <div className="font-semibold">{t.nav?.candidates || "Kandidaten-Pool"}</div>
+                        <div className="text-xs text-gray-500">{t.nav?.candidates_desc || "Top-Talente entdecken"}</div>
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* About */}
             <Link
               href="/#about"
@@ -290,8 +375,101 @@ export const Header = ({ logoUrl, hotline, email }: HeaderProps = {}) => {
                 isActive("/blog") ? "text-primary font-semibold" : "text-foreground"
               )}
             >
-                      {t.header.blog}
+              {t.header.blog}
             </Link>
+
+            {/* Für Arbeitgeber - Mobile Dropdown */}
+            <div>
+              <button
+                onClick={() => setIsEmployerMenuOpen(!isEmployerMenuOpen)}
+                className={cn(
+                  "w-full text-left text-lg font-medium py-2 flex items-center justify-between",
+                  (isActive("/referenzen") || isActive("/roi-rechner") || isActive("/fuer-arbeitgeber/zeitplan") || isActive("/fuer-arbeitgeber/kandidaten")) 
+                    ? "text-primary font-semibold" 
+                    : "text-foreground"
+                )}
+              >
+                <span className="flex items-center gap-2">
+                  <Building2 className="w-5 h-5" />
+                  {t.nav?.employers || "Für Arbeitgeber"}
+                </span>
+                <ChevronDown 
+                  className={cn(
+                    "w-5 h-5 transition-transform",
+                    isEmployerMenuOpen && "rotate-180"
+                  )} 
+                />
+              </button>
+              {isEmployerMenuOpen && (
+                <div className="ml-6 mt-2 space-y-2 border-l-2 border-gray-200 pl-4">
+                  <Link
+                    href="/referenzen"
+                    onClick={() => {
+                      setIsOpen(false);
+                      setIsEmployerMenuOpen(false);
+                    }}
+                    className={cn(
+                      "block text-base py-2 flex items-center gap-2",
+                      isActive("/referenzen") 
+                        ? "text-primary font-semibold" 
+                        : "text-gray-700"
+                    )}
+                  >
+                    <MapPin className="w-4 h-4" />
+                    {t.nav?.references || "Referenzen"}
+                  </Link>
+                  <Link
+                    href="/roi-rechner"
+                    onClick={() => {
+                      setIsOpen(false);
+                      setIsEmployerMenuOpen(false);
+                    }}
+                    className={cn(
+                      "block text-base py-2 flex items-center gap-2",
+                      isActive("/roi-rechner") 
+                        ? "text-primary font-semibold" 
+                        : "text-gray-700"
+                    )}
+                  >
+                    <Calculator className="w-4 h-4" />
+                    {t.nav?.roi_calculator || "ROI-Rechner"}
+                  </Link>
+                  <Link
+                    href="/fuer-arbeitgeber/zeitplan"
+                    onClick={() => {
+                      setIsOpen(false);
+                      setIsEmployerMenuOpen(false);
+                    }}
+                    className={cn(
+                      "block text-base py-2 flex items-center gap-2",
+                      isActive("/fuer-arbeitgeber/zeitplan") 
+                        ? "text-primary font-semibold" 
+                        : "text-gray-700"
+                    )}
+                  >
+                    <Calendar className="w-4 h-4" />
+                    {t.nav?.timeline || "Ablauf & Zeitplan"}
+                  </Link>
+                  <Link
+                    href="/fuer-arbeitgeber/kandidaten"
+                    onClick={() => {
+                      setIsOpen(false);
+                      setIsEmployerMenuOpen(false);
+                    }}
+                    className={cn(
+                      "block text-base py-2 flex items-center gap-2",
+                      isActive("/fuer-arbeitgeber/kandidaten") 
+                        ? "text-primary font-semibold" 
+                        : "text-gray-700"
+                    )}
+                  >
+                    <Users className="w-4 h-4" />
+                    {t.nav?.candidates || "Kandidaten-Pool"}
+                  </Link>
+                </div>
+              )}
+            </div>
+
             <Link
               href="/#about"
               onClick={() => setIsOpen(false)}

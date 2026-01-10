@@ -23,7 +23,8 @@ interface Option {
   id: string;
   label: string;
   emoji: string;
-  category: Category;
+  category?: Category;
+  solutionType?: SolutionType; // For service type selection
 }
 
 interface Candidate {
@@ -37,8 +38,9 @@ interface Candidate {
   avatar?: string;
 }
 
-type Category = "pflege" | "it" | "hotel" | "handwerk";
+type Category = "pflege" | "it" | "hotel" | "handwerk" | "landwirtschaft" | "lager" | "service" | "reinigung";
 type TabType = "chat" | "merkliste";
+type SolutionType = "skilled" | "seasonal" | null;
 
 // ============================================
 // HELPER FUNCTIONS
@@ -190,13 +192,146 @@ const mockCandidates: Record<Category, Candidate[]> = {
       skills: ["Heizung", "Sanitär", "Installation"],
     },
   ],
+  // Seasonal Categories
+  landwirtschaft: [
+    {
+      id: "s1",
+      name: "Nguyen Van M",
+      category: "landwirtschaft",
+      jobTitle: "Erntehelfer",
+      experienceYears: 2,
+      germanLevel: "A2",
+      skills: ["Obstpflücken", "Gemüseernte", "Landwirtschaft"],
+    },
+    {
+      id: "s2",
+      name: "Tran Thi N",
+      category: "landwirtschaft",
+      jobTitle: "Landwirtschaftshelferin",
+      experienceYears: 3,
+      germanLevel: "B1",
+      skills: ["Traubenernte", "Weinberg", "Saisonarbeit"],
+    },
+    {
+      id: "s3",
+      name: "Le Van O",
+      category: "landwirtschaft",
+      jobTitle: "Feldarbeiter",
+      experienceYears: 4,
+      germanLevel: "A2",
+      skills: ["Spargelernte", "Ernte", "Landwirtschaft"],
+    },
+  ],
+  lager: [
+    {
+      id: "l1",
+      name: "Pham Van P",
+      category: "lager",
+      jobTitle: "Lagerarbeiter",
+      experienceYears: 2,
+      germanLevel: "A2",
+      skills: ["Kommissionierung", "Warenverladung", "Lager"],
+    },
+    {
+      id: "l2",
+      name: "Hoang Thi Q",
+      category: "lager",
+      jobTitle: "Logistikhelferin",
+      experienceYears: 3,
+      germanLevel: "B1",
+      skills: ["Wareneingang", "Packen", "Versand"],
+    },
+    {
+      id: "l3",
+      name: "Vu Van R",
+      category: "lager",
+      jobTitle: "Gabelstaplerfahrer",
+      experienceYears: 5,
+      germanLevel: "B1",
+      skills: ["Gabelstapler", "Lagerlogistik", "Transport"],
+    },
+  ],
+  service: [
+    {
+      id: "sv1",
+      name: "Nguyen Thi S",
+      category: "service",
+      jobTitle: "Servicekraft",
+      experienceYears: 1,
+      germanLevel: "A2",
+      skills: ["Bedienung", "Service", "Gastronomie"],
+    },
+    {
+      id: "sv2",
+      name: "Tran Van T",
+      category: "service",
+      jobTitle: "Küchenhilfe",
+      experienceYears: 2,
+      germanLevel: "A2",
+      skills: ["Küchenhilfe", "Vorbereitung", "Gastronomie"],
+    },
+    {
+      id: "sv3",
+      name: "Le Thi U",
+      category: "service",
+      jobTitle: "Kellnerin",
+      experienceYears: 3,
+      germanLevel: "B1",
+      skills: ["Bedienung", "Gästebetreuung", "Service"],
+    },
+  ],
+  reinigung: [
+    {
+      id: "r1",
+      name: "Pham Thi V",
+      category: "reinigung",
+      jobTitle: "Reinigungsfachkraft",
+      experienceYears: 2,
+      germanLevel: "A2",
+      skills: ["Büroreinigung", "Gebäudereinigung", "Reinigung"],
+    },
+    {
+      id: "r2",
+      name: "Nguyen Van W",
+      category: "reinigung",
+      jobTitle: "Housekeeping",
+      experienceYears: 3,
+      germanLevel: "A2",
+      skills: ["Hotelreinigung", "Zimmerreinigung", "Housekeeping"],
+    },
+    {
+      id: "r3",
+      name: "Tran Thi X",
+      category: "reinigung",
+      jobTitle: "Reinigungshelferin",
+      experienceYears: 1,
+      germanLevel: "A2",
+      skills: ["Reinigung", "Putzhilfe", "Hauswirtschaft"],
+    },
+  ],
 };
 
-const categoryOptions: Option[] = [
+// Service Type Options (First Level)
+const serviceTypeOptions: Option[] = [
+  { id: "skilled", label: "Fachkräfte", emoji: "👨‍🔧", solutionType: "skilled" },
+  { id: "azubi", label: "Azubi", emoji: "🎓", solutionType: "skilled" },
+  { id: "seasonal", label: "Saisonkräfte", emoji: "🚜", solutionType: "seasonal" },
+];
+
+// Skilled Categories (Second Level - for Fachkräfte/Azubi)
+const skilledCategoryOptions: Option[] = [
   { id: "pflege", label: "Pflege & Medizin", emoji: "🏥", category: "pflege" },
-  { id: "it", label: "IT & Software", emoji: "💻", category: "it" },
+  { id: "it", label: "IT & Technik", emoji: "💻", category: "it" },
+  { id: "handwerk", label: "Bau & Handwerk", emoji: "🏗️", category: "handwerk" },
   { id: "hotel", label: "Hotel & Gastro", emoji: "🏨", category: "hotel" },
-  { id: "handwerk", label: "Handwerk & Bau", emoji: "🏗️", category: "handwerk" },
+];
+
+// Seasonal Categories (Second Level - for Saisonkräfte)
+const seasonalCategoryOptions: Option[] = [
+  { id: "landwirtschaft", label: "Landwirtschaft & Ernte", emoji: "🌾", category: "landwirtschaft" },
+  { id: "lager", label: "Lager & Logistik", emoji: "📦", category: "lager" },
+  { id: "service", label: "Service & Küchenhilfe", emoji: "🍽️", category: "service" },
+  { id: "reinigung", label: "Reinigung & Housekeeping", emoji: "🧹", category: "reinigung" },
 ];
 
 // Calendly URL
@@ -250,6 +385,8 @@ export const RecruitBot = () => {
   const [emailInput, setEmailInput] = useState("");
   const [isSubmittingEmail, setIsSubmittingEmail] = useState(false);
   const [logoUrl, setLogoUrl] = useState<string | null>(null);
+  const [logoError, setLogoError] = useState(false);
+  const [selectedSolution, setSelectedSolution] = useState<SolutionType>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
@@ -261,6 +398,7 @@ export const RecruitBot = () => {
         if (response.ok) {
           const data = await response.json();
           setLogoUrl(data.logoUrl);
+          setLogoError(false); // Reset error when logo URL changes
         }
       } catch (error) {
         console.error("[RecruitBot] Error fetching logo:", error);
@@ -269,6 +407,11 @@ export const RecruitBot = () => {
     };
     fetchLogo();
   }, []);
+
+  // Reset logo error when logoUrl changes
+  useEffect(() => {
+    setLogoError(false);
+  }, [logoUrl]);
 
   // Auto scroll to bottom when new messages arrive
   useEffect(() => {
@@ -290,11 +433,12 @@ export const RecruitBot = () => {
       const welcomeMessage: Message = {
         id: "welcome",
         type: "bot",
-        content: "Guten Tag! Suchen Sie qualifizierte Fachkräfte aus Vietnam? Für welchen Bereich?",
+        content: "Guten Tag! Welche Art von Personal suchen Sie?",
         timestamp: new Date(),
-        options: categoryOptions,
+        options: serviceTypeOptions,
       };
       setMessages([welcomeMessage]);
+      setSelectedSolution(null); // Reset solution type
     }
   }, [isOpen, activeTab]);
 
@@ -308,55 +452,87 @@ export const RecruitBot = () => {
     };
     setMessages((prev) => [...prev, userMessage]);
 
-    // Send Telegram notification
-    sendTelegramNotification(
-      `💼 <b>Neue Anfrage</b>\n\nBereich: ${option.emoji} ${option.label}`
-    );
-
     setIsTyping(true);
     await new Promise((resolve) => setTimeout(resolve, 1500));
     setIsTyping(false);
 
-    const candidates = mockCandidates[option.category];
-    const count = candidates.length;
+    // Check if this is a service type selection (first level)
+    if (option.solutionType) {
+      setSelectedSolution(option.solutionType);
+      
+      // Show category options based on solution type
+      const categoryOptions = option.solutionType === "seasonal" 
+        ? seasonalCategoryOptions 
+        : skilledCategoryOptions;
 
-    const botResponse: Message = {
-      id: `bot-${Date.now()}`,
-      type: "bot",
-      content: `Ich habe ${count} passende Kandidaten gefunden. Hier sind die Top-Profile:`,
-      timestamp: new Date(),
-    };
-    setMessages((prev) => [...prev, botResponse]);
+      const botResponse: Message = {
+        id: `bot-categories-${Date.now()}`,
+        type: "bot",
+        content: option.solutionType === "seasonal"
+          ? "Gut! Für welche Branche suchen Sie Saisonkräfte?"
+          : "Gut! Für welchen Bereich suchen Sie Fachkräfte?",
+        timestamp: new Date(),
+        options: categoryOptions,
+      };
+      setMessages((prev) => [...prev, botResponse]);
 
-    const topCandidates = candidates.slice(0, 3);
-    setTimeout(() => {
-      topCandidates.forEach((candidate, index) => {
-        setTimeout(() => {
-          const candidateMessage: Message = {
-            id: `candidate-${candidate.id}-${Date.now()}-${index}`,
-            type: "bot",
-            content: "candidate",
-            timestamp: new Date(),
-            candidate: candidate,
-          };
-          setMessages((prev) => [...prev, candidateMessage]);
-        }, index * 300);
-      });
+      // Send Telegram notification
+      sendTelegramNotification(
+        `💼 <b>Neue Anfrage</b>\n\nLösungstyp: ${option.emoji} ${option.label}`
+      );
+    } 
+    // This is a category selection (second level)
+    else if (option.category && selectedSolution) {
+      // Send Telegram notification
+      sendTelegramNotification(
+        `💼 <b>Neue Anfrage</b>\n\nBereich: ${option.emoji} ${option.label}\nTyp: ${selectedSolution === "seasonal" ? "Saisonkräfte" : "Fachkräfte"}`
+      );
 
-      // Add booking option after candidates
+      setIsTyping(true);
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      setIsTyping(false);
+
+      const candidates = mockCandidates[option.category] || [];
+      const count = candidates.length;
+
+      const botResponse: Message = {
+        id: `bot-${Date.now()}`,
+        type: "bot",
+        content: `Ich habe ${count} passende Kandidaten gefunden. Hier sind die Top-Profile:`,
+        timestamp: new Date(),
+      };
+      setMessages((prev) => [...prev, botResponse]);
+
+      const topCandidates = candidates.slice(0, 3);
       setTimeout(() => {
-        const bookingMessage: Message = {
-          id: `booking-${Date.now()}`,
-          type: "bot",
-          content: "Möchten Sie einen persönlichen Beratungstermin vereinbaren?",
-          timestamp: new Date(),
-          options: [
-            { id: "book", label: "Termin buchen", emoji: "📅", category: option.category },
-          ],
-        };
-        setMessages((prev) => [...prev, bookingMessage]);
-      }, topCandidates.length * 300 + 500);
-    }, 500);
+        topCandidates.forEach((candidate, index) => {
+          setTimeout(() => {
+            const candidateMessage: Message = {
+              id: `candidate-${candidate.id}-${Date.now()}-${index}`,
+              type: "bot",
+              content: "candidate",
+              timestamp: new Date(),
+              candidate: candidate,
+            };
+            setMessages((prev) => [...prev, candidateMessage]);
+          }, index * 300);
+        });
+
+        // Add booking option after candidates
+        setTimeout(() => {
+          const bookingMessage: Message = {
+            id: `booking-${Date.now()}`,
+            type: "bot",
+            content: "Möchten Sie einen persönlichen Beratungstermin vereinbaren?",
+            timestamp: new Date(),
+            options: [
+              { id: "book", label: "Termin buchen", emoji: "📅" },
+            ],
+          };
+          setMessages((prev) => [...prev, bookingMessage]);
+        }, topCandidates.length * 300 + 500);
+      }, 500);
+    }
   };
 
   // Handle booking option
@@ -551,6 +727,7 @@ export const RecruitBot = () => {
       setMessages([]);
       setShowEmailForm(false);
       setEmailFormCandidate(null);
+      setSelectedSolution(null); // Reset solution type
     }, 300);
   };
 
@@ -720,8 +897,22 @@ export const RecruitBot = () => {
                       )}
                     >
                       {message.type === "bot" && (
-                        <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mr-2">
-                          <Bot className="w-4 h-4 text-primary" />
+                        <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center flex-shrink-0 mr-2 shadow-sm border border-gray-200 overflow-hidden">
+                          {logoError ? (
+                            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                              <Bot className="w-4 h-4 text-primary" />
+                            </div>
+                          ) : (
+                            <Image
+                              src={logoUrl || "/logo.png"}
+                              alt="Bot"
+                              width={24}
+                              height={24}
+                              className="rounded-full object-contain"
+                              unoptimized={logoUrl?.startsWith("http") || false}
+                              onError={() => setLogoError(true)}
+                            />
+                          )}
                         </div>
                       )}
 
@@ -797,8 +988,22 @@ export const RecruitBot = () => {
                       animate={{ opacity: 1, y: 0 }}
                       className="flex justify-start"
                     >
-                      <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mr-2">
-                        <Bot className="w-4 h-4 text-primary" />
+                      <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center flex-shrink-0 mr-2 shadow-sm border border-gray-200 overflow-hidden">
+                        {logoError ? (
+                          <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                            <Bot className="w-4 h-4 text-primary" />
+                          </div>
+                        ) : (
+                          <Image
+                            src={logoUrl || "/logo.png"}
+                            alt="Bot"
+                            width={24}
+                            height={24}
+                            className="rounded-full object-contain"
+                            unoptimized={logoUrl?.startsWith("http") || false}
+                            onError={() => setLogoError(true)}
+                          />
+                        )}
                       </div>
                       <div className="bg-white rounded-2xl px-4 py-3 shadow-sm border border-gray-200">
                         <div className="flex gap-1.5">

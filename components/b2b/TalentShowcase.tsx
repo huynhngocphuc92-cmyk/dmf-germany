@@ -25,7 +25,9 @@ import {
   Calendar,
   Award,
   X,
+  AlertCircle,
 } from "lucide-react";
+import { getEmbedUrl } from "@/lib/utils/youtube";
 
 // ============================================
 // TYPES
@@ -42,7 +44,8 @@ interface Candidate {
   qualifications: string[];
   availability: string;
   experience: string;
-  videoAvailable: boolean;
+  videoAvailable: boolean; // Deprecated: Use videoUrl instead. Kept for backward compatibility
+  videoUrl?: string; // YouTube URL for candidate introduction video
 }
 
 interface IndustryConfig {
@@ -120,6 +123,7 @@ const mockCandidates: Candidate[] = [
     availability: "03/2024",
     experience: "Altenpflegeheim & Krankenhaus",
     videoAvailable: true,
+    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", // Sample YouTube video
   },
   {
     id: "2",
@@ -134,6 +138,7 @@ const mockCandidates: Candidate[] = [
     availability: "02/2024",
     experience: "5-Sterne-Hotel & Fine Dining",
     videoAvailable: true,
+    videoUrl: "https://youtu.be/dQw4w9WgXcQ", // Sample YouTube short link
   },
   {
     id: "3",
@@ -162,6 +167,7 @@ const mockCandidates: Candidate[] = [
     availability: "05/2024",
     experience: "Automobilindustrie",
     videoAvailable: true,
+    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", // Sample YouTube video
   },
 ];
 
@@ -289,8 +295,8 @@ function CandidateCard({
 
         {/* Card Footer - Actions */}
         <CardFooter className="pt-4 pb-5 bg-muted/20 border-t flex flex-col sm:flex-row gap-3">
-          {/* Video Button (Secondary) */}
-          {candidate.videoAvailable && (
+          {/* Video Button (Secondary) - Show if videoUrl exists */}
+          {candidate.videoUrl && getEmbedUrl(candidate.videoUrl) && (
             <Button
               variant="outline"
               className="flex-1 gap-2 group-hover:border-primary/50 transition-colors"
@@ -304,7 +310,7 @@ function CandidateCard({
           {/* Request Profile Button (Primary) */}
           <Button
             className={`gap-2 bg-primary hover:bg-primary/90 shadow-md ${
-              candidate.videoAvailable ? "flex-1" : "w-full"
+              candidate.videoUrl && getEmbedUrl(candidate.videoUrl) ? "flex-1" : "w-full"
             }`}
             onClick={() => onRequestProfile(candidate)}
           >
@@ -358,38 +364,43 @@ function VideoModal({ candidate, isOpen, onClose }: VideoModalProps) {
           </div>
         </DialogHeader>
 
-        {/* Video Player Placeholder */}
-        <div className="relative aspect-video bg-gradient-to-br from-slate-900 to-slate-800">
-          {/* Play Button Overlay */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="p-6 rounded-full bg-white/10 backdrop-blur-sm mb-4 cursor-pointer hover:bg-white/20 transition-colors"
-            >
-              <PlayCircle className="h-16 w-16 text-white" />
-            </motion.div>
-            <p className="text-white/80 text-lg">{t.talentShowcase.video_desc}</p>
-            <p className="text-white/50 text-sm mt-1">{t.talentShowcase.video_duration}</p>
-          </div>
+        {/* Video Player */}
+        {candidate.videoUrl ? (
+          <div className="relative aspect-video bg-black rounded-lg overflow-hidden">
+            {(() => {
+              const embedUrl = getEmbedUrl(candidate.videoUrl);
+              
+              if (!embedUrl) {
+                // Invalid YouTube URL - show error
+                return (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-red-900/20 rounded-lg">
+                    <AlertCircle className="h-12 w-12 text-red-500 mb-2" />
+                    <p className="text-red-500 text-sm font-medium">Ungültiger YouTube-Link</p>
+                    <p className="text-red-400 text-xs mt-1">Bitte überprüfen Sie die URL</p>
+                  </div>
+                );
+              }
 
-          {/* Progress Bar */}
-          <div className="absolute bottom-0 left-0 right-0 p-4">
-            <div className="h-1 bg-white/20 rounded-full overflow-hidden">
-              <motion.div
-                initial={{ width: "0%" }}
-                animate={{ width: "45%" }}
-                transition={{ duration: 3, ease: "easeOut" }}
-                className="h-full bg-primary rounded-full"
-              />
-            </div>
-            <div className="flex justify-between mt-2 text-xs text-white/60">
-              <span>0:54</span>
-              <span>2:00</span>
+              return (
+                <iframe
+                  src={embedUrl}
+                  className="w-full h-full rounded-lg"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  title={`Video giới thiệu - ${candidate.code}`}
+                />
+              );
+            })()}
+          </div>
+        ) : (
+          // Fallback: No video available
+          <div className="relative aspect-video bg-gradient-to-br from-slate-900 to-slate-800 rounded-lg">
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
+              <PlayCircle className="h-16 w-16 text-white/30 mb-4" />
+              <p className="text-white/60 text-sm">Kein Video verfügbar</p>
             </div>
           </div>
-        </div>
+        )}
 
         {/* Candidate Quick Info */}
         <div className="p-6 bg-muted/30">

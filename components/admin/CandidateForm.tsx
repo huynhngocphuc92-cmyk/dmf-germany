@@ -84,6 +84,7 @@ export function CandidateForm({
     is_featured: candidate?.is_featured ?? false,
     notes: candidate?.notes || "",
     avatar_url: candidate?.avatar_url || "",
+    video_url: candidate?.video_url || "",
   });
 
   // UI state
@@ -107,6 +108,7 @@ export function CandidateForm({
       is_featured: candidate?.is_featured ?? false,
       notes: candidate?.notes || "",
       avatar_url: candidate?.avatar_url || "",
+      video_url: candidate?.video_url || "",
     });
     setError(null);
     setSuccess(false);
@@ -465,6 +467,21 @@ export function CandidateForm({
                 </SelectContent>
               </Select>
             </div>
+          </div>
+
+          {/* Video URL */}
+          <div className="space-y-2">
+            <Label htmlFor="video_url">Video-Link (YouTube)</Label>
+            <Input
+              id="video_url"
+              type="url"
+              value={formData.video_url}
+              onChange={(e) => handleChange("video_url", e.target.value)}
+              placeholder="https://youtu.be/... hoặc https://www.youtube.com/watch?v=..."
+            />
+            <p className="text-xs text-slate-500">
+              YouTube-Link für das Einführungsvideo des Kandidaten (optional)
+            </p>
           </div>
 
           {/* Notes */}

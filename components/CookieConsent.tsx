@@ -29,8 +29,8 @@ const content: Record<"de" | "en" | "vn", CookieConsentContent> = {
   de: {
     title: "Cookie-Einstellungen",
     description:
-      "Wir verwenden Cookies, um Ihre Erfahrung auf unserer Website zu verbessern. Für Analyse-Cookies (Google Analytics) benötigen wir Ihre ausdrückliche Einwilligung gemäß DSGVO.",
-    acceptAll: "Alle akzeptieren",
+      "Wir verwenden Cookies und Drittanbieter-Tools (Maps, Calendly), um die Website zu verbessern. Durch Klicken auf 'Akzeptieren' stimmen Sie der Verwendung zu.",
+    acceptAll: "Akzeptieren",
     declineOptional: "Nur notwendige",
     settings: "Einstellungen",
     privacyLink: "Datenschutzerklärung",
@@ -112,80 +112,94 @@ export function CookieConsent() {
 
   const t = content[lang];
 
+  // Only show on client side (useEffect)
   useEffect(() => {
-    // Delay showing banner slightly for better UX
-    const timer = setTimeout(() => {
-      if (!hasConsented) {
+    // Check localStorage only on client
+    const stored = localStorage.getItem(COOKIE_CONSENT_KEY);
+    if (!stored) {
+      // Delay showing banner slightly for better UX
+      const timer = setTimeout(() => {
         setIsVisible(true);
-      }
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, [hasConsented]);
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   const handleAcceptAll = useCallback(() => {
+    localStorage.setItem(COOKIE_CONSENT_KEY, COOKIE_CONSENT_VALUE.ACCEPTED);
     setConsent(COOKIE_CONSENT_VALUE.ACCEPTED);
     setIsVisible(false);
+    // Dispatch custom event for GA to listen
+    window.dispatchEvent(new CustomEvent("cookieConsentChange", { 
+      detail: COOKIE_CONSENT_VALUE.ACCEPTED 
+    }));
   }, [setConsent]);
 
   const handleDecline = useCallback(() => {
+    localStorage.setItem(COOKIE_CONSENT_KEY, COOKIE_CONSENT_VALUE.DECLINED);
     setConsent(COOKIE_CONSENT_VALUE.DECLINED);
     setIsVisible(false);
+    // Dispatch custom event for GA to listen
+    window.dispatchEvent(new CustomEvent("cookieConsentChange", { 
+      detail: COOKIE_CONSENT_VALUE.DECLINED 
+    }));
   }, [setConsent]);
 
   const handleSaveSettings = useCallback(() => {
-    if (analyticsEnabled) {
-      setConsent(COOKIE_CONSENT_VALUE.ACCEPTED);
-    } else {
-      setConsent(COOKIE_CONSENT_VALUE.DECLINED);
-    }
+    const value = analyticsEnabled 
+      ? COOKIE_CONSENT_VALUE.ACCEPTED 
+      : COOKIE_CONSENT_VALUE.DECLINED;
+    localStorage.setItem(COOKIE_CONSENT_KEY, value);
+    setConsent(value);
     setIsVisible(false);
     setShowSettings(false);
+    window.dispatchEvent(new CustomEvent("cookieConsentChange", { detail: value }));
   }, [analyticsEnabled, setConsent]);
 
-  if (!isVisible) return null;
+  // Don't render if not visible or already consented
+  if (!isVisible || hasConsented) return null;
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 p-4 md:p-6">
       <div className="mx-auto max-w-4xl animate-in slide-in-from-bottom-4 duration-500">
-        <div className="rounded-2xl bg-background border border-border shadow-2xl overflow-hidden">
+        <div className="rounded-xl bg-slate-900 border border-slate-700 shadow-2xl overflow-hidden">
           {/* Header */}
-          <div className="flex items-center justify-between p-4 md:p-6 bg-primary/5 border-b border-border">
+          <div className="flex items-center justify-between p-4 md:p-6 bg-slate-800 border-b border-slate-700">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-xl bg-primary/10">
-                <Cookie className="h-5 w-5 text-primary" />
+              <div className="p-2 rounded-lg bg-primary/20">
+                <Cookie className="h-5 w-5 text-white" />
               </div>
-              <h3 className="text-lg font-semibold text-foreground">
+              <h3 className="text-lg font-semibold text-white">
                 {t.title}
               </h3>
             </div>
             <button
               onClick={handleDecline}
-              className="p-2 hover:bg-muted rounded-lg transition-colors"
-              aria-label="Close"
+              className="p-2 hover:bg-slate-700 rounded-lg transition-colors"
+              aria-label="Schließen"
             >
-              <X className="h-5 w-5 text-muted-foreground" />
+              <X className="h-5 w-5 text-slate-400" />
             </button>
           </div>
 
           {/* Content */}
-          <div className="p-4 md:p-6">
-            <p className="text-sm md:text-base text-muted-foreground mb-4 leading-relaxed">
+          <div className="p-4 md:p-6 bg-slate-900">
+            <p className="text-sm md:text-base text-slate-300 mb-4 leading-relaxed">
               {t.description}
             </p>
 
             {/* Settings Panel */}
             {showSettings && (
-              <div className="mb-4 p-4 rounded-xl bg-muted/50 border border-border space-y-3 animate-in fade-in duration-300">
+              <div className="mb-4 p-4 rounded-lg bg-slate-800 border border-slate-700 space-y-3 animate-in fade-in duration-300">
                 {/* Necessary Cookies - Always enabled */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
-                    <span className="text-sm font-medium text-foreground">
+                    <CheckCircle className="h-4 w-4 text-green-400" />
+                    <span className="text-sm font-medium text-white">
                       {t.necessary}
                     </span>
                   </div>
-                  <div className="px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs font-medium">
+                  <div className="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-xs font-medium border border-green-500/30">
                     ✓
                   </div>
                 </div>
@@ -193,17 +207,17 @@ export function CookieConsent() {
                 {/* Analytics Cookies - Toggleable */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <Settings className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm font-medium text-foreground">
+                    <Settings className="h-4 w-4 text-slate-400" />
+                    <span className="text-sm font-medium text-white">
                       {t.analytics}
                     </span>
                   </div>
                   <button
                     onClick={() => setAnalyticsEnabled(!analyticsEnabled)}
                     className={`relative w-12 h-6 rounded-full transition-colors ${
-                      analyticsEnabled ? "bg-primary" : "bg-muted-foreground/30"
+                      analyticsEnabled ? "bg-primary" : "bg-slate-600"
                     }`}
-                    aria-label="Toggle analytics"
+                    aria-label="Analytics umschalten"
                   >
                     <span
                       className={`absolute top-1 left-1 w-4 h-4 rounded-full bg-white shadow transition-transform ${
@@ -218,7 +232,7 @@ export function CookieConsent() {
             {/* Privacy Link */}
             <a
               href="/datenschutz"
-              className="text-sm text-primary hover:underline inline-block mb-4"
+              className="text-sm text-primary-400 hover:text-primary-300 hover:underline inline-block mb-4"
             >
               {t.privacyLink} →
             </a>
@@ -227,35 +241,37 @@ export function CookieConsent() {
             <div className="flex flex-col sm:flex-row gap-3">
               <Button
                 onClick={handleAcceptAll}
-                className="flex-1 bg-primary hover:bg-primary/90"
+                className="flex-1 bg-primary hover:bg-primary/90 text-white font-semibold shadow-lg"
               >
                 {t.acceptAll}
-              </Button>
-              <Button
-                onClick={handleDecline}
-                variant="outline"
-                className="flex-1"
-              >
-                {t.declineOptional}
               </Button>
               {!showSettings && (
                 <Button
                   onClick={() => setShowSettings(true)}
-                  variant="ghost"
-                  className="flex-1 gap-2"
+                  variant="outline"
+                  className="flex-1 border-slate-600 text-white hover:bg-slate-800"
                 >
-                  <Settings className="h-4 w-4" />
+                  <Settings className="h-4 w-4 mr-2" />
                   {t.settings}
                 </Button>
               )}
               {showSettings && (
-                <Button
-                  onClick={handleSaveSettings}
-                  variant="secondary"
-                  className="flex-1"
-                >
-                  {lang === "de" ? "Speichern" : lang === "en" ? "Save" : "Lưu"}
-                </Button>
+                <>
+                  <Button
+                    onClick={handleDecline}
+                    variant="outline"
+                    className="flex-1 border-slate-600 text-white hover:bg-slate-800"
+                  >
+                    {t.declineOptional}
+                  </Button>
+                  <Button
+                    onClick={handleSaveSettings}
+                    variant="secondary"
+                    className="flex-1 bg-slate-700 hover:bg-slate-600 text-white"
+                  >
+                    {lang === "de" ? "Speichern" : lang === "en" ? "Save" : "Lưu"}
+                  </Button>
+                </>
               )}
             </div>
           </div>
