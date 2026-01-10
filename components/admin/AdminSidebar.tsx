@@ -16,8 +16,9 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { getNewInquiriesCount } from "@/app/admin/requests/actions";
 
 // ============================================
 // SIDEBAR NAVIGATION ITEMS
@@ -31,7 +32,8 @@ interface NavItem {
   badge?: number;
 }
 
-const navItems: NavItem[] = [
+// Note: badge count for inquiries is fetched dynamically
+const getNavItems = (newInquiriesCount: number | null): NavItem[] => [
   {
     labelDe: "Dashboard",
     labelVn: "Tổng quan",
@@ -53,8 +55,9 @@ const navItems: NavItem[] = [
   {
     labelDe: "Anfragen",
     labelVn: "Yêu cầu",
-    href: "/admin/inquiries",
+    href: "/admin/requests",
     icon: MessageSquare,
+    badge: newInquiriesCount !== null && newInquiriesCount > 0 ? newInquiriesCount : undefined,
   },
   {
     labelDe: "Statistiken",
@@ -84,6 +87,25 @@ export function AdminSidebar() {
   const pathname = usePathname();
   const { lang } = useLanguage();
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [newInquiriesCount, setNewInquiriesCount] = useState<number | null>(null);
+
+  // Fetch new inquiries count on mount and when pathname changes
+  useEffect(() => {
+    const fetchCount = async () => {
+      try {
+        const count = await getNewInquiriesCount();
+        setNewInquiriesCount(count);
+      } catch (error) {
+        console.error("Error fetching new inquiries count:", error);
+        setNewInquiriesCount(0);
+      }
+    };
+
+    fetchCount();
+    // Refresh count every 30 seconds
+    const interval = setInterval(fetchCount, 30000);
+    return () => clearInterval(interval);
+  }, [pathname]);
 
   const isActive = (href: string) => {
     if (href === "/admin") {
@@ -115,7 +137,7 @@ export function AdminSidebar() {
       {/* Navigation */}
       <nav className="flex-1 overflow-y-auto py-4 px-3">
         <ul className="space-y-1">
-          {navItems.map((item) => {
+          {getNavItems(newInquiriesCount).map((item) => {
             const Icon = item.icon;
             const active = isActive(item.href);
             return (

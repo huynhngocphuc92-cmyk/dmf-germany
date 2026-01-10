@@ -4,11 +4,10 @@ import React, { useState } from 'react';
 import { useLanguage } from '@/components/providers/LanguageProvider';
 import { Mail, Phone, MapPin, Send, Building2, User, Globe, CheckCircle2, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { sendEmail } from '@/lib/actions';
-
 interface FormData {
   name: string;
   email: string;
+  phone: string;
   company: string;
   message: string;
 }
@@ -20,6 +19,7 @@ export function ContactSection() {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
+    phone: '',
     company: '',
     message: ''
   });
@@ -52,29 +52,39 @@ export function ContactSection() {
     setIsSubmitting(true);
 
     try {
-      // Create FormData object
-      const formDataToSend = new FormData();
-      formDataToSend.append('name', formData.name);
-      formDataToSend.append('email', formData.email);
-      formDataToSend.append('company', formData.company);
-      formDataToSend.append('message', formData.message);
+      // Call API route
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || '',
+          company: formData.company || '',
+          message: formData.message,
+          type: 'contact',
+        }),
+      });
 
-      // Call server action
-      const result = await sendEmail(formDataToSend);
+      const result = await response.json();
 
       if (result.success) {
         setStatus('success');
-        setStatusMessage(result.message || t.contact.success_message);
+        // Custom success message as requested
+        setStatusMessage("Cảm ơn! Yêu cầu của bạn đã được lưu.");
         // Reset form
         setFormData({
           name: '',
           email: '',
+          phone: '',
           company: '',
           message: ''
         });
       } else {
         setStatus('error');
-        setStatusMessage(result.message || t.contact.error_message);
+        setStatusMessage(result.error || t.contact.error_message);
       }
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -139,6 +149,22 @@ export function ContactSection() {
                     placeholder={t.contact.placeholder_email}
                     className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-slate-900"
                     required
+                    disabled={isSubmitting}
+                  />
+                </div>
+
+                {/* Phone Field */}
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2">
+                    Telefon / Số điện thoại
+                  </label>
+                  <input 
+                    type="tel" 
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="+84 90 123 4567"
+                    className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-slate-900"
                     disabled={isSubmitting}
                   />
                 </div>

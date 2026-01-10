@@ -86,7 +86,7 @@ const advantagesContent = {
         title: "Hohe Arbeitsmoral",
         description:
           "Diszipliniert, respektvoll und lernbereit – kulturell verankerte Werte, besonders wertvoll in der Pflege und im Handwerk.",
-        highlight: "Tôn sư trọng đạo",
+        highlight: "Respekt vor dem Lehrmeister",
         highlightDesc: "Kulturelle Stärke",
       },
       {

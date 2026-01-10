@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sendEmail } from "@/lib/actions";
+import { createClient } from "@/utils/supabase/server";
 
 /**
  * Inquiry API Route
  * Handles candidate profile inquiry requests
- * Sends notifications to Telegram and Email
+ * - Saves to Supabase inquiries table
+ * - Sends notifications to Telegram and Email
  */
 export async function POST(request: NextRequest) {
   try {
@@ -36,7 +38,44 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Send to Telegram
+    let supabaseSaved = false;
+    let telegramSent = false;
+    let emailSent = false;
+
+    // 1. Save to Supabase
+    try {
+      const supabase = await createClient();
+      
+      const { data, error } = await supabase
+        .from("inquiries")
+        .insert([
+          {
+            client_name: name,
+            email: email,
+            phone: phone || null,
+            company: company || null,
+            message: message || null,
+            type: "profile",
+            status: "new",
+            candidate_code: candidateCode,
+            candidate_id: candidateId || null,
+          },
+        ])
+        .select()
+        .single();
+
+      if (error) {
+        console.error("[Inquiry API] Supabase error:", error);
+      } else {
+        console.log("[Inquiry API] ✓ Saved to Supabase:", data?.id);
+        supabaseSaved = true;
+      }
+    } catch (supabaseError) {
+      console.error("[Inquiry API] Supabase unexpected error:", supabaseError);
+      // Continue even if Supabase fails
+    }
+
+    // 2. Send to Telegram (non-blocking)
     try {
       const telegramResponse = await fetch(`${request.nextUrl.origin}/api/telegram`, {
         method: "POST",
@@ -54,13 +93,16 @@ export async function POST(request: NextRequest) {
 
       if (!telegramResponse.ok) {
         console.warn("[Inquiry API] Telegram notification failed");
+      } else {
+        telegramSent = true;
+        console.log("[Inquiry API] ✓ Telegram sent");
       }
     } catch (telegramError) {
       console.error("[Inquiry API] Telegram error:", telegramError);
       // Non-blocking: Continue even if Telegram fails
     }
 
-    // Send to Email (via server action)
+    // 3. Send to Email (non-blocking)
     try {
       const emailFormData = new FormData();
       emailFormData.append("name", name);
@@ -76,19 +118,38 @@ export async function POST(request: NextRequest) {
 
       const emailResult = await sendEmail(emailFormData);
       
-      if (!emailResult.success) {
+      if (emailResult.success) {
+        emailSent = true;
+        console.log("[Inquiry API] ✓ Email sent");
+      } else {
         console.warn("[Inquiry API] Email sending failed:", emailResult.message);
-        // Don't fail the whole request if email fails
       }
     } catch (emailError) {
       console.error("[Inquiry API] Email error:", emailError);
       // Non-blocking: Continue even if email fails
     }
 
-    return NextResponse.json(
-      { success: true, message: "Anfrage wurde erfolgreich gesendet." },
-      { status: 200 }
-    );
+    // Return success if at least one operation succeeded
+    if (supabaseSaved || telegramSent || emailSent) {
+      return NextResponse.json(
+        { 
+          success: true, 
+          message: "Anfrage wurde erfolgreich gesendet.",
+          saved: supabaseSaved,
+          telegramSent: telegramSent,
+          emailSent: emailSent,
+        },
+        { status: 200 }
+      );
+    } else {
+      return NextResponse.json(
+        { 
+          success: false, 
+          error: "Anfrage konnte nicht gespeichert werden. Bitte versuchen Sie es später erneut." 
+        },
+        { status: 500 }
+      );
+    }
   } catch (error) {
     console.error("[Inquiry API] Unexpected error:", error);
     return NextResponse.json(
