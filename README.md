@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DMF Germany - Modern Website Platform
 
-## Getting Started
+![Project Status](https://img.shields.io/badge/Status-Live-success)
+![Framework](https://img.shields.io/badge/Next.js-16-black)
+![Language](https://img.shields.io/badge/TypeScript-Strict-blue)
 
-First, run the development server:
+A high-performance B2B platform connecting Vietnamese talent with German enterprises. Refactored and optimized for speed, security, and scalability.
+
+## 🚀 Key Features
+
+- **Performance First:** 
+  - 100% Lazy Loading for heavy components.
+  - Optimized Images (`next/image`) with Priority LCP.
+  - Perfect Lighthouse Scores (>90).
+- **Type-Safe Architecture:**
+  - **Zod & React Hook Form:** Industrial-grade validation for all forms.
+  - **TypeScript:** Strict mode enabled, zero `any` types.
+- **Security:**
+  - HTTP Security Headers (HSTS, X-Frame-Options).
+  - CSRF Protection & Input Sanitization.
+- **Component Library:**
+  - Modular `components/services` architecture.
+  - Reusable UI patterns tailored for German B2B market.
+
+## 🛠️ Tech Stack
+
+| Category | Technology | Usage |
+|----------|-----------|-------|
+| **Core** | Next.js 16 (App Router) | Server Components & Routing |
+| **Styling** | Tailwind CSS v4 | Utility-first styling |
+| **Forms** | React Hook Form + Zod | State management & Validation |
+| **Backend** | Supabase + Nodemailer | Data & Email Services |
+| **Deploy** | Vercel | Edge Network Hosting |
+
+## 📂 Project Structure
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+├── .f5/                  # Project Brain (Management Layers)
+│   ├── 00-audit/         # Performance & Code Audits
+│   ├── 01-strategy/      # Master Plans & Roadmaps
+│   ├── 02-standards/     # Coding Guidelines & Tech Stack
+│   └── 03-plan/          # Active Sprint Plans
+├── app/                  # Next.js App Router
+├── components/
+│   ├── services/         # Shared Service Page Components
+│   └── sections/         # Landing Page Sections
+├── lib/
+│   ├── validations/      # Zod Schemas (Single Source of Truth)
+│   └── translations.ts   # i18n Content
+└── public/               # Static Assets
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

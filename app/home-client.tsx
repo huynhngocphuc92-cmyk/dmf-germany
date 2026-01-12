@@ -9,7 +9,7 @@ import { ServicesSection } from "@/components/sections/ServicesSection";
 import { ProcessRoadmap } from "@/components/b2b/ProcessRoadmap";
 import { SalarySimulator } from "@/components/tools/SalarySimulator";
 import { TalentShowcase } from "@/components/b2b/TalentShowcase";
-import { ContactSection } from "@/components/sections/ContactSection";
+import ContactSection from "@/components/sections/ContactSection";
 import { PartnerSection } from "@/components/sections/PartnerSection";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import type { Candidate } from "@/app/admin/candidates/types";

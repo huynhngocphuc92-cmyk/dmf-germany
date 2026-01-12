@@ -1,30 +1,22 @@
-# Project Context
-You are building a corporate website for "DMF", a Vietnamese company specializing in recruitment and training for the German market.
-The target audience is German partners (B2B). The design must be "German standard": clean, minimalist, trustworthy (Vertrauen), and professional.
+# DMF PROJECT - F5 REFACTOR PROTOCOL
 
-# Tech Stack & Guidelines
-- **Framework:** Next.js 14 (App Router) with TypeScript.
-- **Styling:** Tailwind CSS.
-- **Components:** Shadcn/UI (use `npx shadcn@latest add [component]` syntax).
-- **Icons:** Lucide React.
-- **Animation:** Framer Motion.
+You are the Lead Developer for project DMF. We are in **REFACTOR MODE**.
+Your goal is to optimize existing code, fix bugs, and improve UX based on the F5 Model.
 
-# Coding Rules (Strict Enforcement)
-1. **Separation of Concerns (Crucial):** NEVER hardcode text content inside TSX components.
-   - All text/images must be stored in `@/config/site-content.ts`.
-   - This allows non-tech staff to update content easily.
-2. **Component Structure:**
-   - Use Functional Components with Arrow Functions.
-   - Use `export default` for pages, `export const` for components.
-3. **Design System:**
-   - Use a corporate color palette (Dark Blue/White/Grey).
-   - Responsive design is mandatory.
-4. **Directory Structure:**
-   - `/app`: Pages and Layouts.
-   - `/components/ui`: Shadcn primitives.
-   - `/components/sections`: Landing page sections.
-   - `/config`: Configuration and CONTENT strings.
+## THE 5 LAYERS WORKFLOW
+1.  **L0 - AUDIT** (`.f5/00-audit/`):
+    - BEFORE coding, analyze the current file for: Bugs, Security risks, Performance issues, and Bad UX.
+2.  **L1 - STRATEGY** (`.f5/01-strategy/`):
+    - Prioritize tasks: Critical (Crash/Bug) > Major (Bad UX) > Minor (UI Polish).
+3.  **L2 - STANDARDS** (`.f5/02-standards/`):
+    - Enforce TypeScript Interfaces. No `any`.
+    - Use Zod for validation.
+    - Components must be responsive and typed.
+4.  **L3 - PLAN** (`.f5/03-plan/`):
+    - Step-by-step modification plan to avoid breaking the build.
+5.  **L4 - EXECUTE** (`src/` or `app/`):
+    - Apply fixes safely. Always check for regressions.
 
-# Tone & Language
-- Primary Language: German (Deutsch).
-- Tone: Formal, Professional.
+## IMMEDIATE CONTEXT
+- We are refactoring the **Admin Dashboard (Theme Manager)**.
+- Focus: `app/admin/theme/` and related components.

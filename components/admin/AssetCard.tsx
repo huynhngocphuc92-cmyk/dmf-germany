@@ -1,471 +1,364 @@
-"use client";
+'use client';
 
-import React, { useState, useTransition, useRef, useEffect } from "react";
-import Image from "next/image";
-import {
-  ImagePlus,
-  Loader2,
-  Trash2,
-  Upload,
-  Palette,
-  Type,
-  ToggleLeft,
-  ToggleRight,
-} from "lucide-react";
-import { toast } from "sonner";
-
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Skeleton } from "@/components/ui/skeleton";
-
-import type { SiteConfigItem, ThemeLanguage } from "@/types/theme";
-import { themeTranslations } from "@/types/theme";
-import {
-  updateSiteConfig,
-  uploadThemeImage,
-  deleteThemeImage,
-} from "@/actions/theme-actions";
-
-// ============================================
-// ASSET CARD COMPONENT
-// ============================================
+import { useState, useRef } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { assetUpdateSchema, type AssetUpdateData } from '@/lib/validations/schemas';
+import { Save, X, Loader2, Edit2, Trash2, Upload, XCircle, ImageIcon } from 'lucide-react';
+import { toast } from 'sonner';
+import Image from 'next/image';
+import { uploadThemeImage, updateSiteConfig } from '@/actions/theme-actions';
 
 interface AssetCardProps {
-  item: SiteConfigItem;
-  lang: ThemeLanguage;
-  onUpdate: (newValue: string | null) => void;
+  item: { key: string; value: string; asset_type: string; id?: string };
+  onUpdate: (key: string, value: string) => Promise<void>;
+  onDelete?: (key: string) => Promise<void>;
 }
 
-export const AssetCard = ({ item, lang, onUpdate }: AssetCardProps) => {
-  const t = themeTranslations[lang];
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const [isPending, startTransition] = useTransition();
+// Helper function to validate if a string is a valid image URL/path
+const isValidImagePath = (value: string | null | undefined): boolean => {
+  if (!value || typeof value !== 'string') return false;
+  // Check if it starts with "/" (relative path) or "http://" or "https://" (absolute URL)
+  return value.startsWith('/') || value.startsWith('http://') || value.startsWith('https://');
+};
+
+export default function AssetCard({ item, onUpdate, onDelete }: AssetCardProps) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState(false);
-  
-  // Get current value based on asset type
-  // Note: site_assets table uses 'value' column for all asset types
-  const getCurrentValue = (): string | null => {
-    return item.value ?? null;
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const assetType = item.asset_type?.toUpperCase() || 'TEXT';
+  const isImageType = assetType === 'IMAGE';
+
+  // Initialize Form
+  const { 
+    register, 
+    handleSubmit, 
+    reset, 
+    formState: { isSubmitting, errors } 
+  } = useForm<AssetUpdateData>({
+    resolver: zodResolver(assetUpdateSchema),
+    defaultValues: {
+      key: item.key,
+      value: item.value || '', // Ensure value is never null for input
+      asset_type: item.asset_type as any
+    }
+  });
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      // Validate file type
+      const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+      if (!allowedTypes.includes(file.type)) {
+        toast.error('Invalid file type. Only JPG, PNG, WebP, GIF allowed.');
+        return;
+      }
+      
+      // Validate file size (5MB max)
+      if (file.size > 5 * 1024 * 1024) {
+        toast.error('File too large. Maximum 5MB allowed.');
+        return;
+      }
+
+      setSelectedFile(file);
+      
+      // Create preview URL
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewUrl(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
-  const [currentValue, setCurrentValue] = useState<string | null>(getCurrentValue());
-  const [previewUrl, setPreviewUrl] = useState<string | null>(
-    item.asset_type === "image" ? getCurrentValue() : null
-  );
-
-  // Handle image upload
-  const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    // Validate file
-    if (file.size > 5 * 1024 * 1024) {
-      toast.error(lang === "de" ? "Datei zu groß" : "File quá lớn", {
-        description: t.maxSize,
-      });
-      return;
+  const clearFileSelection = () => {
+    setSelectedFile(null);
+    setPreviewUrl(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
     }
+  };
 
-    setIsUploading(true);
-
-    // Create preview
-    const objectUrl = URL.createObjectURL(file);
-    setPreviewUrl(objectUrl);
-
+  const onSubmit = async (data: AssetUpdateData) => {
     try {
-      // Upload to storage
-      const formData = new FormData();
-      formData.append("file", file);
+      setIsUploading(true);
+      let finalValue = data.value || "";
 
-      const { url, error: uploadError } = await uploadThemeImage(formData);
-
-      if (uploadError || !url) {
-        throw new Error(uploadError || "Upload failed");
-      }
-
-      // Delete old image if exists
-      const oldUrl = getCurrentValue();
-      if (oldUrl) {
-        await deleteThemeImage(oldUrl);
-      }
-
-      // Update database
-      startTransition(async () => {
-        const { error } = await updateSiteConfig(item.key, url, "image");
-        if (error) {
-          toast.error(t.uploadError, { description: error });
-          setPreviewUrl(oldUrl);
-          setCurrentValue(oldUrl);
-        } else {
-          toast.success(t.uploadSuccess);
-          setPreviewUrl(url);
-          setCurrentValue(url);
-          onUpdate(url);
+      // If it's an image type and a file was selected, upload it first
+      if (isImageType && selectedFile) {
+        const formData = new FormData();
+        formData.append('file', selectedFile);
+        
+        const uploadResult = await uploadThemeImage(formData);
+        
+        if (uploadResult.error || !uploadResult.url) {
+          toast.error(uploadResult.error || 'Failed to upload image');
+          setIsUploading(false);
+          return;
         }
-      });
-    } catch (err) {
-      console.error("Upload error:", err);
-      toast.error(t.uploadError);
-      setPreviewUrl(getCurrentValue());
+        
+        finalValue = uploadResult.url;
+        toast.success('Image uploaded successfully');
+      }
+
+      // Update the config in database
+      const updateResult = await updateSiteConfig(
+        data.key,
+        finalValue || null,
+        item.asset_type as any
+      );
+
+      if (updateResult.error) {
+        toast.error(updateResult.error);
+        setIsUploading(false);
+        return;
+      }
+
+      // Update local state
+      await onUpdate(data.key, finalValue);
+      
+      toast.success('Inhalt erfolgreich aktualisiert');
+      setIsEditing(false);
+      setSelectedFile(null);
+      setPreviewUrl(null);
+    } catch (error) {
+      toast.error('Fehler beim Speichern');
+      console.error(error);
     } finally {
       setIsUploading(false);
-      if (fileInputRef.current) {
-        fileInputRef.current.value = "";
-      }
     }
   };
 
-  // Handle remove image
-  const handleRemoveImage = async () => {
-    const oldUrl = getCurrentValue();
-    if (!oldUrl) return;
-
-    startTransition(async () => {
-      try {
-        // Delete from storage
-        await deleteThemeImage(oldUrl);
-
-        // Update database
-        const { error } = await updateSiteConfig(item.key, null, "image");
-        if (error) {
-          toast.error(t.uploadError, { description: error });
-        } else {
-          toast.success(lang === "de" ? "Bild entfernt" : "Đã xóa ảnh");
-          setPreviewUrl(null);
-          setCurrentValue(null);
-          onUpdate(null);
-        }
-      } catch (err) {
-        console.error("Remove error:", err);
-        toast.error(t.uploadError);
-      }
-    });
+  const cancelEdit = () => {
+    reset();
+    setIsEditing(false);
+    setSelectedFile(null);
+    setPreviewUrl(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
   };
 
-  // Handle value update (for color, text, boolean)
-  const handleValueUpdate = async (newValue: string | null) => {
-    const oldValue = getCurrentValue();
-    setCurrentValue(newValue);
+  if (!isEditing) {
+    return (
+      <div className="group bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md transition-all overflow-hidden">
+        <div className="p-4">
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-xs font-mono font-bold text-slate-700 bg-slate-50 px-2 py-1 rounded">
+              {item.key}
+            </span>
+            <span className="px-2 py-0.5 text-[10px] uppercase font-semibold tracking-wider bg-slate-100 text-slate-500 rounded border border-slate-200">
+              {assetType}
+            </span>
+          </div>
 
-    startTransition(async () => {
-      const { error } = await updateSiteConfig(item.key, newValue, item.asset_type);
-      if (error) {
-        toast.error(t.uploadError, { description: error });
-        setCurrentValue(oldValue);
-      } else {
-        toast.success(t.uploadSuccess);
-        onUpdate(newValue);
-      }
-    });
-  };
-
-  // Handle boolean toggle
-  const handleBooleanToggle = (checked: boolean) => {
-    handleValueUpdate(checked ? "true" : "false");
-  };
-
-  const isLoading = isPending || isUploading;
-  const currentVal = getCurrentValue();
-  const [isInitialLoading, setIsInitialLoading] = useState(true);
-
-  // Simulate initial loading for better UX
-  useEffect(() => {
-    const timer = setTimeout(() => setIsInitialLoading(false), 300);
-    return () => clearTimeout(timer);
-  }, []);
-
-  // Render based on asset type
-  const renderAssetInput = () => {
-    switch (item.asset_type) {
-      case "image":
-        return (
-          <div className="space-y-4">
-            {/* Image Preview */}
-            <div className="relative aspect-video bg-slate-100 rounded-lg overflow-hidden border-2 border-dashed border-slate-200">
-              {previewUrl ? (
-                <>
-                  <Image
-                    src={previewUrl}
-                    alt={item.label}
-                    fill
-                    className="object-cover"
-                    unoptimized
-                  />
-                  {/* Overlay on hover */}
-                  <div className="absolute inset-0 bg-black/50 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
-                    <Button
-                      size="sm"
-                      variant="secondary"
-                      onClick={() => fileInputRef.current?.click()}
-                      disabled={isLoading}
-                    >
-                      <Upload className="w-4 h-4 mr-1" />
-                      {t.changeImage}
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="destructive"
-                      onClick={handleRemoveImage}
-                      disabled={isLoading}
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </Button>
-                  </div>
-                </>
+          {/* CONDITIONAL RENDERER */}
+          {assetType === 'IMAGE' ? (
+            // CASE 1: IMAGE PREVIEW
+            <div className="relative w-full max-w-full h-32 bg-slate-50 border-2 border-dashed border-slate-300 rounded-lg overflow-hidden flex items-center justify-center hover:border-blue-500 transition-colors">
+              {isValidImagePath(item.value) ? (
+                <Image 
+                  src={item.value} 
+                  alt={item.key}
+                  fill
+                  className="object-contain p-2"
+                  sizes="(max-width: 768px) 100vw, 200px"
+                />
               ) : (
-                <div
-                  className="absolute inset-0 flex flex-col items-center justify-center cursor-pointer hover:bg-slate-50 transition-colors"
-                  onClick={() => fileInputRef.current?.click()}
-                >
-                  {isLoading ? (
-                    <Loader2 className="w-8 h-8 text-slate-400 animate-spin" />
-                  ) : (
-                    <>
-                      <ImagePlus className="w-10 h-10 text-slate-300 mb-2" />
-                      <p className="text-sm text-slate-400">{t.noImage}</p>
-                      <p className="text-xs text-slate-400 mt-1">{t.dragDrop}</p>
-                    </>
+                <div className="flex flex-col items-center gap-2 text-slate-400">
+                  <ImageIcon size={24} className="opacity-50" />
+                  <span className="text-xs">
+                    {item.value ? 'Invalid image path' : 'No image set'}
+                  </span>
+                  {item.value && (
+                    <span className="text-[10px] font-mono text-slate-300 truncate max-w-full px-2">
+                      {item.value}
+                    </span>
                   )}
                 </div>
               )}
-
-              {/* Loading overlay */}
-              {isLoading && previewUrl && (
-                <div className="absolute inset-0 bg-white/80 flex items-center justify-center">
-                  <div className="flex items-center gap-2 text-slate-600">
-                    <Loader2 className="w-5 h-5 animate-spin" />
-                    <span className="text-sm">{t.uploading}</span>
-                  </div>
-                </div>
-              )}
             </div>
-
-            {/* Hidden file input */}
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="image/jpeg,image/png,image/webp,image/gif"
-              className="hidden"
-              onChange={handleFileSelect}
-              disabled={isLoading}
-            />
-
-            {/* Upload button (shown when no image) */}
-            {!previewUrl && (
-              <Button
-                variant="outline"
-                className="w-full"
-                onClick={() => fileInputRef.current?.click()}
-                disabled={isLoading}
-              >
-                {isLoading ? (
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                ) : (
-                  <Upload className="w-4 h-4 mr-2" />
-                )}
-                {t.uploadImage}
-              </Button>
-            )}
-
-            {/* Meta info */}
-            <div className="flex items-center justify-between text-xs text-slate-400">
-              <span>{t.supportedFormats}</span>
-              <span>{t.maxSize}</span>
-            </div>
-          </div>
-        );
-
-      case "color":
-        return (
-          <div className="space-y-3">
-            <Label htmlFor={`color-${item.key}`}>{t.selectColor}</Label>
+          ) : assetType === 'COLOR' ? (
+            // CASE 2: COLOR PREVIEW
             <div className="flex items-center gap-3">
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button
-                    variant="outline"
-                    className="w-20 h-10 p-1"
-                    disabled={isLoading}
-                  >
-                    <div
-                      className="w-full h-full rounded border-2 border-slate-300"
-                      style={{
-                        backgroundColor: currentVal || "#000000",
-                      }}
-                    />
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-64">
-                  <div className="space-y-3">
-                    <Input
-                      type="color"
-                      value={currentVal || "#000000"}
-                      onChange={(e) => handleValueUpdate(e.target.value)}
-                      className="h-12 w-full cursor-pointer"
-                      disabled={isLoading}
-                    />
-                    <Input
-                      type="text"
-                      value={currentVal || ""}
-                      onChange={(e) => handleValueUpdate(e.target.value)}
-                      placeholder="#000000"
-                      pattern="^#[0-9A-Fa-f]{6}$"
-                      className="font-mono"
-                      disabled={isLoading}
-                    />
-                  </div>
-                </PopoverContent>
-              </Popover>
-              <Input
-                id={`color-${item.key}`}
-                type="text"
-                value={currentVal || ""}
-                onChange={(e) => handleValueUpdate(e.target.value)}
-                placeholder="#000000"
-                pattern="^#[0-9A-Fa-f]{6}$"
-                className="flex-1 font-mono"
-                disabled={isLoading}
+              <div 
+                className="w-12 h-12 rounded-lg border-2 border-slate-200 shadow-sm flex-shrink-0"
+                style={{ backgroundColor: item.value || '#ffffff' }} 
               />
-            </div>
-          </div>
-        );
-
-      case "text":
-        // Use textarea for longer descriptions, input for short text
-        const isLongText = item.key.includes("description") || item.key.includes("subtitle");
-        return (
-          <div className="space-y-3">
-            <Label htmlFor={`text-${item.key}`}>
-              {isLongText ? t.enterText : item.key.includes("url") ? t.enterUrl : t.enterText}
-            </Label>
-            {isLongText ? (
-              <Textarea
-                id={`text-${item.key}`}
-                value={currentVal || ""}
-                onChange={(e) => handleValueUpdate(e.target.value)}
-                placeholder={item.description || ""}
-                rows={4}
-                disabled={isLoading}
-              />
-            ) : (
-              <Input
-                id={`text-${item.key}`}
-                type="text"
-                value={currentVal || ""}
-                onChange={(e) => handleValueUpdate(e.target.value)}
-                placeholder={item.description || ""}
-                disabled={isLoading}
-              />
-            )}
-          </div>
-        );
-
-      case "boolean":
-        const isEnabled = currentVal === "true";
-        return (
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <Label htmlFor={`boolean-${item.key}`} className="cursor-pointer">
-                {isEnabled ? t.toggleOn : t.toggleOff}
-              </Label>
-              <div className="flex items-center gap-2">
-                {isEnabled ? (
-                  <ToggleRight className="w-6 h-6 text-primary" />
-                ) : (
-                  <ToggleLeft className="w-6 h-6 text-slate-400" />
-                )}
-                <Switch
-                  id={`boolean-${item.key}`}
-                  checked={isEnabled}
-                  onCheckedChange={handleBooleanToggle}
-                  disabled={isLoading}
-                />
+              <div className="flex flex-col min-w-0 flex-1">
+                <span className="font-mono text-slate-900 font-medium truncate">{item.value || 'No color'}</span>
+                <span className="text-xs text-slate-500">Hex Code</span>
               </div>
             </div>
-          </div>
-        );
-
-      default:
-        return null;
-    }
-  };
-
-  // Show skeleton during initial load
-  if (isInitialLoading) {
-    return (
-      <Card className="overflow-hidden">
-        <CardHeader className="pb-3">
-          <div className="flex items-start justify-between">
-            <div className="flex items-center gap-2 flex-1">
-              <Skeleton className="w-4 h-4" />
-              <div className="flex-1 space-y-2">
-                <Skeleton className="h-5 w-3/4" />
-                <Skeleton className="h-4 w-full" />
-              </div>
-            </div>
-            <Skeleton className="h-5 w-20" />
-          </div>
-        </CardHeader>
-        <CardContent>
-          <Skeleton className="h-48 w-full rounded-lg" />
-        </CardContent>
-      </Card>
+          ) : (
+            // CASE 3: DEFAULT TEXT
+            <p className="p-3 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-mono text-sm break-all min-h-[3rem]">
+              {item.value || <span className="text-slate-300 italic">Empty</span>}
+            </p>
+          )}
+        </div>
+        
+        <div className="px-4 pb-4 flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+          <button 
+            onClick={() => setIsEditing(true)} 
+            className="p-2 text-slate-500 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors"
+            title="Edit"
+          >
+            <Edit2 size={16} />
+          </button>
+          {onDelete && (
+            <button 
+              onClick={() => onDelete(item.key)}
+              className="p-2 text-slate-500 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors"
+              title="Delete"
+            >
+              <Trash2 size={16} />
+            </button>
+          )}
+        </div>
+      </div>
     );
   }
 
   return (
-    <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 border-slate-200">
-      <CardHeader className="pb-3 bg-gradient-to-r from-slate-50 to-white">
-        <div className="flex items-start justify-between">
-          <div className="flex items-center gap-2 flex-1">
-            {/* Icon based on asset type */}
-            {item.asset_type === "image" && (
-              <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center">
-                <ImagePlus className="w-4 h-4 text-blue-600" />
+    <form onSubmit={handleSubmit(onSubmit)} className="p-4 bg-blue-50/50 border border-blue-200 rounded-xl shadow-sm">
+      <div className="flex justify-between items-center mb-2">
+        <span className="text-xs font-mono font-bold text-blue-600">
+          Editing: {item.key}
+        </span>
+      </div>
+      
+      {/* Dynamic Input based on Asset Type */}
+      <div className="mb-3">
+        {isImageType ? (
+          // IMAGE TYPE: File Input with Preview
+          <div className="space-y-3">
+            {/* Current Image Preview */}
+            {item.value && !previewUrl && isValidImagePath(item.value) && (
+              <div className="relative w-full h-32 bg-slate-50 border-2 border-dashed border-slate-300 rounded-lg overflow-hidden">
+                <Image 
+                  src={item.value} 
+                  alt={item.key}
+                  fill
+                  className="object-contain p-2"
+                  sizes="(max-width: 768px) 100vw, 200px"
+                />
               </div>
             )}
-            {item.asset_type === "color" && (
-              <div className="w-8 h-8 rounded-lg bg-purple-100 flex items-center justify-center">
-                <Palette className="w-4 h-4 text-purple-600" />
+            {/* Fallback UI for invalid image path in edit mode */}
+            {item.value && !previewUrl && !isValidImagePath(item.value) && (
+              <div className="w-full h-32 bg-slate-50 border-2 border-dashed border-slate-300 rounded-lg flex flex-col items-center justify-center gap-2 text-slate-400">
+                <ImageIcon size={24} className="opacity-50" />
+                <span className="text-xs">Invalid image path</span>
+                <span className="text-[10px] font-mono text-slate-300 truncate max-w-full px-2">
+                  {item.value}
+                </span>
               </div>
             )}
-            {item.asset_type === "text" && (
-              <div className="w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center">
-                <Type className="w-4 h-4 text-green-600" />
+            
+            {/* New File Preview */}
+            {previewUrl && (
+              <div className="relative w-full h-32 bg-slate-50 border-2 border-dashed border-blue-300 rounded-lg overflow-hidden">
+                <Image 
+                  src={previewUrl} 
+                  alt="Preview"
+                  fill
+                  className="object-contain p-2"
+                  sizes="(max-width: 768px) 100vw, 200px"
+                />
+                <button
+                  type="button"
+                  onClick={clearFileSelection}
+                  className="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors"
+                >
+                  <XCircle size={16} />
+                </button>
               </div>
             )}
-            {item.asset_type === "boolean" && (
-              <div className="w-8 h-8 rounded-lg bg-orange-100 flex items-center justify-center">
-                <ToggleLeft className="w-4 h-4 text-orange-600" />
-              </div>
-            )}
-            <div className="flex-1">
-              <CardTitle className="text-base font-semibold text-slate-900">
-                {item.label}
-              </CardTitle>
-              {item.description && (
-                <CardDescription className="text-xs mt-1 text-slate-500">
-                  {item.description}
-                </CardDescription>
-              )}
+            
+            {/* File Input */}
+            <div className="relative">
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/jpeg,image/png,image/webp,image/gif"
+                onChange={handleFileChange}
+                className="hidden"
+                id={`file-input-${item.key}`}
+              />
+              <label
+                htmlFor={`file-input-${item.key}`}
+                className="flex items-center justify-center gap-2 w-full p-4 border-2 border-dashed border-slate-300 rounded-lg bg-slate-50 hover:bg-slate-100 hover:border-blue-400 cursor-pointer transition-colors"
+              >
+                <Upload size={18} className="text-slate-500" />
+                <span className="text-sm font-medium text-slate-700">
+                  {selectedFile ? selectedFile.name : 'Choose new image file'}
+                </span>
+              </label>
+              <p className="text-xs text-slate-400 mt-1 text-center">
+                JPG, PNG, WebP, GIF (Max 5MB)
+              </p>
             </div>
+            
+            {/* Hidden input for form validation (keeps existing value if no new file) */}
+            <input type="hidden" {...register('value')} value={item.value || ''} />
           </div>
-          <Badge variant="outline" className="text-xs font-mono bg-slate-50">
-            {item.key}
-          </Badge>
-        </div>
-      </CardHeader>
+        ) : assetType === 'COLOR' ? (
+          // COLOR TYPE: Color Input
+          <input 
+            type="color"
+            {...register('value')} 
+            className="w-full h-12 border-2 border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none cursor-pointer" 
+            placeholder="#000000"
+          />
+        ) : assetType === 'TEXT' || !item.asset_type ? (
+          // TEXT TYPE: Textarea
+          <textarea 
+            {...register('value')} 
+            className="w-full p-3 text-sm border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" 
+            rows={3} 
+            placeholder="Enter content..."
+          />
+        ) : (
+          // DEFAULT: Text Input
+          <input 
+            {...register('value')} 
+            className="w-full p-3 text-sm border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" 
+            placeholder="Enter value..."
+          />
+        )}
+        {errors.value && <p className="text-xs text-red-500 mt-1">{errors.value.message}</p>}
+      </div>
 
-      <CardContent className="pt-4">
-        {renderAssetInput()}
-      </CardContent>
-    </Card>
+      <div className="flex justify-end gap-2">
+        <button 
+          type="button" 
+          onClick={cancelEdit} 
+          disabled={isSubmitting}
+          className="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-200 rounded-lg transition-colors"
+        >
+          Cancel
+        </button>
+        <button 
+          type="submit" 
+          disabled={isSubmitting || isUploading}
+          className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors disabled:opacity-50"
+        >
+          {(isSubmitting || isUploading) ? (
+            <>
+              <Loader2 size={16} className="animate-spin" />
+              {isUploading ? 'Uploading...' : 'Saving...'}
+            </>
+          ) : (
+            <>
+              <Save size={16} />
+              Save Changes
+            </>
+          )}
+        </button>
+      </div>
+    </form>
   );
-};
-
+}

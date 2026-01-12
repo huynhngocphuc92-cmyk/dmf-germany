@@ -1,479 +1,91 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
-import { motion, useInView, useAnimation, AnimatePresence } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { checkQuality } from "@/utils/qa-layer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import dynamic from 'next/dynamic';
+
+// Lazy load FAQ Section (below the fold)
+const FAQSection = dynamic(() => import('@/components/shared/FAQSection'), {
+  loading: () => <div className="py-20 text-center text-slate-500">Laden...</div>,
+  ssr: true // Keep SSR for SEO content, but split the JS bundle
+});
+
 import {
   ArrowRight,
   CheckCircle2,
-  XCircle,
-  Shield,
   Clock,
-  FileCheck,
   Users,
-  Award,
-  Briefcase,
-  Sparkles,
-  TrendingUp,
-  Handshake,
-  Plane,
-  Scale,
-  Timer,
-  Euro,
-  Languages,
-  HeartHandshake,
-  ChevronRight,
-  Check,
-  X,
-  BadgeCheck,
   Zap,
-  Target,
-  Star,
-  GraduationCap,
-  Wrench,
-  ChefHat,
-  Stethoscope,
-  Eye,
   Calendar,
-  MapPin,
-  Cpu,
-  Cog,
-  Heart,
-  Building2,
+  Plane,
+  FileCheck,
+  Briefcase,
   Code,
-  Server,
+  Heart,
+  Stethoscope,
+  Building2,
+  Wrench,
+  Laptop,
+  Dumbbell,
+  MessageCircle,
+  Shield,
+  Timer,
+  TrendingUp,
+  Sparkles,
+  PhoneCall,
+  BadgeCheck,
+  CircleCheck,
+  Rocket,
 } from "lucide-react";
 
 // ============================================
-// CONTENT DATA
+// FALLBACK DATA (DỮ LIỆU DỰ PHÒNG)
 // ============================================
 
-const heroContent = {
-  de: {
-    badge: "§18a/b Fachkräfteeinwanderung",
-    headline: "Qualifizierte Fachkräfte.",
-    headlineAccent: "Anerkannte Abschlüsse. Sofort einsatzbereit.",
-    subheadline:
-      "Schluss mit dem Behörden-Dschungel. Wir vermitteln Ingenieure, IT-Profis und Pflegekräfte aus Vietnam – rechtssicher nach §18a/b AufenthG.",
+const DATA_DU_PHONG = {
+  hero: {
+    badge: "Fachkräfte Vermittlung",
+    headline: "Qualifizierte Fachkräfte",
+    headline_accent: "Anerkannte Abschlüsse. Sofort einsatzbereit.",
+    subheadline: "Schluss mit dem Behörden-Dschungel. Wir vermitteln Ingenieure, IT-Profis und Pflegekräfte aus Vietnam – rechtssicher nach §18a/b AufenthG.",
     cta1: "Verfügbare Experten prüfen",
     cta2: "Kostenlose Beratung",
-    floatingCard1: {
-      name: "Nguyen Van Minh",
-      role: "Pflegefachkraft",
-      badge: "Anabin H+ geprüft",
-    },
-    floatingCard2: {
-      title: "Anerkennung",
-      status: "ZAV-konform geprüft",
-    },
-    floatingCard3: {
-      title: "Sprachniveau",
-      level: "B2 + Fachsprache",
-    },
   },
-  vn: {
-    badge: "§18a/b Visa lao động tay nghề",
-    headline: "Nhân sự chất lượng.",
-    headlineAccent: "Bằng cấp công nhận. Sẵn sàng làm việc.",
-    subheadline:
-      "Chấm dứt mê cung thủ tục. Chúng tôi giới thiệu Kỹ sư, IT và Điều dưỡng từ Việt Nam – hợp pháp theo §18a/b AufenthG.",
-    cta1: "Xem chuyên gia sẵn sàng",
-    cta2: "Tư vấn miễn phí",
-    floatingCard1: {
-      name: "Nguyễn Văn Minh",
-      role: "Điều dưỡng viên",
-      badge: "Anabin H+ đã kiểm tra",
-    },
-    floatingCard2: {
-      title: "Công nhận bằng",
-      status: "Đạt chuẩn ZAV",
-    },
-    floatingCard3: {
-      title: "Trình độ ngôn ngữ",
-      level: "B2 + Ngôn ngữ chuyên ngành",
-    },
-  },
-};
-
-const comparisonContent = {
-  de: {
+  advantages: {
     badge: "Warum DMF?",
     title: "Der Unterschied ist messbar.",
-    subtitle: "Vergleichen Sie selbst: Eigenrekrutierung vs. DMF Vietnam",
-    oldWay: {
-      title: "Risiko & Bürokratie",
-      subtitle: "Eigenrekrutierung",
-      items: [
-        { text: "Unklare Anerkennung (9-12 Monate)", icon: Timer },
-        { text: "Hohes Ablehnungsrisiko bei Dokumenten", icon: XCircle },
-        { text: "Versteckte Kosten: Anwälte, Übersetzungen", icon: Euro },
-        { text: "Sprachbarriere – oft nur A2 Niveau", icon: Languages },
-        { text: "Keine Nachbetreuung", icon: HeartHandshake },
-      ],
-    },
-    newWay: {
-      title: "Sicherheit & Speed",
-      subtitle: "Mit DMF Vietnam",
-      badge: "Empfohlen",
-      items: [
-        { text: "Vorab-Check der Gleichwertigkeit (Sofort)", icon: Zap },
-        { text: "Visumsgarantie dank §81a Verfahren", icon: Shield },
-        { text: "Transparente Pauschalgebühr – keine Extras", icon: Euro },
-        { text: "B1/B2 Zertifikat + Fachsprache inklusive", icon: BadgeCheck },
-        { text: "12 Monate Integrationsbegleitung", icon: HeartHandshake },
-      ],
-    },
+    subtitle: "Vergleichen Sie selbst",
   },
-  vn: {
-    badge: "Tại sao chọn DMF?",
-    title: "Sự khác biệt có thể đo lường.",
-    subtitle: "Tự so sánh: Tự tuyển dụng vs. DMF Vietnam",
-    oldWay: {
-      title: "Rủi ro & Thủ tục",
-      subtitle: "Tự tuyển dụng",
-      items: [
-        { text: "Công nhận bằng không rõ ràng (9-12 tháng)", icon: Timer },
-        { text: "Rủi ro từ chối cao khi hồ sơ sai", icon: XCircle },
-        { text: "Chi phí ẩn: luật sư, dịch thuật", icon: Euro },
-        { text: "Rào cản ngôn ngữ – thường chỉ A2", icon: Languages },
-        { text: "Không có hỗ trợ sau đó", icon: HeartHandshake },
-      ],
-    },
-    newWay: {
-      title: "An toàn & Nhanh chóng",
-      subtitle: "Với DMF Vietnam",
-      badge: "Khuyên dùng",
-      items: [
-        { text: "Kiểm tra tương đương trước (Ngay lập tức)", icon: Zap },
-        { text: "Đảm bảo Visa nhờ quy trình §81a", icon: Shield },
-        { text: "Phí trọn gói minh bạch – không phụ phí", icon: Euro },
-        { text: "Chứng chỉ B1/B2 + Ngôn ngữ chuyên ngành", icon: BadgeCheck },
-        { text: "Đồng hành hội nhập 12 tháng", icon: HeartHandshake },
-      ],
-    },
-  },
-};
-
-const processContent = {
-  de: {
+  process: {
     badge: "Unser Prozess",
     title: "5 Schritte zum Erfolg",
     subtitle: "Transparent, planbar, zuverlässig",
-    totalTime: "Gesamtdauer: 6-9 Monate",
-    steps: [
-      {
-        id: 1,
-        icon: Users,
-        title: "Auswahl",
-        description: "Sorgfältige Prüfung von Qualifikationen und Deutschkenntnissen",
-        duration: "2-4 Wochen",
-      },
-      {
-        id: 2,
-        icon: FileCheck,
-        title: "Anerkennung",
-        description: "Begleitung beim Anerkennungsverfahren der Berufsqualifikation",
-        duration: "3-6 Monate",
-      },
-      {
-        id: 3,
-        icon: Handshake,
-        title: "Matching",
-        description: "Professionelles Matching und Vertragsverhandlung",
-        duration: "2-4 Wochen",
-      },
-      {
-        id: 4,
-        icon: Scale,
-        title: "Visum",
-        description: "Beschleunigtes Fachkräfteverfahren nach §81a AufenthG",
-        duration: "4-8 Wochen",
-      },
-      {
-        id: 5,
-        icon: Plane,
-        title: "Integration",
-        description: "Begleitung bei Ankunft und langfristige Nachbetreuung",
-        duration: "Fortlaufend",
-      },
-    ],
   },
-  vn: {
-    badge: "Quy trình",
-    title: "5 bước đến thành công",
-    subtitle: "Minh bạch, có kế hoạch, đáng tin cậy",
-    totalTime: "Tổng thời gian: 6-9 tháng",
-    steps: [
-      {
-        id: 1,
-        icon: Users,
-        title: "Tuyển chọn",
-        description: "Kiểm tra kỹ lưỡng bằng cấp và trình độ tiếng Đức",
-        duration: "2-4 tuần",
-      },
-      {
-        id: 2,
-        icon: FileCheck,
-        title: "Công nhận",
-        description: "Đồng hành thủ tục công nhận bằng cấp nghề",
-        duration: "3-6 tháng",
-      },
-      {
-        id: 3,
-        icon: Handshake,
-        title: "Kết nối",
-        description: "Kết nối chuyên nghiệp và đàm phán hợp đồng",
-        duration: "2-4 tuần",
-      },
-      {
-        id: 4,
-        icon: Scale,
-        title: "Visa",
-        description: "Thủ tục visa nhanh theo §81a Luật Cư trú",
-        duration: "4-8 tuần",
-      },
-      {
-        id: 5,
-        icon: Plane,
-        title: "Hội nhập",
-        description: "Đồng hành khi đến và hỗ trợ lâu dài",
-        duration: "Liên tục",
-      },
-    ],
+  expertise: {
+    badge: "Unsere Expertise",
+    title: "Spezialisierte Fachkräfte",
+    subtitle: "Fokussiert auf die Branchen mit höchstem Bedarf",
   },
-};
-
-const statsContent = {
-  de: {
-    stats: [
-      { value: "350+", label: "Vermittelte Fachkräfte", suffix: "" },
-      { value: "98", label: "Visum-Erfolgsquote", suffix: "%" },
-      { value: "<6", label: "Monate bis Arbeitsantritt", suffix: "" },
-      { value: "100", label: "Haftungsausschluss", suffix: "%" },
-    ],
+  stats: {
+    stat1_label: "Vermittelte Fachkräfte",
+    stat2_label: "Visum-Erfolgsquote",
+    stat3_label: "Monate bis Arbeitsantritt",
   },
-  vn: {
-    stats: [
-      { value: "350+", label: "Nhân sự đã giới thiệu", suffix: "" },
-      { value: "98", label: "Tỷ lệ đậu Visa", suffix: "%" },
-      { value: "<6", label: "Tháng đến khi làm việc", suffix: "" },
-      { value: "100", label: "Miễn trừ rủi ro", suffix: "%" },
-    ],
-  },
-};
-
-const ctaContent = {
-  de: {
+  cta: {
     title: "Bereit für qualifizierte Fachkräfte?",
     subtitle: "Vereinbaren Sie ein unverbindliches Beratungsgespräch.",
     cta1: "Jetzt Beratung anfragen",
     cta2: "Kandidatenprofile anfordern",
   },
-  vn: {
-    title: "Sẵn sàng cho nhân sự chất lượng?",
-    subtitle: "Đặt lịch tư vấn miễn phí ngay hôm nay.",
-    cta1: "Yêu cầu tư vấn ngay",
-    cta2: "Yêu cầu hồ sơ ứng viên",
-  },
 };
 
 // ============================================
-// EXPERTISE AREAS CONTENT
-// ============================================
-
-const expertiseAreasContent = {
-  de: {
-    badge: "Unsere Expertise",
-    title: "Spezialisierte Fachkräfte",
-    subtitle: "Fokussiert auf die Branchen mit höchstem Bedarf",
-    areas: [
-      {
-        icon: Heart,
-        title: "Gesundheitswesen",
-        highlight: "Pflegefachkräfte",
-        description: "Mit Anerkennungsbescheid, B2-Zertifikat und Berufserfahrung in Krankenhäusern",
-        roles: ["Pflegefachkräfte", "Altenpfleger", "Krankenpfleger", "OP-Pflege"],
-        badges: ["Anabin H+", "ZAV-konform", "B2 Goethe/Telc"],
-      },
-      {
-        icon: Cog,
-        title: "Ingenieurwesen",
-        highlight: "Technische Experten",
-        description: "Bachelor/Master von renommierten technischen Universitäten in Vietnam",
-        roles: ["Maschinenbau", "Elektrotechnik", "Bauingenieure", "Mechatronik"],
-        badges: ["Anabin H+", "Berufserfahrung", "CAD/CAM"],
-      },
-      {
-        icon: Code,
-        title: "IT & Software",
-        highlight: "Digital-Talente",
-        description: "Praxiserfahrene Entwickler mit starkem technischen Hintergrund",
-        roles: ["Fullstack Developer", "Systemadministratoren", "DevOps", "Data Engineers"],
-        badges: ["Portfolio geprüft", "Englisch + Deutsch", "Zertifiziert"],
-      },
-    ],
-  },
-  vn: {
-    badge: "Chuyên môn của chúng tôi",
-    title: "Nhân sự chuyên ngành",
-    subtitle: "Tập trung vào các ngành có nhu cầu cao nhất",
-    areas: [
-      {
-        icon: Heart,
-        title: "Y tế",
-        highlight: "Điều dưỡng viên",
-        description: "Với giấy công nhận, chứng chỉ B2 và kinh nghiệm tại bệnh viện",
-        roles: ["Điều dưỡng", "Chăm sóc người cao tuổi", "Y tá", "Hộ lý phẫu thuật"],
-        badges: ["Anabin H+", "Đạt chuẩn ZAV", "B2 Goethe/Telc"],
-      },
-      {
-        icon: Cog,
-        title: "Kỹ thuật",
-        highlight: "Chuyên gia kỹ thuật",
-        description: "Cử nhân/Thạc sĩ từ các trường đại học kỹ thuật uy tín",
-        roles: ["Cơ khí", "Điện", "Xây dựng", "Cơ điện tử"],
-        badges: ["Anabin H+", "Có kinh nghiệm", "CAD/CAM"],
-      },
-      {
-        icon: Code,
-        title: "IT & Phần mềm",
-        highlight: "Nhân tài số",
-        description: "Lập trình viên có kinh nghiệm thực tế và nền tảng kỹ thuật vững",
-        roles: ["Fullstack Developer", "System Admin", "DevOps", "Data Engineers"],
-        badges: ["Portfolio đã kiểm tra", "Tiếng Anh + Tiếng Đức", "Có chứng chỉ"],
-      },
-    ],
-  },
-};
-
-// ============================================
-// AVAILABLE EXPERTS CONTENT
-// ============================================
-
-interface ExpertProfile {
-  id: string;
-  nameDe: string;
-  nameVn: string;
-  roleDe: string;
-  roleVn: string;
-  avatar: string;
-  badges: {
-    textDe: string;
-    textVn: string;
-    type: "recognition" | "visa";
-  }[];
-  specs: {
-    educationDe: string;
-    educationVn: string;
-    experienceYears: number;
-    germanLevel: string;
-    certType: string;
-  };
-  highlightDe: string;
-  highlightVn: string;
-  icon: React.ElementType;
-}
-
-const expertsContent = {
-  de: {
-    badge: "Sofort verfügbar",
-    title: "Verfügbare Fachkräfte",
-    subtitle: "Anabin H+ geprüft • ZAV-konform • Berufserfahrung verifiziert",
-    viewProfile: "Profil ansehen",
-    bookInterview: "Interview buchen",
-    education: "Ausbildung",
-    experience: "Erfahrung",
-    german: "Deutsch",
-    years: "Jahre",
-  },
-  vn: {
-    badge: "Sẵn sàng ngay",
-    title: "Nhân sự sẵn sàng",
-    subtitle: "Anabin H+ đã kiểm tra • Đạt chuẩn ZAV • Kinh nghiệm đã xác minh",
-    viewProfile: "Xem hồ sơ",
-    bookInterview: "Đặt phỏng vấn",
-    education: "Trình độ",
-    experience: "Kinh nghiệm",
-    german: "Tiếng Đức",
-    years: "năm",
-  },
-};
-
-const expertProfiles: ExpertProfile[] = [
-  {
-    id: "ENG-01",
-    nameDe: "Tran Duc Anh",
-    nameVn: "Trần Đức Anh",
-    roleDe: "Maschinenbauingenieur",
-    roleVn: "Kỹ sư Cơ khí",
-    avatar: "TDA",
-    badges: [
-      { textDe: "Anabin H+ geprüft", textVn: "Anabin H+ đã kiểm tra", type: "recognition" },
-      { textDe: "ZAV-konform", textVn: "Đạt chuẩn ZAV", type: "visa" },
-    ],
-    specs: {
-      educationDe: "Bachelor - TU Hanoi",
-      educationVn: "Cử nhân - ĐH Bách Khoa HN",
-      experienceYears: 5,
-      germanLevel: "B2",
-      certType: "Telc",
-    },
-    highlightDe: "CAD/CAM, CNC-Programmierung, 5 Jahre Berufserfahrung",
-    highlightVn: "CAD/CAM, Lập trình CNC, 5 năm kinh nghiệm",
-    icon: Wrench,
-  },
-  {
-    id: "PFL-02",
-    nameDe: "Nguyen Thi Mai",
-    nameVn: "Nguyễn Thị Mai",
-    roleDe: "Pflegefachkraft",
-    roleVn: "Điều dưỡng viên",
-    avatar: "NTM",
-    badges: [
-      { textDe: "Anerkennungsbescheid erteilt", textVn: "Đã có Anerkennungsbescheid", type: "recognition" },
-      { textDe: "§81a Visum bereit", textVn: "Visa §81a sẵn sàng", type: "visa" },
-    ],
-    specs: {
-      educationDe: "Krankenpflege - Cho Ray",
-      educationVn: "Điều dưỡng - BV Chợ Rẫy",
-      experienceYears: 3,
-      germanLevel: "B2",
-      certType: "Goethe",
-    },
-    highlightDe: "Intensivpflege, 3 Jahre Berufserfahrung, Fachsprache",
-    highlightVn: "Hồi sức tích cực, 3 năm kinh nghiệm, Ngôn ngữ chuyên ngành",
-    icon: Stethoscope,
-  },
-  {
-    id: "IT-03",
-    nameDe: "Pham Quoc Bao",
-    nameVn: "Phạm Quốc Bảo",
-    roleDe: "Fullstack Developer",
-    roleVn: "Lập trình viên Fullstack",
-    avatar: "PQB",
-    badges: [
-      { textDe: "Portfolio geprüft", textVn: "Portfolio đã kiểm tra", type: "recognition" },
-      { textDe: "Sofort verfügbar", textVn: "Sẵn sàng ngay", type: "visa" },
-    ],
-    specs: {
-      educationDe: "Informatik - FPT University",
-      educationVn: "CNTT - ĐH FPT",
-      experienceYears: 4,
-      germanLevel: "B1",
-      certType: "Telc",
-    },
-    highlightDe: "React, Node.js, 4 Jahre Berufserfahrung, AWS",
-    highlightVn: "React, Node.js, 4 năm kinh nghiệm, AWS",
-    icon: Code,
-  },
-];
-
-// ============================================
-// ANIMATED COUNTER COMPONENT
+// ANIMATED COUNTER
 // ============================================
 
 function AnimatedCounter({
@@ -492,7 +104,6 @@ function AnimatedCounter({
   useEffect(() => {
     if (!isInView) return;
 
-    // Handle special cases like "<6" or "350+"
     if (value.includes("<") || value.includes("+")) {
       setDisplayValue(value);
       return;
@@ -530,42 +141,21 @@ function AnimatedCounter({
 // HERO SECTION
 // ============================================
 
-function HeroSection() {
-  const { lang, t } = useLanguage();
+function HeroSection({ content }: { content: any }) {
+  const { lang } = useLanguage();
   
-  // Build content from translations
-  const content = {
-    badge: t.service_pages.skilled_workers.hero.badge,
-    headline: t.service_pages.skilled_workers.hero.headline,
-    headline_accent: t.service_pages.skilled_workers.hero.headline_accent,
-    subheadline: t.service_pages.skilled_workers.hero.subheadline,
-    cta1: t.service_pages.skilled_workers.hero.cta1,
-    cta2: t.service_pages.skilled_workers.hero.cta2,
-    floating_card1: {
-      name: t.service_pages.skilled_workers.hero.card1_name,
-      role: t.service_pages.skilled_workers.hero.card1_role,
-      badge: t.service_pages.skilled_workers.hero.card1_badge,
-    },
-    floating_card2: {
-      title: t.service_pages.skilled_workers.hero.card2_title,
-      status: t.service_pages.skilled_workers.hero.card2_status,
-    },
-    floating_card3: {
-      title: t.service_pages.skilled_workers.hero.card3_title,
-      level: t.service_pages.skilled_workers.hero.card3_level,
-    },
-  };
+  // Use safe content from QA layer
+  const heroContent = content?.hero || {};
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-slate-950">
-      {/* Gradient Mesh Background */}
+      {/* Gradient Mesh Background - Emerald/Green Theme */}
       <div className="absolute inset-0">
-        {/* Primary gradient orbs */}
         <div className="absolute top-0 right-0 w-[1000px] h-[1000px] bg-emerald-500/20 rounded-full blur-[150px] translate-x-1/3 -translate-y-1/4" />
-        <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-teal-400/15 rounded-full blur-[120px] -translate-x-1/4 translate-y-1/4" />
-        <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-emerald-600/10 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-green-400/15 rounded-full blur-[120px] -translate-x-1/4 translate-y-1/4" />
+        <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2" />
 
-        {/* Subtle grid pattern */}
+        {/* Subtle grid */}
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
@@ -578,7 +168,7 @@ function HeroSection() {
 
       <div className="relative container mx-auto px-4 max-w-7xl min-h-screen flex items-center">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center w-full py-24 lg:py-0">
-          {/* Left Content - Text */}
+          {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -589,38 +179,38 @@ function HeroSection() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <Badge className="mb-8 px-4 py-2 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 backdrop-blur-sm">
-                <Shield className="w-4 h-4 mr-2" />
-                {content.badge}
+              <Badge className="mb-6 px-4 py-2 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 backdrop-blur-sm">
+                <Zap className="w-4 h-4 mr-2" />
+                {heroContent.badge || "Fachkräfte Vermittlung"}
               </Badge>
             </motion.div>
 
             {/* Headline */}
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8">
-              <span className="text-white">{content.headline}</span>
+              <span className="text-white">{heroContent.headline || "Qualifizierte Fachkräfte"}</span>
               <br />
-              <span className="bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-300 bg-clip-text text-transparent">
-                {content.headline_accent}
+              <span className="bg-gradient-to-r from-emerald-400 via-green-400 to-emerald-400 bg-clip-text text-transparent">
+                {heroContent.headline_accent || "Anerkannte Abschlüsse. Sofort einsatzbereit."}
               </span>
             </h1>
 
             {/* Subheadline */}
             <p className="text-lg md:text-xl text-slate-400 leading-relaxed mb-10 max-w-lg">
-              {content.subheadline}
+              {heroContent.subheadline || "Schluss mit dem Behörden-Dschungel. Wir vermitteln Ingenieure, IT-Profis und Pflegekräfte aus Vietnam."}
             </p>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
                 size="lg"
-                className="group relative px-8 py-6 text-base font-semibold bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white rounded-full shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all duration-300"
+                className="group relative px-8 py-6 text-base font-semibold bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-400 hover:to-green-400 text-white rounded-full shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all duration-300"
                 asChild
               >
-                <Link href="#comparison">
-                  {content.cta1}
-                  <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                <Link href="#contact">
+                  {heroContent.cta1 || "Verfügbare Experten prüfen"}
+                  <Rocket className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
               <Button
@@ -630,141 +220,91 @@ function HeroSection() {
                 asChild
               >
                 <Link href="/#contact">
-                  {content.cta2}
-                  <ArrowRight className="w-5 h-5 ml-2" />
+                  <PhoneCall className="w-5 h-5 mr-2" />
+                  {heroContent.cta2 || "Kostenlose Beratung"}
                 </Link>
               </Button>
             </div>
           </motion.div>
 
-          {/* Right Content - Floating Cards Grid */}
+          {/* Right Content - Visual Stats */}
           <motion.div
             initial={{ opacity: 0, x: 60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="relative hidden lg:block h-[600px]"
+            className="relative hidden lg:flex items-center justify-center"
           >
-            {/* Floating Card 1 - Profile Card */}
-            <motion.div
-              animate={{
-                y: [0, -15, 0],
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute top-8 left-8 z-20"
-            >
-              <div className="bg-white/10 backdrop-blur-xl rounded-2xl border border-white/10 p-5 shadow-2xl w-72">
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-white font-bold text-xl">
-                    NM
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="font-semibold text-white text-sm">
-                      {content.floating_card1.name}
-                    </h4>
-                    <p className="text-slate-400 text-xs">
-                      {content.floating_card1.role}
-                    </p>
-                  </div>
-                </div>
-                <div className="mt-4">
-                  <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30 text-xs">
-                    <CheckCircle2 className="w-3 h-3 mr-1" />
-                    {content.floating_card1.badge}
-                  </Badge>
+            {/* Central Indicator */}
+            <div className="relative">
+              {/* Outer ring */}
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="w-80 h-80 rounded-full border-2 border-dashed border-emerald-500/20"
+              />
+
+              {/* Middle ring */}
+              <motion.div
+                animate={{ rotate: -360 }}
+                transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                className="absolute top-8 left-8 w-64 h-64 rounded-full border border-green-500/30"
+              />
+
+              {/* Center content */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                <div className="bg-white/10 backdrop-blur-xl rounded-3xl border border-white/10 p-8 text-center">
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.6, type: "spring" }}
+                  >
+                    <div className="text-6xl font-bold bg-gradient-to-r from-emerald-400 to-green-400 bg-clip-text text-transparent mb-2">
+                      6-9
+                    </div>
+                    <div className="text-white font-medium text-lg">
+                      Monate
+                    </div>
+                    <div className="text-emerald-400 text-sm mt-1">
+                      bis Einsatz
+                    </div>
+                  </motion.div>
                 </div>
               </div>
-            </motion.div>
 
-            {/* Floating Card 2 - Status Card */}
-            <motion.div
-              animate={{
-                y: [0, 12, 0],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 0.5,
-              }}
-              className="absolute top-32 right-4 z-10"
-            >
-              <div className="bg-white/10 backdrop-blur-xl rounded-2xl border border-white/10 p-5 shadow-2xl w-64">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center">
-                    <Check className="w-5 h-5 text-emerald-400" />
-                  </div>
-                  <div>
-                    <p className="text-slate-400 text-xs">
-                      {content.floating_card2.title}
-                    </p>
-                    <p className="text-white font-medium text-sm">
-                      {content.floating_card2.status}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+              {/* Floating badges */}
+              <motion.div
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -top-4 right-8"
+              >
+                <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30 px-3 py-1.5">
+                  <Zap className="w-3 h-3 mr-1" />
+                  Rechtssicher
+                </Badge>
+              </motion.div>
 
-            {/* Floating Card 3 - Language Level */}
-            <motion.div
-              animate={{
-                y: [0, -10, 0],
-              }}
-              transition={{
-                duration: 4.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 1,
-              }}
-              className="absolute bottom-32 left-16 z-20"
-            >
-              <div className="bg-white/10 backdrop-blur-xl rounded-2xl border border-white/10 p-5 shadow-2xl w-56">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-teal-500/20 flex items-center justify-center">
-                    <Languages className="w-5 h-5 text-teal-400" />
-                  </div>
-                  <div>
-                    <p className="text-slate-400 text-xs">
-                      {content.floating_card3.title}
-                    </p>
-                    <p className="text-white font-semibold text-sm">
-                      {content.floating_card3.level}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+              <motion.div
+                animate={{ y: [0, 8, 0] }}
+                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                className="absolute -bottom-4 left-8"
+              >
+                <Badge className="bg-green-500/20 text-green-300 border-green-500/30 px-3 py-1.5">
+                  <Shield className="w-3 h-3 mr-1" />
+                  100% Legal
+                </Badge>
+              </motion.div>
 
-            {/* Floating Card 4 - Success Rate */}
-            <motion.div
-              animate={{
-                y: [0, 8, 0],
-              }}
-              transition={{
-                duration: 5.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 1.5,
-              }}
-              className="absolute bottom-16 right-8 z-10"
-            >
-              <div className="bg-gradient-to-br from-emerald-500/20 to-teal-500/20 backdrop-blur-xl rounded-2xl border border-emerald-500/20 p-5 shadow-2xl">
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-white mb-1">98%</div>
-                  <div className="text-emerald-300 text-xs font-medium">
-                    {t.service_pages.skilled_workers.stats.success_rate}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Decorative elements */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 border border-emerald-500/10 rounded-full" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 border border-teal-500/5 rounded-full" />
+              <motion.div
+                animate={{ x: [0, 8, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="absolute top-1/2 -right-12 -translate-y-1/2"
+              >
+                <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30 px-3 py-1.5">
+                  <Users className="w-3 h-3 mr-1" />
+                  150+
+                </Badge>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>
@@ -789,665 +329,49 @@ function HeroSection() {
 }
 
 // ============================================
-// COMPARISON SECTION (Pain & Solution)
+// ADVANTAGES SECTION (Using Comparison Data as Fallback)
 // ============================================
 
-function ComparisonSection() {
-  const { lang, t } = useLanguage();
+function AdvantagesSection({ content }: { content: any }) {
+  const { lang } = useLanguage();
   
-  // Build content from translations
-  const content = {
-    badge: t.service_pages.skilled_workers.comparison.badge,
-    title: t.service_pages.skilled_workers.comparison.title,
-    subtitle: t.service_pages.skilled_workers.comparison.subtitle,
-    old_way: {
-      title: t.service_pages.skilled_workers.comparison.old_title,
-      subtitle: t.service_pages.skilled_workers.comparison.old_subtitle,
-      items: [
-        { text: t.service_pages.skilled_workers.comparison.old_item1, icon: Timer },
-        { text: t.service_pages.skilled_workers.comparison.old_item2, icon: XCircle },
-        { text: t.service_pages.skilled_workers.comparison.old_item3, icon: Euro },
-        { text: t.service_pages.skilled_workers.comparison.old_item4, icon: Languages },
-        { text: t.service_pages.skilled_workers.comparison.old_item5, icon: HeartHandshake },
-      ],
-    },
-    new_way: {
-      title: t.service_pages.skilled_workers.comparison.new_title,
-      subtitle: t.service_pages.skilled_workers.comparison.new_subtitle,
-      badge: t.service_pages.skilled_workers.comparison.new_badge,
-      items: [
-        { text: t.service_pages.skilled_workers.comparison.new_item1, icon: Zap },
-        { text: t.service_pages.skilled_workers.comparison.new_item2, icon: Shield },
-        { text: t.service_pages.skilled_workers.comparison.new_item3, icon: Euro },
-        { text: t.service_pages.skilled_workers.comparison.new_item4, icon: BadgeCheck },
-        { text: t.service_pages.skilled_workers.comparison.new_item5, icon: HeartHandshake },
-      ],
-    },
-  };
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
-
-  return (
-    <section id="comparison" className="py-24 md:py-32 bg-slate-50">
-      <div className="container mx-auto px-4 max-w-7xl">
-        {/* Section Header */}
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <Badge
-            variant="outline"
-            className="mb-6 px-4 py-2 border-emerald-200 text-emerald-700 bg-emerald-50"
-          >
-            <TrendingUp className="w-4 h-4 mr-2" />
-            {content.badge}
-          </Badge>
-
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
-            {content.title}
-          </h2>
-
-          <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto">
-            {content.subtitle}
-          </p>
-        </motion.div>
-
-        {/* Comparison Cards */}
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
-          {/* Old Way Card */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative"
-          >
-            <div className="h-full bg-slate-100 border-2 border-dashed border-slate-300 rounded-3xl p-8 lg:p-10">
-              <div className="mb-8">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 rounded-xl bg-slate-200 flex items-center justify-center">
-                    <X className="w-5 h-5 text-slate-500" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-slate-700">
-                      {content.old_way.title}
-                    </h3>
-                    <p className="text-sm text-slate-500">{content.old_way.subtitle}</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-5">
-                {content.old_way.items.map((item, index) => {
-                  const Icon = item.icon;
-                  return (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={isInView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                      className="flex items-center gap-4"
-                    >
-                      <div className="w-8 h-8 rounded-lg bg-red-100 flex items-center justify-center flex-shrink-0">
-                        <X className="w-4 h-4 text-red-500" />
-                      </div>
-                      <span className="text-slate-600">{item.text}</span>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </div>
-          </motion.div>
-
-          {/* New Way Card */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            whileHover={{ scale: 1.02 }}
-            className="relative"
-          >
-            {/* Recommended Badge */}
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
-              <Badge className="px-4 py-2 bg-emerald-600 text-white border-0 shadow-lg shadow-emerald-500/30">
-                <Star className="w-4 h-4 mr-1.5 fill-current" />
-                {content.new_way.badge}
-              </Badge>
-            </div>
-
-            <div className="h-full bg-white border-2 border-emerald-500 rounded-3xl p-8 lg:p-10 shadow-2xl shadow-emerald-500/10">
-              <div className="mb-8">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center">
-                    <Check className="w-5 h-5 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-slate-900">
-                      {content.new_way.title}
-                    </h3>
-                    <p className="text-sm text-emerald-600 font-medium">
-                      {content.new_way.subtitle}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-5">
-                {content.new_way.items.map((item, index) => {
-                  const Icon = item.icon;
-                  return (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={isInView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
-                      className="flex items-center gap-4"
-                    >
-                      <div className="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center flex-shrink-0">
-                        <Check className="w-4 h-4 text-emerald-600" />
-                      </div>
-                      <span className="text-slate-700 font-medium">{item.text}</span>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ============================================
-// AVAILABLE EXPERTS SECTION (Talent Showcase)
-// ============================================
-
-function AvailableExpertsSection() {
-  const { lang, t } = useLanguage();
+  // Use safe content from QA layer
+  const raw = content || {};
   
-  // Build content from translations
-  const content = {
-    badge: t.service_pages.skilled_workers.experts.badge,
-    title: t.service_pages.skilled_workers.experts.title,
-    subtitle: t.service_pages.skilled_workers.experts.subtitle,
-    view_profile: t.service_pages.skilled_workers.experts.view_profile,
-    book_interview: t.service_pages.skilled_workers.experts.book_interview,
-    education: t.service_pages.skilled_workers.experts.education,
-    experience: t.service_pages.skilled_workers.experts.experience,
-    years: t.service_pages.skilled_workers.experts.years,
-    german: t.service_pages.skilled_workers.experts.german
-  };
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
-
-  return (
-    <section id="talent-pool" className="py-24 md:py-32 bg-slate-50">
-      <div className="container mx-auto px-4 max-w-7xl">
-        {/* Section Header */}
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <Badge
-            variant="outline"
-            className="mb-6 px-4 py-2 border-emerald-200 text-emerald-700 bg-emerald-50"
-          >
-            <Users className="w-4 h-4 mr-2" />
-            {content.badge}
-          </Badge>
-
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
-            {content.title}
-          </h2>
-
-          <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto">
-            {content.subtitle}
-          </p>
-        </motion.div>
-
-        {/* Expert Cards Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {expertProfiles.map((expert, index) => {
-            const Icon = expert.icon;
-            return (
-              <motion.div
-                key={expert.id}
-                initial={{ opacity: 0, y: 40 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.2 + index * 0.15 }}
-                whileHover={{ y: -8 }}
-                className="group"
-              >
-                <div className="h-full bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-emerald-500/10 hover:border-emerald-300 transition-all duration-300">
-                  {/* Card Header */}
-                  <div className="p-6 pb-4 border-b border-slate-100">
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex items-center gap-4">
-                        {/* Avatar */}
-                        <div className="relative">
-                          <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-emerald-500/20">
-                            {expert.avatar}
-                          </div>
-                          <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-white border-2 border-emerald-500 flex items-center justify-center">
-                            <Icon className="w-3 h-3 text-emerald-600" />
-                          </div>
-                        </div>
-                        <div>
-                          <p className="text-xs text-slate-400 font-mono mb-1">
-                            #{expert.id}
-                          </p>
-                          <h3 className="font-bold text-slate-900">
-                            {lang === "de" ? expert.nameDe : lang === "en" ? expert.nameDe : expert.nameVn}
-                          </h3>
-                          <p className="text-sm text-emerald-600 font-medium">
-                            {lang === "de" ? expert.roleDe : lang === "en" ? expert.roleDe : expert.roleVn}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Status Badges */}
-                    <div className="flex flex-wrap gap-2">
-                      {expert.badges.map((badge, badgeIdx) => (
-                        <Badge
-                          key={badgeIdx}
-                          className={`text-xs ${
-                            badge.type === "recognition"
-                              ? "bg-emerald-100 text-emerald-700 border-emerald-200"
-                              : "bg-teal-100 text-teal-700 border-teal-200"
-                          }`}
-                        >
-                          <CheckCircle2 className="w-3 h-3 mr-1" />
-                          {lang === "de" ? badge.textDe : lang === "en" ? badge.textDe : badge.textVn}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Card Body - Specs */}
-                  <div className="p-6 space-y-4">
-                    {/* Education */}
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center flex-shrink-0">
-                        <GraduationCap className="w-5 h-5 text-slate-500" />
-                      </div>
-                      <div>
-                        <p className="text-xs text-slate-400 uppercase tracking-wide">
-                          {content.education}
-                        </p>
-                        <p className="text-sm font-medium text-slate-700">
-                          {lang === "de" || lang === "en"
-                            ? expert.specs.educationDe
-                            : expert.specs.educationVn}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Experience & German Level */}
-                    <div className="grid grid-cols-2 gap-3">
-                      {/* Experience */}
-                      <div className="bg-slate-50 rounded-xl p-4 text-center">
-                        <div className="text-2xl font-bold text-slate-900 mb-1">
-                          {expert.specs.experienceYears}
-                        </div>
-                        <p className="text-xs text-slate-500">
-                          {content.years} {content.experience}
-                        </p>
-                      </div>
-
-                      {/* German Level */}
-                      <div className="bg-emerald-50 rounded-xl p-4 text-center">
-                        <div className="text-2xl font-bold text-emerald-600 mb-1">
-                          {expert.specs.germanLevel}
-                        </div>
-                        <p className="text-xs text-emerald-600">
-                          {expert.specs.certType} {content.german}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Highlight Skills */}
-                    <div className="pt-2">
-                      <p className="text-xs text-slate-400 mb-2">Expertise:</p>
-                      <p className="text-sm text-slate-600 leading-relaxed">
-                        {lang === "de" ? expert.highlightDe : lang === "en" ? expert.highlightDe : expert.highlightVn}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Card Footer - Actions */}
-                  <div className="px-6 pb-6 flex gap-3">
-                    <Button
-                      variant="outline"
-                      className="flex-1 border-emerald-300 text-emerald-700 hover:bg-emerald-50 hover:border-emerald-400 transition-all"
-                      asChild
-                    >
-                      <Link href="/#contact">
-                        <Eye className="w-4 h-4 mr-2" />
-                        {content.view_profile}
-                      </Link>
-                    </Button>
-                    <Button
-                      className="flex-1 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white shadow-lg shadow-emerald-500/20"
-                      asChild
-                    >
-                      <Link href="/#contact">
-                        <Calendar className="w-4 h-4 mr-2" />
-                        {content.book_interview}
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-
-        {/* View All CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.8 }}
-          className="mt-12 text-center"
-        >
-          <Button
-            size="lg"
-            variant="outline"
-            className="px-8 py-6 text-base font-semibold border-emerald-300 text-emerald-700 hover:bg-emerald-50 rounded-full transition-all"
-            asChild
-          >
-            <Link href="/#contact">
-              {t.service_pages.skilled_workers.experts.view_all}
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </Link>
-          </Button>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
-// ============================================
-// PROCESS SECTION (Horizontal Timeline)
-// ============================================
-
-function ProcessSection() {
-  const { lang, t } = useLanguage();
-  
-  // Build content from translations
-  const content = {
-    badge: t.service_pages.skilled_workers.process.badge,
-    title: t.service_pages.skilled_workers.process.title,
-    subtitle: t.service_pages.skilled_workers.process.subtitle,
-    total_time: t.service_pages.skilled_workers.process.total_time,
-    steps: [
+  // Build section content from translations - use comparison as fallback
+  const sectionContent = {
+    badge: raw.comparison?.badge || "Warum DMF?",
+    title: raw.comparison?.title || "Der Unterschied ist messbar.",
+    subtitle: raw.comparison?.subtitle || "Vergleichen Sie selbst",
+    advantages: [
       {
-        id: 1,
+        icon: Shield,
+        title: "Rechtssicher",
+        description: "Wir garantieren die Einhaltung aller Vorgaben (§18a/b AufenthG). Kein Risiko für Sie.",
+        highlight: "100%",
+        highlightDesc: "Rechtssicher",
+      },
+      {
+        icon: Zap,
+        title: "Beschleunigtes Verfahren",
+        description: "§81a Verfahren beschleunigt die Visumserteilung. Transparente Prozesse, keine Überraschungen.",
+        highlight: "< 3",
+        highlightDesc: "Monate",
+      },
+      {
         icon: Users,
-        title: t.service_pages.skilled_workers.process.step1_title,
-        description: t.service_pages.skilled_workers.process.step1_desc,
-        duration: t.service_pages.skilled_workers.process.step1_duration,
-      },
-      {
-        id: 2,
-        icon: FileCheck,
-        title: t.service_pages.skilled_workers.process.step2_title,
-        description: t.service_pages.skilled_workers.process.step2_desc,
-        duration: t.service_pages.skilled_workers.process.step2_duration,
-      },
-      {
-        id: 3,
-        icon: Handshake,
-        title: t.service_pages.skilled_workers.process.step3_title,
-        description: t.service_pages.skilled_workers.process.step3_desc,
-        duration: t.service_pages.skilled_workers.process.step3_duration,
-      },
-      {
-        id: 4,
-        icon: Scale,
-        title: t.service_pages.skilled_workers.process.step4_title,
-        description: t.service_pages.skilled_workers.process.step4_desc,
-        duration: t.service_pages.skilled_workers.process.step4_duration,
-      },
-      {
-        id: 5,
-        icon: Plane,
-        title: t.service_pages.skilled_workers.process.step5_title,
-        description: t.service_pages.skilled_workers.process.step5_desc,
-        duration: t.service_pages.skilled_workers.process.step5_duration,
+        title: "Qualifizierte Experten",
+        description: "Vorab geprüfte Qualifikationen und Deutschkenntnisse. B1/B2 Zertifikat inklusive.",
+        highlight: "100%",
+        highlightDesc: "Geprüft",
       },
     ],
-  };
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
-
-  return (
-    <section className="py-24 md:py-32 bg-white overflow-hidden">
-      <div className="container mx-auto px-4 max-w-7xl">
-        {/* Section Header */}
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <Badge
-            variant="outline"
-            className="mb-6 px-4 py-2 border-emerald-200 text-emerald-700 bg-emerald-50"
-          >
-            <Sparkles className="w-4 h-4 mr-2" />
-            {content.badge}
-          </Badge>
-
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
-            {content.title}
-          </h2>
-
-          <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto mb-4">
-            {content.subtitle}
-          </p>
-
-          <Badge className="bg-emerald-100 text-emerald-800 border-0">
-            <Clock className="w-4 h-4 mr-2" />
-            {content.total_time}
-          </Badge>
-        </motion.div>
-
-        {/* Horizontal Timeline - Desktop */}
-        <div className="hidden lg:block relative">
-          {/* Connection Line */}
-          <div className="absolute top-16 left-0 right-0 h-0.5 bg-gradient-to-r from-emerald-200 via-emerald-400 to-emerald-200" />
-
-          <div className="grid grid-cols-5 gap-4">
-            {content.steps.map((step, index) => {
-              const Icon = step.icon;
-              return (
-                <motion.div
-                  key={step.id}
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.2 + index * 0.15 }}
-                  className="relative flex flex-col items-center"
-                >
-                  {/* Step Number & Icon */}
-                  <div className="relative z-10 mb-6">
-                    <div className="w-32 h-32 rounded-2xl bg-white/70 backdrop-blur-md border border-slate-200 shadow-xl flex flex-col items-center justify-center">
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center mb-2">
-                        <Icon className="w-6 h-6 text-white" />
-                      </div>
-                      <span className="text-xs font-bold text-emerald-600">
-                        {String(step.id).padStart(2, "0")}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="text-center">
-                    <h3 className="font-bold text-slate-900 mb-2">{step.title}</h3>
-                    <p className="text-sm text-slate-500 mb-3 leading-relaxed">
-                      {step.description}
-                    </p>
-                    <Badge
-                      variant="outline"
-                      className="text-xs border-slate-200 text-slate-500"
-                    >
-                      <Timer className="w-3 h-3 mr-1" />
-                      {step.duration}
-                    </Badge>
-                  </div>
-
-                  {/* Arrow (except last) */}
-                  {index < content.steps.length - 1 && (
-                    <div className="absolute top-16 -right-2 transform translate-x-1/2 z-20 hidden xl:block">
-                      <ChevronRight className="w-5 h-5 text-emerald-400" />
-                    </div>
-                  )}
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Vertical Timeline - Mobile/Tablet */}
-        <div className="lg:hidden space-y-6">
-          {content.steps.map((step, index) => {
-            const Icon = step.icon;
-            return (
-              <motion.div
-                key={step.id}
-                initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="flex gap-4"
-              >
-                {/* Icon */}
-                <div className="flex-shrink-0">
-                  <div className="w-14 h-14 rounded-xl bg-white/70 backdrop-blur-md border border-slate-200 shadow-lg flex items-center justify-center">
-                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center">
-                      <Icon className="w-5 h-5 text-white" />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="flex-1 pb-6 border-b border-slate-100">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Badge className="bg-emerald-100 text-emerald-700 border-0 text-xs">
-                      {String(step.id).padStart(2, "0")}
-                    </Badge>
-                    <h3 className="font-bold text-slate-900">{step.title}</h3>
-                  </div>
-                  <p className="text-sm text-slate-500 mb-2">{step.description}</p>
-                  <span className="text-xs text-emerald-600 font-medium">
-                    {step.duration}
-                  </span>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ============================================
-// STATS SECTION (Trust Banner)
-// ============================================
-
-function StatsSection() {
-  const { lang, t } = useLanguage();
-  
-  // Build content from translations
-  const content = {
-    stats: [
-      { value: "350+", label: t.service_pages.skilled_workers.stats.stat1_label, suffix: "" },
-      { value: "98", label: t.service_pages.skilled_workers.stats.stat2_label, suffix: "%" },
-      { value: "<6", label: t.service_pages.skilled_workers.stats.stat3_label, suffix: "" },
-      { value: "100", label: t.service_pages.skilled_workers.stats.stat4_label, suffix: "%" },
-    ],
-  };
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
-
-  return (
-    <section ref={ref} className="py-20 md:py-28 bg-emerald-900 relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-800/50 rounded-full blur-[100px]" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-teal-800/40 rounded-full blur-[80px]" />
-        <div
-          className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0)`,
-            backgroundSize: "40px 40px",
-          }}
-        />
-      </div>
-
-      <div className="container relative mx-auto px-4 max-w-7xl">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          {content.stats.map((stat, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="text-center"
-            >
-              <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2">
-                <AnimatedCounter
-                  value={stat.value}
-                  suffix={stat.suffix}
-                  duration={2}
-                />
-              </div>
-              <div className="text-emerald-200 text-sm md:text-base font-medium">
-                {stat.label}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ============================================
-// EXPERTISE AREAS SECTION
-// ============================================
-
-function ExpertiseAreasSection() {
-  const { lang, t } = useLanguage();
-  
-  // Build content from translations - keep areas structure from original
-  const content = {
-    badge: t.service_pages.skilled_workers.expertise.badge,
-    title: t.service_pages.skilled_workers.expertise.title,
-    subtitle: t.service_pages.skilled_workers.expertise.subtitle,
-    roles_label: t.service_pages.skilled_workers.expertise.roles_label,
-    areas: expertiseAreasContent.de.areas.map((area, idx) => ({
-      ...area,
-      title: idx === 0 ? t.service_pages.skilled_workers.expertise.health_title :
-             idx === 1 ? t.service_pages.skilled_workers.expertise.tech_title :
-             t.service_pages.skilled_workers.expertise.it_title,
-      highlight: idx === 0 ? t.service_pages.skilled_workers.expertise.health_highlight :
-                  idx === 1 ? t.service_pages.skilled_workers.expertise.tech_highlight :
-                  t.service_pages.skilled_workers.expertise.it_highlight,
-    })),
   };
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
-    <section className="py-24 md:py-32 bg-white">
+    <section className="py-24 md:py-32 bg-slate-50">
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Header */}
         <motion.div
@@ -1461,23 +385,23 @@ function ExpertiseAreasSection() {
             variant="outline"
             className="mb-6 px-4 py-2 border-emerald-200 text-emerald-700 bg-emerald-50"
           >
-            <Target className="w-4 h-4 mr-2" />
-            {content.badge}
+            <Zap className="w-4 h-4 mr-2" />
+            {sectionContent.badge}
           </Badge>
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
-            {content.title}
+            {sectionContent.title}
           </h2>
 
           <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto">
-            {content.subtitle}
+            {sectionContent.subtitle}
           </p>
         </motion.div>
 
-        {/* Expertise Cards */}
+        {/* Advantage Cards */}
         <div className="grid md:grid-cols-3 gap-8">
-          {content.areas.map((area, index) => {
-            const Icon = area.icon;
+          {sectionContent.advantages.map((advantage: any, index: number) => {
+            const Icon = advantage.icon;
             return (
               <motion.div
                 key={index}
@@ -1487,53 +411,423 @@ function ExpertiseAreasSection() {
                 whileHover={{ y: -8 }}
                 className="group"
               >
-                <div className="h-full bg-gradient-to-br from-slate-50 to-slate-100 rounded-3xl p-8 border border-slate-200 hover:border-emerald-300 hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-300">
-                  {/* Icon & Title */}
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center shadow-lg shadow-emerald-500/20 group-hover:scale-110 transition-transform">
+                <div className="h-full bg-white rounded-3xl p-8 border border-slate-200 hover:border-emerald-300 hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-300">
+                  {/* Icon */}
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-green-500 flex items-center justify-center mb-6 shadow-lg shadow-emerald-500/20 group-hover:scale-110 transition-transform">
+                    <Icon className="w-8 h-8 text-white" />
+                  </div>
+
+                  {/* Content */}
+                  <h3 className="text-xl font-bold text-slate-900 mb-4">{advantage.title}</h3>
+                  <p className="text-slate-600 leading-relaxed mb-6">{advantage.description}</p>
+
+                  {/* Highlight Badge */}
+                  <div className="bg-emerald-50 rounded-xl p-4 border border-emerald-100">
+                    <div className="text-2xl font-bold text-emerald-600 mb-1">
+                      {advantage.highlight}
+                    </div>
+                    <div className="text-sm text-slate-500">{advantage.highlightDesc}</div>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ============================================
+// PROCESS TIMELINE SECTION (Using Process Data)
+// ============================================
+
+function ProcessTimelineSection({ content }: { content: any }) {
+  const { lang } = useLanguage();
+  const ref = useRef(null);
+  
+  // Use safe content from QA layer
+  const raw = content || {};
+  const process = raw.process || {};
+  
+  const sectionContent = {
+    badge: process.badge || "Unser Prozess",
+    title: process.title || "5 Schritte zum Erfolg",
+    subtitle: process.subtitle || "Transparent, planbar, zuverlässig",
+    steps: [
+      {
+        week: process.step1_duration || "2-4",
+        title: process.step1_title || "Auswahl",
+        description: process.step1_desc || "Sorgfältige Prüfung von Qualifikationen",
+        icon: Users,
+      },
+      {
+        week: process.step2_duration || "3-6",
+        title: process.step2_title || "Anerkennung",
+        description: process.step2_desc || "Begleitung beim Anerkennungsverfahren",
+        icon: FileCheck,
+      },
+      {
+        week: process.step3_duration || "2-4",
+        title: process.step3_title || "Matching",
+        description: process.step3_desc || "Professionelles Matching",
+        icon: Briefcase,
+      },
+      {
+        week: process.step4_duration || "4-8",
+        title: process.step4_title || "Visum",
+        description: process.step4_desc || "Beschleunigtes Fachkräfteverfahren",
+        icon: Plane,
+      },
+      {
+        week: process.step5_duration || "Fortlaufend",
+        title: process.step5_title || "Integration",
+        description: process.step5_desc || "Begleitung bei Ankunft",
+        icon: Users,
+      },
+    ],
+    key_message: process.total_time || "Gesamtdauer: 6-9 Monate",
+  };
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    if (isInView) {
+      const timer = setTimeout(() => {
+        setProgress(100);
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [isInView]);
+
+  return (
+    <section className="py-24 md:py-32 bg-white overflow-hidden">
+      <div className="container mx-auto px-4 max-w-6xl">
+        {/* Header */}
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <Badge
+            variant="outline"
+            className="mb-6 px-4 py-2 border-emerald-200 text-emerald-700 bg-emerald-50"
+          >
+            <Zap className="w-4 h-4 mr-2" />
+            {sectionContent.badge}
+          </Badge>
+
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
+            {sectionContent.title}
+          </h2>
+
+          <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto">
+            {sectionContent.subtitle}
+          </p>
+        </motion.div>
+
+        {/* Timeline */}
+        <div className="relative">
+          {/* Progress Bar Background */}
+          <div className="absolute top-20 left-0 right-0 h-2 bg-slate-100 rounded-full mx-8 lg:mx-16" />
+
+          {/* Animated Progress Bar */}
+          <motion.div
+            className="absolute top-20 left-0 h-2 bg-gradient-to-r from-emerald-400 via-green-500 to-emerald-500 rounded-full mx-8 lg:mx-16"
+            initial={{ width: "0%" }}
+            animate={{ width: isInView ? "100%" : "0%" }}
+            transition={{ duration: 2, ease: "easeOut", delay: 0.5 }}
+            style={{ maxWidth: "calc(100% - 4rem)" }}
+          />
+
+          {/* Steps */}
+          <div className="relative grid grid-cols-1 md:grid-cols-5 gap-8">
+            {sectionContent.steps.map((step: any, stepIndex: number) => {
+              const Icon = step.icon;
+              return (
+                <motion.div
+                  key={stepIndex}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.3 + stepIndex * 0.2 }}
+                  className="flex flex-col items-center text-center"
+                >
+                  {/* Step Circle */}
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={isInView ? { scale: 1 } : {}}
+                    transition={{ duration: 0.4, delay: 0.5 + stepIndex * 0.3, type: "spring" }}
+                    className="relative z-10 mb-6"
+                  >
+                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-emerald-500 to-green-500 flex items-center justify-center shadow-lg shadow-emerald-500/30">
                       <Icon className="w-7 h-7 text-white" />
                     </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-slate-900">{area.title}</h3>
-                      <p className="text-sm text-emerald-600 font-medium">{area.highlight}</p>
+                    {/* Duration badge */}
+                    <div className="absolute -top-2 -right-2 bg-slate-900 text-white text-xs font-bold px-2 py-1 rounded-full">
+                      {step.week}
                     </div>
+                  </motion.div>
+
+                  {/* Content */}
+                  <h3 className="text-xl font-bold text-slate-900 mb-2">{step.title}</h3>
+                  <p className="text-slate-500 text-sm max-w-xs">{step.description}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Key Message */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 1.2 }}
+          className="mt-16 text-center"
+        >
+          <div className="inline-flex items-center gap-3 bg-gradient-to-r from-emerald-50 to-green-50 border border-emerald-200 rounded-full px-6 py-3">
+            <CircleCheck className="w-6 h-6 text-emerald-600" />
+            <span className="text-emerald-800 font-semibold text-lg">{sectionContent.key_message}</span>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// ============================================
+// EXPERTISE SECTION (Using Expertise Data)
+// ============================================
+
+function ExpertiseSection({ content: contentProp }: { content: any }) {
+  const { lang } = useLanguage();
+  
+  // Use safe content from QA layer
+  const raw = contentProp || {};
+  const expertise = raw.expertise || {};
+  
+  // Create sectors array from expertise data
+  const sectors: any[] = [
+    {
+      title: expertise.health_title || "Gesundheitswesen",
+      subtitle: expertise.health_highlight || "Pflegefachkräfte",
+      icon: Stethoscope,
+      secondaryIcon: Heart,
+      color: "emerald",
+      jobs: ["Pflegefachkraft", "Altenpfleger", "Krankenpfleger", "Hebamme"],
+      description: expertise.health_title || "Qualifizierte Pflegekräfte aus Vietnam",
+      stats: { workers: "80+", time: "6-9 Mo." },
+    },
+    {
+      title: expertise.tech_title || "Technik",
+      subtitle: expertise.tech_highlight || "Ingenieure",
+      icon: Wrench,
+      secondaryIcon: Building2,
+      color: "green",
+      jobs: ["Ingenieur", "Maschinenbau", "Elektrotechnik", "Bauingenieur"],
+      description: expertise.tech_title || "Erfahrene Ingenieure",
+      stats: { workers: "50+", time: "6-9 Mo." },
+    },
+    {
+      title: expertise.it_title || "IT & Software",
+      subtitle: expertise.it_highlight || "Entwickler",
+      icon: Code,
+      secondaryIcon: Laptop,
+      color: "emerald",
+      jobs: ["Softwareentwickler", "DevOps", "Data Engineer", "Full Stack"],
+      description: expertise.it_title || "IT-Profis mit Expertise",
+      stats: { workers: "40+", time: "6-9 Mo." },
+    },
+  ];
+  
+  const sectionContent = {
+    badge: expertise.badge || "Unsere Expertise",
+    title: expertise.title || "Spezialisierte Fachkräfte",
+    subtitle: expertise.subtitle || "Fokussiert auf die Branchen mit höchstem Bedarf",
+    sectors: sectors,
+  };
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  return (
+    <section className="py-24 md:py-32 bg-white">
+      <div className="container mx-auto px-4 max-w-6xl">
+        {/* Header */}
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <Badge
+            variant="outline"
+            className="mb-6 px-4 py-2 border-emerald-200 text-emerald-700 bg-emerald-50"
+          >
+            <Briefcase className="w-4 h-4 mr-2" />
+            {sectionContent.badge}
+          </Badge>
+
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
+            {sectionContent.title}
+          </h2>
+
+          <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto">
+            {sectionContent.subtitle}
+          </p>
+        </motion.div>
+
+        {/* Sector Cards */}
+        <div className="grid md:grid-cols-3 gap-8">
+          {sectionContent.sectors.map((sector: any, index: number) => {
+            const Icon = sector.icon;
+            const SecondaryIcon = sector.secondaryIcon;
+            const isEmerald = sector.color === "emerald";
+
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: index === 0 ? -40 : index === 1 ? 0 : 40 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.2 + index * 0.2 }}
+                whileHover={{ scale: 1.02 }}
+                className="group"
+              >
+                <div
+                  className={`h-full rounded-3xl p-8 lg:p-10 border-2 transition-all duration-300 ${
+                    isEmerald
+                      ? "bg-gradient-to-br from-emerald-50 to-green-50 border-emerald-200 hover:border-emerald-400 hover:shadow-2xl hover:shadow-emerald-500/10"
+                      : "bg-gradient-to-br from-green-50 to-emerald-50 border-green-200 hover:border-green-400 hover:shadow-2xl hover:shadow-green-500/10"
+                  }`}
+                >
+                  {/* Header */}
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="flex items-center gap-4">
+                      <div
+                        className={`w-16 h-16 rounded-2xl flex items-center justify-center ${
+                          isEmerald
+                            ? "bg-gradient-to-br from-emerald-500 to-green-500 shadow-lg shadow-emerald-500/30"
+                            : "bg-gradient-to-br from-green-500 to-emerald-500 shadow-lg shadow-green-500/30"
+                        }`}
+                      >
+                        <Icon className="w-8 h-8 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-bold text-slate-900">{sector.title}</h3>
+                        <p className={`text-sm font-medium ${isEmerald ? "text-emerald-600" : "text-green-600"}`}>
+                          {sector.subtitle}
+                        </p>
+                      </div>
+                    </div>
+                    <SecondaryIcon
+                      className={`w-12 h-12 ${
+                        isEmerald ? "text-emerald-200" : "text-green-200"
+                      } group-hover:scale-110 transition-transform`}
+                    />
                   </div>
 
-                  {/* Description */}
-                  <p className="text-slate-600 leading-relaxed mb-6">{area.description}</p>
-
-                  {/* Roles */}
-                  <div className="mb-6">
-                    <p className="text-xs text-slate-400 uppercase tracking-wider mb-3 font-semibold">
-                      {content.roles_label}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {area.roles.map((role, idx) => (
-                        <span
-                          key={idx}
-                          className="px-3 py-1 bg-white rounded-full text-xs font-medium text-slate-700 border border-slate-200"
-                        >
-                          {role}
-                        </span>
-                      ))}
-                    </div>
+                  {/* Jobs List */}
+                  <div className="grid grid-cols-2 gap-3 mb-6">
+                    {sector.jobs.map((job: string, jobIdx: number) => (
+                      <div
+                        key={jobIdx}
+                        className={`flex items-center gap-2 px-3 py-2 rounded-lg ${
+                          isEmerald ? "bg-emerald-100/50" : "bg-green-100/50"
+                        }`}
+                      >
+                        <CheckCircle2
+                          className={`w-4 h-4 ${isEmerald ? "text-emerald-600" : "text-green-600"}`}
+                        />
+                        <span className="text-sm text-slate-700">{job}</span>
+                      </div>
+                    ))}
                   </div>
 
-                  {/* Trust Badges */}
-                  <div className="pt-4 border-t border-slate-200">
-                    <div className="flex flex-wrap gap-2">
-                      {area.badges.map((badge, idx) => (
-                        <Badge
-                          key={idx}
-                          variant="outline"
-                          className="text-xs bg-emerald-50 text-emerald-700 border-emerald-200"
-                        >
-                          <BadgeCheck className="w-3 h-3 mr-1" />
-                          {badge}
-                        </Badge>
-                      ))}
+                  {/* Stats */}
+                  <div className="flex items-center gap-6 pt-4 border-t border-slate-200/50">
+                    <div className="flex items-center gap-2">
+                      <Users className={`w-5 h-5 ${isEmerald ? "text-emerald-600" : "text-green-600"}`} />
+                      <span className="font-bold text-slate-900">{sector.stats.workers}</span>
+                      <span className="text-sm text-slate-500">
+                        Fachkräfte
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Timer className={`w-5 h-5 ${isEmerald ? "text-emerald-600" : "text-green-600"}`} />
+                      <span className="font-bold text-slate-900">{sector.stats.time}</span>
+                      <span className="text-sm text-slate-500">
+                        Vorlauf
+                      </span>
                     </div>
                   </div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ============================================
+// STATS SECTION
+// ============================================
+
+function StatsSection({ content }: { content: any }) {
+  const { lang } = useLanguage();
+  
+  // Use safe content from QA layer
+  const raw = content || {};
+  const statsData = raw.stats || {};
+  
+  const sectionContent = {
+    stats: [
+      { value: "150+", label: statsData.stat1_label || "Vermittelte Fachkräfte", suffix: "", icon: Users },
+      { value: "98", label: statsData.stat2_label || "Visum-Erfolgsquote", suffix: "%", icon: Shield },
+      { value: "6-9", label: statsData.stat3_label || "Monate bis Arbeitsantritt", suffix: "", icon: Clock },
+      { value: "95", label: statsData.success_rate || "Erfolgsrate", suffix: "%", icon: TrendingUp },
+    ],
+  };
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+
+  return (
+    <section ref={ref} className="py-20 md:py-28 bg-gradient-to-br from-emerald-600 via-green-600 to-emerald-700 relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/20 rounded-full blur-[100px]" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-green-400/20 rounded-full blur-[80px]" />
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0)`,
+            backgroundSize: "40px 40px",
+          }}
+        />
+      </div>
+
+      <div className="container relative mx-auto px-4 max-w-7xl">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+          {sectionContent.stats.map((stat: any, index: number) => {
+            const Icon = stat.icon;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="text-center"
+              >
+                <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                  <Icon className="w-7 h-7 text-white" />
+                </div>
+                <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2">
+                  <AnimatedCounter value={stat.value} suffix={stat.suffix} duration={2} />
+                </div>
+                <div className="text-emerald-100 text-sm md:text-base font-medium">
+                  {stat.label}
                 </div>
               </motion.div>
             );
@@ -1548,21 +842,24 @@ function ExpertiseAreasSection() {
 // CTA SECTION
 // ============================================
 
-function CTASection() {
-  const { lang, t } = useLanguage();
+function CTASection({ content }: { content: any }) {
+  const { lang } = useLanguage();
   
-  // Build content from translations
-  const content = {
-    title: t.service_pages.skilled_workers.cta.title,
-    subtitle: t.service_pages.skilled_workers.cta.subtitle,
-    cta1: t.service_pages.skilled_workers.cta.cta1,
-    cta2: t.service_pages.skilled_workers.cta.cta2,
+  // Use safe content from QA layer
+  const raw = content || {};
+  const ctaData = raw.cta || {};
+  
+  const sectionContent = {
+    title: ctaData.title || "Bereit für qualifizierte Fachkräfte?",
+    subtitle: ctaData.subtitle || "Vereinbaren Sie ein unverbindliches Beratungsgespräch.",
+    cta1: ctaData.cta1 || "Jetzt Beratung anfragen",
+    cta2: ctaData.cta2 || "Kandidatenprofile anfordern",
   };
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section className="py-24 md:py-32 bg-slate-50">
+    <section id="contact" className="py-24 md:py-32 bg-slate-50">
       <div className="container mx-auto px-4 max-w-4xl">
         <motion.div
           ref={ref}
@@ -1582,22 +879,22 @@ function CTASection() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
               size="lg"
-              className="group px-8 py-6 text-base font-semibold bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white rounded-full shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all duration-300"
+              className="group px-8 py-6 text-base font-semibold bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-400 hover:to-green-400 text-white rounded-full shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all duration-300"
               asChild
             >
               <Link href="/#contact">
                 {content.cta1}
-                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                <Rocket className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="px-8 py-6 text-base font-semibold border-slate-300 text-slate-700 hover:bg-slate-100 rounded-full transition-all duration-300"
+              className="px-8 py-6 text-base font-semibold border-emerald-300 text-emerald-700 hover:bg-emerald-50 rounded-full transition-all duration-300"
               asChild
             >
-              <Link href="#talent-pool">
-                <Users className="w-5 h-5 mr-2" />
+              <Link href="/#contact">
+                <PhoneCall className="w-5 h-5 mr-2" />
                 {content.cta2}
               </Link>
             </Button>
@@ -1613,15 +910,40 @@ function CTASection() {
 // ============================================
 
 export default function SkilledWorkersPage() {
+  const { t } = useLanguage();
+
+  // 1. LẤY DỮ LIỆU THÔ (Có thể bị null hoặc sai key)
+  const rawData = t.service_pages?.skilled_workers;
+
+  // 2. QUA CỔNG KIỂM SOÁT QA (Lọc sạch)
+  // Biến 'content' bây giờ đảm bảo 100% không bao giờ null
+  const content = checkQuality(rawData, DATA_DU_PHONG);
+
+  // FAQ Questions for Skilled Workers (B2B-Focused)
+  const skilledFAQs = [
+    {
+      question: "Wie funktioniert das Anerkennungsverfahren?",
+      answer: "Wir prüfen die vietnamesischen Abschlüsse bereits vor Vertragsschluss auf Gleichwertigkeit (Defizitbescheid). Sollte eine Anpassungsqualifizierung nötig sein, organisieren wir diese gemeinsam mit Ihnen."
+    },
+    {
+      question: "Wie schnell können die Fachkräfte starten?",
+      answer: "Dank des Beschleunigten Fachkräfteverfahrens oft in 4-6 Monaten. Da wir über einen Pool an bereits sprachlich qualifizierten Kandidaten verfügen, entfallen lange Wartezeiten für den Spracherwerb."
+    },
+    {
+      question: "Sind die Kandidaten an einer langfristigen Arbeit interessiert?",
+      answer: "Absolut. Unsere Kandidaten suchen eine langfristige Perspektive für sich und ihre Familien. Die kulturelle Integration wird durch unsere Betreuung vor Ort erleichtert."
+    }
+  ];
+
   return (
     <main className="min-h-screen">
-      <HeroSection />
-      <ComparisonSection />
-      <ExpertiseAreasSection />
-      <AvailableExpertsSection />
-      <ProcessSection />
-      <StatsSection />
-      <CTASection />
+      <HeroSection content={content} />
+      <AdvantagesSection content={content} />
+      <ProcessTimelineSection content={content} />
+      <ExpertiseSection content={content} />
+      <StatsSection content={content} />
+      <CTASection content={content} />
+      <FAQSection items={skilledFAQs} theme="emerald" />
     </main>
   );
 }

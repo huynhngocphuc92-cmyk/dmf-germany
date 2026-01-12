@@ -1,6 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { inquiryFormSchema, type InquiryFormData } from '@/lib/validations/schemas';
 import { X, MessageSquare, User, Mail, Phone, Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import {
   Dialog,
@@ -22,13 +25,6 @@ interface InquiryModalProps {
   onClose: () => void;
 }
 
-interface FormData {
-  name: string;
-  email: string;
-  phone: string;
-  message: string;
-}
-
 /**
  * Generate candidate code from ID
  */
@@ -37,19 +33,25 @@ const getCandidateCode = (id: string): string => {
 };
 
 export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) => {
-  // ============================================
-  // HOOKS - MUST BE CALLED AT TOP LEVEL
-  // ============================================
   const { lang } = useLanguage();
-  const [formData, setFormData] = useState<FormData>({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<"success" | "error" | null>(null);
   const [statusMessage, setStatusMessage] = useState<string>("");
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setValue,
+    formState: { errors, isSubmitting }
+  } = useForm<InquiryFormData>({
+    resolver: zodResolver(inquiryFormSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+    }
+  });
 
   // Auto-fill message when candidate changes
   useEffect(() => {
@@ -57,33 +59,13 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
       const defaultMessage = lang === "de"
         ? `Ich interessiere mich für das Profil dieses Kandidaten als ${candidate.profession}. Bitte senden Sie mir weitere Details.`
         : `Tôi quan tâm đến hồ sơ của ứng viên ${candidate.profession} này. Vui lòng gửi chi tiết.`;
-      setFormData(prev => ({ ...prev, message: defaultMessage }));
+      setValue('message', defaultMessage);
     }
-  }, [candidate, isOpen, lang]);
+  }, [candidate, isOpen, lang, setValue]);
 
-  // ============================================
-  // HELPER FUNCTIONS
-  // ============================================
   const candidateCode = candidate ? getCandidateCode(candidate.id) : "";
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-    // Clear status when user starts typing
-    if (status) {
-      setStatus(null);
-      setStatusMessage("");
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+  const onSubmit = async (data: InquiryFormData) => {
     // Early validation - if no candidate, don't submit
     if (!candidate) {
       setStatus("error");
@@ -95,10 +77,8 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
       return;
     }
 
-    // Reset status
     setStatus(null);
     setStatusMessage("");
-    setIsSubmitting(true);
 
     try {
       const response = await fetch("/api/contact", {
@@ -107,10 +87,10 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone || "",
-          message: formData.message,
+          name: data.name,
+          email: data.email,
+          phone: data.phone || "",
+          message: data.message,
           type: "profile",
           candidateId: candidate.id,
           candidateCode: candidateCode,
@@ -128,12 +108,7 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
         );
         // Reset form after 2 seconds and close modal
         setTimeout(() => {
-          setFormData({
-            name: "",
-            email: "",
-            phone: "",
-            message: "",
-          });
+          reset();
           setStatus(null);
           onClose();
         }, 2000);
@@ -141,9 +116,9 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
         setStatus("error");
         setStatusMessage(
           result.error ||
-            (lang === "de"
-              ? "Fehler beim Senden der Anfrage. Bitte versuchen Sie es später erneut."
-              : "Lỗi khi gửi yêu cầu. Vui lòng thử lại sau.")
+          (lang === "de"
+            ? "Fehler beim Senden. Bitte versuchen Sie es später erneut."
+            : "Lỗi khi gửi. Vui lòng thử lại sau.")
         );
       }
     } catch (error) {
@@ -151,194 +126,179 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
       setStatus("error");
       setStatusMessage(
         lang === "de"
-          ? "Netzwerkfehler. Bitte überprüfen Sie Ihre Verbindung und versuchen Sie es erneut."
-          : "Lỗi mạng. Vui lòng kiểm tra kết nối và thử lại."
+          ? "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut."
+          : "Đã xảy ra lỗi. Vui lòng thử lại sau."
       );
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
-  const handleClose = () => {
-    if (!isSubmitting) {
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        message: "",
-      });
+  // Reset form when modal closes
+  useEffect(() => {
+    if (!isOpen) {
+      reset();
       setStatus(null);
       setStatusMessage("");
-      onClose();
     }
-  };
+  }, [isOpen, reset]);
 
-  // ============================================
-  // RENDER - No early returns, Dialog always renders
-  // ============================================
-  // Dialog component handles visibility via 'open' prop
-  // We only render content if candidate exists
+  if (!candidate) return null;
+
   return (
-    <Dialog open={isOpen && !!candidate} onOpenChange={handleClose}>
-      <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
-        {candidate ? (
-          <>
-            <DialogHeader>
-              <DialogTitle className="text-xl flex items-center gap-2">
-                <MessageSquare className="w-5 h-5 text-primary" />
-                {lang === "de"
-                  ? `Anfrage für Kandidat #${candidateCode}`
-                  : `Yêu cầu cho ứng viên #${candidateCode}`}
-              </DialogTitle>
-              <DialogDescription>
-                {candidate.profession && (
-                  <span className="text-sm text-muted-foreground">
-                    {candidate.profession}
-                  </span>
-                )}
-              </DialogDescription>
-            </DialogHeader>
-
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Name Field */}
-              <div className="space-y-2">
-                <Label htmlFor="name" className="flex items-center gap-2">
-                  <User className="w-4 h-4" />
-                  {lang === "de" ? "Name *" : "Tên *"}
-                </Label>
-                <Input
-                  id="name"
-                  name="name"
-                  type="text"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder={lang === "de" ? "Ihr Name" : "Tên của bạn"}
-                  required
-                  disabled={isSubmitting}
-                  className="w-full"
-                />
-              </div>
-
-              {/* Email Field */}
-              <div className="space-y-2">
-                <Label htmlFor="email" className="flex items-center gap-2">
-                  <Mail className="w-4 h-4" />
-                  {lang === "de" ? "E-Mail *" : "Email *"}
-                </Label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder={lang === "de" ? "ihre@email.de" : "email@example.com"}
-                  required
-                  disabled={isSubmitting}
-                  className="w-full"
-                />
-              </div>
-
-              {/* Phone Field */}
-              <div className="space-y-2">
-                <Label htmlFor="phone" className="flex items-center gap-2">
-                  <Phone className="w-4 h-4" />
-                  {lang === "de" ? "Telefon" : "Số điện thoại"}
-                </Label>
-                <Input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  placeholder={lang === "de" ? "+49 123 456789" : "+84 90 123 4567"}
-                  disabled={isSubmitting}
-                  className="w-full"
-                />
-              </div>
-
-              {/* Message Field */}
-              <div className="space-y-2">
-                <Label htmlFor="message" className="flex items-center gap-2">
-                  <MessageSquare className="w-4 h-4" />
-                  {lang === "de" ? "Nachricht *" : "Tin nhắn *"}
-                </Label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder={
-                    lang === "de"
-                      ? "Ihre Nachricht..."
-                      : "Tin nhắn của bạn..."
-                  }
-                  rows={4}
-                  required
-                  disabled={isSubmitting}
-                  className="w-full resize-none"
-                />
-              </div>
-
-              {/* Status Message */}
-              {status && (
-                <div
-                  className={`p-3 rounded-lg flex items-start gap-3 ${
-                    status === "success"
-                      ? "bg-green-50 border border-green-200"
-                      : "bg-red-50 border border-red-200"
-                  }`}
-                >
-                  {status === "success" ? (
-                    <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                  ) : (
-                    <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
-                  )}
-                  <p
-                    className={`text-sm ${
-                      status === "success" ? "text-green-800" : "text-red-800"
-                    }`}
-                  >
-                    {statusMessage}
-                  </p>
-                </div>
-              )}
-
-              {/* Action Buttons */}
-              <div className="flex gap-3 pt-2">
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={handleClose}
-                  disabled={isSubmitting}
-                  className="flex-1"
-                >
-                  {lang === "de" ? "Abbrechen" : "Hủy"}
-                </Button>
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="flex-1 bg-primary hover:bg-primary/90"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                      {lang === "de" ? "Wird gesendet..." : "Đang gửi..."}
-                    </>
-                  ) : (
-                    <>
-                      <Send className="w-4 h-4 mr-2" />
-                      {lang === "de" ? "Anfrage senden" : "Gửi yêu cầu"}
-                    </>
-                  )}
-                </Button>
-              </div>
-            </form>
-          </>
-        ) : (
-          <div className="p-6 text-center text-muted-foreground">
-            {lang === "de" ? "Kandidat nicht gefunden" : "Không tìm thấy ứng viên"}
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="sm:max-w-[500px]">
+        <DialogHeader>
+          <div className="flex items-center justify-between">
+            <DialogTitle className="text-xl font-bold">
+              {lang === "de" ? "Anfrage senden" : "Gửi yêu cầu"}
+            </DialogTitle>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={onClose}
+              className="h-6 w-6"
+            >
+              <X className="h-4 w-4" />
+            </Button>
           </div>
-        )}
+          <DialogDescription>
+            <div className="flex items-center gap-2 mt-2">
+              <span className="font-semibold text-slate-900">
+                {candidate.full_name}
+              </span>
+              {candidate.profession && (
+                <span className="text-sm text-muted-foreground">
+                  {candidate.profession}
+                </span>
+              )}
+            </div>
+          </DialogDescription>
+        </DialogHeader>
+
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          {/* Status Messages */}
+          {status === "success" && (
+            <div className="flex items-center gap-3 p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-700">
+              <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+              <p className="text-sm font-medium">{statusMessage}</p>
+            </div>
+          )}
+
+          {status === "error" && (
+            <div className="flex items-center gap-3 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700">
+              <AlertCircle className="w-5 h-5 flex-shrink-0" />
+              <p className="text-sm font-medium">{statusMessage}</p>
+            </div>
+          )}
+
+          {/* Name Field */}
+          <div className="space-y-2">
+            <Label htmlFor="name" className="flex items-center gap-2">
+              <User className="w-4 h-4" />
+              {lang === "de" ? "Name *" : "Tên *"}
+            </Label>
+            <Input
+              id="name"
+              {...register('name')}
+              placeholder={lang === "de" ? "Ihr Name" : "Tên của bạn"}
+              disabled={isSubmitting}
+              className={errors.name ? "border-red-500" : ""}
+            />
+            {errors.name && (
+              <p className="text-sm text-red-500">{errors.name.message}</p>
+            )}
+          </div>
+
+          {/* Email Field */}
+          <div className="space-y-2">
+            <Label htmlFor="email" className="flex items-center gap-2">
+              <Mail className="w-4 h-4" />
+              {lang === "de" ? "E-Mail *" : "Email *"}
+            </Label>
+            <Input
+              id="email"
+              type="email"
+              {...register('email')}
+              placeholder={lang === "de" ? "ihre@email.de" : "email@example.com"}
+              disabled={isSubmitting}
+              className={errors.email ? "border-red-500" : ""}
+            />
+            {errors.email && (
+              <p className="text-sm text-red-500">{errors.email.message}</p>
+            )}
+          </div>
+
+          {/* Phone Field */}
+          <div className="space-y-2">
+            <Label htmlFor="phone" className="flex items-center gap-2">
+              <Phone className="w-4 h-4" />
+              {lang === "de" ? "Telefon" : "Số điện thoại"}
+            </Label>
+            <Input
+              id="phone"
+              type="tel"
+              {...register('phone')}
+              placeholder={lang === "de" ? "+49 123 456789" : "+84 90 123 4567"}
+              disabled={isSubmitting}
+              className={errors.phone ? "border-red-500" : ""}
+            />
+            {errors.phone && (
+              <p className="text-sm text-red-500">{errors.phone.message}</p>
+            )}
+          </div>
+
+          {/* Message Field */}
+          <div className="space-y-2">
+            <Label htmlFor="message" className="flex items-center gap-2">
+              <MessageSquare className="w-4 h-4" />
+              {lang === "de" ? "Nachricht *" : "Tin nhắn *"}
+            </Label>
+            <Textarea
+              id="message"
+              {...register('message')}
+              placeholder={
+                lang === "de"
+                  ? "Ihre Nachricht..."
+                  : "Tin nhắn của bạn..."
+              }
+              rows={5}
+              disabled={isSubmitting}
+              className={errors.message ? "border-red-500" : ""}
+            />
+            {errors.message && (
+              <p className="text-sm text-red-500">{errors.message.message}</p>
+            )}
+          </div>
+
+          {/* Submit Button */}
+          <div className="flex gap-3 pt-2">
+            <Button
+              type="button"
+              variant="outline"
+              className="flex-1"
+              onClick={onClose}
+              disabled={isSubmitting}
+            >
+              {lang === "de" ? "Abbrechen" : "Hủy"}
+            </Button>
+            <Button
+              type="submit"
+              className="flex-1 bg-blue-600 hover:bg-blue-700"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  {lang === "de" ? "Senden..." : "Đang gửi..."}
+                </>
+              ) : (
+                <>
+                  <Send className="w-4 h-4 mr-2" />
+                  {lang === "de" ? "Senden" : "Gửi"}
+                </>
+              )}
+            </Button>
+          </div>
+        </form>
       </DialogContent>
     </Dialog>
   );

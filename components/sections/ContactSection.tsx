@@ -1,345 +1,214 @@
-"use client";
+'use client';
 
-import React, { useState } from 'react';
-import { useLanguage } from '@/components/providers/LanguageProvider';
-import { Mail, Phone, MapPin, Send, Building2, User, Globe, CheckCircle2, AlertCircle } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-interface FormData {
-  name: string;
-  email: string;
-  phone: string;
-  company: string;
-  message: string;
-}
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { contactFormSchema, type ContactFormData } from '@/lib/validations/schemas';
+import { Loader2, Send, MapPin, Phone, Mail, Globe, User } from 'lucide-react';
 
-export function ContactSection() {
-  const { t } = useLanguage();
-  
-  // State Management
-  const [formData, setFormData] = useState<FormData>({
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
-    message: ''
+export default function ContactSection() {
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
+  const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<ContactFormData>({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: { name: '', email: '', phone: '', company: '', message: '' }
   });
-  
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [status, setStatus] = useState<'success' | 'error' | null>(null);
-  const [statusMessage, setStatusMessage] = useState<string>('');
 
-  // Handler: Update form data
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-    // Clear status when user starts typing again
-    if (status) {
-      setStatus(null);
-      setStatusMessage('');
-    }
-  };
-
-  // Handler: Submit form
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onSubmit = async (data: ContactFormData) => {
+    // 1. Honeypot check (Spam protection)
+    if ((data as any).bot_check) return;
     
-    // Reset status
-    setStatus(null);
-    setStatusMessage('');
-    setIsSubmitting(true);
-
+    setSubmitError(null);
+    
     try {
-      // Call API route
+      // 2. REAL API CALL (Restoring email functionality)
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone || '',
-          company: formData.company || '',
-          message: formData.message,
-          type: 'contact',
-        }),
+        body: JSON.stringify(data),
       });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
 
       const result = await response.json();
 
-      if (result.success) {
-        setStatus('success');
-        // Custom success message as requested
-        setStatusMessage("Cảm ơn! Yêu cầu của bạn đã được lưu.");
-        // Reset form
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          company: '',
-          message: ''
-        });
-      } else {
-        setStatus('error');
-        setStatusMessage(result.error || t.contact.error_message);
+      if (!result.success) {
+        throw new Error(result.message || 'Fehler beim Senden');
       }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setStatus('error');
-      setStatusMessage(t.contact.error_message);
-    } finally {
-      setIsSubmitting(false);
+
+      // 3. Success State
+      setIsSuccess(true);
+      reset(); // Clear form
+      
+    } catch (err) {
+      console.error('Contact form error:', err);
+      setSubmitError("Fehler beim Senden. Bitte versuchen Sie es später noch einmal.");
     }
   };
 
   return (
-    <section className="py-20 md:py-32 bg-slate-50" id="contact">
-      <div className="container mx-auto px-4 max-w-7xl">
+    <section id="contact" className="py-24 bg-slate-50 relative overflow-hidden">
+      <div className="container mx-auto px-4 relative z-10">
         
-        {/* HEADER SECTION */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="inline-block px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold mb-6">
-            {t.contact.badge}
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-            {t.contact.title}
-          </h2>
-          <p className="text-lg text-slate-600">
-            {t.contact.subtitle}
-          </p>
-        </div>
-
-        {/* TWO COLUMN LAYOUT */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
           
-          {/* LEFT COLUMN - FORM (60% = 3/5 columns) */}
-          <div className="lg:col-span-3">
-            <div className="bg-white rounded-2xl shadow-lg border border-slate-200 p-8 md:p-10">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Name Field */}
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">
-                    {t.contact.label_name}
-                  </label>
-                  <input 
-                    type="text" 
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder={t.contact.placeholder_name}
-                    className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-slate-900"
-                    required
-                    disabled={isSubmitting}
-                  />
-                </div>
-                
-                {/* Email Field */}
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">
-                    {t.contact.label_email}
-                  </label>
-                  <input 
-                    type="email" 
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder={t.contact.placeholder_email}
-                    className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-slate-900"
-                    required
-                    disabled={isSubmitting}
-                  />
-                </div>
-
-                {/* Phone Field */}
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">
-                    Telefon / Số điện thoại
-                  </label>
-                  <input 
-                    type="tel" 
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="+84 90 123 4567"
-                    className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-slate-900"
-                    disabled={isSubmitting}
-                  />
-                </div>
-
-                {/* Company Field */}
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">
-                    {t.contact.label_company}
-                  </label>
-                  <input 
-                    type="text" 
-                    name="company"
-                    value={formData.company}
-                    onChange={handleChange}
-                    placeholder={t.contact.placeholder_company}
-                    className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-slate-900"
-                    disabled={isSubmitting}
-                  />
+          {/* LEFT COLUMN: THE FORM (Span 2) */}
+          <div className="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-slate-100 p-8">
+            <h2 className="text-3xl font-bold mb-6 text-slate-900">Kontaktieren Sie uns</h2>
+            
+            {isSuccess ? (
+              <div className="bg-emerald-50 text-emerald-700 p-8 rounded-xl text-center">
+                <h3 className="text-2xl font-bold mb-2">Vielen Dank!</h3>
+                <p>Ihre Nachricht wurde erfolgreich gesendet.</p>
+                <button onClick={() => setIsSuccess(false)} className="mt-4 text-sm font-bold underline">
+                  Neue Nachricht
+                </button>
               </div>
+            ) : (
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                <input type="text" {...register('bot_check' as any)} className="hidden" autoComplete="off" />
 
-                {/* Message Field */}
-              <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">
-                    {t.contact.label_message}
-                  </label>
+                {/* Name & Email */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-slate-700">Name *</label>
+                    <input 
+                      {...register('name')} 
+                      className={`w-full p-4 rounded-xl border ${errors.name ? 'border-red-500' : 'border-slate-200'} bg-slate-50 focus:bg-white transition-all outline-none focus:ring-2 focus:ring-blue-500`} 
+                      placeholder="Ihr Name" 
+                    />
+                    {errors.name && <p className="text-red-500 text-xs">{errors.name.message}</p>}
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-slate-700">E-Mail *</label>
+                    <input 
+                      {...register('email')} 
+                      type="email"
+                      className={`w-full p-4 rounded-xl border ${errors.email ? 'border-red-500' : 'border-slate-200'} bg-slate-50 focus:bg-white transition-all outline-none focus:ring-2 focus:ring-blue-500`} 
+                      placeholder="ihre.email@unternehmen.de" 
+                    />
+                    {errors.email && <p className="text-red-500 text-xs">{errors.email.message}</p>}
+                  </div>
+                </div>
+
+                {/* Phone & Company (RESTORED) */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-slate-700">Telefon / Mobil</label>
+                    <input 
+                      {...register('phone')} 
+                      type="tel"
+                      className="w-full p-4 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white transition-all outline-none focus:ring-2 focus:ring-blue-500" 
+                      placeholder="+49 123 45678" 
+                    />
+                    {errors.phone && <p className="text-red-500 text-xs">{errors.phone.message}</p>}
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-slate-700">Unternehmen</label>
+                    <input 
+                      {...register('company')} 
+                      className="w-full p-4 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white transition-all outline-none focus:ring-2 focus:ring-blue-500" 
+                      placeholder="Ihr Unternehmen GmbH" 
+                    />
+                    {errors.company && <p className="text-red-500 text-xs">{errors.company.message}</p>}
+                  </div>
+                </div>
+
+                {/* Message */}
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-slate-700">Nachricht *</label>
                   <textarea 
-                    rows={6} 
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder={t.contact.placeholder_message}
-                    className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition resize-none text-slate-900"
-                    required
-                    disabled={isSubmitting}
-                  ></textarea>
+                    {...register('message')} 
+                    rows={5} 
+                    className={`w-full p-4 rounded-xl border ${errors.message ? 'border-red-500' : 'border-slate-200'} bg-slate-50 focus:bg-white transition-all outline-none focus:ring-2 focus:ring-blue-500`} 
+                    placeholder="Wie können wir Ihnen helfen?" 
+                  />
+                  {errors.message && <p className="text-red-500 text-xs">{errors.message.message}</p>}
                 </div>
 
-                {/* Status Message */}
-                {status && (
-                  <div className={`p-4 rounded-lg flex items-start gap-3 ${
-                    status === 'success' 
-                      ? 'bg-green-50 border border-green-200' 
-                      : 'bg-red-50 border border-red-200'
-                  }`}>
-                    {status === 'success' ? (
-                      <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                    ) : (
-                      <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
-                    )}
-                    <p className={`text-sm ${
-                      status === 'success' ? 'text-green-800' : 'text-red-800'
-                    }`}>
-                      {statusMessage}
-                    </p>
-              </div>
+                {submitError && (
+                  <div className="p-3 bg-red-50 text-red-600 text-sm rounded-lg">
+                    {submitError}
+                  </div>
                 )}
 
-                {/* Submit Button */}
-                <Button 
+                <button 
                   type="submit" 
-                  disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-6 rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={isSubmitting} 
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition-all shadow-lg hover:shadow-xl flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed"
                 >
-                  <Send className="w-5 h-5" />
-                  {isSubmitting ? t.contact.btn_submitting : t.contact.btn_submit}
-                </Button>
+                  {isSubmitting ? <Loader2 className="animate-spin mr-2" size={18} /> : <Send className="mr-2" size={18} />}
+                  Nachricht senden
+                </button>
               </form>
-            </div>
+            )}
           </div>
 
-          {/* RIGHT COLUMN - INFO (40% = 2/5 columns) */}
-          <div className="lg:col-span-2 space-y-6">
+          {/* RIGHT COLUMN: INFO CARDS (RESTORED) */}
+          <div className="space-y-6">
             
-            {/* Vietnam Office Block */}
-            <div className="bg-white rounded-2xl shadow-lg border border-slate-200 p-6">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center">
-                  <Building2 className="w-6 h-6 text-white" />
+            {/* Card 1: Vietnam */}
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center text-red-600">
+                  <MapPin size={20} />
                 </div>
-                <h3 className="text-lg font-bold text-slate-900">
-                  {t.contact.vn_office}
-                </h3>
+                <h3 className="font-bold text-slate-900">Hauptsitz in Vietnam</h3>
               </div>
-              
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <Phone className="w-5 h-5 text-slate-500 mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="text-sm text-slate-500 mb-0.5">{t.contact.label_hotline}</p>
-                    <p className="text-slate-900 font-semibold">+84 251 6609 500</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-3">
-                  <Mail className="w-5 h-5 text-slate-500 mt-0.5 flex-shrink-0" />
-              <div>
-                    <p className="text-sm text-slate-500 mb-0.5">{t.contact.info_email}</p>
-                    <p className="text-slate-900 font-semibold">contact@dmf.edu.vn</p>
-              </div>
+              <ul className="space-y-4 text-sm text-slate-600">
+                <li className="flex gap-3">
+                  <Phone size={16} className="text-slate-400 shrink-0 mt-0.5" />
+                  <span>+84 251 6609 500</span>
+                </li>
+                <li className="flex gap-3">
+                  <Mail size={16} className="text-slate-400 shrink-0 mt-0.5" />
+                  <a href="mailto:contact@dmf.edu.vn" className="hover:text-blue-600 transition-colors">contact@dmf.edu.vn</a>
+                </li>
+                <li className="flex gap-3">
+                  <Globe size={16} className="text-slate-400 shrink-0 mt-0.5" />
+                  <a href="https://dmf.edu.vn" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors">dmf.edu.vn</a>
+                </li>
+                <li className="flex gap-3">
+                  <MapPin size={16} className="text-slate-400 shrink-0 mt-0.5" />
+                  <span>Dong Nai, Vietnam</span>
+                </li>
+              </ul>
             </div>
 
-                <div className="flex items-start gap-3">
-                  <Globe className="w-5 h-5 text-slate-500 mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="text-sm text-slate-500 mb-0.5">Website</p>
-                    <p className="text-slate-900 font-semibold">dmf.edu.vn</p>
-                  </div>
-              </div>
-                
-                <div className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 text-slate-500 mt-0.5 flex-shrink-0" />
-              <div>
-                    <p className="text-sm text-slate-500 mb-0.5">{t.contact.info_address}</p>
-                    <p className="text-slate-900 font-semibold">{t.contact.vn_address}</p>
-                  </div>
+            {/* Card 2: Germany */}
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
+                  <User size={20} />
                 </div>
+                <h3 className="font-bold text-slate-900">Ansprechpartner Deutschland</h3>
               </div>
+              <div className="mb-4">
+                <p className="text-xs text-slate-400 uppercase tracking-wider font-bold mb-1">Ihr Partner</p>
+                <p className="font-bold text-slate-900">Herr Achim Betticher</p>
+              </div>
+              <ul className="space-y-4 text-sm text-slate-600">
+                <li className="flex gap-3">
+                  <Phone size={16} className="text-slate-400 shrink-0 mt-0.5" />
+                  <span>+49 151 507 0773</span>
+                </li>
+                <li className="flex gap-3">
+                  <Mail size={16} className="text-slate-400 shrink-0 mt-0.5" />
+                  <a href="mailto:achim@betticher.de" className="hover:text-blue-600 transition-colors">achim@betticher.de</a>
+                </li>
+                <li className="flex gap-3">
+                  <MapPin size={16} className="text-slate-400 shrink-0 mt-0.5" />
+                  <span>Deutschland</span>
+                </li>
+              </ul>
             </div>
-
-            {/* Germany Office Block */}
-            <div className="bg-white rounded-2xl shadow-lg border border-slate-200 p-6">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
-                  <User className="w-6 h-6 text-white" />
-          </div>
-                <h3 className="text-lg font-bold text-slate-900">
-                  {t.contact.de_office}
-                </h3>
-              </div>
-              
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <User className="w-5 h-5 text-slate-500 mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="text-sm text-slate-500 mb-0.5">Name</p>
-                    <p className="text-slate-900 font-semibold">{t.contact.de_name}</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-3">
-                  <Phone className="w-5 h-5 text-slate-500 mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="text-sm text-slate-500 mb-0.5">{t.contact.label_hotline}</p>
-                    <p className="text-slate-900 font-semibold">+84 85 507 0773</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-3">
-                  <Mail className="w-5 h-5 text-slate-500 mt-0.5 flex-shrink-0" />
-              <div>
-                    <p className="text-sm text-slate-500 mb-0.5">{t.contact.info_email}</p>
-                    <p className="text-slate-900 font-semibold">achim@betticher.de</p>
-                  </div>
-              </div>
-
-                <div className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 text-slate-500 mt-0.5 flex-shrink-0" />
-              <div>
-                    <p className="text-sm text-slate-500 mb-0.5">{t.contact.info_address}</p>
-                    <p className="text-slate-900 font-semibold">{t.contact.de_location}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Optional Banner */}
-            <div className="bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl shadow-lg p-6 text-white">
-              <h4 className="font-bold text-lg mb-2">{t.contact.banner_title}</h4>
-              <p className="text-sm text-blue-100">
-                {t.contact.banner_text}
-              </p>
-              </div>
 
           </div>
-
         </div>
       </div>
     </section>

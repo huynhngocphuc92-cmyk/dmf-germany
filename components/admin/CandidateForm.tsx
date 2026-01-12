@@ -128,6 +128,26 @@ export function CandidateForm({
     const file = e.target.files?.[0];
     if (!file) return;
 
+    // Validate file type
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+    if (!allowedTypes.includes(file.type)) {
+      setError('Nur JPG, PNG und WebP Dateien sind erlaubt.');
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
+      return;
+    }
+
+    // Validate file size (5MB max)
+    const maxSize = 5 * 1024 * 1024; // 5MB
+    if (file.size > maxSize) {
+      setError('Die Datei darf maximal 5MB groß sein.');
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
+      return;
+    }
+
     setIsUploading(true);
     setError(null);
 

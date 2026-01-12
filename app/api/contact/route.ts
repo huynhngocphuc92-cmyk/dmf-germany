@@ -1,50 +1,52 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/utils/supabase/server";
+import nodemailer from 'nodemailer';
+import { z } from 'zod';
+
+// Define validation schema for backend (double safety)
+const bodySchema = z.object({
+  name: z.string().min(2),
+  email: z.string().email(),
+  phone: z.string().optional(),
+  company: z.string().optional(),
+  message: z.string().min(10),
+  type: z.enum(['contact', 'profile']).optional(),
+  candidateId: z.string().optional(),
+  candidateCode: z.string().optional(),
+  bot_check: z.string().optional(), // Honeypot
+});
 
 /**
  * Contact API Route
  * Handles contact form submissions
+ * - Validates input with Zod
  * - Saves to Supabase inquiries table
- * - Sends notification to Telegram
+ * - Sends email via nodemailer (SMTP)
+ * - Sends notification to Telegram (optional)
  */
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const {
-      name,
-      email,
-      phone,
-      company,
-      message,
-      type = "contact", // Default to "contact", can be "contact" or "profile"
-      candidateId,
-      candidateCode,
-    } = body;
 
-    // Validation
-    if (!name || !email || !message) {
+    // 1. Validate data with Zod
+    const validatedData = bodySchema.parse(body);
+    const { name, email, phone, company, message, type = 'contact', candidateId, candidateCode, bot_check } = validatedData;
+
+    // 2. Honeypot check (Spam protection)
+    if (bot_check) {
       return NextResponse.json(
-        { success: false, error: "Name, Email và Message là bắt buộc." },
+        { success: false, error: "No bots allowed" },
         { status: 400 }
       );
     }
 
-    // Email format validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { success: false, error: "Email không hợp lệ." },
-        { status: 400 }
-      );
-    }
-
-    // Determine inquiry type
     const inquiryType = type === "profile" ? "profile" : "contact";
 
     let supabaseSaved = false;
+    let emailSent = false;
     let telegramSent = false;
 
-    // 1. Save to Supabase
+    // 3. Save to Supabase
     try {
       const supabase = await createClient();
       
@@ -58,7 +60,6 @@ export async function POST(request: NextRequest) {
         status: "new",
       };
 
-      // Add candidate info if it's a profile inquiry
       if (inquiryType === "profile" && candidateCode) {
         insertData.candidate_code = candidateCode;
         insertData.candidate_id = candidateId || null;
@@ -81,7 +82,61 @@ export async function POST(request: NextRequest) {
       // Continue even if Supabase fails
     }
 
-    // 2. Send to Telegram (non-blocking)
+    // 4. Send Email via nodemailer (SMTP)
+    try {
+      // Check if SMTP is configured
+      if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASSWORD) {
+        const transporter = nodemailer.createTransport({
+          host: process.env.SMTP_HOST,
+          port: Number(process.env.SMTP_PORT) || 587,
+          secure: false, // true for 465, false for other ports
+          auth: {
+            user: process.env.SMTP_USER,
+            pass: process.env.SMTP_PASSWORD,
+          },
+        });
+
+        const emailSubject = inquiryType === "profile" 
+          ? `🎯 Neue Profil-Anfrage: ${name}`
+          : `📧 Neue Kontaktanfrage: ${name}`;
+
+        let emailHtml = `
+          <h2>${emailSubject}</h2>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Telefon:</strong> ${phone || 'Nicht angegeben'}</p>
+          <p><strong>Firma:</strong> ${company || 'Nicht angegeben'}</p>
+        `;
+
+        if (inquiryType === "profile" && candidateCode) {
+          emailHtml += `<p><strong>Kandidat:</strong> #${candidateCode}</p>`;
+        }
+
+        emailHtml += `
+          <br/>
+          <p><strong>Nachricht:</strong></p>
+          <p style="background-color: #f3f4f6; padding: 12px; border-radius: 4px; white-space: pre-wrap;">${message.replace(/\n/g, '<br>')}</p>
+        `;
+
+        await transporter.sendMail({
+          from: `"DMF Website" <${process.env.SMTP_USER}>`,
+          to: process.env.CONTACT_EMAIL || process.env.SMTP_USER,
+          replyTo: email,
+          subject: emailSubject,
+          html: emailHtml,
+        });
+
+        emailSent = true;
+        console.log("[Contact API] ✓ Email sent via nodemailer");
+      } else {
+        console.warn("[Contact API] SMTP not configured, skipping email");
+      }
+    } catch (emailError) {
+      console.error("[Contact API] Email error:", emailError);
+      // Non-blocking: Continue even if email fails
+    }
+
+    // 5. Send to Telegram (non-blocking)
     try {
       const telegramTitle = inquiryType === "profile" 
         ? `🎯 <b>NEUE PROFIL-ANFRAGE</b>`
@@ -118,25 +173,15 @@ export async function POST(request: NextRequest) {
       // Non-blocking: Continue even if Telegram fails
     }
 
-    // Return success if Supabase saved (prioritize DB save)
-    if (supabaseSaved) {
+    // 6. Return success if at least one method succeeded
+    if (supabaseSaved || emailSent) {
       return NextResponse.json(
         { 
           success: true, 
-          message: "Anfrage wurde erfolgreich gesendet und gespeichert.",
-          saved: true,
+          message: "Anfrage wurde erfolgreich gesendet.",
+          saved: supabaseSaved,
+          emailSent: emailSent,
           telegramSent: telegramSent,
-        },
-        { status: 200 }
-      );
-    } else if (telegramSent) {
-      // If only Telegram sent, still return success but with warning
-      return NextResponse.json(
-        { 
-          success: true, 
-          message: "Anfrage wurde gesendet, konnte aber nicht gespeichert werden.",
-          saved: false,
-          telegramSent: true,
         },
         { status: 200 }
       );
@@ -150,7 +195,18 @@ export async function POST(request: NextRequest) {
       );
     }
   } catch (error) {
-    console.error("[Contact API] Unexpected error:", error);
+    console.error("[Contact API] Validation or unexpected error:", error);
+    
+    if (error instanceof z.ZodError) {
+      return NextResponse.json(
+        { 
+          success: false, 
+          error: "Ungültige Eingabedaten. Bitte überprüfen Sie Ihre Angaben." 
+        },
+        { status: 400 }
+      );
+    }
+
     return NextResponse.json(
       { 
         success: false, 

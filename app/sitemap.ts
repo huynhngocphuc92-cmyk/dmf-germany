@@ -17,19 +17,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/services/skilled-workers`,
       lastModified,
       changeFrequency: 'weekly',
-      priority: 0.9,
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/services/azubi`,
       lastModified,
       changeFrequency: 'weekly',
-      priority: 0.9,
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/services/seasonal`,
       lastModified,
       changeFrequency: 'weekly',
-      priority: 0.9,
+      priority: 0.8,
     },
     // B2B Tools - High Priority
     {

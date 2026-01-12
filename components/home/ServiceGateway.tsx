@@ -199,6 +199,23 @@ function ServiceCardItem({ service, index, isInView, serviceImage, serviceImageK
   const features = lang === "de" ? service.featuresDe : lang === "en" ? service.featuresDe : service.featuresVn;
   const ctaText = lang === "de" ? "Mehr erfahren" : lang === "en" ? "Learn More" : "Tìm hiểu thêm";
 
+  // FINAL SAFETY CHECK: Ensure serviceImage is valid before passing to AssetImageWithDebug
+  // This prevents any edge cases where invalid values might slip through
+  const safeImageSrc = serviceImage && isValidImagePath(serviceImage) && serviceImage !== serviceImageKey
+    ? serviceImage
+    : null;
+  
+  // DEBUG: Log what's being passed to AssetImageWithDebug
+  if (service.id === 'azubi') {
+    console.log('[ServiceCardItem] 🎴 Azubi card debug:', {
+      serviceImage,
+      serviceImageKey,
+      safeImageSrc,
+      isValid: serviceImage ? isValidImagePath(serviceImage) : false,
+      isKey: serviceImage === serviceImageKey,
+    });
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -245,19 +262,18 @@ function ServiceCardItem({ service, index, isInView, serviceImage, serviceImageK
           />
 
           <CardContent className="relative z-10 p-8 h-full flex flex-col">
-            {/* Service Image (if available) */}
-            {serviceImage && (
-              <div className="mb-6 -mx-8 -mt-8 aspect-video relative overflow-hidden rounded-t-lg">
-                <AssetImageWithDebug
-                  src={serviceImage}
-                  configKey={serviceImageKey || `home_prog_${service.id}_img`}
-                  alt={title}
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-white/80 to-transparent" />
-              </div>
-            )}
+            {/* Service Image - Always render container, AssetImageWithDebug handles validation */}
+            <div className="mb-6 -mx-8 -mt-8 aspect-video relative overflow-hidden rounded-t-lg bg-slate-50">
+              <AssetImageWithDebug
+                src={safeImageSrc}
+                configKey={serviceImageKey || `home_prog_${service.id}_img`}
+                alt={title}
+                fill
+                className="object-cover"
+                fallbackClassName="bg-slate-100"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-white/80 to-transparent pointer-events-none" />
+            </div>
             
             {/* Header */}
             <div className="mb-6">
@@ -379,17 +395,84 @@ interface ServiceGatewayProps {
   hotelImg?: string | null;
 }
 
+// Helper function to validate if a string is a valid image URL/path
+// Supports:
+// - Relative paths: "/uploads/image.jpg"
+// - Absolute URLs: "http://..." or "https://..."
+// - Supabase Storage URLs: "https://*.supabase.co/storage/v1/object/public/..."
+function isValidImagePath(value: string | null | undefined): boolean {
+  if (!value || typeof value !== 'string') return false;
+  
+  // Check if it starts with "/" (relative path)
+  if (value.startsWith('/')) return true;
+  
+  // Check if it starts with "http://" or "https://" (absolute URL)
+  if (value.startsWith('http://') || value.startsWith('https://')) return true;
+  
+  // Additional check: Supabase Storage URLs (should already be https://, but double-check)
+  if (value.includes('supabase.co') && value.includes('storage')) return true;
+  
+  return false;
+}
+
+// Helper function to sanitize image value - filters out key strings
+function sanitizeImageValue(value: string | null | undefined, key: string): string | null {
+  if (!value) {
+    console.log(`[ServiceGateway] Image value for "${key}" is null/undefined. Returning null.`);
+    return null;
+  }
+  
+  // If value is the key itself (invalid), return null
+  if (value === key) {
+    console.warn(`[ServiceGateway] ⚠️ Image value for "${key}" is the key itself. This is invalid. Returning null.`);
+    return null;
+  }
+  
+  // Additional check: if value looks like a key (contains underscores and no path indicators), reject it
+  if (value.includes('_') && !value.startsWith('/') && !value.startsWith('http')) {
+    // This might be a key string, but let's be more specific
+    // Only reject if it matches common key patterns
+    if (value.match(/^[a-z_]+$/i) && value.length > 10) {
+      console.warn(`[ServiceGateway] ⚠️ Image value for "${key}" looks like a key string: "${value}". Returning null.`);
+      return null;
+    }
+  }
+  
+  // Validate that it's a valid image path
+  if (!isValidImagePath(value)) {
+    console.warn(`[ServiceGateway] ⚠️ Image value for "${key}" is invalid: "${value}". Expected URL starting with /, http://, or https://. Returning null.`);
+    return null;
+  }
+  
+  console.log(`[ServiceGateway] ✅ Image value for "${key}" is valid: "${value}"`);
+  return value;
+}
+
 export function ServiceGateway({ nursingImg, techImg, hotelImg }: ServiceGatewayProps = {}) {
   const { lang, t } = useLanguage();
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
   
-  // Map images to services
+  // DEBUG: Log raw props received
+  console.log('[ServiceGateway] 📥 Raw props received:', {
+    nursingImg,
+    techImg,
+    hotelImg,
+    nursingImgType: typeof nursingImg,
+    techImgType: typeof techImg,
+    hotelImgType: typeof hotelImg,
+  });
+  
+  // Map images to services with validation
+  // CRITICAL: Sanitize each image value to ensure we never pass key strings to Image components
   const serviceImages: Record<string, string | null> = {
-    azubi: nursingImg || null,
-    skilled: techImg || null,
-    seasonal: hotelImg || null,
+    azubi: sanitizeImageValue(nursingImg, "home_prog_nursing_img"),
+    skilled: sanitizeImageValue(techImg, "home_prog_tech_img"),
+    seasonal: sanitizeImageValue(hotelImg, "home_prog_hotel_img"),
   };
+  
+  // DEBUG: Log sanitized values
+  console.log('[ServiceGateway] 📤 Sanitized serviceImages:', serviceImages);
 
   // Map asset keys for debug labels
   const serviceImageKeys: Record<string, string> = {

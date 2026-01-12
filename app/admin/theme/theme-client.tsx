@@ -23,7 +23,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import type { SiteConfigItem, SiteConfigGrouped, ThemeSection } from "@/types/theme";
 import { sectionLabelsI18n, themeTranslations, ThemeLanguage } from "@/types/theme";
-import { AssetCard } from "@/components/admin/AssetCard";
+import AssetCard from "@/components/admin/AssetCard";
 
 // ============================================
 // THEME MANAGER CLIENT COMPONENT
@@ -40,7 +40,6 @@ export function ThemeManagerClient({ initialConfigs }: ThemeManagerClientProps) 
   const t = themeTranslations[lang];
 
   const [configs, setConfigs] = useState<SiteConfigGrouped>(initialConfigs);
-  const sections: ThemeSection[] = ["identity", "home", "header_footer", "contact", "system"];
   
   // Default to identity tab
   const [activeTab, setActiveTab] = useState<string>("identity");
@@ -84,6 +83,13 @@ export function ThemeManagerClient({ initialConfigs }: ThemeManagerClientProps) 
     
     return allItems;
   };
+
+  // Define sections array - filter out system tab if it has no items
+  const allSections: ThemeSection[] = ["identity", "home", "header_footer", "contact", "system"];
+  const systemItems = getFilteredConfigs("system");
+  const sections: ThemeSection[] = systemItems.length > 0 
+    ? allSections 
+    : allSections.filter(s => s !== "system");
 
   // Debug: Log configs structure on mount and when configs change
   useEffect(() => {

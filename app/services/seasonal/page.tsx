@@ -4,8 +4,17 @@ import { useRef, useEffect, useState } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { checkQuality } from "@/utils/qa-layer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import dynamic from 'next/dynamic';
+
+// Lazy load FAQ Section (below the fold)
+const FAQSection = dynamic(() => import('@/components/shared/FAQSection'), {
+  loading: () => <div className="py-20 text-center text-slate-500">Laden...</div>,
+  ssr: true // Keep SSR for SEO content, but split the JS bundle
+});
+
 import {
   ArrowRight,
   CheckCircle2,
@@ -33,6 +42,85 @@ import {
   CircleCheck,
   Rocket,
 } from "lucide-react";
+
+// ============================================
+// FALLBACK DATA (DỮ LIỆU DỰ PHÒNG)
+// ============================================
+
+const DATA_DU_PHONG = {
+  hero: {
+    badge: "100% ZAV-konform",
+    headline: "Erntehelfer & Servicekräfte",
+    headline_accent: "Schnell verfügbar.",
+    subheadline: "Sichern Sie Ihre Ernte und Ihren Service. Körperlich belastbares Personal für die Hochsaison – einsatzbereit in 4-8 Wochen.",
+    cta1: "Verfügbarkeit jetzt prüfen",
+    cta2: "Rückruf anfordern",
+    urgency_badge: "Saison 2026 – Jetzt sichern!",
+  },
+  advantages: {
+    badge: "Warum Vietnam?",
+    title: "Ihre Vorteile auf einen Blick",
+    subtitle: "Belastbares Personal für harte Arbeit",
+    advantage_1_title: "Körperlich Belastbar",
+    advantage_1_desc: "Gewohnt an harte Arbeit und Hitze. Ideal für Feldarbeit und Gewächshäuser.",
+    advantage_1_highlight: "100%",
+    advantage_1_highlight_desc: "Einsatzbereit",
+    advantage_2_title: "Hohe Motivation",
+    advantage_2_desc: "Maximale Einsatzbereitschaft für 3-6 Monate. Wenig Fehlzeiten, hohe Produktivität.",
+    advantage_2_highlight: "< 2%",
+    advantage_2_highlight_desc: "Fehlzeiten",
+    advantage_3_title: "Rechtssicher",
+    advantage_3_desc: "Wir garantieren die Einhaltung aller Vorgaben (Mindestlohn, ZAV, Visum). Kein Risiko für Sie.",
+    advantage_3_highlight: "100%",
+    advantage_3_highlight_desc: "ZAV-konform",
+  },
+  timeline: {
+    badge: "Schneller Prozess",
+    title: "In 4-8 Wochen einsatzbereit",
+    subtitle: "Keine lange Wartezeit. Keine bürokratischen Hürden.",
+    step1_week: "1",
+    step1_title: "Auswahl",
+    step1_desc: "Wir stellen Ihnen passende Teams vor",
+    step2_week: "2-4",
+    step2_title: "ZAV-Antrag",
+    step2_desc: "Behördliche Genehmigung durch Arbeitsagentur",
+    step3_week: "5-8",
+    step3_title: "Anreise",
+    step3_desc: "Gruppenflug und Transfer zum Einsatzort",
+    key_message: "Keine lange Wartezeit",
+    week_label: "Wo.",
+    weeks_label: "Wochen",
+    until_work: "bis Einsatz",
+    fast_label: "Schnell",
+  },
+  talent: {
+    badge: "Sofort verfügbar",
+    title: "Belastbare Arbeitskräfte",
+    subtitle: "ZAV-konform • Körperlich fit • Einsatzbereit in Wochen",
+    available_badge: "50+ Verfügbar",
+    view_all: "Alle Kandidaten ansehen",
+    available_label: "verfügbar",
+    request_label: "Anfragen",
+  },
+  sectors: {
+    badge: "Einsatzbereiche",
+    title: "Branchen, die wir bedienen",
+    subtitle: "Spezialisiert auf saisonale Spitzenzeiten",
+    workers_label: "Arbeitskräfte",
+    lead_time_label: "Vorlauf",
+  },
+  stats: {
+    stat1_label: "Vermittelte Arbeitskräfte",
+    stat2_label: "Visum-Erfolgsquote",
+    stat3_label: "Wochen bis Einsatz",
+  },
+  cta: {
+    title: "Bereit für Saison 2026?",
+    subtitle: "Sichern Sie sich jetzt Personal für eine erfolgreiche Saison.",
+    cta1: "Angebot anfordern",
+    cta2: "Rückruf anfordern",
+  },
+};
 
 // ============================================
 // CONTENT DATA
@@ -392,19 +480,11 @@ function AnimatedCounter({
 // HERO SECTION
 // ============================================
 
-function HeroSection() {
-  const { lang, t } = useLanguage();
+function HeroSection({ content }: { content: any }) {
+  const { lang } = useLanguage();
   
-  // Build hero content from translations
-  const content = {
-    badge: t.service_pages.seasonal.hero.badge,
-    headline: t.service_pages.seasonal.hero.headline,
-    headline_accent: t.service_pages.seasonal.hero.headline_accent,
-    subheadline: t.service_pages.seasonal.hero.subheadline,
-    cta1: t.service_pages.seasonal.hero.cta1,
-    cta2: t.service_pages.seasonal.hero.cta2,
-    urgency_badge: t.service_pages.seasonal.hero.urgency_badge,
-  };
+  // Use safe content from QA layer
+  const heroContent = content?.hero || {};
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-slate-950">
@@ -443,7 +523,7 @@ function HeroSection() {
             >
               <Badge className="px-4 py-2 bg-amber-500/20 border border-amber-500/30 text-amber-400 backdrop-blur-sm animate-pulse">
                 <Sparkles className="w-4 h-4 mr-2" />
-                {content.urgency_badge}
+                {heroContent.urgency_badge || "Saison 2026 – Jetzt sichern!"}
               </Badge>
             </motion.div>
 
@@ -455,22 +535,22 @@ function HeroSection() {
             >
               <Badge className="mb-6 px-4 py-2 bg-orange-500/10 border border-orange-500/20 text-orange-400 backdrop-blur-sm">
                 <Zap className="w-4 h-4 mr-2" />
-                {content.badge}
+                {heroContent.badge || "100% ZAV-konform"}
               </Badge>
             </motion.div>
 
             {/* Headline */}
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8">
-              <span className="text-white">{content.headline}</span>
+              <span className="text-white">{heroContent.headline || "Erntehelfer & Servicekräfte"}</span>
               <br />
               <span className="bg-gradient-to-r from-amber-400 via-orange-400 to-yellow-400 bg-clip-text text-transparent">
-                {content.headline_accent}
+                {heroContent.headline_accent || "Schnell verfügbar."}
               </span>
             </h1>
 
             {/* Subheadline */}
             <p className="text-lg md:text-xl text-slate-400 leading-relaxed mb-10 max-w-lg">
-              {content.subheadline}
+              {heroContent.subheadline || "Sichern Sie Ihre Ernte und Ihren Service. Körperlich belastbares Personal für die Hochsaison – einsatzbereit in 4-8 Wochen."}
             </p>
 
             {/* CTA Buttons */}
@@ -481,7 +561,7 @@ function HeroSection() {
                 asChild
               >
                 <Link href="#contact">
-                  {content.cta1}
+                  {heroContent.cta1 || "Verfügbarkeit jetzt prüfen"}
                   <Rocket className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
@@ -493,7 +573,7 @@ function HeroSection() {
               >
                 <Link href="/#contact">
                   <PhoneCall className="w-5 h-5 mr-2" />
-                  {content.cta2}
+                  {heroContent.cta2 || "Rückruf anfordern"}
                 </Link>
               </Button>
             </div>
@@ -534,10 +614,10 @@ function HeroSection() {
                       4-8
                     </div>
                     <div className="text-white font-medium text-lg">
-                      {t.service_pages.seasonal.timeline.weeks_label}
+                      Wochen
                     </div>
                     <div className="text-amber-400 text-sm mt-1">
-                      {t.service_pages.seasonal.timeline.until_work}
+                      bis Einsatz
                     </div>
                   </motion.div>
                 </div>
@@ -551,7 +631,7 @@ function HeroSection() {
               >
                 <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/30 px-3 py-1.5">
                   <Zap className="w-3 h-3 mr-1" />
-                  {t.service_pages.seasonal.timeline.fast_label}
+                  {content?.timeline?.fast_label || "Schnell"}
                 </Badge>
               </motion.div>
 
@@ -604,35 +684,39 @@ function HeroSection() {
 // ADVANTAGES SECTION
 // ============================================
 
-function AdvantagesSection() {
-  const { lang, t } = useLanguage();
+function AdvantagesSection({ content }: { content: any }) {
+  const { lang } = useLanguage();
   
-  // Build content from translations
-  const content = {
-    badge: t.service_pages.seasonal.advantages.badge,
-    title: t.service_pages.seasonal.advantages.title,
-    subtitle: t.service_pages.seasonal.advantages.subtitle,
+  // Use safe content from QA layer
+  const raw = content || {};
+  const advantages = raw.advantages || {};
+  
+  // Build section content from translations
+  const sectionContent = {
+    badge: advantages.badge || "Warum Vietnam?",
+    title: advantages.title || "Ihre Vorteile auf einen Blick",
+    subtitle: advantages.subtitle || "Belastbares Personal für harte Arbeit",
     advantages: [
       {
         icon: Dumbbell,
-        title: t.service_pages.seasonal.advantages.advantage_1_title,
-        description: t.service_pages.seasonal.advantages.advantage_1_desc,
-        highlight: t.service_pages.seasonal.advantages.advantage_1_highlight,
-        highlightDesc: t.service_pages.seasonal.advantages.advantage_1_highlight_desc,
+        title: advantages.advantage_1_title || "Körperlich Belastbar",
+        description: advantages.advantage_1_desc || "Gewohnt an harte Arbeit und Hitze. Ideal für Feldarbeit und Gewächshäuser.",
+        highlight: advantages.advantage_1_highlight || "100%",
+        highlightDesc: advantages.advantage_1_highlight_desc || "Einsatzbereit",
       },
       {
         icon: Zap,
-        title: t.service_pages.seasonal.advantages.advantage_2_title,
-        description: t.service_pages.seasonal.advantages.advantage_2_desc,
-        highlight: t.service_pages.seasonal.advantages.advantage_2_highlight,
-        highlightDesc: t.service_pages.seasonal.advantages.advantage_2_highlight_desc,
+        title: advantages.advantage_2_title || "Hohe Motivation",
+        description: advantages.advantage_2_desc || "Maximale Einsatzbereitschaft für 3-6 Monate. Wenig Fehlzeiten, hohe Produktivität.",
+        highlight: advantages.advantage_2_highlight || "< 2%",
+        highlightDesc: advantages.advantage_2_highlight_desc || "Fehlzeiten",
       },
       {
         icon: Shield,
-        title: t.service_pages.seasonal.advantages.advantage_3_title,
-        description: t.service_pages.seasonal.advantages.advantage_3_desc,
-        highlight: t.service_pages.seasonal.advantages.advantage_3_highlight,
-        highlightDesc: t.service_pages.seasonal.advantages.advantage_3_highlight_desc,
+        title: advantages.advantage_3_title || "Rechtssicher",
+        description: advantages.advantage_3_desc || "Wir garantieren die Einhaltung aller Vorgaben (Mindestlohn, ZAV, Visum). Kein Risiko für Sie.",
+        highlight: advantages.advantage_3_highlight || "100%",
+        highlightDesc: advantages.advantage_3_highlight_desc || "ZAV-konform",
       },
     ],
   };
@@ -655,21 +739,21 @@ function AdvantagesSection() {
             className="mb-6 px-4 py-2 border-amber-200 text-amber-700 bg-amber-50"
           >
             <Zap className="w-4 h-4 mr-2" />
-            {content.badge}
+            {sectionContent.badge}
           </Badge>
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
-            {content.title}
+            {sectionContent.title}
           </h2>
 
           <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto">
-            {content.subtitle}
+            {sectionContent.subtitle}
           </p>
         </motion.div>
 
         {/* Advantage Cards */}
         <div className="grid md:grid-cols-3 gap-8">
-          {content.advantages.map((advantage, index) => {
+          {sectionContent.advantages.map((advantage: any, index: number) => {
             const Icon = advantage.icon;
             return (
               <motion.div
@@ -711,36 +795,40 @@ function AdvantagesSection() {
 // SPEED TIMELINE SECTION
 // ============================================
 
-function SpeedTimelineSection() {
-  const { lang, t } = useLanguage();
+function SpeedTimelineSection({ content }: { content: any }) {
+  const { lang } = useLanguage();
   const ref = useRef(null);
   
-  // Build content from translations
-  const content = {
-    badge: t.service_pages.seasonal.timeline.badge,
-    title: t.service_pages.seasonal.timeline.title,
-    subtitle: t.service_pages.seasonal.timeline.subtitle,
+  // Use safe content from QA layer
+  const raw = content || {};
+  const timeline = raw.timeline || {};
+  
+  // Build section content from translations
+  const sectionContent = {
+    badge: timeline.badge || "Schneller Prozess",
+    title: timeline.title || "In 4-8 Wochen einsatzbereit",
+    subtitle: timeline.subtitle || "Keine lange Wartezeit. Keine bürokratischen Hürden.",
     steps: [
       {
-        week: t.service_pages.seasonal.timeline.step1_week,
-        title: t.service_pages.seasonal.timeline.step1_title,
-        description: t.service_pages.seasonal.timeline.step1_desc,
+        week: timeline.step1_week || "1",
+        title: timeline.step1_title || "Auswahl",
+        description: timeline.step1_desc || "Wir stellen Ihnen passende Teams vor",
         icon: Users,
       },
       {
-        week: t.service_pages.seasonal.timeline.step2_week,
-        title: t.service_pages.seasonal.timeline.step2_title,
-        description: t.service_pages.seasonal.timeline.step2_desc,
+        week: timeline.step2_week || "2-4",
+        title: timeline.step2_title || "ZAV-Antrag",
+        description: timeline.step2_desc || "Behördliche Genehmigung durch Arbeitsagentur",
         icon: FileCheck,
       },
       {
-        week: t.service_pages.seasonal.timeline.step3_week,
-        title: t.service_pages.seasonal.timeline.step3_title,
-        description: t.service_pages.seasonal.timeline.step3_desc,
+        week: timeline.step3_week || "5-8",
+        title: timeline.step3_title || "Anreise",
+        description: timeline.step3_desc || "Gruppenflug und Transfer zum Einsatzort",
         icon: Plane,
       },
     ],
-    key_message: t.service_pages.seasonal.timeline.key_message,
+    key_message: timeline.key_message || "Keine lange Wartezeit",
   };
   const isInView = useInView(ref, { once: true, amount: 0.3 });
   const [progress, setProgress] = useState(0);
@@ -770,15 +858,15 @@ function SpeedTimelineSection() {
             className="mb-6 px-4 py-2 border-amber-200 text-amber-700 bg-amber-50"
           >
             <Zap className="w-4 h-4 mr-2" />
-            {content.badge}
+            {sectionContent.badge}
           </Badge>
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
-            {content.title}
+            {sectionContent.title}
           </h2>
 
           <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto">
-            {content.subtitle}
+            {sectionContent.subtitle}
           </p>
         </motion.div>
 
@@ -798,7 +886,7 @@ function SpeedTimelineSection() {
 
           {/* Steps */}
           <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8">
-            {content.steps.map((step, index) => {
+            {sectionContent.steps.map((step: any, index: number) => {
               const Icon = step.icon;
               return (
                 <motion.div
@@ -820,7 +908,7 @@ function SpeedTimelineSection() {
                     </div>
                     {/* Week badge */}
                     <div className="absolute -top-2 -right-2 bg-slate-900 text-white text-xs font-bold px-2 py-1 rounded-full">
-                      {t.service_pages.seasonal.timeline.week_label} {step.week}
+                      Wo. {step.week}
                     </div>
                   </motion.div>
 
@@ -854,16 +942,20 @@ function SpeedTimelineSection() {
 // TALENT POOL SECTION
 // ============================================
 
-function TalentPoolSection() {
-  const { lang, t } = useLanguage();
+function TalentPoolSection({ content }: { content: any }) {
+  const { lang } = useLanguage();
   
-  // Build content from translations - keep profiles structure from original
-  const content = {
-    badge: t.service_pages.seasonal.talent.badge,
-    title: t.service_pages.seasonal.talent.title,
-    subtitle: t.service_pages.seasonal.talent.subtitle,
-    available_badge: t.service_pages.seasonal.talent.available_badge,
-    view_all: t.service_pages.seasonal.talent.view_all,
+  // Use safe content from QA layer
+  const raw = content || {};
+  const talent = raw.talent || {};
+  
+  // Build section content from translations - keep profiles structure from original
+  const sectionContent = {
+    badge: talent.badge || "Sofort verfügbar",
+    title: talent.title || "Belastbare Arbeitskräfte",
+    subtitle: talent.subtitle || "ZAV-konform • Körperlich fit • Einsatzbereit in Wochen",
+    available_badge: talent.available_badge || "50+ Verfügbar",
+    view_all: talent.view_all || "Alle Kandidaten ansehen",
     profiles: talentPoolContent.de.profiles, // Keep original profiles data
   };
   const ref = useRef(null);
@@ -885,27 +977,27 @@ function TalentPoolSection() {
             className="mb-6 px-4 py-2 border-amber-200 text-amber-700 bg-amber-50"
           >
             <Users className="w-4 h-4 mr-2" />
-            {content.badge}
+            {sectionContent.badge}
           </Badge>
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
-            {content.title}
+            {sectionContent.title}
           </h2>
 
           <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto mb-6">
-            {content.subtitle}
+            {sectionContent.subtitle}
           </p>
 
           {/* Available Badge */}
           <Badge className="bg-amber-500 text-white border-0 px-4 py-2 text-base shadow-lg shadow-amber-500/30">
             <Users className="w-4 h-4 mr-2" />
-            {content.available_badge}
+            {sectionContent.available_badge}
           </Badge>
         </motion.div>
 
         {/* Profile Cards Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {talentPoolContent.de.profiles.map((profile, index) => {
+          {talentPoolContent.de.profiles.map((profile: any, index: number) => {
             const Icon = profile.icon;
             return (
               <motion.div
@@ -924,7 +1016,7 @@ function TalentPoolSection() {
                         {profile.avatar}
                       </div>
                       <Badge className="bg-amber-100 text-amber-700 border-amber-200 text-xs">
-                        {profile.available}+ {t.service_pages.seasonal.talent.available_label}
+                        {profile.available}+ verfügbar
                       </Badge>
                     </div>
                     <h3 className="font-bold text-slate-900">
@@ -958,7 +1050,7 @@ function TalentPoolSection() {
                     >
                       <Link href="/#contact">
                         <Calendar className="w-4 h-4 mr-2" />
-                        {t.service_pages.seasonal.talent.request_label}
+                        Anfragen
                       </Link>
                     </Button>
                   </div>
@@ -982,7 +1074,7 @@ function TalentPoolSection() {
             asChild
           >
             <Link href="/#contact">
-              {content.view_all}
+              {sectionContent.view_all}
               <ArrowRight className="w-5 h-5 ml-2" />
             </Link>
           </Button>
@@ -996,14 +1088,18 @@ function TalentPoolSection() {
 // SECTORS SECTION
 // ============================================
 
-function SectorsSection() {
-  const { lang, t } = useLanguage();
+function SectorsSection({ content }: { content: any }) {
+  const { lang } = useLanguage();
   
-  // Build content from translations - keep sectors structure from original
-  const content = {
-    badge: t.service_pages.seasonal.sectors.badge,
-    title: t.service_pages.seasonal.sectors.title,
-    subtitle: t.service_pages.seasonal.sectors.subtitle,
+  // Use safe content from QA layer
+  const raw = content || {};
+  const sectors = raw.sectors || {};
+  
+  // Build section content from translations - keep sectors structure from original
+  const sectionContent = {
+    badge: sectors.badge || "Einsatzbereiche",
+    title: sectors.title || "Branchen, die wir bedienen",
+    subtitle: sectors.subtitle || "Spezialisiert auf saisonale Spitzenzeiten",
     sectors: sectorsContent.de.sectors, // Keep original sectors data
   };
   const ref = useRef(null);
@@ -1025,21 +1121,21 @@ function SectorsSection() {
             className="mb-6 px-4 py-2 border-amber-200 text-amber-700 bg-amber-50"
           >
             <Wheat className="w-4 h-4 mr-2" />
-            {content.badge}
+            {sectionContent.badge}
           </Badge>
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
-            {content.title}
+            {sectionContent.title}
           </h2>
 
           <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto">
-            {content.subtitle}
+            {sectionContent.subtitle}
           </p>
         </motion.div>
 
         {/* Sector Cards */}
         <div className="grid md:grid-cols-2 gap-8">
-          {sectorsContent.de.sectors.map((sector, index) => {
+          {sectorsContent.de.sectors.map((sector: any, index: number) => {
             const Icon = sector.icon;
             const SecondaryIcon = sector.secondaryIcon;
             const isAmber = sector.color === "amber";
@@ -1109,14 +1205,14 @@ function SectorsSection() {
                       <Users className={`w-5 h-5 ${isAmber ? "text-amber-600" : "text-orange-600"}`} />
                       <span className="font-bold text-slate-900">{sector.stats.workers}</span>
                       <span className="text-sm text-slate-500">
-                        {t.service_pages.seasonal.sectors.workers_label}
+                        Arbeitskräfte
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Timer className={`w-5 h-5 ${isAmber ? "text-amber-600" : "text-orange-600"}`} />
                       <span className="font-bold text-slate-900">{sector.stats.time}</span>
                       <span className="text-sm text-slate-500">
-                        {t.service_pages.seasonal.sectors.lead_time_label}
+                        Vorlauf
                       </span>
                     </div>
                   </div>
@@ -1134,15 +1230,19 @@ function SectorsSection() {
 // STATS SECTION
 // ============================================
 
-function StatsSection() {
-  const { lang, t } = useLanguage();
+function StatsSection({ content }: { content: any }) {
+  const { lang } = useLanguage();
   
-  // Build content from translations
-  const content = {
+  // Use safe content from QA layer
+  const raw = content || {};
+  const statsData = raw.stats || {};
+  
+  // Build section content from translations
+  const sectionContent = {
     stats: [
-      { value: "200+", label: t.service_pages.seasonal.stats.stat1_label, suffix: "", icon: Users },
-      { value: "98", label: t.service_pages.seasonal.stats.stat2_label, suffix: "%", icon: Shield },
-      { value: "4-8", label: t.service_pages.seasonal.stats.stat3_label, suffix: "", icon: Clock },
+      { value: "200+", label: statsData.stat1_label || "Vermittelte Arbeitskräfte", suffix: "", icon: Users },
+      { value: "98", label: statsData.stat2_label || "Visum-Erfolgsquote", suffix: "%", icon: Shield },
+      { value: "4-8", label: statsData.stat3_label || "Wochen bis Einsatz", suffix: "", icon: Clock },
     ],
   };
   const ref = useRef(null);
@@ -1165,7 +1265,7 @@ function StatsSection() {
 
       <div className="container relative mx-auto px-4 max-w-7xl">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          {content.stats.map((stat, index) => {
+          {sectionContent.stats.map((stat: any, index: number) => {
             const Icon = stat.icon;
             return (
               <motion.div
@@ -1197,16 +1297,21 @@ function StatsSection() {
 // CTA SECTION
 // ============================================
 
-function CTASection() {
-  const { lang, t } = useLanguage();
+function CTASection({ content }: { content: any }) {
+  const { lang } = useLanguage();
   
-  // Build content from translations
-  const content = {
-    title: t.service_pages.seasonal.cta.title,
-    subtitle: t.service_pages.seasonal.cta.subtitle,
-    cta1: t.service_pages.seasonal.cta.cta1,
-    cta2: t.service_pages.seasonal.cta.cta2,
-    urgency: t.service_pages.seasonal.hero.urgency_badge, // Reuse from hero
+  // Use safe content from QA layer
+  const raw = content || {};
+  const ctaData = raw.cta || {};
+  const heroData = raw.hero || {};
+  
+  // Build section content from translations
+  const sectionContent = {
+    title: ctaData.title || "Bereit für Saison 2026?",
+    subtitle: ctaData.subtitle || "Sichern Sie sich jetzt Personal für eine erfolgreiche Saison.",
+    cta1: ctaData.cta1 || "Angebot anfordern",
+    cta2: ctaData.cta2 || "Rückruf anfordern",
+    urgency: heroData.urgency_badge || "Saison 2026 – Jetzt sichern!", // Reuse from hero
   };
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
@@ -1230,16 +1335,16 @@ function CTASection() {
           >
             <Badge className="px-4 py-2 bg-amber-100 text-amber-800 border-amber-200">
               <Sparkles className="w-4 h-4 mr-2" />
-              {content.urgency}
+              {sectionContent.urgency}
             </Badge>
           </motion.div>
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
-            {content.title}
+            {sectionContent.title}
           </h2>
 
           <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto mb-10">
-            {content.subtitle}
+            {sectionContent.subtitle}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -1249,7 +1354,7 @@ function CTASection() {
               asChild
             >
               <Link href="/#contact">
-                {content.cta1}
+                {sectionContent.cta1}
                 <Rocket className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
@@ -1261,7 +1366,7 @@ function CTASection() {
             >
               <Link href="/#contact">
                 <PhoneCall className="w-5 h-5 mr-2" />
-                {content.cta2}
+                {sectionContent.cta2}
               </Link>
             </Button>
           </div>
@@ -1276,15 +1381,41 @@ function CTASection() {
 // ============================================
 
 export default function SeasonalWorkersPage() {
+  const { t } = useLanguage();
+
+  // 1. LẤY DỮ LIỆU THÔ (Có thể bị null hoặc sai key)
+  const rawData = t.service_pages?.seasonal;
+
+  // 2. QUA CỔNG KIỂM SOÁT QA (Lọc sạch)
+  // Biến 'content' bây giờ đảm bảo 100% không bao giờ null
+  const content = checkQuality(rawData, DATA_DU_PHONG);
+
+  // FAQ Questions for Seasonal Workers (B2B-Focused)
+  const seasonalFAQs = [
+    {
+      question: "Ist der Einsatz rechtssicher?",
+      answer: "Ja, wir vermitteln ausschließlich im Rahmen der gesetzlichen Regelungen für kurzzeitige Beschäftigung (z.B. §15a BeschV) und kümmern uns um alle Genehmigungen der Bundesagentur für Arbeit."
+    },
+    {
+      question: "Können dieselben Saisonkräfte wiederkommen?",
+      answer: "Ja, das ist ausdrücklich gewünscht. Viele Kunden bauen sich so einen 'Stamm-Pool' auf, was die Einarbeitungszeit in den Folgejahren drastisch reduziert."
+    },
+    {
+      question: "Wie ist die Arbeitsmoral?",
+      answer: "Vietnamesische Arbeitskräfte sind bekannt für Disziplin und Belastbarkeit, besonders in der Landwirtschaft oder Gastronomie. Fehlzeiten sind eine absolute Ausnahme."
+    }
+  ];
+
   return (
     <main className="min-h-screen">
-      <HeroSection />
-      <AdvantagesSection />
-      <SpeedTimelineSection />
-      <TalentPoolSection />
-      <SectorsSection />
-      <StatsSection />
-      <CTASection />
+      <HeroSection content={content} />
+      <AdvantagesSection content={content} />
+      <SpeedTimelineSection content={content} />
+      <TalentPoolSection content={content} />
+      <SectorsSection content={content} />
+      <StatsSection content={content} />
+      <CTASection content={content} />
+      <FAQSection items={seasonalFAQs} theme="amber" />
     </main>
   );
 }
