@@ -1,7 +1,7 @@
 'use client';
 
 import { CheckCircle, Star, Shield } from 'lucide-react';
-import { ServiceFeaturesProps } from './types';
+import { ServiceFeaturesProps, ServiceTheme } from './types';
 
 // Use ServiceFeaturesProps from types.ts (it already includes theme and content with flexible keys)
 export function ServiceFeaturesSection(props: ServiceFeaturesProps) {
@@ -38,7 +38,7 @@ export function ServiceFeaturesSection(props: ServiceFeaturesProps) {
   const icons = [CheckCircle, Star, Shield];
 
   // Theme colors
-  const themeColors = {
+  const themeColors: Record<ServiceTheme, { badge: string; highlight: string; icon: string }> = {
     blue: {
       badge: 'bg-blue-50 text-blue-700',
       highlight: 'bg-blue-100 text-blue-900',
@@ -48,6 +48,11 @@ export function ServiceFeaturesSection(props: ServiceFeaturesProps) {
       badge: 'bg-emerald-50 text-emerald-700',
       highlight: 'bg-emerald-100 text-emerald-900',
       icon: 'text-emerald-600',
+    },
+    amber: {
+      badge: 'bg-amber-50 text-amber-700',
+      highlight: 'bg-amber-100 text-amber-900',
+      icon: 'text-amber-600',
     },
     orange: {
       badge: 'bg-orange-50 text-orange-700',

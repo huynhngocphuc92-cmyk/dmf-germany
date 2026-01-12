@@ -10,7 +10,7 @@ import Image from 'next/image';
 import { uploadThemeImage, updateSiteConfig } from '@/actions/theme-actions';
 
 interface AssetCardProps {
-  item: { key: string; value: string; asset_type: string; id?: string };
+  item: { key: string; value: string | null; asset_type: string; id?: string };
   onUpdate: (key: string, value: string) => Promise<void>;
   onDelete?: (key: string) => Promise<void>;
 }
@@ -158,7 +158,7 @@ export default function AssetCard({ item, onUpdate, onDelete }: AssetCardProps) 
           {assetType === 'IMAGE' ? (
             // CASE 1: IMAGE PREVIEW
             <div className="relative w-full max-w-full h-32 bg-slate-50 border-2 border-dashed border-slate-300 rounded-lg overflow-hidden flex items-center justify-center hover:border-blue-500 transition-colors">
-              {isValidImagePath(item.value) ? (
+              {item.value && isValidImagePath(item.value) ? (
                 <Image 
                   src={item.value} 
                   alt={item.key}

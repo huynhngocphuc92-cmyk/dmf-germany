@@ -223,8 +223,9 @@ export function ThemeManagerClient({ initialConfigs }: ThemeManagerClientProps) 
                       <AssetCard
                         key={item.key}
                         item={item}
-                        lang={lang}
-                        onUpdate={(newValue) => handleUpdate(dbSection, item.key, newValue)}
+                        onUpdate={async (key: string, value: string) => {
+                          await handleUpdate(dbSection, key, value || null);
+                        }}
                       />
                     ))}
                   </div>

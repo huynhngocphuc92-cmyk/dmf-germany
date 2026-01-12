@@ -1029,7 +1029,7 @@ function TalentPoolSection({ content }: { content: any }) {
 
                   {/* Skills */}
                   <div className="p-5 space-y-3">
-                    {profile.skills.map((skill, skillIdx) => {
+                    {profile.skills.map((skill: { icon: React.ComponentType<{ className?: string }>; text: string }, skillIdx: number) => {
                       const SkillIcon = skill.icon;
                       return (
                         <div key={skillIdx} className="flex items-center gap-3">
@@ -1184,7 +1184,7 @@ function SectorsSection({ content }: { content: any }) {
 
                   {/* Jobs List */}
                   <div className="grid grid-cols-2 gap-3 mb-6">
-                    {sector.jobs.map((job, jobIdx) => (
+                    {sector.jobs.map((job: any, jobIdx: number) => (
                       <div
                         key={jobIdx}
                         className={`flex items-center gap-2 px-3 py-2 rounded-lg ${
