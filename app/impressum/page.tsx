@@ -2,7 +2,17 @@
 
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import Link from "next/link";
-import { Building2, Mail, Phone, User, MapPin, Globe, Scale, ShieldAlert, FileText } from "lucide-react";
+import {
+  Building2,
+  Mail,
+  Phone,
+  User,
+  MapPin,
+  Globe,
+  Scale,
+  ShieldAlert,
+  FileText,
+} from "lucide-react";
 
 export default function ImpressumPage() {
   const { t } = useLanguage();
@@ -25,7 +35,7 @@ export default function ImpressumPage() {
       {/* Header Section */}
       <div className="border-b bg-gradient-to-b from-primary/5 to-background">
         <div className="container mx-auto px-4 py-12 md:py-16 max-w-4xl">
-          <Link 
+          <Link
             href="/"
             className="inline-flex items-center text-sm text-muted-foreground hover:text-primary transition-colors mb-6 group"
           >
@@ -35,9 +45,7 @@ export default function ImpressumPage() {
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 tracking-tight">
             {impressum.title}
           </h1>
-          <p className="text-base md:text-lg text-muted-foreground">
-            {impressum.subtitle}
-          </p>
+          <p className="text-base md:text-lg text-muted-foreground">{impressum.subtitle}</p>
         </div>
       </div>
 
@@ -78,7 +86,9 @@ export default function ImpressumPage() {
                   <p>{impressum.sections.address.street}</p>
                   <p>{impressum.sections.address.city}</p>
                   <p>{impressum.sections.address.province}</p>
-                  <p className="font-medium text-foreground mt-2">{impressum.sections.address.country}</p>
+                  <p className="font-medium text-foreground mt-2">
+                    {impressum.sections.address.country}
+                  </p>
                 </address>
               </div>
             </div>
@@ -114,7 +124,7 @@ export default function ImpressumPage() {
                 <h2 className="text-xl md:text-2xl font-semibold text-foreground mb-6">
                   {impressum.sections.contact.title}
                 </h2>
-                
+
                 <div className="space-y-6">
                   {/* Vietnam HQ */}
                   <div className="pb-6 border-b border-border">
@@ -124,7 +134,7 @@ export default function ImpressumPage() {
                     <div className="space-y-3">
                       <div className="flex items-center gap-3">
                         <Phone className="h-4 w-4 text-primary flex-shrink-0" />
-                        <a 
+                        <a
                           href={`tel:${t.contact?.phone || "+84 251 6609 500"}`}
                           className="text-base text-foreground hover:text-primary transition-colors"
                         >
@@ -133,7 +143,7 @@ export default function ImpressumPage() {
                       </div>
                       <div className="flex items-center gap-3">
                         <Mail className="h-4 w-4 text-primary flex-shrink-0" />
-                        <a 
+                        <a
                           href={`mailto:${t.contact?.email || "contact@dmf.edu.vn"}`}
                           className="text-base text-foreground hover:text-primary transition-colors break-all"
                         >
@@ -142,7 +152,7 @@ export default function ImpressumPage() {
                       </div>
                       <div className="flex items-center gap-3">
                         <Globe className="h-4 w-4 text-primary flex-shrink-0" />
-                        <a 
+                        <a
                           href="https://dmf.edu.vn"
                           target="_blank"
                           rel="noopener noreferrer"
@@ -165,7 +175,7 @@ export default function ImpressumPage() {
                     <div className="space-y-3">
                       <div className="flex items-center gap-3">
                         <Phone className="h-4 w-4 text-primary flex-shrink-0" />
-                        <a 
+                        <a
                           href="tel:+84855070773"
                           className="text-base text-foreground hover:text-primary transition-colors"
                         >
@@ -174,7 +184,7 @@ export default function ImpressumPage() {
                       </div>
                       <div className="flex items-center gap-3">
                         <Mail className="h-4 w-4 text-primary flex-shrink-0" />
-                        <a 
+                        <a
                           href="mailto:achim@betticher.de"
                           className="text-base text-foreground hover:text-primary transition-colors"
                         >
@@ -201,10 +211,12 @@ export default function ImpressumPage() {
                   </h2>
                   <div className="space-y-2">
                     <p className="text-base text-muted-foreground">
-                      <span className="font-medium text-foreground">Registergericht:</span> {impressum.sections.registerEntry.court}
+                      <span className="font-medium text-foreground">Registergericht:</span>{" "}
+                      {impressum.sections.registerEntry.court}
                     </p>
                     <p className="text-base text-muted-foreground">
-                      <span className="font-medium text-foreground">Registernummer:</span> {impressum.sections.registerEntry.number}
+                      <span className="font-medium text-foreground">Registernummer:</span>{" "}
+                      {impressum.sections.registerEntry.number}
                     </p>
                   </div>
                 </div>
@@ -225,6 +237,25 @@ export default function ImpressumPage() {
                   </h2>
                   <p className="text-base text-muted-foreground">
                     {impressum.sections.vatId.number}
+                  </p>
+                </div>
+              </div>
+            </section>
+          )}
+
+          {/* Business Activity */}
+          {impressum.sections.businessActivity && (
+            <section className="p-6 md:p-8 rounded-xl bg-card border border-border shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-lg bg-primary/10 flex-shrink-0">
+                  <Building2 className="h-6 w-6 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h2 className="text-xl md:text-2xl font-semibold text-foreground mb-4">
+                    {impressum.sections.businessActivity.title}
+                  </h2>
+                  <p className="text-base text-muted-foreground">
+                    {impressum.sections.businessActivity.description}
                   </p>
                 </div>
               </div>
@@ -261,7 +292,7 @@ export default function ImpressumPage() {
                 <p className="text-base text-muted-foreground leading-relaxed mb-4">
                   {impressum.sections.disputeResolution.description}
                 </p>
-                <a 
+                <a
                   href={impressum.sections.disputeResolution.platformLink}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -287,7 +318,7 @@ export default function ImpressumPage() {
                 <h2 className="text-xl md:text-2xl font-semibold text-foreground mb-6">
                   {impressum.sections.liability.title}
                 </h2>
-                
+
                 <div className="space-y-6">
                   {/* Content Liability */}
                   <div>
