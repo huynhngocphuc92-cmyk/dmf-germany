@@ -2,9 +2,9 @@ import { HomeClient } from "./home-client";
 import { loadAssets } from "@/lib/theme-helpers";
 import { getFeaturedCandidates } from "@/app/admin/candidates/actions";
 
-// CRITICAL: Disable caching for homepage to ensure fresh data from database
-// This ensures that updates in Admin are immediately visible on homepage
-export const revalidate = 0;
+// ISR: Revalidate every 60 seconds to balance fresh data and performance
+// Admin updates will appear within 60 seconds
+export const revalidate = 60;
 
 export default async function Home() {
   // Load all dynamic assets from database
@@ -26,14 +26,9 @@ export default async function Home() {
   ];
 
   const assets = await loadAssets(assetKeys);
-  
+
   // Fetch featured candidates for Hero Section showcase
   const { data: featuredCandidates } = await getFeaturedCandidates();
 
-  return (
-    <HomeClient
-      assets={assets}
-      featuredCandidates={featuredCandidates || []}
-    />
-  );
+  return <HomeClient assets={assets} featuredCandidates={featuredCandidates || []} />;
 }

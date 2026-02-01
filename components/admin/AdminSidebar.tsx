@@ -13,6 +13,8 @@ import {
   ChevronRight,
   Shield,
   Palette,
+  Target,
+  MessagesSquare,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -45,6 +47,18 @@ const getNavItems = (newInquiriesCount: number | null): NavItem[] => [
     labelVn: "Ứng viên",
     href: "/admin/candidates",
     icon: Users,
+  },
+  {
+    labelDe: "Leads",
+    labelVn: "Leads",
+    href: "/admin/leads",
+    icon: Target,
+  },
+  {
+    labelDe: "Chat-Verlauf",
+    labelVn: "Lịch sử chat",
+    href: "/admin/chats",
+    icon: MessagesSquare,
   },
   {
     labelDe: "Blog & News",
@@ -155,9 +169,7 @@ export function AdminSidebar() {
                 >
                   <Icon className={cn("w-5 h-5 flex-shrink-0", active && "text-emerald-400")} />
                   {!isCollapsed && (
-                    <span className="truncate">
-                      {lang === "de" ? item.labelDe : item.labelVn}
-                    </span>
+                    <span className="truncate">{lang === "de" ? item.labelDe : item.labelVn}</span>
                   )}
                   {!isCollapsed && item.badge && (
                     <span className="ml-auto bg-emerald-500 text-white text-xs px-2 py-0.5 rounded-full">
@@ -195,4 +207,3 @@ export function AdminSidebar() {
     </aside>
   );
 }
-
