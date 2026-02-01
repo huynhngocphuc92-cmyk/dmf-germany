@@ -15,6 +15,7 @@ import {
   Palette,
   Target,
   MessagesSquare,
+  Sparkles,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -65,6 +66,12 @@ const getNavItems = (newInquiriesCount: number | null): NavItem[] => [
     labelVn: "Blog & Tin tức",
     href: "/admin/posts",
     icon: Newspaper,
+  },
+  {
+    labelDe: "AI Blog Writer",
+    labelVn: "AI Viết Blog",
+    href: "/admin/blog-writer",
+    icon: Sparkles,
   },
   {
     labelDe: "Anfragen",
