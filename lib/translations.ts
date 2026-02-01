@@ -97,7 +97,7 @@ export const TRANSLATIONS = {
       label_hotline: "Hotline",
       vn_office: "Hauptsitz in Vietnam",
       vn_address: "Dong Nai, Vietnam",
-      de_office: "Ansprechpartner Deutschland",
+      de_office: "Ihr Ansprechpartner für Deutschland",
       de_name: "Herr Achim Betticher",
       de_location: "Deutschland",
       banner_title: "Fachkräfte gesucht?",
@@ -235,7 +235,7 @@ export const TRANSLATIONS = {
           contact: {
             title: "Kontakt",
             vietnamHQ: "Hauptsitz Vietnam",
-            germanContact: "Ansprechpartner Deutschland",
+            germanContact: "Ihr Ansprechpartner für Deutschland",
           },
           registerEntry: {
             title: "Registereintrag",
@@ -1296,7 +1296,7 @@ export const TRANSLATIONS = {
       label_hotline: "Hotline",
       vn_office: "Headquarters in Vietnam",
       vn_address: "Dong Nai, Vietnam",
-      de_office: "Contact Person Germany",
+      de_office: "Your Contact for Germany",
       de_name: "Mr. Achim Betticher",
       de_location: "Germany",
       banner_title: "Looking for Skilled Workers?",

@@ -167,7 +167,8 @@ export default function ImpressumPage() {
                   {/* German Contact */}
                   <div>
                     <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">
-                      {impressum?.sections?.contact?.germanContact || "Ansprechpartner Deutschland"}
+                      {impressum?.sections?.contact?.germanContact ||
+                        "Ihr Ansprechpartner für Deutschland"}
                     </p>
                     <p className="text-base font-medium text-foreground mb-3">
                       {t.contact?.de_name || "Herr Achim Betticher"}
@@ -176,19 +177,19 @@ export default function ImpressumPage() {
                       <div className="flex items-center gap-3">
                         <Phone className="h-4 w-4 text-primary flex-shrink-0" />
                         <a
-                          href="tel:+84855070773"
+                          href="tel:+84855070043"
                           className="text-base text-foreground hover:text-primary transition-colors"
                         >
-                          +84 85 507 0773
+                          +84 855 07 043
                         </a>
                       </div>
                       <div className="flex items-center gap-3">
                         <Mail className="h-4 w-4 text-primary flex-shrink-0" />
                         <a
-                          href="mailto:achim@betticher.de"
+                          href="mailto:achim.betticher@dmf.edu.vn"
                           className="text-base text-foreground hover:text-primary transition-colors"
                         >
-                          achim@betticher.de
+                          achim.betticher@dmf.edu.vn
                         </a>
                       </div>
                     </div>

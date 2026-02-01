@@ -1,6 +1,6 @@
 "use client";
 
-import { useLanguage } from '@/components/providers/LanguageProvider';
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 // Type definitions for Schema.org structured data
 interface OrganizationSchema {
@@ -69,7 +69,7 @@ export default function JsonLd() {
     contactPoint: [
       {
         "@type": "ContactPoint",
-        telephone: "+84 85 507 0773",
+        telephone: "+84 855 07 043",
         email: "contact@dmf.edu.vn",
         contactType: "customer service",
         areaServed: ["DE", "VN"],

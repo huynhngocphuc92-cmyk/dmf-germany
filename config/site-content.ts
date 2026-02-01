@@ -301,8 +301,7 @@ const deContent: SiteContent = {
       },
       {
         title: "Persönliche Betreuung",
-        description:
-          "Individuelle Begleitung jedes Kandidaten während des gesamten Prozesses.",
+        description: "Individuelle Begleitung jedes Kandidaten während des gesamten Prozesses.",
       },
     ],
   },
@@ -376,8 +375,7 @@ const deContent: SiteContent = {
       {
         number: "1",
         title: "Bedarfsanalyse",
-        description:
-          "Gemeinsame Analyse Ihrer Anforderungen und Definition des Kandidatenprofils.",
+        description: "Gemeinsame Analyse Ihrer Anforderungen und Definition des Kandidatenprofils.",
       },
       {
         number: "2",
@@ -388,8 +386,7 @@ const deContent: SiteContent = {
       {
         number: "3",
         title: "Sprach- und Fachtraining",
-        description:
-          "Intensive Deutschkurse und fachspezifische Vorbereitung in Vietnam.",
+        description: "Intensive Deutschkurse und fachspezifische Vorbereitung in Vietnam.",
       },
       {
         number: "4",
@@ -400,14 +397,12 @@ const deContent: SiteContent = {
       {
         number: "5",
         title: "Visa und Ausreise",
-        description:
-          "Begleitung bei allen administrativen Prozessen für Visum und Einreise.",
+        description: "Begleitung bei allen administrativen Prozessen für Visum und Einreise.",
       },
       {
         number: "6",
         title: "Integration und Nachbetreuung",
-        description:
-          "Langfristige Unterstützung für erfolgreiche Integration in Deutschland.",
+        description: "Langfristige Unterstützung für erfolgreiche Integration in Deutschland.",
       },
     ],
   },
@@ -432,7 +427,7 @@ const deContent: SiteContent = {
     description:
       "Nehmen Sie Kontakt mit uns auf, um mehr über unsere Dienstleistungen zu erfahren oder ein individuelles Beratungsgespräch zu vereinbaren.",
     badge: "Jetzt Kontakt aufnehmen",
-    
+
     // Hauptsitz Vietnam
     headquarters: {
       title: "Hauptsitz in Vietnam",
@@ -441,13 +436,13 @@ const deContent: SiteContent = {
       email: "contact@dmf.edu.vn",
       website: "dmf.edu.vn",
     },
-    
+
     // Ansprechpartner Deutschland
     germanContact: {
       name: "Herr Achim Betticher",
-      title: "Ansprechpartner Deutschland",
-      phone: "+84 85 507 0773",
-      email: "achim@betticher.de",
+      title: "Ihr Ansprechpartner für Deutschland",
+      phone: "+84 855 07 043",
+      email: "achim.betticher@dmf.edu.vn",
     },
 
     form: {
@@ -467,7 +462,8 @@ const deContent: SiteContent = {
 
     cta: {
       title: "Fachkräfte gesucht?",
-      description: "Wir helfen Ihnen, qualifizierte vietnamesische Fachkräfte für Ihr Unternehmen zu finden.",
+      description:
+        "Wir helfen Ihnen, qualifizierte vietnamesische Fachkräfte für Ihr Unternehmen zu finden.",
     },
   },
 
@@ -525,21 +521,26 @@ const deContent: SiteContent = {
         },
         responsibleContent: {
           title: "Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV",
-          description: "Die inhaltliche Verantwortung für diese Website liegt bei Herrn Achim Betticher. Für redaktionelle Inhalte und die Richtigkeit der Angaben ist DMF Vietnam verantwortlich.",
+          description:
+            "Die inhaltliche Verantwortung für diese Website liegt bei Herrn Achim Betticher. Für redaktionelle Inhalte und die Richtigkeit der Angaben ist DMF Vietnam verantwortlich.",
         },
         disputeResolution: {
           title: "Streitschlichtung",
-          description: "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:",
+          description:
+            "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:",
           platformLink: "https://ec.europa.eu/consumers/odr",
           platformText: "Online-Streitbeilegungsplattform der EU",
-          disclaimer: "Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.",
+          disclaimer:
+            "Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.",
         },
         liability: {
           title: "Haftungsausschluss",
           contentTitle: "Haftung für Inhalte",
-          contentText: "Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.",
+          contentText:
+            "Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.",
           linksTitle: "Haftung für Links",
-          linksText: "Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.",
+          linksText:
+            "Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.",
         },
         copyright: {
           title: "Urheberrecht",
@@ -556,55 +557,74 @@ const deContent: SiteContent = {
         overview: {
           title: "1. Datenschutz auf einen Blick",
           generalTitle: "Allgemeine Hinweise",
-          generalText: "Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können. Ausführliche Informationen zum Thema Datenschutz entnehmen Sie unserer unter diesem Text aufgeführten Datenschutzerklärung.",
+          generalText:
+            "Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können. Ausführliche Informationen zum Thema Datenschutz entnehmen Sie unserer unter diesem Text aufgeführten Datenschutzerklärung.",
           responsibleTitle: "Wer ist verantwortlich für die Datenerfassung auf dieser Website?",
-          responsibleText: "Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber DMF Vietnam. Dessen Kontaktdaten können Sie dem Impressum dieser Website entnehmen. Verantwortlich im Sinne der DSGVO ist Herr Achim Betticher.",
+          responsibleText:
+            "Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber DMF Vietnam. Dessen Kontaktdaten können Sie dem Impressum dieser Website entnehmen. Verantwortlich im Sinne der DSGVO ist Herr Achim Betticher.",
         },
         dataCollection: {
           title: "2. Datenerfassung auf dieser Website",
           whoTitle: "Wer ist verantwortlich für die Datenerfassung?",
-          whoText: "Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Impressum dieser Website entnehmen.",
+          whoText:
+            "Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Impressum dieser Website entnehmen.",
           howTitle: "Wie erfassen wir Ihre Daten?",
-          howText: "Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z.B. um Daten handeln, die Sie in unser Kontaktformular eingeben. Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch der Website durch unsere IT-Systeme erfasst. Das sind vor allem technische Daten (z.B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs).",
+          howText:
+            "Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z.B. um Daten handeln, die Sie in unser Kontaktformular eingeben. Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch der Website durch unsere IT-Systeme erfasst. Das sind vor allem technische Daten (z.B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs).",
           purposeTitle: "Wofür nutzen wir Ihre Daten?",
-          purposeText: "Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Andere Daten (insbesondere aus dem Kontaktformular) können zur Analyse Ihres Nutzerverhaltens oder zur Bearbeitung Ihrer Anfrage verwendet werden.",
+          purposeText:
+            "Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Andere Daten (insbesondere aus dem Kontaktformular) können zur Analyse Ihres Nutzerverhaltens oder zur Bearbeitung Ihrer Anfrage verwendet werden.",
         },
         cookies: {
           title: "3. Cookies und ähnliche Technologien",
           whatTitle: "Was sind Cookies?",
-          whatText: "Unsere Website verwendet Cookies. Das sind kleine Textdateien, die Ihr Webbrowser auf Ihrem Endgerät speichert. Cookies helfen uns dabei, unser Angebot nutzerfreundlicher, effektiver und sicherer zu machen.",
+          whatText:
+            "Unsere Website verwendet Cookies. Das sind kleine Textdateien, die Ihr Webbrowser auf Ihrem Endgerät speichert. Cookies helfen uns dabei, unser Angebot nutzerfreundlicher, effektiver und sicherer zu machen.",
           whichTitle: "Welche Cookies nutzen wir?",
-          whichText: "Wir nutzen ausschließlich technisch notwendige Cookies, um die Funktionalität unserer Website zu gewährleisten. Diese Cookies werden automatisch gesetzt und sind für den Betrieb der Website erforderlich. Sie werden nach Beendigung Ihrer Browser-Sitzung automatisch gelöscht (Session-Cookies).",
+          whichText:
+            "Wir nutzen ausschließlich technisch notwendige Cookies, um die Funktionalität unserer Website zu gewährleisten. Diese Cookies werden automatisch gesetzt und sind für den Betrieb der Website erforderlich. Sie werden nach Beendigung Ihrer Browser-Sitzung automatisch gelöscht (Session-Cookies).",
           typesTitle: "Arten von Cookies",
-          typesText: "Session-Cookies: Diese Cookies werden nach dem Schließen Ihres Browsers automatisch gelöscht. Funktionale Cookies: Diese speichern Ihre Spracheinstellung und andere Präferenzen. Sie haben die Möglichkeit, Cookies in Ihren Browser-Einstellungen zu deaktivieren. Bitte beachten Sie jedoch, dass die Website dann möglicherweise nicht vollständig funktioniert.",
+          typesText:
+            "Session-Cookies: Diese Cookies werden nach dem Schließen Ihres Browsers automatisch gelöscht. Funktionale Cookies: Diese speichern Ihre Spracheinstellung und andere Präferenzen. Sie haben die Möglichkeit, Cookies in Ihren Browser-Einstellungen zu deaktivieren. Bitte beachten Sie jedoch, dass die Website dann möglicherweise nicht vollständig funktioniert.",
         },
         contactForm: {
           title: "4. Kontaktformular und E-Mail-Kommunikation",
           processingTitle: "Datenverarbeitung beim Kontaktformular",
-          processingText: "Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten (Name, E-Mail-Adresse, Firmenname und Nachricht) zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.",
+          processingText:
+            "Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten (Name, E-Mail-Adresse, Firmenname und Nachricht) zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.",
           legalBasisTitle: "Rechtsgrundlage der Verarbeitung",
-          legalBasisText: "Die Verarbeitung der in das Kontaktformular eingegebenen Daten erfolgt auf der Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO). Sie können diese Einwilligung jederzeit widerrufen. Eine formlose Mitteilung per E-Mail an uns genügt. Die Rechtmäßigkeit der bis zum Widerruf erfolgten Datenverarbeitungsvorgänge bleibt vom Widerruf unberührt.",
+          legalBasisText:
+            "Die Verarbeitung der in das Kontaktformular eingegebenen Daten erfolgt auf der Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO). Sie können diese Einwilligung jederzeit widerrufen. Eine formlose Mitteilung per E-Mail an uns genügt. Die Rechtmäßigkeit der bis zum Widerruf erfolgten Datenverarbeitungsvorgänge bleibt vom Widerruf unberührt.",
           storageTitle: "Speicherdauer",
-          storageText: "Die von Ihnen im Kontaktformular eingegebenen Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt (z.B. nach abgeschlossener Bearbeitung Ihrer Anfrage). Zwingende gesetzliche Bestimmungen – insbesondere Aufbewahrungsfristen – bleiben unberührt.",
+          storageText:
+            "Die von Ihnen im Kontaktformular eingegebenen Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt (z.B. nach abgeschlossener Bearbeitung Ihrer Anfrage). Zwingende gesetzliche Bestimmungen – insbesondere Aufbewahrungsfristen – bleiben unberührt.",
           nodemailerTitle: "E-Mail-Versand über Nodemailer (Gmail SMTP)",
-          nodemailerText: "Für den Versand der Formulardaten verwenden wir den SMTP-Dienst von Gmail über die Bibliothek Nodemailer. Die von Ihnen eingegebenen Daten werden verschlüsselt über TLS/SSL an unsere E-Mail-Adresse übertragen. Empfänger der E-Mail ist ausschließlich DMF Vietnam. Gmail verarbeitet die Übertragung als technischer Dienstleister gemäß den Google-Datenschutzbestimmungen.",
+          nodemailerText:
+            "Für den Versand der Formulardaten verwenden wir den SMTP-Dienst von Gmail über die Bibliothek Nodemailer. Die von Ihnen eingegebenen Daten werden verschlüsselt über TLS/SSL an unsere E-Mail-Adresse übertragen. Empfänger der E-Mail ist ausschließlich DMF Vietnam. Gmail verarbeitet die Übertragung als technischer Dienstleister gemäß den Google-Datenschutzbestimmungen.",
         },
         rights: {
           title: "5. Ihre Rechte als betroffene Person",
           informationTitle: "Recht auf Auskunft (Art. 15 DSGVO)",
-          informationText: "Sie haben das Recht, Auskunft über Ihre bei uns gespeicherten personenbezogenen Daten zu erhalten. Diese Auskunft umfasst insbesondere die Verarbeitungszwecke, die Kategorien personenbezogener Daten, die Empfänger, die geplante Speicherdauer sowie das Bestehen eines Beschwerderechts.",
+          informationText:
+            "Sie haben das Recht, Auskunft über Ihre bei uns gespeicherten personenbezogenen Daten zu erhalten. Diese Auskunft umfasst insbesondere die Verarbeitungszwecke, die Kategorien personenbezogener Daten, die Empfänger, die geplante Speicherdauer sowie das Bestehen eines Beschwerderechts.",
           rectificationTitle: "Recht auf Berichtigung (Art. 16 DSGVO)",
-          rectificationText: "Sie haben das Recht, die unverzügliche Berichtigung unrichtiger oder unvollständiger personenbezogener Daten zu verlangen.",
+          rectificationText:
+            "Sie haben das Recht, die unverzügliche Berichtigung unrichtiger oder unvollständiger personenbezogener Daten zu verlangen.",
           erasureTitle: "Recht auf Löschung (Art. 17 DSGVO)",
-          erasureText: "Sie haben das Recht, die Löschung Ihrer bei uns gespeicherten personenbezogenen Daten zu verlangen, soweit nicht die weitere Verarbeitung zur Erfüllung einer rechtlichen Verpflichtung erforderlich ist.",
+          erasureText:
+            "Sie haben das Recht, die Löschung Ihrer bei uns gespeicherten personenbezogenen Daten zu verlangen, soweit nicht die weitere Verarbeitung zur Erfüllung einer rechtlichen Verpflichtung erforderlich ist.",
           restrictionTitle: "Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)",
-          restrictionText: "Sie haben das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen, wenn die Richtigkeit der Daten bestritten wird oder die Verarbeitung unrechtmäßig ist.",
+          restrictionText:
+            "Sie haben das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen, wenn die Richtigkeit der Daten bestritten wird oder die Verarbeitung unrechtmäßig ist.",
           portabilityTitle: "Recht auf Datenübertragbarkeit (Art. 20 DSGVO)",
-          portabilityText: "Sie haben das Recht, die Sie betreffenden personenbezogenen Daten in einem strukturierten, gängigen und maschinenlesbaren Format zu erhalten und diese Daten einem anderen Verantwortlichen zu übermitteln.",
+          portabilityText:
+            "Sie haben das Recht, die Sie betreffenden personenbezogenen Daten in einem strukturierten, gängigen und maschinenlesbaren Format zu erhalten und diese Daten einem anderen Verantwortlichen zu übermitteln.",
           objectionTitle: "Widerspruchsrecht (Art. 21 DSGVO)",
-          objectionText: "Sie haben das Recht, aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit gegen die Verarbeitung Sie betreffender personenbezogener Daten Widerspruch einzulegen.",
+          objectionText:
+            "Sie haben das Recht, aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit gegen die Verarbeitung Sie betreffender personenbezogener Daten Widerspruch einzulegen.",
           complaintTitle: "Beschwerderecht bei einer Aufsichtsbehörde",
-          complaintText: "Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde über die Verarbeitung Ihrer personenbezogenen Daten durch uns zu beschweren. In Deutschland können Sie sich an die für Ihren Wohnort zuständige Landesdatenschutzbehörde wenden.",
+          complaintText:
+            "Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde über die Verarbeitung Ihrer personenbezogenen Daten durch uns zu beschweren. In Deutschland können Sie sich an die für Ihren Wohnort zuständige Landesdatenschutzbehörde wenden.",
         },
         ssl: {
           title: "6. SSL- bzw. TLS-Verschlüsselung",
@@ -656,13 +676,11 @@ const vnContent: SiteContent = {
       },
       {
         title: "Huấn luyện văn hóa",
-        description:
-          "Chuẩn bị về văn hóa làm việc Đức, làm việc nhóm và phong cách giao tiếp.",
+        description: "Chuẩn bị về văn hóa làm việc Đức, làm việc nhóm và phong cách giao tiếp.",
       },
       {
         title: "Hỗ trợ cá nhân",
-        description:
-          "Đồng hành cá nhân hóa cho từng ứng viên trong suốt quá trình.",
+        description: "Đồng hành cá nhân hóa cho từng ứng viên trong suốt quá trình.",
       },
     ],
   },
@@ -736,38 +754,32 @@ const vnContent: SiteContent = {
       {
         number: "1",
         title: "Phân tích nhu cầu",
-        description:
-          "Cùng phân tích yêu cầu của bạn và xác định hồ sơ ứng viên phù hợp.",
+        description: "Cùng phân tích yêu cầu của bạn và xác định hồ sơ ứng viên phù hợp.",
       },
       {
         number: "2",
         title: "Tuyển dụng và lựa chọn",
-        description:
-          "Lựa chọn kỹ lưỡng ứng viên phù hợp theo năng lực, thái độ và động lực.",
+        description: "Lựa chọn kỹ lưỡng ứng viên phù hợp theo năng lực, thái độ và động lực.",
       },
       {
         number: "3",
         title: "Đào tạo ngôn ngữ và chuyên môn",
-        description:
-          "Khóa tiếng Đức chuyên sâu và chuẩn bị chuyên môn tại Việt Nam.",
+        description: "Khóa tiếng Đức chuyên sâu và chuẩn bị chuyên môn tại Việt Nam.",
       },
       {
         number: "4",
         title: "Phỏng vấn và hợp đồng",
-        description:
-          "Tổ chức phỏng vấn và hỗ trợ ký kết hợp đồng.",
+        description: "Tổ chức phỏng vấn và hỗ trợ ký kết hợp đồng.",
       },
       {
         number: "5",
         title: "Visa và xuất cảnh",
-        description:
-          "Đồng hành trong tất cả thủ tục hành chính về visa và nhập cảnh.",
+        description: "Đồng hành trong tất cả thủ tục hành chính về visa và nhập cảnh.",
       },
       {
         number: "6",
         title: "Hội nhập và chăm sóc",
-        description:
-          "Hỗ trợ lâu dài để hội nhập thành công tại Đức.",
+        description: "Hỗ trợ lâu dài để hội nhập thành công tại Đức.",
       },
     ],
   },
@@ -789,10 +801,9 @@ const vnContent: SiteContent = {
   contact: {
     title: "Liên hệ",
     subtitle: "Hãy cùng hợp tác",
-    description:
-      "Liên hệ với chúng tôi để tìm hiểu thêm về dịch vụ hoặc đặt lịch tư vấn riêng.",
+    description: "Liên hệ với chúng tôi để tìm hiểu thêm về dịch vụ hoặc đặt lịch tư vấn riêng.",
     badge: "Liên hệ ngay",
-    
+
     headquarters: {
       title: "Trụ sở tại Việt Nam",
       location: "Đồng Nai, Việt Nam",
@@ -800,12 +811,12 @@ const vnContent: SiteContent = {
       email: "contact@dmf.edu.vn",
       website: "dmf.edu.vn",
     },
-    
+
     germanContact: {
       name: "Ông Achim Betticher",
       title: "Đại diện tại Đức",
-      phone: "+84 85 507 0773",
-      email: "achim@betticher.de",
+      phone: "+84 855 07 043",
+      email: "achim.betticher@dmf.edu.vn",
     },
 
     form: {
@@ -883,21 +894,25 @@ const vnContent: SiteContent = {
         },
         responsibleContent: {
           title: "Người chịu trách nhiệm nội dung (§ 55 Abs. 2 RStV)",
-          description: "Trách nhiệm nội dung của trang web này thuộc về Ông Achim Betticher. DMF Vietnam chịu trách nhiệm về nội dung biên tập và tính chính xác của thông tin.",
+          description:
+            "Trách nhiệm nội dung của trang web này thuộc về Ông Achim Betticher. DMF Vietnam chịu trách nhiệm về nội dung biên tập và tính chính xác của thông tin.",
         },
         disputeResolution: {
           title: "Giải quyết tranh chấp",
           description: "Ủy ban Châu Âu cung cấp nền tảng giải quyết tranh chấp trực tuyến (OS):",
           platformLink: "https://ec.europa.eu/consumers/odr",
           platformText: "Nền tảng giải quyết tranh chấp trực tuyến của EU",
-          disclaimer: "Chúng tôi không sẵn sàng hoặc không bắt buộc tham gia vào thủ tục giải quyết tranh chấp trước cơ quan hòa giải người tiêu dùng.",
+          disclaimer:
+            "Chúng tôi không sẵn sàng hoặc không bắt buộc tham gia vào thủ tục giải quyết tranh chấp trước cơ quan hòa giải người tiêu dùng.",
         },
         liability: {
           title: "Từ chối trách nhiệm",
           contentTitle: "Trách nhiệm về nội dung",
-          contentText: "Nội dung trên trang web này được tạo với sự cẩn thận cao nhất. Tuy nhiên, chúng tôi không thể đảm bảo tính chính xác, đầy đủ và cập nhật của nội dung. Là nhà cung cấp dịch vụ, chúng tôi chịu trách nhiệm về nội dung riêng của mình trên các trang này theo các luật chung (§ 7 Abs.1 TMG). Tuy nhiên, theo §§ 8 đến 10 TMG, với tư cách là nhà cung cấp dịch vụ, chúng tôi không có nghĩa vụ giám sát thông tin của bên thứ ba được truyền tải hoặc lưu trữ.",
+          contentText:
+            "Nội dung trên trang web này được tạo với sự cẩn thận cao nhất. Tuy nhiên, chúng tôi không thể đảm bảo tính chính xác, đầy đủ và cập nhật của nội dung. Là nhà cung cấp dịch vụ, chúng tôi chịu trách nhiệm về nội dung riêng của mình trên các trang này theo các luật chung (§ 7 Abs.1 TMG). Tuy nhiên, theo §§ 8 đến 10 TMG, với tư cách là nhà cung cấp dịch vụ, chúng tôi không có nghĩa vụ giám sát thông tin của bên thứ ba được truyền tải hoặc lưu trữ.",
           linksTitle: "Trách nhiệm về liên kết",
-          linksText: "Trang web của chúng tôi có chứa liên kết đến các trang web bên ngoài của bên thứ ba mà chúng tôi không có quyền kiểm soát nội dung. Do đó, chúng tôi không thể chịu trách nhiệm cho các nội dung bên ngoài này. Nhà cung cấp hoặc người vận hành các trang được liên kết luôn chịu trách nhiệm về nội dung của các trang đó.",
+          linksText:
+            "Trang web của chúng tôi có chứa liên kết đến các trang web bên ngoài của bên thứ ba mà chúng tôi không có quyền kiểm soát nội dung. Do đó, chúng tôi không thể chịu trách nhiệm cho các nội dung bên ngoài này. Nhà cung cấp hoặc người vận hành các trang được liên kết luôn chịu trách nhiệm về nội dung của các trang đó.",
         },
         copyright: {
           title: "Bản quyền",
@@ -914,55 +929,74 @@ const vnContent: SiteContent = {
         overview: {
           title: "1. Tổng quan về bảo mật dữ liệu",
           generalTitle: "Thông tin chung",
-          generalText: "Các thông tin sau đây cung cấp một cái nhìn tổng quan đơn giản về những gì xảy ra với dữ liệu cá nhân của bạn khi bạn truy cập trang web này. Dữ liệu cá nhân là tất cả dữ liệu có thể xác định danh tính cá nhân của bạn. Thông tin chi tiết về bảo vệ dữ liệu có thể được tìm thấy trong chính sách bảo mật của chúng tôi bên dưới.",
+          generalText:
+            "Các thông tin sau đây cung cấp một cái nhìn tổng quan đơn giản về những gì xảy ra với dữ liệu cá nhân của bạn khi bạn truy cập trang web này. Dữ liệu cá nhân là tất cả dữ liệu có thể xác định danh tính cá nhân của bạn. Thông tin chi tiết về bảo vệ dữ liệu có thể được tìm thấy trong chính sách bảo mật của chúng tôi bên dưới.",
           responsibleTitle: "Ai chịu trách nhiệm thu thập dữ liệu trên trang web này?",
-          responsibleText: "Việc xử lý dữ liệu trên trang web này được thực hiện bởi người vận hành trang web DMF Vietnam. Thông tin liên hệ có thể được tìm thấy trong phần thông tin pháp lý của trang web này. Người chịu trách nhiệm theo DSGVO là Ông Achim Betticher.",
+          responsibleText:
+            "Việc xử lý dữ liệu trên trang web này được thực hiện bởi người vận hành trang web DMF Vietnam. Thông tin liên hệ có thể được tìm thấy trong phần thông tin pháp lý của trang web này. Người chịu trách nhiệm theo DSGVO là Ông Achim Betticher.",
         },
         dataCollection: {
           title: "2. Thu thập dữ liệu trên trang web này",
           whoTitle: "Ai chịu trách nhiệm thu thập dữ liệu?",
-          whoText: "Việc xử lý dữ liệu trên trang web này được thực hiện bởi người vận hành trang web. Thông tin liên hệ có thể được tìm thấy trong phần thông tin pháp lý của trang web này.",
+          whoText:
+            "Việc xử lý dữ liệu trên trang web này được thực hiện bởi người vận hành trang web. Thông tin liên hệ có thể được tìm thấy trong phần thông tin pháp lý của trang web này.",
           howTitle: "Chúng tôi thu thập dữ liệu của bạn như thế nào?",
-          howText: "Dữ liệu của bạn được thu thập một phần bằng cách bạn cung cấp cho chúng tôi. Đây có thể là dữ liệu bạn nhập vào biểu mẫu liên hệ. Dữ liệu khác được thu thập tự động hoặc sau khi bạn đồng ý khi truy cập trang web bởi hệ thống IT của chúng tôi. Đây chủ yếu là dữ liệu kỹ thuật (ví dụ: trình duyệt internet, hệ điều hành hoặc thời gian truy cập trang).",
+          howText:
+            "Dữ liệu của bạn được thu thập một phần bằng cách bạn cung cấp cho chúng tôi. Đây có thể là dữ liệu bạn nhập vào biểu mẫu liên hệ. Dữ liệu khác được thu thập tự động hoặc sau khi bạn đồng ý khi truy cập trang web bởi hệ thống IT của chúng tôi. Đây chủ yếu là dữ liệu kỹ thuật (ví dụ: trình duyệt internet, hệ điều hành hoặc thời gian truy cập trang).",
           purposeTitle: "Chúng tôi sử dụng dữ liệu của bạn để làm gì?",
-          purposeText: "Một phần dữ liệu được thu thập để đảm bảo trang web hoạt động không có lỗi. Dữ liệu khác (đặc biệt là từ biểu mẫu liên hệ) có thể được sử dụng để phân tích hành vi người dùng hoặc xử lý yêu cầu của bạn.",
+          purposeText:
+            "Một phần dữ liệu được thu thập để đảm bảo trang web hoạt động không có lỗi. Dữ liệu khác (đặc biệt là từ biểu mẫu liên hệ) có thể được sử dụng để phân tích hành vi người dùng hoặc xử lý yêu cầu của bạn.",
         },
         cookies: {
           title: "3. Cookies và công nghệ tương tự",
           whatTitle: "Cookies là gì?",
-          whatText: "Trang web của chúng tôi sử dụng cookies. Đây là các tệp văn bản nhỏ mà trình duyệt web của bạn lưu trữ trên thiết bị của bạn. Cookies giúp chúng tôi làm cho dịch vụ của mình thân thiện, hiệu quả và an toàn hơn với người dùng.",
+          whatText:
+            "Trang web của chúng tôi sử dụng cookies. Đây là các tệp văn bản nhỏ mà trình duyệt web của bạn lưu trữ trên thiết bị của bạn. Cookies giúp chúng tôi làm cho dịch vụ của mình thân thiện, hiệu quả và an toàn hơn với người dùng.",
           whichTitle: "Chúng tôi sử dụng cookies nào?",
-          whichText: "Chúng tôi chỉ sử dụng cookies kỹ thuật cần thiết để đảm bảo chức năng của trang web. Các cookies này được đặt tự động và cần thiết cho hoạt động của trang web. Chúng sẽ tự động bị xóa sau khi bạn đóng trình duyệt (Session Cookies).",
+          whichText:
+            "Chúng tôi chỉ sử dụng cookies kỹ thuật cần thiết để đảm bảo chức năng của trang web. Các cookies này được đặt tự động và cần thiết cho hoạt động của trang web. Chúng sẽ tự động bị xóa sau khi bạn đóng trình duyệt (Session Cookies).",
           typesTitle: "Các loại cookies",
-          typesText: "Session Cookies: Các cookies này sẽ tự động bị xóa sau khi bạn đóng trình duyệt. Cookies chức năng: Lưu trữ cài đặt ngôn ngữ và các tùy chọn khác. Bạn có thể vô hiệu hóa cookies trong cài đặt trình duyệt. Tuy nhiên, xin lưu ý rằng trang web có thể không hoạt động đầy đủ nếu bạn làm điều này.",
+          typesText:
+            "Session Cookies: Các cookies này sẽ tự động bị xóa sau khi bạn đóng trình duyệt. Cookies chức năng: Lưu trữ cài đặt ngôn ngữ và các tùy chọn khác. Bạn có thể vô hiệu hóa cookies trong cài đặt trình duyệt. Tuy nhiên, xin lưu ý rằng trang web có thể không hoạt động đầy đủ nếu bạn làm điều này.",
         },
         contactForm: {
           title: "4. Biểu mẫu liên hệ và giao tiếp qua email",
           processingTitle: "Xử lý dữ liệu từ biểu mẫu liên hệ",
-          processingText: "Nếu bạn gửi yêu cầu cho chúng tôi qua biểu mẫu liên hệ, dữ liệu của bạn từ biểu mẫu bao gồm thông tin liên hệ bạn cung cấp (tên, địa chỉ email, tên công ty và tin nhắn) sẽ được lưu trữ bởi chúng tôi để xử lý yêu cầu và trong trường hợp có câu hỏi tiếp theo. Chúng tôi không chia sẻ dữ liệu này mà không có sự đồng ý của bạn.",
+          processingText:
+            "Nếu bạn gửi yêu cầu cho chúng tôi qua biểu mẫu liên hệ, dữ liệu của bạn từ biểu mẫu bao gồm thông tin liên hệ bạn cung cấp (tên, địa chỉ email, tên công ty và tin nhắn) sẽ được lưu trữ bởi chúng tôi để xử lý yêu cầu và trong trường hợp có câu hỏi tiếp theo. Chúng tôi không chia sẻ dữ liệu này mà không có sự đồng ý của bạn.",
           legalBasisTitle: "Cơ sở pháp lý cho việc xử lý",
-          legalBasisText: "Việc xử lý dữ liệu được nhập vào biểu mẫu liên hệ được thực hiện trên cơ sở sự đồng ý của bạn (Art. 6 Abs. 1 lit. a DSGVO). Bạn có thể thu hồi sự đồng ý này bất cứ lúc nào. Một thông báo không chính thức qua email cho chúng tôi là đủ. Tính hợp pháp của các hoạt động xử lý dữ liệu đã thực hiện trước khi thu hồi không bị ảnh hưởng bởi việc thu hồi.",
+          legalBasisText:
+            "Việc xử lý dữ liệu được nhập vào biểu mẫu liên hệ được thực hiện trên cơ sở sự đồng ý của bạn (Art. 6 Abs. 1 lit. a DSGVO). Bạn có thể thu hồi sự đồng ý này bất cứ lúc nào. Một thông báo không chính thức qua email cho chúng tôi là đủ. Tính hợp pháp của các hoạt động xử lý dữ liệu đã thực hiện trước khi thu hồi không bị ảnh hưởng bởi việc thu hồi.",
           storageTitle: "Thời gian lưu trữ",
-          storageText: "Dữ liệu bạn nhập vào biểu mẫu liên hệ sẽ được lưu trữ cho đến khi bạn yêu cầu chúng tôi xóa, thu hồi sự đồng ý lưu trữ hoặc mục đích lưu trữ dữ liệu không còn (ví dụ: sau khi hoàn thành xử lý yêu cầu của bạn). Các quy định pháp lý bắt buộc - đặc biệt là thời hạn lưu trữ - vẫn không bị ảnh hưởng.",
+          storageText:
+            "Dữ liệu bạn nhập vào biểu mẫu liên hệ sẽ được lưu trữ cho đến khi bạn yêu cầu chúng tôi xóa, thu hồi sự đồng ý lưu trữ hoặc mục đích lưu trữ dữ liệu không còn (ví dụ: sau khi hoàn thành xử lý yêu cầu của bạn). Các quy định pháp lý bắt buộc - đặc biệt là thời hạn lưu trữ - vẫn không bị ảnh hưởng.",
           nodemailerTitle: "Gửi email qua Nodemailer (Gmail SMTP)",
-          nodemailerText: "Để gửi dữ liệu biểu mẫu, chúng tôi sử dụng dịch vụ SMTP của Gmail thông qua thư viện Nodemailer. Dữ liệu bạn nhập sẽ được mã hóa qua TLS/SSL và gửi đến địa chỉ email của chúng tôi. Người nhận email chỉ là DMF Vietnam. Gmail xử lý việc truyền tải với tư cách là nhà cung cấp dịch vụ kỹ thuật theo chính sách bảo mật của Google.",
+          nodemailerText:
+            "Để gửi dữ liệu biểu mẫu, chúng tôi sử dụng dịch vụ SMTP của Gmail thông qua thư viện Nodemailer. Dữ liệu bạn nhập sẽ được mã hóa qua TLS/SSL và gửi đến địa chỉ email của chúng tôi. Người nhận email chỉ là DMF Vietnam. Gmail xử lý việc truyền tải với tư cách là nhà cung cấp dịch vụ kỹ thuật theo chính sách bảo mật của Google.",
         },
         rights: {
           title: "5. Quyền của bạn với tư cách là người có liên quan",
           informationTitle: "Quyền được biết (Art. 15 DSGVO)",
-          informationText: "Bạn có quyền nhận thông tin về dữ liệu cá nhân của bạn được lưu trữ bởi chúng tôi. Thông tin này đặc biệt bao gồm mục đích xử lý, danh mục dữ liệu cá nhân, người nhận, thời gian lưu trữ dự kiến và sự tồn tại của quyền khiếu nại.",
+          informationText:
+            "Bạn có quyền nhận thông tin về dữ liệu cá nhân của bạn được lưu trữ bởi chúng tôi. Thông tin này đặc biệt bao gồm mục đích xử lý, danh mục dữ liệu cá nhân, người nhận, thời gian lưu trữ dự kiến và sự tồn tại của quyền khiếu nại.",
           rectificationTitle: "Quyền sửa chữa (Art. 16 DSGVO)",
-          rectificationText: "Bạn có quyền yêu cầu sửa chữa ngay lập tức dữ liệu cá nhân không chính xác hoặc không đầy đủ.",
+          rectificationText:
+            "Bạn có quyền yêu cầu sửa chữa ngay lập tức dữ liệu cá nhân không chính xác hoặc không đầy đủ.",
           erasureTitle: "Quyền xóa (Art. 17 DSGVO)",
-          erasureText: "Bạn có quyền yêu cầu xóa dữ liệu cá nhân của bạn được lưu trữ bởi chúng tôi, trừ khi cần thiết tiếp tục xử lý để thực hiện nghĩa vụ pháp lý.",
+          erasureText:
+            "Bạn có quyền yêu cầu xóa dữ liệu cá nhân của bạn được lưu trữ bởi chúng tôi, trừ khi cần thiết tiếp tục xử lý để thực hiện nghĩa vụ pháp lý.",
           restrictionTitle: "Quyền hạn chế xử lý (Art. 18 DSGVO)",
-          restrictionText: "Bạn có quyền yêu cầu hạn chế xử lý dữ liệu cá nhân của bạn nếu tính chính xác của dữ liệu bị tranh chấp hoặc việc xử lý là bất hợp pháp.",
+          restrictionText:
+            "Bạn có quyền yêu cầu hạn chế xử lý dữ liệu cá nhân của bạn nếu tính chính xác của dữ liệu bị tranh chấp hoặc việc xử lý là bất hợp pháp.",
           portabilityTitle: "Quyền chuyển dữ liệu (Art. 20 DSGVO)",
-          portabilityText: "Bạn có quyền nhận dữ liệu cá nhân liên quan đến bạn ở định dạng có cấu trúc, thường dùng và có thể đọc bằng máy và chuyển dữ liệu này cho một bên chịu trách nhiệm khác.",
+          portabilityText:
+            "Bạn có quyền nhận dữ liệu cá nhân liên quan đến bạn ở định dạng có cấu trúc, thường dùng và có thể đọc bằng máy và chuyển dữ liệu này cho một bên chịu trách nhiệm khác.",
           objectionTitle: "Quyền phản đối (Art. 21 DSGVO)",
-          objectionText: "Bạn có quyền phản đối việc xử lý dữ liệu cá nhân liên quan đến bạn bất cứ lúc nào vì lý do phát sinh từ tình huống đặc biệt của bạn.",
+          objectionText:
+            "Bạn có quyền phản đối việc xử lý dữ liệu cá nhân liên quan đến bạn bất cứ lúc nào vì lý do phát sinh từ tình huống đặc biệt của bạn.",
           complaintTitle: "Quyền khiếu nại với cơ quan giám sát",
-          complaintText: "Bạn có quyền khiếu nại với cơ quan giám sát bảo vệ dữ liệu về việc xử lý dữ liệu cá nhân của bạn bởi chúng tôi. Ở Đức, bạn có thể liên hệ với cơ quan bảo vệ dữ liệu của bang có thẩm quyền tại nơi bạn cư trú.",
+          complaintText:
+            "Bạn có quyền khiếu nại với cơ quan giám sát bảo vệ dữ liệu về việc xử lý dữ liệu cá nhân của bạn bởi chúng tôi. Ở Đức, bạn có thể liên hệ với cơ quan bảo vệ dữ liệu của bang có thẩm quyền tại nơi bạn cư trú.",
         },
         ssl: {
           title: "6. Mã hóa SSL/TLS",
