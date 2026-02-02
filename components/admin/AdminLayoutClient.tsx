@@ -60,7 +60,7 @@ export function AdminLayoutClient({ user, children }: AdminLayoutClientProps) {
         style={{ marginLeft: isDesktop ? "260px" : "0" }}
       >
         <AdminHeader user={user} onMenuClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} />
-        <main className="p-4 lg:p-6 mt-2">{children}</main>
+        <main className="p-4 lg:p-6 mt-6">{children}</main>
       </div>
     </div>
   );
