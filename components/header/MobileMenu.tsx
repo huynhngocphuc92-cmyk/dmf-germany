@@ -95,12 +95,13 @@ export const MobileMenu = memo(function MobileMenu({
             id="mobile-menu"
             role="navigation"
             aria-label="Hauptnavigation"
-            className={cn(
-              "md:hidden fixed left-0 right-0 bottom-0 bg-white z-[999] p-4 border-t overflow-y-auto shadow-2xl",
-              isScrolled ? "top-16" : "top-[7.5rem]"
-            )}
+            style={{
+              top: isScrolled ? "4rem" : "7.5rem",
+              height: isScrolled ? "calc(100dvh - 4rem)" : "calc(100dvh - 7.5rem)",
+            }}
+            className="md:hidden fixed left-0 right-0 bg-white z-[999] p-4 border-t overflow-y-auto shadow-2xl"
           >
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 pb-safe">
               <Link
                 href="/"
                 onClick={closeMenu}
