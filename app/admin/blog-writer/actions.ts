@@ -117,9 +117,15 @@ export async function generateBlogPost(
         estimatedReadTime,
         language: request.language,
       };
-    } catch {
-      console.error("Failed to parse AI response:", textContent.text);
-      return { success: false, error: "Failed to parse generated content. Please try again." };
+    } catch (parseError) {
+      console.error("Failed to parse AI response:", textContent.text.substring(0, 500));
+      console.error("Parse error:", parseError);
+
+      // Return the raw response for debugging
+      return {
+        success: false,
+        error: `Failed to parse JSON. Raw response (first 300 chars): ${textContent.text.substring(0, 300)}...`,
+      };
     }
 
     return { success: true, data: generatedBlog };
