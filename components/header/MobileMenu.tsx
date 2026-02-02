@@ -106,6 +106,7 @@ export const MobileMenu = memo(function MobileMenu({ onContactClick }: MobileMen
               {t.header.solutions}
             </Link>
 
+            {/* TODO: Uncomment when blog has content
             <Link
               href="/blog"
               onClick={closeMenu}
@@ -116,6 +117,7 @@ export const MobileMenu = memo(function MobileMenu({ onContactClick }: MobileMen
             >
               {t.header.blog}
             </Link>
+            */}
 
             {/* Für Arbeitgeber - Mobile Dropdown */}
             <div>

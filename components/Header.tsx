@@ -3,7 +3,8 @@
 import { useState, useEffect, useCallback, memo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Phone, Mail, Home, Users, Newspaper, Handshake } from "lucide-react";
+import { Phone, Mail, Home, Users, Handshake } from "lucide-react";
+// import { Newspaper } from "lucide-react"; // TODO: Uncomment when blog is enabled
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/Logo";
 import { useLanguage } from "@/components/providers/LanguageProvider";
@@ -255,12 +256,14 @@ export const Header = memo(function Header({ logoUrl, hotline, email }: HeaderPr
               variant="simple"
             />
 
+            {/* TODO: Uncomment when blog has content
             <NavLink
               href="/blog"
               label={t.header.blog}
               icon={<Newspaper className="w-4 h-4 inline-block mr-2" />}
               isActive={isActive("/blog")}
             />
+            */}
 
             <NavDropdown
               label={t.nav?.employers || "Für Arbeitgeber"}

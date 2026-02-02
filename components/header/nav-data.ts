@@ -1,6 +1,6 @@
 import type { LucideIcon } from "lucide-react";
 import {
-  Users,
+  // Users, // TODO: Uncomment when candidates pool is enabled
   MapPin,
   Calculator,
   Calendar,
@@ -61,12 +61,13 @@ export const EMPLOYER_ITEMS: DropdownItem[] = [
     descKey: "timeline_desc",
     icon: Calendar,
   },
-  {
-    href: "/fuer-arbeitgeber/kandidaten",
-    labelKey: "candidates",
-    descKey: "candidates_desc",
-    icon: Users,
-  },
+  // TODO: Uncomment when candidates pool has profiles
+  // {
+  //   href: "/fuer-arbeitgeber/kandidaten",
+  //   labelKey: "candidates",
+  //   descKey: "candidates_desc",
+  //   icon: Users,
+  // },
 ];
 
 // Employer active routes for highlighting
@@ -74,7 +75,7 @@ export const EMPLOYER_ACTIVE_ROUTES = [
   "/referenzen",
   "/roi-rechner",
   "/fuer-arbeitgeber/zeitplan",
-  "/fuer-arbeitgeber/kandidaten",
+  // "/fuer-arbeitgeber/kandidaten", // TODO: Uncomment when candidates pool has profiles
 ];
 
 // Kooperation & Programme dropdown items
