@@ -29,9 +29,13 @@ import {
 
 interface MobileMenuProps {
   onContactClick: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+  isScrolled?: boolean;
 }
 
-export const MobileMenu = memo(function MobileMenu({ onContactClick }: MobileMenuProps) {
+export const MobileMenu = memo(function MobileMenu({
+  onContactClick,
+  isScrolled = false,
+}: MobileMenuProps) {
   const { t, lang } = useLanguage();
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
@@ -84,7 +88,10 @@ export const MobileMenu = memo(function MobileMenu({ onContactClick }: MobileMen
           id="mobile-menu"
           role="navigation"
           aria-label="Hauptnavigation"
-          className="md:hidden fixed inset-0 top-20 bg-white z-40 p-4 border-t overflow-y-auto"
+          className={cn(
+            "md:hidden fixed inset-0 bg-white z-40 p-4 border-t overflow-y-auto",
+            isScrolled ? "top-16" : "top-[120px]"
+          )}
         >
           <div className="flex flex-col gap-4">
             <Link

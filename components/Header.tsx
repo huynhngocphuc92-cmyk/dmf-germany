@@ -293,7 +293,7 @@ export const Header = memo(function Header({ logoUrl, hotline, email }: HeaderPr
           {/* Mobile */}
           <div className="md:hidden flex items-center gap-2">
             <LanguageSwitcher variant="mobile" />
-            <MobileMenu onContactClick={handleContactClick} />
+            <MobileMenu onContactClick={handleContactClick} isScrolled={isScrolled} />
           </div>
         </div>
       </div>
