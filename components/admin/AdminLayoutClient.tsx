@@ -19,11 +19,14 @@ export function AdminLayoutClient({ user, children }: AdminLayoutClientProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      {/* Sidebar - Desktop */}
-      <div className="hidden lg:block">
+    <div className="min-h-screen bg-slate-50 flex">
+      {/* Sidebar - Desktop: fixed position */}
+      <aside className="hidden lg:block fixed inset-y-0 left-0 w-[260px] z-40">
         <AdminSidebar />
-      </div>
+      </aside>
+
+      {/* Spacer for desktop sidebar */}
+      <div className="hidden lg:block w-[260px] flex-shrink-0" />
 
       {/* Mobile Sidebar Overlay */}
       {isMobileMenuOpen && (
@@ -44,9 +47,9 @@ export function AdminLayoutClient({ user, children }: AdminLayoutClientProps) {
       </div>
 
       {/* Main Content */}
-      <div className="lg:ml-[260px] min-h-screen transition-all duration-300">
+      <div className="flex-1 min-h-screen flex flex-col">
         <AdminHeader user={user} onMenuClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} />
-        <main className="p-4 lg:p-6">{children}</main>
+        <main className="flex-1 p-4 lg:p-6">{children}</main>
       </div>
     </div>
   );
