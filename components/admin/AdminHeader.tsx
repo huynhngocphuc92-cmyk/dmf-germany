@@ -1,7 +1,6 @@
 "use client";
 
 import { useFormStatus } from "react-dom";
-import Link from "next/link";
 import { Bell, LogOut, Loader2, UserIcon, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { signOut } from "@/app/login/actions";
@@ -42,7 +41,7 @@ export function AdminHeader({ user, onMenuClick }: AdminHeaderProps) {
   const { lang, setLang } = useLanguage();
 
   return (
-    <header className="sticky top-0 z-30 bg-white border-b border-slate-200 h-16">
+    <header className="relative z-30 bg-white border-b border-slate-200 h-16">
       <div className="flex items-center justify-between h-full px-4 lg:px-6">
         {/* Left - Mobile Menu Toggle */}
         <div className="flex items-center gap-4">
