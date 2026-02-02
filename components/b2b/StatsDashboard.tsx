@@ -154,7 +154,7 @@ function StatCard({ children, className = "", delay = 0, isInView }: StatCardPro
 // ============================================
 
 export function StatsDashboard() {
-  const { lang, t } = useLanguage();
+  const { t } = useLanguage();
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
@@ -247,7 +247,7 @@ export function StatsDashboard() {
         </motion.div>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-5 auto-rows-[minmax(180px,auto)]">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-5 auto-rows-[minmax(140px,auto)] md:auto-rows-[minmax(180px,auto)]">
           {/* ========================= */}
           {/* CARD 1: Visa Success Rate */}
           {/* Spans 2 columns x 2 rows  */}
