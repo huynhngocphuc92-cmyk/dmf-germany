@@ -177,10 +177,10 @@ export default function ImpressumPage() {
                       <div className="flex items-center gap-3">
                         <Phone className="h-4 w-4 text-primary flex-shrink-0" />
                         <a
-                          href="tel:+84855070043"
+                          href="tel:+84855070773"
                           className="text-base text-foreground hover:text-primary transition-colors"
                         >
-                          +84 855 07 043
+                          +84 855 070773
                         </a>
                       </div>
                       <div className="flex items-center gap-3">

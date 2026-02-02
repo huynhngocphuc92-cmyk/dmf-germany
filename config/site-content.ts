@@ -441,7 +441,7 @@ const deContent: SiteContent = {
     germanContact: {
       name: "Herr Achim Betticher",
       title: "Ihr Ansprechpartner für Deutschland",
-      phone: "+84 855 07 043",
+      phone: "+84 855 070773",
       email: "achim.betticher@dmf.edu.vn",
     },
 
@@ -815,7 +815,7 @@ const vnContent: SiteContent = {
     germanContact: {
       name: "Ông Achim Betticher",
       title: "Đại diện tại Đức",
-      phone: "+84 855 07 043",
+      phone: "+84 855 070773",
       email: "achim.betticher@dmf.edu.vn",
     },
 

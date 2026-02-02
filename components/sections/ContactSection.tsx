@@ -223,7 +223,7 @@ export default function ContactSection() {
               <ul className="space-y-4 text-sm text-slate-600">
                 <li className="flex gap-3">
                   <Phone size={16} className="text-slate-400 shrink-0 mt-0.5" />
-                  <span>+84 855 07 043</span>
+                  <span>+84 855 070773</span>
                 </li>
                 <li className="flex gap-3">
                   <Mail size={16} className="text-slate-400 shrink-0 mt-0.5" />

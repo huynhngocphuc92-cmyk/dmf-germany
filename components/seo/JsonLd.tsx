@@ -69,7 +69,7 @@ export default function JsonLd() {
     contactPoint: [
       {
         "@type": "ContactPoint",
-        telephone: "+84 855 07 043",
+        telephone: "+84 855 070773",
         email: "contact@dmf.edu.vn",
         contactType: "customer service",
         areaServed: ["DE", "VN"],

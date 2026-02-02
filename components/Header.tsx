@@ -148,7 +148,7 @@ export const Header = memo(function Header({ logoUrl, hotline, email }: HeaderPr
   const [scrollY, setScrollY] = useState(0);
 
   // Display values with fallbacks
-  const displayHotline = hotline || "+84 855 07 043";
+  const displayHotline = hotline || "+84 855 070773";
   const displayEmail = email || "contact@dmf.edu.vn";
 
   // Scroll tracking
