@@ -56,11 +56,11 @@ export function AdminLayoutClient({ user, children }: AdminLayoutClientProps) {
 
       {/* Main Content - pushed right on desktop */}
       <div
-        className="min-h-screen transition-all duration-300 flex flex-col"
+        className="min-h-screen transition-all duration-300"
         style={{ marginLeft: isDesktop ? "260px" : "0" }}
       >
         <AdminHeader user={user} onMenuClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} />
-        <main className="flex-1 p-4 lg:p-6">{children}</main>
+        <main className="p-4 lg:p-6 mt-2">{children}</main>
       </div>
     </div>
   );
