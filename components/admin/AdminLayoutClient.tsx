@@ -28,7 +28,7 @@ export function AdminLayoutClient({ user, children }: AdminLayoutClientProps) {
       {/* Mobile Sidebar Overlay */}
       {isMobileMenuOpen && (
         <div
-          className="fixed inset-0 z-30 bg-black/50 lg:hidden"
+          className="fixed inset-0 z-40 bg-black/50 lg:hidden"
           onClick={() => setIsMobileMenuOpen(false)}
         />
       )}
@@ -36,7 +36,7 @@ export function AdminLayoutClient({ user, children }: AdminLayoutClientProps) {
       {/* Mobile Sidebar */}
       <div
         className={cn(
-          "fixed inset-y-0 left-0 z-40 lg:hidden transition-transform duration-300",
+          "fixed inset-y-0 left-0 z-50 lg:hidden transition-transform duration-300",
           isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >
@@ -44,7 +44,7 @@ export function AdminLayoutClient({ user, children }: AdminLayoutClientProps) {
       </div>
 
       {/* Main Content */}
-      <div className="lg:pl-[260px] transition-all duration-300">
+      <div className="lg:ml-[260px] min-h-screen transition-all duration-300">
         <AdminHeader user={user} onMenuClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} />
         <main className="p-4 lg:p-6">{children}</main>
       </div>
