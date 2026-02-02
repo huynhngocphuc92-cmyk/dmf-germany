@@ -1,5 +1,6 @@
 "use server";
 
+import Anthropic from "@anthropic-ai/sdk";
 import { createClient } from "@/utils/supabase/server";
 import {
   BlogGenerationRequest,
@@ -8,6 +9,7 @@ import {
   ImageSuggestion,
   BlogLanguage,
 } from "./types";
+import { buildBlogSystemPrompt } from "@/lib/prompts/blog-writer";
 
 const getBaseUrl = () => {
   if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
@@ -18,20 +20,104 @@ export async function generateBlogPost(
   request: BlogGenerationRequest
 ): Promise<{ success: boolean; data?: GeneratedBlog; error?: string }> {
   try {
-    const response = await fetch(`${getBaseUrl()}/api/admin/blog-writer/generate`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(request),
-    });
+    // Check authentication
+    const supabase = await createClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-    const result = await response.json();
-
-    if (!response.ok) {
-      return { success: false, error: result.error || "Generation failed" };
+    if (!user) {
+      return { success: false, error: "Unauthorized" };
     }
 
-    return { success: true, data: result.data };
+    if (!request.topic || !request.language || !request.tone || !request.length) {
+      return { success: false, error: "Missing required fields" };
+    }
+
+    // Check API key
+    if (!process.env.ANTHROPIC_API_KEY) {
+      return { success: false, error: "API not configured" };
+    }
+
+    // Initialize Anthropic client
+    const anthropic = new Anthropic({
+      apiKey: process.env.ANTHROPIC_API_KEY,
+      ...(process.env.ANTHROPIC_BASE_URL && { baseURL: process.env.ANTHROPIC_BASE_URL }),
+    });
+
+    // Build the prompt
+    const systemPrompt = buildBlogSystemPrompt(request);
+
+    // Generate blog content
+    const response = await anthropic.messages.create({
+      model: process.env.ANTHROPIC_MODEL || "claude-sonnet-4-20250514",
+      max_tokens: 4096,
+      system: systemPrompt,
+      messages: [
+        {
+          role: "user",
+          content: `Write a blog post about: "${request.topic}"`,
+        },
+      ],
+    });
+
+    // Extract text content
+    const textContent = response.content.find((block) => block.type === "text");
+    if (!textContent || textContent.type !== "text") {
+      return { success: false, error: "No content generated" };
+    }
+
+    // Parse the JSON response
+    let generatedBlog: GeneratedBlog;
+    try {
+      // Clean up potential markdown code blocks
+      let jsonText = textContent.text.trim();
+      if (jsonText.startsWith("```json")) {
+        jsonText = jsonText.slice(7);
+      }
+      if (jsonText.startsWith("```")) {
+        jsonText = jsonText.slice(3);
+      }
+      if (jsonText.endsWith("```")) {
+        jsonText = jsonText.slice(0, -3);
+      }
+      jsonText = jsonText.trim();
+
+      const parsed = JSON.parse(jsonText);
+
+      // Calculate read time (avg 200 words per minute)
+      const wordCount = parsed.content.split(/\s+/).length;
+      const estimatedReadTime = Math.ceil(wordCount / 200);
+
+      generatedBlog = {
+        title: parsed.title,
+        slug: parsed.slug,
+        excerpt: parsed.excerpt,
+        content: parsed.content,
+        metaTitle: parsed.metaTitle,
+        metaDescription: parsed.metaDescription,
+        keywords: parsed.keywords || [],
+        suggestedImages: (parsed.suggestedImageQueries || []).map(
+          (query: string, index: number) => ({
+            id: `suggestion-${index}`,
+            query,
+            description: query,
+            urls: { small: "", regular: "", full: "" },
+            author: "",
+            authorUrl: "",
+          })
+        ),
+        estimatedReadTime,
+        language: request.language,
+      };
+    } catch {
+      console.error("Failed to parse AI response:", textContent.text);
+      return { success: false, error: "Failed to parse generated content. Please try again." };
+    }
+
+    return { success: true, data: generatedBlog };
   } catch (error) {
+    console.error("Blog generation error:", error);
     return {
       success: false,
       error: error instanceof Error ? error.message : "Unknown error",
