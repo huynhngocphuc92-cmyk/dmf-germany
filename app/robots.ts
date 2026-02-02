@@ -1,15 +1,14 @@
-import { MetadataRoute } from 'next'
+import { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://dmf.edu.vn'
-  
+  const baseUrl = "https://dmf.edu.vn";
+
   return {
     rules: {
-      userAgent: '*',
-      allow: '/',
-      disallow: ['/api/', '/_next/'],
+      userAgent: "*",
+      allow: "/",
+      disallow: ["/api/", "/_next/"],
     },
     sitemap: `${baseUrl}/sitemap.xml`,
-  }
+  };
 }
-

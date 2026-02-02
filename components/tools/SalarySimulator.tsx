@@ -4,16 +4,16 @@ import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { 
-  Heart, 
-  UtensilsCrossed, 
-  Wrench, 
+import {
+  Heart,
+  UtensilsCrossed,
+  Wrench,
   HardHat,
   MapPin,
   TrendingUp,
   Info,
   Euro,
-  GraduationCap
+  GraduationCap,
 } from "lucide-react";
 
 // ============================================
@@ -163,7 +163,8 @@ const content: Record<"de" | "en" | "vn", SimulatorContent> = {
       afterGrad: "Nach Abschluss",
     },
     livingCost: "Ø Lebenshaltungskosten",
-    disclaimer: "Durchschnittliche Bruttovergütung. Tatsächliche Werte variieren je nach Bundesland und Arbeitgeber.",
+    disclaimer:
+      "Durchschnittliche Bruttovergütung. Tatsächliche Werte variieren je nach Bundesland und Arbeitgeber.",
     perMonth: "pro Monat",
     surplus: "Überschuss",
     callToAction: "Starten Sie Ihre Karriere in Deutschland",
@@ -299,7 +300,7 @@ function BarChartColumn({
         >
           {/* Shine effect */}
           <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 rounded-t-lg" />
-          
+
           {/* Surplus indicator */}
           {hasSurplus && (
             <motion.div
@@ -331,7 +332,7 @@ function BarChartColumn({
 
 export function SalarySimulator() {
   const { t, lang } = useLanguage();
-  
+
   // Fallback content for complex translations not yet in translations.ts
   // This will be gradually migrated to translations.ts
   const fallbackContent: Record<"de" | "en" | "vn", Partial<SimulatorContent>> = {
@@ -340,9 +341,15 @@ export function SalarySimulator() {
       badge: "Interaktives Tool",
       regionLabel: "Region",
       regions: { west: "Westdeutschland", east: "Ostdeutschland" },
-      industries: { pflege: "Pflege", gastronomie: "Gastronomie", mechatronik: "Mechatronik", bau: "Bau" },
+      industries: {
+        pflege: "Pflege",
+        gastronomie: "Gastronomie",
+        mechatronik: "Mechatronik",
+        bau: "Bau",
+      },
       livingCost: "Ø Lebenshaltungskosten",
-      disclaimer: "Durchschnittliche Bruttovergütung. Tatsächliche Werte variieren je nach Bundesland und Arbeitgeber.",
+      disclaimer:
+        "Durchschnittliche Bruttovergütung. Tatsächliche Werte variieren je nach Bundesland und Arbeitgeber.",
       perMonth: "pro Monat",
       surplus: "Überschuss",
       callToAction: "Starten Sie Ihre Karriere in Deutschland",
@@ -353,7 +360,12 @@ export function SalarySimulator() {
       badge: "Interactive Tool",
       regionLabel: "Region",
       regions: { west: "West Germany", east: "East Germany" },
-      industries: { pflege: "Nursing", gastronomie: "Hospitality", mechatronik: "Mechatronics", bau: "Construction" },
+      industries: {
+        pflege: "Nursing",
+        gastronomie: "Hospitality",
+        mechatronik: "Mechatronics",
+        bau: "Construction",
+      },
       livingCost: "Avg. Living Costs",
       disclaimer: "Average gross salary. Actual values vary by state and employer.",
       perMonth: "per month",
@@ -366,7 +378,12 @@ export function SalarySimulator() {
       badge: "Công cụ tương tác",
       regionLabel: "Khu vực",
       regions: { west: "Tây Đức", east: "Đông Đức" },
-      industries: { pflege: "Điều dưỡng", gastronomie: "Nhà hàng/KS", mechatronik: "Cơ điện tử", bau: "Xây dựng" },
+      industries: {
+        pflege: "Điều dưỡng",
+        gastronomie: "Nhà hàng/KS",
+        mechatronik: "Cơ điện tử",
+        bau: "Xây dựng",
+      },
       livingCost: "Chi phí sinh hoạt TB",
       disclaimer: "Mức lương gộp trung bình. Thực tế có thể khác tùy theo bang và nhà tuyển dụng.",
       perMonth: "mỗi tháng",
@@ -375,7 +392,7 @@ export function SalarySimulator() {
       unitEuro: "€",
     },
   };
-  
+
   // Merge translations with fallback content
   const fullContent: SimulatorContent = {
     title: t.simulator.title,
@@ -392,28 +409,37 @@ export function SalarySimulator() {
     callToAction: fallbackContent[lang]?.callToAction || "",
     unitEuro: fallbackContent[lang]?.unitEuro || "€",
   };
-  
+
   const t_full = fullContent;
 
   const [selectedIndustry, setSelectedIndustry] = useState<string>("pflege");
   const [selectedRegion, setSelectedRegion] = useState<"west" | "east">("west");
 
   const currentIndustry = industryData[selectedIndustry];
-  const currentSalary = selectedRegion === "west" 
-    ? currentIndustry.salaryWest 
-    : currentIndustry.salaryEast;
+  const currentSalary =
+    selectedRegion === "west" ? currentIndustry.salaryWest : currentIndustry.salaryEast;
 
-  const chartData = useMemo(() => [
-    { key: "year1", value: currentSalary.year1, label: t_full.yearLabels.year1 },
-    { key: "year2", value: currentSalary.year2, label: t_full.yearLabels.year2 },
-    { key: "year3", value: currentSalary.year3, label: t_full.yearLabels.year3 },
-    { key: "afterGrad", value: currentSalary.afterGraduation, label: t_full.yearLabels.afterGrad },
-  ], [currentSalary, t_full.yearLabels]);
+  const chartData = useMemo(
+    () => [
+      { key: "year1", value: currentSalary.year1, label: t_full.yearLabels.year1 },
+      { key: "year2", value: currentSalary.year2, label: t_full.yearLabels.year2 },
+      { key: "year3", value: currentSalary.year3, label: t_full.yearLabels.year3 },
+      {
+        key: "afterGrad",
+        value: currentSalary.afterGraduation,
+        label: t_full.yearLabels.afterGrad,
+      },
+    ],
+    [currentSalary, t_full.yearLabels]
+  );
 
   const Icon = currentIndustry.icon;
 
   return (
-    <section id="salary-calculator" className="py-16 md:py-24 bg-gradient-to-b from-muted/30 to-background">
+    <section
+      id="salary-calculator"
+      className="py-16 md:py-24 bg-gradient-to-b from-muted/30 to-background"
+    >
       <div className="container mx-auto px-4">
         {/* Header */}
         <motion.div
@@ -446,12 +472,16 @@ export function SalarySimulator() {
               <CardTitle className="flex items-center justify-between flex-wrap gap-4">
                 {/* Industry Icon + Name */}
                 <div className="flex items-center gap-3">
-                  <div className={`p-3 rounded-xl bg-gradient-to-br ${currentIndustry.gradient} shadow-lg`}>
+                  <div
+                    className={`p-3 rounded-xl bg-gradient-to-br ${currentIndustry.gradient} shadow-lg`}
+                  >
                     <Icon className="h-6 w-6 text-white" />
                   </div>
                   <div>
                     <p className="text-lg font-bold text-foreground">
-                      {t.industries?.[selectedIndustry as keyof typeof t.industries] || t_full.industries?.[selectedIndustry as keyof typeof t_full.industries] || selectedIndustry}
+                      {t.industries?.[selectedIndustry as keyof typeof t.industries] ||
+                        t_full.industries?.[selectedIndustry as keyof typeof t_full.industries] ||
+                        selectedIndustry}
                     </p>
                     <p className="text-sm text-muted-foreground flex items-center gap-1">
                       <MapPin className="h-3 w-3" />
@@ -503,7 +533,9 @@ export function SalarySimulator() {
                       }`}
                     >
                       <TabIcon className="h-4 w-4" />
-                      <span className="hidden sm:inline">{t_full.industries?.[key as keyof typeof t_full.industries] || key}</span>
+                      <span className="hidden sm:inline">
+                        {t_full.industries?.[key as keyof typeof t_full.industries] || key}
+                      </span>
                     </button>
                   );
                 })}
@@ -522,12 +554,19 @@ export function SalarySimulator() {
                   {/* Living Cost Legend */}
                   <div className="flex items-center justify-center gap-4 mb-6 text-sm">
                     <div className="flex items-center gap-2">
-                      <div className={`w-4 h-4 rounded bg-gradient-to-r ${currentIndustry.gradient}`} />
-                      <span className="text-muted-foreground">{t_full.industries?.[selectedIndustry as keyof typeof t_full.industries] || selectedIndustry}</span>
+                      <div
+                        className={`w-4 h-4 rounded bg-gradient-to-r ${currentIndustry.gradient}`}
+                      />
+                      <span className="text-muted-foreground">
+                        {t_full.industries?.[selectedIndustry as keyof typeof t_full.industries] ||
+                          selectedIndustry}
+                      </span>
                     </div>
                     <div className="flex items-center gap-2">
                       <div className="w-8 border-t-2 border-dashed border-amber-500" />
-                      <span className="text-muted-foreground">{t_full.livingCost} ({LIVING_COST_AVERAGE}€)</span>
+                      <span className="text-muted-foreground">
+                        {t_full.livingCost} ({LIVING_COST_AVERAGE}€)
+                      </span>
                     </div>
                   </div>
 
@@ -558,23 +597,33 @@ export function SalarySimulator() {
                     <div className="p-3 bg-primary/5 rounded-xl text-center">
                       <Euro className="h-5 w-5 mx-auto mb-1 text-primary" />
                       <p className="text-xs text-muted-foreground">{t_full.yearLabels.year1}</p>
-                      <p className="font-bold text-foreground">{currentSalary.year1.toLocaleString("de-DE")}€</p>
+                      <p className="font-bold text-foreground">
+                        {currentSalary.year1.toLocaleString("de-DE")}€
+                      </p>
                     </div>
                     <div className="p-3 bg-primary/5 rounded-xl text-center">
                       <Euro className="h-5 w-5 mx-auto mb-1 text-primary" />
                       <p className="text-xs text-muted-foreground">{t_full.yearLabels.year3}</p>
-                      <p className="font-bold text-foreground">{currentSalary.year3.toLocaleString("de-DE")}€</p>
+                      <p className="font-bold text-foreground">
+                        {currentSalary.year3.toLocaleString("de-DE")}€
+                      </p>
                     </div>
                     <div className="p-3 bg-emerald-500/10 rounded-xl text-center">
                       <GraduationCap className="h-5 w-5 mx-auto mb-1 text-emerald-600" />
                       <p className="text-xs text-muted-foreground">{t_full.yearLabels.afterGrad}</p>
-                      <p className="font-bold text-emerald-600">{currentSalary.afterGraduation.toLocaleString("de-DE")}€</p>
+                      <p className="font-bold text-emerald-600">
+                        {currentSalary.afterGraduation.toLocaleString("de-DE")}€
+                      </p>
                     </div>
                     <div className="p-3 bg-amber-500/10 rounded-xl text-center">
                       <TrendingUp className="h-5 w-5 mx-auto mb-1 text-amber-600" />
                       <p className="text-xs text-muted-foreground">{t_full.surplus}</p>
                       <p className="font-bold text-amber-600">
-                        +{(currentSalary.afterGraduation - LIVING_COST_AVERAGE).toLocaleString("de-DE")}€
+                        +
+                        {(currentSalary.afterGraduation - LIVING_COST_AVERAGE).toLocaleString(
+                          "de-DE"
+                        )}
+                        €
                       </p>
                     </div>
                   </motion.div>
@@ -590,9 +639,7 @@ export function SalarySimulator() {
                 className="mt-6 flex items-start gap-2 p-3 bg-muted/50 rounded-lg"
               >
                 <Info className="h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
-                <p className="text-xs text-muted-foreground">
-                  {t_full.disclaimer}
-                </p>
+                <p className="text-xs text-muted-foreground">{t_full.disclaimer}</p>
               </motion.div>
             </CardContent>
           </Card>
@@ -618,4 +665,3 @@ export function SalarySimulator() {
     </section>
   );
 }
-

@@ -11,11 +11,10 @@ interface EditPostPageProps {
 export default async function EditPostPage({ params }: EditPostPageProps) {
   const { id } = await params;
   const { data: post, error } = await getPostById(id);
-  
+
   if (error || !post) {
     notFound();
   }
-  
+
   return <PostFormClient mode="edit" initialPost={post} />;
 }
-

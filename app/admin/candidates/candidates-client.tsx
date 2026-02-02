@@ -67,9 +67,7 @@ export function CandidatesClient({
   const router = useRouter();
 
   // Data state
-  const [candidates, setCandidates] = useState<Candidate[]>(
-    initialCandidates || []
-  );
+  const [candidates, setCandidates] = useState<Candidate[]>(initialCandidates || []);
   const [error, setError] = useState<string | null>(initialError);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -79,15 +77,11 @@ export function CandidatesClient({
 
   // Form state
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(
-    null
-  );
+  const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(null);
 
   // Delete confirmation state
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
-  const [candidateToDelete, setCandidateToDelete] = useState<Candidate | null>(
-    null
-  );
+  const [candidateToDelete, setCandidateToDelete] = useState<Candidate | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
 
   // Refresh data
@@ -110,8 +104,7 @@ export function CandidatesClient({
       candidate.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
       candidate.profession?.toLowerCase().includes(searchTerm.toLowerCase());
 
-    const matchesCategory =
-      categoryFilter === "all" || candidate.category === categoryFilter;
+    const matchesCategory = categoryFilter === "all" || candidate.category === categoryFilter;
 
     return matchesSearch && matchesCategory;
   });
@@ -132,14 +125,10 @@ export function CandidatesClient({
     if (!candidateToDelete) return;
 
     setIsDeleting(true);
-    const { success, error: deleteError } = await deleteCandidate(
-      candidateToDelete.id
-    );
+    const { success, error: deleteError } = await deleteCandidate(candidateToDelete.id);
 
     if (success) {
-      setCandidates((prev) =>
-        prev.filter((c) => c.id !== candidateToDelete.id)
-      );
+      setCandidates((prev) => prev.filter((c) => c.id !== candidateToDelete.id));
       setIsDeleteDialogOpen(false);
       setCandidateToDelete(null);
     } else {
@@ -173,22 +162,13 @@ export function CandidatesClient({
               </Button>
               <div>
                 <h1 className="text-lg font-bold text-slate-900">Kandidaten</h1>
-                <p className="text-xs text-slate-500">
-                  {candidates.length} Kandidaten insgesamt
-                </p>
+                <p className="text-xs text-slate-500">{candidates.length} Kandidaten insgesamt</p>
               </div>
             </div>
 
             <div className="flex items-center gap-3">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={handleRefresh}
-                disabled={isLoading}
-              >
-                <RefreshCw
-                  className={`w-4 h-4 mr-2 ${isLoading ? "animate-spin" : ""}`}
-                />
+              <Button variant="outline" size="sm" onClick={handleRefresh} disabled={isLoading}>
+                <RefreshCw className={`w-4 h-4 mr-2 ${isLoading ? "animate-spin" : ""}`} />
                 Aktualisieren
               </Button>
               <Button
@@ -230,16 +210,13 @@ export function CandidatesClient({
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">Alle Kategorien</SelectItem>
-                {(Object.keys(categoryLabels) as CandidateCategory[]).map(
-                  (key) => (
-                    <SelectItem key={key} value={key}>
-                      {categoryLabels[key]}
-                    </SelectItem>
-                  )
-                )}
+                {(Object.keys(categoryLabels) as CandidateCategory[]).map((key) => (
+                  <SelectItem key={key} value={key}>
+                    {categoryLabels[key]}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
-
           </div>
         </div>
 
@@ -273,9 +250,7 @@ export function CandidatesClient({
             <div className="p-12 text-center">
               <Users className="w-12 h-12 mx-auto text-slate-300 mb-4" />
               <h3 className="text-lg font-medium text-slate-700 mb-2">
-                {candidates.length === 0
-                  ? "Keine Kandidaten vorhanden"
-                  : "Keine Treffer"}
+                {candidates.length === 0 ? "Keine Kandidaten vorhanden" : "Keine Treffer"}
               </h3>
               <p className="text-sm text-slate-500 mb-4">
                 {candidates.length === 0
@@ -326,31 +301,22 @@ export function CandidatesClient({
                           )}
                         </div>
                         <div>
-                          <p className="font-medium text-slate-900">
-                            {candidate.full_name}
-                          </p>
-                          <p className="text-sm text-slate-500">
-                            {candidate.email}
-                          </p>
+                          <p className="font-medium text-slate-900">{candidate.full_name}</p>
+                          <p className="text-sm text-slate-500">{candidate.email}</p>
                         </div>
                       </div>
                     </TableCell>
 
                     {/* Category */}
                     <TableCell>
-                      <Badge
-                        variant="outline"
-                        className={categoryColors[candidate.category]}
-                      >
+                      <Badge variant="outline" className={categoryColors[candidate.category]}>
                         {categoryLabels[candidate.category]}
                       </Badge>
                     </TableCell>
 
                     {/* Profession */}
                     <TableCell>
-                      <span className="text-slate-700">
-                        {candidate.profession || "-"}
-                      </span>
+                      <span className="text-slate-700">{candidate.profession || "-"}</span>
                       {candidate.experience_years > 0 && (
                         <span className="text-slate-400 text-sm ml-1">
                           ({candidate.experience_years} J.)
@@ -382,11 +348,7 @@ export function CandidatesClient({
                     {/* Actions */}
                     <TableCell className="text-right">
                       <div className="flex items-center justify-end gap-2">
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          onClick={() => handleEdit(candidate)}
-                        >
+                        <Button variant="ghost" size="icon" onClick={() => handleEdit(candidate)}>
                           <Edit2 className="w-4 h-4 text-slate-500" />
                         </Button>
                         <Button
@@ -408,8 +370,7 @@ export function CandidatesClient({
         {/* Results Count */}
         {!isLoading && filteredCandidates.length > 0 && (
           <p className="text-sm text-slate-500 mt-4 text-center">
-            {filteredCandidates.length} von {candidates.length} Kandidaten
-            angezeigt
+            {filteredCandidates.length} von {candidates.length} Kandidaten angezeigt
           </p>
         )}
       </main>
@@ -428,9 +389,8 @@ export function CandidatesClient({
           <DialogHeader>
             <DialogTitle>Kandidat löschen?</DialogTitle>
             <DialogDescription>
-              Sind Sie sicher, dass Sie{" "}
-              <strong>{candidateToDelete?.full_name}</strong> löschen möchten?
-              Diese Aktion kann nicht rückgängig gemacht werden.
+              Sind Sie sicher, dass Sie <strong>{candidateToDelete?.full_name}</strong> löschen
+              möchten? Diese Aktion kann nicht rückgängig gemacht werden.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter className="gap-2">
@@ -441,11 +401,7 @@ export function CandidatesClient({
             >
               Abbrechen
             </Button>
-            <Button
-              variant="destructive"
-              onClick={handleDeleteConfirm}
-              disabled={isDeleting}
-            >
+            <Button variant="destructive" onClick={handleDeleteConfirm} disabled={isDeleting}>
               {isDeleting ? (
                 <>
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />
@@ -461,4 +417,3 @@ export function CandidatesClient({
     </div>
   );
 }
-

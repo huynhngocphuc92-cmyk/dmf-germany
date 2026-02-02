@@ -59,25 +59,25 @@ INSERT INTO site_config (key, asset_type, label, description, section, value, im
   ('secondary_color', 'color', 'Secondary Color', 'Màu phụ của website', 'branding', NULL, NULL),
   ('accent_color', 'color', 'Accent Color', 'Màu nhấn cho buttons và links', 'branding', NULL, NULL),
   ('logo_url', 'image', 'Logo', 'Logo chính của công ty', 'branding', NULL, NULL),
-  
+
   -- Home Section
   ('home_hero_banner', 'image', 'Hero Banner', 'Ảnh nền chính trang chủ (1920x1080 recommended)', 'home', NULL, NULL),
   ('home_hero_title', 'text', 'Hero Title', 'Tiêu đề chính Hero section', 'home', NULL, NULL),
   ('home_hero_subtitle', 'text', 'Hero Subtitle', 'Mô tả phụ Hero section', 'home', NULL, NULL),
   ('home_hero_video_url', 'text', 'Hero Video URL', 'URL video YouTube/Vimeo cho Hero', 'home', NULL, NULL),
   ('home_about_image', 'image', 'About Us Image', 'Ảnh phần giới thiệu công ty', 'home', NULL, NULL),
-  
+
   -- About Section
   ('about_team_photo', 'image', 'Team Photo', 'Ảnh đội ngũ công ty', 'about', NULL, NULL),
   ('about_description', 'text', 'About Description', 'Mô tả về công ty', 'about', NULL, NULL),
-  
+
   -- Contact Section
   ('contact_email', 'text', 'Contact Email', 'Email nhận tin nhắn từ form liên hệ', 'contact', NULL, NULL),
   ('contact_phone', 'text', 'Contact Phone', 'Số điện thoại hotline', 'contact', NULL, NULL),
   ('contact_facebook_url', 'text', 'Facebook URL', 'Link Facebook page', 'contact', NULL, NULL),
   ('contact_zalo_url', 'text', 'Zalo URL', 'Link Zalo', 'contact', NULL, NULL),
   ('contact_map_embed', 'text', 'Google Maps Embed', 'Mã embed Google Maps (iframe code)', 'contact', NULL, NULL),
-  
+
   -- System Settings
   ('og_default_image', 'image', 'Default OG Image', 'Ảnh mặc định khi share trên social media', 'system', NULL, NULL),
   ('favicon', 'image', 'Favicon', 'Icon trang web', 'system', NULL, NULL),
@@ -173,12 +173,12 @@ import { ClientHero } from "./client-hero";
 export default async function Page() {
   const { data } = await getSiteConfigByKey("home_hero_banner");
   const heroImageUrl = data?.image_url || "/images/default-hero.jpg";
-  
+
   return <ClientHero backgroundImage={heroImageUrl} />;
 }
 
 // client-hero.tsx (Client Component)
-"use client";
+("use client");
 
 export function ClientHero({ backgroundImage }: { backgroundImage: string }) {
   return (
@@ -239,4 +239,3 @@ Chạy file `docs/theme-seed-data.sql` để tạo sẵn các key cấu hình qu
 │           ├── page.tsx      # Server component
 │           └── theme-client.tsx # Client component
 ```
-

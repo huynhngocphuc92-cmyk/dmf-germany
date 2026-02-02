@@ -8,7 +8,7 @@ import { getSiteConfigByKey } from "@/actions/theme-actions";
 export async function GET() {
   try {
     // Try to get logo from database (same priority order as HeaderWrapper)
-    const logoKeys = ['site_logo', 'header_logo', 'logo_url'];
+    const logoKeys = ["site_logo", "header_logo", "logo_url"];
     let logoUrl: string | null = null;
 
     for (const key of logoKeys) {
@@ -22,9 +22,6 @@ export async function GET() {
     return NextResponse.json({ logoUrl }, { status: 200 });
   } catch (error) {
     console.error("[Logo API] Error fetching logo:", error);
-    return NextResponse.json(
-      { logoUrl: null, error: "Failed to fetch logo" },
-      { status: 500 }
-    );
+    return NextResponse.json({ logoUrl: null, error: "Failed to fetch logo" }, { status: 500 });
   }
 }

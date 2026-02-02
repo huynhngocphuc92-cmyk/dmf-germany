@@ -101,19 +101,27 @@ export default function DatenschutzPage() {
       subsections: [
         {
           subtitle: datenschutz.sections.thirdParty?.hostingTitle || "Hosting (Vercel Inc.)",
-          text: datenschutz.sections.thirdParty?.hostingText || "Diese Website wird auf Servern von Vercel Inc. gehostet.",
+          text:
+            datenschutz.sections.thirdParty?.hostingText ||
+            "Diese Website wird auf Servern von Vercel Inc. gehostet.",
         },
         {
           subtitle: datenschutz.sections.thirdParty?.telegramTitle || "Telegram API",
-          text: datenschutz.sections.thirdParty?.telegramText || "Zur internen Benachrichtigung nutzen wir Telegram API.",
+          text:
+            datenschutz.sections.thirdParty?.telegramText ||
+            "Zur internen Benachrichtigung nutzen wir Telegram API.",
         },
         {
           subtitle: datenschutz.sections.thirdParty?.mapsTitle || "Leaflet/OpenStreetMap",
-          text: datenschutz.sections.thirdParty?.mapsText || "Wir verwenden Leaflet/OpenStreetMap für Karten.",
+          text:
+            datenschutz.sections.thirdParty?.mapsText ||
+            "Wir verwenden Leaflet/OpenStreetMap für Karten.",
         },
         {
           subtitle: datenschutz.sections.thirdParty?.calendlyTitle || "Calendly",
-          text: datenschutz.sections.thirdParty?.calendlyText || "Für Terminvereinbarungen nutzen wir Calendly.",
+          text:
+            datenschutz.sections.thirdParty?.calendlyText ||
+            "Für Terminvereinbarungen nutzen wir Calendly.",
         },
       ],
     },
@@ -168,7 +176,7 @@ export default function DatenschutzPage() {
       {/* Header Section */}
       <div className="border-b bg-gradient-to-b from-primary/5 to-background">
         <div className="container mx-auto px-4 py-12 md:py-16 max-w-5xl">
-          <Link 
+          <Link
             href="/"
             className="inline-flex items-center text-sm text-muted-foreground hover:text-primary transition-colors mb-6 group"
           >
@@ -201,18 +209,18 @@ export default function DatenschutzPage() {
           {sections.map((section, index) => {
             const Icon = section.icon;
             return (
-              <section 
+              <section
                 key={index}
                 className={`p-6 md:p-8 rounded-xl border shadow-sm hover:shadow-md transition-shadow ${
-                  section.highlight 
-                    ? 'bg-primary/5 border-primary/20' 
-                    : 'bg-card border-border'
+                  section.highlight ? "bg-primary/5 border-primary/20" : "bg-card border-border"
                 }`}
               >
                 <div className="flex items-start gap-4 mb-6">
-                  <div className={`p-3 rounded-xl flex-shrink-0 ${
-                    section.highlight ? 'bg-primary/20' : 'bg-primary/10'
-                  }`}>
+                  <div
+                    className={`p-3 rounded-xl flex-shrink-0 ${
+                      section.highlight ? "bg-primary/20" : "bg-primary/10"
+                    }`}
+                  >
                     <Icon className="h-6 w-6 text-primary" />
                   </div>
                   <h2 className="text-xl md:text-2xl font-semibold text-foreground pt-2">
@@ -222,14 +230,12 @@ export default function DatenschutzPage() {
 
                 <div className="space-y-6 ml-0 md:ml-14">
                   {section.subsections.map((subsection, idx) => {
-                    const isImportant = 'important' in subsection && subsection.important;
+                    const isImportant = "important" in subsection && subsection.important;
                     return (
-                      <div 
+                      <div
                         key={idx}
                         className={`${
-                          isImportant 
-                            ? 'p-4 rounded-lg bg-accent/10 border border-accent/30' 
-                            : ''
+                          isImportant ? "p-4 rounded-lg bg-accent/10 border border-accent/30" : ""
                         }`}
                       >
                         {subsection.subtitle && (

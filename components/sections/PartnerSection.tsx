@@ -60,4 +60,3 @@ export const PartnerSection = ({ partnerBanner }: PartnerSectionProps = {}) => {
     </section>
   );
 };
-

@@ -6,12 +6,12 @@ import Link from "next/link";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
 // Lazy load FAQ Section (below the fold)
-const FAQSection = dynamic(() => import('@/components/shared/FAQSection'), {
+const FAQSection = dynamic(() => import("@/components/shared/FAQSection"), {
   loading: () => <div className="py-20 text-center text-slate-500">Laden...</div>,
-  ssr: true // Keep SSR for SEO content, but split the JS bundle
+  ssr: true, // Keep SSR for SEO content, but split the JS bundle
 });
 import {
   ArrowRight,
@@ -98,7 +98,7 @@ function AnimatedCounter({
 
 function HeroSection() {
   const { lang, t } = useLanguage();
-  
+
   // Build hero content from translations
   const content = {
     badge: t.service_pages.azubi.hero.badge,
@@ -223,12 +223,8 @@ function HeroSection() {
                     <div className="text-6xl font-bold bg-gradient-to-r from-blue-400 to-blue-400 bg-clip-text text-transparent mb-2">
                       3
                     </div>
-                    <div className="text-white font-medium text-lg">
-                      Jahre
-                    </div>
-                    <div className="text-blue-400 text-sm mt-1">
-                      Ausbildung
-                    </div>
+                    <div className="text-white font-medium text-lg">Jahre</div>
+                    <div className="text-blue-400 text-sm mt-1">Ausbildung</div>
                   </motion.div>
                 </div>
               </div>
@@ -296,11 +292,11 @@ function HeroSection() {
 
 function AdvantagesSection() {
   const { lang, t } = useLanguage();
-  
+
   // Build content from translations
   const raw = t.service_pages.azubi;
   const advantages = raw.advantages || {};
-  
+
   const content = {
     badge: advantages.badge || "Warum Azubis aus Vietnam?",
     title: advantages.title || "3 Gründe für vietnamesische Azubis",
@@ -355,9 +351,7 @@ function AdvantagesSection() {
             {content.title}
           </h2>
 
-          <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto">
-            {content.subtitle}
-          </p>
+          <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto">{content.subtitle}</p>
         </motion.div>
 
         {/* Advantage Cards */}
@@ -407,11 +401,11 @@ function AdvantagesSection() {
 function ProcessTimelineSection() {
   const { lang, t } = useLanguage();
   const ref = useRef(null);
-  
+
   // Build content from translations - map process to timeline structure
   const raw = t.service_pages.azubi;
   const process = raw.process || {};
-  
+
   const content = {
     badge: process.badge || "Einfacher Prozess",
     title: process.title || "4 Schritte zu Ihrem Azubi",
@@ -479,9 +473,7 @@ function ProcessTimelineSection() {
             {content.title}
           </h2>
 
-          <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto">
-            {content.subtitle}
-          </p>
+          <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto">{content.subtitle}</p>
         </motion.div>
 
         {/* Timeline */}
@@ -558,11 +550,11 @@ function ProcessTimelineSection() {
 
 function QualitySection() {
   const { lang, t } = useLanguage();
-  
+
   // Build content from translations - map quality to sectors structure
   const raw = t.service_pages.azubi;
   const quality = raw.quality || {};
-  
+
   // Create sectors array from quality data
   const sectors = [
     {
@@ -594,7 +586,7 @@ function QualitySection() {
       description: quality.support_title || "Begleitung in Deutschland",
     },
   ];
-  
+
   const content = {
     badge: quality.badge || "DMF Qualitäts-Standard",
     title: quality.title || "Ganzheitliche Vorbereitung & Begleitung",
@@ -627,9 +619,7 @@ function QualitySection() {
             {content.title}
           </h2>
 
-          <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto">
-            {content.subtitle}
-          </p>
+          <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto">{content.subtitle}</p>
         </motion.div>
 
         {/* Sector Cards */}
@@ -656,14 +646,10 @@ function QualitySection() {
                       </div>
                       <div>
                         <h3 className="text-2xl font-bold text-slate-900">{sector.title}</h3>
-                        <p className="text-sm font-medium text-blue-600">
-                          {sector.subtitle}
-                        </p>
+                        <p className="text-sm font-medium text-blue-600">{sector.subtitle}</p>
                       </div>
                     </div>
-                    <SecondaryIcon
-                      className="w-12 h-12 text-blue-200 group-hover:scale-110 transition-transform"
-                    />
+                    <SecondaryIcon className="w-12 h-12 text-blue-200 group-hover:scale-110 transition-transform" />
                   </div>
 
                   {/* Items List */}
@@ -694,16 +680,31 @@ function QualitySection() {
 
 function StatsSection() {
   const { lang, t } = useLanguage();
-  
+
   // Build content from translations
   const raw = t.service_pages.azubi;
   const statsData = raw.stats || {};
-  
+
   const content = {
     stats: [
-      { value: "120+", label: statsData.stat1_label || "Azubis vermittelt", suffix: "", icon: Users },
-      { value: "95", label: statsData.stat2_label || "Ausbildung abgeschlossen", suffix: "%", icon: Award },
-      { value: "90", label: statsData.stat3_label || "Bleiben nach Abschluss", suffix: "%", icon: TrendingUp },
+      {
+        value: "120+",
+        label: statsData.stat1_label || "Azubis vermittelt",
+        suffix: "",
+        icon: Users,
+      },
+      {
+        value: "95",
+        label: statsData.stat2_label || "Ausbildung abgeschlossen",
+        suffix: "%",
+        icon: Award,
+      },
+      {
+        value: "90",
+        label: statsData.stat3_label || "Bleiben nach Abschluss",
+        suffix: "%",
+        icon: TrendingUp,
+      },
       { value: "3", label: statsData.stat4_label || "Jahre Begleitung", suffix: "", icon: Clock },
     ],
   };
@@ -711,7 +712,10 @@ function StatsSection() {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section ref={ref} className="py-20 md:py-28 bg-gradient-to-br from-blue-600 via-blue-600 to-blue-700 relative overflow-hidden">
+    <section
+      ref={ref}
+      className="py-20 md:py-28 bg-gradient-to-br from-blue-600 via-blue-600 to-blue-700 relative overflow-hidden"
+    >
       {/* Background Pattern */}
       <div className="absolute inset-0">
         <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/20 rounded-full blur-[100px]" />
@@ -743,9 +747,7 @@ function StatsSection() {
                 <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2">
                   <AnimatedCounter value={stat.value} suffix={stat.suffix} duration={2} />
                 </div>
-                <div className="text-blue-100 text-sm md:text-base font-medium">
-                  {stat.label}
-                </div>
+                <div className="text-blue-100 text-sm md:text-base font-medium">{stat.label}</div>
               </motion.div>
             );
           })}
@@ -761,11 +763,11 @@ function StatsSection() {
 
 function CTASection() {
   const { lang, t } = useLanguage();
-  
+
   // Build content from translations
   const raw = t.service_pages.azubi;
   const ctaData = raw.cta || {};
-  
+
   const content = {
     title: ctaData.title || "Bereit für Ihre zukünftigen Fachkräfte?",
     subtitle: ctaData.subtitle || "Investieren Sie heute in motivierte Azubis aus Vietnam.",
@@ -845,20 +847,24 @@ export default function AzubiPage() {
   const azubiFAQs = [
     {
       question: "Wie stellen Sie das Sprachniveau B2 vor der Einreise sicher?",
-      answer: "Wir kooperieren mit zertifizierten Sprachschulen (Goethe/TELC) in Vietnam. Unsere Kandidaten durchlaufen ein intensives 12-monatiges Vorbereitungsprogramm, das nicht nur Sprache, sondern auch deutsche Fachbegriffe und Kultur vermittelt."
+      answer:
+        "Wir kooperieren mit zertifizierten Sprachschulen (Goethe/TELC) in Vietnam. Unsere Kandidaten durchlaufen ein intensives 12-monatiges Vorbereitungsprogramm, das nicht nur Sprache, sondern auch deutsche Fachbegriffe und Kultur vermittelt.",
     },
     {
       question: "Wie hoch ist die Bleibeperspektive der vietnamesischen Azubis?",
-      answer: "Vietnamesische Azubis gelten als äußerst loyal. Unsere Statistiken zeigen eine Übernahmequote von über 90% nach der Ausbildung. Wir fördern dies durch kulturelles Onboarding, um Heimweh und Abbrüche zu minimieren."
+      answer:
+        "Vietnamesische Azubis gelten als äußerst loyal. Unsere Statistiken zeigen eine Übernahmequote von über 90% nach der Ausbildung. Wir fördern dies durch kulturelles Onboarding, um Heimweh und Abbrüche zu minimieren.",
     },
     {
       question: "Unterstützen Sie bei der bürokratischen Abwicklung?",
-      answer: "Ja. Wir übernehmen den kompletten Verwaltungsprozess: Vorprüfung der Unterlagen, Beschleunigtes Fachkräfteverfahren (§ 81a AufenthG) bis hin zur Wohnungssuche und Behördengängen."
+      answer:
+        "Ja. Wir übernehmen den kompletten Verwaltungsprozess: Vorprüfung der Unterlagen, Beschleunigtes Fachkräfteverfahren (§ 81a AufenthG) bis hin zur Wohnungssuche und Behördengängen.",
     },
     {
       question: "Welche Kosten kommen auf uns zu?",
-      answer: "Wir arbeiten mit einem transparenten erfolgsbasierten Modell ohne versteckte Gebühren. Die Investition amortisiert sich in der Regel bereits im ersten Jahr. Gerne erstellen wir Ihnen ein individuelles Angebot."
-    }
+      answer:
+        "Wir arbeiten mit einem transparenten erfolgsbasierten Modell ohne versteckte Gebühren. Die Investition amortisiert sich in der Regel bereits im ersten Jahr. Gerne erstellen wir Ihnen ein individuelles Angebot.",
+    },
   ];
 
   return (

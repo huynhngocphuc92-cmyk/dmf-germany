@@ -1,10 +1,20 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { inquiryFormSchema, type InquiryFormData } from '@/lib/validations/schemas';
-import { X, MessageSquare, User, Mail, Phone, Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { inquiryFormSchema, type InquiryFormData } from "@/lib/validations/schemas";
+import {
+  X,
+  MessageSquare,
+  User,
+  Mail,
+  Phone,
+  Send,
+  CheckCircle2,
+  AlertCircle,
+  Loader2,
+} from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -42,7 +52,7 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
     handleSubmit,
     reset,
     setValue,
-    formState: { errors, isSubmitting }
+    formState: { errors, isSubmitting },
   } = useForm<InquiryFormData>({
     resolver: zodResolver(inquiryFormSchema),
     defaultValues: {
@@ -50,16 +60,17 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
       email: "",
       phone: "",
       message: "",
-    }
+    },
   });
 
   // Auto-fill message when candidate changes
   useEffect(() => {
     if (candidate && candidate.profession && isOpen) {
-      const defaultMessage = lang === "de"
-        ? `Ich interessiere mich für das Profil dieses Kandidaten als ${candidate.profession}. Bitte senden Sie mir weitere Details.`
-        : `Tôi quan tâm đến hồ sơ của ứng viên ${candidate.profession} này. Vui lòng gửi chi tiết.`;
-      setValue('message', defaultMessage);
+      const defaultMessage =
+        lang === "de"
+          ? `Ich interessiere mich für das Profil dieses Kandidaten als ${candidate.profession}. Bitte senden Sie mir weitere Details.`
+          : `Tôi quan tâm đến hồ sơ của ứng viên ${candidate.profession} này. Vui lòng gửi chi tiết.`;
+      setValue("message", defaultMessage);
     }
   }, [candidate, isOpen, lang, setValue]);
 
@@ -116,9 +127,9 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
         setStatus("error");
         setStatusMessage(
           result.error ||
-          (lang === "de"
-            ? "Fehler beim Senden. Bitte versuchen Sie es später erneut."
-            : "Lỗi khi gửi. Vui lòng thử lại sau.")
+            (lang === "de"
+              ? "Fehler beim Senden. Bitte versuchen Sie es später erneut."
+              : "Lỗi khi gửi. Vui lòng thử lại sau.")
         );
       }
     } catch (error) {
@@ -151,24 +162,15 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
             <DialogTitle className="text-xl font-bold">
               {lang === "de" ? "Anfrage senden" : "Gửi yêu cầu"}
             </DialogTitle>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={onClose}
-              className="h-6 w-6"
-            >
+            <Button variant="ghost" size="icon" onClick={onClose} className="h-6 w-6">
               <X className="h-4 w-4" />
             </Button>
           </div>
           <DialogDescription>
             <div className="flex items-center gap-2 mt-2">
-              <span className="font-semibold text-slate-900">
-                {candidate.full_name}
-              </span>
+              <span className="font-semibold text-slate-900">{candidate.full_name}</span>
               {candidate.profession && (
-                <span className="text-sm text-muted-foreground">
-                  {candidate.profession}
-                </span>
+                <span className="text-sm text-muted-foreground">{candidate.profession}</span>
               )}
             </div>
           </DialogDescription>
@@ -198,14 +200,12 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
             </Label>
             <Input
               id="name"
-              {...register('name')}
+              {...register("name")}
               placeholder={lang === "de" ? "Ihr Name" : "Tên của bạn"}
               disabled={isSubmitting}
               className={errors.name ? "border-red-500" : ""}
             />
-            {errors.name && (
-              <p className="text-sm text-red-500">{errors.name.message}</p>
-            )}
+            {errors.name && <p className="text-sm text-red-500">{errors.name.message}</p>}
           </div>
 
           {/* Email Field */}
@@ -217,14 +217,12 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
             <Input
               id="email"
               type="email"
-              {...register('email')}
+              {...register("email")}
               placeholder={lang === "de" ? "ihre@email.de" : "email@example.com"}
               disabled={isSubmitting}
               className={errors.email ? "border-red-500" : ""}
             />
-            {errors.email && (
-              <p className="text-sm text-red-500">{errors.email.message}</p>
-            )}
+            {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
           </div>
 
           {/* Phone Field */}
@@ -236,14 +234,12 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
             <Input
               id="phone"
               type="tel"
-              {...register('phone')}
+              {...register("phone")}
               placeholder={lang === "de" ? "+49 123 456789" : "+84 90 123 4567"}
               disabled={isSubmitting}
               className={errors.phone ? "border-red-500" : ""}
             />
-            {errors.phone && (
-              <p className="text-sm text-red-500">{errors.phone.message}</p>
-            )}
+            {errors.phone && <p className="text-sm text-red-500">{errors.phone.message}</p>}
           </div>
 
           {/* Message Field */}
@@ -254,19 +250,13 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
             </Label>
             <Textarea
               id="message"
-              {...register('message')}
-              placeholder={
-                lang === "de"
-                  ? "Ihre Nachricht..."
-                  : "Tin nhắn của bạn..."
-              }
+              {...register("message")}
+              placeholder={lang === "de" ? "Ihre Nachricht..." : "Tin nhắn của bạn..."}
               rows={5}
               disabled={isSubmitting}
               className={errors.message ? "border-red-500" : ""}
             />
-            {errors.message && (
-              <p className="text-sm text-red-500">{errors.message.message}</p>
-            )}
+            {errors.message && <p className="text-sm text-red-500">{errors.message.message}</p>}
           </div>
 
           {/* Submit Button */}

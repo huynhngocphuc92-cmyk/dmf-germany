@@ -130,9 +130,11 @@ export function CookieConsent() {
     setConsent(COOKIE_CONSENT_VALUE.ACCEPTED);
     setIsVisible(false);
     // Dispatch custom event for GA to listen
-    window.dispatchEvent(new CustomEvent("cookieConsentChange", { 
-      detail: COOKIE_CONSENT_VALUE.ACCEPTED 
-    }));
+    window.dispatchEvent(
+      new CustomEvent("cookieConsentChange", {
+        detail: COOKIE_CONSENT_VALUE.ACCEPTED,
+      })
+    );
   }, [setConsent]);
 
   const handleDecline = useCallback(() => {
@@ -140,15 +142,15 @@ export function CookieConsent() {
     setConsent(COOKIE_CONSENT_VALUE.DECLINED);
     setIsVisible(false);
     // Dispatch custom event for GA to listen
-    window.dispatchEvent(new CustomEvent("cookieConsentChange", { 
-      detail: COOKIE_CONSENT_VALUE.DECLINED 
-    }));
+    window.dispatchEvent(
+      new CustomEvent("cookieConsentChange", {
+        detail: COOKIE_CONSENT_VALUE.DECLINED,
+      })
+    );
   }, [setConsent]);
 
   const handleSaveSettings = useCallback(() => {
-    const value = analyticsEnabled 
-      ? COOKIE_CONSENT_VALUE.ACCEPTED 
-      : COOKIE_CONSENT_VALUE.DECLINED;
+    const value = analyticsEnabled ? COOKIE_CONSENT_VALUE.ACCEPTED : COOKIE_CONSENT_VALUE.DECLINED;
     localStorage.setItem(COOKIE_CONSENT_KEY, value);
     setConsent(value);
     setIsVisible(false);
@@ -169,9 +171,7 @@ export function CookieConsent() {
               <div className="p-2 rounded-lg bg-primary/20">
                 <Cookie className="h-5 w-5 text-white" />
               </div>
-              <h3 className="text-lg font-semibold text-white">
-                {t.title}
-              </h3>
+              <h3 className="text-lg font-semibold text-white">{t.title}</h3>
             </div>
             <button
               onClick={handleDecline}
@@ -195,9 +195,7 @@ export function CookieConsent() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-green-400" />
-                    <span className="text-sm font-medium text-white">
-                      {t.necessary}
-                    </span>
+                    <span className="text-sm font-medium text-white">{t.necessary}</span>
                   </div>
                   <div className="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-xs font-medium border border-green-500/30">
                     ✓
@@ -208,9 +206,7 @@ export function CookieConsent() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Settings className="h-4 w-4 text-slate-400" />
-                    <span className="text-sm font-medium text-white">
-                      {t.analytics}
-                    </span>
+                    <span className="text-sm font-medium text-white">{t.analytics}</span>
                   </div>
                   <button
                     onClick={() => setAnalyticsEnabled(!analyticsEnabled)}
@@ -280,4 +276,3 @@ export function CookieConsent() {
     </div>
   );
 }
-

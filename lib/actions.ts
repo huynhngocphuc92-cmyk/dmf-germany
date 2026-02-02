@@ -2,6 +2,7 @@
 
 import nodemailer from "nodemailer";
 import { appendToSheet, sanitizeForSheet } from "@/lib/google-sheets";
+import { escapeHtml } from "@/lib/sanitize";
 
 interface SendEmailResult {
   success: boolean;
@@ -93,7 +94,7 @@ export async function sendEmail(formData: FormData): Promise<SendEmailResult> {
       };
     }
 
-    // Email content - HTML formatted
+    // Email content - HTML formatted (with XSS protection)
     const htmlContent = `
       <!DOCTYPE html>
       <html>
@@ -119,21 +120,25 @@ export async function sendEmail(formData: FormData): Promise<SendEmailResult> {
           <div class="content">
             <div class="field">
               <div class="label">👤 Name:</div>
-              <div class="value">${name}</div>
+              <div class="value">${escapeHtml(name)}</div>
             </div>
             <div class="field">
               <div class="label">📧 E-Mail:</div>
-              <div class="value"><a href="mailto:${email}">${email}</a></div>
+              <div class="value"><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></div>
             </div>
-            ${company ? `
+            ${
+              company
+                ? `
             <div class="field">
               <div class="label">🏢 Firma:</div>
-              <div class="value">${company}</div>
+              <div class="value">${escapeHtml(company)}</div>
             </div>
-            ` : ''}
+            `
+                : ""
+            }
             <div class="field">
               <div class="label">💬 Nachricht:</div>
-              <div class="value" style="white-space: pre-wrap;">${message}</div>
+              <div class="value" style="white-space: pre-wrap;">${escapeHtml(message)}</div>
             </div>
             <div class="footer">
               <p>Diese E-Mail wurde automatisch über das Kontaktformular der DMF Vietnam Website gesendet.</p>
@@ -151,7 +156,7 @@ Neue Kontaktanfrage von der DMF Vietnam Website
 
 Name: ${name}
 E-Mail: ${email}
-${company ? `Firma: ${company}` : ''}
+${company ? `Firma: ${company}` : ""}
 
 Nachricht:
 ${message}
@@ -188,7 +193,7 @@ Diese E-Mail wurde automatisch über das Kontaktformular gesendet.
     // This is non-blocking and fail-safe (won't affect user experience)
     try {
       console.log("[CRM] Đang lưu vào Google Sheets...");
-      
+
       const sheetResult = await appendToSheet({
         name: sanitizeForSheet(name),
         email: sanitizeForSheet(email),
@@ -213,25 +218,27 @@ Diese E-Mail wurde automatisch über das Kontaktformular gesendet.
 
     return {
       success: true,
-      message: "Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet. Wir melden uns in Kürze bei Ihnen.",
+      message:
+        "Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet. Wir melden uns in Kürze bei Ihnen.",
     };
   } catch (error) {
     // Log chi tiết lỗi ra Terminal
     console.error("========================================");
     console.error("Lỗi gửi mail:", error);
     console.error("========================================");
-    
+
     // Log thêm thông tin nếu là Error object
     if (error instanceof Error) {
       console.error("Error name:", error.name);
       console.error("Error message:", error.message);
       console.error("Error stack:", error.stack);
     }
-    
+
     // Return user-friendly error message
     return {
       success: false,
-      message: "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns direkt per E-Mail.",
+      message:
+        "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns direkt per E-Mail.",
     };
   }
 }

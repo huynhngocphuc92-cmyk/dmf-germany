@@ -10,11 +10,11 @@ interface GoogleAnalyticsProps {
 
 /**
  * Google Analytics Component with DSGVO Compliance
- * 
+ *
  * This component only loads GA4 script when:
  * 1. GA_MEASUREMENT_ID is configured
  * 2. User has explicitly accepted cookies via CookieConsent
- * 
+ *
  * Follows German DSGVO requirements for cookie consent.
  */
 export function GoogleAnalytics({ measurementId }: GoogleAnalyticsProps) {
@@ -99,4 +99,3 @@ export function trackPageView(path: string, title?: string): void {
     page_title: title || document.title,
   });
 }
-

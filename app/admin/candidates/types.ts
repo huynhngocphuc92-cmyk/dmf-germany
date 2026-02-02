@@ -19,7 +19,7 @@ export interface Candidate {
   id: string;
   created_at: string;
   updated_at: string;
-  
+
   // Personal Info
   full_name: string;
   email: string;
@@ -27,13 +27,13 @@ export interface Candidate {
   date_of_birth?: string;
   avatar_url?: string;
   video_url?: string; // YouTube video URL for candidate introduction video
-  
+
   // Professional Info
   category: CandidateCategory;
   profession?: string;
   experience_years: number;
   german_level: GermanLevel;
-  
+
   // Status (New Schema)
   visa_status: boolean;
   is_featured: boolean;
@@ -203,4 +203,3 @@ export const adminTranslations = {
     demoDataWarning: "Đang hiển thị dữ liệu demo",
   },
 };
-

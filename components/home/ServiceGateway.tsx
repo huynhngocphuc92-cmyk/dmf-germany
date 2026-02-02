@@ -137,15 +137,18 @@ const services: ServiceCard[] = [
 // ACCENT COLOR MAPPING
 // ============================================
 
-const accentColors: Record<string, {
-  badge: string;
-  icon: string;
-  iconBg: string;
-  check: string;
-  button: string;
-  buttonHover: string;
-  ring: string;
-}> = {
+const accentColors: Record<
+  string,
+  {
+    badge: string;
+    icon: string;
+    iconBg: string;
+    check: string;
+    button: string;
+    buttonHover: string;
+    ring: string;
+  }
+> = {
   blue: {
     badge: "bg-blue-100 text-blue-700 border-blue-200",
     icon: "text-blue-600",
@@ -187,27 +190,41 @@ interface ServiceCardItemProps {
   serviceImageKey?: string; // Asset key for debug label
 }
 
-function ServiceCardItem({ service, index, isInView, serviceImage, serviceImageKey }: ServiceCardItemProps) {
+function ServiceCardItem({
+  service,
+  index,
+  isInView,
+  serviceImage,
+  serviceImageKey,
+}: ServiceCardItemProps) {
   const { lang, t } = useLanguage();
   const Icon = service.icon;
   const SecondaryIcon = service.secondaryIcon;
   const colors = accentColors[service.accentColor];
 
-  const tagline = lang === "de" ? service.taglineDe : lang === "en" ? service.taglineDe : service.taglineVn;
+  const tagline =
+    lang === "de" ? service.taglineDe : lang === "en" ? service.taglineDe : service.taglineVn;
   const title = lang === "de" ? service.titleDe : lang === "en" ? service.titleDe : service.titleVn;
-  const description = lang === "de" ? service.descriptionDe : lang === "en" ? service.descriptionDe : service.descriptionVn;
-  const features = lang === "de" ? service.featuresDe : lang === "en" ? service.featuresDe : service.featuresVn;
+  const description =
+    lang === "de"
+      ? service.descriptionDe
+      : lang === "en"
+        ? service.descriptionDe
+        : service.descriptionVn;
+  const features =
+    lang === "de" ? service.featuresDe : lang === "en" ? service.featuresDe : service.featuresVn;
   const ctaText = lang === "de" ? "Mehr erfahren" : lang === "en" ? "Learn More" : "Tìm hiểu thêm";
 
   // FINAL SAFETY CHECK: Ensure serviceImage is valid before passing to AssetImageWithDebug
   // This prevents any edge cases where invalid values might slip through
-  const safeImageSrc = serviceImage && isValidImagePath(serviceImage) && serviceImage !== serviceImageKey
-    ? serviceImage
-    : null;
-  
+  const safeImageSrc =
+    serviceImage && isValidImagePath(serviceImage) && serviceImage !== serviceImageKey
+      ? serviceImage
+      : null;
+
   // DEBUG: Log what's being passed to AssetImageWithDebug
-  if (service.id === 'azubi') {
-    console.log('[ServiceCardItem] 🎴 Azubi card debug:', {
+  if (service.id === "azubi") {
+    console.log("[ServiceCardItem] 🎴 Azubi card debug:", {
       serviceImage,
       serviceImageKey,
       safeImageSrc,
@@ -274,7 +291,7 @@ function ServiceCardItem({ service, index, isInView, serviceImage, serviceImageK
               />
               <div className="absolute inset-0 bg-gradient-to-t from-white/80 to-transparent pointer-events-none" />
             </div>
-            
+
             {/* Header */}
             <div className="mb-6">
               {/* Tagline Badge */}
@@ -301,30 +318,30 @@ function ServiceCardItem({ service, index, isInView, serviceImage, serviceImageK
                 </div>
 
                 <div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-1 tracking-tight">
-                    {title}
-                  </h3>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-1 tracking-tight">{title}</h3>
                   <p className="text-sm text-slate-500">
-                    {service.id === "azubi" && (lang === "de" ? "Duale Ausbildung" : lang === "en" ? "Dual Training" : "Đào tạo kép")}
+                    {service.id === "azubi" &&
+                      (lang === "de"
+                        ? "Duale Ausbildung"
+                        : lang === "en"
+                          ? "Dual Training"
+                          : "Đào tạo kép")}
                     {service.id === "skilled" && "Visa §18a/b"}
-                    {service.id === "seasonal" && (lang === "de" ? "3-6 Monate" : lang === "en" ? "3-6 Months" : "3-6 tháng")}
+                    {service.id === "seasonal" &&
+                      (lang === "de" ? "3-6 Monate" : lang === "en" ? "3-6 Months" : "3-6 tháng")}
                   </p>
                 </div>
               </div>
             </div>
 
             {/* Description */}
-            <p className="text-slate-600 leading-relaxed mb-6 flex-grow">
-              {description}
-            </p>
+            <p className="text-slate-600 leading-relaxed mb-6 flex-grow">{description}</p>
 
             {/* Features Checklist */}
             <ul className="space-y-3 mb-8">
               {features.map((feature, idx) => (
                 <li key={idx} className="flex items-start gap-3">
-                  <CheckCircle2
-                    className={`w-5 h-5 ${colors.check} flex-shrink-0 mt-0.5`}
-                  />
+                  <CheckCircle2 className={`w-5 h-5 ${colors.check} flex-shrink-0 mt-0.5`} />
                   <span className="text-sm text-slate-700">{feature.text}</span>
                 </li>
               ))}
@@ -342,9 +359,7 @@ function ServiceCardItem({ service, index, isInView, serviceImage, serviceImageK
                 `}
               >
                 {ctaText}
-                <ArrowRight
-                  className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
-                />
+                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Button>
             </div>
           </CardContent>
@@ -401,17 +416,17 @@ interface ServiceGatewayProps {
 // - Absolute URLs: "http://..." or "https://..."
 // - Supabase Storage URLs: "https://*.supabase.co/storage/v1/object/public/..."
 function isValidImagePath(value: string | null | undefined): boolean {
-  if (!value || typeof value !== 'string') return false;
-  
+  if (!value || typeof value !== "string") return false;
+
   // Check if it starts with "/" (relative path)
-  if (value.startsWith('/')) return true;
-  
+  if (value.startsWith("/")) return true;
+
   // Check if it starts with "http://" or "https://" (absolute URL)
-  if (value.startsWith('http://') || value.startsWith('https://')) return true;
-  
+  if (value.startsWith("http://") || value.startsWith("https://")) return true;
+
   // Additional check: Supabase Storage URLs (should already be https://, but double-check)
-  if (value.includes('supabase.co') && value.includes('storage')) return true;
-  
+  if (value.includes("supabase.co") && value.includes("storage")) return true;
+
   return false;
 }
 
@@ -421,29 +436,35 @@ function sanitizeImageValue(value: string | null | undefined, key: string): stri
     console.log(`[ServiceGateway] Image value for "${key}" is null/undefined. Returning null.`);
     return null;
   }
-  
+
   // If value is the key itself (invalid), return null
   if (value === key) {
-    console.warn(`[ServiceGateway] ⚠️ Image value for "${key}" is the key itself. This is invalid. Returning null.`);
+    console.warn(
+      `[ServiceGateway] ⚠️ Image value for "${key}" is the key itself. This is invalid. Returning null.`
+    );
     return null;
   }
-  
+
   // Additional check: if value looks like a key (contains underscores and no path indicators), reject it
-  if (value.includes('_') && !value.startsWith('/') && !value.startsWith('http')) {
+  if (value.includes("_") && !value.startsWith("/") && !value.startsWith("http")) {
     // This might be a key string, but let's be more specific
     // Only reject if it matches common key patterns
     if (value.match(/^[a-z_]+$/i) && value.length > 10) {
-      console.warn(`[ServiceGateway] ⚠️ Image value for "${key}" looks like a key string: "${value}". Returning null.`);
+      console.warn(
+        `[ServiceGateway] ⚠️ Image value for "${key}" looks like a key string: "${value}". Returning null.`
+      );
       return null;
     }
   }
-  
+
   // Validate that it's a valid image path
   if (!isValidImagePath(value)) {
-    console.warn(`[ServiceGateway] ⚠️ Image value for "${key}" is invalid: "${value}". Expected URL starting with /, http://, or https://. Returning null.`);
+    console.warn(
+      `[ServiceGateway] ⚠️ Image value for "${key}" is invalid: "${value}". Expected URL starting with /, http://, or https://. Returning null.`
+    );
     return null;
   }
-  
+
   console.log(`[ServiceGateway] ✅ Image value for "${key}" is valid: "${value}"`);
   return value;
 }
@@ -452,9 +473,9 @@ export function ServiceGateway({ nursingImg, techImg, hotelImg }: ServiceGateway
   const { lang, t } = useLanguage();
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
-  
+
   // DEBUG: Log raw props received
-  console.log('[ServiceGateway] 📥 Raw props received:', {
+  console.log("[ServiceGateway] 📥 Raw props received:", {
     nursingImg,
     techImg,
     hotelImg,
@@ -462,7 +483,7 @@ export function ServiceGateway({ nursingImg, techImg, hotelImg }: ServiceGateway
     techImgType: typeof techImg,
     hotelImgType: typeof hotelImg,
   });
-  
+
   // Map images to services with validation
   // CRITICAL: Sanitize each image value to ensure we never pass key strings to Image components
   const serviceImages: Record<string, string | null> = {
@@ -470,9 +491,9 @@ export function ServiceGateway({ nursingImg, techImg, hotelImg }: ServiceGateway
     skilled: sanitizeImageValue(techImg, "home_prog_tech_img"),
     seasonal: sanitizeImageValue(hotelImg, "home_prog_hotel_img"),
   };
-  
+
   // DEBUG: Log sanitized values
-  console.log('[ServiceGateway] 📤 Sanitized serviceImages:', serviceImages);
+  console.log("[ServiceGateway] 📤 Sanitized serviceImages:", serviceImages);
 
   // Map asset keys for debug labels
   const serviceImageKeys: Record<string, string> = {
@@ -482,29 +503,30 @@ export function ServiceGateway({ nursingImg, techImg, hotelImg }: ServiceGateway
   };
 
   // Industries from translations (will add to translations.ts if needed)
-  const industries = lang === "de"
-    ? [
-        { icon: Building, label: "Krankenhäuser" },
-        { icon: Users, label: "Pflegeheime" },
-        { icon: Utensils, label: "Gastronomie" },
-        { icon: Sun, label: "Landwirtschaft" },
-        { icon: Building, label: "Hotellerie" },
-      ]
-    : lang === "en"
-    ? [
-        { icon: Building, label: "Hospitals" },
-        { icon: Users, label: "Nursing Homes" },
-        { icon: Utensils, label: "Restaurants" },
-        { icon: Sun, label: "Agriculture" },
-        { icon: Building, label: "Hotels" },
-      ]
-    : [
-        { icon: Building, label: "Bệnh viện" },
-        { icon: Users, label: "Viện dưỡng lão" },
-        { icon: Utensils, label: "Nhà hàng" },
-        { icon: Sun, label: "Nông nghiệp" },
-        { icon: Building, label: "Khách sạn" },
-      ];
+  const industries =
+    lang === "de"
+      ? [
+          { icon: Building, label: "Krankenhäuser" },
+          { icon: Users, label: "Pflegeheime" },
+          { icon: Utensils, label: "Gastronomie" },
+          { icon: Sun, label: "Landwirtschaft" },
+          { icon: Building, label: "Hotellerie" },
+        ]
+      : lang === "en"
+        ? [
+            { icon: Building, label: "Hospitals" },
+            { icon: Users, label: "Nursing Homes" },
+            { icon: Utensils, label: "Restaurants" },
+            { icon: Sun, label: "Agriculture" },
+            { icon: Building, label: "Hotels" },
+          ]
+        : [
+            { icon: Building, label: "Bệnh viện" },
+            { icon: Users, label: "Viện dưỡng lão" },
+            { icon: Utensils, label: "Nhà hàng" },
+            { icon: Sun, label: "Nông nghiệp" },
+            { icon: Building, label: "Khách sạn" },
+          ];
 
   return (
     <section
@@ -536,9 +558,7 @@ export function ServiceGateway({ nursingImg, techImg, hotelImg }: ServiceGateway
             {t.program.title}
           </h2>
 
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            {t.program.subtitle}
-          </p>
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">{t.program.subtitle}</p>
         </motion.div>
 
         {/* Service Cards Grid */}
@@ -562,9 +582,7 @@ export function ServiceGateway({ nursingImg, techImg, hotelImg }: ServiceGateway
           transition={{ duration: 0.6, delay: 0.5 }}
           className="text-center"
         >
-          <p className="text-sm font-medium text-slate-500 mb-4">
-            {t.program.industries_title}
-          </p>
+          <p className="text-sm font-medium text-slate-500 mb-4">{t.program.industries_title}</p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             {industries.map((industry, index) => (
               <IndustryBadge
@@ -581,4 +599,3 @@ export function ServiceGateway({ nursingImg, techImg, hotelImg }: ServiceGateway
     </section>
   );
 }
-

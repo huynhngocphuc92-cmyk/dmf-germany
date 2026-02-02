@@ -5,6 +5,28 @@ import { createClient } from "@/utils/supabase/server";
 import type { CandidateFormData, Candidate } from "./types";
 
 // ============================================
+// AUTH HELPER
+// ============================================
+
+/**
+ * Verify user is authenticated before performing admin actions
+ * Returns user object if authenticated, throws error if not
+ */
+async function requireAuth() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+    error,
+  } = await supabase.auth.getUser();
+
+  if (error || !user) {
+    throw new Error("Unauthorized: Authentication required");
+  }
+
+  return user;
+}
+
+// ============================================
 // FETCH ALL CANDIDATES
 // ============================================
 
@@ -43,11 +65,7 @@ export async function getCandidate(id: string): Promise<{
   try {
     const supabase = await createClient();
 
-    const { data, error } = await supabase
-      .from("candidates")
-      .select("*")
-      .eq("id", id)
-      .single();
+    const { data, error } = await supabase.from("candidates").select("*").eq("id", id).single();
 
     if (error) {
       console.error("Error fetching candidate:", error);
@@ -76,7 +94,7 @@ function sanitizeFormData(formData: CandidateFormData | Partial<CandidateFormDat
     german_level: formData.german_level || "B1", // Default nếu không có
     visa_status: formData.visa_status ?? false,
     is_featured: formData.is_featured ?? false,
-    
+
     // Optional fields - Convert empty strings to null
     phone: formData.phone?.trim() || null,
     date_of_birth: formData.date_of_birth?.trim() || null,
@@ -95,6 +113,9 @@ export async function createCandidate(
   formData: CandidateFormData
 ): Promise<{ success: boolean; error: string | null; data?: Candidate }> {
   try {
+    // Verify authentication before any mutation
+    await requireAuth();
+
     const supabase = await createClient();
 
     // Validate required fields
@@ -170,6 +191,9 @@ export async function updateCandidate(
   formData: Partial<CandidateFormData>
 ): Promise<{ success: boolean; error: string | null; data?: Candidate }> {
   try {
+    // Verify authentication before any mutation
+    await requireAuth();
+
     const supabase = await createClient();
 
     // Sanitize data before sending to database
@@ -185,11 +209,14 @@ export async function updateCandidate(
     if (sanitizedData.email !== undefined) updateData.email = sanitizedData.email;
     if (sanitizedData.category !== undefined) updateData.category = sanitizedData.category;
     if (sanitizedData.phone !== undefined) updateData.phone = sanitizedData.phone;
-    if (sanitizedData.date_of_birth !== undefined) updateData.date_of_birth = sanitizedData.date_of_birth;
+    if (sanitizedData.date_of_birth !== undefined)
+      updateData.date_of_birth = sanitizedData.date_of_birth;
     if (sanitizedData.profession !== undefined) updateData.profession = sanitizedData.profession;
     if (sanitizedData.notes !== undefined) updateData.notes = sanitizedData.notes;
-    if (sanitizedData.experience_years !== undefined) updateData.experience_years = sanitizedData.experience_years;
-    if (sanitizedData.german_level !== undefined) updateData.german_level = sanitizedData.german_level;
+    if (sanitizedData.experience_years !== undefined)
+      updateData.experience_years = sanitizedData.experience_years;
+    if (sanitizedData.german_level !== undefined)
+      updateData.german_level = sanitizedData.german_level;
     if (sanitizedData.visa_status !== undefined) updateData.visa_status = sanitizedData.visa_status;
     if (sanitizedData.is_featured !== undefined) updateData.is_featured = sanitizedData.is_featured;
     if (sanitizedData.avatar_url !== undefined) updateData.avatar_url = sanitizedData.avatar_url;
@@ -223,6 +250,9 @@ export async function deleteCandidate(
   id: string
 ): Promise<{ success: boolean; error: string | null }> {
   try {
+    // Verify authentication before any mutation
+    await requireAuth();
+
     const supabase = await createClient();
 
     // First, get the candidate to check for avatar
@@ -264,6 +294,9 @@ export async function uploadAvatar(
   formData: FormData
 ): Promise<{ success: boolean; error: string | null; url?: string }> {
   try {
+    // Verify authentication before any mutation
+    await requireAuth();
+
     const supabase = await createClient();
 
     const file = formData.get("file") as File;
@@ -326,6 +359,9 @@ export async function deleteAvatar(
   url: string
 ): Promise<{ success: boolean; error: string | null }> {
   try {
+    // Verify authentication before any mutation
+    await requireAuth();
+
     const supabase = await createClient();
 
     // Extract filename from URL
@@ -334,9 +370,7 @@ export async function deleteAvatar(
       return { success: false, error: "Ungültige URL." };
     }
 
-    const { error } = await supabase.storage
-      .from("candidates")
-      .remove([fileName]);
+    const { error } = await supabase.storage.from("candidates").remove([fileName]);
 
     if (error) {
       console.error("Error deleting avatar:", error);
@@ -400,4 +434,3 @@ export async function getFeaturedCandidates(): Promise<{
     return { data: [], error: null };
   }
 }
-

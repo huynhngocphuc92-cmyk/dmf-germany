@@ -3,20 +3,20 @@ import { getPublishedPosts } from "@/app/admin/posts/actions";
 import { BlogListClient } from "./blog-list-client";
 
 // Force dynamic rendering (uses cookies for Supabase client)
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Blog | DMF Vietnam",
-  description: "Aktuelle Nachrichten und Artikel über Fachkräfte aus Vietnam, Visum-Informationen und Rekrutierungstipps.",
+  description:
+    "Aktuelle Nachrichten und Artikel über Fachkräfte aus Vietnam, Visum-Informationen und Rekrutierungstipps.",
 };
 
 export default async function BlogPage() {
   const { data: posts, error } = await getPublishedPosts();
-  
+
   if (error) {
     console.error("Error loading posts:", error);
   }
-  
+
   return <BlogListClient posts={posts || []} />;
 }
-

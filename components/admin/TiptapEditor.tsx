@@ -6,9 +6,9 @@ import Underline from "@tiptap/extension-underline";
 import Link from "@tiptap/extension-link";
 import Image from "@tiptap/extension-image";
 import Placeholder from "@tiptap/extension-placeholder";
-import { 
-  Bold, 
-  Italic, 
+import {
+  Bold,
+  Italic,
   Underline as UnderlineIcon,
   Strikethrough,
   Code,
@@ -28,11 +28,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Toggle } from "@/components/ui/toggle";
 import { Separator } from "@/components/ui/separator";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState, useCallback } from "react";
@@ -88,25 +84,20 @@ function MenuBar({ editor }: MenuBarProps) {
 
   const setLink = useCallback(() => {
     if (!editor) return;
-    
+
     if (linkUrl === "") {
       editor.chain().focus().extendMarkRange("link").unsetLink().run();
       return;
     }
 
-    editor
-      .chain()
-      .focus()
-      .extendMarkRange("link")
-      .setLink({ href: linkUrl })
-      .run();
-    
+    editor.chain().focus().extendMarkRange("link").setLink({ href: linkUrl }).run();
+
     setLinkUrl("");
   }, [editor, linkUrl]);
 
   const addImage = useCallback(() => {
     if (!editor || !imageUrl) return;
-    
+
     editor.chain().focus().setImage({ src: imageUrl }).run();
     setImageUrl("");
   }, [editor, imageUrl]);
@@ -275,11 +266,7 @@ function MenuBar({ editor }: MenuBarProps) {
       {/* Image */}
       <Popover>
         <PopoverTrigger asChild>
-          <Toggle
-            size="sm"
-            className="h-8 w-8 p-0"
-            title="Add Image"
-          >
+          <Toggle size="sm" className="h-8 w-8 p-0" title="Add Image">
             <ImageIcon className="w-4 h-4" />
           </Toggle>
         </PopoverTrigger>
@@ -306,7 +293,11 @@ function MenuBar({ editor }: MenuBarProps) {
 // MAIN EDITOR COMPONENT
 // ============================================
 
-export function TiptapEditor({ content, onChange, placeholder = "Viết nội dung..." }: TiptapEditorProps) {
+export function TiptapEditor({
+  content,
+  onChange,
+  placeholder = "Viết nội dung...",
+}: TiptapEditorProps) {
   const editor = useEditor({
     immediatelyRender: false, // Fix SSR hydration mismatch
     extensions: [
@@ -329,7 +320,8 @@ export function TiptapEditor({ content, onChange, placeholder = "Viết nội du
       }),
       Placeholder.configure({
         placeholder,
-        emptyEditorClass: "before:content-[attr(data-placeholder)] before:text-slate-400 before:float-left before:pointer-events-none before:h-0",
+        emptyEditorClass:
+          "before:content-[attr(data-placeholder)] before:text-slate-400 before:float-left before:pointer-events-none before:h-0",
       }),
     ],
     content,
@@ -406,4 +398,3 @@ Add these styles to your globals.css:
   @apply max-w-full h-auto rounded-lg my-4;
 }
 */
-

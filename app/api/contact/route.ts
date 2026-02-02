@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/utils/supabase/server";
-import nodemailer from 'nodemailer';
-import { z } from 'zod';
+import nodemailer from "nodemailer";
+import { z } from "zod";
+import { checkRateLimit, getClientIp, RATE_LIMITS } from "@/lib/rate-limit";
+import { escapeHtml, escapeHtmlWithBreaks } from "@/lib/sanitize";
 
 // Define validation schema for backend (double safety)
 const bodySchema = z.object({
@@ -10,7 +12,7 @@ const bodySchema = z.object({
   phone: z.string().optional(),
   company: z.string().optional(),
   message: z.string().min(10),
-  type: z.enum(['contact', 'profile']).optional(),
+  type: z.enum(["contact", "profile"]).optional(),
   candidateId: z.string().optional(),
   candidateCode: z.string().optional(),
   bot_check: z.string().optional(), // Honeypot
@@ -19,6 +21,7 @@ const bodySchema = z.object({
 /**
  * Contact API Route
  * Handles contact form submissions
+ * - Rate limited (5 requests per minute per IP)
  * - Validates input with Zod
  * - Saves to Supabase inquiries table
  * - Sends email via nodemailer (SMTP)
@@ -26,18 +29,45 @@ const bodySchema = z.object({
  */
 export async function POST(request: NextRequest) {
   try {
+    // 0. Rate limiting check
+    const clientIp = getClientIp(request);
+    const rateLimitResult = checkRateLimit(`contact:${clientIp}`, RATE_LIMITS.CONTACT);
+
+    if (!rateLimitResult.success) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: `Zu viele Anfragen. Bitte warten Sie ${rateLimitResult.resetIn} Sekunden.`,
+        },
+        {
+          status: 429,
+          headers: {
+            "Retry-After": rateLimitResult.resetIn.toString(),
+            "X-RateLimit-Remaining": "0",
+          },
+        }
+      );
+    }
+
     const body = await request.json();
 
     // 1. Validate data with Zod
     const validatedData = bodySchema.parse(body);
-    const { name, email, phone, company, message, type = 'contact', candidateId, candidateCode, bot_check } = validatedData;
+    const {
+      name,
+      email,
+      phone,
+      company,
+      message,
+      type = "contact",
+      candidateId,
+      candidateCode,
+      bot_check,
+    } = validatedData;
 
     // 2. Honeypot check (Spam protection)
     if (bot_check) {
-      return NextResponse.json(
-        { success: false, error: "No bots allowed" },
-        { status: 400 }
-      );
+      return NextResponse.json({ success: false, error: "No bots allowed" }, { status: 400 });
     }
 
     const inquiryType = type === "profile" ? "profile" : "contact";
@@ -49,7 +79,7 @@ export async function POST(request: NextRequest) {
     // 3. Save to Supabase
     try {
       const supabase = await createClient();
-      
+
       const insertData: Record<string, unknown> = {
         client_name: name,
         email: email,
@@ -82,7 +112,7 @@ export async function POST(request: NextRequest) {
       // Continue even if Supabase fails
     }
 
-    // 4. Send Email via nodemailer (SMTP)
+    // 4. Send Email via nodemailer (SMTP) - with XSS protection
     try {
       // Check if SMTP is configured
       if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASSWORD) {
@@ -96,26 +126,28 @@ export async function POST(request: NextRequest) {
           },
         });
 
-        const emailSubject = inquiryType === "profile" 
-          ? `🎯 Neue Profil-Anfrage: ${name}`
-          : `📧 Neue Kontaktanfrage: ${name}`;
+        const emailSubject =
+          inquiryType === "profile"
+            ? `🎯 Neue Profil-Anfrage: ${escapeHtml(name)}`
+            : `📧 Neue Kontaktanfrage: ${escapeHtml(name)}`;
 
+        // Escape all user input to prevent XSS
         let emailHtml = `
-          <h2>${emailSubject}</h2>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Telefon:</strong> ${phone || 'Nicht angegeben'}</p>
-          <p><strong>Firma:</strong> ${company || 'Nicht angegeben'}</p>
+          <h2>${escapeHtml(emailSubject)}</h2>
+          <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+          <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+          <p><strong>Telefon:</strong> ${escapeHtml(phone || "Nicht angegeben")}</p>
+          <p><strong>Firma:</strong> ${escapeHtml(company || "Nicht angegeben")}</p>
         `;
 
         if (inquiryType === "profile" && candidateCode) {
-          emailHtml += `<p><strong>Kandidat:</strong> #${candidateCode}</p>`;
+          emailHtml += `<p><strong>Kandidat:</strong> #${escapeHtml(candidateCode)}</p>`;
         }
 
         emailHtml += `
           <br/>
           <p><strong>Nachricht:</strong></p>
-          <p style="background-color: #f3f4f6; padding: 12px; border-radius: 4px; white-space: pre-wrap;">${message.replace(/\n/g, '<br>')}</p>
+          <p style="background-color: #f3f4f6; padding: 12px; border-radius: 4px; white-space: pre-wrap;">${escapeHtmlWithBreaks(message)}</p>
         `;
 
         await transporter.sendMail({
@@ -138,17 +170,18 @@ export async function POST(request: NextRequest) {
 
     // 5. Send to Telegram (non-blocking)
     try {
-      const telegramTitle = inquiryType === "profile" 
-        ? `🎯 <b>NEUE PROFIL-ANFRAGE</b>`
-        : `📧 <b>NEUE KONTAKTANFRAGE</b>`;
-      
+      const telegramTitle =
+        inquiryType === "profile"
+          ? `🎯 <b>NEUE PROFIL-ANFRAGE</b>`
+          : `📧 <b>NEUE KONTAKTANFRAGE</b>`;
+
       let telegramMessage = `${telegramTitle}\n\n`;
-      
+
       if (inquiryType === "profile" && candidateCode) {
         telegramMessage += `👤 Kandidat: #${candidateCode}\n`;
       }
-      
-      telegramMessage += 
+
+      telegramMessage +=
         `👤 Name: ${name}\n` +
         `📧 E-Mail: ${email}\n` +
         `📞 Telefon: ${phone || "Nicht angegeben"}\n` +
@@ -176,41 +209,46 @@ export async function POST(request: NextRequest) {
     // 6. Return success if at least one method succeeded
     if (supabaseSaved || emailSent) {
       return NextResponse.json(
-        { 
-          success: true, 
+        {
+          success: true,
           message: "Anfrage wurde erfolgreich gesendet.",
           saved: supabaseSaved,
           emailSent: emailSent,
           telegramSent: telegramSent,
         },
-        { status: 200 }
+        {
+          status: 200,
+          headers: {
+            "X-RateLimit-Remaining": rateLimitResult.remaining.toString(),
+          },
+        }
       );
     } else {
       return NextResponse.json(
-        { 
-          success: false, 
-          error: "Anfrage konnte nicht gespeichert werden. Bitte versuchen Sie es später erneut." 
+        {
+          success: false,
+          error: "Anfrage konnte nicht gespeichert werden. Bitte versuchen Sie es später erneut.",
         },
         { status: 500 }
       );
     }
   } catch (error) {
     console.error("[Contact API] Validation or unexpected error:", error);
-    
+
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { 
-          success: false, 
-          error: "Ungültige Eingabedaten. Bitte überprüfen Sie Ihre Angaben." 
+        {
+          success: false,
+          error: "Ungültige Eingabedaten. Bitte überprüfen Sie Ihre Angaben.",
         },
         { status: 400 }
       );
     }
 
     return NextResponse.json(
-      { 
-        success: false, 
-        error: error instanceof Error ? error.message : "Ein unerwarteter Fehler ist aufgetreten." 
+      {
+        success: false,
+        error: error instanceof Error ? error.message : "Ein unerwarteter Fehler ist aufgetreten.",
       },
       { status: 500 }
     );

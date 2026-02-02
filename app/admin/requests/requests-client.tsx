@@ -59,16 +59,11 @@ interface RequestsClientProps {
 // REQUESTS CLIENT COMPONENT
 // ============================================
 
-export function RequestsClient({
-  initialInquiries,
-  error: initialError,
-}: RequestsClientProps) {
+export function RequestsClient({ initialInquiries, error: initialError }: RequestsClientProps) {
   const { lang } = useLanguage();
 
   // Data state
-  const [inquiries, setInquiries] = useState<Inquiry[]>(
-    initialInquiries || []
-  );
+  const [inquiries, setInquiries] = useState<Inquiry[]>(initialInquiries || []);
   const [error, setError] = useState<string | null>(initialError);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -119,16 +114,11 @@ export function RequestsClient({
   const handleStatusChange = async (inquiryId: string, newStatus: InquiryStatus) => {
     setUpdatingStatus(inquiryId);
     try {
-      const { success, error: updateError } = await updateInquiryStatus(
-        inquiryId,
-        newStatus
-      );
+      const { success, error: updateError } = await updateInquiryStatus(inquiryId, newStatus);
       if (success) {
         // Update local state
         setInquiries((prev) =>
-          prev.map((inq) =>
-            inq.id === inquiryId ? { ...inq, status: newStatus } : inq
-          )
+          prev.map((inq) => (inq.id === inquiryId ? { ...inq, status: newStatus } : inq))
         );
         // If detail dialog is open, update it too
         if (selectedInquiry?.id === inquiryId) {
@@ -158,14 +148,10 @@ export function RequestsClient({
 
     setDeletingId(inquiryToDelete.id);
     try {
-      const { success, error: deleteError } = await deleteInquiry(
-        inquiryToDelete.id
-      );
+      const { success, error: deleteError } = await deleteInquiry(inquiryToDelete.id);
       if (success) {
         // Remove from local state
-        setInquiries((prev) =>
-          prev.filter((inq) => inq.id !== inquiryToDelete.id)
-        );
+        setInquiries((prev) => prev.filter((inq) => inq.id !== inquiryToDelete.id));
         setIsDeleteDialogOpen(false);
         setInquiryToDelete(null);
         // Close detail dialog if it was open for this inquiry
@@ -227,9 +213,7 @@ export function RequestsClient({
           </p>
         </div>
         <Button onClick={handleRefresh} variant="outline" disabled={isLoading}>
-          <RefreshCw
-            className={`w-4 h-4 mr-2 ${isLoading ? "animate-spin" : ""}`}
-          />
+          <RefreshCw className={`w-4 h-4 mr-2 ${isLoading ? "animate-spin" : ""}`} />
           {lang === "de" ? "Aktualisieren" : "Làm mới"}
         </Button>
       </div>
@@ -239,12 +223,7 @@ export function RequestsClient({
         <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg flex items-center gap-2">
           <AlertCircle className="w-5 h-5" />
           <span>{error}</span>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setError(null)}
-            className="ml-auto"
-          >
+          <Button variant="ghost" size="sm" onClick={() => setError(null)} className="ml-auto">
             <X className="w-4 h-4" />
           </Button>
         </div>
@@ -262,18 +241,14 @@ export function RequestsClient({
           <div className="p-12 text-center">
             <MessageSquare className="w-16 h-16 text-slate-300 mx-auto mb-4" />
             <p className="text-slate-500 text-lg">
-              {lang === "de"
-                ? "Noch keine Anfragen vorhanden"
-                : "Chưa có yêu cầu nào"}
+              {lang === "de" ? "Noch keine Anfragen vorhanden" : "Chưa có yêu cầu nào"}
             </p>
           </div>
         ) : (
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead className="w-[120px]">
-                  {lang === "de" ? "Datum" : "Ngày"}
-                </TableHead>
+                <TableHead className="w-[120px]">{lang === "de" ? "Datum" : "Ngày"}</TableHead>
                 <TableHead>{lang === "de" ? "Name" : "Tên"}</TableHead>
                 <TableHead>{lang === "de" ? "Typ" : "Loại"}</TableHead>
                 <TableHead>{lang === "de" ? "Status" : "Trạng thái"}</TableHead>
@@ -293,15 +268,12 @@ export function RequestsClient({
                     <div className="text-sm text-slate-500">{inquiry.email}</div>
                   </TableCell>
                   <TableCell>
-                    <Badge
-                      className={`${typeColors[inquiry.type]} border`}
-                      variant="outline"
-                    >
+                    <Badge className={`${typeColors[inquiry.type]} border`} variant="outline">
                       {inquiry.type === "profile" && inquiry.candidate_code
                         ? `${lang === "de" ? typeLabels[inquiry.type].de : typeLabels[inquiry.type].vn} #${inquiry.candidate_code}`
                         : lang === "de"
-                        ? typeLabels[inquiry.type].de
-                        : typeLabels[inquiry.type].vn}
+                          ? typeLabels[inquiry.type].de
+                          : typeLabels[inquiry.type].vn}
                     </Badge>
                   </TableCell>
                   <TableCell>
@@ -325,20 +297,14 @@ export function RequestsClient({
                             : statusLabels.in_progress.vn}
                         </SelectItem>
                         <SelectItem value="completed">
-                          {lang === "de"
-                            ? statusLabels.completed.de
-                            : statusLabels.completed.vn}
+                          {lang === "de" ? statusLabels.completed.de : statusLabels.completed.vn}
                         </SelectItem>
                       </SelectContent>
                     </Select>
                   </TableCell>
                   <TableCell className="text-right">
                     <div className="flex items-center justify-end gap-2">
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => handleViewDetails(inquiry)}
-                      >
+                      <Button variant="ghost" size="sm" onClick={() => handleViewDetails(inquiry)}>
                         <Eye className="w-4 h-4 mr-1" />
                         {lang === "de" ? "Details" : "Chi tiết"}
                       </Button>
@@ -369,9 +335,7 @@ export function RequestsClient({
           {selectedInquiry && (
             <>
               <DialogHeader>
-                <DialogTitle>
-                  {lang === "de" ? "Anfrage-Details" : "Chi tiết yêu cầu"}
-                </DialogTitle>
+                <DialogTitle>{lang === "de" ? "Anfrage-Details" : "Chi tiết yêu cầu"}</DialogTitle>
                 <DialogDescription>
                   {lang === "de"
                     ? "Vollständige Informationen zur Anfrage"
@@ -382,24 +346,18 @@ export function RequestsClient({
               <div className="space-y-4">
                 {/* Status & Type */}
                 <div className="flex items-center gap-3">
-                  <Badge
-                    className={`${statusColors[selectedInquiry.status]} border`}
-                  >
+                  <Badge className={`${statusColors[selectedInquiry.status]} border`}>
                     {lang === "de"
                       ? statusLabels[selectedInquiry.status].de
                       : statusLabels[selectedInquiry.status].vn}
                   </Badge>
-                  <Badge
-                    className={`${typeColors[selectedInquiry.type]} border`}
-                  >
+                  <Badge className={`${typeColors[selectedInquiry.type]} border`}>
                     {lang === "de"
                       ? typeLabels[selectedInquiry.type].de
                       : typeLabels[selectedInquiry.type].vn}
                   </Badge>
                   {selectedInquiry.candidate_code && (
-                    <Badge variant="outline">
-                      #{selectedInquiry.candidate_code}
-                    </Badge>
+                    <Badge variant="outline">#{selectedInquiry.candidate_code}</Badge>
                   )}
                 </div>
 
@@ -409,10 +367,10 @@ export function RequestsClient({
                   <span>
                     {lang === "de" ? "Erstellt am" : "Tạo lúc"}:{" "}
                     {formatDate(selectedInquiry.created_at)}{" "}
-                    {new Date(selectedInquiry.created_at).toLocaleTimeString(
-                      "de-DE",
-                      { hour: "2-digit", minute: "2-digit" }
-                    )}
+                    {new Date(selectedInquiry.created_at).toLocaleTimeString("de-DE", {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
                   </span>
                 </div>
 
@@ -479,14 +437,10 @@ export function RequestsClient({
                         {lang === "de" ? statusLabels.new.de : statusLabels.new.vn}
                       </SelectItem>
                       <SelectItem value="in_progress">
-                        {lang === "de"
-                          ? statusLabels.in_progress.de
-                          : statusLabels.in_progress.vn}
+                        {lang === "de" ? statusLabels.in_progress.de : statusLabels.in_progress.vn}
                       </SelectItem>
                       <SelectItem value="completed">
-                        {lang === "de"
-                          ? statusLabels.completed.de
-                          : statusLabels.completed.vn}
+                        {lang === "de" ? statusLabels.completed.de : statusLabels.completed.vn}
                       </SelectItem>
                     </SelectContent>
                   </Select>
@@ -494,10 +448,7 @@ export function RequestsClient({
               </div>
 
               <DialogFooter>
-                <Button
-                  variant="outline"
-                  onClick={() => setIsDetailDialogOpen(false)}
-                >
+                <Button variant="outline" onClick={() => setIsDetailDialogOpen(false)}>
                   {lang === "de" ? "Schließen" : "Đóng"}
                 </Button>
               </DialogFooter>
@@ -510,9 +461,7 @@ export function RequestsClient({
       <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>
-              {lang === "de" ? "Anfrage löschen?" : "Xóa yêu cầu?"}
-            </DialogTitle>
+            <DialogTitle>{lang === "de" ? "Anfrage löschen?" : "Xóa yêu cầu?"}</DialogTitle>
             <DialogDescription>
               {lang === "de"
                 ? "Sind Sie sicher, dass Sie diese Anfrage löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden."

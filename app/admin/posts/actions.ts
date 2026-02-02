@@ -11,7 +11,7 @@ import type { Post, PostFormData } from "./types";
 export async function getPosts(): Promise<{ data: Post[] | null; error: string | null }> {
   try {
     const supabase = await createClient();
-    
+
     const { data, error } = await supabase
       .from("posts")
       .select("*")
@@ -32,7 +32,7 @@ export async function getPosts(): Promise<{ data: Post[] | null; error: string |
 export async function getPublishedPosts(): Promise<{ data: Post[] | null; error: string | null }> {
   try {
     const supabase = await createClient();
-    
+
     const { data, error } = await supabase
       .from("posts")
       .select("*")
@@ -51,15 +51,13 @@ export async function getPublishedPosts(): Promise<{ data: Post[] | null; error:
   }
 }
 
-export async function getPostById(id: string): Promise<{ data: Post | null; error: string | null }> {
+export async function getPostById(
+  id: string
+): Promise<{ data: Post | null; error: string | null }> {
   try {
     const supabase = await createClient();
-    
-    const { data, error } = await supabase
-      .from("posts")
-      .select("*")
-      .eq("id", id)
-      .single();
+
+    const { data, error } = await supabase.from("posts").select("*").eq("id", id).single();
 
     if (error) {
       console.error("Error fetching post:", error);
@@ -73,10 +71,12 @@ export async function getPostById(id: string): Promise<{ data: Post | null; erro
   }
 }
 
-export async function getPostBySlug(slug: string): Promise<{ data: Post | null; error: string | null }> {
+export async function getPostBySlug(
+  slug: string
+): Promise<{ data: Post | null; error: string | null }> {
   try {
     const supabase = await createClient();
-    
+
     const { data, error } = await supabase
       .from("posts")
       .select("*")
@@ -105,10 +105,12 @@ export async function createPost(
 ): Promise<{ data: Post | null; error: string | null }> {
   try {
     const supabase = await createClient();
-    
+
     // Get current user
-    const { data: { user } } = await supabase.auth.getUser();
-    
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
     const postData = {
       title: formData.title,
       slug: formData.slug,
@@ -122,11 +124,7 @@ export async function createPost(
       meta_description: formData.meta_description || null,
     };
 
-    const { data, error } = await supabase
-      .from("posts")
-      .insert(postData)
-      .select()
-      .single();
+    const { data, error } = await supabase.from("posts").insert(postData).select().single();
 
     if (error) {
       console.error("Error creating post:", error);
@@ -135,7 +133,7 @@ export async function createPost(
 
     revalidatePath("/admin/posts");
     revalidatePath("/blog");
-    
+
     return { data: data as Post, error: null };
   } catch (err) {
     console.error("Error in createPost:", err);
@@ -153,14 +151,14 @@ export async function updatePost(
 ): Promise<{ data: Post | null; error: string | null }> {
   try {
     const supabase = await createClient();
-    
+
     // Get existing post to check if we need to update published_at
     const { data: existingPost } = await supabase
       .from("posts")
       .select("status, published_at")
       .eq("id", id)
       .single();
-    
+
     // Set published_at if publishing for first time
     let published_at = existingPost?.published_at;
     if (formData.status === "published" && existingPost?.status !== "published") {
@@ -195,7 +193,7 @@ export async function updatePost(
     revalidatePath("/admin/posts");
     revalidatePath("/blog");
     revalidatePath(`/blog/${formData.slug}`);
-    
+
     return { data: data as Post, error: null };
   } catch (err) {
     console.error("Error in updatePost:", err);
@@ -210,14 +208,14 @@ export async function updatePost(
 export async function deletePost(id: string): Promise<{ error: string | null }> {
   try {
     const supabase = await createClient();
-    
+
     // Get post to find cover image
     const { data: post } = await supabase
       .from("posts")
       .select("cover_image, slug")
       .eq("id", id)
       .single();
-    
+
     // Delete cover image from storage if exists
     if (post?.cover_image) {
       const imagePath = post.cover_image.split("/").pop();
@@ -226,10 +224,7 @@ export async function deletePost(id: string): Promise<{ error: string | null }> 
       }
     }
 
-    const { error } = await supabase
-      .from("posts")
-      .delete()
-      .eq("id", id);
+    const { error } = await supabase.from("posts").delete().eq("id", id);
 
     if (error) {
       console.error("Error deleting post:", error);
@@ -241,7 +236,7 @@ export async function deletePost(id: string): Promise<{ error: string | null }> 
     if (post?.slug) {
       revalidatePath(`/blog/${post.slug}`);
     }
-    
+
     return { error: null };
   } catch (err) {
     console.error("Error in deletePost:", err);
@@ -258,7 +253,7 @@ export async function uploadCoverImage(
 ): Promise<{ url: string | null; error: string | null }> {
   try {
     const supabase = await createClient();
-    
+
     const file = formData.get("file") as File;
     if (!file) {
       return { url: null, error: "No file provided" };
@@ -268,12 +263,10 @@ export async function uploadCoverImage(
     const fileExt = file.name.split(".").pop();
     const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
 
-    const { error: uploadError } = await supabase.storage
-      .from("images")
-      .upload(fileName, file, {
-        cacheControl: "3600",
-        upsert: false,
-      });
+    const { error: uploadError } = await supabase.storage.from("images").upload(fileName, file, {
+      cacheControl: "3600",
+      upsert: false,
+    });
 
     if (uploadError) {
       console.error("Error uploading image:", uploadError);
@@ -281,9 +274,7 @@ export async function uploadCoverImage(
     }
 
     // Get public URL
-    const { data: urlData } = supabase.storage
-      .from("images")
-      .getPublicUrl(fileName);
+    const { data: urlData } = supabase.storage.from("images").getPublicUrl(fileName);
 
     return { url: urlData.publicUrl, error: null };
   } catch (err) {
@@ -295,16 +286,14 @@ export async function uploadCoverImage(
 export async function deleteCoverImage(url: string): Promise<{ error: string | null }> {
   try {
     const supabase = await createClient();
-    
+
     // Extract filename from URL
     const fileName = url.split("/").pop();
     if (!fileName) {
       return { error: "Invalid image URL" };
     }
 
-    const { error } = await supabase.storage
-      .from("images")
-      .remove([fileName]);
+    const { error } = await supabase.storage.from("images").remove([fileName]);
 
     if (error) {
       console.error("Error deleting image:", error);
@@ -328,7 +317,7 @@ export async function getRelatedPosts(
 ): Promise<{ data: Post[] | null; error: string | null }> {
   try {
     const supabase = await createClient();
-    
+
     const { data, error } = await supabase
       .from("posts")
       .select("*")
@@ -348,4 +337,3 @@ export async function getRelatedPosts(
     return { data: null, error: "Failed to fetch related posts" };
   }
 }
-

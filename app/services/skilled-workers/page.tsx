@@ -7,12 +7,12 @@ import { useLanguage } from "@/components/providers/LanguageProvider";
 import { checkQuality } from "@/utils/qa-layer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
 // Lazy load FAQ Section (below the fold)
-const FAQSection = dynamic(() => import('@/components/shared/FAQSection'), {
+const FAQSection = dynamic(() => import("@/components/shared/FAQSection"), {
   loading: () => <div className="py-20 text-center text-slate-500">Laden...</div>,
-  ssr: true // Keep SSR for SEO content, but split the JS bundle
+  ssr: true, // Keep SSR for SEO content, but split the JS bundle
 });
 
 import {
@@ -52,7 +52,8 @@ const DATA_DU_PHONG = {
     badge: "Fachkräfte Vermittlung",
     headline: "Qualifizierte Fachkräfte",
     headline_accent: "Anerkannte Abschlüsse. Sofort einsatzbereit.",
-    subheadline: "Schluss mit dem Behörden-Dschungel. Wir vermitteln Ingenieure, IT-Profis und Pflegekräfte aus Vietnam – rechtssicher nach §18a/b AufenthG.",
+    subheadline:
+      "Schluss mit dem Behörden-Dschungel. Wir vermitteln Ingenieure, IT-Profis und Pflegekräfte aus Vietnam – rechtssicher nach §18a/b AufenthG.",
     cta1: "Verfügbare Experten prüfen",
     cta2: "Kostenlose Beratung",
   },
@@ -143,7 +144,7 @@ function AnimatedCounter({
 
 function HeroSection({ content }: { content: any }) {
   const { lang } = useLanguage();
-  
+
   // Use safe content from QA layer
   const heroContent = content?.hero || {};
 
@@ -189,7 +190,9 @@ function HeroSection({ content }: { content: any }) {
 
             {/* Headline */}
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8">
-              <span className="text-white">{heroContent.headline || "Qualifizierte Fachkräfte"}</span>
+              <span className="text-white">
+                {heroContent.headline || "Qualifizierte Fachkräfte"}
+              </span>
               <br />
               <span className="bg-gradient-to-r from-emerald-400 via-green-400 to-emerald-400 bg-clip-text text-transparent">
                 {heroContent.headline_accent || "Anerkannte Abschlüsse. Sofort einsatzbereit."}
@@ -198,7 +201,8 @@ function HeroSection({ content }: { content: any }) {
 
             {/* Subheadline */}
             <p className="text-lg md:text-xl text-slate-400 leading-relaxed mb-10 max-w-lg">
-              {heroContent.subheadline || "Schluss mit dem Behörden-Dschungel. Wir vermitteln Ingenieure, IT-Profis und Pflegekräfte aus Vietnam."}
+              {heroContent.subheadline ||
+                "Schluss mit dem Behörden-Dschungel. Wir vermitteln Ingenieure, IT-Profis und Pflegekräfte aus Vietnam."}
             </p>
 
             {/* CTA Buttons */}
@@ -261,12 +265,8 @@ function HeroSection({ content }: { content: any }) {
                     <div className="text-6xl font-bold bg-gradient-to-r from-emerald-400 to-green-400 bg-clip-text text-transparent mb-2">
                       6-9
                     </div>
-                    <div className="text-white font-medium text-lg">
-                      Monate
-                    </div>
-                    <div className="text-emerald-400 text-sm mt-1">
-                      bis Einsatz
-                    </div>
+                    <div className="text-white font-medium text-lg">Monate</div>
+                    <div className="text-emerald-400 text-sm mt-1">bis Einsatz</div>
                   </motion.div>
                 </div>
               </div>
@@ -334,10 +334,10 @@ function HeroSection({ content }: { content: any }) {
 
 function AdvantagesSection({ content }: { content: any }) {
   const { lang } = useLanguage();
-  
+
   // Use safe content from QA layer
   const raw = content || {};
-  
+
   // Build section content from translations - use comparison as fallback
   const sectionContent = {
     badge: raw.comparison?.badge || "Warum DMF?",
@@ -347,21 +347,24 @@ function AdvantagesSection({ content }: { content: any }) {
       {
         icon: Shield,
         title: "Rechtssicher",
-        description: "Wir garantieren die Einhaltung aller Vorgaben (§18a/b AufenthG). Kein Risiko für Sie.",
+        description:
+          "Wir garantieren die Einhaltung aller Vorgaben (§18a/b AufenthG). Kein Risiko für Sie.",
         highlight: "100%",
         highlightDesc: "Rechtssicher",
       },
       {
         icon: Zap,
         title: "Beschleunigtes Verfahren",
-        description: "§81a Verfahren beschleunigt die Visumserteilung. Transparente Prozesse, keine Überraschungen.",
+        description:
+          "§81a Verfahren beschleunigt die Visumserteilung. Transparente Prozesse, keine Überraschungen.",
         highlight: "< 3",
         highlightDesc: "Monate",
       },
       {
         icon: Users,
         title: "Qualifizierte Experten",
-        description: "Vorab geprüfte Qualifikationen und Deutschkenntnisse. B1/B2 Zertifikat inklusive.",
+        description:
+          "Vorab geprüfte Qualifikationen und Deutschkenntnisse. B1/B2 Zertifikat inklusive.",
         highlight: "100%",
         highlightDesc: "Geprüft",
       },
@@ -445,11 +448,11 @@ function AdvantagesSection({ content }: { content: any }) {
 function ProcessTimelineSection({ content }: { content: any }) {
   const { lang } = useLanguage();
   const ref = useRef(null);
-  
+
   // Use safe content from QA layer
   const raw = content || {};
   const process = raw.process || {};
-  
+
   const sectionContent = {
     badge: process.badge || "Unser Prozess",
     title: process.title || "5 Schritte zum Erfolg",
@@ -588,7 +591,9 @@ function ProcessTimelineSection({ content }: { content: any }) {
         >
           <div className="inline-flex items-center gap-3 bg-gradient-to-r from-emerald-50 to-green-50 border border-emerald-200 rounded-full px-6 py-3">
             <CircleCheck className="w-6 h-6 text-emerald-600" />
-            <span className="text-emerald-800 font-semibold text-lg">{sectionContent.key_message}</span>
+            <span className="text-emerald-800 font-semibold text-lg">
+              {sectionContent.key_message}
+            </span>
           </div>
         </motion.div>
       </div>
@@ -602,11 +607,11 @@ function ProcessTimelineSection({ content }: { content: any }) {
 
 function ExpertiseSection({ content: contentProp }: { content: any }) {
   const { lang } = useLanguage();
-  
+
   // Use safe content from QA layer
   const raw = contentProp || {};
   const expertise = raw.expertise || {};
-  
+
   // Create sectors array from expertise data
   const sectors: any[] = [
     {
@@ -640,7 +645,7 @@ function ExpertiseSection({ content: contentProp }: { content: any }) {
       stats: { workers: "40+", time: "6-9 Mo." },
     },
   ];
-  
+
   const sectionContent = {
     badge: expertise.badge || "Unsere Expertise",
     title: expertise.title || "Spezialisierte Fachkräfte",
@@ -715,7 +720,9 @@ function ExpertiseSection({ content: contentProp }: { content: any }) {
                       </div>
                       <div>
                         <h3 className="text-2xl font-bold text-slate-900">{sector.title}</h3>
-                        <p className={`text-sm font-medium ${isEmerald ? "text-emerald-600" : "text-green-600"}`}>
+                        <p
+                          className={`text-sm font-medium ${isEmerald ? "text-emerald-600" : "text-green-600"}`}
+                        >
                           {sector.subtitle}
                         </p>
                       </div>
@@ -747,18 +754,18 @@ function ExpertiseSection({ content: contentProp }: { content: any }) {
                   {/* Stats */}
                   <div className="flex items-center gap-6 pt-4 border-t border-slate-200/50">
                     <div className="flex items-center gap-2">
-                      <Users className={`w-5 h-5 ${isEmerald ? "text-emerald-600" : "text-green-600"}`} />
+                      <Users
+                        className={`w-5 h-5 ${isEmerald ? "text-emerald-600" : "text-green-600"}`}
+                      />
                       <span className="font-bold text-slate-900">{sector.stats.workers}</span>
-                      <span className="text-sm text-slate-500">
-                        Fachkräfte
-                      </span>
+                      <span className="text-sm text-slate-500">Fachkräfte</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Timer className={`w-5 h-5 ${isEmerald ? "text-emerald-600" : "text-green-600"}`} />
+                      <Timer
+                        className={`w-5 h-5 ${isEmerald ? "text-emerald-600" : "text-green-600"}`}
+                      />
                       <span className="font-bold text-slate-900">{sector.stats.time}</span>
-                      <span className="text-sm text-slate-500">
-                        Vorlauf
-                      </span>
+                      <span className="text-sm text-slate-500">Vorlauf</span>
                     </div>
                   </div>
                 </div>
@@ -777,24 +784,47 @@ function ExpertiseSection({ content: contentProp }: { content: any }) {
 
 function StatsSection({ content }: { content: any }) {
   const { lang } = useLanguage();
-  
+
   // Use safe content from QA layer
   const raw = content || {};
   const statsData = raw.stats || {};
-  
+
   const sectionContent = {
     stats: [
-      { value: "150+", label: statsData.stat1_label || "Vermittelte Fachkräfte", suffix: "", icon: Users },
-      { value: "98", label: statsData.stat2_label || "Visum-Erfolgsquote", suffix: "%", icon: Shield },
-      { value: "6-9", label: statsData.stat3_label || "Monate bis Arbeitsantritt", suffix: "", icon: Clock },
-      { value: "95", label: statsData.success_rate || "Erfolgsrate", suffix: "%", icon: TrendingUp },
+      {
+        value: "150+",
+        label: statsData.stat1_label || "Vermittelte Fachkräfte",
+        suffix: "",
+        icon: Users,
+      },
+      {
+        value: "98",
+        label: statsData.stat2_label || "Visum-Erfolgsquote",
+        suffix: "%",
+        icon: Shield,
+      },
+      {
+        value: "6-9",
+        label: statsData.stat3_label || "Monate bis Arbeitsantritt",
+        suffix: "",
+        icon: Clock,
+      },
+      {
+        value: "95",
+        label: statsData.success_rate || "Erfolgsrate",
+        suffix: "%",
+        icon: TrendingUp,
+      },
     ],
   };
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section ref={ref} className="py-20 md:py-28 bg-gradient-to-br from-emerald-600 via-green-600 to-emerald-700 relative overflow-hidden">
+    <section
+      ref={ref}
+      className="py-20 md:py-28 bg-gradient-to-br from-emerald-600 via-green-600 to-emerald-700 relative overflow-hidden"
+    >
       {/* Background Pattern */}
       <div className="absolute inset-0">
         <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/20 rounded-full blur-[100px]" />
@@ -844,11 +874,11 @@ function StatsSection({ content }: { content: any }) {
 
 function CTASection({ content }: { content: any }) {
   const { lang } = useLanguage();
-  
+
   // Use safe content from QA layer
   const raw = content || {};
   const ctaData = raw.cta || {};
-  
+
   const sectionContent = {
     title: ctaData.title || "Bereit für qualifizierte Fachkräfte?",
     subtitle: ctaData.subtitle || "Vereinbaren Sie ein unverbindliches Beratungsgespräch.",
@@ -923,16 +953,19 @@ export default function SkilledWorkersPage() {
   const skilledFAQs = [
     {
       question: "Wie funktioniert das Anerkennungsverfahren?",
-      answer: "Wir prüfen die vietnamesischen Abschlüsse bereits vor Vertragsschluss auf Gleichwertigkeit (Defizitbescheid). Sollte eine Anpassungsqualifizierung nötig sein, organisieren wir diese gemeinsam mit Ihnen."
+      answer:
+        "Wir prüfen die vietnamesischen Abschlüsse bereits vor Vertragsschluss auf Gleichwertigkeit (Defizitbescheid). Sollte eine Anpassungsqualifizierung nötig sein, organisieren wir diese gemeinsam mit Ihnen.",
     },
     {
       question: "Wie schnell können die Fachkräfte starten?",
-      answer: "Dank des Beschleunigten Fachkräfteverfahrens oft in 4-6 Monaten. Da wir über einen Pool an bereits sprachlich qualifizierten Kandidaten verfügen, entfallen lange Wartezeiten für den Spracherwerb."
+      answer:
+        "Dank des Beschleunigten Fachkräfteverfahrens oft in 4-6 Monaten. Da wir über einen Pool an bereits sprachlich qualifizierten Kandidaten verfügen, entfallen lange Wartezeiten für den Spracherwerb.",
     },
     {
       question: "Sind die Kandidaten an einer langfristigen Arbeit interessiert?",
-      answer: "Absolut. Unsere Kandidaten suchen eine langfristige Perspektive für sich und ihre Familien. Die kulturelle Integration wird durch unsere Betreuung vor Ort erleichtert."
-    }
+      answer:
+        "Absolut. Unsere Kandidaten suchen eine langfristige Perspektive für sich und ihre Familien. Die kulturelle Integration wird durch unsere Betreuung vor Ort erleichtert.",
+    },
   ];
 
   return (

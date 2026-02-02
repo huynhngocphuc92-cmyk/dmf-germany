@@ -12,22 +12,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function AdminLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   // Redirect to login if not authenticated
   if (!user) {
     redirect("/login");
   }
 
-  return (
-    <AdminLayoutClient user={user}>
-      {children}
-    </AdminLayoutClient>
-  );
+  return <AdminLayoutClient user={user}>{children}</AdminLayoutClient>;
 }

@@ -16,7 +16,10 @@ export default async function ThemeManagerPage() {
   if (configs) {
     const sections = Object.keys(configs);
     const totalItems = Object.values(configs).reduce((sum, items) => sum + items.length, 0);
-    console.log(`Theme Manager: Loaded ${totalItems} items across ${sections.length} sections:`, sections);
+    console.log(
+      `Theme Manager: Loaded ${totalItems} items across ${sections.length} sections:`,
+      sections
+    );
   } else {
     console.log("Theme Manager: No configs loaded (configs is null or empty)");
   }
@@ -27,4 +30,3 @@ export default async function ThemeManagerPage() {
     </Suspense>
   );
 }
-

@@ -3,7 +3,7 @@ import { getFeaturedCandidates } from "@/lib/supabase/candidates";
 import { CandidatesClient } from "./candidates-client";
 
 // Force dynamic rendering - No cache to ensure fresh data
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export default async function KandidatenPage() {
@@ -12,10 +12,7 @@ export default async function KandidatenPage() {
 
   return (
     <Suspense fallback={<CandidatesPageSkeleton />}>
-      <CandidatesClient
-        initialCandidates={initialCandidates || []}
-        error={error}
-      />
+      <CandidatesClient initialCandidates={initialCandidates || []} error={error} />
     </Suspense>
   );
 }

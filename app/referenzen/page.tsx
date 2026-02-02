@@ -52,7 +52,7 @@ export default function ReferenzenPage() {
             <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
               Überblick über unsere erfolgreichen Platzierungen in verschiedenen deutschen Städten
             </p>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {successStories.map((city) => (
                 <div
@@ -61,9 +61,7 @@ export default function ReferenzenPage() {
                 >
                   <div className="flex items-start justify-between mb-4">
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-1">
-                        {city.city}
-                      </h3>
+                      <h3 className="text-xl font-bold text-gray-900 mb-1">{city.city}</h3>
                       <div className="flex items-center gap-2 text-sm text-gray-500">
                         <MapPin className="w-4 h-4" />
                         <span>
@@ -72,7 +70,7 @@ export default function ReferenzenPage() {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="space-y-3">
                     <div className="flex items-center gap-2">
                       <Users className="w-5 h-5 text-primary" />
@@ -80,7 +78,7 @@ export default function ReferenzenPage() {
                         {city.candidateCount}+ Vermittlungen
                       </span>
                     </div>
-                    
+
                     <div className="pt-2 border-t border-gray-100">
                       <div className="flex items-start gap-2 mb-2">
                         <Briefcase className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
@@ -115,7 +113,8 @@ export default function ReferenzenPage() {
               Werden Sie Teil unserer Erfolgsgeschichte
             </h2>
             <p className="text-lg opacity-90 mb-8">
-              Lassen Sie uns gemeinsam qualifizierte Fachkräfte aus Vietnam für Ihr Unternehmen finden.
+              Lassen Sie uns gemeinsam qualifizierte Fachkräfte aus Vietnam für Ihr Unternehmen
+              finden.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a

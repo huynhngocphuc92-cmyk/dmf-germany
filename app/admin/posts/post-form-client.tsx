@@ -4,31 +4,31 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  ArrowLeft,
-  Save,
-  Loader2,
-  X,
-  Upload,
-  Eye,
-} from "lucide-react";
+import dynamic from "next/dynamic";
+import { ArrowLeft, Save, Loader2, X, Upload, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import { TiptapEditor } from "@/components/admin/TiptapEditor";
 import type { Post, PostFormData, AdminLanguage } from "./types";
 import { postTranslations, generateSlug } from "./types";
 import { createPost, updatePost, uploadCoverImage, deleteCoverImage } from "./actions";
+
+// Lazy load TiptapEditor - it's a heavy component with many dependencies
+const TiptapEditor = dynamic(
+  () => import("@/components/admin/TiptapEditor").then((mod) => mod.TiptapEditor),
+  {
+    loading: () => (
+      <div className="flex items-center justify-center h-64 border rounded-lg bg-slate-50">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      </div>
+    ),
+    ssr: false,
+  }
+);
 
 // ============================================
 // TYPES
@@ -58,7 +58,7 @@ export function PostFormClient({ mode, initialPost }: PostFormClientProps) {
   const [isPublished, setIsPublished] = useState(initialPost?.status === "published");
   const [metaTitle, setMetaTitle] = useState(initialPost?.meta_title || "");
   const [metaDescription, setMetaDescription] = useState(initialPost?.meta_description || "");
-  
+
   // UI state
   const [isSaving, setIsSaving] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
@@ -101,9 +101,9 @@ export function PostFormClient({ mode, initialPost }: PostFormClientProps) {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      
+
       const { url, error: uploadError } = await uploadCoverImage(formData);
-      
+
       if (uploadError) {
         setError(uploadError);
       } else if (url) {
@@ -131,7 +131,7 @@ export function PostFormClient({ mode, initialPost }: PostFormClientProps) {
   // Handle form submit
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validate
     if (!title.trim()) {
       setError(lang === "vn" ? "Vui lòng nhập tiêu đề" : "Bitte geben Sie einen Titel ein");
@@ -158,7 +158,7 @@ export function PostFormClient({ mode, initialPost }: PostFormClientProps) {
 
     try {
       let result;
-      
+
       if (mode === "create") {
         result = await createPost(formData);
       } else if (initialPost) {
@@ -195,7 +195,7 @@ export function PostFormClient({ mode, initialPost }: PostFormClientProps) {
             <p className="text-slate-500">{t.formBack}</p>
           </div>
         </div>
-        
+
         <div className="flex items-center gap-3">
           {/* Preview Button (only for published) */}
           {mode === "edit" && initialPost?.status === "published" && (
@@ -206,7 +206,7 @@ export function PostFormClient({ mode, initialPost }: PostFormClientProps) {
               </Link>
             </Button>
           )}
-          
+
           {/* Save Button */}
           <Button
             onClick={handleSubmit}
@@ -255,7 +255,7 @@ export function PostFormClient({ mode, initialPost }: PostFormClientProps) {
                     className="mt-1.5 text-lg"
                   />
                 </div>
-                
+
                 <div>
                   <Label htmlFor="slug" className="text-sm font-medium">
                     {t.formSlug}
@@ -303,16 +303,16 @@ export function PostFormClient({ mode, initialPost }: PostFormClientProps) {
                   <div>
                     <p className="font-medium text-sm">{t.formPublish}</p>
                     <p className="text-xs text-slate-500 mt-0.5">
-                      {isPublished 
-                        ? (lang === "vn" ? "Bài viết sẽ hiển thị công khai" : "Öffentlich sichtbar")
-                        : (lang === "vn" ? "Chỉ lưu nháp" : "Nur Entwurf")
-                      }
+                      {isPublished
+                        ? lang === "vn"
+                          ? "Bài viết sẽ hiển thị công khai"
+                          : "Öffentlich sichtbar"
+                        : lang === "vn"
+                          ? "Chỉ lưu nháp"
+                          : "Nur Entwurf"}
                     </p>
                   </div>
-                  <Switch
-                    checked={isPublished}
-                    onCheckedChange={setIsPublished}
-                  />
+                  <Switch checked={isPublished} onCheckedChange={setIsPublished} />
                 </div>
               </CardContent>
             </Card>
@@ -360,9 +360,7 @@ export function PostFormClient({ mode, initialPost }: PostFormClientProps) {
                       <>
                         <Upload className="w-8 h-8 text-slate-400 mb-2" />
                         <span className="text-sm text-slate-500">{t.formUpload}</span>
-                        <span className="text-xs text-slate-400 mt-1">
-                          JPG, PNG, GIF (max 5MB)
-                        </span>
+                        <span className="text-xs text-slate-400 mt-1">JPG, PNG, GIF (max 5MB)</span>
                       </>
                     )}
                   </label>
@@ -375,8 +373,8 @@ export function PostFormClient({ mode, initialPost }: PostFormClientProps) {
               <CardHeader className="pb-3">
                 <CardTitle className="text-sm font-medium">{t.formExcerpt}</CardTitle>
                 <CardDescription className="text-xs">
-                  {lang === "vn" 
-                    ? "Hiển thị trong danh sách bài viết" 
+                  {lang === "vn"
+                    ? "Hiển thị trong danh sách bài viết"
                     : "Wird in der Liste angezeigt"}
                 </CardDescription>
               </CardHeader>
@@ -397,7 +395,9 @@ export function PostFormClient({ mode, initialPost }: PostFormClientProps) {
               </CardHeader>
               <CardContent className="space-y-3">
                 <div>
-                  <Label htmlFor="metaTitle" className="text-xs">Meta Title</Label>
+                  <Label htmlFor="metaTitle" className="text-xs">
+                    Meta Title
+                  </Label>
                   <Input
                     id="metaTitle"
                     value={metaTitle}
@@ -407,7 +407,9 @@ export function PostFormClient({ mode, initialPost }: PostFormClientProps) {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="metaDesc" className="text-xs">Meta Description</Label>
+                  <Label htmlFor="metaDesc" className="text-xs">
+                    Meta Description
+                  </Label>
                   <Textarea
                     id="metaDesc"
                     value={metaDescription}

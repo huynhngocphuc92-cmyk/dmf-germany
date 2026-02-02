@@ -12,15 +12,15 @@
 **Critical Issues Identified: 3**
 
 🔴 **CRITICAL:**
+
 1. **God Files** - `app/services/azubi/page.tsx` (1,787 lines) and `app/services/skilled-workers/page.tsx` (1,627 lines)
 2. **Massive Hard-coded Content** - Inline content objects with 100+ properties
 3. **No Form Validation Library** - Manual form handling in admin (error-prone)
 
-⚠️ **HIGH PRIORITY:**
-4. **Type Safety Gaps** - Some `any` types found
-5. **Code Duplication** - Similar patterns across service pages
+⚠️ **HIGH PRIORITY:** 4. **Type Safety Gaps** - Some `any` types found 5. **Code Duplication** - Similar patterns across service pages
 
 ✅ **GOOD:**
+
 - Server/Client separation maintained
 - Using translation hooks (`useLanguage`)
 - TypeScript usage overall good
@@ -31,11 +31,11 @@
 
 ### 📊 File Size Analysis
 
-| File | Lines | Status | Breakdown |
-|------|-------|--------|-----------|
-| `app/services/azubi/page.tsx` | **1,787** | 🔴 Critical | ~60% content data, ~35% JSX, ~5% logic |
-| `app/services/skilled-workers/page.tsx` | **1,627** | 🔴 Critical | Similar structure |
-| `app/services/seasonal/page.tsx` | **1,291** | ⚠️ Warning | Similar structure |
+| File                                    | Lines     | Status      | Breakdown                              |
+| --------------------------------------- | --------- | ----------- | -------------------------------------- |
+| `app/services/azubi/page.tsx`           | **1,787** | 🔴 Critical | ~60% content data, ~35% JSX, ~5% logic |
+| `app/services/skilled-workers/page.tsx` | **1,627** | 🔴 Critical | Similar structure                      |
+| `app/services/seasonal/page.tsx`        | **1,291** | ⚠️ Warning  | Similar structure                      |
 
 ---
 
@@ -61,12 +61,14 @@ const featuresContent = {
 ```
 
 **Problem:**
+
 - ❌ All content hard-coded in component file
 - ❌ Should be in `lib/translations.ts` or `config/` folder
 - ❌ Violates separation of concerns
 - ❌ Makes I18n maintenance difficult
 
 **Impact:**
+
 - 📈 File size: ~1,100 lines of content data
 - 🔄 Difficult to update content (non-developers can't edit)
 - 🌐 I18n maintenance nightmare
@@ -74,6 +76,7 @@ const featuresContent = {
 **2. Inline JSX Sections (35% of file)**
 
 **Sections Found:**
+
 - Hero Section (~100 lines)
 - Features Section (~150 lines)
 - Process Steps Section (~200 lines)
@@ -131,6 +134,7 @@ lib/content/
 ```
 
 **OR** (Better approach):
+
 ```
 lib/translations.ts             # Add to existing translations
 └── services: {
@@ -141,6 +145,7 @@ lib/translations.ts             # Add to existing translations
 ```
 
 **Estimated Refactoring Effort:**
+
 - Content extraction: 2-3 hours
 - Component extraction: 4-6 hours
 - Testing: 2-3 hours
@@ -152,19 +157,19 @@ lib/translations.ts             # Add to existing translations
 
 #### **For `app/services/azubi/page.tsx`:**
 
-| Component | Current Lines | Proposed Lines | Priority |
-|-----------|--------------|----------------|----------|
-| `<HeroSection />` | ~100 | ~80 | HIGH |
-| `<FeaturesSection />` | ~150 | ~120 | HIGH |
-| `<ProcessSection />` | ~200 | ~150 | HIGH |
-| `<BenefitsSection />` | ~150 | ~120 | HIGH |
-| `<RequirementsSection />` | ~150 | ~120 | HIGH |
-| `<TestimonialsSection />` | ~150 | ~120 | MEDIUM |
-| `<FAQSection />` | ~150 | ~120 | MEDIUM |
-| `<CTASection />` | ~100 | ~80 | MEDIUM |
-| `<VideoSection />` | ~100 | ~80 | LOW |
-| `<StatsSection />` | ~100 | ~80 | LOW |
-| `<InquiryFormSection />` | ~100 | ~120 | MEDIUM |
+| Component                 | Current Lines | Proposed Lines | Priority |
+| ------------------------- | ------------- | -------------- | -------- |
+| `<HeroSection />`         | ~100          | ~80            | HIGH     |
+| `<FeaturesSection />`     | ~150          | ~120           | HIGH     |
+| `<ProcessSection />`      | ~200          | ~150           | HIGH     |
+| `<BenefitsSection />`     | ~150          | ~120           | HIGH     |
+| `<RequirementsSection />` | ~150          | ~120           | HIGH     |
+| `<TestimonialsSection />` | ~150          | ~120           | MEDIUM   |
+| `<FAQSection />`          | ~150          | ~120           | MEDIUM   |
+| `<CTASection />`          | ~100          | ~80            | MEDIUM   |
+| `<VideoSection />`        | ~100          | ~80            | LOW      |
+| `<StatsSection />`        | ~100          | ~80            | LOW      |
+| `<InquiryFormSection />`  | ~100          | ~120           | MEDIUM   |
 
 **Total Extractable: ~1,450 lines → 11 components**
 
@@ -175,6 +180,7 @@ lib/translations.ts             # Add to existing translations
 #### **Pattern Similarity: Service Pages**
 
 **Similar Patterns Found:**
+
 1. ✅ Same section structure across `azubi`, `skilled-workers`, `seasonal`
 2. ✅ Similar content object structure
 3. ✅ Similar JSX patterns
@@ -192,13 +198,14 @@ components/services/
 └── ServiceCTASection.tsx        # Reusable CTA
 
 // Usage:
-<ServiceHeroSection 
+<ServiceHeroSection
   content={translations.services.azubi.hero}
   image={heroImage}
 />
 ```
 
 **Estimated Code Reduction:**
+
 - Current: ~4,700 lines (3 files)
 - After refactoring: ~1,500 lines (shared components + page wrappers)
 - **Reduction: ~68%**
@@ -210,12 +217,14 @@ components/services/
 ### 🔴 **CRITICAL ISSUE 1: Hard-coded Content**
 
 **Problem:**
+
 - ❌ All service content hard-coded in component files
 - ❌ Content mixed with UI code
 - ❌ Non-developers cannot edit content
 - ❌ I18n maintenance difficult
 
 **Example from `azubi/page.tsx`:**
+
 ```typescript
 // Lines 47-400: Hard-coded content
 const heroContent = {
@@ -229,18 +238,20 @@ const heroContent = {
     badge: "Đào tạo nghề §16a AufenthG",
     headline: "Đảm bảo nguồn nhân lực lâu dài",
     // ... 20+ more properties
-  }
+  },
 };
 
 // ... 10+ more content objects
 ```
 
 **Recommendation:**
+
 1. ✅ Move all content to `lib/translations.ts`
 2. ✅ Follow existing pattern (already has `services` section structure)
 3. ✅ Use `useLanguage()` hook (already implemented)
 
 **Impact:**
+
 - 📉 File size reduction: ~1,100 lines per file
 - ✅ Better maintainability
 - ✅ Non-developers can edit translations
@@ -250,12 +261,14 @@ const heroContent = {
 ### ⚠️ **ISSUE 2: Type Safety**
 
 **Finding:**
+
 - ✅ Overall good TypeScript usage
 - ⚠️ Some `any` types found (need verification)
 - ✅ Proper interface definitions for props
 - ✅ Using TypeScript strict mode
 
 **Recommendation:**
+
 - 🔍 Audit all `any` types and replace with proper types
 - ✅ Add stricter type checking for content objects
 
@@ -286,6 +299,7 @@ const heroContent = {
 ### 🔍 Admin Form Analysis
 
 **Files Analyzed:**
+
 - `components/admin/AssetCard.tsx`
 - `components/admin/CandidateForm.tsx`
 - `app/admin/posts/post-form-client.tsx`
@@ -298,6 +312,7 @@ const heroContent = {
 **Current State:**
 
 **1. Manual Form Handling:**
+
 ```typescript
 // components/sections/ContactSection.tsx
 const [formData, setFormData] = useState<FormData>({...});
@@ -321,12 +336,14 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 ```
 
 **2. No Schema Validation:**
+
 - ❌ No `zod` schema definitions
 - ❌ No `react-hook-form` integration
 - ❌ Manual validation logic (error-prone)
 - ❌ Inconsistent error handling
 
 **Problems:**
+
 - ❌ Validation logic duplicated across forms
 - ❌ Easy to miss edge cases
 - ❌ No type-safe validation
@@ -353,14 +370,14 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
 ```typescript
 // lib/validations/schemas.ts
-import { z } from 'zod';
+import { z } from "zod";
 
 export const contactFormSchema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters'),
-  email: z.string().email('Invalid email address'),
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Invalid email address"),
   phone: z.string().optional(),
   company: z.string().optional(),
-  message: z.string().min(10, 'Message must be at least 10 characters'),
+  message: z.string().min(10, "Message must be at least 10 characters"),
 });
 
 export const candidateFormSchema = z.object({
@@ -411,6 +428,7 @@ export function ContactSection() {
 ```
 
 **Benefits:**
+
 - ✅ Type-safe validation
 - ✅ Consistent error handling
 - ✅ Better UX (real-time validation)
@@ -418,6 +436,7 @@ export function ContactSection() {
 - ✅ Easier to maintain
 
 **Estimated Implementation Effort:**
+
 - Setup: 2-3 hours
 - Refactor existing forms: 4-6 hours
 - Testing: 2-3 hours
@@ -430,6 +449,7 @@ export function ContactSection() {
 ### ✅ Admin Theme Structure Analysis
 
 **Files:**
+
 - `app/admin/theme/page.tsx` - Server Component ✅
 - `app/admin/theme/theme-client.tsx` - Client Component ✅
 - `components/admin/AssetCard.tsx` - Feature Component ✅
@@ -443,11 +463,13 @@ export function ContactSection() {
 5. ✅ **Data Layer:** Good (Server Actions pattern)
 
 **Issues Found:**
+
 - ⚠️ AssetCard uses manual form handling (no react-hook-form)
 - ⚠️ File upload validation is manual (no zod schema)
 - ✅ Overall structure is good
 
 **Recommendation:**
+
 - Apply same form validation improvements as above
 - Consider extracting file upload logic into reusable hook
 
@@ -457,24 +479,24 @@ export function ContactSection() {
 
 ### 🔴 **Critical Issues (Fix Immediately)**
 
-| Issue | Impact | Effort | Priority |
-|-------|--------|--------|----------|
-| God Files (azubi, skilled-workers) | 🔴 High | 2-3 days | P0 |
-| Hard-coded Content | 🔴 High | 1 day | P0 |
-| No Form Validation Library | ⚠️ Medium | 1-1.5 days | P1 |
+| Issue                              | Impact    | Effort     | Priority |
+| ---------------------------------- | --------- | ---------- | -------- |
+| God Files (azubi, skilled-workers) | 🔴 High   | 2-3 days   | P0       |
+| Hard-coded Content                 | 🔴 High   | 1 day      | P0       |
+| No Form Validation Library         | ⚠️ Medium | 1-1.5 days | P1       |
 
 ### ⚠️ **High Priority (Fix Soon)**
 
-| Issue | Impact | Effort | Priority |
-|-------|--------|--------|----------|
-| Code Duplication (Service Pages) | ⚠️ Medium | 2-3 days | P1 |
-| Type Safety Gaps | ⚠️ Medium | 0.5 day | P2 |
+| Issue                            | Impact    | Effort   | Priority |
+| -------------------------------- | --------- | -------- | -------- |
+| Code Duplication (Service Pages) | ⚠️ Medium | 2-3 days | P1       |
+| Type Safety Gaps                 | ⚠️ Medium | 0.5 day  | P2       |
 
 ### ✅ **Low Priority (Nice to Have)**
 
-| Issue | Impact | Effort | Priority |
-|-------|--------|--------|----------|
-| Component Extraction (small sections) | 🟢 Low | 1 day | P3 |
+| Issue                                 | Impact | Effort | Priority |
+| ------------------------------------- | ------ | ------ | -------- |
+| Component Extraction (small sections) | 🟢 Low | 1 day  | P3       |
 
 ---
 
@@ -487,6 +509,7 @@ export function ContactSection() {
 3. ✅ Test i18n functionality
 
 **Expected Result:**
+
 - 📉 File size: 1,787 lines → ~687 lines (60% reduction)
 - ✅ Content maintainable by non-developers
 
@@ -500,6 +523,7 @@ export function ContactSection() {
 4. ✅ Refactor all 3 service pages to use shared components
 
 **Expected Result:**
+
 - 📉 Total code: ~4,700 lines → ~1,500 lines (68% reduction)
 - ✅ Better maintainability
 - ✅ Reusable components
@@ -515,6 +539,7 @@ export function ContactSection() {
 5. ✅ Refactor InquiryFormSection (in service pages)
 
 **Expected Result:**
+
 - ✅ Type-safe form validation
 - ✅ Consistent error handling
 - ✅ Better UX
@@ -544,16 +569,19 @@ export function ContactSection() {
 **Overall Assessment: 6.5/10** ⚠️
 
 **Strengths:**
+
 - ✅ Good Server/Client separation
 - ✅ Using translation hooks
 - ✅ TypeScript usage overall good
 
 **Critical Weaknesses:**
+
 - ❌ God files (1,787+ lines)
 - ❌ Hard-coded content
 - ❌ No form validation library
 
 **Immediate Actions:**
+
 1. **P0:** Extract content from service pages (1 day)
 2. **P0:** Extract components from service pages (2-3 days)
 3. **P1:** Add form validation library (1-1.5 days)

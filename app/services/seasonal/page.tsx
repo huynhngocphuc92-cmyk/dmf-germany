@@ -7,12 +7,12 @@ import { useLanguage } from "@/components/providers/LanguageProvider";
 import { checkQuality } from "@/utils/qa-layer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
 // Lazy load FAQ Section (below the fold)
-const FAQSection = dynamic(() => import('@/components/shared/FAQSection'), {
+const FAQSection = dynamic(() => import("@/components/shared/FAQSection"), {
   loading: () => <div className="py-20 text-center text-slate-500">Laden...</div>,
-  ssr: true // Keep SSR for SEO content, but split the JS bundle
+  ssr: true, // Keep SSR for SEO content, but split the JS bundle
 });
 
 import {
@@ -52,7 +52,8 @@ const DATA_DU_PHONG = {
     badge: "100% ZAV-konform",
     headline: "Erntehelfer & Servicekräfte",
     headline_accent: "Schnell verfügbar.",
-    subheadline: "Sichern Sie Ihre Ernte und Ihren Service. Körperlich belastbares Personal für die Hochsaison – einsatzbereit in 4-8 Wochen.",
+    subheadline:
+      "Sichern Sie Ihre Ernte und Ihren Service. Körperlich belastbares Personal für die Hochsaison – einsatzbereit in 4-8 Wochen.",
     cta1: "Verfügbarkeit jetzt prüfen",
     cta2: "Rückruf anfordern",
     urgency_badge: "Saison 2026 – Jetzt sichern!",
@@ -66,11 +67,13 @@ const DATA_DU_PHONG = {
     advantage_1_highlight: "100%",
     advantage_1_highlight_desc: "Einsatzbereit",
     advantage_2_title: "Hohe Motivation",
-    advantage_2_desc: "Maximale Einsatzbereitschaft für 3-6 Monate. Wenig Fehlzeiten, hohe Produktivität.",
+    advantage_2_desc:
+      "Maximale Einsatzbereitschaft für 3-6 Monate. Wenig Fehlzeiten, hohe Produktivität.",
     advantage_2_highlight: "< 2%",
     advantage_2_highlight_desc: "Fehlzeiten",
     advantage_3_title: "Rechtssicher",
-    advantage_3_desc: "Wir garantieren die Einhaltung aller Vorgaben (Mindestlohn, ZAV, Visum). Kein Risiko für Sie.",
+    advantage_3_desc:
+      "Wir garantieren die Einhaltung aller Vorgaben (Mindestlohn, ZAV, Visum). Kein Risiko für Sie.",
     advantage_3_highlight: "100%",
     advantage_3_highlight_desc: "ZAV-konform",
   },
@@ -344,14 +347,16 @@ const advantagesContent = {
       {
         icon: Zap,
         title: "Hohe Motivation",
-        description: "Maximale Einsatzbereitschaft für 3-6 Monate. Wenig Fehlzeiten, hohe Produktivität.",
+        description:
+          "Maximale Einsatzbereitschaft für 3-6 Monate. Wenig Fehlzeiten, hohe Produktivität.",
         highlight: "< 2%",
         highlightDesc: "Fehlzeiten",
       },
       {
         icon: Shield,
         title: "Rechtssicher",
-        description: "Wir garantieren die Einhaltung aller Vorgaben (Mindestlohn, ZAV, Visum). Kein Risiko für Sie.",
+        description:
+          "Wir garantieren die Einhaltung aller Vorgaben (Mindestlohn, ZAV, Visum). Kein Risiko für Sie.",
         highlight: "100%",
         highlightDesc: "ZAV-konform",
       },
@@ -379,7 +384,8 @@ const advantagesContent = {
       {
         icon: Shield,
         title: "An toàn pháp lý",
-        description: "Chúng tôi đảm bảo tuân thủ mọi quy định (Lương tối thiểu, ZAV, Visa). Không rủi ro cho bạn.",
+        description:
+          "Chúng tôi đảm bảo tuân thủ mọi quy định (Lương tối thiểu, ZAV, Visa). Không rủi ro cho bạn.",
         highlight: "100%",
         highlightDesc: "Đạt chuẩn ZAV",
       },
@@ -482,7 +488,7 @@ function AnimatedCounter({
 
 function HeroSection({ content }: { content: any }) {
   const { lang } = useLanguage();
-  
+
   // Use safe content from QA layer
   const heroContent = content?.hero || {};
 
@@ -541,7 +547,9 @@ function HeroSection({ content }: { content: any }) {
 
             {/* Headline */}
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8">
-              <span className="text-white">{heroContent.headline || "Erntehelfer & Servicekräfte"}</span>
+              <span className="text-white">
+                {heroContent.headline || "Erntehelfer & Servicekräfte"}
+              </span>
               <br />
               <span className="bg-gradient-to-r from-amber-400 via-orange-400 to-yellow-400 bg-clip-text text-transparent">
                 {heroContent.headline_accent || "Schnell verfügbar."}
@@ -550,7 +558,8 @@ function HeroSection({ content }: { content: any }) {
 
             {/* Subheadline */}
             <p className="text-lg md:text-xl text-slate-400 leading-relaxed mb-10 max-w-lg">
-              {heroContent.subheadline || "Sichern Sie Ihre Ernte und Ihren Service. Körperlich belastbares Personal für die Hochsaison – einsatzbereit in 4-8 Wochen."}
+              {heroContent.subheadline ||
+                "Sichern Sie Ihre Ernte und Ihren Service. Körperlich belastbares Personal für die Hochsaison – einsatzbereit in 4-8 Wochen."}
             </p>
 
             {/* CTA Buttons */}
@@ -613,12 +622,8 @@ function HeroSection({ content }: { content: any }) {
                     <div className="text-6xl font-bold bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent mb-2">
                       4-8
                     </div>
-                    <div className="text-white font-medium text-lg">
-                      Wochen
-                    </div>
-                    <div className="text-amber-400 text-sm mt-1">
-                      bis Einsatz
-                    </div>
+                    <div className="text-white font-medium text-lg">Wochen</div>
+                    <div className="text-amber-400 text-sm mt-1">bis Einsatz</div>
                   </motion.div>
                 </div>
               </div>
@@ -686,11 +691,11 @@ function HeroSection({ content }: { content: any }) {
 
 function AdvantagesSection({ content }: { content: any }) {
   const { lang } = useLanguage();
-  
+
   // Use safe content from QA layer
   const raw = content || {};
   const advantages = raw.advantages || {};
-  
+
   // Build section content from translations
   const sectionContent = {
     badge: advantages.badge || "Warum Vietnam?",
@@ -700,21 +705,27 @@ function AdvantagesSection({ content }: { content: any }) {
       {
         icon: Dumbbell,
         title: advantages.advantage_1_title || "Körperlich Belastbar",
-        description: advantages.advantage_1_desc || "Gewohnt an harte Arbeit und Hitze. Ideal für Feldarbeit und Gewächshäuser.",
+        description:
+          advantages.advantage_1_desc ||
+          "Gewohnt an harte Arbeit und Hitze. Ideal für Feldarbeit und Gewächshäuser.",
         highlight: advantages.advantage_1_highlight || "100%",
         highlightDesc: advantages.advantage_1_highlight_desc || "Einsatzbereit",
       },
       {
         icon: Zap,
         title: advantages.advantage_2_title || "Hohe Motivation",
-        description: advantages.advantage_2_desc || "Maximale Einsatzbereitschaft für 3-6 Monate. Wenig Fehlzeiten, hohe Produktivität.",
+        description:
+          advantages.advantage_2_desc ||
+          "Maximale Einsatzbereitschaft für 3-6 Monate. Wenig Fehlzeiten, hohe Produktivität.",
         highlight: advantages.advantage_2_highlight || "< 2%",
         highlightDesc: advantages.advantage_2_highlight_desc || "Fehlzeiten",
       },
       {
         icon: Shield,
         title: advantages.advantage_3_title || "Rechtssicher",
-        description: advantages.advantage_3_desc || "Wir garantieren die Einhaltung aller Vorgaben (Mindestlohn, ZAV, Visum). Kein Risiko für Sie.",
+        description:
+          advantages.advantage_3_desc ||
+          "Wir garantieren die Einhaltung aller Vorgaben (Mindestlohn, ZAV, Visum). Kein Risiko für Sie.",
         highlight: advantages.advantage_3_highlight || "100%",
         highlightDesc: advantages.advantage_3_highlight_desc || "ZAV-konform",
       },
@@ -798,11 +809,11 @@ function AdvantagesSection({ content }: { content: any }) {
 function SpeedTimelineSection({ content }: { content: any }) {
   const { lang } = useLanguage();
   const ref = useRef(null);
-  
+
   // Use safe content from QA layer
   const raw = content || {};
   const timeline = raw.timeline || {};
-  
+
   // Build section content from translations
   const sectionContent = {
     badge: timeline.badge || "Schneller Prozess",
@@ -944,11 +955,11 @@ function SpeedTimelineSection({ content }: { content: any }) {
 
 function TalentPoolSection({ content }: { content: any }) {
   const { lang } = useLanguage();
-  
+
   // Use safe content from QA layer
   const raw = content || {};
   const talent = raw.talent || {};
-  
+
   // Build section content from translations - keep profiles structure from original
   const sectionContent = {
     badge: talent.badge || "Sofort verfügbar",
@@ -1023,23 +1034,32 @@ function TalentPoolSection({ content }: { content: any }) {
                       {lang === "de" ? profile.role : lang === "en" ? profile.role : profile.roleVn}
                     </h3>
                     <p className="text-sm text-amber-600">
-                      {lang === "de" ? profile.category : lang === "en" ? profile.category : profile.categoryVn}
+                      {lang === "de"
+                        ? profile.category
+                        : lang === "en"
+                          ? profile.category
+                          : profile.categoryVn}
                     </p>
                   </div>
 
                   {/* Skills */}
                   <div className="p-5 space-y-3">
-                    {profile.skills.map((skill: { icon: React.ComponentType<{ className?: string }>; text: string }, skillIdx: number) => {
-                      const SkillIcon = skill.icon;
-                      return (
-                        <div key={skillIdx} className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center flex-shrink-0">
-                            <SkillIcon className="w-4 h-4 text-slate-500" />
+                    {profile.skills.map(
+                      (
+                        skill: { icon: React.ComponentType<{ className?: string }>; text: string },
+                        skillIdx: number
+                      ) => {
+                        const SkillIcon = skill.icon;
+                        return (
+                          <div key={skillIdx} className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center flex-shrink-0">
+                              <SkillIcon className="w-4 h-4 text-slate-500" />
+                            </div>
+                            <span className="text-sm text-slate-600">{skill.text}</span>
                           </div>
-                          <span className="text-sm text-slate-600">{skill.text}</span>
-                        </div>
-                      );
-                    })}
+                        );
+                      }
+                    )}
                   </div>
 
                   {/* Action */}
@@ -1090,11 +1110,11 @@ function TalentPoolSection({ content }: { content: any }) {
 
 function SectorsSection({ content }: { content: any }) {
   const { lang } = useLanguage();
-  
+
   // Use safe content from QA layer
   const raw = content || {};
   const sectors = raw.sectors || {};
-  
+
   // Build section content from translations - keep sectors structure from original
   const sectionContent = {
     badge: sectors.badge || "Einsatzbereiche",
@@ -1170,7 +1190,9 @@ function SectorsSection({ content }: { content: any }) {
                       </div>
                       <div>
                         <h3 className="text-2xl font-bold text-slate-900">{sector.title}</h3>
-                        <p className={`text-sm font-medium ${isAmber ? "text-amber-600" : "text-orange-600"}`}>
+                        <p
+                          className={`text-sm font-medium ${isAmber ? "text-amber-600" : "text-orange-600"}`}
+                        >
                           {sector.subtitle}
                         </p>
                       </div>
@@ -1202,18 +1224,18 @@ function SectorsSection({ content }: { content: any }) {
                   {/* Stats */}
                   <div className="flex items-center gap-6 pt-4 border-t border-slate-200/50">
                     <div className="flex items-center gap-2">
-                      <Users className={`w-5 h-5 ${isAmber ? "text-amber-600" : "text-orange-600"}`} />
+                      <Users
+                        className={`w-5 h-5 ${isAmber ? "text-amber-600" : "text-orange-600"}`}
+                      />
                       <span className="font-bold text-slate-900">{sector.stats.workers}</span>
-                      <span className="text-sm text-slate-500">
-                        Arbeitskräfte
-                      </span>
+                      <span className="text-sm text-slate-500">Arbeitskräfte</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Timer className={`w-5 h-5 ${isAmber ? "text-amber-600" : "text-orange-600"}`} />
+                      <Timer
+                        className={`w-5 h-5 ${isAmber ? "text-amber-600" : "text-orange-600"}`}
+                      />
                       <span className="font-bold text-slate-900">{sector.stats.time}</span>
-                      <span className="text-sm text-slate-500">
-                        Vorlauf
-                      </span>
+                      <span className="text-sm text-slate-500">Vorlauf</span>
                     </div>
                   </div>
                 </div>
@@ -1232,24 +1254,42 @@ function SectorsSection({ content }: { content: any }) {
 
 function StatsSection({ content }: { content: any }) {
   const { lang } = useLanguage();
-  
+
   // Use safe content from QA layer
   const raw = content || {};
   const statsData = raw.stats || {};
-  
+
   // Build section content from translations
   const sectionContent = {
     stats: [
-      { value: "200+", label: statsData.stat1_label || "Vermittelte Arbeitskräfte", suffix: "", icon: Users },
-      { value: "98", label: statsData.stat2_label || "Visum-Erfolgsquote", suffix: "%", icon: Shield },
-      { value: "4-8", label: statsData.stat3_label || "Wochen bis Einsatz", suffix: "", icon: Clock },
+      {
+        value: "200+",
+        label: statsData.stat1_label || "Vermittelte Arbeitskräfte",
+        suffix: "",
+        icon: Users,
+      },
+      {
+        value: "98",
+        label: statsData.stat2_label || "Visum-Erfolgsquote",
+        suffix: "%",
+        icon: Shield,
+      },
+      {
+        value: "4-8",
+        label: statsData.stat3_label || "Wochen bis Einsatz",
+        suffix: "",
+        icon: Clock,
+      },
     ],
   };
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section ref={ref} className="py-20 md:py-28 bg-gradient-to-br from-amber-600 via-orange-600 to-amber-700 relative overflow-hidden">
+    <section
+      ref={ref}
+      className="py-20 md:py-28 bg-gradient-to-br from-amber-600 via-orange-600 to-amber-700 relative overflow-hidden"
+    >
       {/* Background Pattern */}
       <div className="absolute inset-0">
         <div className="absolute top-0 right-0 w-96 h-96 bg-yellow-500/20 rounded-full blur-[100px]" />
@@ -1281,9 +1321,7 @@ function StatsSection({ content }: { content: any }) {
                 <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2">
                   <AnimatedCounter value={stat.value} suffix={stat.suffix} duration={2} />
                 </div>
-                <div className="text-amber-100 text-sm md:text-base font-medium">
-                  {stat.label}
-                </div>
+                <div className="text-amber-100 text-sm md:text-base font-medium">{stat.label}</div>
               </motion.div>
             );
           })}
@@ -1299,12 +1337,12 @@ function StatsSection({ content }: { content: any }) {
 
 function CTASection({ content }: { content: any }) {
   const { lang } = useLanguage();
-  
+
   // Use safe content from QA layer
   const raw = content || {};
   const ctaData = raw.cta || {};
   const heroData = raw.hero || {};
-  
+
   // Build section content from translations
   const sectionContent = {
     title: ctaData.title || "Bereit für Saison 2026?",
@@ -1394,16 +1432,19 @@ export default function SeasonalWorkersPage() {
   const seasonalFAQs = [
     {
       question: "Ist der Einsatz rechtssicher?",
-      answer: "Ja, wir vermitteln ausschließlich im Rahmen der gesetzlichen Regelungen für kurzzeitige Beschäftigung (z.B. §15a BeschV) und kümmern uns um alle Genehmigungen der Bundesagentur für Arbeit."
+      answer:
+        "Ja, wir vermitteln ausschließlich im Rahmen der gesetzlichen Regelungen für kurzzeitige Beschäftigung (z.B. §15a BeschV) und kümmern uns um alle Genehmigungen der Bundesagentur für Arbeit.",
     },
     {
       question: "Können dieselben Saisonkräfte wiederkommen?",
-      answer: "Ja, das ist ausdrücklich gewünscht. Viele Kunden bauen sich so einen 'Stamm-Pool' auf, was die Einarbeitungszeit in den Folgejahren drastisch reduziert."
+      answer:
+        "Ja, das ist ausdrücklich gewünscht. Viele Kunden bauen sich so einen 'Stamm-Pool' auf, was die Einarbeitungszeit in den Folgejahren drastisch reduziert.",
     },
     {
       question: "Wie ist die Arbeitsmoral?",
-      answer: "Vietnamesische Arbeitskräfte sind bekannt für Disziplin und Belastbarkeit, besonders in der Landwirtschaft oder Gastronomie. Fehlzeiten sind eine absolute Ausnahme."
-    }
+      answer:
+        "Vietnamesische Arbeitskräfte sind bekannt für Disziplin und Belastbarkeit, besonders in der Landwirtschaft oder Gastronomie. Fehlzeiten sind eine absolute Ausnahme.",
+    },
   ];
 
   return (
@@ -1419,4 +1460,3 @@ export default function SeasonalWorkersPage() {
     </main>
   );
 }
-

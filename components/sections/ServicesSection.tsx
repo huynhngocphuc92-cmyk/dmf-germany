@@ -73,7 +73,7 @@ export const ServicesSection = () => {
                   <div className="h-full p-6 md:p-8 lg:p-10 rounded-xl bg-card border border-border hover:border-accent/50 hover:shadow-xl transition-all duration-300 relative overflow-hidden">
                     {/* Background decoration */}
                     <div className="absolute top-0 right-0 w-24 md:w-32 h-24 md:h-32 bg-gradient-to-bl from-accent/5 to-transparent rounded-bl-full" />
-                    
+
                     {/* Icon */}
                     <div className="relative mb-4 md:mb-6">
                       <div className="inline-flex p-3 md:p-4 rounded-xl bg-accent/10 group-hover:bg-accent transition-all duration-300">

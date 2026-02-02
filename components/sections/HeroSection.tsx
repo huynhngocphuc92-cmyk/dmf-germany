@@ -31,7 +31,11 @@ interface HeroSectionProps {
   featuredCandidates?: Candidate[];
 }
 
-export const HeroSection = ({ heroBg, heroOverlayOpacity, featuredCandidates = [] }: HeroSectionProps = {}) => {
+export const HeroSection = ({
+  heroBg,
+  heroOverlayOpacity,
+  featuredCandidates = [],
+}: HeroSectionProps = {}) => {
   const { t, lang } = useLanguage();
 
   return (
@@ -41,7 +45,7 @@ export const HeroSection = ({ heroBg, heroOverlayOpacity, featuredCandidates = [
     >
       {/* Background - Dynamic from database or fallback */}
       {heroBg && heroBg.trim() !== "" ? (
-        <div 
+        <div
           className="absolute inset-0"
           style={{
             backgroundImage: `url(${heroBg})`,
@@ -92,10 +96,7 @@ export const HeroSection = ({ heroBg, heroOverlayOpacity, featuredCandidates = [
             </motion.p>
 
             {/* CTA Buttons - Horizontal Layout */}
-            <motion.div
-              variants={fadeInUp}
-              className="flex flex-col sm:flex-row gap-4 pt-4"
-            >
+            <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 pt-4">
               {/* Primary Button - Brand Blue */}
               <Link
                 href="#contact"
@@ -112,10 +113,7 @@ export const HeroSection = ({ heroBg, heroOverlayOpacity, featuredCandidates = [
                 asChild
                 className="gap-2 px-8 py-4 h-auto text-base md:text-lg font-semibold border-2 border-white/30 bg-white/5 backdrop-blur-sm text-white hover:bg-white/10 hover:border-white/50"
               >
-                <a
-                  href="/DMF Vietnam Handbuch.pdf"
-                  download="DMF_Vietnam_Unternehmensprofil.pdf"
-                >
+                <a href="/DMF Vietnam Handbuch.pdf" download="DMF_Vietnam_Unternehmensprofil.pdf">
                   <Download className="h-5 w-5" />
                   {t.hero.cta_secondary}
                 </a>

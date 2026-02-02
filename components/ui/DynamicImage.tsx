@@ -37,7 +37,7 @@ interface DynamicImageProps {
 
 /**
  * DynamicImage - A Server Component that fetches image URL from database
- * 
+ *
  * Usage:
  * ```tsx
  * <DynamicImage
@@ -66,7 +66,7 @@ export async function DynamicImage({
 }: DynamicImageProps) {
   // Fetch image URL from database
   const { data: config } = await getSiteConfigByKey(configKey);
-  
+
   // Use database value if available, otherwise fallback (site_assets uses 'value' column)
   const imageSrc = config?.value || fallbackSrc;
 
@@ -132,7 +132,7 @@ interface DynamicBackgroundProps {
 
 /**
  * DynamicBackground - Wrapper with dynamic background image
- * 
+ *
  * Usage:
  * ```tsx
  * <DynamicBackground
@@ -162,18 +162,10 @@ export async function DynamicBackground({
       className={cn("relative bg-cover bg-center bg-no-repeat", className)}
       style={{ backgroundImage: `url('${imageSrc}')` }}
     >
-      {overlay && (
-        <div
-          className={cn(
-            "absolute inset-0 bg-black/50",
-            overlayClassName
-          )}
-        />
-      )}
+      {overlay && <div className={cn("absolute inset-0 bg-black/50", overlayClassName)} />}
       <div className="relative z-10">{children}</div>
     </div>
   );
 }
 
 export default DynamicImage;
-

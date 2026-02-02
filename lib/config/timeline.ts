@@ -44,70 +44,73 @@ export interface TimelineDataConfig {
  * Defines duration for each product type and industry
  */
 export const TIMELINE_DATA: TimelineDataConfig = {
-  skilled: { // Fachkräfte
-    defaultDuration: { 
-      recruit: 3,    // Rekrutierung & Kandidatensuche
-      docs: 4,       // Dokumentenvorbereitung
+  skilled: {
+    // Fachkräfte
+    defaultDuration: {
+      recruit: 3, // Rekrutierung & Kandidatensuche
+      docs: 4, // Dokumentenvorbereitung
       recognition: 12, // Anerkennung & Visum (standard)
-      visa: 4,       // Visa processing
-      einreise: 1    // Einreise & Arbeitsbeginn
+      visa: 4, // Visa processing
+      einreise: 1, // Einreise & Arbeitsbeginn
     },
     industries: {
-      pflege: { 
-        label: "Pflege & Medizin", 
-        recognition: 16  // Y tế xét duyệt lâu hơn
+      pflege: {
+        label: "Pflege & Medizin",
+        recognition: 16, // Y tế xét duyệt lâu hơn
       },
-      handwerk: { 
-        label: "Handwerk & Bau", 
-        recognition: 10 
+      handwerk: {
+        label: "Handwerk & Bau",
+        recognition: 10,
       },
-      it: { 
-        label: "IT & Technik", 
-        recognition: 4   // IT thường nhanh hơn (Blue Card)
+      it: {
+        label: "IT & Technik",
+        recognition: 4, // IT thường nhanh hơn (Blue Card)
       },
-      gastro: { 
-        label: "Hotel & Gastro", 
-        recognition: 8 
+      gastro: {
+        label: "Hotel & Gastro",
+        recognition: 8,
       },
     },
   },
-  azubi: { // Ausbildung
-    defaultDuration: { 
-      recruit: 4,      // Rekrutierung
-      docs: 4,         // Dokumentenvorbereitung
+  azubi: {
+    // Ausbildung
+    defaultDuration: {
+      recruit: 4, // Rekrutierung
+      docs: 4, // Dokumentenvorbereitung
       schoolSearch: 8, // Schulplatzsuche (tìm trường)
-      visa: 6,         // Visa processing
-      einreise: 1      // Einreise & Arbeitsbeginn
+      visa: 6, // Visa processing
+      einreise: 1, // Einreise & Arbeitsbeginn
     },
     industries: {
-      pflege: { 
-        label: "Pflege (Azubi)" 
+      pflege: {
+        label: "Pflege (Azubi)",
       },
-      gastro: { 
-        label: "Hotel/Küche (Azubi)" 
+      gastro: {
+        label: "Hotel/Küche (Azubi)",
       },
-      handwerk: { 
-        label: "Handwerk (Azubi)" 
+      handwerk: {
+        label: "Handwerk (Azubi)",
       },
     },
   },
-  seasonal: { // Saisonkräfte
-    defaultDuration: { 
-      recruit: 2,    // Rekrutierung (nhanh hơn)
-      docs: 1,       // Dokumentenvorbereitung (tối giản)
-      zav: 2,        // ZAV-Genehmigung
-      visa: 2,       // Visa processing (nhanh)
-      einreise: 1    // Einreise & Arbeitsbeginn
+  seasonal: {
+    // Saisonkräfte
+    defaultDuration: {
+      recruit: 2, // Rekrutierung (nhanh hơn)
+      docs: 1, // Dokumentenvorbereitung (tối giản)
+      zav: 2, // ZAV-Genehmigung
+      visa: 2, // Visa processing (nhanh)
+      einreise: 1, // Einreise & Arbeitsbeginn
     },
     industries: {
-      agriculture: { 
-        label: "Landwirtschaft" 
+      agriculture: {
+        label: "Landwirtschaft",
       },
-      logistics: { 
-        label: "Lager & Logistik" 
+      logistics: {
+        label: "Lager & Logistik",
       },
-      service: { 
-        label: "Service & Gastro" 
+      service: {
+        label: "Service & Gastro",
       },
     },
   },
@@ -144,8 +147,8 @@ export const getTimelineSteps = (
   switch (productType) {
     case "fachkraefte": {
       const recognitionWeeks = industry?.recognition ?? productData.defaultDuration.recognition;
-      const recognitionDuration = isAccelerated 
-        ? Math.max(6, Math.floor(recognitionWeeks * 0.5)) 
+      const recognitionDuration = isAccelerated
+        ? Math.max(6, Math.floor(recognitionWeeks * 0.5))
         : recognitionWeeks;
 
       return [
@@ -306,10 +309,7 @@ export const calculateTotalDuration = (steps: TimelineStep[]): number => {
 /**
  * Get step duration based on process type
  */
-export const getStepDuration = (
-  step: TimelineStep,
-  isAccelerated: boolean
-): number => {
+export const getStepDuration = (step: TimelineStep, isAccelerated: boolean): number => {
   if (isAccelerated && step.durationWeeksAccelerated !== undefined) {
     return step.durationWeeksAccelerated;
   }
@@ -326,7 +326,7 @@ export const calculateStepDate = (
   isAccelerated: boolean
 ): Date => {
   let currentDate = new Date(startDate);
-  
+
   // Add duration for all steps up to and including the target step
   for (let i = 0; i <= targetStepIndex && i < steps.length; i++) {
     const step = steps[i];
@@ -334,14 +334,16 @@ export const calculateStepDate = (
     // Add weeks to current date
     currentDate.setDate(currentDate.getDate() + durationWeeks * 7);
   }
-  
+
   return currentDate;
 };
 
 /**
  * Get available industries for a product type
  */
-export const getAvailableIndustries = (productType: ProductType): Record<string, IndustryTimelineConfig> | undefined => {
+export const getAvailableIndustries = (
+  productType: ProductType
+): Record<string, IndustryTimelineConfig> | undefined => {
   const dataKey = getTimelineDataKey(productType);
   return TIMELINE_DATA[dataKey].industries;
 };

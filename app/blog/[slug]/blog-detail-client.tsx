@@ -6,18 +6,12 @@ import { motion } from "framer-motion";
 import { format } from "date-fns";
 import { de, vi } from "date-fns/locale";
 import parse from "html-react-parser";
-import {
-  ArrowLeft,
-  Calendar,
-  Clock,
-  Share2,
-  FileText,
-  ChevronRight,
-} from "lucide-react";
+import { ArrowLeft, Calendar, Clock, Share2, FileText, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { BLUR_LANDSCAPE } from "@/lib/image-placeholder";
 import type { Post } from "@/app/admin/posts/types";
 
 // ============================================
@@ -104,12 +98,14 @@ export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) 
         {post.cover_image ? (
           <div className="relative h-[40vh] lg:h-[50vh] overflow-hidden">
             <Image
-              src={post.cover_image}
-              alt={post.title}
-              fill
-              priority
-              className="object-cover"
-            />
+                            src={post.cover_image}
+                            alt={post.title}
+                            fill
+                            priority
+                            className="object-cover"
+                            placeholder="blur"
+                            blurDataURL={BLUR_LANDSCAPE}
+                          />
             {/* Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
           </div>
@@ -156,12 +152,7 @@ export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) 
                   <Clock className="w-4 h-4" />
                   {calculateReadTime(post.content)} {t.readTime}
                 </span>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="ml-auto"
-                  onClick={handleShare}
-                >
+                <Button variant="ghost" size="sm" className="ml-auto" onClick={handleShare}>
                   <Share2 className="w-4 h-4 mr-2" />
                   {t.share}
                 </Button>
@@ -182,9 +173,7 @@ export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) 
 
             {/* Article Body */}
             <div className="bg-white rounded-2xl shadow-sm p-8 lg:p-12">
-              <div className="prose prose-lg prose-slate max-w-none">
-                {parse(post.content)}
-              </div>
+              <div className="prose prose-lg prose-slate max-w-none">{parse(post.content)}</div>
             </div>
           </motion.div>
         </div>
@@ -195,9 +184,7 @@ export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) 
         <section className="py-16 bg-slate-50">
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
-              <h2 className="text-2xl font-bold text-slate-900 mb-8">
-                {t.relatedPosts}
-              </h2>
+              <h2 className="text-2xl font-bold text-slate-900 mb-8">{t.relatedPosts}</h2>
 
               <div className="grid md:grid-cols-3 gap-6">
                 {relatedPosts.map((relatedPost) => (
@@ -218,6 +205,8 @@ export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) 
                               alt={relatedPost.title}
                               fill
                               className="object-cover group-hover:scale-105 transition-transform duration-500"
+                              placeholder="blur"
+                              blurDataURL={BLUR_LANDSCAPE}
                             />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-slate-100">
@@ -261,4 +250,3 @@ export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) 
     </main>
   );
 }
-

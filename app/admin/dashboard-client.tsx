@@ -14,13 +14,7 @@ import {
   Cell,
 } from "recharts";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
   Table,
@@ -44,8 +38,8 @@ import {
 } from "lucide-react";
 import type { User } from "@supabase/supabase-js";
 import type { DashboardStats } from "./dashboard-actions";
-import { 
-  categoryColors, 
+import {
+  categoryColors,
   categoryLabelsI18n,
   adminTranslations,
   type AdminLanguage,
@@ -139,12 +133,8 @@ export function AdminDashboardClient({
     <div className="space-y-6">
       {/* Welcome Section */}
       <div>
-        <h1 className="text-2xl font-bold text-slate-900 mb-2">
-          {t.dashboardTitle} 📊
-        </h1>
-        <p className="text-slate-500">
-          {t.dashboardDesc}
-        </p>
+        <h1 className="text-2xl font-bold text-slate-900 mb-2">{t.dashboardTitle} 📊</h1>
+        <p className="text-slate-500">{t.dashboardDesc}</p>
         {isUsingMockData && (
           <div className="mt-3 flex items-center gap-2 text-amber-600 bg-amber-50 px-4 py-2 rounded-lg w-fit">
             <AlertCircle className="w-4 h-4" />
@@ -178,9 +168,7 @@ export function AdminDashboardClient({
                     {metric.trend}
                   </Badge>
                 </div>
-                <p className="text-2xl font-bold text-slate-900 mb-1">
-                  {metric.value}
-                </p>
+                <p className="text-2xl font-bold text-slate-900 mb-1">{metric.value}</p>
                 <p className="text-sm text-slate-500">{metric.title}</p>
               </CardContent>
             </Card>
@@ -194,9 +182,7 @@ export function AdminDashboardClient({
         <Card className="lg:col-span-3 border-0 shadow-sm">
           <CardHeader className="pb-2">
             <CardTitle className="text-base">{t.candidatesPerMonth}</CardTitle>
-            <CardDescription>
-              {t.monthlyOverview}
-            </CardDescription>
+            <CardDescription>{t.monthlyOverview}</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="h-[280px]">
@@ -251,9 +237,7 @@ export function AdminDashboardClient({
         <Card className="lg:col-span-2 border-0 shadow-sm">
           <CardHeader className="pb-2">
             <CardTitle className="text-base">{t.categoryDistribution}</CardTitle>
-            <CardDescription>
-              {t.categoryDesc}
-            </CardDescription>
+            <CardDescription>{t.categoryDesc}</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="h-[200px]">
@@ -269,10 +253,7 @@ export function AdminDashboardClient({
                     dataKey="value"
                   >
                     {pieData.map((entry, index) => (
-                      <Cell
-                        key={`cell-${index}`}
-                        fill={PIE_COLORS[index % PIE_COLORS.length]}
-                      />
+                      <Cell key={`cell-${index}`} fill={PIE_COLORS[index % PIE_COLORS.length]} />
                     ))}
                   </Pie>
                   <Tooltip
@@ -343,9 +324,7 @@ export function AdminDashboardClient({
             <div className="flex items-center justify-between">
               <div>
                 <CardTitle className="text-base">{t.recentCandidates}</CardTitle>
-                <CardDescription>
-                  {t.recentDesc}
-                </CardDescription>
+                <CardDescription>{t.recentDesc}</CardDescription>
               </div>
               <Button variant="outline" size="sm" asChild>
                 <Link href="/admin/candidates">
@@ -369,19 +348,12 @@ export function AdminDashboardClient({
                     <TableRow key={candidate.id}>
                       <TableCell>
                         <div>
-                          <p className="font-medium text-slate-900">
-                            {candidate.full_name}
-                          </p>
-                          <p className="text-xs text-slate-500">
-                            {candidate.email}
-                          </p>
+                          <p className="font-medium text-slate-900">{candidate.full_name}</p>
+                          <p className="text-xs text-slate-500">{candidate.email}</p>
                         </div>
                       </TableCell>
                       <TableCell>
-                        <Badge
-                          variant="outline"
-                          className={categoryColors[candidate.category]}
-                        >
+                        <Badge variant="outline" className={categoryColors[candidate.category]}>
                           {categoryLabelsI18n[candidate.category]?.[lang] || candidate.category}
                         </Badge>
                       </TableCell>
@@ -399,8 +371,8 @@ export function AdminDashboardClient({
                               ? "Visa Vorhanden"
                               : "Có Visa"
                             : lang === "de"
-                            ? "In Bearbeitung"
-                            : "Đang xử lý"}
+                              ? "In Bearbeitung"
+                              : "Đang xử lý"}
                         </Badge>
                       </TableCell>
                     </TableRow>
@@ -413,12 +385,7 @@ export function AdminDashboardClient({
                 <p className="text-sm">
                   {lang === "vn" ? "Chưa có ứng viên nào." : "Noch keine Kandidaten vorhanden."}
                 </p>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="mt-2"
-                  asChild
-                >
+                <Button variant="outline" size="sm" className="mt-2" asChild>
                   <Link href="/admin/candidates">
                     <UserPlus className="w-4 h-4 mr-2" />
                     {lang === "vn" ? "Thêm ứng viên" : "Kandidat hinzufügen"}

@@ -12,12 +12,14 @@
 **Overall Architecture Score: 7.5/10**
 
 ✅ **Strengths:**
+
 - Excellent Server/Client Component separation
 - Good data layer pattern (Server Actions, API routes)
 - Clean component organization by feature
 - No "use client" in layouts/pages (maintains SEO benefits)
 
 ⚠️ **Critical Issues:**
+
 - **No Route Groups** - Missing opportunity for layout optimization
 - **Large page.tsx files** - Some pages exceed 1500+ lines (performance risk)
 - Mixed patterns: Some actions in feature folders, some in root `actions/`
@@ -44,11 +46,13 @@ app/
 **Problem:** No use of Route Groups `(groupName)` to organize layouts.
 
 **Impact:**
+
 - Cannot have multiple root layouts for different sections
 - All routes share same root layout structure
 - Harder to optimize layouts for specific route groups
 
 **Recommendation:**
+
 ```typescript
 // Consider restructuring:
 app/
@@ -71,10 +75,12 @@ app/
 ### ✅ **GOOD: Server/Client Component Pattern**
 
 **Pattern Observed:**
+
 - `page.tsx` = Server Component (async, fetches data)
 - `*-client.tsx` = Client Component (interactive, state)
 
 **Examples:**
+
 - ✅ `app/page.tsx` (Server) → `app/home-client.tsx` (Client)
 - ✅ `app/admin/theme/page.tsx` (Server) → `app/admin/theme/theme-client.tsx` (Client)
 - ✅ `app/blog/page.tsx` (Server) → `app/blog/blog-list-client.tsx` (Client)
@@ -87,21 +93,23 @@ app/
 
 **Problem Files:**
 
-| File | Lines | Status |
-|------|-------|--------|
-| `app/services/azubi/page.tsx` | **1,787** | ❌ Critical |
-| `app/services/skilled-workers/page.tsx` | **1,627** | ❌ Critical |
-| `app/services/seasonal/page.tsx` | **1,291** | ⚠️ Warning |
-| `app/impressum/page.tsx` | 346 | ✅ Acceptable |
-| `app/datenschutz/page.tsx` | 302 | ✅ Acceptable |
+| File                                    | Lines     | Status        |
+| --------------------------------------- | --------- | ------------- |
+| `app/services/azubi/page.tsx`           | **1,787** | ❌ Critical   |
+| `app/services/skilled-workers/page.tsx` | **1,627** | ❌ Critical   |
+| `app/services/seasonal/page.tsx`        | **1,291** | ⚠️ Warning    |
+| `app/impressum/page.tsx`                | 346       | ✅ Acceptable |
+| `app/datenschutz/page.tsx`              | 302       | ✅ Acceptable |
 
 **Impact:**
+
 - ❌ Poor code maintainability
 - ❌ Large bundle sizes (even with code splitting)
 - ❌ Difficult to test and debug
 - ❌ Violates Single Responsibility Principle
 
 **Recommendation:**
+
 ```typescript
 // Current (BAD):
 app/services/azubi/page.tsx  // 1787 lines - all logic here
@@ -141,12 +149,14 @@ components/
 ### ✅ **GOOD: Clear Separation**
 
 **UI Components (`components/ui/`):**
+
 - ✅ No business logic
 - ✅ Reusable across features
 - ✅ Built on Radix UI primitives
 - ✅ Examples: `button.tsx`, `card.tsx`, `input.tsx`
 
 **Feature Components:**
+
 - ✅ `components/admin/` - Admin dashboard components
 - ✅ `components/sections/` - Landing page sections
 - ✅ `components/b2b/` - B2B-specific features
@@ -162,6 +172,7 @@ components/
 **Alternative:** Atomic Design (atoms/molecules/organisms)
 
 **Assessment:**
+
 - ✅ **Current approach is FINE** for this project size
 - ✅ Feature-based is more maintainable for teams
 - ⚠️ Atomic Design would be over-engineering here
@@ -176,19 +187,21 @@ components/
 
 **Audit Results:**
 
-| File Type | "use client" Found | Status |
-|-----------|-------------------|--------|
-| `app/**/layout.tsx` | ❌ None | ✅ Perfect |
-| `app/**/page.tsx` | ❌ None | ✅ Perfect |
+| File Type             | "use client" Found           | Status     |
+| --------------------- | ---------------------------- | ---------- |
+| `app/**/layout.tsx`   | ❌ None                      | ✅ Perfect |
+| `app/**/page.tsx`     | ❌ None                      | ✅ Perfect |
 | `components/**/*.tsx` | ✅ Only in client components | ✅ Correct |
 
 **Key Findings:**
+
 - ✅ `app/layout.tsx` - Server Component (no "use client")
 - ✅ `app/admin/layout.tsx` - Server Component (no "use client")
 - ✅ `app/page.tsx` - Server Component (no "use client")
 - ✅ All interactive components properly marked with "use client"
 
 **Benefits Maintained:**
+
 - ✅ SEO-friendly (Server Components render on server)
 - ✅ Smaller client bundles (only interactive parts sent to client)
 - ✅ Better performance (less JavaScript shipped)
@@ -202,6 +215,7 @@ components/
 **Finding:** No dedicated `hooks/` folder found
 
 **Assessment:**
+
 - ✅ Custom hooks are co-located with components (acceptable)
 - ✅ No complex hooks that need separate folder
 - ✅ Small project - co-location is fine
@@ -216,15 +230,15 @@ components/
 
 **Data Fetching Locations:**
 
-| Pattern | Location | Status |
-|---------|----------|--------|
-| Server Actions | `actions/theme-actions.ts` | ✅ Good |
+| Pattern         | Location                          | Status  |
+| --------------- | --------------------------------- | ------- |
+| Server Actions  | `actions/theme-actions.ts`        | ✅ Good |
 | Feature Actions | `app/admin/candidates/actions.ts` | ✅ Good |
-| Feature Actions | `app/admin/posts/actions.ts` | ✅ Good |
-| Feature Actions | `app/admin/dashboard-actions.ts` | ✅ Good |
-| General Actions | `lib/actions.ts` | ✅ Good |
-| API Routes | `app/api/*/route.ts` | ✅ Good |
-| Supabase Utils | `utils/supabase/*.ts` | ✅ Good |
+| Feature Actions | `app/admin/posts/actions.ts`      | ✅ Good |
+| Feature Actions | `app/admin/dashboard-actions.ts`  | ✅ Good |
+| General Actions | `lib/actions.ts`                  | ✅ Good |
+| API Routes      | `app/api/*/route.ts`              | ✅ Good |
+| Supabase Utils  | `utils/supabase/*.ts`             | ✅ Good |
 
 **Key Findings:**
 
@@ -247,6 +261,7 @@ components/
    - `app/api/inquiry/route.ts` - Inquiry handling
 
 **Example Pattern (GOOD):**
+
 ```typescript
 // ✅ GOOD: Server Action in feature folder
 // app/admin/candidates/actions.ts
@@ -270,16 +285,19 @@ export default async function Home() {
 ### ⚠️ **MINOR: Mixed Action Locations**
 
 **Observation:**
+
 - Some actions in `actions/theme-actions.ts` (root)
 - Some actions in feature folders (`app/admin/*/actions.ts`)
 - Some actions in `lib/actions.ts`
 
 **Assessment:**
+
 - ✅ Not a critical issue
 - ✅ Both patterns are valid
 - ⚠️ Could be more consistent
 
 **Recommendation:**
+
 - **Feature-specific actions** → Co-locate with feature (`app/admin/candidates/actions.ts`)
 - **Shared/utility actions** → `lib/actions.ts` or `actions/`
 - **Theme/config actions** → `actions/theme-actions.ts` is fine (cross-cutting concern)
@@ -288,13 +306,13 @@ export default async function Home() {
 
 ## 5. ARCHITECTURE HEALTH SCORE
 
-| Category | Score | Weight | Weighted |
-|----------|-------|--------|----------|
-| App Router Structure | 7/10 | 30% | 2.1 |
-| Component Organization | 8/10 | 20% | 1.6 |
-| Server/Client Boundary | 10/10 | 25% | 2.5 |
-| Data Layer Pattern | 9/10 | 25% | 2.25 |
-| **TOTAL** | **8.45/10** | 100% | **8.45** |
+| Category               | Score       | Weight | Weighted |
+| ---------------------- | ----------- | ------ | -------- |
+| App Router Structure   | 7/10        | 30%    | 2.1      |
+| Component Organization | 8/10        | 20%    | 1.6      |
+| Server/Client Boundary | 10/10       | 25%    | 2.5      |
+| Data Layer Pattern     | 9/10        | 25%    | 2.25     |
+| **TOTAL**              | **8.45/10** | 100%   | **8.45** |
 
 **Rounded Score: 8.5/10** ✅
 
@@ -305,11 +323,13 @@ export default async function Home() {
 ### 🔴 Priority 1: Refactor Large page.tsx Files
 
 **Files to Refactor:**
+
 1. `app/services/azubi/page.tsx` (1,787 lines)
 2. `app/services/skilled-workers/page.tsx` (1,627 lines)
 3. `app/services/seasonal/page.tsx` (1,291 lines)
 
 **Action Plan:**
+
 1. Extract sections into separate components
 2. Move to `*-client.tsx` pattern
 3. Keep `page.tsx` as thin Server Component wrapper
@@ -321,6 +341,7 @@ export default async function Home() {
 ### 🟡 Priority 2: Consider Route Groups (Optional)
 
 **If needed for layout optimization:**
+
 - Create `(public)` and `(admin)` route groups
 - Separate layouts for better performance
 - Only if you need different layouts for different sections
@@ -332,6 +353,7 @@ export default async function Home() {
 ### 🟢 Priority 3: Standardize Action Locations (Low Priority)
 
 **Guidelines:**
+
 - Feature-specific → Feature folder
 - Shared/utility → `lib/actions.ts`
 - Theme/config → `actions/theme-actions.ts`
@@ -343,6 +365,7 @@ export default async function Home() {
 ## 7. BEST PRACTICES OBSERVED
 
 ✅ **Excellent Practices:**
+
 1. Server Components for layouts and pages
 2. Client Components only when needed (interactivity)
 3. Server Actions for data mutations
@@ -351,6 +374,7 @@ export default async function Home() {
 6. Proper use of TypeScript types
 
 ✅ **Next.js 16 App Router Compliance:**
+
 - ✅ Using Server Components correctly
 - ✅ Proper async/await in Server Components
 - ✅ Correct use of "use client" directive
@@ -364,17 +388,20 @@ export default async function Home() {
 **Overall Assessment:** **8.5/10** - Excellent architecture with minor issues
 
 **Strengths:**
+
 - ✅ Best-in-class Server/Client separation
 - ✅ Clean data layer pattern
 - ✅ Well-organized components
 - ✅ Modern Next.js 16 practices
 
 **Areas for Improvement:**
+
 - ❌ Refactor large page.tsx files (CRITICAL)
 - ⚠️ Consider Route Groups (optional)
 - ⚠️ Standardize action locations (low priority)
 
 **Next Steps:**
+
 1. **IMMEDIATE:** Refactor `app/services/azubi/page.tsx` (highest priority)
 2. **SHORT-TERM:** Refactor other large page.tsx files
 3. **LONG-TERM:** Consider Route Groups if layout optimization needed

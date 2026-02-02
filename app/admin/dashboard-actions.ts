@@ -67,9 +67,7 @@ export async function getDashboardStats(): Promise<{
     }).length;
     const visaReady = allCandidates.filter((c) => c.visa_status === true).length;
     const featuredCount = allCandidates.filter((c) => c.is_featured === true).length;
-    const successRate = totalCandidates > 0 
-      ? Math.round((visaReady / totalCandidates) * 100) 
-      : 0;
+    const successRate = totalCandidates > 0 ? Math.round((visaReady / totalCandidates) * 100) : 0;
 
     // Category distribution
     const categoryDistribution: CategoryCount[] = [
@@ -89,7 +87,6 @@ export async function getDashboardStats(): Promise<{
         label: "Saisonkräfte",
       },
     ];
-
 
     // Monthly data (last 6 months)
     const monthlyData = getMonthlyData(allCandidates);
@@ -174,4 +171,3 @@ export async function getMockDashboardStats(): Promise<DashboardStats> {
     recentCandidates: [],
   };
 }
-

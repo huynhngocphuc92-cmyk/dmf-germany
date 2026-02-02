@@ -182,12 +182,7 @@ interface CandidateCardProps {
   onRequestProfile: (candidate: Candidate) => void;
 }
 
-function CandidateCard({ 
-  candidate, 
-  index, 
-  onViewVideo, 
-  onRequestProfile 
-}: CandidateCardProps) {
+function CandidateCard({ candidate, index, onViewVideo, onRequestProfile }: CandidateCardProps) {
   const { t } = useLanguage();
   const industry = industryConfig[candidate.industry];
   const germanLevel = germanLevelConfig[candidate.germanLevel];
@@ -197,10 +192,10 @@ function CandidateCard({
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ 
-        delay: index * 0.15, 
+      transition={{
+        delay: index * 0.15,
         duration: 0.6,
-        ease: [0.22, 1, 0.36, 1]
+        ease: [0.22, 1, 0.36, 1],
       }}
     >
       <Card className="h-full border-2 border-border/50 hover:border-primary/30 hover:shadow-xl transition-all duration-300 overflow-hidden group">
@@ -220,9 +215,11 @@ function CandidateCard({
               <p className="text-sm text-muted-foreground font-mono tracking-wide mb-2">
                 #{candidate.code}
               </p>
-              
+
               {/* Industry Badge - Prominent */}
-              <Badge className={`${industry.bgColor} ${industry.textColor} text-sm px-3 py-1 font-medium shadow-sm`}>
+              <Badge
+                className={`${industry.bgColor} ${industry.textColor} text-sm px-3 py-1 font-medium shadow-sm`}
+              >
                 {industry.labelDe}
               </Badge>
             </div>
@@ -238,7 +235,7 @@ function CandidateCard({
                 <Languages className="h-4 w-4" />
                 <span className="font-medium">{t.talentShowcase.skills_label}</span>
               </div>
-              
+
               <div className="flex items-center gap-3">
                 {/* German Flag indicator */}
                 <div className="flex flex-col gap-0.5">
@@ -246,14 +243,12 @@ function CandidateCard({
                   <div className="w-8 h-2 bg-red-600" />
                   <div className="w-8 h-2 bg-yellow-400 rounded-b-sm" />
                 </div>
-                
+
                 <div>
                   <p className="text-3xl font-bold text-foreground tracking-tight">
                     {germanLevel.label}
                   </p>
-                  <p className="text-sm text-muted-foreground">
-                    {germanLevel.description}
-                  </p>
+                  <p className="text-sm text-muted-foreground">{germanLevel.description}</p>
                 </div>
               </div>
 
@@ -272,7 +267,7 @@ function CandidateCard({
                 <Award className="h-4 w-4" />
                 <span className="font-medium">{t.talentShowcase.qualifications_label}</span>
               </div>
-              
+
               <ul className="space-y-2">
                 {candidate.qualifications.map((qual, idx) => (
                   <li key={idx} className="flex items-start gap-2 text-sm">
@@ -280,7 +275,7 @@ function CandidateCard({
                     <span className="text-foreground leading-snug">{qual}</span>
                   </li>
                 ))}
-                
+
                 {/* Availability */}
                 <li className="flex items-start gap-2 text-sm pt-1">
                   <Calendar className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
@@ -306,7 +301,7 @@ function CandidateCard({
               {t.talentShowcase.btn_video}
             </Button>
           )}
-          
+
           {/* Request Profile Button (Primary) */}
           <Button
             className={`gap-2 bg-primary hover:bg-primary/90 shadow-md ${
@@ -349,13 +344,14 @@ function VideoModal({ candidate, isOpen, onClose }: VideoModalProps) {
                 </AvatarFallback>
               </Avatar>
               <div>
-                <DialogTitle className="text-xl">
-                  {t.talentShowcase.video_title}
-                </DialogTitle>
+                <DialogTitle className="text-xl">{t.talentShowcase.video_title}</DialogTitle>
                 <DialogDescription className="flex items-center gap-2 mt-1">
                   <span className="font-mono">#{candidate.code}</span>
                   <span>•</span>
-                  <Badge variant="outline" className={`${industry.textColor} ${industry.bgColor} text-xs`}>
+                  <Badge
+                    variant="outline"
+                    className={`${industry.textColor} ${industry.bgColor} text-xs`}
+                  >
                     {industry.label}
                   </Badge>
                 </DialogDescription>
@@ -369,7 +365,7 @@ function VideoModal({ candidate, isOpen, onClose }: VideoModalProps) {
           <div className="relative aspect-video bg-black rounded-lg overflow-hidden">
             {(() => {
               const embedUrl = getEmbedUrl(candidate.videoUrl);
-              
+
               if (!embedUrl) {
                 // Invalid YouTube URL - show error
                 return (
@@ -433,7 +429,7 @@ function VideoModal({ candidate, isOpen, onClose }: VideoModalProps) {
             <X className="h-4 w-4 mr-2" />
             {t.talentShowcase.btn_close}
           </Button>
-          <Button 
+          <Button
             className="flex-1"
             onClick={() => {
               onClose();
@@ -466,42 +462,44 @@ export function TalentShowcase() {
     setIsVideoModalOpen(true);
   }, []);
 
-  const scrollToContact = useCallback((candidateId: string) => {
-    // Find the candidate
-    const candidate = mockCandidates.find(c => c.id === candidateId);
-    if (!candidate) return;
+  const scrollToContact = useCallback(
+    (candidateId: string) => {
+      // Find the candidate
+      const candidate = mockCandidates.find((c) => c.id === candidateId);
+      if (!candidate) return;
 
-    const industry = industryConfig[candidate.industry];
+      const industry = industryConfig[candidate.industry];
 
-    // Scroll to contact section
-    const contactSection = document.getElementById("contact");
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" });
-    }
+      // Scroll to contact section
+      const contactSection = document.getElementById("contact");
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: "smooth" });
+      }
 
-    // Pre-fill message after scroll
-    setTimeout(() => {
-      const messageTextarea = document.querySelector<HTMLTextAreaElement>(
-        'textarea[name="message"]'
-      );
-      if (messageTextarea) {
-        const prefillText = lang === "de"
-          ? `Sehr geehrte Damen und Herren,
+      // Pre-fill message after scroll
+      setTimeout(() => {
+        const messageTextarea = document.querySelector<HTMLTextAreaElement>(
+          'textarea[name="message"]'
+        );
+        if (messageTextarea) {
+          const prefillText =
+            lang === "de"
+              ? `Sehr geehrte Damen und Herren,
 
 ich interessiere mich für das Kandidatenprofil #${candidate.code} (${industry.labelDe}, Deutschkenntnisse ${candidate.germanLevel}).
 
 Bitte übersenden Sie mir das vollständige Bewerberprofil sowie weitere Informationen zu den Vermittlungskonditionen.
 
 Mit freundlichen Grüßen`
-          : lang === "en"
-          ? `Dear Sir or Madam,
+              : lang === "en"
+                ? `Dear Sir or Madam,
 
 I am interested in candidate profile #${candidate.code} (${industry.labelDe}, German level ${candidate.germanLevel}).
 
 Please send me the complete applicant profile and further information on the placement conditions.
 
 Best regards`
-          : `Kính gửi Quý công ty,
+                : `Kính gửi Quý công ty,
 
 Tôi quan tâm đến hồ sơ ứng viên #${candidate.code} (${industry.labelDe}, Trình độ tiếng Đức ${candidate.germanLevel}).
 
@@ -509,20 +507,25 @@ Vui lòng gửi cho tôi hồ sơ ứng viên đầy đủ và thông tin về �
 
 Trân trọng`;
 
-        messageTextarea.value = prefillText;
-        messageTextarea.dispatchEvent(new Event("input", { bubbles: true }));
-        messageTextarea.focus();
-      }
-    }, 800);
-  }, [lang]);
+          messageTextarea.value = prefillText;
+          messageTextarea.dispatchEvent(new Event("input", { bubbles: true }));
+          messageTextarea.focus();
+        }
+      }, 800);
+    },
+    [lang]
+  );
 
-  const handleRequestProfile = useCallback((candidate: Candidate) => {
-    scrollToContact(candidate.id);
-  }, [scrollToContact]);
+  const handleRequestProfile = useCallback(
+    (candidate: Candidate) => {
+      scrollToContact(candidate.id);
+    },
+    [scrollToContact]
+  );
 
   return (
-    <section 
-      id="talent-showcase" 
+    <section
+      id="talent-showcase"
       className="py-20 md:py-28 bg-gradient-to-b from-muted/40 via-background to-background"
     >
       <div className="container mx-auto px-4 max-w-6xl">
@@ -535,8 +538,8 @@ Trân trọng`;
           className="text-center mb-14"
         >
           {/* Badge */}
-          <Badge 
-            variant="outline" 
+          <Badge
+            variant="outline"
             className="mb-5 px-4 py-1.5 text-sm border-primary/30 text-primary bg-primary/5"
           >
             <Briefcase className="h-4 w-4 mr-2" />
@@ -577,9 +580,7 @@ Trân trọng`;
         >
           <div className="inline-flex items-center gap-3 px-6 py-3 bg-muted/50 rounded-full border border-border">
             <ShieldCheck className="h-5 w-5 text-muted-foreground flex-shrink-0" />
-            <p className="text-sm text-muted-foreground">
-              {t.talentShowcase.disclaimer}
-            </p>
+            <p className="text-sm text-muted-foreground">{t.talentShowcase.disclaimer}</p>
           </div>
         </motion.div>
       </div>

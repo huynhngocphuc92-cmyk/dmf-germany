@@ -20,14 +20,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Loader2,
-  Upload,
-  X,
-  User,
-  AlertCircle,
-  CheckCircle2,
-} from "lucide-react";
+import { Loader2, Upload, X, User, AlertCircle, CheckCircle2 } from "lucide-react";
 import {
   createCandidate,
   updateCandidate,
@@ -40,10 +33,7 @@ import type {
   CandidateCategory,
   GermanLevel,
 } from "@/app/admin/candidates/types";
-import {
-  categoryLabels,
-  germanLevels,
-} from "@/app/admin/candidates/types";
+import { categoryLabels, germanLevels } from "@/app/admin/candidates/types";
 
 // ============================================
 // COMPONENT PROPS
@@ -60,12 +50,7 @@ interface CandidateFormProps {
 // CANDIDATE FORM COMPONENT
 // ============================================
 
-export function CandidateForm({
-  open,
-  onOpenChange,
-  candidate,
-  onSuccess,
-}: CandidateFormProps) {
+export function CandidateForm({ open, onOpenChange, candidate, onSuccess }: CandidateFormProps) {
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const isEditing = !!candidate;
@@ -115,10 +100,7 @@ export function CandidateForm({
   };
 
   // Handle input change
-  const handleChange = (
-    field: keyof CandidateFormData,
-    value: string | number | boolean
-  ) => {
+  const handleChange = (field: keyof CandidateFormData, value: string | number | boolean) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
     setError(null);
   };
@@ -129,11 +111,11 @@ export function CandidateForm({
     if (!file) return;
 
     // Validate file type
-    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+    const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
     if (!allowedTypes.includes(file.type)) {
-      setError('Nur JPG, PNG und WebP Dateien sind erlaubt.');
+      setError("Nur JPG, PNG und WebP Dateien sind erlaubt.");
       if (fileInputRef.current) {
-        fileInputRef.current.value = '';
+        fileInputRef.current.value = "";
       }
       return;
     }
@@ -141,9 +123,9 @@ export function CandidateForm({
     // Validate file size (5MB max)
     const maxSize = 5 * 1024 * 1024; // 5MB
     if (file.size > maxSize) {
-      setError('Die Datei darf maximal 5MB groß sein.');
+      setError("Die Datei darf maximal 5MB groß sein.");
       if (fileInputRef.current) {
-        fileInputRef.current.value = '';
+        fileInputRef.current.value = "";
       }
       return;
     }
@@ -240,9 +222,7 @@ export function CandidateForm({
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent className="w-full sm:max-w-lg overflow-y-auto">
         <SheetHeader className="mb-6">
-          <SheetTitle>
-            {isEditing ? "Kandidat bearbeiten" : "Neuer Kandidat"}
-          </SheetTitle>
+          <SheetTitle>{isEditing ? "Kandidat bearbeiten" : "Neuer Kandidat"}</SheetTitle>
           <SheetDescription>
             {isEditing
               ? "Aktualisieren Sie die Informationen des Kandidaten."
@@ -317,9 +297,7 @@ export function CandidateForm({
                   <Upload className="w-4 h-4 mr-2" />
                   {isUploading ? "Uploading..." : "Bild hochladen"}
                 </Button>
-                <p className="text-xs text-slate-500 mt-1">
-                  JPG, PNG oder WebP. Max 5MB.
-                </p>
+                <p className="text-xs text-slate-500 mt-1">JPG, PNG oder WebP. Max 5MB.</p>
               </div>
             </div>
           </div>
@@ -382,21 +360,17 @@ export function CandidateForm({
               <Label>Kategorie *</Label>
               <Select
                 value={formData.category}
-                onValueChange={(value) =>
-                  handleChange("category", value as CandidateCategory)
-                }
+                onValueChange={(value) => handleChange("category", value as CandidateCategory)}
               >
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  {(Object.keys(categoryLabels) as CandidateCategory[]).map(
-                    (key) => (
-                      <SelectItem key={key} value={key}>
-                        {categoryLabels[key]}
-                      </SelectItem>
-                    )
-                  )}
+                  {(Object.keys(categoryLabels) as CandidateCategory[]).map((key) => (
+                    <SelectItem key={key} value={key}>
+                      {categoryLabels[key]}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>
@@ -406,9 +380,7 @@ export function CandidateForm({
               <Label>Visa Status</Label>
               <Select
                 value={formData.visa_status ? "true" : "false"}
-                onValueChange={(value) =>
-                  handleChange("visa_status", value === "true")
-                }
+                onValueChange={(value) => handleChange("visa_status", value === "true")}
               >
                 <SelectTrigger>
                   <SelectValue />
@@ -460,9 +432,7 @@ export function CandidateForm({
                 min="0"
                 max="50"
                 value={formData.experience_years}
-                onChange={(e) =>
-                  handleChange("experience_years", parseInt(e.target.value) || 0)
-                }
+                onChange={(e) => handleChange("experience_years", parseInt(e.target.value) || 0)}
               />
             </div>
 
@@ -471,9 +441,7 @@ export function CandidateForm({
               <Label>Deutschniveau *</Label>
               <Select
                 value={formData.german_level}
-                onValueChange={(value) =>
-                  handleChange("german_level", value as GermanLevel)
-                }
+                onValueChange={(value) => handleChange("german_level", value as GermanLevel)}
               >
                 <SelectTrigger>
                   <SelectValue />
@@ -552,4 +520,3 @@ export function CandidateForm({
     </Sheet>
   );
 }
-

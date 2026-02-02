@@ -5,23 +5,27 @@
  * để tránh lỗi 404 khi deploy lên Vercel
  */
 
-const fs = require('fs');
-const path = require('path');
-const https = require('https');
+const fs = require("fs");
+const path = require("path");
+const https = require("https");
 
 // ============================================
 // CONFIGURATION
 // ============================================
 
-const PUBLIC_DIR = path.join(__dirname, 'public');
-const IMAGES_DIR = path.join(PUBLIC_DIR, 'images');
+const PUBLIC_DIR = path.join(__dirname, "public");
+const IMAGES_DIR = path.join(PUBLIC_DIR, "images");
 
 // Unsplash URLs - Ảnh chất lượng cao, miễn phí sử dụng
 const IMAGE_URLS = {
-  'nursing.jpg': 'https://images.unsplash.com/photo-1559757148-5c3507c8c35d?w=1200&h=800&fit=crop&q=80',
-  'tech.jpg': 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&h=800&fit=crop&q=80',
-  'hotel.jpg': 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&h=800&fit=crop&q=80',
-  'construction.jpg': 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&h=800&fit=crop&q=80',
+  "nursing.jpg":
+    "https://images.unsplash.com/photo-1559757148-5c3507c8c35d?w=1200&h=800&fit=crop&q=80",
+  "tech.jpg":
+    "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&h=800&fit=crop&q=80",
+  "hotel.jpg":
+    "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&h=800&fit=crop&q=80",
+  "construction.jpg":
+    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&h=800&fit=crop&q=80",
 };
 
 // ============================================
@@ -44,33 +48,33 @@ function ensureDirectoryExists(dirPath) {
 function downloadFile(url, destPath) {
   return new Promise((resolve, reject) => {
     const file = fs.createWriteStream(destPath);
-    
-    https.get(url, (response) => {
-      // Xử lý redirect
-      if (response.statusCode === 301 || response.statusCode === 302) {
-        return downloadFile(response.headers.location, destPath)
-          .then(resolve)
-          .catch(reject);
-      }
-      
-      if (response.statusCode !== 200) {
+
+    https
+      .get(url, (response) => {
+        // Xử lý redirect
+        if (response.statusCode === 301 || response.statusCode === 302) {
+          return downloadFile(response.headers.location, destPath).then(resolve).catch(reject);
+        }
+
+        if (response.statusCode !== 200) {
+          file.close();
+          fs.unlinkSync(destPath);
+          reject(new Error(`HTTP ${response.statusCode}: ${url}`));
+          return;
+        }
+
+        response.pipe(file);
+
+        file.on("finish", () => {
+          file.close();
+          resolve();
+        });
+      })
+      .on("error", (err) => {
         file.close();
         fs.unlinkSync(destPath);
-        reject(new Error(`HTTP ${response.statusCode}: ${url}`));
-        return;
-      }
-      
-      response.pipe(file);
-      
-      file.on('finish', () => {
-        file.close();
-        resolve();
+        reject(err);
       });
-    }).on('error', (err) => {
-      file.close();
-      fs.unlinkSync(destPath);
-      reject(err);
-    });
   });
 }
 
@@ -90,16 +94,16 @@ async function createTemporaryLogo(destPath) {
   <rect width="200" height="60" fill="url(#grad)" rx="8"/>
   <text x="100" y="42" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="white" text-anchor="middle" letter-spacing="2">DMF</text>
 </svg>`;
-  
+
   // Lưu SVG tạm thời
-  const svgPath = destPath.replace('.png', '.svg');
+  const svgPath = destPath.replace(".png", ".svg");
   fs.writeFileSync(svgPath, svgContent);
   console.log(`✓ Đã tạo logo SVG tạm thời: ${svgPath}`);
-  
+
   // Tải một PNG placeholder từ service (hoặc tạo base64 PNG đơn giản)
   // Sử dụng placeholder.com hoặc tạo PNG base64
-  const placeholderPngUrl = 'https://via.placeholder.com/200x60/1e40af/ffffff.png?text=DMF';
-  
+  const placeholderPngUrl = "https://via.placeholder.com/200x60/1e40af/ffffff.png?text=DMF";
+
   try {
     await downloadFile(placeholderPngUrl, destPath);
     console.log(`✓ Đã tạo logo PNG tạm thời: ${destPath}`);
@@ -115,22 +119,22 @@ async function createTemporaryLogo(destPath) {
  * Tải tất cả các ảnh cần thiết
  */
 async function downloadAllImages() {
-  console.log('\n📥 Bắt đầu tải các file ảnh...\n');
-  
+  console.log("\n📥 Bắt đầu tải các file ảnh...\n");
+
   // Tạo thư mục
   ensureDirectoryExists(PUBLIC_DIR);
   ensureDirectoryExists(IMAGES_DIR);
-  
+
   // Tải các ảnh dịch vụ
   for (const [filename, url] of Object.entries(IMAGE_URLS)) {
     const destPath = path.join(IMAGES_DIR, filename);
-    
+
     // Bỏ qua nếu file đã tồn tại
     if (fs.existsSync(destPath)) {
       console.log(`⏭  File đã tồn tại, bỏ qua: ${filename}`);
       continue;
     }
-    
+
     try {
       console.log(`⬇  Đang tải: ${filename}...`);
       await downloadFile(url, destPath);
@@ -139,9 +143,9 @@ async function downloadAllImages() {
       console.error(`✗  Lỗi khi tải ${filename}: ${error.message}\n`);
     }
   }
-  
+
   // Tạo logo tạm thời
-  const logoPath = path.join(PUBLIC_DIR, 'logo.png');
+  const logoPath = path.join(PUBLIC_DIR, "logo.png");
   if (!fs.existsSync(logoPath)) {
     console.log(`⬇  Đang tạo logo tạm thời...`);
     try {
@@ -158,29 +162,28 @@ async function downloadAllImages() {
  * Main function
  */
 async function main() {
-  console.log('🚀 Script sửa lỗi Assets - Tải ảnh placeholder và logo tạm thời\n');
-  console.log('=' .repeat(60));
-  
+  console.log("🚀 Script sửa lỗi Assets - Tải ảnh placeholder và logo tạm thời\n");
+  console.log("=".repeat(60));
+
   try {
     await downloadAllImages();
-    
-    console.log('=' .repeat(60));
-    console.log('\n✅ Hoàn thành! Đã tải xong tất cả các file ảnh.\n');
-    console.log('📋 Tóm tắt:');
-    console.log('   - Logo tạm thời: public/logo.png');
-    console.log('   - Ảnh dịch vụ: public/images/');
-    console.log('     • nursing.jpg');
-    console.log('     • tech.jpg');
-    console.log('     • hotel.jpg');
-    console.log('     • construction.jpg\n');
-    console.log('⚠️  LƯU Ý QUAN TRỌNG:');
-    console.log('   - Logo hiện tại là placeholder tạm thời (có cả .png và .svg).');
-    console.log('   - Vui lòng thay thế file public/logo.png bằng logo chính thức của bạn.');
-    console.log('   - Các ảnh dịch vụ có thể được thay thế bằng ảnh thực tế nếu cần.');
-    console.log('   - Tất cả ảnh đã được tải từ Unsplash (miễn phí sử dụng).\n');
-    
+
+    console.log("=".repeat(60));
+    console.log("\n✅ Hoàn thành! Đã tải xong tất cả các file ảnh.\n");
+    console.log("📋 Tóm tắt:");
+    console.log("   - Logo tạm thời: public/logo.png");
+    console.log("   - Ảnh dịch vụ: public/images/");
+    console.log("     • nursing.jpg");
+    console.log("     • tech.jpg");
+    console.log("     • hotel.jpg");
+    console.log("     • construction.jpg\n");
+    console.log("⚠️  LƯU Ý QUAN TRỌNG:");
+    console.log("   - Logo hiện tại là placeholder tạm thời (có cả .png và .svg).");
+    console.log("   - Vui lòng thay thế file public/logo.png bằng logo chính thức của bạn.");
+    console.log("   - Các ảnh dịch vụ có thể được thay thế bằng ảnh thực tế nếu cần.");
+    console.log("   - Tất cả ảnh đã được tải từ Unsplash (miễn phí sử dụng).\n");
   } catch (error) {
-    console.error('\n❌ Lỗi khi chạy script:', error.message);
+    console.error("\n❌ Lỗi khi chạy script:", error.message);
     process.exit(1);
   }
 }

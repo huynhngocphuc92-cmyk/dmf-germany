@@ -7,7 +7,7 @@ import { Header } from "@/components/Header";
  */
 export async function HeaderWrapper() {
   // Try to get logo from database (priority order)
-  const logoKeys = ['site_logo', 'header_logo', 'logo_url'];
+  const logoKeys = ["site_logo", "header_logo", "logo_url"];
   let logoUrl: string | null = null;
 
   for (const key of logoKeys) {
@@ -19,17 +19,11 @@ export async function HeaderWrapper() {
   }
 
   // Also try to get hotline and email from database
-  const { data: hotlineConfig } = await getSiteConfigByKey('header_hotline');
-  const { data: emailConfig } = await getSiteConfigByKey('contact_email');
-  
+  const { data: hotlineConfig } = await getSiteConfigByKey("header_hotline");
+  const { data: emailConfig } = await getSiteConfigByKey("contact_email");
+
   const hotline = hotlineConfig?.value || null;
   const email = emailConfig?.value || null;
 
-  return (
-    <Header 
-      logoUrl={logoUrl}
-      hotline={hotline}
-      email={email}
-    />
-  );
+  return <Header logoUrl={logoUrl} hotline={hotline} email={email} />;
 }

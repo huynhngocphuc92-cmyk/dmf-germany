@@ -8,7 +8,7 @@ A high-performance B2B platform connecting Vietnamese talent with German enterpr
 
 ## 🚀 Key Features
 
-- **Performance First:** 
+- **Performance First:**
   - 100% Lazy Loading for heavy components.
   - Optimized Images (`next/image`) with Priority LCP.
   - Perfect Lighthouse Scores (>90).
@@ -24,13 +24,13 @@ A high-performance B2B platform connecting Vietnamese talent with German enterpr
 
 ## 🛠️ Tech Stack
 
-| Category | Technology | Usage |
-|----------|-----------|-------|
-| **Core** | Next.js 16 (App Router) | Server Components & Routing |
-| **Styling** | Tailwind CSS v4 | Utility-first styling |
-| **Forms** | React Hook Form + Zod | State management & Validation |
-| **Backend** | Supabase + Nodemailer | Data & Email Services |
-| **Deploy** | Vercel | Edge Network Hosting |
+| Category    | Technology              | Usage                         |
+| ----------- | ----------------------- | ----------------------------- |
+| **Core**    | Next.js 16 (App Router) | Server Components & Routing   |
+| **Styling** | Tailwind CSS v4         | Utility-first styling         |
+| **Forms**   | React Hook Form + Zod   | State management & Validation |
+| **Backend** | Supabase + Nodemailer   | Data & Email Services         |
+| **Deploy**  | Vercel                  | Edge Network Hosting          |
 
 ## 📂 Project Structure
 

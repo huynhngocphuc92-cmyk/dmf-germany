@@ -71,4 +71,3 @@ Bạn có thể sử dụng cả tên tiếng Việt hoặc tiếng Anh trong da
 ### Seed Data
 
 Xem file `docs/theme-seed-data.sql` để có seed data mẫu.
-

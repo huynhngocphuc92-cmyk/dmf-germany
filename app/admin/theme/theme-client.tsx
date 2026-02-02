@@ -1,16 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import {
-  Palette,
-  Info,
-  RefreshCw,
-  Home,
-  Layout,
-  Mail,
-  Settings,
-  Sparkles,
-} from "lucide-react";
+import { Palette, Info, RefreshCw, Home, Layout, Mail, Settings, Sparkles } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
@@ -40,17 +31,17 @@ export function ThemeManagerClient({ initialConfigs }: ThemeManagerClientProps) 
   const t = themeTranslations[lang];
 
   const [configs, setConfigs] = useState<SiteConfigGrouped>(initialConfigs);
-  
+
   // Default to identity tab
   const [activeTab, setActiveTab] = useState<string>("identity");
 
   // Mapping: UI Tab -> Database Section
   const sectionMap: Record<ThemeSection, string> = {
-    "identity": "branding",        // Tab "Nhận diện" -> DB section "branding"
-    "home": "home",                // Tab "Trang Chủ" -> DB section "home"
-    "header_footer": "branding",   // Tab "Header & Footer" -> DB section "branding"
-    "contact": "contact",          // Tab "Liên Hệ" -> DB section "contact"
-    "system": "settings",          // Tab "Cài Đặt" -> DB section "settings"
+    identity: "branding", // Tab "Nhận diện" -> DB section "branding"
+    home: "home", // Tab "Trang Chủ" -> DB section "home"
+    header_footer: "branding", // Tab "Header & Footer" -> DB section "branding"
+    contact: "contact", // Tab "Liên Hệ" -> DB section "contact"
+    system: "settings", // Tab "Cài Đặt" -> DB section "settings"
   };
 
   // Icon mapping for tabs
@@ -75,21 +66,20 @@ export function ThemeManagerClient({ initialConfigs }: ThemeManagerClientProps) 
         }
       });
     });
-    
+
     // Debug logging
     if (allItems.length > 0) {
       console.log(`Tab "${tab}" (DB: "${dbSection}"): Found ${allItems.length} items`);
     }
-    
+
     return allItems;
   };
 
   // Define sections array - filter out system tab if it has no items
   const allSections: ThemeSection[] = ["identity", "home", "header_footer", "contact", "system"];
   const systemItems = getFilteredConfigs("system");
-  const sections: ThemeSection[] = systemItems.length > 0 
-    ? allSections 
-    : allSections.filter(s => s !== "system");
+  const sections: ThemeSection[] =
+    systemItems.length > 0 ? allSections : allSections.filter((s) => s !== "system");
 
   // Debug: Log configs structure on mount and when configs change
   useEffect(() => {
@@ -200,7 +190,7 @@ export function ThemeManagerClient({ initialConfigs }: ThemeManagerClientProps) 
           {sections.map((section) => {
             const filteredConfigs = getFilteredConfigs(section);
             const dbSection = sectionMap[section];
-            
+
             return (
               <TabsContent key={section} value={section} className="space-y-6 mt-6">
                 {filteredConfigs.length === 0 ? (
@@ -212,9 +202,7 @@ export function ThemeManagerClient({ initialConfigs }: ThemeManagerClientProps) 
                           ? `Keine Konfigurationen für "${sectionLabelsI18n[section]?.[lang]}" gefunden.`
                           : `Chưa có cấu hình cho "${sectionLabelsI18n[section]?.[lang]}".`}
                       </p>
-                      <p className="text-xs text-slate-400 mt-2">
-                        (DB Section: {dbSection})
-                      </p>
+                      <p className="text-xs text-slate-400 mt-2">(DB Section: {dbSection})</p>
                     </CardContent>
                   </Card>
                 ) : (

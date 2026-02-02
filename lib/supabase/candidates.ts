@@ -7,10 +7,10 @@ import type { Candidate, CandidateCategory, GermanLevel } from "@/app/admin/cand
  * Get featured candidates for Kandidaten-Pool page
  * Only returns candidates that are:
  * - is_featured = true (Featured candidates)
- * 
+ *
  * Fields returned: id, profession, experience_years, german_level, video_url, avatar_url, category, created_at
  * Sorted by created_at descending (newest first)
- * 
+ *
  * IMPORTANT: This function is designed to work with dynamic rendering (no cache)
  */
 export async function getFeaturedCandidates(): Promise<{
@@ -22,7 +22,9 @@ export async function getFeaturedCandidates(): Promise<{
 
     const { data, error } = await supabase
       .from("candidates")
-      .select("id, profession, experience_years, german_level, video_url, avatar_url, category, created_at")
+      .select(
+        "id, profession, experience_years, german_level, video_url, avatar_url, category, created_at"
+      )
       .eq("is_featured", true)
       .order("created_at", { ascending: false });
 
@@ -34,9 +36,9 @@ export async function getFeaturedCandidates(): Promise<{
     return { data: (data || []) as Candidate[], error: null };
   } catch (err) {
     console.error("[getFeaturedCandidates] Unexpected error:", err);
-    return { 
-      data: null, 
-      error: err instanceof Error ? err.message : "Ein unerwarteter Fehler ist aufgetreten." 
+    return {
+      data: null,
+      error: err instanceof Error ? err.message : "Ein unerwarteter Fehler ist aufgetreten.",
     };
   }
 }
@@ -46,7 +48,7 @@ export async function getFeaturedCandidates(): Promise<{
  * Only returns candidates that are:
  * - is_featured = true (Featured candidates)
  * - visa_status = true (Ready to work)
- * 
+ *
  * Fields returned: id, profession, experience_years, german_level, video_url, avatar_url, category
  */
 export async function getPublicCandidates(filters?: {
@@ -62,7 +64,9 @@ export async function getPublicCandidates(filters?: {
     // Build query - Start with base conditions
     let query = supabase
       .from("candidates")
-      .select("id, profession, experience_years, german_level, video_url, avatar_url, category, created_at")
+      .select(
+        "id, profession, experience_years, german_level, video_url, avatar_url, category, created_at"
+      )
       .eq("is_featured", true)
       .eq("visa_status", true)
       .order("created_at", { ascending: false });
@@ -86,9 +90,9 @@ export async function getPublicCandidates(filters?: {
     return { data: (data || []) as Candidate[], error: null };
   } catch (err) {
     console.error("[getPublicCandidates] Unexpected error:", err);
-    return { 
-      data: null, 
-      error: err instanceof Error ? err.message : "Ein unerwarteter Fehler ist aufgetreten." 
+    return {
+      data: null,
+      error: err instanceof Error ? err.message : "Ein unerwarteter Fehler ist aufgetreten.",
     };
   }
 }
@@ -99,7 +103,7 @@ export async function getPublicCandidates(filters?: {
 export async function getAvailableCategories(): Promise<CandidateCategory[]> {
   try {
     const supabase = await createClient();
-    
+
     const { data, error } = await supabase
       .from("candidates")
       .select("category")
@@ -124,7 +128,7 @@ export async function getAvailableCategories(): Promise<CandidateCategory[]> {
 export async function getAvailableGermanLevels(): Promise<GermanLevel[]> {
   try {
     const supabase = await createClient();
-    
+
     const { data, error } = await supabase
       .from("candidates")
       .select("german_level")

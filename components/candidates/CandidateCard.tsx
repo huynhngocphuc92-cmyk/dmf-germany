@@ -8,6 +8,7 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { BLUR_SQUARE } from "@/lib/image-placeholder";
 import type { Candidate } from "@/app/admin/candidates/types";
 import { categoryLabelsI18n } from "@/app/admin/candidates/types";
 import { useLanguage } from "@/components/providers/LanguageProvider";
@@ -17,12 +18,12 @@ import { useLanguage } from "@/components/providers/LanguageProvider";
  * Supports: watch?v=..., youtu.be/..., embed/..., shorts/..., and other formats
  */
 function getEmbedUrl(url: string | null | undefined): string | null {
-  if (!url || typeof url !== 'string') {
+  if (!url || typeof url !== "string") {
     return null;
   }
 
   const cleanUrl = url.trim();
-  
+
   // Regex bắt ID từ: youtube.com/watch, youtu.be, youtube.com/shorts, youtube.com/embed
   // Pattern này bắt được cả link thường, link rút gọn và link Shorts
   const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|shorts\/)([^#&?]*).*/;
@@ -33,7 +34,7 @@ function getEmbedUrl(url: string | null | undefined): string | null {
     // Use youtube-nocookie.com for better privacy compliance (DSGVO)
     return `https://www.youtube-nocookie.com/embed/${match[2]}`;
   }
-  
+
   return null;
 }
 
@@ -94,8 +95,8 @@ export const CandidateCard = ({ candidate, onRequestProfile }: CandidateCardProp
 
   const candidateCode = getCandidateCode(candidate.id);
   const embedUrl = candidate.video_url ? getEmbedUrl(candidate.video_url) : null;
-  const categoryLabel = candidate.category 
-    ? categoryLabelsI18n[candidate.category]?.[lang] || candidate.category 
+  const categoryLabel = candidate.category
+    ? categoryLabelsI18n[candidate.category]?.[lang] || candidate.category
     : "";
 
   return (
@@ -119,6 +120,8 @@ export const CandidateCard = ({ candidate, onRequestProfile }: CandidateCardProp
                   className="object-cover"
                   onError={() => setImageError(true)}
                   unoptimized={candidate.avatar_url.startsWith("http")}
+                  placeholder="blur"
+                  blurDataURL={BLUR_SQUARE}
                 />
               ) : (
                 <AvatarFallback className="bg-primary/10 text-primary font-bold text-lg">
@@ -133,7 +136,10 @@ export const CandidateCard = ({ candidate, onRequestProfile }: CandidateCardProp
                 {t.candidates?.code_label || "Kandidat"} #{candidateCode}
               </p>
               {candidate.category && (
-                <Badge variant="outline" className="text-xs border-primary/30 text-primary bg-primary/5">
+                <Badge
+                  variant="outline"
+                  className="text-xs border-primary/30 text-primary bg-primary/5"
+                >
                   {categoryLabel}
                 </Badge>
               )}
@@ -157,9 +163,10 @@ export const CandidateCard = ({ candidate, onRequestProfile }: CandidateCardProp
               <div className="flex items-center gap-2 text-sm">
                 <Briefcase className="h-4 w-4 text-muted-foreground flex-shrink-0" />
                 <span className="text-foreground">
-                  {candidate.experience_years} {candidate.experience_years === 1 
-                    ? (t.candidates?.year_experience || "Jahr Erfahrung")
-                    : (t.candidates?.years_experience || "Jahre Erfahrung")}
+                  {candidate.experience_years}{" "}
+                  {candidate.experience_years === 1
+                    ? t.candidates?.year_experience || "Jahr Erfahrung"
+                    : t.candidates?.years_experience || "Jahre Erfahrung"}
                 </span>
               </div>
             )}
@@ -168,7 +175,9 @@ export const CandidateCard = ({ candidate, onRequestProfile }: CandidateCardProp
             {candidate.german_level && (
               <div className="flex items-center gap-2">
                 <Award className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-                <Badge className={`${getGermanLevelColor(candidate.german_level)} text-xs font-medium border`}>
+                <Badge
+                  className={`${getGermanLevelColor(candidate.german_level)} text-xs font-medium border`}
+                >
                   Deutsch {candidate.german_level}
                 </Badge>
               </div>
@@ -199,9 +208,7 @@ export const CandidateCard = ({ candidate, onRequestProfile }: CandidateCardProp
               ) : (
                 <div className="relative aspect-video rounded-lg overflow-hidden bg-gray-100 border border-gray-200 flex items-center justify-center">
                   <p className="text-sm text-gray-500 text-center px-4">
-                    {!embedUrl || videoError
-                      ? "Video-Link ungültig"
-                      : "Video wird geladen..."}
+                    {!embedUrl || videoError ? "Video-Link ungültig" : "Video wird geladen..."}
                   </p>
                 </div>
               )}

@@ -53,48 +53,48 @@
 */
 :root {
   --radius: 0.5rem;
-  
+
   /* Background - Clean white */
   --background: oklch(0.995 0.001 247);
   --foreground: oklch(0.2 0.025 250);
-  
+
   /* Card & Popover */
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.2 0.025 250);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.2 0.025 250);
-  
+
   /* Primary - Deep Navy Blue (DMF Brand) */
   --primary: oklch(0.32 0.08 250);
   --primary-foreground: oklch(0.98 0.002 247);
-  
+
   /* Secondary - Light Gray */
   --secondary: oklch(0.97 0.003 247);
   --secondary-foreground: oklch(0.32 0.08 250);
-  
+
   /* Muted - Soft Gray */
   --muted: oklch(0.97 0.002 247);
   --muted-foreground: oklch(0.48 0.015 250);
-  
+
   /* Accent - Cyan/Teal (DMF Accent) */
   --accent: oklch(0.65 0.15 195);
   --accent-foreground: oklch(0.98 0.002 247);
-  
+
   /* Destructive */
   --destructive: oklch(0.55 0.2 25);
-  
+
   /* Border & Input */
   --border: oklch(0.92 0.004 247);
   --input: oklch(0.92 0.004 247);
   --ring: oklch(0.32 0.08 250);
-  
+
   /* Charts - DMF Color Palette */
   --chart-1: oklch(0.32 0.08 250);
   --chart-2: oklch(0.65 0.15 195);
   --chart-3: oklch(0.7 0.18 45);
   --chart-4: oklch(0.55 0.12 180);
   --chart-5: oklch(0.6 0.15 145);
-  
+
   /* Sidebar */
   --sidebar: oklch(0.98 0.002 247);
   --sidebar-foreground: oklch(0.2 0.025 250);
@@ -146,9 +146,16 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
   }
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply tracking-tight font-semibold;
   }
 }

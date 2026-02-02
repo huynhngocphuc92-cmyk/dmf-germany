@@ -2,7 +2,18 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, X, Send, User, Bot, Bookmark, BookmarkCheck, Calendar, Mail, ShoppingCart } from "lucide-react";
+import {
+  MessageCircle,
+  X,
+  Send,
+  User,
+  Bot,
+  Bookmark,
+  BookmarkCheck,
+  Calendar,
+  Mail,
+  ShoppingCart,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
@@ -38,7 +49,15 @@ interface Candidate {
   avatar?: string;
 }
 
-type Category = "pflege" | "it" | "hotel" | "handwerk" | "landwirtschaft" | "lager" | "service" | "reinigung";
+type Category =
+  | "pflege"
+  | "it"
+  | "hotel"
+  | "handwerk"
+  | "landwirtschaft"
+  | "lager"
+  | "service"
+  | "reinigung";
 type TabType = "chat" | "merkliste";
 type SolutionType = "skilled" | "seasonal" | null;
 
@@ -328,7 +347,12 @@ const skilledCategoryOptions: Option[] = [
 
 // Seasonal Categories (Second Level - for Saisonkräfte)
 const seasonalCategoryOptions: Option[] = [
-  { id: "landwirtschaft", label: "Landwirtschaft & Ernte", emoji: "🌾", category: "landwirtschaft" },
+  {
+    id: "landwirtschaft",
+    label: "Landwirtschaft & Ernte",
+    emoji: "🌾",
+    category: "landwirtschaft",
+  },
   { id: "lager", label: "Lager & Logistik", emoji: "📦", category: "lager" },
   { id: "service", label: "Service & Küchenhilfe", emoji: "🍽️", category: "service" },
   { id: "reinigung", label: "Reinigung & Housekeeping", emoji: "🧹", category: "reinigung" },
@@ -336,7 +360,8 @@ const seasonalCategoryOptions: Option[] = [
 
 // Calendly URL
 // TODO: Set NEXT_PUBLIC_CALENDLY_URL in .env.local to override this default
-const CALENDLY_URL = process.env.NEXT_PUBLIC_CALENDLY_URL || "https://calendly.com/contact-dmf/30min";
+const CALENDLY_URL =
+  process.env.NEXT_PUBLIC_CALENDLY_URL || "https://calendly.com/contact-dmf/30min";
 
 // ============================================
 // API FUNCTIONS
@@ -459,18 +484,18 @@ export const RecruitBot = () => {
     // Check if this is a service type selection (first level)
     if (option.solutionType) {
       setSelectedSolution(option.solutionType);
-      
+
       // Show category options based on solution type
-      const categoryOptions = option.solutionType === "seasonal" 
-        ? seasonalCategoryOptions 
-        : skilledCategoryOptions;
+      const categoryOptions =
+        option.solutionType === "seasonal" ? seasonalCategoryOptions : skilledCategoryOptions;
 
       const botResponse: Message = {
         id: `bot-categories-${Date.now()}`,
         type: "bot",
-        content: option.solutionType === "seasonal"
-          ? "Gut! Für welche Branche suchen Sie Saisonkräfte?"
-          : "Gut! Für welchen Bereich suchen Sie Fachkräfte?",
+        content:
+          option.solutionType === "seasonal"
+            ? "Gut! Für welche Branche suchen Sie Saisonkräfte?"
+            : "Gut! Für welchen Bereich suchen Sie Fachkräfte?",
         timestamp: new Date(),
         options: categoryOptions,
       };
@@ -480,7 +505,7 @@ export const RecruitBot = () => {
       sendTelegramNotification(
         `💼 <b>Neue Anfrage</b>\n\nLösungstyp: ${option.emoji} ${option.label}`
       );
-    } 
+    }
     // This is a category selection (second level)
     else if (option.category && selectedSolution) {
       // Send Telegram notification
@@ -519,18 +544,19 @@ export const RecruitBot = () => {
         });
 
         // Add booking option after candidates
-        setTimeout(() => {
-          const bookingMessage: Message = {
-            id: `booking-${Date.now()}`,
-            type: "bot",
-            content: "Möchten Sie einen persönlichen Beratungstermin vereinbaren?",
-            timestamp: new Date(),
-            options: [
-              { id: "book", label: "Termin buchen", emoji: "📅" },
-            ],
-          };
-          setMessages((prev) => [...prev, bookingMessage]);
-        }, topCandidates.length * 300 + 500);
+        setTimeout(
+          () => {
+            const bookingMessage: Message = {
+              id: `booking-${Date.now()}`,
+              type: "bot",
+              content: "Möchten Sie einen persönlichen Beratungstermin vereinbaren?",
+              timestamp: new Date(),
+              options: [{ id: "book", label: "Termin buchen", emoji: "📅" }],
+            };
+            setMessages((prev) => [...prev, bookingMessage]);
+          },
+          topCandidates.length * 300 + 500
+        );
       }, 500);
     }
   };
@@ -627,11 +653,11 @@ export const RecruitBot = () => {
       // Lead Gen - Profile unlock
       await sendTelegramNotification(
         `🎯 <b>NEUER LEAD - Profil angefordert</b>\n\n` +
-        `📧 E-Mail: ${emailInput}\n` +
-        `👤 Kandidat: ${emailFormCandidate.name}\n` +
-        `💼 Position: ${emailFormCandidate.jobTitle}\n` +
-        `🏢 Bereich: ${emailFormCandidate.category}\n` +
-        `📅 Zeitpunkt: ${new Date().toLocaleString("de-DE")}`
+          `📧 E-Mail: ${emailInput}\n` +
+          `👤 Kandidat: ${emailFormCandidate.name}\n` +
+          `💼 Position: ${emailFormCandidate.jobTitle}\n` +
+          `🏢 Bereich: ${emailFormCandidate.category}\n` +
+          `📅 Zeitpunkt: ${new Date().toLocaleString("de-DE")}`
       );
 
       const successMessage: Message = {
@@ -697,10 +723,10 @@ export const RecruitBot = () => {
     setIsTyping(true);
     await sendTelegramNotification(
       `📨 <b>ANFRAGE GESENDET</b>\n\n` +
-      `📧 E-Mail: ${email}\n` +
-      `📋 Anzahl Kandidaten: ${cart.length}\n` +
-      `👥 Kandidaten:\n${cart.map((c, idx) => `${idx + 1}. ${c.name} - ${c.jobTitle}`).join("\n")}\n` +
-      `📅 Zeitpunkt: ${new Date().toLocaleString("de-DE")}`
+        `📧 E-Mail: ${email}\n` +
+        `📋 Anzahl Kandidaten: ${cart.length}\n` +
+        `👥 Kandidaten:\n${cart.map((c, idx) => `${idx + 1}. ${c.name} - ${c.jobTitle}`).join("\n")}\n` +
+        `📅 Zeitpunkt: ${new Date().toLocaleString("de-DE")}`
     );
 
     await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -794,10 +820,10 @@ export const RecruitBot = () => {
                     width={40}
                     height={40}
                     className="h-full w-full rounded-full shadow-sm object-contain"
-                    style={{ 
-                      maxWidth: "40px", 
+                    style={{
+                      maxWidth: "40px",
                       maxHeight: "40px",
-                      objectFit: "contain"
+                      objectFit: "contain",
                     }}
                     priority={true}
                     quality={90}
@@ -809,7 +835,8 @@ export const RecruitBot = () => {
                       const parent = target.parentElement;
                       if (parent && !parent.querySelector(".logo-fallback")) {
                         const fallback = document.createElement("span");
-                        fallback.className = "logo-fallback text-white font-bold text-sm absolute inset-0 flex items-center justify-center";
+                        fallback.className =
+                          "logo-fallback text-white font-bold text-sm absolute inset-0 flex items-center justify-center";
                         fallback.textContent = "DMF";
                         parent.appendChild(fallback);
                       }
@@ -922,8 +949,8 @@ export const RecruitBot = () => {
                           message.type === "user"
                             ? "bg-primary text-primary-foreground"
                             : message.content === "candidate"
-                            ? "bg-white p-0 border-0 shadow-none"
-                            : "bg-white text-gray-800 shadow-sm border border-gray-200"
+                              ? "bg-white p-0 border-0 shadow-none"
+                              : "bg-white text-gray-800 shadow-sm border border-gray-200"
                         )}
                       >
                         {message.content === "candidate" && message.candidate ? (
@@ -1007,9 +1034,18 @@ export const RecruitBot = () => {
                       </div>
                       <div className="bg-white rounded-2xl px-4 py-3 shadow-sm border border-gray-200">
                         <div className="flex gap-1.5">
-                          <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                          <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                          <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                          <div
+                            className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                            style={{ animationDelay: "0ms" }}
+                          />
+                          <div
+                            className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                            style={{ animationDelay: "150ms" }}
+                          />
+                          <div
+                            className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                            style={{ animationDelay: "300ms" }}
+                          />
                         </div>
                       </div>
                     </motion.div>
@@ -1045,7 +1081,9 @@ export const RecruitBot = () => {
                   <div className="flex flex-col items-center justify-center h-full text-center py-12">
                     <Bookmark className="w-16 h-16 text-gray-300 mb-4" />
                     <p className="text-gray-500 text-sm mb-2">Ihre Merkliste ist leer</p>
-                    <p className="text-gray-400 text-xs">Klicken Sie auf "Merken" bei einem Kandidaten, um ihn zu speichern.</p>
+                    <p className="text-gray-400 text-xs">
+                      Klicken Sie auf "Merken" bei einem Kandidaten, um ihn zu speichern.
+                    </p>
                   </div>
                 ) : (
                   <>
@@ -1097,7 +1135,8 @@ export const RecruitBot = () => {
                         className="w-full px-4 py-3 bg-primary hover:bg-primary/90 text-white rounded-lg text-sm font-semibold transition-colors flex items-center justify-center gap-2 shadow-lg shadow-primary/20"
                       >
                         <Mail className="w-4 h-4" />
-                        Anfrage senden ({cart.length} {cart.length === 1 ? "Kandidat" : "Kandidaten"})
+                        Anfrage senden ({cart.length}{" "}
+                        {cart.length === 1 ? "Kandidat" : "Kandidaten"})
                       </button>
                       <button
                         onClick={async () => {
@@ -1109,7 +1148,12 @@ export const RecruitBot = () => {
                             content: `Sie haben ${cart.length} ${cart.length === 1 ? "Kandidat" : "Kandidaten"} in Ihrer Merkliste.\n\nMöchten Sie einen Beratungstermin vereinbaren?`,
                             timestamp: new Date(),
                             options: [
-                              { id: "book", label: "Termin buchen", emoji: "📅", category: "pflege" },
+                              {
+                                id: "book",
+                                label: "Termin buchen",
+                                emoji: "📅",
+                                category: "pflege",
+                              },
                             ],
                           };
                           setMessages((prev) => [...prev, bookingMessage]);
@@ -1222,17 +1266,11 @@ const CandidateCard = ({ candidate, isSaved, onMerken, onViewProfile }: Candidat
     <div className="bg-white border border-gray-200 rounded-lg p-3 shadow-sm w-[300px]">
       <div className="flex items-start gap-3 mb-3">
         <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-          <span className="text-primary font-semibold text-sm">
-            {getInitials(candidate.name)}
-          </span>
+          <span className="text-primary font-semibold text-sm">{getInitials(candidate.name)}</span>
         </div>
         <div className="flex-1 min-w-0">
-          <h4 className="font-semibold text-sm text-gray-900 truncate">
-            {candidate.name}
-          </h4>
-          <p className="text-xs text-gray-500 truncate">
-            {formatExperience(candidate)}
-          </p>
+          <h4 className="font-semibold text-sm text-gray-900 truncate">{candidate.name}</h4>
+          <p className="text-xs text-gray-500 truncate">{formatExperience(candidate)}</p>
         </div>
         <button
           onClick={onMerken}
@@ -1260,10 +1298,7 @@ const CandidateCard = ({ candidate, isSaved, onMerken, onViewProfile }: Candidat
 
       <div className="flex flex-wrap gap-1.5 mb-3">
         {candidate.skills.slice(0, 3).map((skill, idx) => (
-          <span
-            key={idx}
-            className="px-2 py-0.5 bg-gray-100 text-gray-700 rounded text-xs"
-          >
+          <span key={idx} className="px-2 py-0.5 bg-gray-100 text-gray-700 rounded text-xs">
             {skill}
           </span>
         ))}

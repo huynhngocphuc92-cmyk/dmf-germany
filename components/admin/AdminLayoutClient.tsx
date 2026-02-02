@@ -45,15 +45,9 @@ export function AdminLayoutClient({ user, children }: AdminLayoutClientProps) {
 
       {/* Main Content */}
       <div className="lg:pl-[260px] transition-all duration-300">
-        <AdminHeader 
-          user={user} 
-          onMenuClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
-        />
-        <main className="p-4 lg:p-6">
-          {children}
-        </main>
+        <AdminHeader user={user} onMenuClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} />
+        <main className="p-4 lg:p-6">{children}</main>
       </div>
     </div>
   );
 }
-

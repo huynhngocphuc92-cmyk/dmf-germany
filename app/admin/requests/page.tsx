@@ -2,7 +2,7 @@ import { getInquiries } from "./actions";
 import { RequestsClient } from "./requests-client";
 
 // Force dynamic rendering (uses cookies for auth)
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 // ============================================
 // REQUESTS PAGE (Server Component)
@@ -15,9 +15,9 @@ export default async function RequestsPage() {
   } catch (err) {
     console.error("Error in RequestsPage:", err);
     return (
-      <RequestsClient 
-        initialInquiries={[]} 
-        error={err instanceof Error ? err.message : "Ein unerwarteter Fehler ist aufgetreten."} 
+      <RequestsClient
+        initialInquiries={[]}
+        error={err instanceof Error ? err.message : "Ein unerwarteter Fehler ist aufgetreten."}
       />
     );
   }

@@ -1,7 +1,7 @@
-'use client';
-import { useEffect } from 'react';
-import Link from 'next/link';
-import { Home, AlertCircle } from 'lucide-react';
+"use client";
+import { useEffect } from "react";
+import Link from "next/link";
+import { Home, AlertCircle } from "lucide-react";
 
 export default function Error({
   error,
@@ -12,7 +12,7 @@ export default function Error({
 }) {
   useEffect(() => {
     // Log error to console for debugging
-    console.error('Application error:', error);
+    console.error("Application error:", error);
   }, [error]);
 
   return (
@@ -23,15 +23,14 @@ export default function Error({
             <AlertCircle className="w-8 h-8 text-red-600" />
           </div>
         </div>
-        
-        <h2 className="text-2xl font-bold text-slate-900 mb-2">
-          Etwas ist schief gelaufen!
-        </h2>
-        
+
+        <h2 className="text-2xl font-bold text-slate-900 mb-2">Etwas ist schief gelaufen!</h2>
+
         <p className="text-slate-500 mb-6">
-          Es tut uns leid, es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es erneut oder kehren Sie zur Startseite zurück.
+          Es tut uns leid, es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es erneut
+          oder kehren Sie zur Startseite zurück.
         </p>
-        
+
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <button
             onClick={() => reset()}

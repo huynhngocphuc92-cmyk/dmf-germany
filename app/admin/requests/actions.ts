@@ -5,6 +5,28 @@ import { createClient } from "@/utils/supabase/server";
 import type { Inquiry, InquiryStatus } from "./types";
 
 // ============================================
+// AUTH HELPER
+// ============================================
+
+/**
+ * Verify user is authenticated before performing admin actions
+ * Returns user object if authenticated, throws error if not
+ */
+async function requireAuth() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+    error,
+  } = await supabase.auth.getUser();
+
+  if (error || !user) {
+    throw new Error("Unauthorized: Authentication required");
+  }
+
+  return user;
+}
+
+// ============================================
 // FETCH ALL INQUIRIES
 // ============================================
 
@@ -49,11 +71,7 @@ export async function getInquiry(id: string): Promise<{
   try {
     const supabase = await createClient();
 
-    const { data, error } = await supabase
-      .from("inquiries")
-      .select("*")
-      .eq("id", id)
-      .single();
+    const { data, error } = await supabase.from("inquiries").select("*").eq("id", id).single();
 
     if (error) {
       console.error("Error fetching inquiry:", error);
@@ -76,11 +94,14 @@ export async function updateInquiryStatus(
   status: InquiryStatus
 ): Promise<{ success: boolean; error: string | null }> {
   try {
+    // Verify authentication before any mutation
+    await requireAuth();
+
     const supabase = await createClient();
 
     const { error } = await supabase
       .from("inquiries")
-      .update({ 
+      .update({
         status,
         updated_at: new Date().toISOString(),
       })
@@ -95,9 +116,9 @@ export async function updateInquiryStatus(
     return { success: true, error: null };
   } catch (err) {
     console.error("Unexpected error:", err);
-    return { 
-      success: false, 
-      error: "Ein unerwarteter Fehler ist aufgetreten." 
+    return {
+      success: false,
+      error: "Ein unerwarteter Fehler ist aufgetreten.",
     };
   }
 }
@@ -110,12 +131,12 @@ export async function deleteInquiry(
   id: string
 ): Promise<{ success: boolean; error: string | null }> {
   try {
+    // Verify authentication before any mutation
+    await requireAuth();
+
     const supabase = await createClient();
 
-    const { error } = await supabase
-      .from("inquiries")
-      .delete()
-      .eq("id", id);
+    const { error } = await supabase.from("inquiries").delete().eq("id", id);
 
     if (error) {
       console.error("Error deleting inquiry:", error);
@@ -126,9 +147,9 @@ export async function deleteInquiry(
     return { success: true, error: null };
   } catch (err) {
     console.error("Unexpected error:", err);
-    return { 
-      success: false, 
-      error: "Ein unerwarteter Fehler ist aufgetreten." 
+    return {
+      success: false,
+      error: "Ein unerwarteter Fehler ist aufgetreten.",
     };
   }
 }

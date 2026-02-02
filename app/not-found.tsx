@@ -35,8 +35,7 @@ const content: Record<"de" | "en" | "vn", NotFoundContent> = {
     title: "Page Not Found",
     errorCode: "404",
     heading: "Page Not Found",
-    description:
-      "We're sorry, but the page you are looking for does not exist or has been moved.",
+    description: "We're sorry, but the page you are looking for does not exist or has been moved.",
     suggestion:
       "The page may have been renamed, deleted, or never existed. Please check the URL or navigate back to the homepage.",
     backToHome: "Back to Home",
@@ -48,8 +47,7 @@ const content: Record<"de" | "en" | "vn", NotFoundContent> = {
     title: "Không tìm thấy trang",
     errorCode: "404",
     heading: "Không tìm thấy trang",
-    description:
-      "Xin lỗi, trang bạn đang tìm kiếm không tồn tại hoặc đã được di chuyển.",
+    description: "Xin lỗi, trang bạn đang tìm kiếm không tồn tại hoặc đã được di chuyển.",
     suggestion:
       "Có thể trang đã được đổi tên, xóa hoặc chưa từng tồn tại. Vui lòng kiểm tra URL hoặc quay lại trang chủ.",
     backToHome: "Về trang chủ",
@@ -96,9 +94,7 @@ export default function NotFound() {
         </p>
 
         {/* Suggestion */}
-        <p className="text-sm text-muted-foreground/80 mb-8 max-w-md mx-auto">
-          {t.suggestion}
-        </p>
+        <p className="text-sm text-muted-foreground/80 mb-8 max-w-md mx-auto">{t.suggestion}</p>
 
         {/* Search Tip */}
         <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-8 p-3 bg-muted/50 rounded-lg max-w-md mx-auto">
@@ -168,16 +164,15 @@ export default function NotFound() {
             >
               {translations.header.contact}
             </Link>
-              <Link
+            <Link
               href="/blog"
-                className="px-4 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-colors"
-              >
+              className="px-4 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-colors"
+            >
               {translations.header.blog}
-              </Link>
+            </Link>
           </div>
         </div>
       </div>
     </div>
   );
 }
-

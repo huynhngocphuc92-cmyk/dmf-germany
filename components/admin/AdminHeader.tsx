@@ -23,11 +23,7 @@ function LogoutButton({ label }: { label: string }) {
       className="text-slate-600 hover:text-red-600"
       disabled={pending}
     >
-      {pending ? (
-        <Loader2 className="w-4 h-4 animate-spin" />
-      ) : (
-        <LogOut className="w-4 h-4" />
-      )}
+      {pending ? <Loader2 className="w-4 h-4 animate-spin" /> : <LogOut className="w-4 h-4" />}
       <span className="hidden sm:inline ml-2">{label}</span>
     </Button>
   );
@@ -50,12 +46,7 @@ export function AdminHeader({ user, onMenuClick }: AdminHeaderProps) {
       <div className="flex items-center justify-between h-full px-4 lg:px-6">
         {/* Left - Mobile Menu Toggle */}
         <div className="flex items-center gap-4">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="lg:hidden"
-            onClick={onMenuClick}
-          >
+          <Button variant="ghost" size="icon" className="lg:hidden" onClick={onMenuClick}>
             <Menu className="w-5 h-5" />
           </Button>
         </div>
@@ -67,9 +58,7 @@ export function AdminHeader({ user, onMenuClick }: AdminHeaderProps) {
             <button
               onClick={() => setLang("de")}
               className={`px-2 py-1 rounded-full text-xs font-medium transition-all ${
-                lang === "de"
-                  ? "bg-slate-900 text-white"
-                  : "text-slate-500 hover:text-slate-700"
+                lang === "de" ? "bg-slate-900 text-white" : "text-slate-500 hover:text-slate-700"
               }`}
             >
               DE
@@ -77,9 +66,7 @@ export function AdminHeader({ user, onMenuClick }: AdminHeaderProps) {
             <button
               onClick={() => setLang("vn")}
               className={`px-2 py-1 rounded-full text-xs font-medium transition-all ${
-                lang === "vn"
-                  ? "bg-emerald-500 text-white"
-                  : "text-slate-500 hover:text-slate-700"
+                lang === "vn" ? "bg-emerald-500 text-white" : "text-slate-500 hover:text-slate-700"
               }`}
             >
               VN
@@ -92,9 +79,7 @@ export function AdminHeader({ user, onMenuClick }: AdminHeaderProps) {
               <div className="w-7 h-7 rounded-full bg-emerald-100 flex items-center justify-center">
                 <UserIcon className="w-4 h-4 text-emerald-600" />
               </div>
-              <span className="text-sm text-slate-600 max-w-[150px] truncate">
-                {user.email}
-              </span>
+              <span className="text-sm text-slate-600 max-w-[150px] truncate">{user.email}</span>
             </div>
           )}
 
@@ -113,4 +98,3 @@ export function AdminHeader({ user, onMenuClick }: AdminHeaderProps) {
     </header>
   );
 }
-

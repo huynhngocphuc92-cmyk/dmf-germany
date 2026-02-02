@@ -6,7 +6,7 @@ import { ImageIcon } from "lucide-react";
 /**
  * Client Component: Displays image with optional debug label showing the asset key
  * Used to show which asset key maps to which image on the homepage
- * 
+ *
  * To disable debug labels, set NEXT_PUBLIC_SHOW_ASSET_DEBUG=false in .env.local
  * or comment out the showDebug check below
  */
@@ -17,17 +17,17 @@ import { ImageIcon } from "lucide-react";
 // - Absolute URLs: "http://..." or "https://..."
 // - Supabase Storage URLs: "https://*.supabase.co/storage/v1/object/public/..."
 const isValidImagePath = (value: string | null | undefined): boolean => {
-  if (!value || typeof value !== 'string') return false;
-  
+  if (!value || typeof value !== "string") return false;
+
   // Check if it starts with "/" (relative path)
-  if (value.startsWith('/')) return true;
-  
+  if (value.startsWith("/")) return true;
+
   // Check if it starts with "http://" or "https://" (absolute URL)
-  if (value.startsWith('http://') || value.startsWith('https://')) return true;
-  
+  if (value.startsWith("http://") || value.startsWith("https://")) return true;
+
   // Additional check: Supabase Storage URLs (should already be https://, but double-check)
-  if (value.includes('supabase.co') && value.includes('storage')) return true;
-  
+  if (value.includes("supabase.co") && value.includes("storage")) return true;
+
   return false;
 };
 
@@ -66,12 +66,12 @@ export const AssetImageWithDebug = ({
   if (!src || !isValidImagePath(src)) {
     // Return fallback UI instead of crashing
     return (
-      <div className={`relative bg-slate-100 flex items-center justify-center ${fill ? 'w-full h-full' : ''} ${fallbackClassName}`}>
+      <div
+        className={`relative bg-slate-100 flex items-center justify-center ${fill ? "w-full h-full" : ""} ${fallbackClassName}`}
+      >
         <div className="flex flex-col items-center gap-2 text-slate-400 p-4">
           <ImageIcon size={24} className="opacity-50" />
-          <span className="text-xs text-center">
-            {src ? 'Invalid image path' : 'No image'}
-          </span>
+          <span className="text-xs text-center">{src ? "Invalid image path" : "No image"}</span>
           {showDebug && src && (
             <span className="text-[10px] font-mono text-slate-300 truncate max-w-full px-2">
               {src}
@@ -98,7 +98,7 @@ export const AssetImageWithDebug = ({
           priority={priority}
           quality={quality}
           // For Supabase Storage URLs, use unoptimized to avoid 400 errors
-          unoptimized={src.includes('supabase.co') || src.startsWith("http")}
+          unoptimized={src.includes("supabase.co") || src.startsWith("http")}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         {showDebug && (
@@ -130,4 +130,3 @@ export const AssetImageWithDebug = ({
     </div>
   );
 };
-

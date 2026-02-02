@@ -1,19 +1,12 @@
 "use client";
 
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { Award, Eye, ShieldCheck } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 // Animation variants - German precision style
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const containerVariants: any = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -24,14 +17,13 @@ const containerVariants: any = {
   },
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const cardVariants: any = {
-  hidden: { 
-    opacity: 0, 
+const cardVariants: Variants = {
+  hidden: {
+    opacity: 0,
     y: 40,
   },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     transition: {
       duration: 0.5,
@@ -40,11 +32,10 @@ const cardVariants: any = {
   },
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const headerVariants: any = {
+const headerVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     transition: {
       duration: 0.6,
@@ -101,7 +92,7 @@ export const ValuesSection = () => {
             viewport={{ once: true, margin: "-100px" }}
             className="text-center space-y-4 md:space-y-6 mb-12 md:mb-20"
           >
-            <motion.span 
+            <motion.span
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -114,7 +105,7 @@ export const ValuesSection = () => {
               {t.values.title}
             </h2>
             {/* Decorative underline with animation */}
-            <motion.div 
+            <motion.div
               className="flex justify-center pt-2"
               initial={{ opacity: 0, scaleX: 0 }}
               whileInView={{ opacity: 1, scaleX: 1 }}
@@ -126,7 +117,7 @@ export const ValuesSection = () => {
           </motion.div>
 
           {/* Values Grid - Responsive: 1 col mobile, 2 cols tablet, 3 cols desktop */}
-          <motion.div 
+          <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -136,10 +127,7 @@ export const ValuesSection = () => {
             {values.map((value, index) => {
               const Icon = iconMap[value.icon] || ShieldCheck;
               return (
-                <motion.div
-                  key={value.title}
-                  variants={cardVariants}
-                >
+                <motion.div key={value.title} variants={cardVariants}>
                   <Card
                     className={`h-full group cursor-default border-border/50 hover:border-accent/50 hover:shadow-xl hover:shadow-accent/10 hover:-translate-y-2 transition-all duration-300 overflow-hidden relative`}
                   >

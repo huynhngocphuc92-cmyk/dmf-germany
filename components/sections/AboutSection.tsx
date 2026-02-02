@@ -12,7 +12,7 @@ interface AboutSectionProps {
 
 export const AboutSection = ({ introImg, videoThumb }: AboutSectionProps = {}) => {
   const { t, lang } = useLanguage();
-  
+
   // Use video thumbnail if available, otherwise use intro image
   const displayImage = videoThumb || introImg;
   const icons = [BookOpen, Globe2, UserCheck];
@@ -77,24 +77,24 @@ export const AboutSection = ({ introImg, videoThumb }: AboutSectionProps = {}) =
               <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed">
                 {t.about.description}
               </p>
-              
+
               {/* Quick Stats - Responsive */}
               <div className="grid grid-cols-3 gap-2 md:gap-4 pt-4">
                 {stats.map((stat, index) => (
-                  <div 
+                  <div
                     key={index}
                     className={`text-center p-3 md:p-4 rounded-lg ${
                       index === 1 ? "bg-accent/5" : "bg-primary/5"
                     }`}
                   >
-                    <p className={`text-xl md:text-3xl font-bold ${
-                      index === 1 ? "text-accent" : "text-primary"
-                    }`}>
+                    <p
+                      className={`text-xl md:text-3xl font-bold ${
+                        index === 1 ? "text-accent" : "text-primary"
+                      }`}
+                    >
                       {stat.value}
                     </p>
-                    <p className="text-[10px] md:text-sm text-muted-foreground">
-                      {stat.label}
-                    </p>
+                    <p className="text-[10px] md:text-sm text-muted-foreground">{stat.label}</p>
                   </div>
                 ))}
               </div>

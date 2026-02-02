@@ -9,12 +9,12 @@ export function checkQuality(rawData: any, defaultContent: any) {
   // 2. Trộn dữ liệu: Cái gì rawData thiếu thì lấy từ defaultContent đắp vào
   return {
     ...defaultContent, // Lấy khung chuẩn làm nền
-    ...rawData,        // Đắp dữ liệu thật lên (nếu có)
-    
+    ...rawData, // Đắp dữ liệu thật lên (nếu có)
+
     // Xử lý riêng cho Hero Section (đảm bảo không bao giờ thiếu)
     hero: {
       ...defaultContent.hero,
-      ...(rawData.hero || rawData.intro || {})
-    }
+      ...(rawData.hero || rawData.intro || {}),
+    },
   };
 }

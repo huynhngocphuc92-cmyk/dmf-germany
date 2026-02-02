@@ -1,4 +1,4 @@
-import { Settings, Save, Server, Globe, Mail, Shield } from 'lucide-react';
+import { Settings, Save, Server, Globe, Mail, Shield } from "lucide-react";
 
 export default function SettingsPage() {
   return (
@@ -12,7 +12,6 @@ export default function SettingsPage() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        
         {/* General Information */}
         <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-4">
           <div className="flex items-center gap-3 border-b border-slate-100 pb-4 mb-4">
@@ -21,21 +20,21 @@ export default function SettingsPage() {
             </div>
             <h3 className="font-semibold text-slate-900">General Information</h3>
           </div>
-          
+
           <div className="space-y-3">
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1">Site Name</label>
-              <input 
-                type="text" 
-                defaultValue="DMF Germany" 
+              <input
+                type="text"
+                defaultValue="DMF Germany"
                 className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
               />
             </div>
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1">Support Email</label>
-              <input 
-                type="email" 
-                defaultValue={process.env.CONTACT_EMAIL || 'contact@dmf.edu.vn'} 
+              <input
+                type="email"
+                defaultValue={process.env.CONTACT_EMAIL || "contact@dmf.edu.vn"}
                 readOnly
                 className="w-full px-3 py-2 border border-slate-200 bg-slate-50 text-slate-500 rounded-lg cursor-not-allowed"
               />
@@ -54,20 +53,24 @@ export default function SettingsPage() {
           </div>
 
           <div className="space-y-4">
-            <StatusItem 
-              label="Supabase Database" 
-              status="Connected" 
+            <StatusItem
+              label="Supabase Database"
+              status="Connected"
               color="text-green-600 bg-green-50"
             />
-            <StatusItem 
-              label="SMTP Email Service" 
-              status="Active" 
+            <StatusItem
+              label="SMTP Email Service"
+              status="Active"
               color="text-green-600 bg-green-50"
             />
-            <StatusItem 
-              label="Google Analytics" 
-              status={process.env.NEXT_PUBLIC_GA_ID ? 'Connected' : 'Missing'} 
-              color={process.env.NEXT_PUBLIC_GA_ID ? 'text-green-600 bg-green-50' : 'text-red-600 bg-red-50'}
+            <StatusItem
+              label="Google Analytics"
+              status={process.env.NEXT_PUBLIC_GA_ID ? "Connected" : "Missing"}
+              color={
+                process.env.NEXT_PUBLIC_GA_ID
+                  ? "text-green-600 bg-green-50"
+                  : "text-red-600 bg-red-50"
+              }
             />
           </div>
         </div>
@@ -80,19 +83,20 @@ export default function SettingsPage() {
             </div>
             <h3 className="font-semibold text-slate-900">Security & Environment</h3>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-             <div className="p-4 border border-slate-200 rounded-lg">
-               <p className="text-sm text-slate-500">Google Analytics ID</p>
-               <p className="font-mono text-sm font-medium mt-1">{process.env.NEXT_PUBLIC_GA_ID || 'Not set'}</p>
-             </div>
-             <div className="p-4 border border-slate-200 rounded-lg">
-               <p className="text-sm text-slate-500">Node Environment</p>
-               <p className="font-mono text-sm font-medium mt-1 uppercase">{process.env.NODE_ENV}</p>
-             </div>
+            <div className="p-4 border border-slate-200 rounded-lg">
+              <p className="text-sm text-slate-500">Google Analytics ID</p>
+              <p className="font-mono text-sm font-medium mt-1">
+                {process.env.NEXT_PUBLIC_GA_ID || "Not set"}
+              </p>
+            </div>
+            <div className="p-4 border border-slate-200 rounded-lg">
+              <p className="text-sm text-slate-500">Node Environment</p>
+              <p className="font-mono text-sm font-medium mt-1 uppercase">{process.env.NODE_ENV}</p>
+            </div>
           </div>
         </div>
-
       </div>
     </div>
   );
@@ -102,9 +106,7 @@ function StatusItem({ label, status, color }: { label: string; status: string; c
   return (
     <div className="flex items-center justify-between p-3 rounded-lg border border-slate-100">
       <span className="text-sm font-medium text-slate-700">{label}</span>
-      <span className={`px-2 py-1 rounded text-xs font-semibold ${color}`}>
-        {status}
-      </span>
+      <span className={`px-2 py-1 rounded text-xs font-semibold ${color}`}>{status}</span>
     </div>
   );
 }

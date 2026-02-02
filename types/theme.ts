@@ -3,32 +3,28 @@
 // ============================================
 
 // Database section names (from site_assets table)
-export type DatabaseSection = 
-  | "branding"      // Nhận diện
-  | "home"          // Trang Chủ
-  | "contact"       // Liên Hệ
-  | "settings";     // Cài Đặt
+export type DatabaseSection =
+  | "branding" // Nhận diện
+  | "home" // Trang Chủ
+  | "contact" // Liên Hệ
+  | "settings"; // Cài Đặt
 
 // UI Tab names (for display)
-export type ThemeSection = 
-  | "identity"      // Nhận diện (maps to "branding" in DB)
-  | "home"          // Trang Chủ
+export type ThemeSection =
+  | "identity" // Nhận diện (maps to "branding" in DB)
+  | "home" // Trang Chủ
   | "header_footer" // Header & Footer (maps to "branding" in DB)
-  | "contact"       // Liên Hệ
-  | "system";       // Cài Đặt (maps to "settings" in DB)
+  | "contact" // Liên Hệ
+  | "system"; // Cài Đặt (maps to "settings" in DB)
 
-export type AssetType = 
-  | "image"
-  | "color"
-  | "text"
-  | "boolean";
+export type AssetType = "image" | "color" | "text" | "boolean";
 
 export interface SiteConfigItem {
-  key: string;           // Primary key, e.g., 'home_hero_bg', 'primary_color'
+  key: string; // Primary key, e.g., 'home_hero_bg', 'primary_color'
   asset_type: AssetType; // Type of asset: image, color, text, boolean
-  value: string | null;  // Main value field (site_assets table uses this column)
+  value: string | null; // Main value field (site_assets table uses this column)
   image_url?: string | null; // Deprecated: Only for backward compatibility in UI, not in DB
-  label: string;         // Display label, e.g., 'Hero Banner', 'Primary Color'
+  label: string; // Display label, e.g., 'Hero Banner', 'Primary Color'
   description: string | null;
   section: DatabaseSection | ThemeSection; // Can be either DB section or UI section
   created_at?: string;
@@ -139,4 +135,3 @@ export const themeTranslations = {
     toggleOff: "Tắt",
   },
 };
-

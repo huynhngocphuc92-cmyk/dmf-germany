@@ -9,6 +9,7 @@ import { Calendar, Clock, ArrowRight, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { BLUR_LANDSCAPE } from "@/lib/image-placeholder";
 import type { Post } from "@/app/admin/posts/types";
 
 // ============================================
@@ -101,14 +102,14 @@ export function BlogListClient({ posts }: BlogListClientProps) {
       <section className="relative py-20 lg:py-28 overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-[0.03]">
-          <div 
+          <div
             className="absolute inset-0"
             style={{
               backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231e3a5f' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
             }}
           />
         </div>
-        
+
         <div className="container mx-auto px-4 relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -119,12 +120,8 @@ export function BlogListClient({ posts }: BlogListClientProps) {
             <Badge className="mb-4 bg-blue-100 text-blue-700 border-blue-200">
               DMF Vietnam Blog
             </Badge>
-            <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-              {t.title}
-            </h1>
-            <p className="text-lg text-slate-600 leading-relaxed">
-              {t.subtitle}
-            </p>
+            <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">{t.title}</h1>
+            <p className="text-lg text-slate-600 leading-relaxed">{t.subtitle}</p>
           </motion.div>
         </div>
       </section>
@@ -140,11 +137,7 @@ export function BlogListClient({ posts }: BlogListClientProps) {
               className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
             >
               {posts.map((post, index) => (
-                <motion.article
-                  key={post.id}
-                  variants={itemVariants}
-                  className="group"
-                >
+                <motion.article key={post.id} variants={itemVariants} className="group">
                   <Link href={`/blog/${post.slug}`}>
                     <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 h-full flex flex-col">
                       {/* Cover Image */}
@@ -155,6 +148,8 @@ export function BlogListClient({ posts }: BlogListClientProps) {
                             alt={post.title}
                             fill
                             className="object-cover group-hover:scale-105 transition-transform duration-500"
+                            placeholder="blur"
+                            blurDataURL={BLUR_LANDSCAPE}
                           />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-slate-100">
@@ -188,9 +183,7 @@ export function BlogListClient({ posts }: BlogListClientProps) {
 
                         {/* Excerpt */}
                         {post.excerpt && (
-                          <p className="text-slate-600 mb-4 line-clamp-3 flex-1">
-                            {post.excerpt}
-                          </p>
+                          <p className="text-slate-600 mb-4 line-clamp-3 flex-1">{post.excerpt}</p>
                         )}
 
                         {/* Read More */}
@@ -211,16 +204,10 @@ export function BlogListClient({ posts }: BlogListClientProps) {
               className="text-center py-20"
             >
               <FileText className="w-16 h-16 mx-auto mb-6 text-slate-300" />
-              <h2 className="text-2xl font-bold text-slate-900 mb-3">
-                {t.noPosts}
-              </h2>
-              <p className="text-slate-600 mb-8">
-                {t.noPostsDesc}
-              </p>
+              <h2 className="text-2xl font-bold text-slate-900 mb-3">{t.noPosts}</h2>
+              <p className="text-slate-600 mb-8">{t.noPostsDesc}</p>
               <Button asChild>
-                <Link href="/">
-                  {lang === "vn" ? "Về trang chủ" : "Zur Startseite"}
-                </Link>
+                <Link href="/">{lang === "vn" ? "Về trang chủ" : "Zur Startseite"}</Link>
               </Button>
             </motion.div>
           )}
@@ -229,4 +216,3 @@ export function BlogListClient({ posts }: BlogListClientProps) {
     </main>
   );
 }
-

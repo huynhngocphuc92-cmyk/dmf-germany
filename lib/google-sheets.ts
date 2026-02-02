@@ -1,9 +1,9 @@
 /**
  * Google Sheets Integration for CRM
- * 
+ *
  * This module handles authentication and data operations with Google Sheets.
  * Used to store contact form submissions as a simple CRM solution.
- * 
+ *
  * Required Environment Variables:
  * - GOOGLE_SERVICE_KEY: JSON content of the Service Account key file
  * - GOOGLE_SHEET_ID: The ID of the Google Sheet (from the URL)
@@ -50,7 +50,7 @@ interface ServiceAccountCredentials {
  */
 function getServiceAccountCredentials(): ServiceAccountCredentials | null {
   const serviceKeyJson = process.env.GOOGLE_SERVICE_KEY;
-  
+
   if (!serviceKeyJson) {
     console.error("[Google Sheets] GOOGLE_SERVICE_KEY environment variable is not set");
     return null;
@@ -68,7 +68,9 @@ function getServiceAccountCredentials(): ServiceAccountCredentials | null {
 
     // Validate required fields
     if (!credentials.client_email || !credentials.private_key) {
-      console.error("[Google Sheets] Invalid service account credentials: missing client_email or private_key");
+      console.error(
+        "[Google Sheets] Invalid service account credentials: missing client_email or private_key"
+      );
       return null;
     }
 
@@ -84,7 +86,7 @@ function getServiceAccountCredentials(): ServiceAccountCredentials | null {
  */
 function getAuthClient(): JWT | null {
   const credentials = getServiceAccountCredentials();
-  
+
   if (!credentials) {
     return null;
   }
@@ -111,14 +113,14 @@ function getAuthClient(): JWT | null {
  */
 async function getSpreadsheet(): Promise<GoogleSpreadsheet | null> {
   const sheetId = process.env.GOOGLE_SHEET_ID;
-  
+
   if (!sheetId) {
     console.error("[Google Sheets] GOOGLE_SHEET_ID environment variable is not set");
     return null;
   }
 
   const auth = getAuthClient();
-  
+
   if (!auth) {
     return null;
   }
@@ -126,7 +128,7 @@ async function getSpreadsheet(): Promise<GoogleSpreadsheet | null> {
   try {
     const doc = new GoogleSpreadsheet(sheetId, auth);
     await doc.loadInfo();
-    
+
     console.log(`[Google Sheets] Connected to spreadsheet: "${doc.title}"`);
     return doc;
   } catch (error) {
@@ -143,7 +145,9 @@ async function getSpreadsheet(): Promise<GoogleSpreadsheet | null> {
  * Get or create the contacts worksheet.
  * Creates headers if the sheet is new.
  */
-async function getOrCreateContactsSheet(doc: GoogleSpreadsheet): Promise<GoogleSpreadsheetWorksheet | null> {
+async function getOrCreateContactsSheet(
+  doc: GoogleSpreadsheet
+): Promise<GoogleSpreadsheetWorksheet | null> {
   const SHEET_NAME = "Kontaktanfragen";
   const HEADERS = [
     "Datum",
@@ -184,14 +188,14 @@ async function getOrCreateContactsSheet(doc: GoogleSpreadsheet): Promise<GoogleS
  */
 function formatDateTime(): { date: string; time: string } {
   const now = new Date();
-  
+
   // Format for German locale
   const dateFormatter = new Intl.DateTimeFormat("de-DE", {
     day: "2-digit",
     month: "2-digit",
     year: "numeric",
   });
-  
+
   const timeFormatter = new Intl.DateTimeFormat("de-DE", {
     hour: "2-digit",
     minute: "2-digit",
@@ -207,17 +211,17 @@ function formatDateTime(): { date: string; time: string } {
 
 /**
  * Append a contact form submission to Google Sheets.
- * 
+ *
  * This function follows the "Fire and Forget" / "Fail Safe" pattern:
  * - Returns { success: true } even if the operation fails
  * - Only logs errors to console
  * - Never throws exceptions
- * 
+ *
  * @param data - Contact form data to append
  * @returns Object with success status and optional error message
  */
-export async function appendToSheet(data: ContactFormData): Promise<{ 
-  success: boolean; 
+export async function appendToSheet(data: ContactFormData): Promise<{
+  success: boolean;
   error?: string;
 }> {
   try {
@@ -228,14 +232,14 @@ export async function appendToSheet(data: ContactFormData): Promise<{
     }
 
     const doc = await getSpreadsheet();
-    
+
     if (!doc) {
       console.error("[Google Sheets] Could not connect to spreadsheet");
       return { success: true }; // Fail safe
     }
 
     const sheet = await getOrCreateContactsSheet(doc);
-    
+
     if (!sheet) {
       console.error("[Google Sheets] Could not get contacts sheet");
       return { success: true }; // Fail safe
@@ -260,12 +264,11 @@ export async function appendToSheet(data: ContactFormData): Promise<{
 
     console.log(`[Google Sheets] ✅ Contact saved: ${data.name} (${data.email})`);
     return { success: true };
-
   } catch (error) {
     // Log error but don't fail the user experience
     console.error("[Google Sheets] ❌ Failed to save contact:", error);
-    
-    return { 
+
+    return {
       success: true, // Fail safe - still return success
       error: error instanceof Error ? error.message : "Unknown error",
     };
@@ -279,7 +282,7 @@ export async function appendToSheet(data: ContactFormData): Promise<{
 export async function testConnection(): Promise<boolean> {
   try {
     const doc = await getSpreadsheet();
-    
+
     if (!doc) {
       return false;
     }
@@ -287,7 +290,7 @@ export async function testConnection(): Promise<boolean> {
     console.log("[Google Sheets] Connection test successful!");
     console.log(`[Google Sheets] Sheet title: ${doc.title}`);
     console.log(`[Google Sheets] Sheet count: ${doc.sheetCount}`);
-    
+
     return true;
   } catch (error) {
     console.error("[Google Sheets] Connection test failed:", error);
@@ -305,16 +308,15 @@ export async function testConnection(): Promise<boolean> {
  */
 export function sanitizeForSheet(value: string): string {
   if (!value) return "";
-  
+
   // Characters that could start a formula
   const dangerousChars = ["=", "+", "-", "@", "\t", "\r", "\n"];
-  
+
   const trimmed = value.trim();
-  
+
   if (dangerousChars.some((char) => trimmed.startsWith(char))) {
     return `'${trimmed}`;
   }
-  
+
   return trimmed;
 }
-

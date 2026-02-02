@@ -196,7 +196,7 @@ export function StatsDashboard() {
       className="relative py-24 md:py-32 overflow-hidden"
     >
       {/* Dark Background with Gradient */}
-      <div 
+      <div
         className="
           absolute inset-0 
           bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950
@@ -209,12 +209,12 @@ export function StatsDashboard() {
       <div className="absolute top-1/2 right-0 w-[300px] h-[300px] bg-cyan-500/10 rounded-full blur-[80px] translate-x-1/2" />
 
       {/* Grid Pattern Overlay */}
-      <div 
+      <div
         className="absolute inset-0 opacity-[0.03]"
         style={{
           backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
                            linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-          backgroundSize: '60px 60px',
+          backgroundSize: "60px 60px",
         }}
       />
 
@@ -248,25 +248,24 @@ export function StatsDashboard() {
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-5 auto-rows-[minmax(180px,auto)]">
-          
           {/* ========================= */}
           {/* CARD 1: Visa Success Rate */}
           {/* Spans 2 columns x 2 rows  */}
           {/* ========================= */}
-          <StatCard 
+          <StatCard
             className="md:col-span-2 md:row-span-2 p-8 md:p-10"
             delay={0}
             isInView={isInView}
           >
             {/* Background Shield Icon */}
-            <Shield 
+            <Shield
               className="
                 absolute -right-8 -bottom-8 
                 w-64 h-64 text-white/[0.03]
                 transition-all duration-500
                 group-hover:text-white/[0.06]
                 group-hover:scale-110
-              " 
+              "
               strokeWidth={0.5}
             />
 
@@ -335,19 +334,15 @@ export function StatsDashboard() {
           {/* ========================= */}
           {/* CARD 2: Candidates Placed */}
           {/* ========================= */}
-          <StatCard 
-            className="p-6 md:p-8"
-            delay={0.1}
-            isInView={isInView}
-          >
+          <StatCard className="p-6 md:p-8" delay={0.1} isInView={isInView}>
             {/* Background Icon */}
-            <Plane 
+            <Plane
               className="
                 absolute -right-4 -bottom-4 
                 w-32 h-32 text-white/[0.03]
                 transition-all duration-500
                 group-hover:text-white/[0.06]
-              " 
+              "
               strokeWidth={0.5}
             />
 
@@ -368,31 +363,23 @@ export function StatsDashboard() {
                 />
               </div>
 
-              <p className="text-sm font-medium text-slate-300 mb-1">
-                {stats.candidates.label}
-              </p>
-              <p className="text-xs text-slate-500">
-                {stats.candidates.description}
-              </p>
+              <p className="text-sm font-medium text-slate-300 mb-1">{stats.candidates.label}</p>
+              <p className="text-xs text-slate-500">{stats.candidates.description}</p>
             </div>
           </StatCard>
 
           {/* ========================= */}
           {/* CARD 3: Retention Rate    */}
           {/* ========================= */}
-          <StatCard 
-            className="p-6 md:p-8"
-            delay={0.2}
-            isInView={isInView}
-          >
+          <StatCard className="p-6 md:p-8" delay={0.2} isInView={isInView}>
             {/* Background Icon */}
-            <TrendingUp 
+            <TrendingUp
               className="
                 absolute -right-4 -bottom-4 
                 w-32 h-32 text-white/[0.03]
                 transition-all duration-500
                 group-hover:text-white/[0.06]
-              " 
+              "
               strokeWidth={0.5}
             />
 
@@ -414,12 +401,8 @@ export function StatsDashboard() {
                 />
               </div>
 
-              <p className="text-sm font-medium text-slate-300 mb-1">
-                {stats.retention.label}
-              </p>
-              <p className="text-xs text-slate-500">
-                {stats.retention.description}
-              </p>
+              <p className="text-sm font-medium text-slate-300 mb-1">{stats.retention.label}</p>
+              <p className="text-xs text-slate-500">{stats.retention.description}</p>
             </div>
           </StatCard>
 
@@ -427,19 +410,15 @@ export function StatsDashboard() {
           {/* CARD 4: Partner Network   */}
           {/* Spans 2 columns           */}
           {/* ========================= */}
-          <StatCard 
-            className="md:col-span-2 p-6 md:p-8"
-            delay={0.3}
-            isInView={isInView}
-          >
+          <StatCard className="md:col-span-2 p-6 md:p-8" delay={0.3} isInView={isInView}>
             {/* Background Icon */}
-            <Building2 
+            <Building2
               className="
                 absolute -right-8 -bottom-8 
                 w-48 h-48 text-white/[0.03]
                 transition-all duration-500
                 group-hover:text-white/[0.06]
-              " 
+              "
               strokeWidth={0.5}
             />
 
@@ -464,9 +443,7 @@ export function StatsDashboard() {
                   />
                 </div>
 
-                <p className="text-sm text-slate-400 max-w-xs">
-                  {stats.partners.description}
-                </p>
+                <p className="text-sm text-slate-400 max-w-xs">{stats.partners.description}</p>
               </div>
 
               {/* Partner logos placeholder */}
@@ -491,7 +468,6 @@ export function StatsDashboard() {
               </div>
             </div>
           </StatCard>
-
         </div>
 
         {/* Bottom Trust Indicators */}
@@ -515,4 +491,3 @@ export function StatsDashboard() {
     </section>
   );
 }
-

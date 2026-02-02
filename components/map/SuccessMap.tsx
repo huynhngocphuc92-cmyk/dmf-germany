@@ -8,7 +8,8 @@ import { successStories, type CityPlacement } from "@/lib/data/success-stories";
 
 // Fix Leaflet default icon issue
 // Using CDN for icon assets to avoid import issues
-const iconRetinaUrl = "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png";
+const iconRetinaUrl =
+  "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png";
 const iconUrl = "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png";
 const shadowUrl = "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png";
 
@@ -32,7 +33,7 @@ if (typeof window !== "undefined") {
 /**
  * Success Map Component
  * Displays interactive map with placement markers across Germany
- * 
+ *
  * Note: This component is wrapped by MapWrapper.tsx for SSR: false support
  */
 export const SuccessMap = () => {
@@ -54,7 +55,7 @@ export const SuccessMap = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        
+
         {/* Render markers for each city */}
         {successStories.map((city: CityPlacement) => (
           <Marker key={city.id} position={city.position}>
@@ -66,9 +67,7 @@ export const SuccessMap = () => {
                 </p>
                 <div className="mt-2">
                   <p className="text-xs text-gray-600 mb-1 font-medium">Branchen:</p>
-                  <p className="text-xs text-gray-700">
-                    {city.jobTypes.join(", ")}
-                  </p>
+                  <p className="text-xs text-gray-700">{city.jobTypes.join(", ")}</p>
                 </div>
               </div>
             </Popup>

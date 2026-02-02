@@ -1,19 +1,40 @@
 import { NextRequest, NextResponse } from "next/server";
+import { checkRateLimit, getClientIp, RATE_LIMITS } from "@/lib/rate-limit";
 
 /**
  * Telegram Bot API Route
  * Sends notification messages to Telegram Admin
- * 
+ * - Rate limited (10 requests per minute per IP)
+ *
  * Environment Variables Required:
  * - TELEGRAM_BOT_TOKEN: Your Telegram Bot Token
  * - TELEGRAM_CHAT_ID: Your Telegram Chat ID
- * 
+ *
  * Usage:
  * POST /api/telegram
  * Body: { message: string }
  */
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting check
+    const clientIp = getClientIp(request);
+    const rateLimitResult = checkRateLimit(`telegram:${clientIp}`, RATE_LIMITS.TELEGRAM);
+
+    if (!rateLimitResult.success) {
+      return NextResponse.json(
+        {
+          error: "Too many requests",
+          retryAfter: rateLimitResult.resetIn,
+        },
+        {
+          status: 429,
+          headers: {
+            "Retry-After": rateLimitResult.resetIn.toString(),
+          },
+        }
+      );
+    }
+
     const body = await request.json();
     const { message } = body;
 
@@ -32,10 +53,10 @@ export async function POST(request: NextRequest) {
     if (!botToken || !chatId) {
       console.log("[Telegram API] Credentials not set. Message would be:", message);
       return NextResponse.json(
-        { 
-          success: false, 
+        {
+          success: false,
           message: "Telegram credentials not configured",
-          logged: true 
+          logged: true,
         },
         { status: 200 } // Return 200 to avoid breaking the flow
       );
@@ -43,7 +64,7 @@ export async function POST(request: NextRequest) {
 
     // Send message to Telegram
     const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
-    
+
     const response = await fetch(telegramApiUrl, {
       method: "POST",
       headers: {
@@ -67,11 +88,13 @@ export async function POST(request: NextRequest) {
 
     const data = await response.json();
     return NextResponse.json({ success: true, data }, { status: 200 });
-
   } catch (error) {
     console.error("[Telegram API] Unexpected error:", error);
     return NextResponse.json(
-      { error: "Internal server error", message: error instanceof Error ? error.message : "Unknown error" },
+      {
+        error: "Internal server error",
+        message: error instanceof Error ? error.message : "Unknown error",
+      },
       { status: 500 }
     );
   }
@@ -80,10 +103,10 @@ export async function POST(request: NextRequest) {
 // Allow GET for testing (optional)
 export async function GET() {
   return NextResponse.json(
-    { 
+    {
       message: "Telegram API endpoint",
       status: "active",
-      configured: !!(process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID)
+      configured: !!(process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID),
     },
     { status: 200 }
   );

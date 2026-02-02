@@ -59,13 +59,14 @@ function PremiumTimelineNode({ step, isInView }: PremiumTimelineNodeProps) {
         className={`
           absolute inset-0 rounded-full
           transition-all duration-700 ease-out
-          ${isInView 
-            ? "bg-gradient-to-br from-blue-400/40 to-blue-600/40 blur-xl scale-150 opacity-100" 
-            : "opacity-0 scale-100"
+          ${
+            isInView
+              ? "bg-gradient-to-br from-blue-400/40 to-blue-600/40 blur-xl scale-150 opacity-100"
+              : "opacity-0 scale-100"
           }
         `}
       />
-      
+
       {/* Main Node */}
       <div
         className={`
@@ -73,24 +74,21 @@ function PremiumTimelineNode({ step, isInView }: PremiumTimelineNodeProps) {
           w-16 h-16 md:w-20 md:h-20 rounded-full
           bg-white
           transition-all duration-500 ease-out
-          ${isInView 
-            ? "shadow-[0_0_30px_rgba(37,99,235,0.5)] scale-105" 
-            : "shadow-lg scale-100"
-          }
+          ${isInView ? "shadow-[0_0_30px_rgba(37,99,235,0.5)] scale-105" : "shadow-lg scale-100"}
         `}
         style={{
-          background: isInView 
+          background: isInView
             ? "linear-gradient(white, white) padding-box, linear-gradient(135deg, #3b82f6, #1e40af) border-box"
             : "white",
           border: isInView ? "4px solid transparent" : "4px solid #e2e8f0",
         }}
       >
-        <Icon 
+        <Icon
           className={`
             h-7 w-7 md:h-8 md:w-8 
             transition-all duration-500
             ${isInView ? "text-blue-600" : "text-slate-400"}
-          `} 
+          `}
         />
       </div>
     </div>
@@ -136,7 +134,7 @@ function PremiumStepCard({ step, index }: PremiumStepCardProps) {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="flex-1 pb-16"
         >
-          <Card 
+          <Card
             className="
               relative overflow-hidden
               bg-white border border-slate-100 
@@ -148,9 +146,9 @@ function PremiumStepCard({ step, index }: PremiumStepCardProps) {
           >
             {/* Accent Line - Left */}
             <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 to-blue-700" />
-            
+
             {/* Watermark Number */}
-            <div 
+            <div
               className="
                 absolute -right-4 -top-6
                 text-[120px] font-black leading-none
@@ -172,9 +170,7 @@ function PremiumStepCard({ step, index }: PremiumStepCardProps) {
               </div>
 
               {/* Title */}
-              <h3 className="text-lg font-bold text-slate-800 mb-4 leading-tight">
-                {step.title}
-              </h3>
+              <h3 className="text-lg font-bold text-slate-800 mb-4 leading-tight">{step.title}</h3>
 
               {/* Checklist */}
               <ul className="space-y-3">
@@ -204,7 +200,7 @@ function PremiumStepCard({ step, index }: PremiumStepCardProps) {
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               className="w-full max-w-md"
             >
-              <Card 
+              <Card
                 className="
                   relative overflow-hidden
                   bg-white border border-slate-100 
@@ -216,9 +212,9 @@ function PremiumStepCard({ step, index }: PremiumStepCardProps) {
               >
                 {/* Accent Line - Right side (pointing to center) */}
                 <div className="absolute right-0 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 to-blue-700" />
-                
+
                 {/* Watermark Number */}
-                <div 
+                <div
                   className="
                     absolute -left-2 -top-8
                     text-[160px] font-black leading-none
@@ -265,10 +261,11 @@ function PremiumStepCard({ step, index }: PremiumStepCardProps) {
           {isLeft && (
             <div className="absolute right-[60px] w-[60px] h-[3px] bg-gradient-to-r from-blue-300/50 to-blue-500">
               {/* Arrow tip */}
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 
+              <div
+                className="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 
                 border-t-[5px] border-t-transparent 
                 border-l-[8px] border-l-blue-500 
-                border-b-[5px] border-b-transparent" 
+                border-b-[5px] border-b-transparent"
               />
             </div>
           )}
@@ -277,10 +274,11 @@ function PremiumStepCard({ step, index }: PremiumStepCardProps) {
           {!isLeft && (
             <div className="absolute left-[60px] w-[60px] h-[3px] bg-gradient-to-l from-blue-300/50 to-blue-500">
               {/* Arrow tip */}
-              <div className="absolute left-0 top-1/2 -translate-y-1/2 w-0 h-0 
+              <div
+                className="absolute left-0 top-1/2 -translate-y-1/2 w-0 h-0 
                 border-t-[5px] border-t-transparent 
                 border-r-[8px] border-r-blue-500 
-                border-b-[5px] border-b-transparent" 
+                border-b-[5px] border-b-transparent"
               />
             </div>
           )}
@@ -298,7 +296,7 @@ function PremiumStepCard({ step, index }: PremiumStepCardProps) {
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               className="w-full max-w-md"
             >
-              <Card 
+              <Card
                 className="
                   relative overflow-hidden
                   bg-white border border-slate-100 
@@ -310,9 +308,9 @@ function PremiumStepCard({ step, index }: PremiumStepCardProps) {
               >
                 {/* Accent Line - Left side (pointing to center) */}
                 <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 to-blue-700" />
-                
+
                 {/* Watermark Number */}
-                <div 
+                <div
                   className="
                     absolute -right-2 -top-8
                     text-[160px] font-black leading-none
@@ -373,13 +371,10 @@ export function ProcessRoadmap() {
   }));
 
   return (
-    <section
-      id="process-roadmap"
-      className="relative py-24 md:py-32 overflow-hidden"
-    >
+    <section id="process-roadmap" className="relative py-24 md:py-32 overflow-hidden">
       {/* Background with subtle pattern */}
       <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-white to-slate-50" />
-      
+
       {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
@@ -415,36 +410,32 @@ export function ProcessRoadmap() {
           {/* ======================= */}
           {/* GRADIENT TIMELINE LINE  */}
           {/* ======================= */}
-          
+
           {/* Mobile - Left aligned - stops before success node */}
-          <div 
+          <div
             className="
               md:hidden absolute left-8 top-0 w-1 
               bg-gradient-to-b from-blue-300 via-blue-500 to-blue-700
               rounded-full
             "
-            style={{ bottom: '140px' }}
+            style={{ bottom: "140px" }}
           />
 
           {/* Desktop - Center aligned - stops before success node */}
-          <div 
+          <div
             className="
               hidden md:block absolute left-1/2 top-0 w-1 
               -translate-x-1/2
               bg-gradient-to-b from-blue-300 via-blue-500 to-blue-700
               rounded-full
             "
-            style={{ bottom: '180px' }}
+            style={{ bottom: "180px" }}
           />
 
           {/* Steps */}
           <div className="space-y-8 md:space-y-20">
             {processSteps.map((step, index) => (
-              <PremiumStepCard 
-                key={step.id} 
-                step={step} 
-                index={index} 
-              />
+              <PremiumStepCard key={step.id} step={step} index={index} />
             ))}
           </div>
 
@@ -460,7 +451,7 @@ export function ProcessRoadmap() {
           >
             {/* Mobile */}
             <div className="md:hidden flex items-center gap-5">
-              <div 
+              <div
                 className="
                   relative w-16 h-16 rounded-full 
                   bg-gradient-to-br from-emerald-400 to-emerald-600 
@@ -474,15 +465,13 @@ export function ProcessRoadmap() {
                 <span className="text-xl font-bold text-slate-800">
                   {t.processRoadmap.success_title}
                 </span>
-                <p className="text-sm text-slate-500">
-                  {t.processRoadmap.success_desc_mobile}
-                </p>
+                <p className="text-sm text-slate-500">{t.processRoadmap.success_desc_mobile}</p>
               </div>
             </div>
 
             {/* Desktop */}
             <div className="hidden md:flex flex-col items-center gap-4">
-              <div 
+              <div
                 className="
                   relative w-24 h-24 rounded-full 
                   bg-gradient-to-br from-emerald-400 to-emerald-600 
@@ -496,9 +485,7 @@ export function ProcessRoadmap() {
                 <span className="text-2xl font-bold text-slate-800 block">
                   {t.processRoadmap.success_title}
                 </span>
-                <p className="text-slate-500">
-                  {t.processRoadmap.success_desc}
-                </p>
+                <p className="text-slate-500">{t.processRoadmap.success_desc}</p>
               </div>
             </div>
           </motion.div>
@@ -514,7 +501,7 @@ export function ProcessRoadmap() {
           transition={{ duration: 0.6 }}
           className="mt-20 md:mt-28"
         >
-          <Card 
+          <Card
             className="
               relative overflow-hidden
               max-w-2xl mx-auto 
@@ -529,7 +516,7 @@ export function ProcessRoadmap() {
 
             <CardContent className="relative z-10 p-10 md:p-12 text-center">
               <div className="mb-8">
-                <div 
+                <div
                   className="
                     w-16 h-16 mx-auto rounded-2xl 
                     bg-gradient-to-br from-blue-500 to-blue-600 
@@ -546,23 +533,24 @@ export function ProcessRoadmap() {
               <Button
                 size="lg"
                 className="
-                  gap-3 
-                  bg-white hover:bg-slate-100 
-                  text-slate-900 
-                  shadow-lg hover:shadow-xl 
+                  gap-3
+                  bg-white hover:bg-slate-100
+                  text-slate-900
+                  shadow-lg hover:shadow-xl
                   transition-all duration-300
                   px-8 py-6 text-base font-semibold
                   hover:-translate-y-0.5
                 "
+                asChild
               >
-                <Download className="h-5 w-5" />
-                {t.processRoadmap.cta_title}
-                <ArrowRight className="h-4 w-4" />
+                <a href="/DMF Vietnam Handbuch.pdf" download="DMF_Prozess_Guide.pdf">
+                  <Download className="h-5 w-5" />
+                  {t.processRoadmap.cta_title}
+                  <ArrowRight className="h-4 w-4" />
+                </a>
               </Button>
 
-              <p className="mt-6 text-xs text-slate-500">
-                {t.processRoadmap.cta_footer}
-              </p>
+              <p className="mt-6 text-xs text-slate-500">{t.processRoadmap.cta_footer}</p>
             </CardContent>
           </Card>
         </motion.div>

@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { useState, useRef } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { assetUpdateSchema, type AssetUpdateData } from '@/lib/validations/schemas';
-import { Save, X, Loader2, Edit2, Trash2, Upload, XCircle, ImageIcon } from 'lucide-react';
-import { toast } from 'sonner';
-import Image from 'next/image';
-import { uploadThemeImage, updateSiteConfig } from '@/actions/theme-actions';
+import { useState, useRef } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { assetUpdateSchema, type AssetUpdateData } from "@/lib/validations/schemas";
+import { Save, X, Loader2, Edit2, Trash2, Upload, XCircle, ImageIcon } from "lucide-react";
+import { toast } from "sonner";
+import Image from "next/image";
+import { uploadThemeImage, updateSiteConfig } from "@/actions/theme-actions";
 
 interface AssetCardProps {
   item: { key: string; value: string | null; asset_type: string; id?: string };
@@ -17,9 +17,9 @@ interface AssetCardProps {
 
 // Helper function to validate if a string is a valid image URL/path
 const isValidImagePath = (value: string | null | undefined): boolean => {
-  if (!value || typeof value !== 'string') return false;
+  if (!value || typeof value !== "string") return false;
   // Check if it starts with "/" (relative path) or "http://" or "https://" (absolute URL)
-  return value.startsWith('/') || value.startsWith('http://') || value.startsWith('https://');
+  return value.startsWith("/") || value.startsWith("http://") || value.startsWith("https://");
 };
 
 export default function AssetCard({ item, onUpdate, onDelete }: AssetCardProps) {
@@ -28,42 +28,42 @@ export default function AssetCard({ item, onUpdate, onDelete }: AssetCardProps) 
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const assetType = item.asset_type?.toUpperCase() || 'TEXT';
-  const isImageType = assetType === 'IMAGE';
+  const assetType = item.asset_type?.toUpperCase() || "TEXT";
+  const isImageType = assetType === "IMAGE";
 
   // Initialize Form
-  const { 
-    register, 
-    handleSubmit, 
-    reset, 
-    formState: { isSubmitting, errors } 
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { isSubmitting, errors },
   } = useForm<AssetUpdateData>({
     resolver: zodResolver(assetUpdateSchema),
     defaultValues: {
       key: item.key,
-      value: item.value || '', // Ensure value is never null for input
-      asset_type: item.asset_type as any
-    }
+      value: item.value || "", // Ensure value is never null for input
+      asset_type: item.asset_type as any,
+    },
   });
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       // Validate file type
-      const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+      const allowedTypes = ["image/jpeg", "image/png", "image/webp", "image/gif"];
       if (!allowedTypes.includes(file.type)) {
-        toast.error('Invalid file type. Only JPG, PNG, WebP, GIF allowed.');
+        toast.error("Invalid file type. Only JPG, PNG, WebP, GIF allowed.");
         return;
       }
-      
+
       // Validate file size (5MB max)
       if (file.size > 5 * 1024 * 1024) {
-        toast.error('File too large. Maximum 5MB allowed.');
+        toast.error("File too large. Maximum 5MB allowed.");
         return;
       }
 
       setSelectedFile(file);
-      
+
       // Create preview URL
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -77,7 +77,7 @@ export default function AssetCard({ item, onUpdate, onDelete }: AssetCardProps) 
     setSelectedFile(null);
     setPreviewUrl(null);
     if (fileInputRef.current) {
-      fileInputRef.current.value = '';
+      fileInputRef.current.value = "";
     }
   };
 
@@ -89,18 +89,18 @@ export default function AssetCard({ item, onUpdate, onDelete }: AssetCardProps) 
       // If it's an image type and a file was selected, upload it first
       if (isImageType && selectedFile) {
         const formData = new FormData();
-        formData.append('file', selectedFile);
-        
+        formData.append("file", selectedFile);
+
         const uploadResult = await uploadThemeImage(formData);
-        
+
         if (uploadResult.error || !uploadResult.url) {
-          toast.error(uploadResult.error || 'Failed to upload image');
+          toast.error(uploadResult.error || "Failed to upload image");
           setIsUploading(false);
           return;
         }
-        
+
         finalValue = uploadResult.url;
-        toast.success('Image uploaded successfully');
+        toast.success("Image uploaded successfully");
       }
 
       // Update the config in database
@@ -118,13 +118,13 @@ export default function AssetCard({ item, onUpdate, onDelete }: AssetCardProps) 
 
       // Update local state
       await onUpdate(data.key, finalValue);
-      
-      toast.success('Inhalt erfolgreich aktualisiert');
+
+      toast.success("Inhalt erfolgreich aktualisiert");
       setIsEditing(false);
       setSelectedFile(null);
       setPreviewUrl(null);
     } catch (error) {
-      toast.error('Fehler beim Speichern');
+      toast.error("Fehler beim Speichern");
       console.error(error);
     } finally {
       setIsUploading(false);
@@ -137,7 +137,7 @@ export default function AssetCard({ item, onUpdate, onDelete }: AssetCardProps) 
     setSelectedFile(null);
     setPreviewUrl(null);
     if (fileInputRef.current) {
-      fileInputRef.current.value = '';
+      fileInputRef.current.value = "";
     }
   };
 
@@ -155,12 +155,12 @@ export default function AssetCard({ item, onUpdate, onDelete }: AssetCardProps) 
           </div>
 
           {/* CONDITIONAL RENDERER */}
-          {assetType === 'IMAGE' ? (
+          {assetType === "IMAGE" ? (
             // CASE 1: IMAGE PREVIEW
             <div className="relative w-full max-w-full h-32 bg-slate-50 border-2 border-dashed border-slate-300 rounded-lg overflow-hidden flex items-center justify-center hover:border-blue-500 transition-colors">
               {item.value && isValidImagePath(item.value) ? (
-                <Image 
-                  src={item.value} 
+                <Image
+                  src={item.value}
                   alt={item.key}
                   fill
                   className="object-contain p-2"
@@ -170,7 +170,7 @@ export default function AssetCard({ item, onUpdate, onDelete }: AssetCardProps) 
                 <div className="flex flex-col items-center gap-2 text-slate-400">
                   <ImageIcon size={24} className="opacity-50" />
                   <span className="text-xs">
-                    {item.value ? 'Invalid image path' : 'No image set'}
+                    {item.value ? "Invalid image path" : "No image set"}
                   </span>
                   {item.value && (
                     <span className="text-[10px] font-mono text-slate-300 truncate max-w-full px-2">
@@ -180,15 +180,17 @@ export default function AssetCard({ item, onUpdate, onDelete }: AssetCardProps) 
                 </div>
               )}
             </div>
-          ) : assetType === 'COLOR' ? (
+          ) : assetType === "COLOR" ? (
             // CASE 2: COLOR PREVIEW
             <div className="flex items-center gap-3">
-              <div 
+              <div
                 className="w-12 h-12 rounded-lg border-2 border-slate-200 shadow-sm flex-shrink-0"
-                style={{ backgroundColor: item.value || '#ffffff' }} 
+                style={{ backgroundColor: item.value || "#ffffff" }}
               />
               <div className="flex flex-col min-w-0 flex-1">
-                <span className="font-mono text-slate-900 font-medium truncate">{item.value || 'No color'}</span>
+                <span className="font-mono text-slate-900 font-medium truncate">
+                  {item.value || "No color"}
+                </span>
                 <span className="text-xs text-slate-500">Hex Code</span>
               </div>
             </div>
@@ -199,17 +201,17 @@ export default function AssetCard({ item, onUpdate, onDelete }: AssetCardProps) 
             </p>
           )}
         </div>
-        
+
         <div className="px-4 pb-4 flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-          <button 
-            onClick={() => setIsEditing(true)} 
+          <button
+            onClick={() => setIsEditing(true)}
             className="p-2 text-slate-500 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors"
             title="Edit"
           >
             <Edit2 size={16} />
           </button>
           {onDelete && (
-            <button 
+            <button
               onClick={() => onDelete(item.key)}
               className="p-2 text-slate-500 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors"
               title="Delete"
@@ -223,13 +225,14 @@ export default function AssetCard({ item, onUpdate, onDelete }: AssetCardProps) 
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="p-4 bg-blue-50/50 border border-blue-200 rounded-xl shadow-sm">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="p-4 bg-blue-50/50 border border-blue-200 rounded-xl shadow-sm"
+    >
       <div className="flex justify-between items-center mb-2">
-        <span className="text-xs font-mono font-bold text-blue-600">
-          Editing: {item.key}
-        </span>
+        <span className="text-xs font-mono font-bold text-blue-600">Editing: {item.key}</span>
       </div>
-      
+
       {/* Dynamic Input based on Asset Type */}
       <div className="mb-3">
         {isImageType ? (
@@ -238,8 +241,8 @@ export default function AssetCard({ item, onUpdate, onDelete }: AssetCardProps) 
             {/* Current Image Preview */}
             {item.value && !previewUrl && isValidImagePath(item.value) && (
               <div className="relative w-full h-32 bg-slate-50 border-2 border-dashed border-slate-300 rounded-lg overflow-hidden">
-                <Image 
-                  src={item.value} 
+                <Image
+                  src={item.value}
                   alt={item.key}
                   fill
                   className="object-contain p-2"
@@ -257,12 +260,12 @@ export default function AssetCard({ item, onUpdate, onDelete }: AssetCardProps) 
                 </span>
               </div>
             )}
-            
+
             {/* New File Preview */}
             {previewUrl && (
               <div className="relative w-full h-32 bg-slate-50 border-2 border-dashed border-blue-300 rounded-lg overflow-hidden">
-                <Image 
-                  src={previewUrl} 
+                <Image
+                  src={previewUrl}
                   alt="Preview"
                   fill
                   className="object-contain p-2"
@@ -277,7 +280,7 @@ export default function AssetCard({ item, onUpdate, onDelete }: AssetCardProps) 
                 </button>
               </div>
             )}
-            
+
             {/* File Input */}
             <div className="relative">
               <input
@@ -294,38 +297,38 @@ export default function AssetCard({ item, onUpdate, onDelete }: AssetCardProps) 
               >
                 <Upload size={18} className="text-slate-500" />
                 <span className="text-sm font-medium text-slate-700">
-                  {selectedFile ? selectedFile.name : 'Choose new image file'}
+                  {selectedFile ? selectedFile.name : "Choose new image file"}
                 </span>
               </label>
               <p className="text-xs text-slate-400 mt-1 text-center">
                 JPG, PNG, WebP, GIF (Max 5MB)
               </p>
             </div>
-            
+
             {/* Hidden input for form validation (keeps existing value if no new file) */}
-            <input type="hidden" {...register('value')} value={item.value || ''} />
+            <input type="hidden" {...register("value")} value={item.value || ""} />
           </div>
-        ) : assetType === 'COLOR' ? (
+        ) : assetType === "COLOR" ? (
           // COLOR TYPE: Color Input
-          <input 
+          <input
             type="color"
-            {...register('value')} 
-            className="w-full h-12 border-2 border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none cursor-pointer" 
+            {...register("value")}
+            className="w-full h-12 border-2 border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none cursor-pointer"
             placeholder="#000000"
           />
-        ) : assetType === 'TEXT' || !item.asset_type ? (
+        ) : assetType === "TEXT" || !item.asset_type ? (
           // TEXT TYPE: Textarea
-          <textarea 
-            {...register('value')} 
-            className="w-full p-3 text-sm border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" 
-            rows={3} 
+          <textarea
+            {...register("value")}
+            className="w-full p-3 text-sm border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+            rows={3}
             placeholder="Enter content..."
           />
         ) : (
           // DEFAULT: Text Input
-          <input 
-            {...register('value')} 
-            className="w-full p-3 text-sm border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" 
+          <input
+            {...register("value")}
+            className="w-full p-3 text-sm border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
             placeholder="Enter value..."
           />
         )}
@@ -333,23 +336,23 @@ export default function AssetCard({ item, onUpdate, onDelete }: AssetCardProps) 
       </div>
 
       <div className="flex justify-end gap-2">
-        <button 
-          type="button" 
-          onClick={cancelEdit} 
+        <button
+          type="button"
+          onClick={cancelEdit}
           disabled={isSubmitting}
           className="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-200 rounded-lg transition-colors"
         >
           Cancel
         </button>
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           disabled={isSubmitting || isUploading}
           className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors disabled:opacity-50"
         >
-          {(isSubmitting || isUploading) ? (
+          {isSubmitting || isUploading ? (
             <>
               <Loader2 size={16} className="animate-spin" />
-              {isUploading ? 'Uploading...' : 'Saving...'}
+              {isUploading ? "Uploading..." : "Saving..."}
             </>
           ) : (
             <>

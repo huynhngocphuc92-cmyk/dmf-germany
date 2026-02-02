@@ -1,8 +1,21 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { Calculator } from "lucide-react";
-import { RoiCalculator } from "@/components/tools/RoiCalculator";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+
+// Lazy load RoiCalculator - it's a heavy component (~847 lines)
+const RoiCalculator = dynamic(
+  () => import("@/components/tools/RoiCalculator").then((mod) => mod.RoiCalculator),
+  {
+    loading: () => (
+      <div className="flex items-center justify-center py-20">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+      </div>
+    ),
+    ssr: false, // Disable SSR for this client-heavy component
+  }
+);
 
 export default function RoiRechnerPage() {
   const { t } = useLanguage();
@@ -22,7 +35,8 @@ export default function RoiRechnerPage() {
               {t.roi?.title || "Wirtschaftlichkeits-Rechner"}
             </h1>
             <p className="text-lg md:text-xl opacity-90 max-w-2xl mx-auto leading-relaxed">
-              {t.roi?.subtitle || "Prüfen Sie sofort die Wirtschaftlichkeit bei der Rekrutierung vietnamesischer Fachkräfte."}
+              {t.roi?.subtitle ||
+                "Prüfen Sie sofort die Wirtschaftlichkeit bei der Rekrutierung vietnamesischer Fachkräfte."}
             </p>
           </div>
         </div>
@@ -43,7 +57,8 @@ export default function RoiRechnerPage() {
               {t.roi?.cta_title || "Überzeugt vom Ergebnis?"}
             </h2>
             <p className="text-lg opacity-90 mb-8">
-              {t.roi?.cta_subtitle || "Kontaktieren Sie uns jetzt für ein individuelles Angebot für Ihr Unternehmen."}
+              {t.roi?.cta_subtitle ||
+                "Kontaktieren Sie uns jetzt für ein individuelles Angebot für Ihr Unternehmen."}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a

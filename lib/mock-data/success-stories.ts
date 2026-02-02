@@ -43,7 +43,7 @@ export const successStories: SuccessStory[] = [
     coordinates: [52.52, 13.405],
     placementDate: "07/2024",
   },
-  
+
   // Munich - Healthcare & IT
   {
     id: "munich-1",
@@ -69,7 +69,7 @@ export const successStories: SuccessStory[] = [
     coordinates: [48.1351, 11.582],
     placementDate: "08/2024",
   },
-  
+
   // Hamburg - Healthcare & Hospitality
   {
     id: "hamburg-1",
@@ -95,7 +95,7 @@ export const successStories: SuccessStory[] = [
     coordinates: [53.5511, 9.9937],
     placementDate: "09/2024",
   },
-  
+
   // Cologne - Healthcare & Construction
   {
     id: "cologne-1",
@@ -121,7 +121,7 @@ export const successStories: SuccessStory[] = [
     coordinates: [50.9375, 6.9603],
     placementDate: "10/2024",
   },
-  
+
   // Frankfurt - Finance & Healthcare
   {
     id: "frankfurt-1",
@@ -147,7 +147,7 @@ export const successStories: SuccessStory[] = [
     coordinates: [50.1109, 8.6821],
     placementDate: "07/2024",
   },
-  
+
   // Stuttgart - Automotive & Healthcare
   {
     id: "stuttgart-1",
@@ -173,7 +173,7 @@ export const successStories: SuccessStory[] = [
     coordinates: [48.7758, 9.1829],
     placementDate: "08/2024",
   },
-  
+
   // Düsseldorf - Healthcare & IT
   {
     id: "duesseldorf-1",
@@ -191,7 +191,7 @@ export const successStories: SuccessStory[] = [
     coordinates: [51.2277, 6.7735],
     placementDate: "05/2024",
   },
-  
+
   // Dresden - Healthcare & Construction
   {
     id: "dresden-1",
@@ -209,7 +209,7 @@ export const successStories: SuccessStory[] = [
     coordinates: [51.0504, 13.7373],
     placementDate: "09/2024",
   },
-  
+
   // Leipzig - Healthcare
   {
     id: "leipzig-1",
@@ -227,7 +227,7 @@ export const successStories: SuccessStory[] = [
     coordinates: [51.3397, 12.3731],
     placementDate: "10/2024",
   },
-  
+
   // Nuremberg - Healthcare & IT
   {
     id: "nuremberg-1",
@@ -245,7 +245,7 @@ export const successStories: SuccessStory[] = [
     coordinates: [49.4521, 11.0767],
     placementDate: "07/2024",
   },
-  
+
   // Dortmund - Healthcare & Handwerk
   {
     id: "dortmund-1",
@@ -263,7 +263,7 @@ export const successStories: SuccessStory[] = [
     coordinates: [51.5136, 7.4653],
     placementDate: "08/2024",
   },
-  
+
   // Essen - Healthcare
   {
     id: "essen-1",
@@ -273,7 +273,7 @@ export const successStories: SuccessStory[] = [
     coordinates: [51.4556, 7.0116],
     placementDate: "04/2024",
   },
-  
+
   // Bremen - Healthcare & IT
   {
     id: "bremen-1",
@@ -291,7 +291,7 @@ export const successStories: SuccessStory[] = [
     coordinates: [53.0793, 8.8017],
     placementDate: "09/2024",
   },
-  
+
   // Hannover - Healthcare
   {
     id: "hannover-1",
@@ -301,7 +301,7 @@ export const successStories: SuccessStory[] = [
     coordinates: [52.3759, 9.732],
     placementDate: "03/2024",
   },
-  
+
   // Duisburg - Healthcare & Handwerk
   {
     id: "duisburg-1",
@@ -311,7 +311,7 @@ export const successStories: SuccessStory[] = [
     coordinates: [51.4344, 6.7623],
     placementDate: "07/2024",
   },
-  
+
   // Bochum - Healthcare
   {
     id: "bochum-1",
@@ -321,7 +321,7 @@ export const successStories: SuccessStory[] = [
     coordinates: [51.4818, 7.2162],
     placementDate: "10/2024",
   },
-  
+
   // Wuppertal - Healthcare
   {
     id: "wuppertal-1",

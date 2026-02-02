@@ -24,20 +24,18 @@ export function HomeClient({ assets, featuredCandidates }: HomeClientProps) {
 
   return (
     <div className="min-h-screen">
-      <HeroSection 
+      <HeroSection
         heroBg={assets["home_hero_bg"]}
         heroOverlayOpacity={assets["home_hero_overlay_opacity"]}
         featuredCandidates={featuredCandidates}
       />
-      <PartnerSection 
-        partnerBanner={assets["home_partner_banner"]}
-      />
-      <ServiceGateway 
+      <PartnerSection partnerBanner={assets["home_partner_banner"]} />
+      <ServiceGateway
         nursingImg={assets["home_prog_nursing_img"]}
         techImg={assets["home_prog_tech_img"]}
         hotelImg={assets["home_prog_hotel_img"]}
       />
-      <AboutSection 
+      <AboutSection
         introImg={assets["home_intro_img"]}
         videoThumb={assets["home_intro_video_thumb"]}
       />
@@ -51,4 +49,3 @@ export function HomeClient({ assets, featuredCandidates }: HomeClientProps) {
     </div>
   );
 }
-

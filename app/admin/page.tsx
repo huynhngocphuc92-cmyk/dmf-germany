@@ -25,13 +25,11 @@ export default async function AdminDashboard() {
   const { data: stats, error: statsError } = await getDashboardStats();
 
   // Use mock data if no real data available or error occurred
-  const dashboardStats = stats && stats.totalCandidates > 0 
-    ? stats 
-    : await getMockDashboardStats();
+  const dashboardStats = stats && stats.totalCandidates > 0 ? stats : await getMockDashboardStats();
 
   return (
-    <AdminDashboardClient 
-      user={user} 
+    <AdminDashboardClient
+      user={user}
       stats={dashboardStats}
       isUsingMockData={!stats || stats.totalCandidates === 0}
     />

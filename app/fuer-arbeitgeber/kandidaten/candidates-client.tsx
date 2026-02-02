@@ -14,10 +14,7 @@ interface CandidatesClientProps {
   error: string | null;
 }
 
-export function CandidatesClient({
-  initialCandidates,
-  error,
-}: CandidatesClientProps) {
+export function CandidatesClient({ initialCandidates, error }: CandidatesClientProps) {
   const { lang, t } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<CandidateCategory | "all">("all");
   const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(null);
@@ -63,9 +60,7 @@ export function CandidatesClient({
                 <Users className="w-8 h-8" />
               </div>
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Kandidaten-Pool
-            </h1>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">Kandidaten-Pool</h1>
             <p className="text-lg md:text-xl opacity-90 max-w-2xl mx-auto leading-relaxed">
               Unsere Top-Talente für Ihr Unternehmen
             </p>
@@ -143,11 +138,7 @@ export function CandidatesClient({
       </section>
 
       {/* Inquiry Modal */}
-      <InquiryModal
-        candidate={selectedCandidate}
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-      />
+      <InquiryModal candidate={selectedCandidate} isOpen={isModalOpen} onClose={handleCloseModal} />
     </div>
   );
 }

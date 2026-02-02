@@ -6,25 +6,11 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { format } from "date-fns";
 import { de, vi } from "date-fns/locale";
-import {
-  Plus,
-  Pencil,
-  Trash2,
-  FileText,
-  Eye,
-  MoreHorizontal,
-  Search,
-} from "lucide-react";
+import { Plus, Pencil, Trash2, FileText, Eye, MoreHorizontal, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -72,7 +58,7 @@ export function PostsClient({ initialPosts }: PostsClientProps) {
   const lang = currentLang as AdminLanguage;
   const t = postTranslations[lang];
   const dateLocale = lang === "vn" ? vi : de;
-  
+
   const [posts, setPosts] = useState<Post[]>(initialPosts);
   const [searchQuery, setSearchQuery] = useState("");
   const [deleteId, setDeleteId] = useState<string | null>(null);
@@ -86,17 +72,17 @@ export function PostsClient({ initialPosts }: PostsClientProps) {
   // Handle delete
   const handleDelete = async () => {
     if (!deleteId) return;
-    
+
     setIsDeleting(true);
     const { error } = await deletePost(deleteId);
-    
+
     if (error) {
       console.error("Error deleting post:", error);
       alert(t.deleteError);
     } else {
       setPosts((prev) => prev.filter((p) => p.id !== deleteId));
     }
-    
+
     setIsDeleting(false);
     setDeleteId(null);
   };
@@ -131,7 +117,7 @@ export function PostsClient({ initialPosts }: PostsClientProps) {
             />
           </div>
         </CardHeader>
-        
+
         <CardContent className="p-0">
           {filteredPosts.length > 0 ? (
             <Table>
@@ -163,36 +149,29 @@ export function PostsClient({ initialPosts }: PostsClientProps) {
                         )}
                       </div>
                     </TableCell>
-                    
+
                     {/* Title & Slug */}
                     <TableCell>
                       <div>
-                        <p className="font-medium text-slate-900 line-clamp-1">
-                          {post.title}
-                        </p>
-                        <p className="text-xs text-slate-500">
-                          /blog/{post.slug}
-                        </p>
+                        <p className="font-medium text-slate-900 line-clamp-1">{post.title}</p>
+                        <p className="text-xs text-slate-500">/blog/{post.slug}</p>
                       </div>
                     </TableCell>
-                    
+
                     {/* Status */}
                     <TableCell>
-                      <Badge
-                        variant="outline"
-                        className={statusColors[post.status]}
-                      >
+                      <Badge variant="outline" className={statusColors[post.status]}>
                         {statusLabelsI18n[post.status][lang]}
                       </Badge>
                     </TableCell>
-                    
+
                     {/* Created At */}
                     <TableCell className="text-slate-600 text-sm">
                       {format(new Date(post.created_at), "dd MMM yyyy", {
                         locale: dateLocale,
                       })}
                     </TableCell>
-                    
+
                     {/* Actions */}
                     <TableCell className="text-right">
                       <DropdownMenu>
@@ -235,8 +214,8 @@ export function PostsClient({ initialPosts }: PostsClientProps) {
               <FileText className="w-12 h-12 mx-auto mb-4 text-slate-300" />
               <p className="text-lg font-medium text-slate-900 mb-2">{t.noPosts}</p>
               <p className="text-slate-500 mb-6">
-                {lang === "vn" 
-                  ? "Bắt đầu tạo bài viết đầu tiên của bạn" 
+                {lang === "vn"
+                  ? "Bắt đầu tạo bài viết đầu tiên của bạn"
                   : "Erstellen Sie Ihren ersten Beitrag"}
               </p>
               <Button asChild className="bg-emerald-600 hover:bg-emerald-700">
@@ -255,14 +234,10 @@ export function PostsClient({ initialPosts }: PostsClientProps) {
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>{t.deleteConfirm}</AlertDialogTitle>
-            <AlertDialogDescription>
-              {t.deleteDesc}
-            </AlertDialogDescription>
+            <AlertDialogDescription>{t.deleteDesc}</AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel disabled={isDeleting}>
-              {t.cancel}
-            </AlertDialogCancel>
+            <AlertDialogCancel disabled={isDeleting}>{t.cancel}</AlertDialogCancel>
             <AlertDialogAction
               onClick={handleDelete}
               disabled={isDeleting}
