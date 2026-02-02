@@ -20,11 +20,13 @@ import {
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import {
+  SOLUTIONS_ITEMS,
   EMPLOYER_ITEMS,
   EMPLOYER_ACTIVE_ROUTES,
   COOPERATION_ITEMS,
   COOPERATION_ACTIVE_ROUTES,
   getCooperationLabel,
+  getSolutionLabel,
 } from "./nav-data";
 
 interface MobileMenuProps {
@@ -39,6 +41,7 @@ export const MobileMenu = memo(function MobileMenu({
   const { t, lang } = useLanguage();
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const [isSolutionsMenuOpen, setIsSolutionsMenuOpen] = useState(false);
   const [isEmployerMenuOpen, setIsEmployerMenuOpen] = useState(false);
   const [isCooperationMenuOpen, setIsCooperationMenuOpen] = useState(false);
 
@@ -49,9 +52,11 @@ export const MobileMenu = memo(function MobileMenu({
 
   const isEmployerActive = EMPLOYER_ACTIVE_ROUTES.some((route) => pathname.startsWith(route));
   const isCooperationActive = COOPERATION_ACTIVE_ROUTES.some((route) => pathname.startsWith(route));
+  const isSolutionsActive = pathname.startsWith("/services");
 
   const closeMenu = () => {
     setIsOpen(false);
+    setIsSolutionsMenuOpen(false);
     setIsEmployerMenuOpen(false);
     setIsCooperationMenuOpen(false);
   };
@@ -113,13 +118,50 @@ export const MobileMenu = memo(function MobileMenu({
                 {t.header.home}
               </Link>
 
-              <Link
-                href="/services/azubi"
-                onClick={closeMenu}
-                className="text-lg font-medium py-2 text-foreground"
-              >
-                {t.header.solutions}
-              </Link>
+              {/* Lösungen - Mobile Dropdown */}
+              <div>
+                <button
+                  onClick={() => setIsSolutionsMenuOpen(!isSolutionsMenuOpen)}
+                  aria-expanded={isSolutionsMenuOpen}
+                  aria-controls="solutions-submenu"
+                  className={cn(
+                    "w-full text-left text-lg font-medium py-2 flex items-center justify-between",
+                    isSolutionsActive ? "text-primary font-semibold" : "text-foreground"
+                  )}
+                >
+                  <span className="flex items-center gap-2">
+                    <Users className="w-5 h-5" />
+                    {t.header.solutions}
+                  </span>
+                  <ChevronDown
+                    className={cn(
+                      "w-5 h-5 transition-transform",
+                      isSolutionsMenuOpen && "rotate-180"
+                    )}
+                  />
+                </button>
+
+                {isSolutionsMenuOpen && (
+                  <div
+                    id="solutions-submenu"
+                    className="ml-6 mt-2 space-y-2 border-l-2 border-gray-200 pl-4"
+                  >
+                    {SOLUTIONS_ITEMS.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={closeMenu}
+                        className={cn(
+                          "block text-base py-2",
+                          isActive(item.href) ? "text-primary font-semibold" : "text-gray-700"
+                        )}
+                      >
+                        {getSolutionLabel(item.labelKey, lang)}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
 
               {/* TODO: Uncomment when blog has content
             <Link
