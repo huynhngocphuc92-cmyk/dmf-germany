@@ -89,7 +89,7 @@ export const MobileMenu = memo(function MobileMenu({
           role="navigation"
           aria-label="Hauptnavigation"
           className={cn(
-            "md:hidden fixed inset-0 bg-white z-40 p-4 border-t overflow-y-auto",
+            "md:hidden fixed inset-0 bg-white z-[60] p-4 border-t overflow-y-auto",
             isScrolled ? "top-16" : "top-[120px]"
           )}
         >
