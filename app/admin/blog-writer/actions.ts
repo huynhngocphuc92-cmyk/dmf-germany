@@ -72,16 +72,23 @@ export async function generateBlogPost(
     try {
       // Clean up potential markdown code blocks
       let jsonText = textContent.text.trim();
+
+      // Remove markdown code blocks
       if (jsonText.startsWith("```json")) {
         jsonText = jsonText.slice(7);
-      }
-      if (jsonText.startsWith("```")) {
+      } else if (jsonText.startsWith("```")) {
         jsonText = jsonText.slice(3);
       }
       if (jsonText.endsWith("```")) {
         jsonText = jsonText.slice(0, -3);
       }
       jsonText = jsonText.trim();
+
+      // Try to find JSON object if there's extra text
+      const jsonMatch = jsonText.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        jsonText = jsonMatch[0];
+      }
 
       const parsed = JSON.parse(jsonText);
 
