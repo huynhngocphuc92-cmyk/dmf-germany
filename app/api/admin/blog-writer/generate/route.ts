@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import Anthropic from "@anthropic-ai/sdk";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import { createClient } from "@/utils/supabase/server";
 import { BlogGenerationRequest, GeneratedBlog } from "@/app/admin/blog-writer/types";
 import { buildBlogSystemPrompt } from "@/lib/prompts/blog-writer";
@@ -53,31 +53,18 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
-    // Initialize Anthropic client
-    const anthropic = new Anthropic({
-      apiKey: process.env.ANTHROPIC_API_KEY,
-      ...(process.env.ANTHROPIC_BASE_URL && { baseURL: process.env.ANTHROPIC_BASE_URL }),
+    // Initialize Gemini client
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
+    const model = genAI.getGenerativeModel({
+      model: process.env.GEMINI_MODEL || "gemini-2.0-flash",
+      systemInstruction: buildBlogSystemPrompt(body),
     });
-
-    // Build the prompt
-    const systemPrompt = buildBlogSystemPrompt(body);
 
     // Generate blog content
-    const response = await anthropic.messages.create({
-      model: process.env.ANTHROPIC_MODEL || "claude-sonnet-4-20250514",
-      max_tokens: 4096,
-      system: systemPrompt,
-      messages: [
-        {
-          role: "user",
-          content: `Write a blog post about: "${body.topic}"`,
-        },
-      ],
-    });
+    const result = await model.generateContent(`Write a blog post about: "${body.topic}"`);
+    const rawText = result.response.text();
 
-    // Extract text content
-    const textContent = response.content.find((block) => block.type === "text");
-    if (!textContent || textContent.type !== "text") {
+    if (!rawText) {
       return NextResponse.json({ error: "No content generated" }, { status: 500 });
     }
 
@@ -85,7 +72,7 @@ export async function POST(request: NextRequest) {
     let generatedBlog: GeneratedBlog;
     try {
       // Clean up potential markdown code blocks
-      let jsonText = textContent.text.trim();
+      let jsonText = rawText.trim();
       if (jsonText.startsWith("```json")) {
         jsonText = jsonText.slice(7);
       }
@@ -125,7 +112,7 @@ export async function POST(request: NextRequest) {
         language: body.language,
       };
     } catch {
-      console.error("Failed to parse AI response:", textContent.text);
+      console.error("Failed to parse AI response:", rawText);
       return NextResponse.json(
         { error: "Failed to parse generated content. Please try again." },
         { status: 500 }
@@ -136,8 +123,8 @@ export async function POST(request: NextRequest) {
       success: true,
       data: generatedBlog,
       usage: {
-        inputTokens: response.usage.input_tokens,
-        outputTokens: response.usage.output_tokens,
+        inputTokens: result.response.usageMetadata?.promptTokenCount ?? 0,
+        outputTokens: result.response.usageMetadata?.candidatesTokenCount ?? 0,
       },
     });
   } catch (error) {

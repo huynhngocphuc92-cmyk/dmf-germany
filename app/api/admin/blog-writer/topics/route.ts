@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import Anthropic from "@anthropic-ai/sdk";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import { createClient } from "@/utils/supabase/server";
 import { BlogLanguage, TopicSuggestion } from "@/app/admin/blog-writer/types";
 import { buildTopicSuggestionsPrompt } from "@/lib/prompts/blog-writer";
@@ -21,30 +21,20 @@ export async function GET(request: NextRequest) {
     const language = (searchParams.get("language") || "de") as BlogLanguage;
     const category = searchParams.get("category") || undefined;
 
-    // Initialize Anthropic client - use Haiku for cost efficiency
-    const anthropic = new Anthropic({
-      apiKey: process.env.ANTHROPIC_API_KEY,
-      ...(process.env.ANTHROPIC_BASE_URL && { baseURL: process.env.ANTHROPIC_BASE_URL }),
+    // Initialize Gemini client - use flash for cost efficiency
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
+    const model = genAI.getGenerativeModel({
+      model: process.env.GEMINI_MODEL || "gemini-2.0-flash",
     });
 
     // Build the prompt
     const systemPrompt = buildTopicSuggestionsPrompt(language, category);
 
     // Generate topic suggestions
-    const response = await anthropic.messages.create({
-      model: "claude-haiku-4-20250514", // Use Haiku for cost efficiency
-      max_tokens: 2048,
-      messages: [
-        {
-          role: "user",
-          content: systemPrompt,
-        },
-      ],
-    });
+    const result = await model.generateContent(systemPrompt);
+    const rawText = result.response.text();
 
-    // Extract text content
-    const textContent = response.content.find((block) => block.type === "text");
-    if (!textContent || textContent.type !== "text") {
+    if (!rawText) {
       return NextResponse.json({ error: "No content generated" }, { status: 500 });
     }
 
@@ -52,7 +42,7 @@ export async function GET(request: NextRequest) {
     let topics: TopicSuggestion[];
     try {
       // Clean up potential markdown code blocks
-      let jsonText = textContent.text.trim();
+      let jsonText = rawText.trim();
       if (jsonText.startsWith("```json")) {
         jsonText = jsonText.slice(7);
       }
@@ -74,7 +64,7 @@ export async function GET(request: NextRequest) {
         keywords: item.keywords || [],
       }));
     } catch {
-      console.error("Failed to parse topics response:", textContent.text);
+      console.error("Failed to parse topics response:", rawText);
       return NextResponse.json(
         { error: "Failed to parse topic suggestions. Please try again." },
         { status: 500 }

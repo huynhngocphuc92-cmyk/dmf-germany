@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import Anthropic from "@anthropic-ai/sdk";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import { buildKnowledgeContext } from "@/lib/chatbot/knowledge-base";
 
 // ============================================
@@ -107,9 +107,9 @@ export async function POST(request: NextRequest) {
     }
 
     // Check API key
-    const apiKey = process.env.ANTHROPIC_API_KEY;
+    const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
-      console.error("ANTHROPIC_API_KEY not configured");
+      console.error("GEMINI_API_KEY not configured");
       return NextResponse.json({ error: "Chat service not configured" }, { status: 500 });
     }
 
@@ -132,62 +132,47 @@ export async function POST(request: NextRequest) {
     // Limit history
     const limitedHistory = history.slice(-10); // Keep last 10 messages
 
-    // Initialize Anthropic client (with optional custom base URL)
-    const clientConfig: { apiKey: string; baseURL?: string } = { apiKey };
-    if (process.env.ANTHROPIC_BASE_URL) {
-      clientConfig.baseURL = process.env.ANTHROPIC_BASE_URL;
-    }
-    const anthropic = new Anthropic(clientConfig);
-
-    // Build messages for API
-    const messages: Anthropic.MessageParam[] = [
-      ...limitedHistory.map((msg) => ({
-        role: msg.role as "user" | "assistant",
-        content: msg.content,
-      })),
-      {
-        role: "user" as const,
-        content: message,
-      },
-    ];
-
-    // Call Claude API
-    const response = await anthropic.messages.create({
-      model: process.env.ANTHROPIC_MODEL || "claude-sonnet-4-5",
-      max_tokens: 1024,
-      system: buildSystemPrompt(language),
-      messages,
+    // Initialize Gemini client
+    const genAI = new GoogleGenerativeAI(apiKey);
+    const model = genAI.getGenerativeModel({
+      model: process.env.GEMINI_MODEL || "gemini-2.0-flash",
+      systemInstruction: buildSystemPrompt(language),
     });
 
-    // Extract text response
-    const textContent = response.content.find((block) => block.type === "text");
+    // Build chat history for Gemini (role: "user" | "model")
+    const chatHistory = limitedHistory.map((msg) => ({
+      role: msg.role === "assistant" ? "model" : "user",
+      parts: [{ text: msg.content }],
+    }));
+
+    // Start chat session
+    const chat = model.startChat({ history: chatHistory });
+
+    // Send message
+    const result = await chat.sendMessage(message);
     const assistantMessage =
-      textContent?.type === "text"
-        ? textContent.text
-        : "Entschuldigung, ich konnte keine Antwort generieren.";
+      result.response.text() || "Entschuldigung, ich konnte keine Antwort generieren.";
 
     // Return response
     return NextResponse.json({
       message: assistantMessage,
       usage: {
-        inputTokens: response.usage.input_tokens,
-        outputTokens: response.usage.output_tokens,
+        inputTokens: result.response.usageMetadata?.promptTokenCount ?? 0,
+        outputTokens: result.response.usageMetadata?.candidatesTokenCount ?? 0,
       },
     });
   } catch (error) {
     console.error("Chat API error:", error);
 
-    // Handle specific Anthropic errors
-    if (error instanceof Anthropic.APIError) {
-      if (error.status === 429) {
-        return NextResponse.json(
-          { error: "Service temporarily unavailable. Please try again." },
-          { status: 503 }
-        );
-      }
-      if (error.status === 401) {
-        return NextResponse.json({ error: "Chat service configuration error" }, { status: 500 });
-      }
+    const errMsg = error instanceof Error ? error.message : "";
+    if (errMsg.includes("429") || errMsg.toLowerCase().includes("quota")) {
+      return NextResponse.json(
+        { error: "Service temporarily unavailable. Please try again." },
+        { status: 503 }
+      );
+    }
+    if (errMsg.includes("401") || errMsg.toLowerCase().includes("api key")) {
+      return NextResponse.json({ error: "Chat service configuration error" }, { status: 500 });
     }
 
     return NextResponse.json({ error: "An error occurred. Please try again." }, { status: 500 });
@@ -199,9 +184,9 @@ export async function POST(request: NextRequest) {
 // ============================================
 
 export async function GET() {
-  const hasApiKey = !!process.env.ANTHROPIC_API_KEY;
+  const hasApiKey = !!process.env.GEMINI_API_KEY;
   return NextResponse.json({
     status: hasApiKey ? "ready" : "not_configured",
-    message: hasApiKey ? "Chat API is ready" : "ANTHROPIC_API_KEY not configured",
+    message: hasApiKey ? "Chat API is ready" : "GEMINI_API_KEY not configured",
   });
 }

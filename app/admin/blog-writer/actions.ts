@@ -1,6 +1,6 @@
 "use server";
 
-import Anthropic from "@anthropic-ai/sdk";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import { createClient } from "@/utils/supabase/server";
 import {
   BlogGenerationRequest,
@@ -35,35 +35,23 @@ export async function generateBlogPost(
     }
 
     // Check API key
-    if (!process.env.ANTHROPIC_API_KEY) {
+    if (!process.env.GEMINI_API_KEY) {
       return { success: false, error: "API not configured" };
     }
 
-    // Initialize Anthropic client
-    const anthropic = new Anthropic({
-      apiKey: process.env.ANTHROPIC_API_KEY,
-      ...(process.env.ANTHROPIC_BASE_URL && { baseURL: process.env.ANTHROPIC_BASE_URL }),
+    // Initialize Gemini client
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+    const model = genAI.getGenerativeModel({
+      model: process.env.GEMINI_MODEL || "gemini-2.0-flash",
+      systemInstruction: buildBlogSystemPrompt(request),
     });
-
-    // Build the prompt
-    const systemPrompt = buildBlogSystemPrompt(request);
 
     // Generate blog content
-    const response = await anthropic.messages.create({
-      model: process.env.ANTHROPIC_MODEL || "claude-sonnet-4-20250514",
-      max_tokens: 4096,
-      system: systemPrompt,
-      messages: [
-        {
-          role: "user",
-          content: `Write a blog post about: "${request.topic}"`,
-        },
-      ],
-    });
+    const result = await model.generateContent(`Write a blog post about: "${request.topic}"`);
+    const rawText = result.response.text();
 
     // Extract text content
-    const textContent = response.content.find((block) => block.type === "text");
-    if (!textContent || textContent.type !== "text") {
+    if (!rawText) {
       return { success: false, error: "No content generated" };
     }
 
@@ -71,7 +59,7 @@ export async function generateBlogPost(
     let generatedBlog: GeneratedBlog;
     try {
       // Clean up potential markdown code blocks
-      let jsonText = textContent.text.trim();
+      let jsonText = rawText.trim();
 
       // Remove markdown code blocks
       if (jsonText.startsWith("```json")) {
@@ -118,13 +106,13 @@ export async function generateBlogPost(
         language: request.language,
       };
     } catch (parseError) {
-      console.error("Failed to parse AI response:", textContent.text.substring(0, 500));
+      console.error("Failed to parse AI response:", rawText.substring(0, 500));
       console.error("Parse error:", parseError);
 
       // Return the raw response for debugging
       return {
         success: false,
-        error: `Failed to parse JSON. Raw response (first 300 chars): ${textContent.text.substring(0, 300)}...`,
+        error: `Failed to parse JSON. Raw response (first 300 chars): ${rawText.substring(0, 300)}...`,
       };
     }
 
