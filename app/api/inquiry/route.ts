@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { sendEmail } from "@/lib/actions";
+import nodemailer from "nodemailer";
 import { createClient } from "@/utils/supabase/server";
 import { checkRateLimit, getClientIp, RATE_LIMITS } from "@/lib/rate-limit";
+import { profileInquiryAutoReplyTemplate } from "@/lib/email-templates";
 
 /**
  * Inquiry API Route
@@ -112,26 +113,35 @@ export async function POST(request: NextRequest) {
       // Non-blocking: Continue even if Telegram fails
     }
 
-    // 3. Send to Email (non-blocking)
+    // 3. Send Email (admin notification + auto-reply to lead)
     try {
-      const emailFormData = new FormData();
-      emailFormData.append("name", name);
-      emailFormData.append("email", email);
-      emailFormData.append("company", company || "");
-      emailFormData.append(
-        "message",
-        `Profil-Anfrage für Kandidat #${candidateCode}\n\n` +
-          `Kandidat-ID: ${candidateId}\n` +
-          `Telefon: ${phone || "Nicht angegeben"}\n\n` +
-          `Nachricht des Kunden:\n${message || "Keine zusätzliche Nachricht"}`
-      );
+      if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASSWORD) {
+        const transporter = nodemailer.createTransport({
+          host: process.env.SMTP_HOST,
+          port: Number(process.env.SMTP_PORT) || 587,
+          secure: false,
+          auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASSWORD },
+        });
 
-      const emailResult = await sendEmail(emailFormData);
+        // Notify admin
+        await transporter.sendMail({
+          from: `"DMF Website" <${process.env.SMTP_USER}>`,
+          to: process.env.CONTACT_EMAIL || process.env.SMTP_USER,
+          replyTo: email,
+          subject: `🎯 Neue Profil-Anfrage: #${candidateCode} von ${name}`,
+          html: `<h2>Neue Profil-Anfrage</h2><p><b>Kandidat:</b> #${candidateCode}</p><p><b>Name:</b> ${name}</p><p><b>Email:</b> ${email}</p><p><b>Firma:</b> ${company || "–"}</p><p><b>Nachricht:</b> ${message || "–"}</p>`,
+        });
 
-      if (emailResult.success) {
+        // Auto-reply to lead
+        await transporter.sendMail({
+          from: `"DMF Manpower" <${process.env.SMTP_USER}>`,
+          to: email,
+          subject: `✅ Ihre Profil-Anfrage #${candidateCode} wurde erhalten – DMF Manpower`,
+          html: profileInquiryAutoReplyTemplate(name, candidateCode),
+        });
+
         emailSent = true;
-      } else {
-        console.warn("[Inquiry API] Email sending failed:", emailResult.message);
+        console.warn("[Inquiry API] ✓ Email sent (incl. auto-reply)");
       }
     } catch (emailError) {
       console.error("[Inquiry API] Email error:", emailError);

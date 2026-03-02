@@ -4,6 +4,7 @@ import nodemailer from "nodemailer";
 import { z } from "zod";
 import { checkRateLimit, getClientIp, RATE_LIMITS } from "@/lib/rate-limit";
 import { escapeHtml, escapeHtmlWithBreaks } from "@/lib/sanitize";
+import { contactAutoReplyTemplate, profileInquiryAutoReplyTemplate } from "@/lib/email-templates";
 
 // Define validation schema for backend (double safety)
 const bodySchema = z.object({
@@ -104,7 +105,7 @@ export async function POST(request: NextRequest) {
       if (error) {
         console.error("[Contact API] Supabase error:", error);
       } else {
-        console.log("[Contact API] ✓ Saved to Supabase:", data?.id);
+        console.warn("[Contact API] ✓ Saved to Supabase:", data?.id);
         supabaseSaved = true;
       }
     } catch (supabaseError) {
@@ -158,8 +159,24 @@ export async function POST(request: NextRequest) {
           html: emailHtml,
         });
 
+        // Auto-reply to the sender
+        const autoReplyHtml =
+          inquiryType === "profile" && candidateCode
+            ? profileInquiryAutoReplyTemplate(name, candidateCode)
+            : contactAutoReplyTemplate(name);
+
+        await transporter.sendMail({
+          from: `"DMF Manpower" <${process.env.SMTP_USER}>`,
+          to: email,
+          subject:
+            inquiryType === "profile"
+              ? `✅ Ihre Profil-Anfrage #${candidateCode} wurde erhalten – DMF Manpower`
+              : `✅ Ihre Anfrage wurde erhalten – DMF Manpower`,
+          html: autoReplyHtml,
+        });
+
         emailSent = true;
-        console.log("[Contact API] ✓ Email sent via nodemailer");
+        console.warn("[Contact API] ✓ Email sent via nodemailer (incl. auto-reply)");
       } else {
         console.warn("[Contact API] SMTP not configured, skipping email");
       }
@@ -199,7 +216,7 @@ export async function POST(request: NextRequest) {
         console.warn("[Contact API] Telegram notification failed");
       } else {
         telegramSent = true;
-        console.log("[Contact API] ✓ Telegram sent");
+        console.warn("[Contact API] ✓ Telegram sent");
       }
     } catch (telegramError) {
       console.error("[Contact API] Telegram error:", telegramError);
