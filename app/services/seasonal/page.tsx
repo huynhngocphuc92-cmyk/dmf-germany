@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { useRef, useEffect, useState, type ComponentType } from "react";
+import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { checkQuality } from "@/utils/qa-layer";
@@ -129,84 +129,6 @@ const DATA_DU_PHONG = {
 // CONTENT DATA
 // ============================================
 
-const heroContent = {
-  de: {
-    badge: "100% ZAV-konform",
-    headline: "Erntehelfer & Servicekräfte",
-    headlineAccent: "Schnell verfügbar.",
-    subheadline:
-      "Sichern Sie Ihre Ernte und Ihren Service. Körperlich belastbares Personal für die Hochsaison – einsatzbereit in 4-8 Wochen.",
-    cta1: "Verfügbarkeit jetzt prüfen",
-    cta2: "Rückruf anfordern",
-    urgencyBadge: "Saison 2026 – Jetzt sichern!",
-  },
-  vn: {
-    badge: "100% đạt chuẩn ZAV",
-    headline: "Nhân sự thu hoạch & phục vụ",
-    headlineAccent: "Sẵn sàng nhanh chóng.",
-    subheadline:
-      "Đảm bảo mùa vụ và dịch vụ của bạn. Nhân sự khỏe mạnh cho mùa cao điểm – sẵn sàng làm việc trong 4-8 tuần.",
-    cta1: "Kiểm tra ngay",
-    cta2: "Yêu cầu gọi lại",
-    urgencyBadge: "Mùa vụ 2026 – Đặt ngay!",
-  },
-};
-
-const timelineContent = {
-  de: {
-    badge: "Schneller Prozess",
-    title: "In 4-8 Wochen einsatzbereit",
-    subtitle: "Keine lange Wartezeit. Keine bürokratischen Hürden.",
-    steps: [
-      {
-        week: "1",
-        title: "Auswahl",
-        description: "Wir stellen Ihnen passende Teams vor",
-        icon: Users,
-      },
-      {
-        week: "2-4",
-        title: "ZAV-Antrag",
-        description: "Behördliche Genehmigung durch Arbeitsagentur",
-        icon: FileCheck,
-      },
-      {
-        week: "5-8",
-        title: "Anreise",
-        description: "Gruppenflug und Transfer zum Einsatzort",
-        icon: Plane,
-      },
-    ],
-    keyMessage: "Keine lange Wartezeit",
-  },
-  vn: {
-    badge: "Quy trình nhanh",
-    title: "Sẵn sàng trong 4-8 tuần",
-    subtitle: "Không chờ đợi lâu. Không rào cản thủ tục.",
-    steps: [
-      {
-        week: "1",
-        title: "Tuyển chọn",
-        description: "Chúng tôi giới thiệu đội ngũ phù hợp",
-        icon: Users,
-      },
-      {
-        week: "2-4",
-        title: "Hồ sơ ZAV",
-        description: "Phê duyệt từ Cơ quan Lao động",
-        icon: FileCheck,
-      },
-      {
-        week: "5-8",
-        title: "Di chuyển",
-        description: "Bay theo nhóm và đưa đón đến nơi làm việc",
-        icon: Plane,
-      },
-    ],
-    keyMessage: "Không chờ đợi lâu",
-  },
-};
-
 const talentPoolContent = {
   de: {
     badge: "Sofort verfügbar",
@@ -327,106 +249,28 @@ const sectorsContent = {
   },
 };
 
-// ============================================
-// ADVANTAGES CONTENT
-// ============================================
-
-const advantagesContent = {
-  de: {
-    badge: "Warum Vietnam?",
-    title: "Ihre Vorteile auf einen Blick",
-    subtitle: "Belastbares Personal für harte Arbeit",
-    advantages: [
-      {
-        icon: Dumbbell,
-        title: "Körperlich Belastbar",
-        description: "Gewohnt an harte Arbeit und Hitze. Ideal für Feldarbeit und Gewächshäuser.",
-        highlight: "100%",
-        highlightDesc: "Einsatzbereit",
-      },
-      {
-        icon: Zap,
-        title: "Hohe Motivation",
-        description:
-          "Maximale Einsatzbereitschaft für 3-6 Monate. Wenig Fehlzeiten, hohe Produktivität.",
-        highlight: "< 2%",
-        highlightDesc: "Fehlzeiten",
-      },
-      {
-        icon: Shield,
-        title: "Rechtssicher",
-        description:
-          "Wir garantieren die Einhaltung aller Vorgaben (Mindestlohn, ZAV, Visum). Kein Risiko für Sie.",
-        highlight: "100%",
-        highlightDesc: "ZAV-konform",
-      },
-    ],
-  },
-  vn: {
-    badge: "Tại sao Việt Nam?",
-    title: "Lợi thế của bạn",
-    subtitle: "Nhân sự chịu được công việc nặng",
-    advantages: [
-      {
-        icon: Dumbbell,
-        title: "Chịu được việc nặng",
-        description: "Quen việc nặng và chịu nhiệt. Lý tưởng cho đồng ruộng và nhà kính.",
-        highlight: "100%",
-        highlightDesc: "Sẵn sàng làm việc",
-      },
-      {
-        icon: Zap,
-        title: "Động lực cao",
-        description: "Sẵn sàng làm việc tối đa 3-6 tháng. Ít nghỉ, năng suất cao.",
-        highlight: "< 2%",
-        highlightDesc: "Tỷ lệ nghỉ",
-      },
-      {
-        icon: Shield,
-        title: "An toàn pháp lý",
-        description:
-          "Chúng tôi đảm bảo tuân thủ mọi quy định (Lương tối thiểu, ZAV, Visa). Không rủi ro cho bạn.",
-        highlight: "100%",
-        highlightDesc: "Đạt chuẩn ZAV",
-      },
-    ],
-  },
+type SeasonalPageContent = typeof DATA_DU_PHONG;
+type IconComponent = ComponentType<{ className?: string }>;
+type AdvantageCard = {
+  icon: IconComponent;
+  title: string;
+  description: string;
+  highlight: string;
+  highlightDesc: string;
 };
-
-const statsContent = {
-  de: {
-    stats: [
-      { value: "<8", label: "Wochen bis Einsatz", suffix: "", icon: Timer },
-      { value: "100", label: "Legal & Konform", suffix: "%", icon: Shield },
-      { value: "250", label: "Vermittelt 2024", suffix: "+", icon: Users },
-      { value: "95", label: "Zufriedenheit", suffix: "%", icon: TrendingUp },
-    ],
-  },
-  vn: {
-    stats: [
-      { value: "<8", label: "Tuần đến khi làm việc", suffix: "", icon: Timer },
-      { value: "100", label: "Hợp pháp & Tuân thủ", suffix: "%", icon: Shield },
-      { value: "250", label: "Đã giới thiệu 2024", suffix: "+", icon: Users },
-      { value: "95", label: "Hài lòng", suffix: "%", icon: TrendingUp },
-    ],
-  },
+type TimelineStepCard = {
+  week: string;
+  title: string;
+  description: string;
+  icon: IconComponent;
 };
-
-const ctaContent = {
-  de: {
-    title: "Hochsaison steht bevor?",
-    subtitle: "Sichern Sie sich jetzt belastbares Personal – bevor es andere tun.",
-    cta1: "Verfügbarkeit prüfen",
-    cta2: "Rückruf anfordern",
-    urgency: "Frühbucher-Vorteil: Priorisierte Bearbeitung",
-  },
-  vn: {
-    title: "Mùa cao điểm đang đến?",
-    subtitle: "Đảm bảo nhân sự khỏe mạnh ngay – trước khi đối thủ làm điều đó.",
-    cta1: "Kiểm tra số lượng",
-    cta2: "Yêu cầu gọi lại",
-    urgency: "Ưu đãi đặt sớm: Xử lý ưu tiên",
-  },
+type TalentProfile = (typeof talentPoolContent.de.profiles)[number];
+type SectorCard = (typeof sectorsContent.de.sectors)[number];
+type StatCard = {
+  value: string;
+  label: string;
+  suffix: string;
+  icon: IconComponent;
 };
 
 // ============================================
@@ -445,22 +289,16 @@ function AnimatedCounter({
   const [displayValue, setDisplayValue] = useState("0");
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
+  const numericValue = Number.parseInt(value, 10);
+  const shouldAnimate = !value.includes("<") && !value.includes("+") && !Number.isNaN(numericValue);
 
   useEffect(() => {
-    if (!isInView) return;
-
-    if (value.includes("<") || value.includes("+")) {
-      setDisplayValue(value);
+    if (!isInView || !shouldAnimate) {
       return;
     }
 
-    const numericValue = parseInt(value);
-    if (isNaN(numericValue)) {
-      setDisplayValue(value);
-      return;
-    }
-
-    let startTime: number;
+    let startTime: number | undefined;
+    let frameId = 0;
     const animate = (currentTime: number) => {
       if (!startTime) startTime = currentTime;
       const progress = Math.min((currentTime - startTime) / (duration * 1000), 1);
@@ -468,15 +306,17 @@ function AnimatedCounter({
       const current = Math.floor(easeOutQuart * numericValue);
       setDisplayValue(current.toString());
       if (progress < 1) {
-        requestAnimationFrame(animate);
+        frameId = requestAnimationFrame(animate);
       }
     };
-    requestAnimationFrame(animate);
-  }, [isInView, value, duration]);
+    frameId = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(frameId);
+  }, [duration, isInView, numericValue, shouldAnimate]);
 
   return (
     <span ref={ref}>
-      {displayValue}
+      {shouldAnimate ? (isInView ? displayValue : "0") : value}
       {suffix}
     </span>
   );
@@ -486,9 +326,7 @@ function AnimatedCounter({
 // HERO SECTION
 // ============================================
 
-function HeroSection({ content }: { content: any }) {
-  const { lang } = useLanguage();
-
+function HeroSection({ content }: { content: SeasonalPageContent }) {
   // Use safe content from QA layer
   const heroContent = content?.hero || {};
 
@@ -689,9 +527,7 @@ function HeroSection({ content }: { content: any }) {
 // ADVANTAGES SECTION
 // ============================================
 
-function AdvantagesSection({ content }: { content: any }) {
-  const { lang } = useLanguage();
-
+function AdvantagesSection({ content }: { content: SeasonalPageContent }) {
   // Use safe content from QA layer
   const raw = content || {};
   const advantages = raw.advantages || {};
@@ -764,7 +600,7 @@ function AdvantagesSection({ content }: { content: any }) {
 
         {/* Advantage Cards */}
         <div className="grid md:grid-cols-3 gap-8">
-          {sectionContent.advantages.map((advantage: any, index: number) => {
+          {sectionContent.advantages.map((advantage: AdvantageCard, index) => {
             const Icon = advantage.icon;
             return (
               <motion.div
@@ -806,8 +642,7 @@ function AdvantagesSection({ content }: { content: any }) {
 // SPEED TIMELINE SECTION
 // ============================================
 
-function SpeedTimelineSection({ content }: { content: any }) {
-  const { lang } = useLanguage();
+function SpeedTimelineSection({ content }: { content: SeasonalPageContent }) {
   const ref = useRef(null);
 
   // Use safe content from QA layer
@@ -842,16 +677,6 @@ function SpeedTimelineSection({ content }: { content: any }) {
     key_message: timeline.key_message || "Keine lange Wartezeit",
   };
   const isInView = useInView(ref, { once: true, amount: 0.3 });
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    if (isInView) {
-      const timer = setTimeout(() => {
-        setProgress(100);
-      }, 300);
-      return () => clearTimeout(timer);
-    }
-  }, [isInView]);
 
   return (
     <section className="py-24 md:py-32 bg-white overflow-hidden">
@@ -897,7 +722,7 @@ function SpeedTimelineSection({ content }: { content: any }) {
 
           {/* Steps */}
           <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8">
-            {sectionContent.steps.map((step: any, index: number) => {
+            {sectionContent.steps.map((step: TimelineStepCard, index) => {
               const Icon = step.icon;
               return (
                 <motion.div
@@ -941,7 +766,9 @@ function SpeedTimelineSection({ content }: { content: any }) {
         >
           <div className="inline-flex items-center gap-3 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-full px-6 py-3">
             <CircleCheck className="w-6 h-6 text-amber-600" />
-            <span className="text-amber-800 font-semibold text-lg">{content.key_message}</span>
+            <span className="text-amber-800 font-semibold text-lg">
+              {sectionContent.key_message}
+            </span>
           </div>
         </motion.div>
       </div>
@@ -953,7 +780,7 @@ function SpeedTimelineSection({ content }: { content: any }) {
 // TALENT POOL SECTION
 // ============================================
 
-function TalentPoolSection({ content }: { content: any }) {
+function TalentPoolSection({ content }: { content: SeasonalPageContent }) {
   const { lang } = useLanguage();
 
   // Use safe content from QA layer
@@ -1008,8 +835,7 @@ function TalentPoolSection({ content }: { content: any }) {
 
         {/* Profile Cards Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {talentPoolContent.de.profiles.map((profile: any, index: number) => {
-            const Icon = profile.icon;
+          {sectionContent.profiles.map((profile: TalentProfile, index) => {
             return (
               <motion.div
                 key={profile.id}
@@ -1104,9 +930,7 @@ function TalentPoolSection({ content }: { content: any }) {
 // SECTORS SECTION
 // ============================================
 
-function SectorsSection({ content }: { content: any }) {
-  const { lang } = useLanguage();
-
+function SectorsSection({ content }: { content: SeasonalPageContent }) {
   // Use safe content from QA layer
   const raw = content || {};
   const sectors = raw.sectors || {};
@@ -1151,7 +975,7 @@ function SectorsSection({ content }: { content: any }) {
 
         {/* Sector Cards */}
         <div className="grid md:grid-cols-2 gap-8">
-          {sectorsContent.de.sectors.map((sector: any, index: number) => {
+          {sectionContent.sectors.map((sector: SectorCard, index) => {
             const Icon = sector.icon;
             const SecondaryIcon = sector.secondaryIcon;
             const isAmber = sector.color === "amber";
@@ -1202,7 +1026,7 @@ function SectorsSection({ content }: { content: any }) {
 
                   {/* Jobs List */}
                   <div className="grid grid-cols-2 gap-3 mb-6">
-                    {sector.jobs.map((job: any, jobIdx: number) => (
+                    {sector.jobs.map((job, jobIdx) => (
                       <div
                         key={jobIdx}
                         className={`flex items-center gap-2 px-3 py-2 rounded-lg ${
@@ -1248,9 +1072,7 @@ function SectorsSection({ content }: { content: any }) {
 // STATS SECTION
 // ============================================
 
-function StatsSection({ content }: { content: any }) {
-  const { lang } = useLanguage();
-
+function StatsSection({ content }: { content: SeasonalPageContent }) {
   // Use safe content from QA layer
   const raw = content || {};
   const statsData = raw.stats || {};
@@ -1301,7 +1123,7 @@ function StatsSection({ content }: { content: any }) {
 
       <div className="container relative mx-auto px-4 max-w-7xl">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          {sectionContent.stats.map((stat: any, index: number) => {
+          {sectionContent.stats.map((stat: StatCard, index) => {
             const Icon = stat.icon;
             return (
               <motion.div
@@ -1331,9 +1153,7 @@ function StatsSection({ content }: { content: any }) {
 // CTA SECTION
 // ============================================
 
-function CTASection({ content }: { content: any }) {
-  const { lang } = useLanguage();
-
+function CTASection({ content }: { content: SeasonalPageContent }) {
   // Use safe content from QA layer
   const raw = content || {};
   const ctaData = raw.cta || {};
@@ -1421,7 +1241,10 @@ export default function SeasonalWorkersPage() {
   const rawData = t.service_pages?.seasonal;
 
   // Run the payload through QA normalization before rendering.
-  const content = checkQuality(rawData, DATA_DU_PHONG);
+  const content = checkQuality<SeasonalPageContent>(
+    rawData as Partial<SeasonalPageContent> | undefined,
+    DATA_DU_PHONG
+  );
 
   // FAQ Questions for Seasonal Workers (B2B-Focused)
   const seasonalFAQs = [

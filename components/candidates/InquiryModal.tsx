@@ -175,9 +175,7 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
         setStatusMessage(copy.success);
         // Reset form after 2 seconds and close modal
         setTimeout(() => {
-          reset();
-          setStatus(null);
-          onClose();
+          handleClose();
         }, 2000);
       } else {
         setStatus("error");
@@ -190,24 +188,28 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
     }
   };
 
-  // Reset form when modal closes
-  useEffect(() => {
-    if (!isOpen) {
-      reset();
-      setStatus(null);
-      setStatusMessage("");
+  const handleClose = () => {
+    reset();
+    setStatus(null);
+    setStatusMessage("");
+    onClose();
+  };
+
+  const handleOpenChange = (open: boolean) => {
+    if (!open) {
+      handleClose();
     }
-  }, [isOpen, reset]);
+  };
 
   if (!candidate) return null;
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog open={isOpen} onOpenChange={handleOpenChange}>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
           <div className="flex items-center justify-between">
             <DialogTitle className="text-xl font-bold">{copy.title}</DialogTitle>
-            <Button variant="ghost" size="icon" onClick={onClose} className="h-6 w-6">
+            <Button variant="ghost" size="icon" onClick={handleClose} className="h-6 w-6">
               <X className="h-4 w-4" />
             </Button>
           </div>

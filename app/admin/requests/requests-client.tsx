@@ -92,7 +92,7 @@ export function RequestsClient({ initialInquiries, error: initialError }: Reques
       } else {
         setInquiries(data || []);
       }
-    } catch (err) {
+    } catch {
       setError("Ein unerwarteter Fehler ist aufgetreten.");
     } finally {
       setIsLoading(false);
@@ -128,7 +128,7 @@ export function RequestsClient({ initialInquiries, error: initialError }: Reques
       } else {
         setError(updateError || "Fehler beim Aktualisieren des Status.");
       }
-    } catch (err) {
+    } catch {
       setError("Ein unerwarteter Fehler ist aufgetreten.");
     } finally {
       setUpdatingStatus(null);
@@ -163,7 +163,7 @@ export function RequestsClient({ initialInquiries, error: initialError }: Reques
       } else {
         setError(deleteError || "Fehler beim Löschen der Anfrage.");
       }
-    } catch (err) {
+    } catch {
       setError("Ein unerwarteter Fehler ist aufgetreten.");
     } finally {
       setDeletingId(null);

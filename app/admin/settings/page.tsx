@@ -1,4 +1,4 @@
-import { Settings, Save, Server, Globe, Mail, Shield } from "lucide-react";
+import { Save, Server, Globe, Shield } from "lucide-react";
 import { PRIMARY_CONTACT } from "@/lib/company/contact";
 
 export default function SettingsPage() {

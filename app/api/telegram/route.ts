@@ -49,9 +49,9 @@ export async function POST(request: NextRequest) {
     const botToken = process.env.TELEGRAM_BOT_TOKEN;
     const chatId = process.env.TELEGRAM_CHAT_ID;
 
-    // If credentials are not set, log to console (for development)
+    // If credentials are not set, skip the notification without failing the caller flow.
     if (!botToken || !chatId) {
-      console.log("[Telegram API] Credentials not set. Message would be:", message);
+      console.warn("[Telegram API] Credentials not configured; skipping notification.");
       return NextResponse.json(
         {
           success: false,

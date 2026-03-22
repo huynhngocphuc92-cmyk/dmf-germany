@@ -185,7 +185,7 @@ export async function updateCandidate(
     const sanitizedData = sanitizeFormData(formData);
 
     // Build the update payload from the normalized form data.
-    const updateData: Record<string, any> = {
+    const updateData: Record<string, unknown> = {
       updated_at: new Date().toISOString(),
     };
 
@@ -381,12 +381,13 @@ export async function getFeaturedCandidates(): Promise<{
     const supabase = await createClient();
 
     // Prefer candidates explicitly highlighted for the homepage.
-    let { data, error } = await supabase
+    const { data: featuredData, error } = await supabase
       .from("candidates")
       .select("*")
       .or("is_featured.eq.true,visa_status.eq.true")
       .order("created_at", { ascending: false })
       .limit(20);
+    let data = featuredData;
 
     // Fall back to the newest candidates when no featured profiles are available.
     if (error || !data || data.length === 0) {

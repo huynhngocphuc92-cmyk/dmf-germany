@@ -198,7 +198,7 @@ function ServiceCardItem({
   serviceImage,
   serviceImageKey,
 }: ServiceCardItemProps) {
-  const { lang, t } = useLanguage();
+  const { lang } = useLanguage();
   const isVietnamese = lang === "vn";
   const isEnglish = lang === "en";
   const Icon = service.icon;
@@ -306,7 +306,11 @@ function ServiceCardItem({
                   <h3 className="text-2xl font-bold text-slate-900 mb-1 tracking-tight">{title}</h3>
                   <p className="text-sm text-slate-500">
                     {service.id === "azubi" &&
-                      (isVietnamese ? "Đào tạo kép" : isEnglish ? "Dual Training" : "Duale Ausbildung")}
+                      (isVietnamese
+                        ? "Đào tạo kép"
+                        : isEnglish
+                          ? "Dual Training"
+                          : "Duale Ausbildung")}
                     {service.id === "skilled" && "Visa §18a/b"}
                     {service.id === "seasonal" &&
                       (isVietnamese ? "3-6 tháng" : isEnglish ? "3-6 Months" : "3-6 Monate")}
@@ -486,13 +490,13 @@ export function ServiceGateway({ nursingImg, techImg, hotelImg }: ServiceGateway
             { icon: Sun, label: "Agriculture" },
             { icon: Building, label: "Hotels" },
           ]
-      : [
-          { icon: Building, label: "Bệnh viện" },
-          { icon: Users, label: "Viện dưỡng lão" },
-          { icon: Utensils, label: "Nhà hàng" },
-          { icon: Sun, label: "Nông nghiệp" },
-          { icon: Building, label: "Khách sạn" },
-        ];
+        : [
+            { icon: Building, label: "Bệnh viện" },
+            { icon: Users, label: "Viện dưỡng lão" },
+            { icon: Utensils, label: "Nhà hàng" },
+            { icon: Sun, label: "Nông nghiệp" },
+            { icon: Building, label: "Khách sạn" },
+          ];
 
   return (
     <MotionProvider>

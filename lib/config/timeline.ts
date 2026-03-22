@@ -325,7 +325,7 @@ export const calculateStepDate = (
   targetStepIndex: number,
   isAccelerated: boolean
 ): Date => {
-  let currentDate = new Date(startDate);
+  const currentDate = new Date(startDate);
 
   // Add duration for all steps up to and including the target step
   for (let i = 0; i <= targetStepIndex && i < steps.length; i++) {

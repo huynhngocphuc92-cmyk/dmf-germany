@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint-disable @typescript-eslint/no-require-imports, no-console */
 
 /**
  * Fetch the logo URL from Supabase and save it to public/logo.png

@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { useRef, useEffect, useState, type ComponentType } from "react";
+import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { checkQuality } from "@/utils/qa-layer";
@@ -16,12 +16,10 @@ const FAQSection = dynamic(() => import("@/components/shared/FAQSection"), {
 });
 
 import {
-  ArrowRight,
   CheckCircle2,
   Clock,
   Users,
   Zap,
-  Calendar,
   Plane,
   FileCheck,
   Briefcase,
@@ -31,14 +29,10 @@ import {
   Building2,
   Wrench,
   Laptop,
-  Dumbbell,
-  MessageCircle,
   Shield,
   Timer,
   TrendingUp,
-  Sparkles,
   PhoneCall,
-  BadgeCheck,
   CircleCheck,
   Rocket,
 } from "lucide-react";
@@ -47,7 +41,18 @@ import {
 // FALLBACK DATA (DỮ LIỆU DỰ PHÒNG)
 // ============================================
 
-const DATA_DU_PHONG = {
+type ContentSection = Record<string, string>;
+type SkilledWorkersContent = {
+  hero: ContentSection;
+  advantages: ContentSection;
+  comparison?: ContentSection;
+  process: ContentSection;
+  expertise: ContentSection;
+  stats: ContentSection;
+  cta: ContentSection;
+};
+
+const DATA_DU_PHONG: SkilledWorkersContent = {
   hero: {
     badge: "Fachkräfte Vermittlung",
     headline: "Qualifizierte Fachkräfte",
@@ -85,6 +90,40 @@ const DATA_DU_PHONG = {
   },
 };
 
+type IconComponent = ComponentType<{ className?: string }>;
+type AdvantageCard = {
+  icon: IconComponent;
+  title: string;
+  description: string;
+  highlight: string;
+  highlightDesc: string;
+};
+type ProcessStepCard = {
+  week: string;
+  title: string;
+  description: string;
+  icon: IconComponent;
+};
+type ExpertiseSector = {
+  title: string;
+  subtitle: string;
+  icon: IconComponent;
+  secondaryIcon: IconComponent;
+  color: "emerald" | "green";
+  jobs: string[];
+  description: string;
+  stats: {
+    workers: string;
+    time: string;
+  };
+};
+type StatCard = {
+  value: string;
+  label: string;
+  suffix: string;
+  icon: IconComponent;
+};
+
 // ============================================
 // ANIMATED COUNTER
 // ============================================
@@ -101,22 +140,16 @@ function AnimatedCounter({
   const [displayValue, setDisplayValue] = useState("0");
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
+  const numericValue = Number.parseInt(value, 10);
+  const shouldAnimate = !value.includes("<") && !value.includes("+") && !Number.isNaN(numericValue);
 
   useEffect(() => {
-    if (!isInView) return;
-
-    if (value.includes("<") || value.includes("+")) {
-      setDisplayValue(value);
+    if (!isInView || !shouldAnimate) {
       return;
     }
 
-    const numericValue = parseInt(value);
-    if (isNaN(numericValue)) {
-      setDisplayValue(value);
-      return;
-    }
-
-    let startTime: number;
+    let startTime: number | undefined;
+    let frameId = 0;
     const animate = (currentTime: number) => {
       if (!startTime) startTime = currentTime;
       const progress = Math.min((currentTime - startTime) / (duration * 1000), 1);
@@ -124,15 +157,17 @@ function AnimatedCounter({
       const current = Math.floor(easeOutQuart * numericValue);
       setDisplayValue(current.toString());
       if (progress < 1) {
-        requestAnimationFrame(animate);
+        frameId = requestAnimationFrame(animate);
       }
     };
-    requestAnimationFrame(animate);
-  }, [isInView, value, duration]);
+    frameId = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(frameId);
+  }, [duration, isInView, numericValue, shouldAnimate]);
 
   return (
     <span ref={ref}>
-      {displayValue}
+      {shouldAnimate ? (isInView ? displayValue : "0") : value}
       {suffix}
     </span>
   );
@@ -142,9 +177,7 @@ function AnimatedCounter({
 // HERO SECTION
 // ============================================
 
-function HeroSection({ content }: { content: any }) {
-  const { lang } = useLanguage();
-
+function HeroSection({ content }: { content: SkilledWorkersContent }) {
   // Use safe content from QA layer
   const heroContent = content?.hero || {};
 
@@ -332,9 +365,7 @@ function HeroSection({ content }: { content: any }) {
 // ADVANTAGES SECTION (Using Comparison Data as Fallback)
 // ============================================
 
-function AdvantagesSection({ content }: { content: any }) {
-  const { lang } = useLanguage();
-
+function AdvantagesSection({ content }: { content: SkilledWorkersContent }) {
   // Use safe content from QA layer
   const raw = content || {};
 
@@ -403,7 +434,7 @@ function AdvantagesSection({ content }: { content: any }) {
 
         {/* Advantage Cards */}
         <div className="grid md:grid-cols-3 gap-8">
-          {sectionContent.advantages.map((advantage: any, index: number) => {
+          {sectionContent.advantages.map((advantage: AdvantageCard, index) => {
             const Icon = advantage.icon;
             return (
               <motion.div
@@ -445,8 +476,7 @@ function AdvantagesSection({ content }: { content: any }) {
 // PROCESS TIMELINE SECTION (Using Process Data)
 // ============================================
 
-function ProcessTimelineSection({ content }: { content: any }) {
-  const { lang } = useLanguage();
+function ProcessTimelineSection({ content }: { content: SkilledWorkersContent }) {
   const ref = useRef(null);
 
   // Use safe content from QA layer
@@ -492,16 +522,6 @@ function ProcessTimelineSection({ content }: { content: any }) {
     key_message: process.total_time || "Gesamtdauer: 6-9 Monate",
   };
   const isInView = useInView(ref, { once: true, amount: 0.3 });
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    if (isInView) {
-      const timer = setTimeout(() => {
-        setProgress(100);
-      }, 300);
-      return () => clearTimeout(timer);
-    }
-  }, [isInView]);
 
   return (
     <section className="py-24 md:py-32 bg-white overflow-hidden">
@@ -547,7 +567,7 @@ function ProcessTimelineSection({ content }: { content: any }) {
 
           {/* Steps */}
           <div className="relative grid grid-cols-1 md:grid-cols-5 gap-8">
-            {sectionContent.steps.map((step: any, stepIndex: number) => {
+            {sectionContent.steps.map((step: ProcessStepCard, stepIndex) => {
               const Icon = step.icon;
               return (
                 <motion.div
@@ -605,15 +625,13 @@ function ProcessTimelineSection({ content }: { content: any }) {
 // EXPERTISE SECTION (Using Expertise Data)
 // ============================================
 
-function ExpertiseSection({ content: contentProp }: { content: any }) {
-  const { lang } = useLanguage();
-
+function ExpertiseSection({ content: contentProp }: { content: SkilledWorkersContent }) {
   // Use safe content from QA layer
   const raw = contentProp || {};
   const expertise = raw.expertise || {};
 
   // Create sectors array from expertise data
-  const sectors: any[] = [
+  const sectors: ExpertiseSector[] = [
     {
       title: expertise.health_title || "Gesundheitswesen",
       subtitle: expertise.health_highlight || "Pflegefachkräfte",
@@ -685,7 +703,7 @@ function ExpertiseSection({ content: contentProp }: { content: any }) {
 
         {/* Sector Cards */}
         <div className="grid md:grid-cols-3 gap-8">
-          {sectionContent.sectors.map((sector: any, index: number) => {
+          {sectionContent.sectors.map((sector: ExpertiseSector, index) => {
             const Icon = sector.icon;
             const SecondaryIcon = sector.secondaryIcon;
             const isEmerald = sector.color === "emerald";
@@ -782,9 +800,7 @@ function ExpertiseSection({ content: contentProp }: { content: any }) {
 // STATS SECTION
 // ============================================
 
-function StatsSection({ content }: { content: any }) {
-  const { lang } = useLanguage();
-
+function StatsSection({ content }: { content: SkilledWorkersContent }) {
   // Use safe content from QA layer
   const raw = content || {};
   const statsData = raw.stats || {};
@@ -840,7 +856,7 @@ function StatsSection({ content }: { content: any }) {
 
       <div className="container relative mx-auto px-4 max-w-7xl">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          {sectionContent.stats.map((stat: any, index: number) => {
+          {sectionContent.stats.map((stat: StatCard, index) => {
             const Icon = stat.icon;
             return (
               <motion.div
@@ -872,9 +888,7 @@ function StatsSection({ content }: { content: any }) {
 // CTA SECTION
 // ============================================
 
-function CTASection({ content }: { content: any }) {
-  const { lang } = useLanguage();
-
+function CTASection({ content }: { content: SkilledWorkersContent }) {
   // Use safe content from QA layer
   const raw = content || {};
   const ctaData = raw.cta || {};
@@ -899,11 +913,11 @@ function CTASection({ content }: { content: any }) {
           className="text-center"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
-            {content.title}
+            {sectionContent.title}
           </h2>
 
           <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto mb-10">
-            {content.subtitle}
+            {sectionContent.subtitle}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -913,7 +927,7 @@ function CTASection({ content }: { content: any }) {
               asChild
             >
               <Link href="/#contact">
-                {content.cta1}
+                {sectionContent.cta1}
                 <Rocket className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
@@ -925,7 +939,7 @@ function CTASection({ content }: { content: any }) {
             >
               <Link href="/#contact">
                 <PhoneCall className="w-5 h-5 mr-2" />
-                {content.cta2}
+                {sectionContent.cta2}
               </Link>
             </Button>
           </div>
@@ -946,7 +960,10 @@ export default function SkilledWorkersPage() {
   const rawData = t.service_pages?.skilled_workers;
 
   // Run the payload through QA normalization before rendering.
-  const content = checkQuality(rawData, DATA_DU_PHONG);
+  const content = checkQuality<SkilledWorkersContent>(
+    rawData as Partial<SkilledWorkersContent> | undefined,
+    DATA_DU_PHONG
+  );
 
   // FAQ Questions for Skilled Workers (B2B-Focused)
   const skilledFAQs = [

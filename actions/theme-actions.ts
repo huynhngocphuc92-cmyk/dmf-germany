@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/utils/supabase/server";
 import { createPublicClient } from "@/utils/supabase/public";
-import type { SiteConfigItem, SiteConfigGrouped, ThemeSection } from "@/types/theme";
+import type { SiteConfigItem, SiteConfigGrouped } from "@/types/theme";
 
 // ============================================
 // AUTH HELPER
@@ -53,8 +53,6 @@ async function fetchSiteConfigs(): Promise<SiteConfigItem[]> {
     console.error("Error details:", JSON.stringify(error, null, 2));
     return [];
   }
-
-  console.log(`Fetched ${data?.length || 0} assets from site_assets table (no cache)`);
 
   // Normalize data for backward compatibility
   // Keep DB section names as-is (branding, home, contact, settings)
@@ -107,7 +105,6 @@ export async function getSiteConfigs(): Promise<{
       return acc;
     }, {});
 
-    console.log(`Grouped ${configs.length} assets into ${Object.keys(grouped).length} sections`);
     return { data: grouped, error: null };
   } catch (err) {
     console.error("Error in getSiteConfigs:", err);
@@ -168,11 +165,7 @@ export async function getSiteConfigByKey(key: string): Promise<{
       // Not found is not an error, just return null silently
       // PGRST116: "The result contains 0 rows" (single() with no match)
       // Also handle empty error objects or missing rows gracefully
-      if (
-        error.code === "PGRST116" ||
-        error.message?.includes("0 rows") ||
-        !error.code
-      ) {
+      if (error.code === "PGRST116" || error.message?.includes("0 rows") || !error.code) {
         return { data: null, error: null };
       }
       console.error(`Error fetching config for key ${key}:`, error);
@@ -198,7 +191,7 @@ export async function getSiteConfigByKey(key: string): Promise<{
 export async function updateSiteConfig(
   key: string,
   newValue: string | null,
-  assetType?: "image" | "color" | "text" | "boolean"
+  _assetType?: "image" | "color" | "text" | "boolean"
 ): Promise<{ error: string | null }> {
   try {
     // Verify authentication before any mutation
@@ -207,7 +200,7 @@ export async function updateSiteConfig(
     const supabase = await createClient();
 
     // All asset types use 'value' column in site_assets table
-    const updateData: Record<string, any> = {
+    const updateData = {
       value: newValue,
       updated_at: new Date().toISOString(),
     };
@@ -230,8 +223,6 @@ export async function updateSiteConfig(
     // Also revalidate common paths that might use assets
     revalidatePath("/blog", "layout");
     revalidatePath("/services", "layout");
-
-    console.log(`Successfully updated asset ${key} and revalidated all paths`);
 
     return { error: null };
   } catch (err) {

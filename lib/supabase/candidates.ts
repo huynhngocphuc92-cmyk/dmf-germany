@@ -54,12 +54,13 @@ export async function getHomepageFeaturedCandidates(): Promise<{
   try {
     const supabase = createPublicClient();
 
-    let { data, error } = await supabase
+    const { data: featuredData, error } = await supabase
       .from("candidates")
       .select("*")
       .or("is_featured.eq.true,visa_status.eq.true")
       .order("created_at", { ascending: false })
       .limit(20);
+    let data = featuredData;
 
     if (error || !data || data.length === 0) {
       const { data: allData, error: allError } = await supabase

@@ -12,7 +12,7 @@ interface AboutSectionProps {
 }
 
 export const AboutSection = ({ introImg, videoThumb }: AboutSectionProps = {}) => {
-  const { t, lang } = useLanguage();
+  const { t } = useLanguage();
 
   // Use video thumbnail if available, otherwise use intro image
   const displayImage = videoThumb || introImg;

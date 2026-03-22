@@ -26,12 +26,10 @@ import {
 } from "@/components/ui/table";
 import {
   Users,
-  FileText,
   BarChart3,
   Settings,
   TrendingUp,
   UserPlus,
-  Clock,
   CheckCircle2,
   AlertCircle,
   Newspaper,
@@ -69,7 +67,7 @@ interface AdminDashboardClientProps {
 }
 
 export function AdminDashboardClient({
-  user,
+  user: _user,
   stats,
   isUsingMockData = false,
 }: AdminDashboardClientProps) {
