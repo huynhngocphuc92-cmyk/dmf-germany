@@ -16,14 +16,29 @@ interface ChatMessage {
 interface ChatRequest {
   message: string;
   history?: ChatMessage[];
-  language?: "de" | "en" | "vi";
+  language?: "de" | "en" | "vi" | "vn";
 }
+
+type SupportedChatLanguage = "de" | "en" | "vi";
 
 // ============================================
 // SYSTEM PROMPT
 // ============================================
 
-function buildSystemPrompt(language: string): string {
+function normalizeChatLanguage(language?: string): SupportedChatLanguage {
+  switch (language) {
+    case "en":
+      return "en";
+    case "vi":
+    case "vn":
+      return "vi";
+    case "de":
+    default:
+      return "de";
+  }
+}
+
+function buildSystemPrompt(language: SupportedChatLanguage): string {
   const knowledgeContext = buildKnowledgeContext();
 
   const languageInstructions = {
@@ -39,8 +54,10 @@ Du hilfst deutschen Unternehmen und Partnern, die nach qualifizierten Mitarbeite
 Du bist freundlich, professionell und kompetent.
 
 ## SPRACHE
-${languageInstructions[language as keyof typeof languageInstructions] || languageInstructions.de}
-Wenn der Nutzer in einer anderen Sprache schreibt, antworte in dieser Sprache.
+${languageInstructions[language]}
+Halte die gesamte Antwort konsequent in dieser Sitzungssprache.
+Wechsle die Sprache nicht automatisch, nur weil der Nutzer einzelne Wörter oder Sätze in einer anderen Sprache schreibt.
+Wechsle die Sprache nur dann, wenn der Nutzer ausdrücklich darum bittet.
 
 ## REGELN
 1. Sei höflich und professionell
@@ -94,6 +111,7 @@ export async function POST(request: NextRequest) {
     // Parse request
     const body: ChatRequest = await request.json();
     const { message, history = [], language = "de" } = body;
+    const normalizedLanguage = normalizeChatLanguage(language);
 
     if (!message || typeof message !== "string") {
       return NextResponse.json({ error: "Message is required" }, { status: 400 });
@@ -118,7 +136,7 @@ export async function POST(request: NextRequest) {
 
     const { data: result } = await runWithGeminiModelFallback(
       apiKey,
-      { systemInstruction: buildSystemPrompt(language) },
+      { systemInstruction: buildSystemPrompt(normalizedLanguage) },
       async (model) => {
         const chat = model.startChat({ history: chatHistory });
         return chat.sendMessage(message);
