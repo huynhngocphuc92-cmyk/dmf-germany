@@ -21,8 +21,8 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "DMF Manpower | Fachkräfte aus Vietnam für Deutschland",
-    template: "%s | DMF Manpower",
+    default: "DMF Talents | Fachkräfte aus Vietnam für Deutschland",
+    template: "%s | DMF Talents",
   },
   description:
     "Spezialisierte Personalvermittlung für Pflege, Handwerk & Industrie. Full-Service von Rekrutierung bis Visum. Jetzt Fachkräfte finden!",
@@ -52,14 +52,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
     url: baseUrl,
-    siteName: "DMF Manpower",
-    title: "DMF Manpower | Fachkräfte aus Vietnam für Deutschland",
+    siteName: "DMF Talents",
+    title: "DMF Talents | Fachkräfte aus Vietnam für Deutschland",
     description:
       "Spezialisierte Personalvermittlung für Pflege, Handwerk & Industrie. Full-Service von Rekrutierung bis Visum. Jetzt Fachkräfte finden!",
   },
   twitter: {
     card: "summary_large_image",
-    title: "DMF Manpower | Fachkräfte aus Vietnam für Deutschland",
+    title: "DMF Talents | Fachkräfte aus Vietnam für Deutschland",
     description:
       "Spezialisierte Personalvermittlung für Pflege, Handwerk & Industrie. Full-Service von Rekrutierung bis Visum.",
   },

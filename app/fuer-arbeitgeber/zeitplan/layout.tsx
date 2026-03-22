@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     "Timeline Rekrutierung",
   ],
   openGraph: {
-    title: "Zeitplan & Ablauf | DMF Manpower",
+    title: "Zeitplan & Ablauf | DMF Talents",
     description:
       "Planungssicherheit ist uns wichtig. Simulieren Sie hier den zeitlichen Ablauf von der Vertragsunterzeichnung bis zur Ankunft Ihrer Fachkraft in Deutschland.",
     type: "website",

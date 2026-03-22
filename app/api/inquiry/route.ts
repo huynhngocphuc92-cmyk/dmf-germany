@@ -152,9 +152,9 @@ export async function POST(request: NextRequest) {
 
         // Auto-reply to lead
         await transporter.sendMail({
-          from: `"DMF Manpower" <${process.env.SMTP_USER}>`,
+          from: `"DMF Talents" <${process.env.SMTP_USER}>`,
           to: email,
-          subject: `✅ Ihre Profil-Anfrage #${candidateCode} wurde erhalten – DMF Manpower`,
+          subject: `✅ Ihre Profil-Anfrage #${candidateCode} wurde erhalten – DMF Talents`,
           html: profileInquiryAutoReplyTemplate(name, candidateCode),
         });
 

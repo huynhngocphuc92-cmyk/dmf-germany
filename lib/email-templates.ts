@@ -27,7 +27,7 @@ function baseLayout(content: string, previewText = ""): string {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DMF Manpower</title>
+  <title>DMF Talents</title>
   <!--[if mso]><noscript><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript><![endif]-->
 </head>
 <body style="margin:0;padding:0;background-color:#f4f7f9;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
@@ -40,7 +40,7 @@ function baseLayout(content: string, previewText = ""): string {
           <!-- HEADER -->
           <tr>
             <td style="background:linear-gradient(135deg,${DMF_BLUE} 0%,#2563a8 100%);padding:32px 40px;text-align:center;">
-              <h1 style="margin:0;color:#ffffff;font-size:24px;font-weight:700;letter-spacing:-0.5px;">DMF Manpower</h1>
+              <h1 style="margin:0;color:#ffffff;font-size:24px;font-weight:700;letter-spacing:-0.5px;">DMF Talents</h1>
               <p style="margin:6px 0 0;color:rgba(255,255,255,0.75);font-size:13px;">Fachkräfte aus Vietnam für Deutschland</p>
             </td>
           </tr>
@@ -152,10 +152,7 @@ export function contactAutoReplyTemplate(name: string): string {
     </table>
   `;
 
-  return baseLayout(
-    content,
-    `Ihre Anfrage bei DMF Manpower ist eingegangen – wir melden uns bald!`
-  );
+  return baseLayout(content, `Ihre Anfrage bei DMF Talents ist eingegangen – wir melden uns bald!`);
 }
 
 // ============================================
@@ -171,12 +168,12 @@ export function inquiryAutoReplyTemplate(name: string, company?: string): string
     <h2 style="margin:0 0 8px;color:${DMF_BLUE};font-size:22px;font-weight:700;">Ihre B2B-Anfrage ist eingegangen ✅</h2>
     <p style="margin:0 0 24px;color:#64748b;font-size:15px;line-height:1.6;">
       Sehr geehrte/r <strong>${greeting}</strong>,<br/><br/>
-      vielen Dank für Ihr Interesse an DMF Manpower. Wir haben Ihre Anfrage erhalten 
+      vielen Dank für Ihr Interesse an DMF Talents. Wir haben Ihre Anfrage erhalten 
       und ein spezialisierter Berater wird sich <strong>innerhalb von 24 Stunden</strong> bei Ihnen melden.
     </p>
 
     <div style="background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border-radius:10px;padding:24px;margin-bottom:24px;">
-      <p style="margin:0 0 12px;color:${DMF_BLUE};font-size:15px;font-weight:700;">🏆 Warum DMF Manpower?</p>
+      <p style="margin:0 0 12px;color:${DMF_BLUE};font-size:15px;font-weight:700;">🏆 Warum DMF Talents?</p>
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
         <tr>
           <td style="padding:6px 0;color:#475569;font-size:14px;">✓ Full-Service: Rekrutierung bis Visum & Integration</td>
@@ -209,7 +206,7 @@ export function inquiryAutoReplyTemplate(name: string, company?: string): string
     </div>
   `;
 
-  return baseLayout(content, `Ihre Anfrage bei DMF Manpower wurde erfolgreich übermittelt`);
+  return baseLayout(content, `Ihre Anfrage bei DMF Talents wurde erfolgreich übermittelt`);
 }
 
 // ============================================

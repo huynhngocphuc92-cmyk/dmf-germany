@@ -174,12 +174,12 @@ export async function POST(request: NextRequest) {
             : contactAutoReplyTemplate(name);
 
         await transporter.sendMail({
-          from: `"DMF Manpower" <${process.env.SMTP_USER}>`,
+          from: `"DMF Talents" <${process.env.SMTP_USER}>`,
           to: email,
           subject:
             inquiryType === "profile"
-              ? `✅ Ihre Profil-Anfrage #${candidateCode} wurde erhalten – DMF Manpower`
-              : `✅ Ihre Anfrage wurde erhalten – DMF Manpower`,
+              ? `✅ Ihre Profil-Anfrage #${candidateCode} wurde erhalten – DMF Talents`
+              : `✅ Ihre Anfrage wurde erhalten – DMF Talents`,
           html: autoReplyHtml,
         });
 

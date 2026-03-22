@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     "Personalvermittlung",
   ],
   openGraph: {
-    title: "Kandidaten-Pool | DMF Manpower",
+    title: "Kandidaten-Pool | DMF Talents",
     description: "Unsere Top-Talente: Qualifizierte Fachkräfte aus Vietnam, die sẵn sàng làm việc.",
     type: "website",
   },

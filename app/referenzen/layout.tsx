@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     "Testimonials DMF",
   ],
   openGraph: {
-    title: "Erfolgsgeschichten & Referenzen | DMF Manpower",
+    title: "Erfolgsgeschichten & Referenzen | DMF Talents",
     description:
       "Überblick über unsere erfolgreichen Vermittlungen vietnamesischer Fachkräfte in ganz Deutschland.",
     type: "website",

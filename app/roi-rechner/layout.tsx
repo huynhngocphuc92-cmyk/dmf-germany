@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     "ROI Calculator",
   ],
   openGraph: {
-    title: "Kostenrechner & ROI | DMF Manpower",
+    title: "Kostenrechner & ROI | DMF Talents",
     description:
       "Berechnen Sie die Wirtschaftlichkeit bei der Rekrutierung vietnamesischer Fachkräfte. Kostenvergleich zwischen deutschen und vietnamesischen Mitarbeitern.",
     type: "website",
