@@ -1,21 +1,23 @@
 import { PRIMARY_CONTACT } from "@/lib/company/contact";
 
 // ============================================
-// DMF GERMANY - CHATBOT KNOWLEDGE BASE
+// DMF TALENTS - CHATBOT KNOWLEDGE BASE
 // ============================================
 
 export const DMF_KNOWLEDGE_BASE = {
   // Company Overview
   company: {
-    name: "DMF Germany",
-    fullName: "Deutsch-Management-Fachkräfte Germany",
+    name: "DMF Talents",
+    fullName: "DMF Talents",
+    legalOperator: "DMF VIETNAM JOINT STOCK COMPANY",
+    legalRepresentative: "NGUYEN HUYNH DANG KHOA",
     tagline: "Ihre Akademie für qualifizierte Talente aus Vietnam",
-    description: `DMF Germany ist eine spezialisierte Akademie für die Vermittlung und Ausbildung von
-vietnamesischen Talenten für den deutschen Arbeitsmarkt. Wir bieten drei Hauptprogramme:
-Ausbildung (Duale Berufsausbildung), Studium (Universitätsprogramm) und Fachkräfte-Vermittlung (§18a/b).`,
+    description: `DMF Talents ist die öffentliche Marke für die Vermittlung und Ausbildung
+vietnamesischer Talente für den deutschen Arbeitsmarkt. Wir bieten drei Hauptprogramme:
+Ausbildung (duale Berufsausbildung), Studium (Universitätsprogramm) und Fachkräfte-Vermittlung (§18a/b).`,
     founded: "2020",
     location: "Deutschland & Vietnam",
-    website: "https://dmf-germany.de",
+    website: "https://dmf-talents.de",
     contact: {
       email: PRIMARY_CONTACT.email,
       phone: PRIMARY_CONTACT.phone,
@@ -323,11 +325,15 @@ export function buildKnowledgeContext(): string {
   const kb = DMF_KNOWLEDGE_BASE;
 
   return `
-# DMF GERMANY - WISSENSBASIS
+# DMF TALENTS - WISSENSBASIS
 
 ## Über uns
 ${kb.company.name} - ${kb.company.tagline}
 ${kb.company.description}
+Marke/Website: ${kb.company.name} (${kb.company.website})
+Rechtsträger laut Impressum: ${kb.company.legalOperator}
+Gesetzlicher Vertreter laut Impressum: ${kb.company.legalRepresentative}
+Kontakt: ${kb.company.contact.email}, ${kb.company.contact.phone}
 
 ## Unsere Programme
 
