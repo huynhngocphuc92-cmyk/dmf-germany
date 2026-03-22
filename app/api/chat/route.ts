@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { GoogleGenerativeAI } from "@google/generative-ai";
 import { PRIMARY_CONTACT } from "@/lib/company/contact";
 import { buildKnowledgeContext } from "@/lib/chatbot/knowledge-base";
 import { checkRateLimit, getClientIp, RATE_LIMITS } from "@/lib/rate-limit";
+import { runWithGeminiModelFallback } from "@/lib/ai/gemini";
 
 // ============================================
 // TYPES
@@ -110,24 +110,21 @@ export async function POST(request: NextRequest) {
     // Limit history
     const limitedHistory = history.slice(-10); // Keep last 10 messages
 
-    // Initialize Gemini client
-    const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({
-      model: process.env.GEMINI_MODEL || "gemini-2.0-flash",
-      systemInstruction: buildSystemPrompt(language),
-    });
-
     // Build chat history for Gemini (role: "user" | "model")
     const chatHistory = limitedHistory.map((msg) => ({
       role: msg.role === "assistant" ? "model" : "user",
       parts: [{ text: msg.content }],
     }));
 
-    // Start chat session
-    const chat = model.startChat({ history: chatHistory });
+    const { data: result } = await runWithGeminiModelFallback(
+      apiKey,
+      { systemInstruction: buildSystemPrompt(language) },
+      async (model) => {
+        const chat = model.startChat({ history: chatHistory });
+        return chat.sendMessage(message);
+      }
+    );
 
-    // Send message
-    const result = await chat.sendMessage(message);
     const assistantMessage =
       result.response.text() || "Entschuldigung, ich konnte keine Antwort generieren.";
 

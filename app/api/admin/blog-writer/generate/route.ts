@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { GoogleGenerativeAI } from "@google/generative-ai";
 import { createClient } from "@/utils/supabase/server";
 import { BlogGenerationRequest, GeneratedBlog } from "@/app/admin/blog-writer/types";
 import { buildBlogSystemPrompt } from "@/lib/prompts/blog-writer";
 import { checkRateLimit, RATE_LIMITS } from "@/lib/rate-limit";
+import { runWithGeminiModelFallback } from "@/lib/ai/gemini";
 
 export async function POST(request: NextRequest) {
   try {
@@ -36,15 +36,12 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
-    // Initialize Gemini client
-    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
-    const model = genAI.getGenerativeModel({
-      model: process.env.GEMINI_MODEL || "gemini-2.0-flash",
-      systemInstruction: buildBlogSystemPrompt(body),
-    });
-
-    // Generate blog content
-    const result = await model.generateContent(`Write a blog post about: "${body.topic}"`);
+    const apiKey = process.env.GEMINI_API_KEY || "";
+    const { data: result } = await runWithGeminiModelFallback(
+      apiKey,
+      { systemInstruction: buildBlogSystemPrompt(body) },
+      async (model) => model.generateContent(`Write a blog post about: "${body.topic}"`)
+    );
     const rawText = result.response.text();
 
     if (!rawText) {

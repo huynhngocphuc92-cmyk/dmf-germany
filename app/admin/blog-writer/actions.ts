@@ -1,6 +1,5 @@
 "use server";
 
-import { GoogleGenerativeAI } from "@google/generative-ai";
 import { createClient } from "@/utils/supabase/server";
 import {
   BlogGenerationRequest,
@@ -10,6 +9,7 @@ import {
   BlogLanguage,
 } from "./types";
 import { buildBlogSystemPrompt } from "@/lib/prompts/blog-writer";
+import { runWithGeminiModelFallback } from "@/lib/ai/gemini";
 
 const getBaseUrl = () => {
   if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
@@ -39,15 +39,11 @@ export async function generateBlogPost(
       return { success: false, error: "API not configured" };
     }
 
-    // Initialize Gemini client
-    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    const model = genAI.getGenerativeModel({
-      model: process.env.GEMINI_MODEL || "gemini-2.0-flash",
-      systemInstruction: buildBlogSystemPrompt(request),
-    });
-
-    // Generate blog content
-    const result = await model.generateContent(`Write a blog post about: "${request.topic}"`);
+    const { data: result } = await runWithGeminiModelFallback(
+      process.env.GEMINI_API_KEY,
+      { systemInstruction: buildBlogSystemPrompt(request) },
+      async (model) => model.generateContent(`Write a blog post about: "${request.topic}"`)
+    );
     const rawText = result.response.text();
 
     // Extract text content

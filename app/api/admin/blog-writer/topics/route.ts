@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { GoogleGenerativeAI } from "@google/generative-ai";
 import { createClient } from "@/utils/supabase/server";
 import { BlogLanguage, TopicSuggestion } from "@/app/admin/blog-writer/types";
 import { buildTopicSuggestionsPrompt } from "@/lib/prompts/blog-writer";
+import { runWithGeminiModelFallback } from "@/lib/ai/gemini";
 
 export async function GET(request: NextRequest) {
   try {
@@ -21,17 +21,13 @@ export async function GET(request: NextRequest) {
     const language = (searchParams.get("language") || "de") as BlogLanguage;
     const category = searchParams.get("category") || undefined;
 
-    // Initialize Gemini client - use flash for cost efficiency
-    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
-    const model = genAI.getGenerativeModel({
-      model: process.env.GEMINI_MODEL || "gemini-2.0-flash",
-    });
-
     // Build the prompt
     const systemPrompt = buildTopicSuggestionsPrompt(language, category);
 
-    // Generate topic suggestions
-    const result = await model.generateContent(systemPrompt);
+    const apiKey = process.env.GEMINI_API_KEY || "";
+    const { data: result } = await runWithGeminiModelFallback(apiKey, {}, async (model) =>
+      model.generateContent(systemPrompt)
+    );
     const rawText = result.response.text();
 
     if (!rawText) {
