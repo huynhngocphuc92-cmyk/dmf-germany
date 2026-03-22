@@ -63,13 +63,13 @@ interface LeadData {
 
 const chatTranslations = {
   de: {
-    title: "DMF Assistent",
+    title: "DMF Talents Assistent",
     online: "Online",
     placeholder: "Stellen Sie Ihre Frage...",
     send: "Senden",
     close: "Schließen",
     welcome:
-      "Guten Tag! Ich bin der virtuelle Assistent von DMF Germany. Wie kann ich Ihnen helfen?",
+      "Guten Tag! Ich bin der virtuelle Assistent von DMF Talents. Wie kann ich Ihnen helfen?",
     error: "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
     rateLimit: "Zu viele Anfragen. Bitte warten Sie einen Moment.",
     quickActions: {
@@ -90,12 +90,12 @@ const chatTranslations = {
     },
   },
   en: {
-    title: "DMF Assistant",
+    title: "DMF Talents Assistant",
     online: "Online",
     placeholder: "Ask your question...",
     send: "Send",
     close: "Close",
-    welcome: "Hello! I'm the virtual assistant of DMF Germany. How can I help you?",
+    welcome: "Hello! I'm the virtual assistant of DMF Talents. How can I help you?",
     error: "An error occurred. Please try again.",
     rateLimit: "Too many requests. Please wait a moment.",
     quickActions: {
@@ -116,12 +116,12 @@ const chatTranslations = {
     },
   },
   vn: {
-    title: "Trợ lý DMF",
+    title: "Trợ lý DMF Talents",
     online: "Trực tuyến",
     placeholder: "Đặt câu hỏi của bạn...",
     send: "Gửi",
     close: "Đóng",
-    welcome: "Xin chào! Tôi là trợ lý ảo của DMF Germany. Tôi có thể giúp gì cho bạn?",
+    welcome: "Xin chào! Tôi là trợ lý ảo của DMF Talents. Tôi có thể giúp gì cho bạn?",
     error: "Đã xảy ra lỗi. Vui lòng thử lại.",
     rateLimit: "Quá nhiều yêu cầu. Vui lòng đợi một chút.",
     quickActions: {

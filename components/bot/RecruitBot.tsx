@@ -383,17 +383,6 @@ async function sendTelegramNotification(message: string): Promise<void> {
   }
 }
 
-/**
- * Fetch candidates from API (TODO: Connect to Real Database)
- */
-async function fetchCandidates(sector: Category): Promise<Candidate[]> {
-  // TODO: Replace with real API call
-  // const response = await fetch(`/api/candidates?sector=${sector}`);
-  // return response.json();
-  await new Promise((resolve) => setTimeout(resolve, 500));
-  return mockCandidates[sector] || [];
-}
-
 // ============================================
 // COMPONENT
 // ============================================
@@ -414,6 +403,30 @@ export const RecruitBot = () => {
   const [selectedSolution, setSelectedSolution] = useState<SolutionType>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const chatContainerRef = useRef<HTMLDivElement>(null);
+  const messageIdRef = useRef(0);
+
+  const createMessageId = (prefix: string) => {
+    messageIdRef.current += 1;
+    return `${prefix}-${messageIdRef.current}`;
+  };
+
+  const createWelcomeMessage = (): Message => ({
+    id: "welcome",
+    type: "bot",
+    content: "Guten Tag! Welche Art von Personal suchen Sie?",
+    timestamp: new Date(),
+    options: serviceTypeOptions,
+  });
+
+  const openChat = () => {
+    setIsOpen(true);
+    setActiveTab("chat");
+
+    if (messages.length === 0) {
+      setMessages([createWelcomeMessage()]);
+      setSelectedSolution(null);
+    }
+  };
 
   // Fetch logo URL from database (same as Header)
   useEffect(() => {
@@ -433,11 +446,6 @@ export const RecruitBot = () => {
     fetchLogo();
   }, []);
 
-  // Reset logo error when logoUrl changes
-  useEffect(() => {
-    setLogoError(false);
-  }, [logoUrl]);
-
   // Auto scroll to bottom when new messages arrive
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -450,27 +458,12 @@ export const RecruitBot = () => {
         `🔔 <b>Neuer Besucher im RecruitBot</b>\n\nEin Nutzer hat den Chat-Assistenten geöffnet.`
       );
     }
-  }, [isOpen]);
-
-  // Initialize with welcome message when chat opens
-  useEffect(() => {
-    if (isOpen && messages.length === 0 && activeTab === "chat") {
-      const welcomeMessage: Message = {
-        id: "welcome",
-        type: "bot",
-        content: "Guten Tag! Welche Art von Personal suchen Sie?",
-        timestamp: new Date(),
-        options: serviceTypeOptions,
-      };
-      setMessages([welcomeMessage]);
-      setSelectedSolution(null); // Reset solution type
-    }
-  }, [isOpen, activeTab]);
+  }, [isOpen, messages.length]);
 
   // Handle option selection
   const handleOptionClick = async (option: Option) => {
     const userMessage: Message = {
-      id: `user-${Date.now()}`,
+      id: createMessageId("user"),
       type: "user",
       content: `${option.emoji} ${option.label}`,
       timestamp: new Date(),
@@ -490,7 +483,7 @@ export const RecruitBot = () => {
         option.solutionType === "seasonal" ? seasonalCategoryOptions : skilledCategoryOptions;
 
       const botResponse: Message = {
-        id: `bot-categories-${Date.now()}`,
+        id: createMessageId("bot-categories"),
         type: "bot",
         content:
           option.solutionType === "seasonal"
@@ -521,7 +514,7 @@ export const RecruitBot = () => {
       const count = candidates.length;
 
       const botResponse: Message = {
-        id: `bot-${Date.now()}`,
+        id: createMessageId("bot"),
         type: "bot",
         content: `Ich habe ${count} passende Kandidaten gefunden. Hier sind die Top-Profile:`,
         timestamp: new Date(),
@@ -533,7 +526,7 @@ export const RecruitBot = () => {
         topCandidates.forEach((candidate, index) => {
           setTimeout(() => {
             const candidateMessage: Message = {
-              id: `candidate-${candidate.id}-${Date.now()}-${index}`,
+              id: createMessageId(`candidate-${candidate.id}-${index}`),
               type: "bot",
               content: "candidate",
               timestamp: new Date(),
@@ -547,7 +540,7 @@ export const RecruitBot = () => {
         setTimeout(
           () => {
             const bookingMessage: Message = {
-              id: `booking-${Date.now()}`,
+              id: createMessageId("booking"),
               type: "bot",
               content: "Möchten Sie einen persönlichen Beratungstermin vereinbaren?",
               timestamp: new Date(),
@@ -565,7 +558,7 @@ export const RecruitBot = () => {
   const handleBookingClick = async () => {
     // Add user message
     const userBookingMessage: Message = {
-      id: `user-booking-${Date.now()}`,
+      id: createMessageId("user-booking"),
       type: "user",
       content: "📅 Termin buchen",
       timestamp: new Date(),
@@ -578,7 +571,7 @@ export const RecruitBot = () => {
 
     // Add bot response with Calendly button
     const bookingOptionMessage: Message = {
-      id: `booking-option-${Date.now()}`,
+      id: createMessageId("booking-option"),
       type: "bot",
       content: "Sehr gerne! Bitte wählen Sie hier einen passenden Termin aus:",
       timestamp: new Date(),
@@ -588,7 +581,7 @@ export const RecruitBot = () => {
     // Add Calendly button message (will open when user clicks)
     setTimeout(() => {
       const calendlyMessage: Message = {
-        id: `calendly-${Date.now()}`,
+        id: createMessageId("calendly"),
         type: "bot",
         content: `calendly:${CALENDLY_URL}`, // Special marker for Calendly button
         timestamp: new Date(),
@@ -661,7 +654,7 @@ export const RecruitBot = () => {
       );
 
       const successMessage: Message = {
-        id: `email-success-${Date.now()}`,
+        id: createMessageId("email-success"),
         type: "bot",
         content: `Vielen Dank! Das Profil wurde freigeschaltet. Wir senden Ihnen die Details per E-Mail zu.`,
         timestamp: new Date(),
@@ -673,7 +666,7 @@ export const RecruitBot = () => {
     } else {
       // Inquiry - Email collected, now send inquiry
       const successMessage: Message = {
-        id: `email-collected-${Date.now()}`,
+        id: createMessageId("email-collected"),
         type: "bot",
         content: `Vielen Dank! Ihre E-Mail-Adresse wurde gespeichert. Sie können nun Ihre Anfrage senden.`,
         timestamp: new Date(),
@@ -693,7 +686,7 @@ export const RecruitBot = () => {
     if (cart.length === 0) {
       // Show message in chat instead of alert
       const alertMessage: Message = {
-        id: `alert-${Date.now()}`,
+        id: createMessageId("alert"),
         type: "bot",
         content: "Bitte fügen Sie mindestens einen Kandidaten zur Merkliste hinzu.",
         timestamp: new Date(),
@@ -709,7 +702,7 @@ export const RecruitBot = () => {
       setEmailFormCandidate(null);
       // Show message explaining why email is needed
       const emailRequestMessage: Message = {
-        id: `email-request-${Date.now()}`,
+        id: createMessageId("email-request"),
         type: "bot",
         content: "Für die Anfrage benötigen wir Ihre E-Mail-Adresse. Bitte geben Sie diese ein.",
         timestamp: new Date(),
@@ -734,7 +727,7 @@ export const RecruitBot = () => {
 
     // Show success message
     const successMessage: Message = {
-      id: `inquiry-success-${Date.now()}`,
+      id: createMessageId("inquiry-success"),
       type: "bot",
       content: `Vielen Dank für Ihre Anfrage! Wir werden uns in Kürze bei Ihnen melden.`,
       timestamp: new Date(),
@@ -768,7 +761,7 @@ export const RecruitBot = () => {
             exit={{ scale: 0, opacity: 0 }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => setIsOpen(true)}
+            onClick={openChat}
             className={cn(
               "fixed bottom-6 right-6 z-50",
               "w-12 h-12 md:w-14 md:h-14 rounded-full",
@@ -844,7 +837,7 @@ export const RecruitBot = () => {
                   />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-sm text-white">DMF Assistant</h3>
+                  <h3 className="font-semibold text-sm text-white">DMF Talents Assistant</h3>
                   <div className="flex items-center gap-1.5">
                     <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
                     <span className="text-xs opacity-90 text-white">Online</span>
@@ -1082,7 +1075,7 @@ export const RecruitBot = () => {
                     <Bookmark className="w-16 h-16 text-gray-300 mb-4" />
                     <p className="text-gray-500 text-sm mb-2">Ihre Merkliste ist leer</p>
                     <p className="text-gray-400 text-xs">
-                      Klicken Sie auf "Merken" bei einem Kandidaten, um ihn zu speichern.
+                      Klicken Sie auf &quot;Merken&quot; bei einem Kandidaten, um ihn zu speichern.
                     </p>
                   </div>
                 ) : (
@@ -1143,7 +1136,7 @@ export const RecruitBot = () => {
                           setActiveTab("chat");
                           await new Promise((resolve) => setTimeout(resolve, 300)); // Wait for tab switch
                           const bookingMessage: Message = {
-                            id: `booking-from-cart-${Date.now()}`,
+                            id: createMessageId("booking-from-cart"),
                             type: "bot",
                             content: `Sie haben ${cart.length} ${cart.length === 1 ? "Kandidat" : "Kandidaten"} in Ihrer Merkliste.\n\nMöchten Sie einen Beratungstermin vereinbaren?`,
                             timestamp: new Date(),

@@ -32,7 +32,7 @@ function buildSystemPrompt(language: string): string {
     vi: "Trả lời bằng tiếng Việt.",
   };
 
-  return `Du bist ein professioneller Berater für DMF Germany, eine Akademie für vietnamesische Talente.
+  return `Du bist ein professioneller Berater für DMF Talents, eine Akademie für vietnamesische Talente.
 
 ## DEINE ROLLE
 Du hilfst deutschen Unternehmen und Partnern, die nach qualifizierten Mitarbeitern aus Vietnam suchen.
@@ -55,7 +55,7 @@ Wenn der Nutzer in einer anderen Sprache schreibt, antworte in dieser Sprache.
 ## WICHTIGE LINKS
 - Beratungstermin: https://calendly.com/contact-dmf/30min
 - Kontakt: ${PRIMARY_CONTACT.email}
-- Website: https://dmf-germany.de
+- Website: https://dmf-talents.de
 
 ## WISSENSBASIS
 ${knowledgeContext}
