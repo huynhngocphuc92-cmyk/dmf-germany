@@ -942,11 +942,10 @@ function CTASection({ content }: { content: any }) {
 export default function SkilledWorkersPage() {
   const { t } = useLanguage();
 
-  // 1. LẤY DỮ LIỆU THÔ (Có thể bị null hoặc sai key)
+  // Pull the raw content block from the translation bundle.
   const rawData = t.service_pages?.skilled_workers;
 
-  // 2. QUA CỔNG KIỂM SOÁT QA (Lọc sạch)
-  // Biến 'content' bây giờ đảm bảo 100% không bao giờ null
+  // Run the payload through QA normalization before rendering.
   const content = checkQuality(rawData, DATA_DU_PHONG);
 
   // FAQ Questions for Skilled Workers (B2B-Focused)

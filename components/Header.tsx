@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Phone, Mail, Home, Users, Handshake } from "lucide-react";
 // import { Newspaper } from "lucide-react"; // TODO: Uncomment when blog is enabled
 import { cn } from "@/lib/utils";
+import { GERMANY_CONTACT, PRIMARY_CONTACT } from "@/lib/company/contact";
 import { Logo } from "@/components/Logo";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { LanguageSwitcher } from "@/components/header/LanguageSwitcher";
@@ -148,8 +149,8 @@ export const Header = memo(function Header({ logoUrl, hotline, email }: HeaderPr
   const [scrollY, setScrollY] = useState(0);
 
   // Display values with fallbacks
-  const displayHotline = hotline || "+84 855 070773";
-  const displayEmail = email || "contact@dmf.edu.vn";
+  const displayHotline = hotline || GERMANY_CONTACT.phone;
+  const displayEmail = email || PRIMARY_CONTACT.email;
 
   // Scroll tracking
   useEffect(() => {

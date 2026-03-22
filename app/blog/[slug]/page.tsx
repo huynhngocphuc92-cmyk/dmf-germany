@@ -3,9 +3,6 @@ import { notFound } from "next/navigation";
 import { getPostBySlug, getRelatedPosts } from "@/app/admin/posts/actions";
 import { BlogDetailClient } from "./blog-detail-client";
 
-// Force dynamic rendering (uses cookies for Supabase client)
-export const dynamic = "force-dynamic";
-
 interface BlogDetailPageProps {
   params: Promise<{
     slug: string;

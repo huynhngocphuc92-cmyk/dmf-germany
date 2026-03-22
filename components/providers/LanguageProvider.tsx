@@ -6,7 +6,7 @@ import { TRANSLATIONS, Language } from "@/lib/translations";
 interface LanguageContextType {
   lang: Language;
   setLang: (lang: Language) => void;
-  t: (typeof TRANSLATIONS)["de"]; // Đảm bảo gợi ý code chính xác
+  t: (typeof TRANSLATIONS)["de"];
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -14,7 +14,7 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Language>("de");
 
-  // Load ngôn ngữ từ localStorage khi mở web
+  // Load the saved language from localStorage on the client.
   useEffect(() => {
     const saved = localStorage.getItem("dmf_lang") as Language;
     if (saved && TRANSLATIONS[saved]) {
@@ -27,7 +27,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     localStorage.setItem("dmf_lang", newLang);
   };
 
-  // Lấy bộ từ điển tương ứng với ngôn ngữ hiện tại
+  // Resolve the dictionary for the active language.
   const t = TRANSLATIONS[lang];
 
   return (
@@ -35,7 +35,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   );
 }
 
-// Hook để các component con gọi dùng
+// Hook consumed by client components that need the current language context.
 export function useLanguage() {
   const context = useContext(LanguageContext);
   if (!context) {

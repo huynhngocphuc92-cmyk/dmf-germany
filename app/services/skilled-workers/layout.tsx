@@ -11,14 +11,6 @@ export const metadata: Metadata = {
     description: "Qualifizierte Fachkräfte für Ihr Unternehmen. Jetzt prüfen!",
     url: `${baseUrl}/services/skilled-workers`,
     siteName: "DMF Manpower",
-    images: [
-      {
-        url: "/og-image.jpg", // Using default OG image, can be customized later
-        width: 1200,
-        height: 630,
-        alt: "Fachkräfte aus Vietnam vermitteln | DMF Manpower",
-      },
-    ],
     locale: "de_DE",
     type: "website",
   },
@@ -26,7 +18,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Fachkräfte aus Vietnam vermitteln | DMF Manpower",
     description: "Qualifizierte Fachkräfte für Ihr Unternehmen. Jetzt prüfen!",
-    images: ["/og-image.jpg"],
   },
 };
 

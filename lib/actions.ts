@@ -34,63 +34,52 @@ export async function sendEmail(formData: FormData): Promise<SendEmailResult> {
       };
     }
 
-    // Debug: Log environment variables (không log password)
-    console.log("=== EMAIL CONFIG DEBUG ===");
-    console.log("SMTP_HOST:", process.env.SMTP_HOST || "smtp.gmail.com (default)");
-    console.log("SMTP_PORT:", process.env.SMTP_PORT || "587 (default)");
-    console.log("SMTP_USER:", process.env.SMTP_USER ? "✓ Đã cấu hình" : "✗ CHƯA CẤU HÌNH!");
-    console.log("SMTP_PASSWORD:", process.env.SMTP_PASSWORD ? "✓ Đã cấu hình" : "✗ CHƯA CẤU HÌNH!");
-    console.log("CONTACT_EMAIL:", process.env.CONTACT_EMAIL || "✗ CHƯA CẤU HÌNH!");
-    console.log("==========================");
-
-    // Kiểm tra env variables bắt buộc
+    // Validate required SMTP configuration before attempting to send.
     if (!process.env.SMTP_USER || !process.env.SMTP_PASSWORD) {
-      console.error("Lỗi: SMTP_USER hoặc SMTP_PASSWORD chưa được cấu hình trong .env.local");
+      console.error("[Mail] SMTP credentials are missing.");
       return {
         success: false,
-        message: "Cấu hình email server chưa hoàn tất. Vui lòng liên hệ quản trị viên.",
+        message:
+          "Die E-Mail-Serverkonfiguration ist unvollständig. Bitte kontaktieren Sie den Administrator.",
       };
     }
 
     if (!process.env.CONTACT_EMAIL) {
-      console.error("Lỗi: CONTACT_EMAIL chưa được cấu hình trong .env.local");
+      console.error("[Mail] CONTACT_EMAIL is not configured.");
       return {
         success: false,
-        message: "Địa chỉ email nhận chưa được cấu hình. Vui lòng liên hệ quản trị viên.",
+        message:
+          "Die Empfängeradresse ist nicht konfiguriert. Bitte kontaktieren Sie den Administrator.",
       };
     }
 
-    // Lấy port và xác định secure
+    // Determine the SMTP port and security mode.
     const port = parseInt(process.env.SMTP_PORT || "587");
-    // Port 465 = SSL (secure: true), Port 587 = STARTTLS (secure: false)
     const isSecure = port === 465;
-
-    console.log("Secure mode:", isSecure ? "true (SSL)" : "false (STARTTLS)");
 
     // Create transporter with Gmail SMTP
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST || "smtp.gmail.com",
       port: port,
-      secure: isSecure, // true cho port 465, false cho port 587
+      secure: isSecure,
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASSWORD,
       },
-      // Thêm options cho debug
-      logger: true,
+      // Keep verbose transport logs limited to development.
+      logger: process.env.NODE_ENV === "development",
       debug: process.env.NODE_ENV === "development",
     });
 
-    // Verify connection trước khi gửi
-    console.log("Đang kiểm tra kết nối SMTP...");
+    // Verify the SMTP connection before attempting delivery.
     try {
       await transporter.verify();
-      console.log("✓ Kết nối SMTP thành công!");
     } catch (verifyError) {
-      console.error("✗ Lỗi kết nối SMTP:", verifyError);
+      console.error("[Mail] SMTP verification failed:", verifyError);
       return {
         success: false,
-        message: "Không thể kết nối đến email server. Vui lòng kiểm tra cấu hình SMTP.",
+        message:
+          "Nicht möglich, eine Verbindung zum E-Mail-Server herzustellen. Bitte prüfen Sie die SMTP-Konfiguration.",
       };
     }
 
@@ -150,7 +139,7 @@ export async function sendEmail(formData: FormData): Promise<SendEmailResult> {
       </html>
     `;
 
-    // Plain text version
+    // Plain-text version
     const textContent = `
 Neue Kontaktanfrage von der DMF Vietnam Website
 
@@ -165,54 +154,39 @@ ${message}
 Diese E-Mail wurde automatisch über das Kontaktformular gesendet.
     `.trim();
 
-    // Send email - Gmail yêu cầu 'from' phải trùng với SMTP_USER
-    console.log("Đang gửi email...");
+    // Gmail requires the from address to match the authenticated SMTP account.
     const mailOptions = {
-      from: process.env.SMTP_USER, // Gmail bắt buộc phải dùng đúng email đăng nhập
+      from: process.env.SMTP_USER,
       to: process.env.CONTACT_EMAIL,
-      replyTo: email, // Khi reply sẽ gửi về email của khách
-      subject: `Liên hệ mới từ Website DMF - ${name}`,
+      replyTo: email,
+      subject: `Neue Kontaktanfrage über die DMF Website - ${name}`,
       text: textContent,
       html: htmlContent,
     };
 
-    console.log("Mail options:", {
-      from: mailOptions.from,
-      to: mailOptions.to,
-      replyTo: mailOptions.replyTo,
-      subject: mailOptions.subject,
-    });
-
-    const info = await transporter.sendMail(mailOptions);
-    console.log("✓ Email đã gửi thành công! Message ID:", info.messageId);
+    await transporter.sendMail(mailOptions);
 
     // =========================================
     // GOOGLE SHEETS CRM - "Fire and Forget"
     // =========================================
-    // Save to Google Sheets as CRM backup
-    // This is non-blocking and fail-safe (won't affect user experience)
+    // Save to Google Sheets as a non-blocking CRM backup.
     try {
-      console.log("[CRM] Đang lưu vào Google Sheets...");
-
       const sheetResult = await appendToSheet({
         name: sanitizeForSheet(name),
         email: sanitizeForSheet(email),
         company: sanitizeForSheet(company || ""),
-        phone: "", // Form hiện tại chưa có trường này
-        industry: "", // Form hiện tại chưa có trường này
+        phone: "",
+        industry: "",
         message: sanitizeForSheet(message),
         source: "Website Contact Form",
-        language: "de", // Có thể lấy từ cookie/session sau này
+        language: "de",
       });
 
       if (sheetResult.error) {
-        console.warn("[CRM] ⚠️ Lưu sheet có lỗi (đã bỏ qua):", sheetResult.error);
-      } else {
-        console.log("[CRM] ✓ Đã lưu vào Google Sheets thành công!");
+        console.warn("[CRM] Google Sheets write failed and was ignored:", sheetResult.error);
       }
     } catch (sheetError) {
-      // "Fail Safe" - Log error but don't affect user experience
-      console.error("[CRM] ❌ Lỗi lưu Google Sheets (đã bỏ qua):", sheetError);
+      console.error("[CRM] Google Sheets write failed and was ignored:", sheetError);
     }
     // =========================================
 
@@ -222,19 +196,16 @@ Diese E-Mail wurde automatisch über das Kontaktformular gesendet.
         "Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet. Wir melden uns in Kürze bei Ihnen.",
     };
   } catch (error) {
-    // Log chi tiết lỗi ra Terminal
-    console.error("========================================");
-    console.error("Lỗi gửi mail:", error);
-    console.error("========================================");
+    console.error("[Mail] Failed to send contact email:", error);
 
-    // Log thêm thông tin nếu là Error object
+    // Add extra diagnostic detail when the thrown value is an Error instance.
     if (error instanceof Error) {
       console.error("Error name:", error.name);
       console.error("Error message:", error.message);
       console.error("Error stack:", error.stack);
     }
 
-    // Return user-friendly error message
+    // Return a user-friendly error message.
     return {
       success: false,
       message:

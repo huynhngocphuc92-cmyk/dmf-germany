@@ -1,8 +1,9 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { m, useInView } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { MotionProvider } from "@/components/shared/MotionProvider";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -128,7 +129,7 @@ function PremiumStepCard({ step, index }: PremiumStepCardProps) {
         <div className="absolute left-[72px] top-8 w-6 h-0.5 bg-gradient-to-r from-blue-300 to-blue-500" />
 
         {/* Card */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, x: 40, y: 10 }}
           animate={isInView ? { opacity: 1, x: 0, y: 0 } : {}}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -183,7 +184,7 @@ function PremiumStepCard({ step, index }: PremiumStepCardProps) {
               </ul>
             </CardContent>
           </Card>
-        </motion.div>
+        </m.div>
       </div>
 
       {/* ======================= */}
@@ -194,7 +195,7 @@ function PremiumStepCard({ step, index }: PremiumStepCardProps) {
         {/* LEFT COLUMN */}
         <div className={`flex ${isLeft ? "justify-end" : "justify-start"}`}>
           {isLeft && (
-            <motion.div
+            <m.div
               initial={{ opacity: 0, x: -60 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
@@ -251,7 +252,7 @@ function PremiumStepCard({ step, index }: PremiumStepCardProps) {
                   </ul>
                 </CardContent>
               </Card>
-            </motion.div>
+            </m.div>
           )}
         </div>
 
@@ -290,7 +291,7 @@ function PremiumStepCard({ step, index }: PremiumStepCardProps) {
         {/* RIGHT COLUMN */}
         <div className={`flex ${!isLeft ? "justify-start" : "justify-end"}`}>
           {!isLeft && (
-            <motion.div
+            <m.div
               initial={{ opacity: 0, x: 60 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
@@ -347,7 +348,7 @@ function PremiumStepCard({ step, index }: PremiumStepCardProps) {
                   </ul>
                 </CardContent>
               </Card>
-            </motion.div>
+            </m.div>
           )}
         </div>
       </div>
@@ -371,7 +372,8 @@ export function ProcessRoadmap() {
   }));
 
   return (
-    <section id="process-roadmap" className="relative py-24 md:py-32 overflow-hidden">
+    <MotionProvider>
+      <section id="process-roadmap" className="relative py-24 md:py-32 overflow-hidden">
       {/* Background with subtle pattern */}
       <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-white to-slate-50" />
 
@@ -379,9 +381,9 @@ export function ProcessRoadmap() {
       <div className="absolute top-0 left-0 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
 
-      <div className="container relative mx-auto px-4 max-w-6xl">
+        <div className="container relative mx-auto px-4 max-w-6xl">
         {/* Section Header */}
-        <motion.div
+          <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
@@ -403,7 +405,7 @@ export function ProcessRoadmap() {
           <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
             {t.processRoadmap.subtitle}
           </p>
-        </motion.div>
+          </m.div>
 
         {/* Timeline Container */}
         <div className="relative">
@@ -442,7 +444,7 @@ export function ProcessRoadmap() {
           {/* ======================= */}
           {/* SUCCESS END NODE        */}
           {/* ======================= */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.5 }}
@@ -488,13 +490,13 @@ export function ProcessRoadmap() {
                 <p className="text-slate-500">{t.processRoadmap.success_desc}</p>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
 
         {/* ======================= */}
         {/* CTA SECTION             */}
         {/* ======================= */}
-        <motion.div
+          <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
@@ -553,8 +555,9 @@ export function ProcessRoadmap() {
               <p className="mt-6 text-xs text-slate-500">{t.processRoadmap.cta_footer}</p>
             </CardContent>
           </Card>
-        </motion.div>
-      </div>
-    </section>
+          </m.div>
+        </div>
+      </section>
+    </MotionProvider>
   );
 }

@@ -1,3 +1,5 @@
+import { PRIMARY_CONTACT } from "@/lib/company/contact";
+
 // ============================================
 // DMF GERMANY - CHATBOT KNOWLEDGE BASE
 // ============================================
@@ -15,8 +17,8 @@ Ausbildung (Duale Berufsausbildung), Studium (Universit√§tsprogramm) und Fachkr√
     location: "Deutschland & Vietnam",
     website: "https://dmf-germany.de",
     contact: {
-      email: "contact@dmf-germany.de",
-      phone: "+49 XXX XXXXXXX",
+      email: PRIMARY_CONTACT.email,
+      phone: PRIMARY_CONTACT.phone,
     },
   },
 

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import { BUSINESS_PHONE_ERROR_MESSAGE, isValidBusinessPhone } from "@/lib/validations/phone";
 
 // ============================================
 // TYPES
@@ -47,6 +48,10 @@ export async function POST(request: NextRequest) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return NextResponse.json({ error: "Invalid email format" }, { status: 400 });
+    }
+
+    if (phone && !isValidBusinessPhone(phone)) {
+      return NextResponse.json({ error: BUSINESS_PHONE_ERROR_MESSAGE }, { status: 400 });
     }
 
     const supabase = getSupabaseClient();

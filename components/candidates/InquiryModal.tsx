@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { inquiryFormSchema, type InquiryFormData } from "@/lib/validations/schemas";
@@ -35,6 +36,69 @@ interface InquiryModalProps {
   onClose: () => void;
 }
 
+const INQUIRY_MODAL_COPY = {
+  de: {
+    title: "Anfrage senden",
+    nameLabel: "Name *",
+    namePlaceholder: "Ihr Name",
+    emailLabel: "E-Mail *",
+    emailPlaceholder: "ihre@email.de",
+    phoneLabel: "Telefon",
+    phonePlaceholder: "+49 30 1234567",
+    messageLabel: "Nachricht *",
+    messagePlaceholder: "Ihre Nachricht...",
+    cancel: "Abbrechen",
+    submit: "Senden",
+    submitting: "Senden...",
+    candidateMissing: "Kandidat-Informationen fehlen. Bitte versuchen Sie es erneut.",
+    success: "Anfrage wurde erfolgreich gesendet. Wir melden uns in Kürze bei Ihnen.",
+    submitError: "Fehler beim Senden. Bitte versuchen Sie es später erneut.",
+    genericError: "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.",
+    defaultMessage: (profession: string) =>
+      `Ich interessiere mich für das Profil dieses Kandidaten als ${profession}. Bitte senden Sie mir weitere Details.`,
+  },
+  en: {
+    title: "Send Inquiry",
+    nameLabel: "Name *",
+    namePlaceholder: "Your name",
+    emailLabel: "Email *",
+    emailPlaceholder: "your@email.com",
+    phoneLabel: "Phone",
+    phonePlaceholder: "+49 30 1234567",
+    messageLabel: "Message *",
+    messagePlaceholder: "Your message...",
+    cancel: "Cancel",
+    submit: "Send",
+    submitting: "Sending...",
+    candidateMissing: "Candidate information is missing. Please try again.",
+    success: "Your inquiry was sent successfully. We will get back to you shortly.",
+    submitError: "Unable to send your inquiry. Please try again later.",
+    genericError: "An error occurred. Please try again later.",
+    defaultMessage: (profession: string) =>
+      `I am interested in this candidate profile for the ${profession} role. Please send me more details.`,
+  },
+  vn: {
+    title: "Gửi yêu cầu",
+    nameLabel: "Tên *",
+    namePlaceholder: "Tên của bạn",
+    emailLabel: "Email *",
+    emailPlaceholder: "email@example.com",
+    phoneLabel: "Số điện thoại",
+    phonePlaceholder: "+49 30 1234567",
+    messageLabel: "Tin nhắn *",
+    messagePlaceholder: "Tin nhắn của bạn...",
+    cancel: "Hủy",
+    submit: "Gửi",
+    submitting: "Đang gửi...",
+    candidateMissing: "Thiếu thông tin ứng viên. Vui lòng thử lại.",
+    success: "Yêu cầu đã được gửi thành công. Chúng tôi sẽ liên hệ với bạn sớm.",
+    submitError: "Lỗi khi gửi. Vui lòng thử lại sau.",
+    genericError: "Đã xảy ra lỗi. Vui lòng thử lại sau.",
+    defaultMessage: (profession: string) =>
+      `Tôi quan tâm đến hồ sơ của ứng viên ${profession} này. Vui lòng gửi chi tiết.`,
+  },
+} as const;
+
 /**
  * Generate candidate code from ID
  */
@@ -44,6 +108,8 @@ const getCandidateCode = (id: string): string => {
 
 export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) => {
   const { lang } = useLanguage();
+  const locale = lang === "en" ? "en" : lang === "vn" ? "vn" : "de";
+  const copy = INQUIRY_MODAL_COPY[locale];
   const [status, setStatus] = useState<"success" | "error" | null>(null);
   const [statusMessage, setStatusMessage] = useState<string>("");
 
@@ -60,19 +126,16 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
       email: "",
       phone: "",
       message: "",
+      privacy: false,
     },
   });
 
   // Auto-fill message when candidate changes
   useEffect(() => {
     if (candidate && candidate.profession && isOpen) {
-      const defaultMessage =
-        lang === "de"
-          ? `Ich interessiere mich für das Profil dieses Kandidaten als ${candidate.profession}. Bitte senden Sie mir weitere Details.`
-          : `Tôi quan tâm đến hồ sơ của ứng viên ${candidate.profession} này. Vui lòng gửi chi tiết.`;
-      setValue("message", defaultMessage);
+      setValue("message", copy.defaultMessage(candidate.profession));
     }
-  }, [candidate, isOpen, lang, setValue]);
+  }, [candidate, copy, isOpen, setValue]);
 
   const candidateCode = candidate ? getCandidateCode(candidate.id) : "";
 
@@ -80,11 +143,7 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
     // Early validation - if no candidate, don't submit
     if (!candidate) {
       setStatus("error");
-      setStatusMessage(
-        lang === "de"
-          ? "Kandidat-Informationen fehlen. Bitte versuchen Sie es erneut."
-          : "Thiếu thông tin ứng viên. Vui lòng thử lại."
-      );
+      setStatusMessage(copy.candidateMissing);
       return;
     }
 
@@ -102,6 +161,7 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
           email: data.email,
           phone: data.phone || "",
           message: data.message,
+          privacy: data.privacy,
           type: "profile",
           candidateId: candidate.id,
           candidateCode: candidateCode,
@@ -112,11 +172,7 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
 
       if (result.success) {
         setStatus("success");
-        setStatusMessage(
-          lang === "de"
-            ? "Anfrage wurde erfolgreich gesendet. Wir melden uns in Kürze bei Ihnen."
-            : "Yêu cầu đã được gửi thành công. Chúng tôi sẽ liên hệ với bạn sớm."
-        );
+        setStatusMessage(copy.success);
         // Reset form after 2 seconds and close modal
         setTimeout(() => {
           reset();
@@ -125,21 +181,12 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
         }, 2000);
       } else {
         setStatus("error");
-        setStatusMessage(
-          result.error ||
-            (lang === "de"
-              ? "Fehler beim Senden. Bitte versuchen Sie es später erneut."
-              : "Lỗi khi gửi. Vui lòng thử lại sau.")
-        );
+        setStatusMessage(result.error || copy.submitError);
       }
     } catch (error) {
       console.error("Error submitting inquiry:", error);
       setStatus("error");
-      setStatusMessage(
-        lang === "de"
-          ? "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut."
-          : "Đã xảy ra lỗi. Vui lòng thử lại sau."
-      );
+      setStatusMessage(copy.genericError);
     }
   };
 
@@ -159,9 +206,7 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
           <div className="flex items-center justify-between">
-            <DialogTitle className="text-xl font-bold">
-              {lang === "de" ? "Anfrage senden" : "Gửi yêu cầu"}
-            </DialogTitle>
+            <DialogTitle className="text-xl font-bold">{copy.title}</DialogTitle>
             <Button variant="ghost" size="icon" onClick={onClose} className="h-6 w-6">
               <X className="h-4 w-4" />
             </Button>
@@ -196,12 +241,12 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
           <div className="space-y-2">
             <Label htmlFor="name" className="flex items-center gap-2">
               <User className="w-4 h-4" />
-              {lang === "de" ? "Name *" : "Tên *"}
+              {copy.nameLabel}
             </Label>
             <Input
               id="name"
               {...register("name")}
-              placeholder={lang === "de" ? "Ihr Name" : "Tên của bạn"}
+              placeholder={copy.namePlaceholder}
               disabled={isSubmitting}
               className={errors.name ? "border-red-500" : ""}
             />
@@ -212,13 +257,13 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
           <div className="space-y-2">
             <Label htmlFor="email" className="flex items-center gap-2">
               <Mail className="w-4 h-4" />
-              {lang === "de" ? "E-Mail *" : "Email *"}
+              {copy.emailLabel}
             </Label>
             <Input
               id="email"
               type="email"
               {...register("email")}
-              placeholder={lang === "de" ? "ihre@email.de" : "email@example.com"}
+              placeholder={copy.emailPlaceholder}
               disabled={isSubmitting}
               className={errors.email ? "border-red-500" : ""}
             />
@@ -229,13 +274,13 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
           <div className="space-y-2">
             <Label htmlFor="phone" className="flex items-center gap-2">
               <Phone className="w-4 h-4" />
-              {lang === "de" ? "Telefon" : "Số điện thoại"}
+              {copy.phoneLabel}
             </Label>
             <Input
               id="phone"
               type="tel"
               {...register("phone")}
-              placeholder={lang === "de" ? "+49 123 456789" : "+84 90 123 4567"}
+              placeholder={copy.phonePlaceholder}
               disabled={isSubmitting}
               className={errors.phone ? "border-red-500" : ""}
             />
@@ -246,17 +291,78 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
           <div className="space-y-2">
             <Label htmlFor="message" className="flex items-center gap-2">
               <MessageSquare className="w-4 h-4" />
-              {lang === "de" ? "Nachricht *" : "Tin nhắn *"}
+              {copy.messageLabel}
             </Label>
             <Textarea
               id="message"
               {...register("message")}
-              placeholder={lang === "de" ? "Ihre Nachricht..." : "Tin nhắn của bạn..."}
+              placeholder={copy.messagePlaceholder}
               rows={5}
               disabled={isSubmitting}
               className={errors.message ? "border-red-500" : ""}
             />
             {errors.message && <p className="text-sm text-red-500">{errors.message.message}</p>}
+          </div>
+
+          <div className="space-y-2">
+            <div
+              className={`rounded-xl border p-4 ${
+                errors.privacy ? "border-red-500 bg-red-50/40" : "border-slate-200 bg-slate-50"
+              }`}
+            >
+              <label htmlFor="privacy" className="flex items-start gap-3 text-sm leading-6">
+                <input
+                  id="privacy"
+                  type="checkbox"
+                  {...register("privacy")}
+                  className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                  disabled={isSubmitting}
+                />
+                <span className="text-slate-700">
+                  {lang === "de" ? (
+                    <>
+                      Ich stimme der Verarbeitung meiner Daten gemäß der{" "}
+                      <Link
+                        href="/datenschutz"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-semibold text-blue-600 underline underline-offset-4 hover:text-blue-700"
+                      >
+                        Datenschutzerklärung
+                      </Link>{" "}
+                      zu. *
+                    </>
+                  ) : lang === "en" ? (
+                    <>
+                      I agree to the processing of my data in accordance with the{" "}
+                      <Link
+                        href="/datenschutz"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-semibold text-blue-600 underline underline-offset-4 hover:text-blue-700"
+                      >
+                        privacy policy
+                      </Link>
+                      . *
+                    </>
+                  ) : (
+                    <>
+                      Tôi đồng ý với việc xử lý dữ liệu của mình theo{" "}
+                      <Link
+                        href="/datenschutz"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-semibold text-blue-600 underline underline-offset-4 hover:text-blue-700"
+                      >
+                        chính sách bảo mật
+                      </Link>
+                      . *
+                    </>
+                  )}
+                </span>
+              </label>
+            </div>
+            {errors.privacy && <p className="text-sm text-red-500">{errors.privacy.message}</p>}
           </div>
 
           {/* Submit Button */}
@@ -268,7 +374,7 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
               onClick={onClose}
               disabled={isSubmitting}
             >
-              {lang === "de" ? "Abbrechen" : "Hủy"}
+              {copy.cancel}
             </Button>
             <Button
               type="submit"
@@ -278,12 +384,12 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
               {isSubmitting ? (
                 <>
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  {lang === "de" ? "Senden..." : "Đang gửi..."}
+                  {copy.submitting}
                 </>
               ) : (
                 <>
                   <Send className="w-4 h-4 mr-2" />
-                  {lang === "de" ? "Senden" : "Gửi"}
+                  {copy.submit}
                 </>
               )}
             </Button>

@@ -90,7 +90,7 @@ export function AdminHeader({ user, onMenuClick }: AdminHeaderProps) {
 
           {/* Logout */}
           <form action={signOut}>
-            <LogoutButton label={lang === "de" ? "Abmelden" : "Đăng xuất"} />
+            <LogoutButton label={lang === "vn" ? "Đăng xuất" : "Abmelden"} />
           </form>
         </div>
       </div>

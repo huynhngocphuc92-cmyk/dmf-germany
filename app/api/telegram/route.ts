@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
   try {
     // Rate limiting check
     const clientIp = getClientIp(request);
-    const rateLimitResult = checkRateLimit(`telegram:${clientIp}`, RATE_LIMITS.TELEGRAM);
+    const rateLimitResult = await checkRateLimit(`telegram:${clientIp}`, RATE_LIMITS.TELEGRAM);
 
     if (!rateLimitResult.success) {
       return NextResponse.json(

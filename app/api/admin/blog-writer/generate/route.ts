@@ -3,28 +3,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { createClient } from "@/utils/supabase/server";
 import { BlogGenerationRequest, GeneratedBlog } from "@/app/admin/blog-writer/types";
 import { buildBlogSystemPrompt } from "@/lib/prompts/blog-writer";
-
-// Rate limiting - simple in-memory store (use Redis in production)
-const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
-const RATE_LIMIT = 10; // 10 requests per hour
-const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour
-
-function checkRateLimit(userId: string): boolean {
-  const now = Date.now();
-  const userLimit = rateLimitMap.get(userId);
-
-  if (!userLimit || now > userLimit.resetTime) {
-    rateLimitMap.set(userId, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
-    return true;
-  }
-
-  if (userLimit.count >= RATE_LIMIT) {
-    return false;
-  }
-
-  userLimit.count++;
-  return true;
-}
+import { checkRateLimit, RATE_LIMITS } from "@/lib/rate-limit";
 
 export async function POST(request: NextRequest) {
   try {
@@ -39,7 +18,11 @@ export async function POST(request: NextRequest) {
     }
 
     // Check rate limit
-    if (!checkRateLimit(user.id)) {
+    const rateLimitResult = await checkRateLimit(
+      `blog-writer:${user.id}`,
+      RATE_LIMITS.BLOG_GENERATION
+    );
+    if (!rateLimitResult.success) {
       return NextResponse.json(
         { error: "Rate limit exceeded. Please try again later." },
         { status: 429 }

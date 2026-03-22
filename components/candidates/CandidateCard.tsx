@@ -24,12 +24,11 @@ function getEmbedUrl(url: string | null | undefined): string | null {
 
   const cleanUrl = url.trim();
 
-  // Regex bắt ID từ: youtube.com/watch, youtu.be, youtube.com/shorts, youtube.com/embed
-  // Pattern này bắt được cả link thường, link rút gọn và link Shorts
+  // Match IDs from watch URLs, youtu.be links, shorts, and embed URLs.
   const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|shorts\/)([^#&?]*).*/;
   const match = cleanUrl.match(regExp);
 
-  // ID YouTube chuẩn thường có 11 ký tự
+  // Standard YouTube video IDs have 11 characters.
   if (match && match[2] && match[2].length === 11) {
     // Use youtube-nocookie.com for better privacy compliance (DSGVO)
     return `https://www.youtube-nocookie.com/embed/${match[2]}`;

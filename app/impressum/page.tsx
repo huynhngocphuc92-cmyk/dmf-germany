@@ -1,6 +1,5 @@
-"use client";
-
-import { useLanguage } from "@/components/providers/LanguageProvider";
+import { GERMANY_CONTACT, VIETNAM_OFFICE_CONTACT } from "@/lib/company/contact";
+import { TRANSLATIONS } from "@/lib/translations";
 import Link from "next/link";
 import {
   Building2,
@@ -14,21 +13,11 @@ import {
   FileText,
 } from "lucide-react";
 
-export default function ImpressumPage() {
-  const { t } = useLanguage();
-  const impressum = t.legal?.impressum;
+export const dynamic = "force-static";
 
-  // Early return if legal content is not available
-  if (!impressum) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">Impressum</h1>
-          <p className="text-muted-foreground">Content wird geladen...</p>
-        </div>
-      </div>
-    );
-  }
+export default function ImpressumPage() {
+  const t = TRANSLATIONS.de;
+  const impressum = t.legal.impressum;
 
   return (
     <div className="min-h-screen bg-background">
@@ -135,30 +124,30 @@ export default function ImpressumPage() {
                       <div className="flex items-center gap-3">
                         <Phone className="h-4 w-4 text-primary flex-shrink-0" />
                         <a
-                          href={`tel:${t.contact?.phone || "+84 251 6609 500"}`}
+                          href={VIETNAM_OFFICE_CONTACT.phoneHref}
                           className="text-base text-foreground hover:text-primary transition-colors"
                         >
-                          {t.contact?.phone || "+84 251 6609 500"}
+                          {VIETNAM_OFFICE_CONTACT.phone}
                         </a>
                       </div>
                       <div className="flex items-center gap-3">
                         <Mail className="h-4 w-4 text-primary flex-shrink-0" />
                         <a
-                          href={`mailto:${t.contact?.email || "contact@dmf.edu.vn"}`}
+                          href={VIETNAM_OFFICE_CONTACT.emailHref}
                           className="text-base text-foreground hover:text-primary transition-colors break-all"
                         >
-                          {t.contact?.email || "contact@dmf.edu.vn"}
+                          {VIETNAM_OFFICE_CONTACT.email}
                         </a>
                       </div>
                       <div className="flex items-center gap-3">
                         <Globe className="h-4 w-4 text-primary flex-shrink-0" />
                         <a
-                          href="https://dmf.edu.vn"
+                          href={VIETNAM_OFFICE_CONTACT.websiteHref}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-base text-foreground hover:text-primary transition-colors"
                         >
-                          dmf.edu.vn
+                          {VIETNAM_OFFICE_CONTACT.website}
                         </a>
                       </div>
                     </div>
@@ -167,29 +156,28 @@ export default function ImpressumPage() {
                   {/* German Contact */}
                   <div>
                     <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">
-                      {impressum?.sections?.contact?.germanContact ||
-                        "Ihr Ansprechpartner für Deutschland"}
+                      {impressum.sections.contact.germanContact}
                     </p>
                     <p className="text-base font-medium text-foreground mb-3">
-                      {t.contact?.de_name || "Herr Achim Betticher"}
+                      {GERMANY_CONTACT.name}
                     </p>
                     <div className="space-y-3">
                       <div className="flex items-center gap-3">
                         <Phone className="h-4 w-4 text-primary flex-shrink-0" />
                         <a
-                          href="tel:+84855070773"
+                          href={GERMANY_CONTACT.phoneHref}
                           className="text-base text-foreground hover:text-primary transition-colors"
                         >
-                          +84 855 070773
+                          {GERMANY_CONTACT.phone}
                         </a>
                       </div>
                       <div className="flex items-center gap-3">
                         <Mail className="h-4 w-4 text-primary flex-shrink-0" />
                         <a
-                          href="mailto:achim.betticher@dmf.edu.vn"
+                          href={GERMANY_CONTACT.emailHref}
                           className="text-base text-foreground hover:text-primary transition-colors"
                         >
-                          achim.betticher@dmf.edu.vn
+                          {GERMANY_CONTACT.email}
                         </a>
                       </div>
                     </div>

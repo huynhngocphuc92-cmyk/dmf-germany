@@ -84,18 +84,18 @@ export async function getCandidate(id: string): Promise<{
 // ============================================
 
 function sanitizeFormData(formData: CandidateFormData | Partial<CandidateFormData>) {
-  // Đảm bảo tất cả các trường bắt buộc được gửi đi
+  // Ensure required fields always have stable values before persistence.
   return {
-    // Required fields - Đảm bảo có giá trị
+    // Required fields
     full_name: formData.full_name?.trim() || "",
     email: formData.email?.trim() || "",
-    category: formData.category || "skilled", // Default nếu không có
+    category: formData.category || "skilled",
     experience_years: formData.experience_years ?? 0,
-    german_level: formData.german_level || "B1", // Default nếu không có
+    german_level: formData.german_level || "B1",
     visa_status: formData.visa_status ?? false,
     is_featured: formData.is_featured ?? false,
 
-    // Optional fields - Convert empty strings to null
+    // Optional fields - convert empty strings to null
     phone: formData.phone?.trim() || null,
     date_of_birth: formData.date_of_birth?.trim() || null,
     profession: formData.profession?.trim() || null,
@@ -131,21 +131,6 @@ export async function createCandidate(
 
     // Sanitize data before sending to database
     const sanitizedData = sanitizeFormData(formData);
-
-    // Log để debug (có thể xóa sau)
-    console.log("Creating candidate with data:", {
-      full_name: sanitizedData.full_name,
-      email: sanitizedData.email,
-      category: sanitizedData.category,
-      phone: sanitizedData.phone,
-      date_of_birth: sanitizedData.date_of_birth,
-      profession: sanitizedData.profession,
-      notes: sanitizedData.notes,
-      experience_years: sanitizedData.experience_years,
-      german_level: sanitizedData.german_level,
-      visa_status: sanitizedData.visa_status,
-      is_featured: sanitizedData.is_featured,
-    });
 
     const { data, error } = await supabase
       .from("candidates")
@@ -199,12 +184,12 @@ export async function updateCandidate(
     // Sanitize data before sending to database
     const sanitizedData = sanitizeFormData(formData);
 
-    // Build update object - chỉ cập nhật các trường có giá trị
+    // Build the update payload from the normalized form data.
     const updateData: Record<string, any> = {
       updated_at: new Date().toISOString(),
     };
 
-    // Chỉ thêm các trường có giá trị vào update object
+    // Only include fields that should be written back to the database.
     if (sanitizedData.full_name !== undefined) updateData.full_name = sanitizedData.full_name;
     if (sanitizedData.email !== undefined) updateData.email = sanitizedData.email;
     if (sanitizedData.category !== undefined) updateData.category = sanitizedData.category;
@@ -395,9 +380,7 @@ export async function getFeaturedCandidates(): Promise<{
   try {
     const supabase = await createClient();
 
-    // Query candidates: Ưu tiên lấy những người có is_featured = true hoặc visa_status = true
-    // Nếu không có, lấy tất cả candidates mới nhất
-    // Sắp xếp mới nhất trước, giới hạn tối đa 20 hồ sơ
+    // Prefer candidates explicitly highlighted for the homepage.
     let { data, error } = await supabase
       .from("candidates")
       .select("*")
@@ -405,7 +388,7 @@ export async function getFeaturedCandidates(): Promise<{
       .order("created_at", { ascending: false })
       .limit(20);
 
-    // Fallback: Nếu không có candidates featured/visa, lấy tất cả
+    // Fall back to the newest candidates when no featured profiles are available.
     if (error || !data || data.length === 0) {
       const { data: allData, error: allError } = await supabase
         .from("candidates")
@@ -422,7 +405,6 @@ export async function getFeaturedCandidates(): Promise<{
     }
 
     if (error && data && data.length === 0) {
-      // Nếu có error nhưng không có data, log và trả về mảng rỗng
       console.warn("No featured candidates found, returning empty array");
       return { data: [], error: null };
     }
@@ -430,7 +412,7 @@ export async function getFeaturedCandidates(): Promise<{
     return { data: (data || []) as Candidate[], error: null };
   } catch (err) {
     console.error("Unexpected error:", err);
-    // Trả về mảng rỗng thay vì null để component có thể fallback
+    // Return an empty array so the calling UI can use its fallback state.
     return { data: [], error: null };
   }
 }

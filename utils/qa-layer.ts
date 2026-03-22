@@ -1,17 +1,17 @@
-// Đây là "Bộ lọc chất lượng"
+// Lightweight guard that fills missing content with the default page payload.
 export function checkQuality(rawData: any, defaultContent: any) {
-  // 1. Nếu không có dữ liệu đầu vào -> Trả về dữ liệu mặc định (Dự phòng)
+  // Return the default content when the upstream payload is completely missing.
   if (!rawData) {
-    console.warn("⚠️ QA ALERT: Dữ liệu bị mất hoàn toàn! Đang dùng dữ liệu dự phòng.");
+    console.warn("[QA] Content payload missing entirely. Falling back to defaults.");
     return defaultContent;
   }
 
-  // 2. Trộn dữ liệu: Cái gì rawData thiếu thì lấy từ defaultContent đắp vào
+  // Merge partial payloads into the stable default shape.
   return {
-    ...defaultContent, // Lấy khung chuẩn làm nền
-    ...rawData, // Đắp dữ liệu thật lên (nếu có)
+    ...defaultContent,
+    ...rawData,
 
-    // Xử lý riêng cho Hero Section (đảm bảo không bao giờ thiếu)
+    // Normalize hero data so downstream components always receive a populated object.
     hero: {
       ...defaultContent.hero,
       ...(rawData.hero || rawData.intro || {}),

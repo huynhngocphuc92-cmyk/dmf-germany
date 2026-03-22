@@ -1,15 +1,11 @@
 import { z } from "zod";
+import { optionalBusinessPhoneSchema } from "@/lib/validations/phone";
 
 // --- 1. CONTACT FORM SCHEMA ---
 export const contactFormSchema = z.object({
   name: z.string().min(2, { message: "Name muss mindestens 2 Zeichen lang sein." }),
   email: z.string().email({ message: "Bitte geben Sie eine gültige E-Mail-Adresse ein." }),
-  phone: z
-    .string()
-    .optional()
-    .refine((val) => !val || val.length >= 6, {
-      message: "Ungültige Telefonnummer (min. 6 Zeichen)",
-    }),
+  phone: optionalBusinessPhoneSchema,
   company: z.string().optional(),
   message: z
     .string()
@@ -18,8 +14,7 @@ export const contactFormSchema = z.object({
     .boolean()
     .refine((val) => val === true, {
       message: "Sie müssen der Datenschutzerklärung zustimmen.",
-    })
-    .optional(), // Optional in schema, required in UI
+    }),
   bot_check: z.string().optional(),
 });
 
@@ -34,10 +29,15 @@ export const assetUpdateSchema = z.object({
 export const inquiryFormSchema = z.object({
   name: z.string().min(2, { message: "Name muss mindestens 2 Zeichen lang sein." }),
   email: z.string().email({ message: "Bitte geben Sie eine gültige E-Mail-Adresse ein." }),
-  phone: z.string().optional(),
+  phone: optionalBusinessPhoneSchema,
   message: z
     .string()
     .min(10, { message: "Ihre Nachricht sollte mindestens 10 Zeichen enthalten." }),
+  privacy: z
+    .boolean()
+    .refine((val) => val === true, {
+      message: "Sie müssen der Datenschutzerklärung zustimmen.",
+    }),
 });
 
 // --- 4. CANDIDATE FORM SCHEMA (Full Schema for Admin) ---

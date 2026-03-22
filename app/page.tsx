@@ -1,6 +1,6 @@
 import { HomeClient } from "./home-client";
 import { loadAssets } from "@/lib/theme-helpers";
-import { getFeaturedCandidates } from "@/app/admin/candidates/actions";
+import { getHomepageFeaturedCandidates } from "@/lib/supabase/candidates";
 
 // ISR: Revalidate every 60 seconds to balance fresh data and performance
 // Admin updates will appear within 60 seconds
@@ -28,7 +28,7 @@ export default async function Home() {
   const assets = await loadAssets(assetKeys);
 
   // Fetch featured candidates for Hero Section showcase
-  const { data: featuredCandidates } = await getFeaturedCandidates();
+  const { data: featuredCandidates } = await getHomepageFeaturedCandidates();
 
   return <HomeClient assets={assets} featuredCandidates={featuredCandidates || []} />;
 }

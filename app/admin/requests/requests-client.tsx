@@ -61,6 +61,7 @@ interface RequestsClientProps {
 
 export function RequestsClient({ initialInquiries, error: initialError }: RequestsClientProps) {
   const { lang } = useLanguage();
+  const isVietnamese = lang === "vn";
 
   // Data state
   const [inquiries, setInquiries] = useState<Inquiry[]>(initialInquiries || []);
@@ -204,17 +205,17 @@ export function RequestsClient({ initialInquiries, error: initialError }: Reques
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-slate-900">
-            {lang === "de" ? "Anfragen" : "Yêu cầu"}
+            {isVietnamese ? "Yêu cầu" : "Anfragen"}
           </h1>
           <p className="text-slate-500 mt-1">
-            {lang === "de"
-              ? "Verwalten Sie alle eingehenden Anfragen"
-              : "Quản lý tất cả các yêu cầu đến"}
+            {isVietnamese
+              ? "Quản lý tất cả các yêu cầu đến"
+              : "Verwalten Sie alle eingehenden Anfragen"}
           </p>
         </div>
         <Button onClick={handleRefresh} variant="outline" disabled={isLoading}>
           <RefreshCw className={`w-4 h-4 mr-2 ${isLoading ? "animate-spin" : ""}`} />
-          {lang === "de" ? "Aktualisieren" : "Làm mới"}
+          {isVietnamese ? "Làm mới" : "Aktualisieren"}
         </Button>
       </div>
 
@@ -241,19 +242,19 @@ export function RequestsClient({ initialInquiries, error: initialError }: Reques
           <div className="p-12 text-center">
             <MessageSquare className="w-16 h-16 text-slate-300 mx-auto mb-4" />
             <p className="text-slate-500 text-lg">
-              {lang === "de" ? "Noch keine Anfragen vorhanden" : "Chưa có yêu cầu nào"}
+              {isVietnamese ? "Chưa có yêu cầu nào" : "Noch keine Anfragen vorhanden"}
             </p>
           </div>
         ) : (
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead className="w-[120px]">{lang === "de" ? "Datum" : "Ngày"}</TableHead>
-                <TableHead>{lang === "de" ? "Name" : "Tên"}</TableHead>
-                <TableHead>{lang === "de" ? "Typ" : "Loại"}</TableHead>
-                <TableHead>{lang === "de" ? "Status" : "Trạng thái"}</TableHead>
+                <TableHead className="w-[120px]">{isVietnamese ? "Ngày" : "Datum"}</TableHead>
+                <TableHead>{isVietnamese ? "Tên" : "Name"}</TableHead>
+                <TableHead>{isVietnamese ? "Loại" : "Typ"}</TableHead>
+                <TableHead>{isVietnamese ? "Trạng thái" : "Status"}</TableHead>
                 <TableHead className="text-right">
-                  {lang === "de" ? "Aktionen" : "Hành động"}
+                  {isVietnamese ? "Hành động" : "Aktionen"}
                 </TableHead>
               </TableRow>
             </TableHeader>
@@ -270,10 +271,10 @@ export function RequestsClient({ initialInquiries, error: initialError }: Reques
                   <TableCell>
                     <Badge className={`${typeColors[inquiry.type]} border`} variant="outline">
                       {inquiry.type === "profile" && inquiry.candidate_code
-                        ? `${lang === "de" ? typeLabels[inquiry.type].de : typeLabels[inquiry.type].vn} #${inquiry.candidate_code}`
-                        : lang === "de"
-                          ? typeLabels[inquiry.type].de
-                          : typeLabels[inquiry.type].vn}
+                        ? `${isVietnamese ? typeLabels[inquiry.type].vn : typeLabels[inquiry.type].de} #${inquiry.candidate_code}`
+                        : isVietnamese
+                          ? typeLabels[inquiry.type].vn
+                          : typeLabels[inquiry.type].de}
                     </Badge>
                   </TableCell>
                   <TableCell>
@@ -289,15 +290,13 @@ export function RequestsClient({ initialInquiries, error: initialError }: Reques
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="new">
-                          {lang === "de" ? statusLabels.new.de : statusLabels.new.vn}
+                          {isVietnamese ? statusLabels.new.vn : statusLabels.new.de}
                         </SelectItem>
                         <SelectItem value="in_progress">
-                          {lang === "de"
-                            ? statusLabels.in_progress.de
-                            : statusLabels.in_progress.vn}
+                          {isVietnamese ? statusLabels.in_progress.vn : statusLabels.in_progress.de}
                         </SelectItem>
                         <SelectItem value="completed">
-                          {lang === "de" ? statusLabels.completed.de : statusLabels.completed.vn}
+                          {isVietnamese ? statusLabels.completed.vn : statusLabels.completed.de}
                         </SelectItem>
                       </SelectContent>
                     </Select>
@@ -306,7 +305,7 @@ export function RequestsClient({ initialInquiries, error: initialError }: Reques
                     <div className="flex items-center justify-end gap-2">
                       <Button variant="ghost" size="sm" onClick={() => handleViewDetails(inquiry)}>
                         <Eye className="w-4 h-4 mr-1" />
-                        {lang === "de" ? "Details" : "Chi tiết"}
+                        {isVietnamese ? "Chi tiết" : "Details"}
                       </Button>
                       <Button
                         variant="ghost"
@@ -335,11 +334,11 @@ export function RequestsClient({ initialInquiries, error: initialError }: Reques
           {selectedInquiry && (
             <>
               <DialogHeader>
-                <DialogTitle>{lang === "de" ? "Anfrage-Details" : "Chi tiết yêu cầu"}</DialogTitle>
+                <DialogTitle>{isVietnamese ? "Chi tiết yêu cầu" : "Anfrage-Details"}</DialogTitle>
                 <DialogDescription>
-                  {lang === "de"
-                    ? "Vollständige Informationen zur Anfrage"
-                    : "Thông tin đầy đủ về yêu cầu"}
+                  {isVietnamese
+                    ? "Thông tin đầy đủ về yêu cầu"
+                    : "Vollständige Informationen zur Anfrage"}
                 </DialogDescription>
               </DialogHeader>
 
@@ -347,14 +346,14 @@ export function RequestsClient({ initialInquiries, error: initialError }: Reques
                 {/* Status & Type */}
                 <div className="flex items-center gap-3">
                   <Badge className={`${statusColors[selectedInquiry.status]} border`}>
-                    {lang === "de"
-                      ? statusLabels[selectedInquiry.status].de
-                      : statusLabels[selectedInquiry.status].vn}
+                    {isVietnamese
+                      ? statusLabels[selectedInquiry.status].vn
+                      : statusLabels[selectedInquiry.status].de}
                   </Badge>
                   <Badge className={`${typeColors[selectedInquiry.type]} border`}>
-                    {lang === "de"
-                      ? typeLabels[selectedInquiry.type].de
-                      : typeLabels[selectedInquiry.type].vn}
+                    {isVietnamese
+                      ? typeLabels[selectedInquiry.type].vn
+                      : typeLabels[selectedInquiry.type].de}
                   </Badge>
                   {selectedInquiry.candidate_code && (
                     <Badge variant="outline">#{selectedInquiry.candidate_code}</Badge>
@@ -365,7 +364,7 @@ export function RequestsClient({ initialInquiries, error: initialError }: Reques
                 <div className="flex items-center gap-2 text-sm text-slate-600">
                   <Calendar className="w-4 h-4" />
                   <span>
-                    {lang === "de" ? "Erstellt am" : "Tạo lúc"}:{" "}
+                    {isVietnamese ? "Tạo lúc" : "Erstellt am"}:{" "}
                     {formatDate(selectedInquiry.created_at)}{" "}
                     {new Date(selectedInquiry.created_at).toLocaleTimeString("de-DE", {
                       hour: "2-digit",
@@ -408,7 +407,7 @@ export function RequestsClient({ initialInquiries, error: initialError }: Reques
                     <div className="flex items-center gap-2 mb-2">
                       <MessageSquare className="w-4 h-4 text-slate-400" />
                       <span className="text-sm font-semibold text-slate-700">
-                        {lang === "de" ? "Nachricht" : "Tin nhắn"}
+                        {isVietnamese ? "Tin nhắn" : "Nachricht"}
                       </span>
                     </div>
                     <div className="bg-slate-50 rounded-lg p-4 text-sm text-slate-700 whitespace-pre-wrap">
@@ -420,7 +419,7 @@ export function RequestsClient({ initialInquiries, error: initialError }: Reques
                 {/* Status Change */}
                 <div className="pt-4 border-t border-slate-200">
                   <label className="text-sm font-semibold text-slate-700 mb-2 block">
-                    {lang === "de" ? "Status ändern" : "Thay đổi trạng thái"}
+                    {isVietnamese ? "Thay đổi trạng thái" : "Status ändern"}
                   </label>
                   <Select
                     value={selectedInquiry.status}
@@ -434,13 +433,13 @@ export function RequestsClient({ initialInquiries, error: initialError }: Reques
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="new">
-                        {lang === "de" ? statusLabels.new.de : statusLabels.new.vn}
+                        {isVietnamese ? statusLabels.new.vn : statusLabels.new.de}
                       </SelectItem>
                       <SelectItem value="in_progress">
-                        {lang === "de" ? statusLabels.in_progress.de : statusLabels.in_progress.vn}
+                        {isVietnamese ? statusLabels.in_progress.vn : statusLabels.in_progress.de}
                       </SelectItem>
                       <SelectItem value="completed">
-                        {lang === "de" ? statusLabels.completed.de : statusLabels.completed.vn}
+                        {isVietnamese ? statusLabels.completed.vn : statusLabels.completed.de}
                       </SelectItem>
                     </SelectContent>
                   </Select>
@@ -449,7 +448,7 @@ export function RequestsClient({ initialInquiries, error: initialError }: Reques
 
               <DialogFooter>
                 <Button variant="outline" onClick={() => setIsDetailDialogOpen(false)}>
-                  {lang === "de" ? "Schließen" : "Đóng"}
+                  {isVietnamese ? "Đóng" : "Schließen"}
                 </Button>
               </DialogFooter>
             </>
@@ -461,11 +460,11 @@ export function RequestsClient({ initialInquiries, error: initialError }: Reques
       <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>{lang === "de" ? "Anfrage löschen?" : "Xóa yêu cầu?"}</DialogTitle>
+            <DialogTitle>{isVietnamese ? "Xóa yêu cầu?" : "Anfrage löschen?"}</DialogTitle>
             <DialogDescription>
-              {lang === "de"
-                ? "Sind Sie sicher, dass Sie diese Anfrage löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden."
-                : "Bạn có chắc chắn muốn xóa yêu cầu này? Hành động này không thể hoàn tác."}
+              {isVietnamese
+                ? "Bạn có chắc chắn muốn xóa yêu cầu này? Hành động này không thể hoàn tác."
+                : "Sind Sie sicher, dass Sie diese Anfrage löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden."}
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
@@ -477,7 +476,7 @@ export function RequestsClient({ initialInquiries, error: initialError }: Reques
               }}
               disabled={deletingId !== null}
             >
-              {lang === "de" ? "Abbrechen" : "Hủy"}
+              {isVietnamese ? "Hủy" : "Abbrechen"}
             </Button>
             <Button
               variant="destructive"
@@ -487,12 +486,12 @@ export function RequestsClient({ initialInquiries, error: initialError }: Reques
               {deletingId ? (
                 <>
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  {lang === "de" ? "Wird gelöscht..." : "Đang xóa..."}
+                  {isVietnamese ? "Đang xóa..." : "Wird gelöscht..."}
                 </>
               ) : (
                 <>
                   <Trash2 className="w-4 h-4 mr-2" />
-                  {lang === "de" ? "Löschen" : "Xóa"}
+                  {isVietnamese ? "Xóa" : "Löschen"}
                 </>
               )}
             </Button>

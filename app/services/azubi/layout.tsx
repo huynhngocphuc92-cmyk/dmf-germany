@@ -11,14 +11,6 @@ export const metadata: Metadata = {
     description: "Motivierte Azubis für Ihr Unternehmen. Jetzt informieren!",
     url: `${baseUrl}/services/azubi`,
     siteName: "DMF Manpower",
-    images: [
-      {
-        url: "/og-image.jpg", // Using default OG image, can be customized later
-        width: 1200,
-        height: 630,
-        alt: "Azubi aus Vietnam vermitteln | DMF Manpower",
-      },
-    ],
     locale: "de_DE",
     type: "website",
   },
@@ -26,7 +18,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Azubi aus Vietnam vermitteln | DMF Manpower",
     description: "Motivierte Azubis für Ihr Unternehmen. Jetzt informieren!",
-    images: ["/og-image.jpg"],
   },
 };
 

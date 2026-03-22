@@ -1,24 +1,12 @@
-"use client";
-
-import { useLanguage } from "@/components/providers/LanguageProvider";
+import { TRANSLATIONS } from "@/lib/translations";
 import Link from "next/link";
 import { Shield, Cookie, Mail, Database, Lock, Eye, FileCheck, AlertCircle } from "lucide-react";
 
-export default function DatenschutzPage() {
-  const { t } = useLanguage();
-  const datenschutz = t.legal?.datenschutz;
+export const dynamic = "force-static";
 
-  // Early return if legal content is not available
-  if (!datenschutz) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">Datenschutz</h1>
-          <p className="text-muted-foreground">Content wird geladen...</p>
-        </div>
-      </div>
-    );
-  }
+export default function DatenschutzPage() {
+  const t = TRANSLATIONS.de;
+  const datenschutz = t.legal.datenschutz;
 
   const sections = [
     {
@@ -97,31 +85,23 @@ export default function DatenschutzPage() {
     },
     {
       icon: Database,
-      title: datenschutz.sections.thirdParty?.title || "5. Drittanbieter-Tools und Datentransfer",
+      title: datenschutz.sections.thirdParty.title,
       subsections: [
         {
-          subtitle: datenschutz.sections.thirdParty?.hostingTitle || "Hosting (Vercel Inc.)",
-          text:
-            datenschutz.sections.thirdParty?.hostingText ||
-            "Diese Website wird auf Servern von Vercel Inc. gehostet.",
+          subtitle: datenschutz.sections.thirdParty.hostingTitle,
+          text: datenschutz.sections.thirdParty.hostingText,
         },
         {
-          subtitle: datenschutz.sections.thirdParty?.telegramTitle || "Telegram API",
-          text:
-            datenschutz.sections.thirdParty?.telegramText ||
-            "Zur internen Benachrichtigung nutzen wir Telegram API.",
+          subtitle: datenschutz.sections.thirdParty.telegramTitle,
+          text: datenschutz.sections.thirdParty.telegramText,
         },
         {
-          subtitle: datenschutz.sections.thirdParty?.mapsTitle || "Leaflet/OpenStreetMap",
-          text:
-            datenschutz.sections.thirdParty?.mapsText ||
-            "Wir verwenden Leaflet/OpenStreetMap für Karten.",
+          subtitle: datenschutz.sections.thirdParty.mapsTitle,
+          text: datenschutz.sections.thirdParty.mapsText,
         },
         {
-          subtitle: datenschutz.sections.thirdParty?.calendlyTitle || "Calendly",
-          text:
-            datenschutz.sections.thirdParty?.calendlyText ||
-            "Für Terminvereinbarungen nutzen wir Calendly.",
+          subtitle: datenschutz.sections.thirdParty.calendlyTitle,
+          text: datenschutz.sections.thirdParty.calendlyText,
         },
       ],
     },
@@ -267,25 +247,25 @@ export default function DatenschutzPage() {
               </div>
               <div className="flex-1">
                 <h3 className="text-xl font-semibold text-foreground mb-3">
-                  {t.contact?.title || "Kontakt"}
+                  {t.contact.title}
                 </h3>
                 <p className="text-base text-muted-foreground mb-4">
-                  {t.contact?.subtitle || "Kontaktieren Sie uns für weitere Informationen."}
+                  {t.contact.subtitle}
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <a
-                    href={`mailto:${t.contact?.email || "contact@dmf.edu.vn"}`}
+                    href={`mailto:${t.contact.email}`}
                     className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
                   >
                     <Mail className="h-4 w-4" />
-                    {t.contact?.email || "contact@dmf.edu.vn"}
+                    {t.contact.email}
                   </a>
                   <a
                     href="/impressum"
                     className="inline-flex items-center gap-2 px-4 py-2 bg-muted text-foreground rounded-lg text-sm font-medium hover:bg-muted/80 transition-colors"
                   >
                     <FileCheck className="h-4 w-4" />
-                    {t.footer?.impressum || "Impressum"}
+                    {t.footer.impressum}
                   </a>
                 </div>
               </div>

@@ -2,9 +2,8 @@ import { Suspense } from "react";
 import { getFeaturedCandidates } from "@/lib/supabase/candidates";
 import { CandidatesClient } from "./candidates-client";
 
-// Force dynamic rendering - No cache to ensure fresh data
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+// Revalidate regularly so public candidate data stays fresh without forcing request-time rendering.
+export const revalidate = 60;
 
 export default async function KandidatenPage() {
   // Fetch featured candidates (is_featured = true)

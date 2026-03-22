@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
 /**
- * Script tự động tải logo từ Supabase Database về public/logo.png
+ * Fetch the logo URL from Supabase and save it to public/logo.png
  *
- * Cách sử dụng:
- * 1. Đảm bảo đã có biến môi trường SUPABASE_URL và SUPABASE_SERVICE_ROLE_KEY
- * 2. Chạy: node copy-logo-from-db.js
+ * Usage:
+ * 1. Ensure SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are available
+ * 2. Run: node copy-logo-from-db.js
  */
 
 const fs = require("fs");
@@ -20,8 +20,8 @@ const http = require("http");
 const PUBLIC_DIR = path.join(__dirname, "public");
 const LOGO_DEST = path.join(PUBLIC_DIR, "logo.png");
 
-// Keys có thể chứa logo (thử theo thứ tự ưu tiên)
-// site_logo là key chính được dùng trong Admin Theme (mục "Logo Website")
+// Candidate keys that may contain the logo URL, ordered by priority.
+// site_logo is the main key used by the Admin Theme page.
 const LOGO_KEYS = ["site_logo", "header_logo", "logo_url", "footer_logo"];
 
 // ============================================
@@ -29,7 +29,7 @@ const LOGO_KEYS = ["site_logo", "header_logo", "logo_url", "footer_logo"];
 // ============================================
 
 /**
- * Tải file từ URL và lưu vào đường dẫn đích
+ * Download a file from a URL into the destination path.
  */
 function downloadFile(url, destPath) {
   return new Promise((resolve, reject) => {
@@ -38,7 +38,7 @@ function downloadFile(url, destPath) {
 
     protocol
       .get(url, (response) => {
-        // Xử lý redirect
+        // Follow redirects.
         if (response.statusCode === 301 || response.statusCode === 302) {
           file.close();
           fs.unlinkSync(destPath);
@@ -70,14 +70,14 @@ function downloadFile(url, destPath) {
 }
 
 /**
- * Lấy logo URL từ Supabase Database
+ * Read the logo URL from Supabase.
  */
 async function getLogoUrlFromDatabase() {
   try {
-    // Import Supabase client (dynamic import vì đây là CommonJS)
+    // Import Supabase dynamically because this script is CommonJS.
     const { createClient } = require("@supabase/supabase-js");
 
-    // Lấy credentials từ environment variables
+    // Read credentials from environment variables.
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
     const supabaseKey =
       process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -90,9 +90,9 @@ async function getLogoUrlFromDatabase() {
 
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    // Thử từng key theo thứ tự ưu tiên
+    // Try each supported key in priority order.
     for (const key of LOGO_KEYS) {
-      console.log(`🔍 Đang tìm logo với key: ${key}...`);
+      console.log(`🔍 Looking up logo key: ${key}...`);
 
       const { data, error } = await supabase
         .from("site_assets")
@@ -102,24 +102,24 @@ async function getLogoUrlFromDatabase() {
 
       if (error) {
         if (error.code === "PGRST116") {
-          console.log(`   ⚠️  Key "${key}" không tồn tại trong database.`);
+          console.log(`   ⚠️  Key "${key}" does not exist in the database.`);
           continue;
         }
-        console.error(`   ✗ Lỗi khi query key "${key}":`, error.message);
+        console.error(`   ✗ Query failed for key "${key}":`, error.message);
         continue;
       }
 
       if (data && data.value) {
-        console.log(`   ✓ Tìm thấy logo URL: ${data.value}`);
+        console.log(`   ✓ Found logo URL: ${data.value}`);
         return data.value;
       } else {
-        console.log(`   ⚠️  Key "${key}" tồn tại nhưng chưa có giá trị.`);
+        console.log(`   ⚠️  Key "${key}" exists but has no value.`);
       }
     }
 
     return null;
   } catch (err) {
-    console.error("❌ Lỗi khi kết nối với Supabase:", err.message);
+    console.error("❌ Failed to connect to Supabase:", err.message);
     throw err;
   }
 }
@@ -128,68 +128,68 @@ async function getLogoUrlFromDatabase() {
  * Main function
  */
 async function main() {
-  console.log("🚀 Script tải logo từ Database về public/logo.png\n");
+  console.log("🚀 Copying the logo from the database into public/logo.png\n");
   console.log("=".repeat(60));
 
   try {
-    // 1. Lấy logo URL từ database
-    console.log("\n📥 Bước 1: Lấy logo URL từ Supabase Database...\n");
+    // 1. Resolve the logo URL from Supabase.
+    console.log("\n📥 Step 1: Reading the logo URL from Supabase...\n");
     const logoUrl = await getLogoUrlFromDatabase();
 
     if (!logoUrl) {
-      console.log("\n⚠️  KHÔNG TÌM THẤY LOGO TRONG DATABASE!");
-      console.log("\nCác key đã thử:");
+      console.log("\n⚠️  No logo was found in the database.");
+      console.log("\nKeys checked:");
       LOGO_KEYS.forEach((key) => console.log(`   - ${key}`));
-      console.log("\n💡 Hướng dẫn:");
-      console.log("   1. Vào trang Admin: http://localhost:3000/admin/theme");
-      console.log('   2. Tìm mục "Logo Website" (key: site_logo) hoặc "Header Logo"');
-      console.log("   3. Upload logo và lưu lại");
-      console.log("   4. Chạy lại script này: npm run copy-logo\n");
+      console.log("\n💡 Next steps:");
+      console.log("   1. Open the admin page: http://localhost:3000/admin/theme");
+      console.log('   2. Update "Logo Website" (key: site_logo) or "Header Logo"');
+      console.log("   3. Save the new asset");
+      console.log("   4. Run this script again: npm run copy-logo\n");
       process.exit(1);
     }
 
-    // 2. Tải logo về
-    console.log("\n📥 Bước 2: Tải logo từ URL...\n");
+    // 2. Download the resolved logo file.
+    console.log("\n📥 Step 2: Downloading the logo asset...\n");
     console.log(`   URL: ${logoUrl}`);
-    console.log(`   Đích: ${LOGO_DEST}\n`);
+    console.log(`   Destination: ${LOGO_DEST}\n`);
 
-    // Đảm bảo thư mục public tồn tại
+    // Ensure the public directory exists.
     if (!fs.existsSync(PUBLIC_DIR)) {
       fs.mkdirSync(PUBLIC_DIR, { recursive: true });
-      console.log(`✓ Đã tạo thư mục: ${PUBLIC_DIR}`);
+      console.log(`✓ Created directory: ${PUBLIC_DIR}`);
     }
 
-    // Xóa file cũ nếu có
+    // Warn if an existing logo file will be overwritten.
     if (fs.existsSync(LOGO_DEST)) {
-      console.log(`⚠️  File cũ đã tồn tại, sẽ được ghi đè: ${LOGO_DEST}`);
+      console.log(`⚠️  Existing file will be overwritten: ${LOGO_DEST}`);
     }
 
     await downloadFile(logoUrl, LOGO_DEST);
 
-    // 3. Kiểm tra file đã tải
+    // 3. Report the saved file details.
     const stats = fs.statSync(LOGO_DEST);
     const fileSizeKB = (stats.size / 1024).toFixed(2);
 
     console.log("=".repeat(60));
-    console.log("\n✅ HOÀN THÀNH! Logo đã được tải về thành công.\n");
-    console.log("📋 Thông tin file:");
-    console.log(`   - Đường dẫn: ${LOGO_DEST}`);
-    console.log(`   - Kích thước: ${fileSizeKB} KB`);
-    console.log(`   - URL gốc: ${logoUrl}\n`);
-    console.log("💡 Lưu ý:");
-    console.log("   - File logo.png đã sẵn sàng để sử dụng.");
-    console.log("   - Logo sẽ hiển thị trên Header của website.\n");
+    console.log("\n✅ Done. The logo was copied successfully.\n");
+    console.log("📋 File details:");
+    console.log(`   - Path: ${LOGO_DEST}`);
+    console.log(`   - Size: ${fileSizeKB} KB`);
+    console.log(`   - Source URL: ${logoUrl}\n`);
+    console.log("💡 Notes:");
+    console.log("   - public/logo.png is ready to use.");
+    console.log("   - The logo will appear in the website header.\n");
   } catch (error) {
-    console.error("\n❌ Lỗi khi chạy script:", error.message);
-    console.error("\n💡 Kiểm tra:");
-    console.error("   1. Đã set biến môi trường SUPABASE_URL và SUPABASE_SERVICE_ROLE_KEY chưa?");
-    console.error("   2. Logo URL có hợp lệ không?");
-    console.error("   3. Có quyền ghi vào thư mục public/ không?\n");
+    console.error("\n❌ Script failed:", error.message);
+    console.error("\n💡 Check the following:");
+    console.error("   1. SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are configured");
+    console.error("   2. The logo URL stored in the database is valid");
+    console.error("   3. The script can write into the public/ directory\n");
     process.exit(1);
   }
 }
 
-// Chạy script
+// Run the script when executed directly.
 if (require.main === module) {
   main();
 }

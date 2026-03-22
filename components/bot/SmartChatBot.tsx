@@ -21,6 +21,7 @@ import {
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { BUSINESS_PHONE_ERROR_MESSAGE, isValidBusinessPhone } from "@/lib/validations/phone";
 
 // ============================================
 // TYPES & INTERFACES
@@ -163,6 +164,7 @@ export const SmartChatBot = () => {
   const [showLeadForm, setShowLeadForm] = useState(false);
   const [leadData, setLeadData] = useState<LeadData>({});
   const [leadSubmitted, setLeadSubmitted] = useState(false);
+  const [leadFormError, setLeadFormError] = useState<string | null>(null);
   const [sessionId] = useState(() => `chat-${Date.now()}-${Math.random().toString(36).slice(2)}`);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -458,6 +460,19 @@ export const SmartChatBot = () => {
 
     if (!leadData.email) return;
 
+    if (leadData.phone && !isValidBusinessPhone(leadData.phone)) {
+      setLeadFormError(
+        lang === "de"
+          ? BUSINESS_PHONE_ERROR_MESSAGE
+          : lang === "en"
+            ? "Please enter a valid phone number in the format +49 30 1234567 or 030 1234567."
+            : "Vui lòng nhập số điện thoại hợp lệ theo định dạng +49 30 1234567 hoặc 030 1234567."
+      );
+      return;
+    }
+
+    setLeadFormError(null);
+
     try {
       // Send to Telegram
       await sendTelegramNotification(
@@ -470,7 +485,7 @@ export const SmartChatBot = () => {
       );
 
       // Save lead to database
-      await fetch("/api/leads", {
+      const leadsResponse = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -479,6 +494,11 @@ export const SmartChatBot = () => {
           source: "chatbot",
         }),
       });
+
+      if (!leadsResponse.ok) {
+        const result = (await leadsResponse.json().catch(() => null)) as { error?: string } | null;
+        throw new Error(result?.error || t.error);
+      }
 
       setLeadSubmitted(true);
       setShowLeadForm(false);
@@ -493,6 +513,7 @@ export const SmartChatBot = () => {
       setMessages((prev) => [...prev, successMessage]);
     } catch (error) {
       console.error("[SmartChatBot] Lead submit error:", error);
+      setLeadFormError(error instanceof Error ? error.message : t.error);
     }
   };
 
@@ -790,7 +811,10 @@ export const SmartChatBot = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 bg-black/50 z-[60] flex items-center justify-center p-4"
-            onClick={() => setShowLeadForm(false)}
+            onClick={() => {
+              setLeadFormError(null);
+              setShowLeadForm(false);
+            }}
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
@@ -816,7 +840,10 @@ export const SmartChatBot = () => {
                   <input
                     type="text"
                     value={leadData.company || ""}
-                    onChange={(e) => setLeadData({ ...leadData, company: e.target.value })}
+                    onChange={(e) => {
+                      setLeadFormError(null);
+                      setLeadData({ ...leadData, company: e.target.value });
+                    }}
                     className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   />
                 </div>
@@ -830,7 +857,10 @@ export const SmartChatBot = () => {
                     type="email"
                     required
                     value={leadData.email || ""}
-                    onChange={(e) => setLeadData({ ...leadData, email: e.target.value })}
+                    onChange={(e) => {
+                      setLeadFormError(null);
+                      setLeadData({ ...leadData, email: e.target.value });
+                    }}
                     className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   />
                 </div>
@@ -843,15 +873,28 @@ export const SmartChatBot = () => {
                   <input
                     type="tel"
                     value={leadData.phone || ""}
-                    onChange={(e) => setLeadData({ ...leadData, phone: e.target.value })}
+                    placeholder="+49 30 1234567"
+                    onChange={(e) => {
+                      setLeadFormError(null);
+                      setLeadData({ ...leadData, phone: e.target.value });
+                    }}
                     className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   />
                 </div>
 
+                {leadFormError && (
+                  <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                    {leadFormError}
+                  </div>
+                )}
+
                 <div className="flex gap-3 pt-2">
                   <button
                     type="button"
-                    onClick={() => setShowLeadForm(false)}
+                    onClick={() => {
+                      setLeadFormError(null);
+                      setShowLeadForm(false);
+                    }}
                     className="flex-1 px-4 py-2.5 border border-gray-300 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors"
                   >
                     {t.close}

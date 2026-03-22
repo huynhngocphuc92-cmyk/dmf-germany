@@ -1,3 +1,5 @@
+import { VIETNAM_OFFICE_CONTACT } from "@/lib/company/contact";
+
 export const TRANSLATIONS = {
   de: {
     header: {
@@ -107,8 +109,8 @@ export const TRANSLATIONS = {
         "Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet. Wir melden uns in Kürze bei Ihnen.",
       error_message:
         "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns direkt per E-Mail.",
-      email: "contact@dmf.edu.vn",
-      phone: "+84 251 6609 500",
+      email: VIETNAM_OFFICE_CONTACT.email,
+      phone: VIETNAM_OFFICE_CONTACT.phone,
     },
     legal: {
       datenschutz: {
@@ -294,8 +296,8 @@ export const TRANSLATIONS = {
       email_label: "E-Mail:",
       hotline_label: "Hotline:",
       contact_header: "Kontakt",
-      email: "contact@dmf.edu.vn",
-      phone: "+84 251 6609 500",
+      email: VIETNAM_OFFICE_CONTACT.email,
+      phone: VIETNAM_OFFICE_CONTACT.phone,
       address: "Dong Nai, Vietnam",
     },
     partner: {
@@ -1305,8 +1307,8 @@ export const TRANSLATIONS = {
       success_message:
         "Thank you! Your message has been sent successfully. We will get back to you shortly.",
       error_message: "An error occurred. Please try again later or contact us directly by email.",
-      email: "contact@dmf.edu.vn",
-      phone: "+84 251 6609 500",
+      email: VIETNAM_OFFICE_CONTACT.email,
+      phone: VIETNAM_OFFICE_CONTACT.phone,
     },
     legal: {
       datenschutz: {
@@ -1492,8 +1494,8 @@ export const TRANSLATIONS = {
       email_label: "Email:",
       hotline_label: "Hotline:",
       contact_header: "Contact",
-      email: "contact@dmf.edu.vn",
-      phone: "+84 251 6609 500",
+      email: VIETNAM_OFFICE_CONTACT.email,
+      phone: VIETNAM_OFFICE_CONTACT.phone,
       address: "Dong Nai, Vietnam",
     },
     partner: {
@@ -2492,8 +2494,8 @@ export const TRANSLATIONS = {
         "Cảm ơn bạn! Tin nhắn của bạn đã được gửi thành công. Chúng tôi sẽ liên hệ lại với bạn sớm nhất.",
       error_message:
         "Đã xảy ra lỗi. Vui lòng thử lại sau hoặc liên hệ trực tiếp với chúng tôi qua email.",
-      email: "contact@dmf.edu.vn",
-      phone: "+84 251 6609 500",
+      email: VIETNAM_OFFICE_CONTACT.email,
+      phone: VIETNAM_OFFICE_CONTACT.phone,
     },
     legal: {
       datenschutz: {
@@ -2679,8 +2681,8 @@ export const TRANSLATIONS = {
       email_label: "Email:",
       hotline_label: "Hotline:",
       contact_header: "Liên hệ",
-      email: "contact@dmf.edu.vn",
-      phone: "+84 251 6609 500",
+      email: VIETNAM_OFFICE_CONTACT.email,
+      phone: VIETNAM_OFFICE_CONTACT.phone,
       address: "Dong Nai, Vietnam",
     },
     partner: {
@@ -3179,7 +3181,7 @@ export const TRANSLATIONS = {
       timeline_desc: "Mô phỏng thời gian quy trình",
       candidates: "Danh sách ứng viên",
       candidates_desc: "Khám phá nhân tài hàng đầu",
-      // Hợp tác & Chương trình
+      // Cooperation & programs
       cooperation: "Hợp tác & Chương trình",
       dual_training: "Du học Nghề",
       dual_training_desc: "Chương trình đào tạo nghề kép",

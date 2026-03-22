@@ -17,14 +17,6 @@ export const metadata: Metadata = {
     description:
       "Überblick über unsere erfolgreichen Vermittlungen vietnamesischer Fachkräfte in ganz Deutschland.",
     type: "website",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "DMF Erfolgsgeschichten & Referenzen",
-      },
-    ],
   },
   alternates: {
     canonical: "/referenzen",

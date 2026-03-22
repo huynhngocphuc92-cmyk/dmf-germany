@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/utils/supabase/server";
+import { createPublicClient } from "@/utils/supabase/public";
 import type { Post, PostFormData } from "./types";
 
 // ============================================
@@ -31,7 +32,7 @@ export async function getPosts(): Promise<{ data: Post[] | null; error: string |
 
 export async function getPublishedPosts(): Promise<{ data: Post[] | null; error: string | null }> {
   try {
-    const supabase = await createClient();
+    const supabase = createPublicClient();
 
     const { data, error } = await supabase
       .from("posts")
@@ -75,7 +76,7 @@ export async function getPostBySlug(
   slug: string
 ): Promise<{ data: Post | null; error: string | null }> {
   try {
-    const supabase = await createClient();
+    const supabase = createPublicClient();
 
     const { data, error } = await supabase
       .from("posts")
@@ -316,7 +317,7 @@ export async function getRelatedPosts(
   limit: number = 3
 ): Promise<{ data: Post[] | null; error: string | null }> {
   try {
-    const supabase = await createClient();
+    const supabase = createPublicClient();
 
     const { data, error } = await supabase
       .from("posts")

@@ -1,6 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { PRIMARY_CONTACT } from "@/lib/company/contact";
 
 // Type definitions for Schema.org structured data
 interface OrganizationSchema {
@@ -69,8 +70,8 @@ export default function JsonLd() {
     contactPoint: [
       {
         "@type": "ContactPoint",
-        telephone: "+84 855 070773",
-        email: "contact@dmf.edu.vn",
+        telephone: PRIMARY_CONTACT.phone,
+        email: PRIMARY_CONTACT.email,
         contactType: "customer service",
         areaServed: ["DE", "VN"],
         availableLanguage: ["German", "Vietnamese", "English"],

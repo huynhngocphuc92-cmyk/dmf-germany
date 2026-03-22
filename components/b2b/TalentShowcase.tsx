@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { MotionProvider } from "@/components/shared/MotionProvider";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -188,7 +189,7 @@ function CandidateCard({ candidate, index, onViewVideo, onRequestProfile }: Cand
   const germanLevel = germanLevelConfig[candidate.germanLevel];
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
@@ -314,7 +315,7 @@ function CandidateCard({ candidate, index, onViewVideo, onRequestProfile }: Cand
           </Button>
         </CardFooter>
       </Card>
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -524,73 +525,75 @@ Trân trọng`;
   );
 
   return (
-    <section
-      id="talent-showcase"
-      className="py-20 md:py-28 bg-gradient-to-b from-muted/40 via-background to-background"
-    >
-      <div className="container mx-auto px-4 max-w-6xl">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-14"
-        >
-          {/* Badge */}
-          <Badge
-            variant="outline"
-            className="mb-5 px-4 py-1.5 text-sm border-primary/30 text-primary bg-primary/5"
+    <MotionProvider>
+      <section
+        id="talent-showcase"
+        className="py-20 md:py-28 bg-gradient-to-b from-muted/40 via-background to-background"
+      >
+        <div className="container mx-auto px-4 max-w-6xl">
+          {/* Section Header */}
+          <m.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-14"
           >
-            <Briefcase className="h-4 w-4 mr-2" />
-            {t.talentShowcase.badge}
-          </Badge>
+            {/* Badge */}
+            <Badge
+              variant="outline"
+              className="mb-5 px-4 py-1.5 text-sm border-primary/30 text-primary bg-primary/5"
+            >
+              <Briefcase className="h-4 w-4 mr-2" />
+              {t.talentShowcase.badge}
+            </Badge>
 
-          {/* Title */}
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-5 tracking-tight">
-            {t.talentShowcase.title}
-          </h2>
+            {/* Title */}
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-5 tracking-tight">
+              {t.talentShowcase.title}
+            </h2>
 
-          {/* Subtitle */}
-          <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            {t.talentShowcase.subtitle}
-          </p>
-        </motion.div>
+            {/* Subtitle */}
+            <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              {t.talentShowcase.subtitle}
+            </p>
+          </m.div>
 
-        {/* Candidates Grid - 2 Columns */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
-          {mockCandidates.map((candidate, index) => (
-            <CandidateCard
-              key={candidate.id}
-              candidate={candidate}
-              index={index}
-              onViewVideo={handleViewVideo}
-              onRequestProfile={handleRequestProfile}
-            />
-          ))}
+          {/* Candidates Grid - 2 Columns */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+            {mockCandidates.map((candidate, index) => (
+              <CandidateCard
+                key={candidate.id}
+                candidate={candidate}
+                index={index}
+                onViewVideo={handleViewVideo}
+                onRequestProfile={handleRequestProfile}
+              />
+            ))}
+          </div>
+
+          {/* DSGVO Disclaimer */}
+          <m.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6 }}
+            className="mt-12 text-center"
+          >
+            <div className="inline-flex items-center gap-3 px-6 py-3 bg-muted/50 rounded-full border border-border">
+              <ShieldCheck className="h-5 w-5 text-muted-foreground flex-shrink-0" />
+              <p className="text-sm text-muted-foreground">{t.talentShowcase.disclaimer}</p>
+            </div>
+          </m.div>
         </div>
 
-        {/* DSGVO Disclaimer */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.6 }}
-          className="mt-12 text-center"
-        >
-          <div className="inline-flex items-center gap-3 px-6 py-3 bg-muted/50 rounded-full border border-border">
-            <ShieldCheck className="h-5 w-5 text-muted-foreground flex-shrink-0" />
-            <p className="text-sm text-muted-foreground">{t.talentShowcase.disclaimer}</p>
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Video Modal */}
-      <VideoModal
-        candidate={selectedCandidate}
-        isOpen={isVideoModalOpen}
-        onClose={() => setIsVideoModalOpen(false)}
-      />
-    </section>
+        {/* Video Modal */}
+        <VideoModal
+          candidate={selectedCandidate}
+          isOpen={isVideoModalOpen}
+          onClose={() => setIsVideoModalOpen(false)}
+        />
+      </section>
+    </MotionProvider>
   );
 }

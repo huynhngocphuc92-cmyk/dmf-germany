@@ -1031,14 +1031,10 @@ function TalentPoolSection({ content }: { content: any }) {
                       </Badge>
                     </div>
                     <h3 className="font-bold text-slate-900">
-                      {lang === "de" ? profile.role : lang === "en" ? profile.role : profile.roleVn}
+                      {lang === "vn" ? profile.roleVn : profile.role}
                     </h3>
                     <p className="text-sm text-amber-600">
-                      {lang === "de"
-                        ? profile.category
-                        : lang === "en"
-                          ? profile.category
-                          : profile.categoryVn}
+                      {lang === "vn" ? profile.categoryVn : profile.category}
                     </p>
                   </div>
 
@@ -1421,11 +1417,10 @@ function CTASection({ content }: { content: any }) {
 export default function SeasonalWorkersPage() {
   const { t } = useLanguage();
 
-  // 1. LẤY DỮ LIỆU THÔ (Có thể bị null hoặc sai key)
+  // Pull the raw content block from the translation bundle.
   const rawData = t.service_pages?.seasonal;
 
-  // 2. QUA CỔNG KIỂM SOÁT QA (Lọc sạch)
-  // Biến 'content' bây giờ đảm bảo 100% không bao giờ null
+  // Run the payload through QA normalization before rendering.
   const content = checkQuality(rawData, DATA_DU_PHONG);
 
   // FAQ Questions for Seasonal Workers (B2B-Focused)

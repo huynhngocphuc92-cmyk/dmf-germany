@@ -11,14 +11,6 @@ export const metadata: Metadata = {
     description: "Saisonkräfte für Ihre Hochsaison. Jetzt verfügbarkeit prüfen!",
     url: `${baseUrl}/services/seasonal`,
     siteName: "DMF Manpower",
-    images: [
-      {
-        url: "/og-image.jpg", // Using default OG image, can be customized later
-        width: 1200,
-        height: 630,
-        alt: "Saisonarbeiter aus Vietnam vermitteln | DMF Manpower",
-      },
-    ],
     locale: "de_DE",
     type: "website",
   },
@@ -26,7 +18,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Saisonarbeiter aus Vietnam vermitteln | DMF Manpower",
     description: "Saisonkräfte für Ihre Hochsaison. Jetzt verfügbarkeit prüfen!",
-    images: ["/og-image.jpg"],
   },
 };
 

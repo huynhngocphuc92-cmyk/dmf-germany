@@ -1,1 +1,2 @@
+sh ./scripts/guard-secrets.sh
 npx lint-staged

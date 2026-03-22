@@ -1,10 +1,11 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { m, useInView } from "framer-motion";
 import Link from "next/link";
 import { AssetImageWithDebug } from "@/components/ui/AssetImageWithDebug";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { MotionProvider } from "@/components/shared/MotionProvider";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -198,22 +199,17 @@ function ServiceCardItem({
   serviceImageKey,
 }: ServiceCardItemProps) {
   const { lang, t } = useLanguage();
+  const isVietnamese = lang === "vn";
+  const isEnglish = lang === "en";
   const Icon = service.icon;
   const SecondaryIcon = service.secondaryIcon;
   const colors = accentColors[service.accentColor];
 
-  const tagline =
-    lang === "de" ? service.taglineDe : lang === "en" ? service.taglineDe : service.taglineVn;
-  const title = lang === "de" ? service.titleDe : lang === "en" ? service.titleDe : service.titleVn;
-  const description =
-    lang === "de"
-      ? service.descriptionDe
-      : lang === "en"
-        ? service.descriptionDe
-        : service.descriptionVn;
-  const features =
-    lang === "de" ? service.featuresDe : lang === "en" ? service.featuresDe : service.featuresVn;
-  const ctaText = lang === "de" ? "Mehr erfahren" : lang === "en" ? "Learn More" : "Tìm hiểu thêm";
+  const tagline = isVietnamese ? service.taglineVn : service.taglineDe;
+  const title = isVietnamese ? service.titleVn : service.titleDe;
+  const description = isVietnamese ? service.descriptionVn : service.descriptionDe;
+  const features = isVietnamese ? service.featuresVn : service.featuresDe;
+  const ctaText = isVietnamese ? "Tìm hiểu thêm" : isEnglish ? "Learn More" : "Mehr erfahren";
 
   // FINAL SAFETY CHECK: Ensure serviceImage is valid before passing to AssetImageWithDebug
   // This prevents any edge cases where invalid values might slip through
@@ -222,19 +218,8 @@ function ServiceCardItem({
       ? serviceImage
       : null;
 
-  // DEBUG: Log what's being passed to AssetImageWithDebug
-  if (service.id === "azubi") {
-    console.log("[ServiceCardItem] 🎴 Azubi card debug:", {
-      serviceImage,
-      serviceImageKey,
-      safeImageSrc,
-      isValid: serviceImage ? isValidImagePath(serviceImage) : false,
-      isKey: serviceImage === serviceImageKey,
-    });
-  }
-
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{
@@ -321,14 +306,10 @@ function ServiceCardItem({
                   <h3 className="text-2xl font-bold text-slate-900 mb-1 tracking-tight">{title}</h3>
                   <p className="text-sm text-slate-500">
                     {service.id === "azubi" &&
-                      (lang === "de"
-                        ? "Duale Ausbildung"
-                        : lang === "en"
-                          ? "Dual Training"
-                          : "Đào tạo kép")}
+                      (isVietnamese ? "Đào tạo kép" : isEnglish ? "Dual Training" : "Duale Ausbildung")}
                     {service.id === "skilled" && "Visa §18a/b"}
                     {service.id === "seasonal" &&
-                      (lang === "de" ? "3-6 Monate" : lang === "en" ? "3-6 Months" : "3-6 tháng")}
+                      (isVietnamese ? "3-6 tháng" : isEnglish ? "3-6 Months" : "3-6 Monate")}
                   </p>
                 </div>
               </div>
@@ -365,7 +346,7 @@ function ServiceCardItem({
           </CardContent>
         </Card>
       </Link>
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -382,7 +363,7 @@ interface IndustryBadgeProps {
 
 function IndustryBadge({ icon: Icon, label, delay, isInView }: IndustryBadgeProps) {
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, scale: 0.9 }}
       animate={isInView ? { opacity: 1, scale: 1 } : {}}
       transition={{ duration: 0.4, delay }}
@@ -396,7 +377,7 @@ function IndustryBadge({ icon: Icon, label, delay, isInView }: IndustryBadgeProp
     >
       <Icon className="w-4 h-4 text-slate-500" />
       {label}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -433,7 +414,6 @@ function isValidImagePath(value: string | null | undefined): boolean {
 // Helper function to sanitize image value - filters out key strings
 function sanitizeImageValue(value: string | null | undefined, key: string): string | null {
   if (!value) {
-    console.log(`[ServiceGateway] Image value for "${key}" is null/undefined. Returning null.`);
     return null;
   }
 
@@ -465,7 +445,6 @@ function sanitizeImageValue(value: string | null | undefined, key: string): stri
     return null;
   }
 
-  console.log(`[ServiceGateway] ✅ Image value for "${key}" is valid: "${value}"`);
   return value;
 }
 
@@ -474,16 +453,6 @@ export function ServiceGateway({ nursingImg, techImg, hotelImg }: ServiceGateway
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
 
-  // DEBUG: Log raw props received
-  console.log("[ServiceGateway] 📥 Raw props received:", {
-    nursingImg,
-    techImg,
-    hotelImg,
-    nursingImgType: typeof nursingImg,
-    techImgType: typeof techImg,
-    hotelImgType: typeof hotelImg,
-  });
-
   // Map images to services with validation
   // CRITICAL: Sanitize each image value to ensure we never pass key strings to Image components
   const serviceImages: Record<string, string | null> = {
@@ -491,9 +460,6 @@ export function ServiceGateway({ nursingImg, techImg, hotelImg }: ServiceGateway
     skilled: sanitizeImageValue(techImg, "home_prog_tech_img"),
     seasonal: sanitizeImageValue(hotelImg, "home_prog_hotel_img"),
   };
-
-  // DEBUG: Log sanitized values
-  console.log("[ServiceGateway] 📤 Sanitized serviceImages:", serviceImages);
 
   // Map asset keys for debug labels
   const serviceImageKeys: Record<string, string> = {
@@ -520,82 +486,84 @@ export function ServiceGateway({ nursingImg, techImg, hotelImg }: ServiceGateway
             { icon: Sun, label: "Agriculture" },
             { icon: Building, label: "Hotels" },
           ]
-        : [
-            { icon: Building, label: "Bệnh viện" },
-            { icon: Users, label: "Viện dưỡng lão" },
-            { icon: Utensils, label: "Nhà hàng" },
-            { icon: Sun, label: "Nông nghiệp" },
-            { icon: Building, label: "Khách sạn" },
-          ];
+      : [
+          { icon: Building, label: "Bệnh viện" },
+          { icon: Users, label: "Viện dưỡng lão" },
+          { icon: Utensils, label: "Nhà hàng" },
+          { icon: Sun, label: "Nông nghiệp" },
+          { icon: Building, label: "Khách sạn" },
+        ];
 
   return (
-    <section
-      ref={sectionRef}
-      id="service-gateway"
-      className="relative py-20 md:py-28 bg-gradient-to-b from-white via-slate-50/50 to-white overflow-hidden"
-    >
-      {/* Decorative Elements */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-emerald-100/40 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
+    <MotionProvider>
+      <section
+        ref={sectionRef}
+        id="service-gateway"
+        className="relative py-20 md:py-28 bg-gradient-to-b from-white via-slate-50/50 to-white overflow-hidden"
+      >
+        {/* Decorative Elements */}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 right-0 w-80 h-80 bg-emerald-100/40 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
 
-      <div className="container relative mx-auto px-4 max-w-7xl">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <Badge
-            variant="outline"
-            className="mb-6 px-5 py-2 text-sm font-medium border-slate-300 text-slate-700 bg-white"
+        <div className="container relative mx-auto px-4 max-w-7xl">
+          {/* Section Header */}
+          <m.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
           >
-            <Sparkles className="h-4 w-4 mr-2 text-blue-500" />
-            {t.program.badge}
-          </Badge>
+            <Badge
+              variant="outline"
+              className="mb-6 px-5 py-2 text-sm font-medium border-slate-300 text-slate-700 bg-white"
+            >
+              <Sparkles className="h-4 w-4 mr-2 text-blue-500" />
+              {t.program.badge}
+            </Badge>
 
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-5 tracking-tight">
-            {t.program.title}
-          </h2>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-5 tracking-tight">
+              {t.program.title}
+            </h2>
 
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">{t.program.subtitle}</p>
-        </motion.div>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">{t.program.subtitle}</p>
+          </m.div>
 
-        {/* Service Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-16">
-          {services.map((service, index) => (
-            <ServiceCardItem
-              key={service.id}
-              service={service}
-              index={index}
-              isInView={isInView}
-              serviceImage={serviceImages[service.id]}
-              serviceImageKey={serviceImageKeys[service.id]}
-            />
-          ))}
-        </div>
-
-        {/* Industries Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="text-center"
-        >
-          <p className="text-sm font-medium text-slate-500 mb-4">{t.program.industries_title}</p>
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            {industries.map((industry, index) => (
-              <IndustryBadge
-                key={index}
-                icon={industry.icon}
-                label={industry.label}
-                delay={0.6 + index * 0.1}
+          {/* Service Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-16">
+            {services.map((service, index) => (
+              <ServiceCardItem
+                key={service.id}
+                service={service}
+                index={index}
                 isInView={isInView}
+                serviceImage={serviceImages[service.id]}
+                serviceImageKey={serviceImageKeys[service.id]}
               />
             ))}
           </div>
-        </motion.div>
-      </div>
-    </section>
+
+          {/* Industries Section */}
+          <m.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="text-center"
+          >
+            <p className="text-sm font-medium text-slate-500 mb-4">{t.program.industries_title}</p>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              {industries.map((industry, index) => (
+                <IndustryBadge
+                  key={index}
+                  icon={industry.icon}
+                  label={industry.label}
+                  delay={0.6 + index * 0.1}
+                  isInView={isInView}
+                />
+              ))}
+            </div>
+          </m.div>
+        </div>
+      </section>
+    </MotionProvider>
   );
 }

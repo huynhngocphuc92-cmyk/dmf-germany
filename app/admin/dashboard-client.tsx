@@ -97,7 +97,7 @@ export function AdminDashboardClient({
       trendUp: true,
     },
     {
-      title: lang === "de" ? "Visa Bereit" : "Có Visa",
+      title: lang === "vn" ? "Có Visa" : "Visa Bereit",
       value: stats.visaReady,
       icon: CheckCircle2,
       color: "bg-emerald-100 text-emerald-600",
@@ -340,7 +340,7 @@ export function AdminDashboardClient({
                   <TableRow>
                     <TableHead>{t.name}</TableHead>
                     <TableHead>{t.category}</TableHead>
-                    <TableHead>{lang === "de" ? "Visa Status" : "Trạng thái Visa"}</TableHead>
+                    <TableHead>{lang === "vn" ? "Trạng thái Visa" : "Visa Status"}</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>

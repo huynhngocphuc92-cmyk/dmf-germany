@@ -1,11 +1,10 @@
-"use client"; // BẮT BUỘC có dòng này
+"use client";
 
 import React from "react";
 import Link from "next/link";
-import { useLanguage } from "@/components/providers/LanguageProvider"; // 👈 ĐÃ SỬA ĐƯỜNG DẪN ĐÚNG
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export default function Footer() {
-  // Lấy bộ từ điển ra dùng
   const { t } = useLanguage();
 
   return (
@@ -16,7 +15,7 @@ export default function Footer() {
     >
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-          {/* Cột 1: Thông tin công ty */}
+          {/* Column 1: Company information */}
           <div className="col-span-2 md:col-span-1">
             <div className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">
               {t.footer.company_name}
@@ -24,7 +23,7 @@ export default function Footer() {
             <p className="text-xs md:text-sm opacity-80 mb-4">{t.hero.subtitle}</p>
           </div>
 
-          {/* Cột 2: Liên kết nhanh */}
+          {/* Column 2: Quick links */}
           <div>
             <h3 className="text-white font-bold mb-3 md:mb-4 text-sm md:text-base">
               {t.footer.links_title}
@@ -43,7 +42,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Cột 3: Pháp lý */}
+          {/* Column 3: Legal */}
           <div>
             <h3 className="text-white font-bold mb-3 md:mb-4 text-sm md:text-base">
               {t.footer.legal_title}
@@ -62,7 +61,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Cột 4: Liên hệ */}
+          {/* Column 4: Contact */}
           <div className="col-span-2 md:col-span-1">
             <h3 className="text-white font-bold mb-3 md:mb-4 text-sm md:text-base">
               {t.footer.contact_header}

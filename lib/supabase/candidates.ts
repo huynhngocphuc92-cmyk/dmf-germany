@@ -1,6 +1,6 @@
 "use server";
 
-import { createClient } from "@/utils/supabase/server";
+import { createPublicClient } from "@/utils/supabase/public";
 import type { Candidate, CandidateCategory, GermanLevel } from "@/app/admin/candidates/types";
 
 /**
@@ -11,14 +11,14 @@ import type { Candidate, CandidateCategory, GermanLevel } from "@/app/admin/cand
  * Fields returned: id, profession, experience_years, german_level, video_url, avatar_url, category, created_at
  * Sorted by created_at descending (newest first)
  *
- * IMPORTANT: This function is designed to work with dynamic rendering (no cache)
+ * Uses the public anon client so marketing pages can stay static/ISR-friendly.
  */
 export async function getFeaturedCandidates(): Promise<{
   data: Candidate[] | null;
   error: string | null;
 }> {
   try {
-    const supabase = await createClient();
+    const supabase = createPublicClient();
 
     const { data, error } = await supabase
       .from("candidates")
@@ -44,6 +44,51 @@ export async function getFeaturedCandidates(): Promise<{
 }
 
 /**
+ * Get homepage showcase candidates.
+ * Prefer featured or visa-ready profiles, then fall back to the newest entries.
+ */
+export async function getHomepageFeaturedCandidates(): Promise<{
+  data: Candidate[] | null;
+  error: string | null;
+}> {
+  try {
+    const supabase = createPublicClient();
+
+    let { data, error } = await supabase
+      .from("candidates")
+      .select("*")
+      .or("is_featured.eq.true,visa_status.eq.true")
+      .order("created_at", { ascending: false })
+      .limit(20);
+
+    if (error || !data || data.length === 0) {
+      const { data: allData, error: allError } = await supabase
+        .from("candidates")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .limit(20);
+
+      if (allError) {
+        console.error("[getHomepageFeaturedCandidates] Error fetching candidates:", allError);
+        return { data: null, error: allError.message };
+      }
+
+      data = allData;
+    }
+
+    if (error && data && data.length === 0) {
+      console.warn("[getHomepageFeaturedCandidates] No candidates found, returning empty array");
+      return { data: [], error: null };
+    }
+
+    return { data: (data || []) as Candidate[], error: null };
+  } catch (err) {
+    console.error("[getHomepageFeaturedCandidates] Unexpected error:", err);
+    return { data: [], error: null };
+  }
+}
+
+/**
  * Get public candidates for Kandidaten-Pool page (with filters)
  * Only returns candidates that are:
  * - is_featured = true (Featured candidates)
@@ -59,7 +104,7 @@ export async function getPublicCandidates(filters?: {
   error: string | null;
 }> {
   try {
-    const supabase = await createClient();
+    const supabase = createPublicClient();
 
     // Build query - Start with base conditions
     let query = supabase
@@ -102,7 +147,7 @@ export async function getPublicCandidates(filters?: {
  */
 export async function getAvailableCategories(): Promise<CandidateCategory[]> {
   try {
-    const supabase = await createClient();
+    const supabase = createPublicClient();
 
     const { data, error } = await supabase
       .from("candidates")
@@ -127,7 +172,7 @@ export async function getAvailableCategories(): Promise<CandidateCategory[]> {
  */
 export async function getAvailableGermanLevels(): Promise<GermanLevel[]> {
   try {
-    const supabase = await createClient();
+    const supabase = createPublicClient();
 
     const { data, error } = await supabase
       .from("candidates")

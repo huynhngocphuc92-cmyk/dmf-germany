@@ -1,3 +1,5 @@
+import { GERMANY_CONTACT, VIETNAM_OFFICE_CONTACT } from "@/lib/company/contact";
+
 // DMF Vietnam - Site Content Configuration
 // Multilingual support: German (de) and Vietnamese (vn)
 // Basiert auf dem offiziellen DMF Vietnam Handbuch
@@ -432,17 +434,17 @@ const deContent: SiteContent = {
     headquarters: {
       title: "Hauptsitz in Vietnam",
       location: "Đồng Nai, Vietnam",
-      phone: "+84 251 6609 500",
-      email: "contact@dmf.edu.vn",
-      website: "dmf.edu.vn",
+      phone: VIETNAM_OFFICE_CONTACT.phone,
+      email: VIETNAM_OFFICE_CONTACT.email,
+      website: VIETNAM_OFFICE_CONTACT.website,
     },
 
     // Ansprechpartner Deutschland
     germanContact: {
       name: "Herr Achim Betticher",
       title: "Ihr Ansprechpartner für Deutschland",
-      phone: "+84 855 070773",
-      email: "achim.betticher@dmf.edu.vn",
+      phone: GERMANY_CONTACT.phone,
+      email: GERMANY_CONTACT.email,
     },
 
     form: {
@@ -807,16 +809,16 @@ const vnContent: SiteContent = {
     headquarters: {
       title: "Trụ sở tại Việt Nam",
       location: "Đồng Nai, Việt Nam",
-      phone: "+84 251 6609 500",
-      email: "contact@dmf.edu.vn",
-      website: "dmf.edu.vn",
+      phone: VIETNAM_OFFICE_CONTACT.phone,
+      email: VIETNAM_OFFICE_CONTACT.email,
+      website: VIETNAM_OFFICE_CONTACT.website,
     },
 
     germanContact: {
       name: "Ông Achim Betticher",
       title: "Đại diện tại Đức",
-      phone: "+84 855 070773",
-      email: "achim.betticher@dmf.edu.vn",
+      phone: GERMANY_CONTACT.phone,
+      email: GERMANY_CONTACT.email,
     },
 
     form: {

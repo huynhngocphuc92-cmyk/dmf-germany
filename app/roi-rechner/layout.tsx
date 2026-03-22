@@ -18,14 +18,6 @@ export const metadata: Metadata = {
     description:
       "Berechnen Sie die Wirtschaftlichkeit bei der Rekrutierung vietnamesischer Fachkräfte. Kostenvergleich zwischen deutschen und vietnamesischen Mitarbeitern.",
     type: "website",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "DMF Kostenrechner & ROI",
-      },
-    ],
   },
   alternates: {
     canonical: "/roi-rechner",

@@ -1,4 +1,5 @@
 import { Settings, Save, Server, Globe, Mail, Shield } from "lucide-react";
+import { PRIMARY_CONTACT } from "@/lib/company/contact";
 
 export default function SettingsPage() {
   return (
@@ -34,7 +35,7 @@ export default function SettingsPage() {
               <label className="block text-sm font-medium text-slate-700 mb-1">Support Email</label>
               <input
                 type="email"
-                defaultValue={process.env.CONTACT_EMAIL || "contact@dmf.edu.vn"}
+                defaultValue={process.env.CONTACT_EMAIL || PRIMARY_CONTACT.email}
                 readOnly
                 className="w-full px-3 py-2 border border-slate-200 bg-slate-50 text-slate-500 rounded-lg cursor-not-allowed"
               />

@@ -71,8 +71,8 @@ const nextConfig: NextConfig = {
             value: [
               "default-src 'self'",
               "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com",
-              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-              "font-src 'self' https://fonts.gstatic.com",
+              "style-src 'self' 'unsafe-inline'",
+              "font-src 'self'",
               "img-src 'self' data: blob: https://*.supabase.co https://images.unsplash.com https://dmf.edu.vn https://www.google-analytics.com",
               "connect-src 'self' https://*.supabase.co https://api.telegram.org https://www.google-analytics.com",
               "frame-ancestors 'self'",
@@ -97,16 +97,17 @@ export default withSentryConfig(withBundleAnalyzer(nextConfig), {
   // Upload source maps to Sentry for better stack traces
   widenClientFileUpload: true,
 
-  // Automatically instrument Next.js data fetching methods
-  autoInstrumentServerFunctions: true,
+  webpack: {
+    autoInstrumentServerFunctions: true,
+    treeshake: {
+      removeDebugLogging: true,
+    },
+  },
 
   // Hides Sentry source maps from the client bundle
   sourcemaps: {
     deleteSourcemapsAfterUpload: true,
   },
-
-  // Disable tree-shaking of Sentry SDK (keep all features)
-  disableLogger: true,
 
   // Route browser requests to Sentry through Next.js (avoids ad-blockers)
   tunnelRoute: "/monitoring",

@@ -1,5 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/components/providers/LanguageProvider";
 import { HeaderWrapper } from "@/components/HeaderWrapper";
@@ -10,6 +11,12 @@ import { CookieConsent } from "@/components/CookieConsent";
 
 // Base URL for absolute URLs in metadata
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://dmf-vietnam.de";
+const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans", display: "swap" });
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -49,22 +56,12 @@ export const metadata: Metadata = {
     title: "DMF Manpower | Fachkräfte aus Vietnam für Deutschland",
     description:
       "Spezialisierte Personalvermittlung für Pflege, Handwerk & Industrie. Full-Service von Rekrutierung bis Visum. Jetzt Fachkräfte finden!",
-    images: [
-      {
-        url: "/og-image.svg",
-        width: 1200,
-        height: 630,
-        alt: "DMF Manpower - Fachkräfte aus Vietnam für Deutschland",
-        type: "image/svg+xml",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "DMF Manpower | Fachkräfte aus Vietnam für Deutschland",
     description:
       "Spezialisierte Personalvermittlung für Pflege, Handwerk & Industrie. Full-Service von Rekrutierung bis Visum.",
-    images: ["/og-image.svg"],
   },
   robots: {
     index: true,
@@ -89,23 +86,17 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="de">
-      <body>
-        {/* QUAN TRỌNG: Provider phải bọc lấy TẤT CẢ mọi thứ bên trong body */}
+      <body className={`${geistSans.variable} ${geistMono.variable} font-sans`}>
         <LanguageProvider>
-          {/* JsonLd nằm trong này mới có dữ liệu ngôn ngữ */}
           <JsonLd />
-
-          {/* HeaderWrapper fetches logo from database (key: site_logo, header_logo, or logo_url) */}
           <HeaderWrapper />
 
           <main className="min-h-screen">{children}</main>
 
           <Footer />
 
-          {/* Cookie Consent Banner */}
           <CookieConsent />
 
-          {/* DMF AI Chat Assistant - Smart Bot with Claude AI */}
           <SmartChatBot />
         </LanguageProvider>
       </body>

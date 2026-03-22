@@ -18,14 +18,6 @@ export const metadata: Metadata = {
     title: "Kandidaten-Pool | DMF Manpower",
     description: "Unsere Top-Talente: Qualifizierte Fachkräfte aus Vietnam, die sẵn sàng làm việc.",
     type: "website",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "DMF Kandidaten-Pool",
-      },
-    ],
   },
   alternates: {
     canonical: "/fuer-arbeitgeber/kandidaten",

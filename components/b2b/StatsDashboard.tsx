@@ -1,8 +1,9 @@
 "use client";
 
 import { useRef, useEffect, useState, useCallback } from "react";
-import { motion, useInView } from "framer-motion";
+import { m, useInView } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { MotionProvider } from "@/components/shared/MotionProvider";
 import { Badge } from "@/components/ui/badge";
 import {
   Shield,
@@ -125,7 +126,7 @@ interface StatCardProps {
 
 function StatCard({ children, className = "", delay = 0, isInView }: StatCardProps) {
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 30, scale: 0.95 }}
       animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
       transition={{
@@ -145,7 +146,7 @@ function StatCard({ children, className = "", delay = 0, isInView }: StatCardPro
       `}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -190,11 +191,12 @@ export function StatsDashboard() {
   ];
 
   return (
-    <section
-      ref={sectionRef}
-      id="stats-dashboard"
-      className="relative py-24 md:py-32 overflow-hidden"
-    >
+    <MotionProvider>
+      <section
+        ref={sectionRef}
+        id="stats-dashboard"
+        className="relative py-24 md:py-32 overflow-hidden"
+      >
       {/* Dark Background with Gradient */}
       <div
         className="
@@ -218,9 +220,9 @@ export function StatsDashboard() {
         }}
       />
 
-      <div className="container relative mx-auto px-4 max-w-7xl">
+        <div className="container relative mx-auto px-4 max-w-7xl">
         {/* Section Header */}
-        <motion.div
+          <m.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
@@ -244,7 +246,7 @@ export function StatsDashboard() {
           <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto">
             {t.stats_advanced.subtitle}
           </p>
-        </motion.div>
+          </m.div>
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-5 auto-rows-[minmax(140px,auto)] md:auto-rows-[minmax(180px,auto)]">
@@ -282,7 +284,7 @@ export function StatsDashboard() {
                   strokeWidth="8"
                 />
                 {/* Progress circle */}
-                <motion.circle
+                <m.circle
                   cx="50"
                   cy="50"
                   r="40"
@@ -449,7 +451,7 @@ export function StatsDashboard() {
               {/* Partner logos placeholder */}
               <div className="flex items-center gap-3 md:gap-4">
                 {[1, 2, 3, 4].map((i) => (
-                  <motion.div
+                  <m.div
                     key={i}
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={isInView ? { opacity: 1, scale: 1 } : {}}
@@ -463,7 +465,7 @@ export function StatsDashboard() {
                     "
                   >
                     <Building2 className="w-5 h-5 md:w-6 md:h-6 text-slate-500" />
-                  </motion.div>
+                  </m.div>
                 ))}
               </div>
             </div>
@@ -471,7 +473,7 @@ export function StatsDashboard() {
         </div>
 
         {/* Bottom Trust Indicators */}
-        <motion.div
+          <m.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.6 }}
@@ -486,8 +488,9 @@ export function StatsDashboard() {
               <span className="text-sm font-medium">{item.text}</span>
             </div>
           ))}
-        </motion.div>
-      </div>
-    </section>
+          </m.div>
+        </div>
+      </section>
+    </MotionProvider>
   );
 }

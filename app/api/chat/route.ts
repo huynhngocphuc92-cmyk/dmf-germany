@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { PRIMARY_CONTACT } from "@/lib/company/contact";
 import { buildKnowledgeContext } from "@/lib/chatbot/knowledge-base";
+import { checkRateLimit, getClientIp, RATE_LIMITS } from "@/lib/rate-limit";
 
 // ============================================
 // TYPES
@@ -15,31 +17,6 @@ interface ChatRequest {
   message: string;
   history?: ChatMessage[];
   language?: "de" | "en" | "vi";
-}
-
-// ============================================
-// RATE LIMITING (Simple in-memory)
-// ============================================
-
-const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
-const RATE_LIMIT = 20; // requests per minute
-const RATE_WINDOW = 60 * 1000; // 1 minute
-
-function checkRateLimit(ip: string): boolean {
-  const now = Date.now();
-  const record = rateLimitMap.get(ip);
-
-  if (!record || now > record.resetTime) {
-    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_WINDOW });
-    return true;
-  }
-
-  if (record.count >= RATE_LIMIT) {
-    return false;
-  }
-
-  record.count++;
-  return true;
 }
 
 // ============================================
@@ -77,7 +54,7 @@ Wenn der Nutzer in einer anderen Sprache schreibt, antworte in dieser Sprache.
 
 ## WICHTIGE LINKS
 - Beratungstermin: https://calendly.com/contact-dmf/30min
-- Kontakt: contact@dmf-germany.de
+- Kontakt: ${PRIMARY_CONTACT.email}
 - Website: https://dmf-germany.de
 
 ## WISSENSBASIS
@@ -98,8 +75,9 @@ ${knowledgeContext}
 export async function POST(request: NextRequest) {
   try {
     // Rate limiting
-    const ip = request.headers.get("x-forwarded-for") || "unknown";
-    if (!checkRateLimit(ip)) {
+    const ip = getClientIp(request);
+    const rateLimitResult = await checkRateLimit(`chat:${ip}`, RATE_LIMITS.CHAT);
+    if (!rateLimitResult.success) {
       return NextResponse.json(
         { error: "Too many requests. Please try again later." },
         { status: 429 }

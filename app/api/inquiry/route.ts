@@ -1,8 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { z } from "zod";
 import { createClient } from "@/utils/supabase/server";
 import { checkRateLimit, getClientIp, RATE_LIMITS } from "@/lib/rate-limit";
 import { profileInquiryAutoReplyTemplate } from "@/lib/email-templates";
+import { escapeHtml } from "@/lib/sanitize";
+import { optionalBusinessPhoneSchema } from "@/lib/validations/phone";
+import { getMailTransporter, isSmtpConfigured } from "@/lib/email/transporter";
+
+const bodySchema = z.object({
+  candidateCode: z.string().min(1, { message: "Kandidatencode ist erforderlich." }),
+  candidateId: z.string().optional(),
+  name: z.string().min(2, { message: "Name ist erforderlich." }),
+  email: z.string().email({ message: "Ungültige E-Mail-Adresse." }),
+  phone: optionalBusinessPhoneSchema,
+  company: z.string().optional(),
+  message: z.string().optional(),
+});
 
 /**
  * Inquiry API Route
@@ -15,7 +28,7 @@ export async function POST(request: NextRequest) {
   try {
     // Rate limiting
     const clientIp = getClientIp(request);
-    const rateLimitResult = checkRateLimit(`inquiry:${clientIp}`, RATE_LIMITS.CONTACT);
+    const rateLimitResult = await checkRateLimit(`inquiry:${clientIp}`, RATE_LIMITS.CONTACT);
 
     if (!rateLimitResult.success) {
       return NextResponse.json(
@@ -34,21 +47,16 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { candidateCode, candidateId, name, email, phone, company, message } = body;
+    const validation = bodySchema.safeParse(body);
 
-    // Validation
-    if (!name || !email || !candidateCode) {
+    if (!validation.success) {
       return NextResponse.json(
-        { success: false, error: "Name, Email và Candidate Code là bắt buộc." },
+        { success: false, error: validation.error.issues[0]?.message || "Ungültige Anfrage." },
         { status: 400 }
       );
     }
 
-    // Email format validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return NextResponse.json({ success: false, error: "Email không hợp lệ." }, { status: 400 });
-    }
+    const { candidateCode, candidateId, name, email, phone, company, message } = validation.data;
 
     let supabaseSaved = false;
     let telegramSent = false;
@@ -115,13 +123,17 @@ export async function POST(request: NextRequest) {
 
     // 3. Send Email (admin notification + auto-reply to lead)
     try {
-      if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASSWORD) {
-        const transporter = nodemailer.createTransport({
-          host: process.env.SMTP_HOST,
-          port: Number(process.env.SMTP_PORT) || 587,
-          secure: false,
-          auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASSWORD },
-        });
+      if (isSmtpConfigured()) {
+        const transporter = getMailTransporter();
+        if (!transporter) {
+          throw new Error("SMTP transporter could not be initialized.");
+        }
+
+        const safeCandidateCode = escapeHtml(String(candidateCode));
+        const safeName = escapeHtml(String(name));
+        const safeEmail = escapeHtml(String(email));
+        const safeCompany = escapeHtml(company ? String(company) : "–");
+        const safeMessage = escapeHtml(message ? String(message) : "–");
 
         // Notify admin
         await transporter.sendMail({
@@ -129,7 +141,13 @@ export async function POST(request: NextRequest) {
           to: process.env.CONTACT_EMAIL || process.env.SMTP_USER,
           replyTo: email,
           subject: `🎯 Neue Profil-Anfrage: #${candidateCode} von ${name}`,
-          html: `<h2>Neue Profil-Anfrage</h2><p><b>Kandidat:</b> #${candidateCode}</p><p><b>Name:</b> ${name}</p><p><b>Email:</b> ${email}</p><p><b>Firma:</b> ${company || "–"}</p><p><b>Nachricht:</b> ${message || "–"}</p>`,
+          html:
+            `<h2>Neue Profil-Anfrage</h2>` +
+            `<p><b>Kandidat:</b> #${safeCandidateCode}</p>` +
+            `<p><b>Name:</b> ${safeName}</p>` +
+            `<p><b>Email:</b> ${safeEmail}</p>` +
+            `<p><b>Firma:</b> ${safeCompany}</p>` +
+            `<p><b>Nachricht:</b> ${safeMessage}</p>`,
         });
 
         // Auto-reply to lead

@@ -2,6 +2,7 @@
 
 import { useEffect, useCallback } from "react";
 import { Calendar } from "lucide-react";
+import { useCookieConsent } from "@/components/CookieConsent";
 
 interface CalendlyEmbedProps {
   url?: string;
@@ -26,14 +27,21 @@ export function CalendlyEmbed({
   text = "Beratungsgespräch buchen",
   className = "",
 }: CalendlyEmbedProps) {
+  const { consentValue } = useCookieConsent();
+
   // Lazy-load Calendly script only when component mounts
   useEffect(() => {
-    if (document.getElementById("calendly-script")) return;
+    if (consentValue !== "accepted") return;
 
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = "https://assets.calendly.com/assets/external/widget.css";
-    document.head.appendChild(link);
+    if (!document.getElementById("calendly-style")) {
+      const link = document.createElement("link");
+      link.id = "calendly-style";
+      link.rel = "stylesheet";
+      link.href = "https://assets.calendly.com/assets/external/widget.css";
+      document.head.appendChild(link);
+    }
+
+    if (document.getElementById("calendly-script")) return;
 
     const script = document.createElement("script");
     script.id = "calendly-script";
@@ -44,7 +52,7 @@ export function CalendlyEmbed({
     return () => {
       // Cleanup on unmount (optional)
     };
-  }, []);
+  }, [consentValue]);
 
   const openCalendly = useCallback(
     (e: React.MouseEvent) => {
@@ -58,6 +66,21 @@ export function CalendlyEmbed({
     },
     [url]
   );
+
+  if (consentValue !== "accepted") {
+    return (
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`inline-flex items-center gap-2 cursor-pointer ${className}`}
+        aria-label="Beratungsgespräch bei Calendly buchen"
+      >
+        <Calendar className="w-4 h-4 shrink-0" />
+        <span>{text}</span>
+      </a>
+    );
+  }
 
   return (
     <button

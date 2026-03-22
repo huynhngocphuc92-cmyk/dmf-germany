@@ -107,6 +107,7 @@ const getNavItems = (newInquiriesCount: number | null): NavItem[] => [
 export function AdminSidebar() {
   const pathname = usePathname();
   const { lang } = useLanguage();
+  const isVietnamese = lang === "vn";
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [newInquiriesCount, setNewInquiriesCount] = useState<number | null>(null);
 
@@ -172,11 +173,11 @@ export function AdminSidebar() {
                       : "text-slate-400 hover:bg-slate-800 hover:text-white",
                     isCollapsed && "justify-center px-2"
                   )}
-                  title={isCollapsed ? (lang === "de" ? item.labelDe : item.labelVn) : undefined}
+                  title={isCollapsed ? (isVietnamese ? item.labelVn : item.labelDe) : undefined}
                 >
                   <Icon className={cn("w-5 h-5 flex-shrink-0", active && "text-emerald-400")} />
                   {!isCollapsed && (
-                    <span className="truncate">{lang === "de" ? item.labelDe : item.labelVn}</span>
+                    <span className="truncate">{isVietnamese ? item.labelVn : item.labelDe}</span>
                   )}
                   {!isCollapsed && item.badge && (
                     <span className="ml-auto bg-emerald-500 text-white text-xs px-2 py-0.5 rounded-full">
@@ -206,7 +207,7 @@ export function AdminSidebar() {
           ) : (
             <>
               <ChevronLeft className="w-5 h-5 mr-2" />
-              <span>{lang === "de" ? "Einklappen" : "Thu gọn"}</span>
+              <span>{isVietnamese ? "Thu gọn" : "Einklappen"}</span>
             </>
           )}
         </Button>

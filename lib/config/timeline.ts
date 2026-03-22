@@ -45,18 +45,18 @@ export interface TimelineDataConfig {
  */
 export const TIMELINE_DATA: TimelineDataConfig = {
   skilled: {
-    // Fachkräfte
+    // Skilled workers
     defaultDuration: {
-      recruit: 3, // Rekrutierung & Kandidatensuche
-      docs: 4, // Dokumentenvorbereitung
-      recognition: 12, // Anerkennung & Visum (standard)
+      recruit: 3, // Recruitment and candidate sourcing
+      docs: 4, // Document preparation
+      recognition: 12, // Recognition and visa (standard)
       visa: 4, // Visa processing
-      einreise: 1, // Einreise & Arbeitsbeginn
+      einreise: 1, // Arrival and work start
     },
     industries: {
       pflege: {
         label: "Pflege & Medizin",
-        recognition: 16, // Y tế xét duyệt lâu hơn
+        recognition: 16, // Medical recognition usually takes longer
       },
       handwerk: {
         label: "Handwerk & Bau",
@@ -64,7 +64,7 @@ export const TIMELINE_DATA: TimelineDataConfig = {
       },
       it: {
         label: "IT & Technik",
-        recognition: 4, // IT thường nhanh hơn (Blue Card)
+        recognition: 4, // IT is often faster via Blue Card paths
       },
       gastro: {
         label: "Hotel & Gastro",
@@ -73,13 +73,13 @@ export const TIMELINE_DATA: TimelineDataConfig = {
     },
   },
   azubi: {
-    // Ausbildung
+    // Vocational training
     defaultDuration: {
-      recruit: 4, // Rekrutierung
-      docs: 4, // Dokumentenvorbereitung
-      schoolSearch: 8, // Schulplatzsuche (tìm trường)
+      recruit: 4, // Recruitment
+      docs: 4, // Document preparation
+      schoolSearch: 8, // School placement search
       visa: 6, // Visa processing
-      einreise: 1, // Einreise & Arbeitsbeginn
+      einreise: 1, // Arrival and work start
     },
     industries: {
       pflege: {
@@ -94,13 +94,13 @@ export const TIMELINE_DATA: TimelineDataConfig = {
     },
   },
   seasonal: {
-    // Saisonkräfte
+    // Seasonal workers
     defaultDuration: {
-      recruit: 2, // Rekrutierung (nhanh hơn)
-      docs: 1, // Dokumentenvorbereitung (tối giản)
-      zav: 2, // ZAV-Genehmigung
-      visa: 2, // Visa processing (nhanh)
-      einreise: 1, // Einreise & Arbeitsbeginn
+      recruit: 2, // Recruitment is typically faster
+      docs: 1, // Documentation is lighter
+      zav: 2, // ZAV approval
+      visa: 2, // Visa processing is usually faster
+      einreise: 1, // Arrival and work start
     },
     industries: {
       agriculture: {

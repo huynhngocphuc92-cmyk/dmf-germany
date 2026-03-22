@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Palette, Info, RefreshCw, Home, Layout, Mail, Settings, Sparkles } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -27,7 +27,8 @@ interface ThemeManagerClientProps {
 export function ThemeManagerClient({ initialConfigs }: ThemeManagerClientProps) {
   const router = useRouter();
   const { lang: currentLang } = useLanguage();
-  const lang = (currentLang === "de" ? "de" : "vn") as ThemeLanguage;
+  const lang = (currentLang === "vn" ? "vn" : "de") as ThemeLanguage;
+  const isVietnamese = lang === "vn";
   const t = themeTranslations[lang];
 
   const [configs, setConfigs] = useState<SiteConfigGrouped>(initialConfigs);
@@ -35,13 +36,13 @@ export function ThemeManagerClient({ initialConfigs }: ThemeManagerClientProps) 
   // Default to identity tab
   const [activeTab, setActiveTab] = useState<string>("identity");
 
-  // Mapping: UI Tab -> Database Section
+  // Map each UI tab to the underlying database section.
   const sectionMap: Record<ThemeSection, string> = {
-    identity: "branding", // Tab "Nhận diện" -> DB section "branding"
-    home: "home", // Tab "Trang Chủ" -> DB section "home"
-    header_footer: "branding", // Tab "Header & Footer" -> DB section "branding"
-    contact: "contact", // Tab "Liên Hệ" -> DB section "contact"
-    system: "settings", // Tab "Cài Đặt" -> DB section "settings"
+    identity: "branding",
+    home: "home",
+    header_footer: "branding",
+    contact: "contact",
+    system: "settings",
   };
 
   // Icon mapping for tabs
@@ -56,21 +57,14 @@ export function ThemeManagerClient({ initialConfigs }: ThemeManagerClientProps) 
   // Get filtered configs for current tab
   const getFilteredConfigs = (tab: ThemeSection): SiteConfigItem[] => {
     const dbSection = sectionMap[tab];
-    // Get all items from all sections that match the DB section
     const allItems: SiteConfigItem[] = [];
     Object.values(configs).forEach((items) => {
       items.forEach((item) => {
-        // Match by DB section name (branding, home, contact, settings)
         if (item.section === dbSection) {
           allItems.push(item);
         }
       });
     });
-
-    // Debug logging
-    if (allItems.length > 0) {
-      console.log(`Tab "${tab}" (DB: "${dbSection}"): Found ${allItems.length} items`);
-    }
 
     return allItems;
   };
@@ -80,20 +74,6 @@ export function ThemeManagerClient({ initialConfigs }: ThemeManagerClientProps) 
   const systemItems = getFilteredConfigs("system");
   const sections: ThemeSection[] =
     systemItems.length > 0 ? allSections : allSections.filter((s) => s !== "system");
-
-  // Debug: Log configs structure on mount and when configs change
-  useEffect(() => {
-    console.log("Theme Manager - Configs structure:", {
-      sections: Object.keys(configs),
-      totalItems: Object.values(configs).reduce((sum, items) => sum + items.length, 0),
-      sectionBreakdown: Object.entries(configs).map(([section, items]) => ({
-        section,
-        count: items.length,
-        sampleKeys: items.slice(0, 3).map((i) => i.key),
-        assetTypes: items.map((i) => i.asset_type),
-      })),
-    });
-  }, [configs]);
 
   const handleUpdate = (dbSection: string, key: string, newValue: string | null) => {
     setConfigs((prev) => {
@@ -133,14 +113,13 @@ export function ThemeManagerClient({ initialConfigs }: ThemeManagerClientProps) 
           variant="outline"
           size="sm"
           onClick={() => {
-            // Refresh data from server - this will trigger a re-fetch
             router.refresh();
-            toast.success(lang === "de" ? "Aktualisiert" : "Đã làm mới");
+            toast.success(isVietnamese ? "Đã làm mới" : "Aktualisiert");
           }}
           className="gap-2"
         >
           <RefreshCw className="w-4 h-4" />
-          {lang === "de" ? "Aktualisieren" : "Làm mới"}
+          {isVietnamese ? "Làm mới" : "Aktualisieren"}
         </Button>
       </div>
 
@@ -150,16 +129,16 @@ export function ThemeManagerClient({ initialConfigs }: ThemeManagerClientProps) 
           <CardContent className="flex flex-col items-center justify-center py-16">
             <Info className="w-16 h-16 text-slate-300 mb-4" />
             <h3 className="text-lg font-semibold text-slate-700 mb-2">
-              {lang === "de" ? "Keine Konfigurationen gefunden" : "Chưa có cấu hình nào"}
+              {isVietnamese ? "Chưa có cấu hình nào" : "Keine Konfigurationen gefunden"}
             </h3>
             <p className="text-slate-500 text-center mb-6 max-w-md">
-              {lang === "de"
-                ? "Bitte erstellen Sie Einträge in der site_config Tabelle. Siehe Dokumentation für Seed-Daten."
-                : "Vui lòng tạo dữ liệu trong bảng site_config. Xem tài liệu để biết seed data."}
+              {isVietnamese
+                ? "Vui lòng tạo dữ liệu trong bảng site_config. Xem tài liệu để biết seed data."
+                : "Bitte erstellen Sie Einträge in der site_config Tabelle. Siehe Dokumentation für Seed-Daten."}
             </p>
             <Button variant="outline" onClick={() => router.refresh()}>
               <RefreshCw className="w-4 h-4 mr-2" />
-              {lang === "de" ? "Aktualisieren" : "Làm mới"}
+              {isVietnamese ? "Làm mới" : "Aktualisieren"}
             </Button>
           </CardContent>
         </Card>
@@ -198,9 +177,9 @@ export function ThemeManagerClient({ initialConfigs }: ThemeManagerClientProps) 
                     <CardContent className="flex flex-col items-center justify-center py-12">
                       <Info className="w-10 h-10 text-slate-300 mb-3" />
                       <p className="text-slate-500 text-center text-sm">
-                        {lang === "de"
-                          ? `Keine Konfigurationen für "${sectionLabelsI18n[section]?.[lang]}" gefunden.`
-                          : `Chưa có cấu hình cho "${sectionLabelsI18n[section]?.[lang]}".`}
+                        {isVietnamese
+                          ? `Chưa có cấu hình cho "${sectionLabelsI18n[section]?.[lang]}".`
+                          : `Keine Konfigurationen für "${sectionLabelsI18n[section]?.[lang]}" gefunden.`}
                       </p>
                       <p className="text-xs text-slate-400 mt-2">(DB Section: {dbSection})</p>
                     </CardContent>

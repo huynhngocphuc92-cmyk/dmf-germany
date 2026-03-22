@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/utils/supabase/server";
+import { createPublicClient } from "@/utils/supabase/public";
 import type { SiteConfigItem, SiteConfigGrouped, ThemeSection } from "@/types/theme";
 
 // ============================================
@@ -37,7 +38,7 @@ async function requireAuth() {
  * This function is called directly without caching to ensure latest data
  */
 async function fetchSiteConfigs(): Promise<SiteConfigItem[]> {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
 
   // Fetch directly without any caching wrapper
   // Next.js will not cache this by default in Server Actions
@@ -157,7 +158,7 @@ export async function getSiteConfigByKey(key: string): Promise<{
   error: string | null;
 }> {
   try {
-    const supabase = await createClient();
+    const supabase = createPublicClient();
 
     // Fetch directly without any caching wrapper
     // Next.js will not cache this by default in Server Actions

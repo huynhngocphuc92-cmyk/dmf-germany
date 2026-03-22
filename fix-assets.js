@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 /**
- * Script tự động tải các file ảnh placeholder và logo tạm thời
- * để tránh lỗi 404 khi deploy lên Vercel
+ * Download placeholder images and a temporary logo
+ * so the deployment does not ship broken asset URLs.
  */
 
 const fs = require("fs");
@@ -16,7 +16,7 @@ const https = require("https");
 const PUBLIC_DIR = path.join(__dirname, "public");
 const IMAGES_DIR = path.join(PUBLIC_DIR, "images");
 
-// Unsplash URLs - Ảnh chất lượng cao, miễn phí sử dụng
+// Unsplash source images used for temporary placeholders.
 const IMAGE_URLS = {
   "nursing.jpg":
     "https://images.unsplash.com/photo-1559757148-5c3507c8c35d?w=1200&h=800&fit=crop&q=80",
@@ -33,17 +33,17 @@ const IMAGE_URLS = {
 // ============================================
 
 /**
- * Tạo thư mục nếu chưa tồn tại
+ * Create a directory if it does not exist yet.
  */
 function ensureDirectoryExists(dirPath) {
   if (!fs.existsSync(dirPath)) {
     fs.mkdirSync(dirPath, { recursive: true });
-    console.log(`✓ Đã tạo thư mục: ${dirPath}`);
+    console.log(`✓ Created directory: ${dirPath}`);
   }
 }
 
 /**
- * Tải file từ URL và lưu vào đường dẫn đích
+ * Download a file from a URL into the destination path.
  */
 function downloadFile(url, destPath) {
   return new Promise((resolve, reject) => {
@@ -51,7 +51,7 @@ function downloadFile(url, destPath) {
 
     https
       .get(url, (response) => {
-        // Xử lý redirect
+        // Follow redirects.
         if (response.statusCode === 301 || response.statusCode === 302) {
           return downloadFile(response.headers.location, destPath).then(resolve).catch(reject);
         }
@@ -79,10 +79,10 @@ function downloadFile(url, destPath) {
 }
 
 /**
- * Tạo logo PNG và SVG tạm thời đơn giản
+ * Generate a temporary SVG logo and try to fetch a PNG companion.
  */
 async function createTemporaryLogo(destPath) {
-  // Tạo một SVG logo đơn giản với text "DMF" - chuyên nghiệp hơn
+  // Create a minimal DMF SVG logo.
   const svgContent = `<?xml version="1.0" encoding="UTF-8"?>
 <svg width="200" height="60" xmlns="http://www.w3.org/2000/svg">
   <defs>
@@ -95,66 +95,63 @@ async function createTemporaryLogo(destPath) {
   <text x="100" y="42" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="white" text-anchor="middle" letter-spacing="2">DMF</text>
 </svg>`;
 
-  // Lưu SVG tạm thời
+  // Save the SVG fallback.
   const svgPath = destPath.replace(".png", ".svg");
   fs.writeFileSync(svgPath, svgContent);
-  console.log(`✓ Đã tạo logo SVG tạm thời: ${svgPath}`);
+  console.log(`✓ Created temporary SVG logo: ${svgPath}`);
 
-  // Tải một PNG placeholder từ service (hoặc tạo base64 PNG đơn giản)
-  // Sử dụng placeholder.com hoặc tạo PNG base64
+  // Try to download a temporary PNG placeholder.
   const placeholderPngUrl = "https://via.placeholder.com/200x60/1e40af/ffffff.png?text=DMF";
 
   try {
     await downloadFile(placeholderPngUrl, destPath);
-    console.log(`✓ Đã tạo logo PNG tạm thời: ${destPath}`);
+    console.log(`✓ Created temporary PNG logo: ${destPath}`);
   } catch (err) {
-    console.warn(`⚠ Không thể tải logo PNG từ URL, đã tạo SVG thay thế: ${err.message}`);
-    // Nếu không tải được, tạo một file PNG base64 đơn giản (1x1 pixel blue)
-    // Hoặc copy SVG và đổi tên
-    console.log(`   → Bạn có thể sử dụng logo.svg hoặc thay thế logo.png bằng logo chính thức`);
+    console.warn(`⚠ Unable to download the PNG placeholder. SVG fallback is ready: ${err.message}`);
+    console.log("   → Use logo.svg for now or replace logo.png with the final brand asset.");
   }
 }
 
 /**
- * Tải tất cả các ảnh cần thiết
+ * Download all required placeholder assets.
  */
 async function downloadAllImages() {
-  console.log("\n📥 Bắt đầu tải các file ảnh...\n");
+  console.log("\n📥 Downloading placeholder assets...\n");
 
-  // Tạo thư mục
+  // Ensure the target directories exist.
   ensureDirectoryExists(PUBLIC_DIR);
   ensureDirectoryExists(IMAGES_DIR);
 
-  // Tải các ảnh dịch vụ
+  // Download service placeholder images.
   for (const [filename, url] of Object.entries(IMAGE_URLS)) {
     const destPath = path.join(IMAGES_DIR, filename);
 
-    // Bỏ qua nếu file đã tồn tại
+    // Skip files that are already present.
     if (fs.existsSync(destPath)) {
-      console.log(`⏭  File đã tồn tại, bỏ qua: ${filename}`);
+      console.log(`⏭  Skipping existing file: ${filename}`);
       continue;
     }
 
     try {
-      console.log(`⬇  Đang tải: ${filename}...`);
+      console.log(`⬇  Downloading: ${filename}...`);
       await downloadFile(url, destPath);
-      console.log(`✓  Đã tải thành công: ${filename}\n`);
+      console.log(`✓  Downloaded successfully: ${filename}\n`);
     } catch (error) {
-      console.error(`✗  Lỗi khi tải ${filename}: ${error.message}\n`);
+      console.error(`✗  Failed to download ${filename}: ${error.message}\n`);
     }
   }
 
-  // Tạo logo tạm thời
+  // Create a temporary logo when none exists yet.
   const logoPath = path.join(PUBLIC_DIR, "logo.png");
   if (!fs.existsSync(logoPath)) {
-    console.log(`⬇  Đang tạo logo tạm thời...`);
+    console.log("⬇  Creating temporary logo...");
     try {
       await createTemporaryLogo(logoPath);
     } catch (error) {
-      console.error(`✗  Lỗi khi tạo logo: ${error.message}`);
+      console.error(`✗  Failed to create logo: ${error.message}`);
     }
   } else {
-    console.log(`⏭  Logo đã tồn tại, bỏ qua: logo.png`);
+    console.log("⏭  Existing logo found, skipping: logo.png");
   }
 }
 
@@ -162,33 +159,33 @@ async function downloadAllImages() {
  * Main function
  */
 async function main() {
-  console.log("🚀 Script sửa lỗi Assets - Tải ảnh placeholder và logo tạm thời\n");
+  console.log("🚀 Asset repair script - download placeholder images and a temporary logo\n");
   console.log("=".repeat(60));
 
   try {
     await downloadAllImages();
 
     console.log("=".repeat(60));
-    console.log("\n✅ Hoàn thành! Đã tải xong tất cả các file ảnh.\n");
-    console.log("📋 Tóm tắt:");
-    console.log("   - Logo tạm thời: public/logo.png");
-    console.log("   - Ảnh dịch vụ: public/images/");
+    console.log("\n✅ Done. All placeholder assets have been prepared.\n");
+    console.log("📋 Summary:");
+    console.log("   - Temporary logo: public/logo.png");
+    console.log("   - Service images: public/images/");
     console.log("     • nursing.jpg");
     console.log("     • tech.jpg");
     console.log("     • hotel.jpg");
     console.log("     • construction.jpg\n");
-    console.log("⚠️  LƯU Ý QUAN TRỌNG:");
-    console.log("   - Logo hiện tại là placeholder tạm thời (có cả .png và .svg).");
-    console.log("   - Vui lòng thay thế file public/logo.png bằng logo chính thức của bạn.");
-    console.log("   - Các ảnh dịch vụ có thể được thay thế bằng ảnh thực tế nếu cần.");
-    console.log("   - Tất cả ảnh đã được tải từ Unsplash (miễn phí sử dụng).\n");
+    console.log("⚠️  Important:");
+    console.log("   - The current logo is only a placeholder (.png plus .svg fallback).");
+    console.log("   - Replace public/logo.png with the official brand asset.");
+    console.log("   - Service images can also be replaced with real campaign assets later.");
+    console.log("   - All placeholder images were fetched from Unsplash.\n");
   } catch (error) {
-    console.error("\n❌ Lỗi khi chạy script:", error.message);
+    console.error("\n❌ Script failed:", error.message);
     process.exit(1);
   }
 }
 
-// Chạy script
+// Run the script when executed directly.
 if (require.main === module) {
   main();
 }

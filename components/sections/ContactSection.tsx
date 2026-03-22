@@ -1,8 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { GERMANY_CONTACT, VIETNAM_OFFICE_CONTACT } from "@/lib/company/contact";
 import { contactFormSchema, type ContactFormData } from "@/lib/validations/schemas";
 import { Loader2, Send, MapPin, Phone, Mail, Globe, User } from "lucide-react";
 
@@ -17,13 +19,20 @@ export default function ContactSection() {
     formState: { errors, isSubmitting },
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
-    defaultValues: { name: "", email: "", phone: "", company: "", message: "" },
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      company: "",
+      message: "",
+      privacy: false,
+      bot_check: "",
+    },
   });
 
   const onSubmit = async (data: ContactFormData) => {
     // 1. Honeypot check (Spam protection)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    if ((data as any).bot_check) return;
+    if (data.bot_check) return;
 
     setSubmitError(null);
 
@@ -77,13 +86,7 @@ export default function ContactSection() {
               </div>
             ) : (
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                <input
-                  type="text"
-                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                  {...register("bot_check" as any)}
-                  className="hidden"
-                  autoComplete="off"
-                />
+                <input type="text" {...register("bot_check")} className="hidden" autoComplete="off" />
 
                 {/* Name & Email */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -147,6 +150,38 @@ export default function ContactSection() {
                   )}
                 </div>
 
+                <div className="space-y-2">
+                  <div
+                    className={`rounded-xl border p-4 ${
+                      errors.privacy ? "border-red-500 bg-red-50/40" : "border-slate-200 bg-slate-50"
+                    }`}
+                  >
+                    <div className="flex items-start gap-3">
+                      <input
+                        id="privacy"
+                        type="checkbox"
+                        {...register("privacy")}
+                        className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                      />
+                      <label htmlFor="privacy" className="text-sm leading-6 text-slate-700">
+                        Ich stimme der Verarbeitung meiner Daten gemäß der{" "}
+                        <Link
+                          href="/datenschutz"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-semibold text-blue-600 underline underline-offset-4 hover:text-blue-700"
+                        >
+                          Datenschutzerklärung
+                        </Link>{" "}
+                        zu. *
+                      </label>
+                    </div>
+                  </div>
+                  {errors.privacy && (
+                    <p className="text-red-500 text-xs">{errors.privacy.message}</p>
+                  )}
+                </div>
+
                 {submitError && (
                   <div className="p-3 bg-red-50 text-red-600 text-sm rounded-lg">{submitError}</div>
                 )}
@@ -180,31 +215,33 @@ export default function ContactSection() {
               <ul className="space-y-4 text-sm text-slate-600">
                 <li className="flex gap-3">
                   <Phone size={16} className="text-slate-400 shrink-0 mt-0.5" />
-                  <span>+84 251 6609 500</span>
+                  <a href={VIETNAM_OFFICE_CONTACT.phoneHref} className="hover:text-blue-600 transition-colors">
+                    {VIETNAM_OFFICE_CONTACT.phone}
+                  </a>
                 </li>
                 <li className="flex gap-3">
                   <Mail size={16} className="text-slate-400 shrink-0 mt-0.5" />
                   <a
-                    href="mailto:contact@dmf.edu.vn"
+                    href={VIETNAM_OFFICE_CONTACT.emailHref}
                     className="hover:text-blue-600 transition-colors"
                   >
-                    contact@dmf.edu.vn
+                    {VIETNAM_OFFICE_CONTACT.email}
                   </a>
                 </li>
                 <li className="flex gap-3">
                   <Globe size={16} className="text-slate-400 shrink-0 mt-0.5" />
                   <a
-                    href="https://dmf.edu.vn"
+                    href={VIETNAM_OFFICE_CONTACT.websiteHref}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-blue-600 transition-colors"
                   >
-                    dmf.edu.vn
+                    {VIETNAM_OFFICE_CONTACT.website}
                   </a>
                 </li>
                 <li className="flex gap-3">
                   <MapPin size={16} className="text-slate-400 shrink-0 mt-0.5" />
-                  <span>Dong Nai, Vietnam</span>
+                  <span>{VIETNAM_OFFICE_CONTACT.location}</span>
                 </li>
               </ul>
             </div>
@@ -218,25 +255,24 @@ export default function ContactSection() {
                 <h3 className="font-bold text-slate-900">Ihr Ansprechpartner für Deutschland</h3>
               </div>
               <div className="mb-4">
-                <p className="font-bold text-slate-900">Herr Achim Betticher</p>
+                <p className="font-bold text-slate-900">{GERMANY_CONTACT.name}</p>
               </div>
               <ul className="space-y-4 text-sm text-slate-600">
                 <li className="flex gap-3">
                   <Phone size={16} className="text-slate-400 shrink-0 mt-0.5" />
-                  <span>+84 855 070773</span>
+                  <a href={GERMANY_CONTACT.phoneHref} className="hover:text-blue-600 transition-colors">
+                    {GERMANY_CONTACT.phone}
+                  </a>
                 </li>
                 <li className="flex gap-3">
                   <Mail size={16} className="text-slate-400 shrink-0 mt-0.5" />
-                  <a
-                    href="mailto:achim.betticher@dmf.edu.vn"
-                    className="hover:text-blue-600 transition-colors"
-                  >
-                    achim.betticher@dmf.edu.vn
+                  <a href={GERMANY_CONTACT.emailHref} className="hover:text-blue-600 transition-colors">
+                    {GERMANY_CONTACT.email}
                   </a>
                 </li>
                 <li className="flex gap-3">
                   <MapPin size={16} className="text-slate-400 shrink-0 mt-0.5" />
-                  <span>Deutschland</span>
+                  <span>{GERMANY_CONTACT.location}</span>
                 </li>
               </ul>
             </div>

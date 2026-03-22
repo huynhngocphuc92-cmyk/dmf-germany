@@ -1,18 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/utils/supabase/server";
-import nodemailer from "nodemailer";
 import { z } from "zod";
 import { checkRateLimit, getClientIp, RATE_LIMITS } from "@/lib/rate-limit";
 import { escapeHtml, escapeHtmlWithBreaks } from "@/lib/sanitize";
 import { contactAutoReplyTemplate, profileInquiryAutoReplyTemplate } from "@/lib/email-templates";
+import { optionalBusinessPhoneSchema } from "@/lib/validations/phone";
+import { getMailTransporter, isSmtpConfigured } from "@/lib/email/transporter";
 
 // Define validation schema for backend (double safety)
 const bodySchema = z.object({
   name: z.string().min(2),
   email: z.string().email(),
-  phone: z.string().optional(),
+  phone: optionalBusinessPhoneSchema,
   company: z.string().optional(),
   message: z.string().min(10),
+  privacy: z.boolean().refine((value) => value === true),
   type: z.enum(["contact", "profile"]).optional(),
   candidateId: z.string().optional(),
   candidateCode: z.string().optional(),
@@ -32,7 +34,7 @@ export async function POST(request: NextRequest) {
   try {
     // 0. Rate limiting check
     const clientIp = getClientIp(request);
-    const rateLimitResult = checkRateLimit(`contact:${clientIp}`, RATE_LIMITS.CONTACT);
+    const rateLimitResult = await checkRateLimit(`contact:${clientIp}`, RATE_LIMITS.CONTACT);
 
     if (!rateLimitResult.success) {
       return NextResponse.json(
@@ -53,7 +55,18 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
 
     // 1. Validate data with Zod
-    const validatedData = bodySchema.parse(body);
+    const validation = bodySchema.safeParse(body);
+    if (!validation.success) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: validation.error.issues[0]?.message || "Ungültige Anfrage.",
+        },
+        { status: 400 }
+      );
+    }
+
+    const validatedData = validation.data;
     const {
       name,
       email,
@@ -116,16 +129,11 @@ export async function POST(request: NextRequest) {
     // 4. Send Email via nodemailer (SMTP) - with XSS protection
     try {
       // Check if SMTP is configured
-      if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASSWORD) {
-        const transporter = nodemailer.createTransport({
-          host: process.env.SMTP_HOST,
-          port: Number(process.env.SMTP_PORT) || 587,
-          secure: false, // true for 465, false for other ports
-          auth: {
-            user: process.env.SMTP_USER,
-            pass: process.env.SMTP_PASSWORD,
-          },
-        });
+      if (isSmtpConfigured()) {
+        const transporter = getMailTransporter();
+        if (!transporter) {
+          throw new Error("SMTP transporter could not be initialized.");
+        }
 
         const emailSubject =
           inquiryType === "profile"

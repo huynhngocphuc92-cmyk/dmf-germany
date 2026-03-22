@@ -3,12 +3,25 @@
  * HTML email templates cho auto-reply và notifications
  */
 
+import { escapeHtml } from "@/lib/sanitize";
+import { TRANSLATIONS } from "@/lib/translations";
+
 const DMF_BLUE = "#1e3a5f";
 const DMF_TEAL = "#0891b2";
 const DMF_ORANGE = "#f97316";
+const IMPRESSUM = TRANSLATIONS.de.legal.impressum.sections;
+const CONTACT_EMAIL = TRANSLATIONS.de.contact.email;
+const WEBSITE_URL = "https://dmf-talents.de";
 
 // Base layout wrapper
 function baseLayout(content: string, previewText = ""): string {
+  const addressLine = [
+    IMPRESSUM.address.street,
+    IMPRESSUM.address.city,
+    IMPRESSUM.address.province,
+    IMPRESSUM.address.country,
+  ].join(", ");
+
   return `<!DOCTYPE html>
 <html lang="de">
 <head>
@@ -41,13 +54,22 @@ function baseLayout(content: string, previewText = ""): string {
 
           <!-- FOOTER -->
           <tr>
-            <td style="background:#f8fafc;border-top:1px solid #e8ecef;padding:24px 40px;text-align:center;">
-              <p style="margin:0 0 8px;color:#64748b;font-size:13px;">DMF Manpower GmbH · dmf-talents.de</p>
-              <p style="margin:0;color:#94a3b8;font-size:12px;">
-                <a href="https://dmf-talents.de" style="color:${DMF_TEAL};text-decoration:none;">Website</a>
-                &nbsp;·&nbsp;
-                <a href="mailto:contact@dmf-germany.de" style="color:${DMF_TEAL};text-decoration:none;">contact@dmf-germany.de</a>
-              </p>
+            <td style="background:#f8fafc;border-top:1px solid #e8ecef;padding:24px 40px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="color:#475569;font-size:12px;line-height:1.7;text-align:left;">
+                    <p style="margin:0 0 6px;font-weight:700;color:${DMF_BLUE};">${IMPRESSUM.company.name}</p>
+                    <p style="margin:0 0 4px;">${IMPRESSUM.company.legalForm}</p>
+                    <p style="margin:0 0 4px;">${addressLine}</p>
+                    <p style="margin:0 0 10px;">Vertreten durch ${IMPRESSUM.representative.name}</p>
+                    <p style="margin:0;color:#64748b;">
+                      <a href="${WEBSITE_URL}" style="color:${DMF_TEAL};text-decoration:none;">dmf-talents.de</a>
+                      &nbsp;·&nbsp;
+                      <a href="mailto:${CONTACT_EMAIL}" style="color:${DMF_TEAL};text-decoration:none;">${CONTACT_EMAIL}</a>
+                    </p>
+                  </td>
+                </tr>
+              </table>
             </td>
           </tr>
 
@@ -64,8 +86,10 @@ function baseLayout(content: string, previewText = ""): string {
 // ============================================
 
 export function contactAutoReplyTemplate(name: string): string {
+  const safeName = escapeHtml(name);
+
   const content = `
-    <h2 style="margin:0 0 8px;color:${DMF_BLUE};font-size:22px;font-weight:700;">Vielen Dank, ${name}! 🎉</h2>
+    <h2 style="margin:0 0 8px;color:${DMF_BLUE};font-size:22px;font-weight:700;">Vielen Dank, ${safeName}! 🎉</h2>
     <p style="margin:0 0 24px;color:#64748b;font-size:15px;line-height:1.6;">
       Wir haben Ihre Anfrage erhalten und werden uns innerhalb von <strong>1–2 Werktagen</strong> bei Ihnen melden.
     </p>
@@ -89,23 +113,43 @@ export function contactAutoReplyTemplate(name: string): string {
 
     <hr style="border:none;border-top:1px solid #e8ecef;margin:24px 0;" />
 
-    <div style="display:flex;gap:16px;">
-      <div style="flex:1;background:#f8fafc;border-radius:8px;padding:16px;text-align:center;">
-        <div style="font-size:24px;margin-bottom:4px;">🏥</div>
-        <p style="margin:0;color:${DMF_BLUE};font-size:13px;font-weight:600;">Pflege</p>
-        <p style="margin:4px 0 0;color:#64748b;font-size:12px;">Pflegefachkräfte & Azubis</p>
-      </div>
-      <div style="flex:1;background:#f8fafc;border-radius:8px;padding:16px;text-align:center;">
-        <div style="font-size:24px;margin-bottom:4px;">🔧</div>
-        <p style="margin:0;color:${DMF_BLUE};font-size:13px;font-weight:600;">Handwerk</p>
-        <p style="margin:4px 0 0;color:#64748b;font-size:12px;">Fachkräfte & Auszubildende</p>
-      </div>
-      <div style="flex:1;background:#f8fafc;border-radius:8px;padding:16px;text-align:center;">
-        <div style="font-size:24px;margin-bottom:4px;">🍽️</div>
-        <p style="margin:0;color:${DMF_BLUE};font-size:13px;font-weight:600;">Gastronomie</p>
-        <p style="margin:4px 0 0;color:#64748b;font-size:12px;">Service & Küche</p>
-      </div>
-    </div>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="33.33%" valign="top" style="padding:0 8px 0 0;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;border-radius:8px;">
+            <tr>
+              <td style="padding:16px;text-align:center;">
+                <div style="font-size:24px;margin-bottom:4px;">🏥</div>
+                <p style="margin:0;color:${DMF_BLUE};font-size:13px;font-weight:600;">Pflege</p>
+                <p style="margin:4px 0 0;color:#64748b;font-size:12px;">Pflegefachkräfte & Azubis</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td width="33.33%" valign="top" style="padding:0 8px;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;border-radius:8px;">
+            <tr>
+              <td style="padding:16px;text-align:center;">
+                <div style="font-size:24px;margin-bottom:4px;">🔧</div>
+                <p style="margin:0;color:${DMF_BLUE};font-size:13px;font-weight:600;">Handwerk</p>
+                <p style="margin:4px 0 0;color:#64748b;font-size:12px;">Fachkräfte & Auszubildende</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td width="33.33%" valign="top" style="padding:0 0 0 8px;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;border-radius:8px;">
+            <tr>
+              <td style="padding:16px;text-align:center;">
+                <div style="font-size:24px;margin-bottom:4px;">🍽️</div>
+                <p style="margin:0;color:${DMF_BLUE};font-size:13px;font-weight:600;">Gastronomie</p>
+                <p style="margin:4px 0 0;color:#64748b;font-size:12px;">Service & Küche</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
   `;
 
   return baseLayout(
@@ -119,7 +163,9 @@ export function contactAutoReplyTemplate(name: string): string {
 // ============================================
 
 export function inquiryAutoReplyTemplate(name: string, company?: string): string {
-  const greeting = company ? `${name} von ${company}` : name;
+  const safeName = escapeHtml(name);
+  const safeCompany = company ? escapeHtml(company) : undefined;
+  const greeting = safeCompany ? `${safeName} von ${safeCompany}` : safeName;
 
   const content = `
     <h2 style="margin:0 0 8px;color:${DMF_BLUE};font-size:22px;font-weight:700;">Ihre B2B-Anfrage ist eingegangen ✅</h2>
@@ -157,8 +203,8 @@ export function inquiryAutoReplyTemplate(name: string, company?: string): string
 
     <div style="background:#f8fafc;border-radius:8px;padding:16px 20px;">
       <p style="margin:0;color:#64748b;font-size:13px;">
-        📞 <strong>Direktkontakt:</strong> contact@dmf-germany.de<br/>
-        🌐 <strong>Website:</strong> <a href="https://dmf-talents.de" style="color:${DMF_TEAL};">dmf-talents.de</a>
+        📞 <strong>Direktkontakt:</strong> ${CONTACT_EMAIL}<br/>
+        🌐 <strong>Website:</strong> <a href="${WEBSITE_URL}" style="color:${DMF_TEAL};">dmf-talents.de</a>
       </p>
     </div>
   `;
@@ -171,18 +217,21 @@ export function inquiryAutoReplyTemplate(name: string, company?: string): string
 // ============================================
 
 export function profileInquiryAutoReplyTemplate(name: string, candidateCode: string): string {
+  const safeName = escapeHtml(name);
+  const safeCandidateCode = escapeHtml(candidateCode);
+
   const content = `
     <h2 style="margin:0 0 8px;color:${DMF_BLUE};font-size:22px;font-weight:700;">Profil-Anfrage erhalten 👤</h2>
     <p style="margin:0 0 24px;color:#64748b;font-size:15px;line-height:1.6;">
-      Sehr geehrte/r <strong>${name}</strong>,<br/><br/>
-      Ihre Anfrage für Kandidat <strong style="color:${DMF_TEAL};">#${candidateCode}</strong> ist eingegangen. 
+      Sehr geehrte/r <strong>${safeName}</strong>,<br/><br/>
+      Ihre Anfrage für Kandidat <strong style="color:${DMF_TEAL};">#${safeCandidateCode}</strong> ist eingegangen. 
       Unser Team prüft die Verfügbarkeit und sendet Ihnen innerhalb von <strong>24 Stunden</strong> 
       das vollständige Profil und weitere Informationen.
     </p>
 
     <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:16px 20px;margin-bottom:24px;">
       <p style="margin:0;color:#166534;font-size:14px;">
-        ✅ <strong>Kandidat #${candidateCode}</strong> – Anfrage in Bearbeitung
+        ✅ <strong>Kandidat #${safeCandidateCode}</strong> – Anfrage in Bearbeitung
       </p>
     </div>
 
@@ -195,5 +244,5 @@ export function profileInquiryAutoReplyTemplate(name: string, candidateCode: str
     </div>
   `;
 
-  return baseLayout(content, `Ihre Profil-Anfrage #${candidateCode} ist bei uns eingegangen`);
+  return baseLayout(content, `Ihre Profil-Anfrage #${safeCandidateCode} ist bei uns eingegangen`);
 }

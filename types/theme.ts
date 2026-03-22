@@ -4,18 +4,18 @@
 
 // Database section names (from site_assets table)
 export type DatabaseSection =
-  | "branding" // Nhận diện
-  | "home" // Trang Chủ
-  | "contact" // Liên Hệ
-  | "settings"; // Cài Đặt
+  | "branding" // Brand identity
+  | "home" // Homepage
+  | "contact" // Contact
+  | "settings"; // Settings
 
 // UI Tab names (for display)
 export type ThemeSection =
-  | "identity" // Nhận diện (maps to "branding" in DB)
-  | "home" // Trang Chủ
-  | "header_footer" // Header & Footer (maps to "branding" in DB)
-  | "contact" // Liên Hệ
-  | "system"; // Cài Đặt (maps to "settings" in DB)
+  | "identity" // Brand identity (maps to "branding" in DB)
+  | "home" // Homepage
+  | "header_footer" // Header & footer (maps to "branding" in DB)
+  | "contact" // Contact
+  | "system"; // Settings (maps to "settings" in DB)
 
 export type AssetType = "image" | "color" | "text" | "boolean";
 
@@ -42,17 +42,17 @@ export interface SiteConfigGrouped {
 export type ThemeLanguage = "de" | "vn";
 
 export const sectionLabelsI18n: Record<ThemeSection, Record<ThemeLanguage, string>> = {
-  identity: { de: "Nhận diện", vn: "Nhận diện" },
-  home: { de: "Trang Chủ", vn: "Trang chủ" },
+  identity: { de: "Marke", vn: "Nhận diện" },
+  home: { de: "Startseite", vn: "Trang chủ" },
   header_footer: { de: "Header & Footer", vn: "Header & Footer" },
-  contact: { de: "Liên Hệ", vn: "Liên hệ" },
-  system: { de: "Cài Đặt", vn: "Cài đặt" },
+  contact: { de: "Kontakt", vn: "Liên hệ" },
+  system: { de: "Einstellungen", vn: "Cài đặt" },
 };
 
 export const themeTranslations = {
   de: {
-    pageTitle: "Giao diện Manager",
-    pageDesc: "Quản lý toàn diện giao diện và cấu hình website.",
+    pageTitle: "Theme-Manager",
+    pageDesc: "Verwalten Sie das Erscheinungsbild und die Konfiguration der Website.",
     uploadImage: "Bild hochladen",
     uploading: "Wird hochgeladen...",
     uploadSuccess: "Erfolgreich aktualisiert!",
