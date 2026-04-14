@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-export const DEFAULT_GEMINI_MODEL = "gemini-2.5-flash";
-const GEMINI_MODEL_FALLBACKS = [DEFAULT_GEMINI_MODEL, "gemini-flash-latest"];
+export const DEFAULT_GEMINI_MODEL = "gemma-4-31b";
+const GEMINI_MODEL_FALLBACKS = [DEFAULT_GEMINI_MODEL, "gemini-2.0-flash", "gemini-1.5-flash"];
 
 type GenerativeModelOptions = Omit<
   Parameters<GoogleGenerativeAI["getGenerativeModel"]>[0],
