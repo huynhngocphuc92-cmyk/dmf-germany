@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/utils/supabase/server";
 import { BlogLanguage, TopicSuggestion } from "@/app/admin/blog-writer/types";
 import { buildTopicSuggestionsPrompt } from "@/lib/prompts/blog-writer";
-import { runWithGeminiModelFallback } from "@/lib/ai/gemini";
+import { runWithGrokModelFallback, GrokMessage } from "@/lib/ai/grok";
 
 export async function GET(request: NextRequest) {
   try {
@@ -24,11 +24,12 @@ export async function GET(request: NextRequest) {
     // Build the prompt
     const systemPrompt = buildTopicSuggestionsPrompt(language, category);
 
-    const apiKey = process.env.GEMINI_API_KEY || "";
-    const { data: result } = await runWithGeminiModelFallback(apiKey, {}, async (model) =>
-      model.generateContent(systemPrompt)
-    );
-    const rawText = result.response.text();
+    const apiKey = process.env.XAI_API_KEY || "";
+    const grokMessages: GrokMessage[] = [
+      { role: "user", content: systemPrompt }
+    ];
+    const result = await runWithGrokModelFallback(apiKey, grokMessages);
+    const rawText = result.text;
 
     if (!rawText) {
       return NextResponse.json({ error: "No content generated" }, { status: 500 });
