@@ -9,7 +9,7 @@ import {
   BlogLanguage,
 } from "./types";
 import { buildBlogSystemPrompt } from "@/lib/prompts/blog-writer";
-import { runWithGeminiModelFallback } from "@/lib/ai/gemini";
+import { runWithGrokModelFallback, GrokMessage } from "@/lib/ai/grok";
 
 const getBaseUrl = () => {
   if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
@@ -35,16 +35,20 @@ export async function generateBlogPost(
     }
 
     // Check API key
-    if (!process.env.GEMINI_API_KEY) {
+    if (!process.env.XAI_API_KEY) {
       return { success: false, error: "API not configured" };
     }
 
-    const { data: result } = await runWithGeminiModelFallback(
-      process.env.GEMINI_API_KEY,
-      { systemInstruction: buildBlogSystemPrompt(request) },
-      async (model) => model.generateContent(`Write a blog post about: "${request.topic}"`)
+    const grokMessages: GrokMessage[] = [
+      { role: "system", content: buildBlogSystemPrompt(request) },
+      { role: "user", content: `Write a blog post about: "${request.topic}"` }
+    ];
+
+    const result = await runWithGrokModelFallback(
+      process.env.XAI_API_KEY,
+      grokMessages
     );
-    const rawText = result.response.text();
+    const rawText = result.text;
 
     // Extract text content
     if (!rawText) {
