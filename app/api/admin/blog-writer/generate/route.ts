@@ -3,7 +3,7 @@ import { createClient } from "@/utils/supabase/server";
 import { BlogGenerationRequest, GeneratedBlog } from "@/app/admin/blog-writer/types";
 import { buildBlogSystemPrompt } from "@/lib/prompts/blog-writer";
 import { checkRateLimit, RATE_LIMITS } from "@/lib/rate-limit";
-import { runWithGeminiModelFallback } from "@/lib/ai/gemini";
+import { runWithGrokModelFallback, GrokMessage } from "@/lib/ai/grok";
 
 export async function POST(request: NextRequest) {
   try {
@@ -36,13 +36,13 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
-    const apiKey = process.env.GEMINI_API_KEY || "";
-    const { data: result } = await runWithGeminiModelFallback(
-      apiKey,
-      { systemInstruction: buildBlogSystemPrompt(body) },
-      async (model) => model.generateContent(`Write a blog post about: "${body.topic}"`)
-    );
-    const rawText = result.response.text();
+    const apiKey = process.env.XAI_API_KEY || "";
+    const grokMessages: GrokMessage[] = [
+      { role: "system", content: buildBlogSystemPrompt(body) },
+      { role: "user", content: `Write a blog post about: "${body.topic}"` }
+    ];
+    const result = await runWithGrokModelFallback(apiKey, grokMessages);
+    const rawText = result.text;
 
     if (!rawText) {
       return NextResponse.json({ error: "No content generated" }, { status: 500 });
@@ -102,10 +102,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       data: generatedBlog,
-      usage: {
-        inputTokens: result.response.usageMetadata?.promptTokenCount ?? 0,
-        outputTokens: result.response.usageMetadata?.candidatesTokenCount ?? 0,
-      },
+      usage: result.usage,
     });
   } catch (error) {
     console.error("Blog generation error:", error);
