@@ -25,11 +25,6 @@ const DefaultIcon = L.icon({
   shadowSize: [41, 41],
 });
 
-// Set default icon for all markers
-if (typeof window !== "undefined") {
-  L.Marker.prototype.options.icon = DefaultIcon;
-}
-
 /**
  * Success Map Component
  * Displays interactive map with placement markers across Germany
@@ -58,7 +53,7 @@ export const SuccessMap = () => {
 
         {/* Render markers for each city */}
         {successStories.map((city: CityPlacement) => (
-          <Marker key={city.id} position={city.position}>
+          <Marker key={city.id} position={city.position} icon={DefaultIcon}>
             <Popup>
               <div className="min-w-[200px] p-2">
                 <h3 className="font-bold text-lg text-primary mb-2">{city.city}</h3>
