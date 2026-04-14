@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { PRIMARY_CONTACT } from "@/lib/company/contact";
 import { buildKnowledgeContext } from "@/lib/chatbot/knowledge-base";
 import { checkRateLimit, getClientIp, RATE_LIMITS } from "@/lib/rate-limit";
-import { runWithGeminiModelFallback } from "@/lib/ai/gemini";
+import { runWithGrokModelFallback, GrokMessage } from "@/lib/ai/grok";
 
 // ============================================
 // TYPES
@@ -116,9 +116,9 @@ export async function POST(request: NextRequest) {
     }
 
     // Check API key
-    const apiKey = process.env.GEMINI_API_KEY;
+    const apiKey = process.env.XAI_API_KEY;
     if (!apiKey) {
-      console.error("GEMINI_API_KEY not configured");
+      console.error("XAI_API_KEY not configured");
       return NextResponse.json({ error: "Chat service not configured" }, { status: 500 });
     }
 
@@ -142,31 +142,24 @@ export async function POST(request: NextRequest) {
     // Limit history
     const limitedHistory = history.slice(-10); // Keep last 10 messages
 
-    // Build chat history for Gemini (role: "user" | "model")
-    const chatHistory = limitedHistory.map((msg) => ({
-      role: msg.role === "assistant" ? "model" : "user",
-      parts: [{ text: msg.content }],
-    }));
+    // Build chat history for Grok model structure
+    const grokMessages: GrokMessage[] = [
+      { role: "system", content: buildSystemPrompt(normalizedLanguage) },
+      ...limitedHistory.map((msg) => ({
+        role: msg.role,
+        content: msg.content,
+      })),
+      { role: "user", content: message },
+    ];
 
-    const { data: result } = await runWithGeminiModelFallback(
-      apiKey,
-      { systemInstruction: buildSystemPrompt(normalizedLanguage) },
-      async (model) => {
-        const chat = model.startChat({ history: chatHistory });
-        return chat.sendMessage(message);
-      }
-    );
+    const result = await runWithGrokModelFallback(apiKey, grokMessages);
 
-    const assistantMessage =
-      result.response.text() || "Entschuldigung, ich konnte keine Antwort generieren.";
+    const assistantMessage = result.text || "Entschuldigung, ich konnte keine Antwort generieren.";
 
     // Return response
     return NextResponse.json({
       message: assistantMessage,
-      usage: {
-        inputTokens: result.response.usageMetadata?.promptTokenCount ?? 0,
-        outputTokens: result.response.usageMetadata?.candidatesTokenCount ?? 0,
-      },
+      usage: result.usage,
     });
   } catch (error) {
     console.error("Chat API error:", error);
@@ -178,7 +171,7 @@ export async function POST(request: NextRequest) {
         { status: 503 }
       );
     }
-    if (errMsg.includes("401") || errMsg.toLowerCase().includes("api key")) {
+    if (errMsg.includes("401") || errMsg.toLowerCase().includes("api key") || errMsg.includes("403")) {
       return NextResponse.json({ error: "Chat service configuration error" }, { status: 500 });
     }
 
