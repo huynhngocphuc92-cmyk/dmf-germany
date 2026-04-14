@@ -763,19 +763,22 @@ export const RecruitBot = () => {
             whileTap={{ scale: 0.95 }}
             onClick={openChat}
             className={cn(
-              "fixed bottom-6 right-6 z-50",
-              "w-12 h-12 md:w-14 md:h-14 rounded-full",
-              "bg-primary text-primary-foreground",
-              "shadow-lg shadow-primary/30",
-              "flex items-center justify-center",
-              "hover:shadow-xl hover:shadow-primary/40",
-              "transition-all duration-300",
-              "animate-pulse hover:animate-none",
-              "bottom-4 right-4 md:bottom-6 md:right-6"
+              "fixed z-[100] group",
+              "bottom-5 right-5 md:bottom-8 md:right-8",
+              "w-14 h-14 md:w-16 md:h-16 rounded-full",
+              "bg-gradient-to-br from-primary via-blue-500 to-indigo-500",
+              "text-white shadow-[0_8px_30px_rgba(59,130,246,0.4)]",
+              "hover:shadow-[0_8px_40px_rgba(59,130,246,0.7)]",
+              "active:scale-95",
+              "transition-all duration-300 ease-out border border-white/20",
+              "flex items-center justify-center"
             )}
             aria-label="Chat öffnen"
           >
-            <MessageCircle className="w-5 h-5 md:w-6 md:h-6" />
+            {/* Glowing inner rings */}
+            <div className="absolute inset-0 rounded-full bg-white/20 animate-ping opacity-0 group-hover:opacity-100" style={{ animationDuration: '2s' }} />
+            <div className="absolute inset-0 rounded-full bg-white/10 animate-pulse" />
+            <MessageCircle className="w-6 h-6 md:w-7 md:h-7 relative z-10 transition-transform duration-300 group-hover:scale-110" />
           </motion.button>
         )}
       </AnimatePresence>
