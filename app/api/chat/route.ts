@@ -43,26 +43,26 @@ async function notifyAdminAboutLead(userMessage: string, history: ChatMessage[],
       const transporter = getMailTransporter();
       if (transporter) {
         await transporter.sendMail({
-          from: \`"DMF AI Bot" <\${process.env.SMTP_USER}>\`,
+          from: `"DMF AI Bot" <${process.env.SMTP_USER}>`,
           to: process.env.CONTACT_EMAIL || process.env.SMTP_USER,
-          subject: \`🚨 NEU: Chatbot Lead gesammelt (DMF Talents)\`,
-          html: \`
+          subject: `🚨 NEU: Chatbot Lead gesammelt (DMF Talents)`,
+          html: `
             <h2 style="color:#0891b2;">Neue Kontaktinformationen im Chat!</h2>
             <p>Ein Nutzer hat im Chat-Verlauf wahrscheinlich seine Kontaktdaten hinterlassen.</p>
-            <p style="background:#f0f9ff;padding:12px;border-left:4px solid #0891b2;"><strong>Gewonnene Nachricht:</strong><br/>\${userMessage}</p>
+            <p style="background:#f0f9ff;padding:12px;border-left:4px solid #0891b2;"><strong>Gewonnene Nachricht:</strong><br/>${userMessage}</p>
             <hr/>
             <h3>Chat-Verlauf:</h3>
-            <pre style="background:#f4f4f4;padding:15px;white-space:pre-wrap;font-family:monospace;font-size:12px;">\${fullLog}</pre>
-          \`
+            <pre style="background:#f4f4f4;padding:15px;white-space:pre-wrap;font-family:monospace;font-size:12px;">${fullLog}</pre>
+          `
         });
         console.warn("[Chat API] Lead notification email sent");
       }
     }
     
     // Send Telegram
-    const telegramMessage = \`🤖 <b>CHATBOT LEAD DETECTED</b>\n\n💬 <b>Nachricht:</b>\n\${userMessage}\n\nBitte im Admin-Panel oder E-Mail prüfen!\`;
+    const telegramMessage = `🤖 <b>CHATBOT LEAD DETECTED</b>\n\n💬 <b>Nachricht:</b>\n${userMessage}\n\nBitte im Admin-Panel oder E-Mail prüfen!`;
     const host = new URL(requestUrl).origin;
-    await fetch(\`\${host}/api/telegram\`, {
+    await fetch(`${host}/api/telegram`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: telegramMessage }),
