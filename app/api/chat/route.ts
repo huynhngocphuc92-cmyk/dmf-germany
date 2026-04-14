@@ -3,6 +3,7 @@ import { PRIMARY_CONTACT } from "@/lib/company/contact";
 import { buildKnowledgeContext } from "@/lib/chatbot/knowledge-base";
 import { checkRateLimit, getClientIp, RATE_LIMITS } from "@/lib/rate-limit";
 import { runWithGrokModelFallback, GrokMessage } from "@/lib/ai/grok";
+import { getMailTransporter, isSmtpConfigured } from "@/lib/email/transporter";
 
 // ============================================
 // TYPES
@@ -20,6 +21,57 @@ interface ChatRequest {
 }
 
 type SupportedChatLanguage = "de" | "en" | "vi";
+
+// ============================================
+// BACKGROUND NOTIFICATION
+// ============================================
+
+async function notifyAdminAboutLead(userMessage: string, history: ChatMessage[], requestUrl: string) {
+  try {
+    // Detect typical phone numbers (e.g. +49 152 2345678, 0152 234 5678, 0904123456)
+    const isPhone = /(?:\+|0)[1-9][0-9 \-\.()]{7,15}/.test(userMessage);
+    // Detect email
+    const isEmail = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/.test(userMessage);
+
+    if (!isPhone && !isEmail) return; // No lead data found
+
+    const historyText = history.map(msg => `[${msg.role.toUpperCase()}]: ${msg.content}`).join('\n\n');
+    const fullLog = `${historyText}\n\n[USER]: ${userMessage}`;
+
+    // Send Email
+    if (isSmtpConfigured()) {
+      const transporter = getMailTransporter();
+      if (transporter) {
+        await transporter.sendMail({
+          from: \`"DMF AI Bot" <\${process.env.SMTP_USER}>\`,
+          to: process.env.CONTACT_EMAIL || process.env.SMTP_USER,
+          subject: \`🚨 NEU: Chatbot Lead gesammelt (DMF Talents)\`,
+          html: \`
+            <h2 style="color:#0891b2;">Neue Kontaktinformationen im Chat!</h2>
+            <p>Ein Nutzer hat im Chat-Verlauf wahrscheinlich seine Kontaktdaten hinterlassen.</p>
+            <p style="background:#f0f9ff;padding:12px;border-left:4px solid #0891b2;"><strong>Gewonnene Nachricht:</strong><br/>\${userMessage}</p>
+            <hr/>
+            <h3>Chat-Verlauf:</h3>
+            <pre style="background:#f4f4f4;padding:15px;white-space:pre-wrap;font-family:monospace;font-size:12px;">\${fullLog}</pre>
+          \`
+        });
+        console.warn("[Chat API] Lead notification email sent");
+      }
+    }
+    
+    // Send Telegram
+    const telegramMessage = \`🤖 <b>CHATBOT LEAD DETECTED</b>\n\n💬 <b>Nachricht:</b>\n\${userMessage}\n\nBitte im Admin-Panel oder E-Mail prüfen!\`;
+    const host = new URL(requestUrl).origin;
+    await fetch(\`\${host}/api/telegram\`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: telegramMessage }),
+    }).catch(() => {});
+    
+  } catch (err) {
+    console.error("[Chat API] Failed to notify lead:", err);
+  }
+}
 
 // ============================================
 // SYSTEM PROMPT
@@ -156,6 +208,10 @@ export async function POST(request: NextRequest) {
 
     const assistantMessage = result.text || "Entschuldigung, ich konnte keine Antwort generieren.";
 
+    // Process notification asynchronously 
+    // We don't block the response stream completely, but since node isn't edge, Promise.all/await is safer
+    await notifyAdminAboutLead(message, limitedHistory, request.url);
+
     // Return response
     return NextResponse.json({
       message: assistantMessage,
@@ -184,9 +240,9 @@ export async function POST(request: NextRequest) {
 // ============================================
 
 export async function GET() {
-  const hasApiKey = !!process.env.GEMINI_API_KEY;
+  const hasApiKey = !!process.env.XAI_API_KEY;
   return NextResponse.json({
     status: hasApiKey ? "ready" : "not_configured",
-    message: hasApiKey ? "Chat API is ready" : "GEMINI_API_KEY not configured",
+    message: hasApiKey ? "Chat API is ready" : "XAI_API_KEY not configured",
   });
 }
