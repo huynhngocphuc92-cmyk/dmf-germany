@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { GERMANY_CONTACT, VIETNAM_OFFICE_CONTACT } from "@/lib/company/contact";
 import { contactFormSchema, type ContactFormData } from "@/lib/validations/schemas";
 import { Loader2, Send, MapPin, Phone, Mail, Globe, User } from "lucide-react";
+import { trackEvent } from "@/components/analytics/GoogleAnalytics";
 
 export default function ContactSection() {
   const [isSuccess, setIsSuccess] = useState(false);
@@ -59,6 +60,9 @@ export default function ContactSection() {
       // 3. Success State
       setIsSuccess(true);
       reset(); // Clear form
+
+      // Conversion tracking (GA4) — chỉ bắn khi user đã đồng ý cookie
+      trackEvent("generate_lead", { form: "contact" });
     } catch (err) {
       console.error("Contact form error:", err);
       setSubmitError("Fehler beim Senden. Bitte versuchen Sie es später noch einmal.");

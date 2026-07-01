@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import JsonLd from "@/components/seo/JsonLd";
 import { SmartChatBot } from "@/components/bot/SmartChatBot";
 import { CookieConsent } from "@/components/CookieConsent";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 
 // Base URL for absolute URLs in metadata
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://dmf-vietnam.de";
@@ -101,6 +102,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Footer />
 
           <CookieConsent />
+
+          {/* Google Analytics 4 — DSGVO: chỉ nạp sau khi user đồng ý cookie */}
+          <GoogleAnalytics />
 
           <SmartChatBot />
         </LanguageProvider>

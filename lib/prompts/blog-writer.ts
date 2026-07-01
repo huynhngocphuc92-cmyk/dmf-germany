@@ -40,6 +40,19 @@ UNIQUE SELLING POINTS:
 - Legal compliance assistance
 `;
 
+// DMF policy guardrail: chống bịa số Đức + tự gắn cờ [CẦN XÁC NHẬN].
+// Số liệu Đức (lương, visa, ngưỡng tài chính, điểm Chancenkarte...) đổi theo năm.
+const FACTS_GUARDRAIL = `
+FAKTEN & GENAUIGKEIT (STRICT — DMF policy, follow exactly):
+German rules and numbers change every year. NEVER invent, guess or "round" concrete figures. This applies to: salaries / Ausbildungsvergütung, visa or embassy (Botschaft) fees, income and financial thresholds (e.g. Sperrkonto / blocked account), Chancenkarte points, tax rates, processing times, deadlines and statistics.
+- Prefer SAFE FRAMING over hard numbers, e.g.: "je nach Bundesland und Arbeitgeber unterschiedlich", "aktuelle Sätze klären wir individuell", "Stand des jeweiligen Jahres — bitte aktuell prüfen".
+- If a concrete number, date or legal threshold is truly necessary, write it and IMMEDIATELY append the marker [CẦN XÁC NHẬN] directly after it, e.g.: "ca. 1.200 € brutto [CẦN XÁC NHẬN]". The marker signals that a human must verify the value before it is trusted. Never publish an unverified figure WITHOUT this marker.
+- NEVER make guarantee claims like "garantiert", "100% Erfolg", "sichere Zusage" or "bao đậu" — these are fraud signals and are strictly forbidden.
+- At the VERY END of the "content" HTML: if you used any [CẦN XÁC NHẬN] marker, append one HTML comment listing every item to verify, in exactly this form:
+  <!-- CẦN XÁC NHẬN (kiểm tra & xoá marker trước khi tin dùng): 1) ...; 2) ...; -->
+  If you used no unverified figures, do not add this comment.
+`;
+
 export function buildBlogSystemPrompt(request: BlogGenerationRequest): string {
   const wordCount = LENGTH_CONFIG[request.length].words;
 
@@ -61,6 +74,8 @@ CONTENT REQUIREMENTS:
 - Reference DMF's services where naturally relevant (don't force it)
 - Include actionable insights or practical tips
 - Optimize for SEO with natural keyword usage
+
+${FACTS_GUARDRAIL}
 
 ${request.keywords?.length ? `TARGET KEYWORDS: ${request.keywords.join(", ")}` : ""}
 

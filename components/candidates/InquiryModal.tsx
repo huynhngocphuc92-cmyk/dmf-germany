@@ -29,6 +29,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import type { Candidate } from "@/app/admin/candidates/types";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { trackEvent } from "@/components/analytics/GoogleAnalytics";
 
 interface InquiryModalProps {
   candidate: Candidate | null;
@@ -172,6 +173,8 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
 
       if (result.success) {
         setStatus("success");
+        // Conversion tracking (GA4) — lead từ yêu cầu hồ sơ ứng viên
+        trackEvent("generate_lead", { form: "profile" });
         setStatusMessage(copy.success);
         // Reset form after 2 seconds and close modal
         setTimeout(() => {
