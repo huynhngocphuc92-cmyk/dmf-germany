@@ -186,6 +186,9 @@ export const Header = memo(function Header({ logoUrl, hotline, email }: HeaderPr
     [pathname]
   );
 
+  // Admin pages have their own header and navigation controls.
+  if (pathname === "/admin" || pathname.startsWith("/admin/")) return null;
+
   // Prepare dropdown items with translations
   const solutionsItems = SOLUTIONS_ITEMS.map((item) => ({
     href: item.href,
