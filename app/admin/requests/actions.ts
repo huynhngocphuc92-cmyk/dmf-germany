@@ -1,30 +1,8 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { createClient } from "@/utils/supabase/server";
+import { createAdminClient as createClient } from "@/lib/auth/admin";
 import type { Inquiry, InquiryStatus } from "./types";
-
-// ============================================
-// AUTH HELPER
-// ============================================
-
-/**
- * Verify user is authenticated before performing admin actions
- * Returns user object if authenticated, throws error if not
- */
-async function requireAuth() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-    error,
-  } = await supabase.auth.getUser();
-
-  if (error || !user) {
-    throw new Error("Unauthorized: Authentication required");
-  }
-
-  return user;
-}
 
 // ============================================
 // FETCH ALL INQUIRIES
@@ -95,8 +73,6 @@ export async function updateInquiryStatus(
 ): Promise<{ success: boolean; error: string | null }> {
   try {
     // Verify authentication before any mutation
-    await requireAuth();
-
     const supabase = await createClient();
 
     const { error } = await supabase
@@ -132,8 +108,6 @@ export async function deleteInquiry(
 ): Promise<{ success: boolean; error: string | null }> {
   try {
     // Verify authentication before any mutation
-    await requireAuth();
-
     const supabase = await createClient();
 
     const { error } = await supabase.from("inquiries").delete().eq("id", id);

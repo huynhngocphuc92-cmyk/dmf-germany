@@ -1,30 +1,8 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { createClient } from "@/utils/supabase/server";
+import { createAdminClient as createClient } from "@/lib/auth/admin";
 import type { CandidateFormData, Candidate } from "./types";
-
-// ============================================
-// AUTH HELPER
-// ============================================
-
-/**
- * Verify user is authenticated before performing admin actions
- * Returns user object if authenticated, throws error if not
- */
-async function requireAuth() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-    error,
-  } = await supabase.auth.getUser();
-
-  if (error || !user) {
-    throw new Error("Unauthorized: Authentication required");
-  }
-
-  return user;
-}
 
 // ============================================
 // FETCH ALL CANDIDATES
@@ -114,8 +92,6 @@ export async function createCandidate(
 ): Promise<{ success: boolean; error: string | null; data?: Candidate }> {
   try {
     // Verify authentication before any mutation
-    await requireAuth();
-
     const supabase = await createClient();
 
     // Validate required fields
@@ -177,8 +153,6 @@ export async function updateCandidate(
 ): Promise<{ success: boolean; error: string | null; data?: Candidate }> {
   try {
     // Verify authentication before any mutation
-    await requireAuth();
-
     const supabase = await createClient();
 
     // Sanitize data before sending to database
@@ -236,8 +210,6 @@ export async function deleteCandidate(
 ): Promise<{ success: boolean; error: string | null }> {
   try {
     // Verify authentication before any mutation
-    await requireAuth();
-
     const supabase = await createClient();
 
     // First, get the candidate to check for avatar
@@ -280,8 +252,6 @@ export async function uploadAvatar(
 ): Promise<{ success: boolean; error: string | null; url?: string }> {
   try {
     // Verify authentication before any mutation
-    await requireAuth();
-
     const supabase = await createClient();
 
     const file = formData.get("file") as File;
@@ -345,8 +315,6 @@ export async function deleteAvatar(
 ): Promise<{ success: boolean; error: string | null }> {
   try {
     // Verify authentication before any mutation
-    await requireAuth();
-
     const supabase = await createClient();
 
     // Extract filename from URL
@@ -366,54 +334,5 @@ export async function deleteAvatar(
   } catch (err) {
     console.error("Unexpected error:", err);
     return { success: false, error: "Ein unerwarteter Fehler ist aufgetreten." };
-  }
-}
-
-// ============================================
-// GET FEATURED CANDIDATES (For Homepage Showcase)
-// ============================================
-
-export async function getFeaturedCandidates(): Promise<{
-  data: Candidate[] | null;
-  error: string | null;
-}> {
-  try {
-    const supabase = await createClient();
-
-    // Prefer candidates explicitly highlighted for the homepage.
-    const { data: featuredData, error } = await supabase
-      .from("candidates")
-      .select("*")
-      .or("is_featured.eq.true,visa_status.eq.true")
-      .order("created_at", { ascending: false })
-      .limit(20);
-    let data = featuredData;
-
-    // Fall back to the newest candidates when no featured profiles are available.
-    if (error || !data || data.length === 0) {
-      const { data: allData, error: allError } = await supabase
-        .from("candidates")
-        .select("*")
-        .order("created_at", { ascending: false })
-        .limit(20);
-
-      if (allError) {
-        console.error("Error fetching featured candidates:", allError);
-        return { data: null, error: allError.message };
-      }
-
-      data = allData;
-    }
-
-    if (error && data && data.length === 0) {
-      console.warn("No featured candidates found, returning empty array");
-      return { data: [], error: null };
-    }
-
-    return { data: (data || []) as Candidate[], error: null };
-  } catch (err) {
-    console.error("Unexpected error:", err);
-    // Return an empty array so the calling UI can use its fallback state.
-    return { data: [], error: null };
   }
 }

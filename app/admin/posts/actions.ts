@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { createClient } from "@/utils/supabase/server";
+import { createAdminClient as createClient } from "@/lib/auth/admin";
 import { createPublicClient } from "@/utils/supabase/public";
 import type { Post, PostFormData } from "./types";
 

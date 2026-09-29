@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "@/utils/supabase/server";
+import { requireAdmin } from "@/lib/auth/admin";
+import { adminAuthorizationResponse } from "@/lib/auth/admin-http";
 import { BlogGenerationRequest, GeneratedBlog } from "@/app/admin/blog-writer/types";
 import { buildBlogSystemPrompt } from "@/lib/prompts/blog-writer";
 import { checkRateLimit, RATE_LIMITS } from "@/lib/rate-limit";
@@ -7,15 +8,7 @@ import { runWithGrokModelFallback, GrokMessage } from "@/lib/ai/grok";
 
 export async function POST(request: NextRequest) {
   try {
-    // Check authentication
-    const supabase = await createClient();
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-
-    if (!user) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const { user } = await requireAdmin();
 
     // Check rate limit
     const rateLimitResult = await checkRateLimit(
@@ -39,7 +32,7 @@ export async function POST(request: NextRequest) {
     const apiKey = process.env.XAI_API_KEY || "";
     const grokMessages: GrokMessage[] = [
       { role: "system", content: buildBlogSystemPrompt(body) },
-      { role: "user", content: `Write a blog post about: "${body.topic}"` }
+      { role: "user", content: `Write a blog post about: "${body.topic}"` },
     ];
     const result = await runWithGrokModelFallback(apiKey, grokMessages);
     const rawText = result.text;
@@ -105,6 +98,8 @@ export async function POST(request: NextRequest) {
       usage: result.usage,
     });
   } catch (error) {
+    const denied = adminAuthorizationResponse(error);
+    if (denied) return denied;
     console.error("Blog generation error:", error);
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Failed to generate blog" },

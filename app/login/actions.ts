@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
+import { isAdminUser } from "@/lib/auth/admin-policy";
 
 // ============================================
 // LOGIN ACTION
@@ -34,6 +35,15 @@ export async function login(formData: FormData) {
       return { error: "E-Mail-Adresse wurde noch nicht bestätigt." };
     }
     return { error: error.message };
+  }
+
+  const {
+    data: { user },
+    error: verificationError,
+  } = await supabase.auth.getUser();
+  if (verificationError || !isAdminUser(user)) {
+    await supabase.auth.signOut();
+    return { error: "Für dieses Konto ist kein Administratorzugang freigeschaltet." };
   }
 
   // Success - revalidate and redirect

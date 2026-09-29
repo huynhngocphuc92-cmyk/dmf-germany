@@ -6,7 +6,7 @@ import { useLanguage } from "@/components/providers/LanguageProvider";
 import { ArrowRight, Download } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import type { Candidate } from "@/app/admin/candidates/types";
+import type { PublicCandidate } from "@/lib/candidates/public-profile";
 import { CandidateShowcase } from "./CandidateShowcase";
 
 // Animation variants - Modern & Smooth
@@ -20,13 +20,12 @@ const fadeInRight = {
   visible: { opacity: 1, x: 0 },
 };
 
-const loadMotionFeatures = () =>
-  import("@/lib/framer-motion-features").then((mod) => mod.default);
+const loadMotionFeatures = () => import("@/lib/framer-motion-features").then((mod) => mod.default);
 
 interface HeroSectionProps {
   heroBg?: string | null;
   heroOverlayOpacity?: string | null;
-  featuredCandidates?: Candidate[];
+  featuredCandidates?: PublicCandidate[];
 }
 
 export const HeroSection = ({
@@ -70,7 +69,9 @@ export const HeroSection = ({
       {/* Content Container */}
       <LazyMotion features={loadMotionFeatures}>
         <div className="container mx-auto px-4 lg:px-8 py-16 md:py-24 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div
+            className={`grid grid-cols-1 ${featuredCandidates.length > 0 ? "lg:grid-cols-2" : "max-w-4xl"} gap-12 items-center`}
+          >
             {/* Left Column - Typography */}
             <m.div
               initial="hidden"

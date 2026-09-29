@@ -1,6 +1,6 @@
 "use server";
 
-import { createClient } from "@supabase/supabase-js";
+import { createPrivilegedAdminClient } from "@/lib/auth/admin";
 
 // ============================================
 // TYPES
@@ -39,24 +39,12 @@ export interface ChatStats {
 // SUPABASE CLIENT
 // ============================================
 
-function getSupabaseClient() {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseKey =
-    process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-  if (!supabaseUrl || !supabaseKey) {
-    return null;
-  }
-
-  return createClient(supabaseUrl, supabaseKey);
-}
-
 // ============================================
 // ACTIONS
 // ============================================
 
 export async function getChatSessions(): Promise<ChatSession[]> {
-  const supabase = getSupabaseClient();
+  const supabase = await createPrivilegedAdminClient();
   if (!supabase) return [];
 
   const { data, error } = await supabase
@@ -73,7 +61,7 @@ export async function getChatSessions(): Promise<ChatSession[]> {
 }
 
 export async function getChatSession(sessionId: string): Promise<ChatSession | null> {
-  const supabase = getSupabaseClient();
+  const supabase = await createPrivilegedAdminClient();
   if (!supabase) return null;
 
   const { data, error } = await supabase
@@ -91,7 +79,7 @@ export async function getChatSession(sessionId: string): Promise<ChatSession | n
 }
 
 export async function getChatStats(): Promise<ChatStats> {
-  const supabase = getSupabaseClient();
+  const supabase = await createPrivilegedAdminClient();
 
   const defaultStats: ChatStats = {
     totalSessions: 0,
@@ -130,7 +118,7 @@ export async function getChatStats(): Promise<ChatStats> {
 }
 
 export async function deleteChatSession(id: string): Promise<boolean> {
-  const supabase = getSupabaseClient();
+  const supabase = await createPrivilegedAdminClient();
   if (!supabase) return false;
 
   const { error } = await supabase.from("chat_sessions").delete().eq("id", id);

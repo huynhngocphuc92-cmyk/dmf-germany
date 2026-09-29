@@ -27,12 +27,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import type { Candidate } from "@/app/admin/candidates/types";
+import type { PublicCandidate } from "@/lib/candidates/public-profile";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { trackEvent } from "@/components/analytics/GoogleAnalytics";
 
 interface InquiryModalProps {
-  candidate: Candidate | null;
+  candidate: PublicCandidate | null;
   isOpen: boolean;
   onClose: () => void;
 }
@@ -218,7 +218,7 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
           </div>
           <DialogDescription>
             <div className="flex items-center gap-2 mt-2">
-              <span className="font-semibold text-slate-900">{candidate.full_name}</span>
+              <span className="font-semibold text-slate-900">{candidateCode}</span>
               {candidate.profession && (
                 <span className="text-sm text-muted-foreground">{candidate.profession}</span>
               )}

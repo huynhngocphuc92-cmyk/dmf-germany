@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
+import { isAdminUser } from "@/lib/auth/admin-policy";
 import { AdminLayoutClient } from "@/components/admin/AdminLayoutClient";
 
 export const metadata: Metadata = {
@@ -16,10 +17,11 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   const supabase = await createClient();
   const {
     data: { user },
+    error,
   } = await supabase.auth.getUser();
 
   // Redirect to login if not authenticated
-  if (!user) {
+  if (error || !isAdminUser(user)) {
     redirect("/login");
   }
 

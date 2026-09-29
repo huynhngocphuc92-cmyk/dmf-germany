@@ -1,6 +1,6 @@
 "use server";
 
-import { createClient } from "@supabase/supabase-js";
+import { createPrivilegedAdminClient } from "@/lib/auth/admin";
 
 // ============================================
 // TYPES
@@ -36,24 +36,12 @@ export interface LeadStats {
 // SUPABASE CLIENT
 // ============================================
 
-function getSupabaseClient() {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseKey =
-    process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-  if (!supabaseUrl || !supabaseKey) {
-    return null;
-  }
-
-  return createClient(supabaseUrl, supabaseKey);
-}
-
 // ============================================
 // ACTIONS
 // ============================================
 
 export async function getLeads(): Promise<Lead[]> {
-  const supabase = getSupabaseClient();
+  const supabase = await createPrivilegedAdminClient();
   if (!supabase) return [];
 
   const { data, error } = await supabase
@@ -70,7 +58,7 @@ export async function getLeads(): Promise<Lead[]> {
 }
 
 export async function getLeadStats(): Promise<LeadStats> {
-  const supabase = getSupabaseClient();
+  const supabase = await createPrivilegedAdminClient();
 
   const defaultStats: LeadStats = {
     total: 0,
@@ -116,7 +104,7 @@ export async function getLeadStats(): Promise<LeadStats> {
 }
 
 export async function updateLeadStatus(id: string, status: Lead["status"]): Promise<boolean> {
-  const supabase = getSupabaseClient();
+  const supabase = await createPrivilegedAdminClient();
   if (!supabase) return false;
 
   const { error } = await supabase
@@ -133,7 +121,7 @@ export async function updateLeadStatus(id: string, status: Lead["status"]): Prom
 }
 
 export async function updateLeadNotes(id: string, notes: string): Promise<boolean> {
-  const supabase = getSupabaseClient();
+  const supabase = await createPrivilegedAdminClient();
   if (!supabase) return false;
 
   const { error } = await supabase
@@ -150,7 +138,7 @@ export async function updateLeadNotes(id: string, notes: string): Promise<boolea
 }
 
 export async function deleteLead(id: string): Promise<boolean> {
-  const supabase = getSupabaseClient();
+  const supabase = await createPrivilegedAdminClient();
   if (!supabase) return false;
 
   const { error } = await supabase.from("leads").delete().eq("id", id);

@@ -1,92 +1,50 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
+import { randomBytes } from "node:crypto";
+import { createPublicClient } from "@/utils/supabase/public";
+import { chatHistorySchema } from "@/lib/validations/public-intake";
+import { createPrivilegedAdminClient } from "@/lib/auth/admin";
+import {
+  adminAuthorizationResponse,
+  adminResponseHeaders,
+  parseAdminPagination,
+} from "@/lib/auth/admin-http";
 
-// ============================================
-// TYPES
-// ============================================
-
-interface ChatMessage {
-  id: string;
-  role: "user" | "assistant";
-  content: string;
-  timestamp: string;
-}
-
-interface ChatHistoryRequest {
-  sessionId: string;
-  messages: ChatMessage[];
-  leadData?: {
-    company?: string;
-    email?: string;
-    phone?: string;
-    interest?: string;
-  };
-}
-
-// ============================================
-// SUPABASE CLIENT
-// ============================================
-
-function getSupabaseClient() {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseKey =
-    process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-  if (!supabaseUrl || !supabaseKey) {
-    return null;
-  }
-
-  return createClient(supabaseUrl, supabaseKey);
-}
-
-// ============================================
-// API HANDLER
-// ============================================
+const OWNER_COOKIE = "dmf_chat_owner";
 
 export async function POST(request: NextRequest) {
+  const parsed = chatHistorySchema.safeParse(await request.json().catch(() => null));
+  if (!parsed.success) return NextResponse.json({ error: "Invalid chat history" }, { status: 400 });
+  const { sessionId, messages, leadData } = parsed.data;
+  const existingToken = request.cookies.get(OWNER_COOKIE)?.value;
+  const ownerToken =
+    existingToken && /^[a-f0-9]{64}$/.test(existingToken)
+      ? existingToken
+      : randomBytes(32).toString("hex");
   try {
-    const body: ChatHistoryRequest = await request.json();
-    const { sessionId, messages, leadData } = body;
-
-    if (!sessionId || !messages) {
-      return NextResponse.json({ error: "sessionId and messages are required" }, { status: 400 });
-    }
-
-    const supabase = getSupabaseClient();
-
-    if (!supabase) {
-      // Silently skip if Supabase is not configured
-      console.warn("[ChatHistory] Supabase not configured, skipping save");
-      return NextResponse.json({ success: true, saved: false });
-    }
-
-    // Upsert chat session
-    const { error } = await supabase.from("chat_sessions").upsert(
-      {
-        session_id: sessionId,
-        messages: messages,
-        lead_email: leadData?.email || null,
-        lead_company: leadData?.company || null,
-        lead_phone: leadData?.phone || null,
-        lead_interest: leadData?.interest || null,
-        message_count: messages.length,
-        updated_at: new Date().toISOString(),
-      },
-      {
-        onConflict: "session_id",
-      }
+    const supabase = createPublicClient();
+    const { data: saved, error } = await supabase.rpc("dmf_save_chat", {
+      p_session_id: sessionId,
+      p_owner_token: ownerToken,
+      p_messages: messages,
+      p_lead_data: leadData ?? {},
+    });
+    if (error) return NextResponse.json({ error: "Chat could not be saved" }, { status: 503 });
+    if (!saved)
+      return NextResponse.json({ error: "Chat session ownership required" }, { status: 403 });
+    const response = NextResponse.json(
+      { success: true, saved: true },
+      { headers: adminResponseHeaders }
     );
-
-    if (error) {
-      // Table might not exist, log but don't fail
-      console.error("[ChatHistory] Save error:", error.message);
-      return NextResponse.json({ success: true, saved: false, reason: "table_error" });
-    }
-
-    return NextResponse.json({ success: true, saved: true });
-  } catch (error) {
-    console.error("[ChatHistory] Error:", error);
-    return NextResponse.json({ error: "Failed to save chat history" }, { status: 500 });
+    response.cookies.set(OWNER_COOKIE, ownerToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path: "/api/chat/history",
+      maxAge: 60 * 60 * 24 * 30,
+    });
+    return response;
+  } catch {
+    return NextResponse.json({ error: "Chat could not be saved" }, { status: 503 });
   }
 }
 
@@ -96,15 +54,17 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   try {
-    const supabase = getSupabaseClient();
-
-    if (!supabase) {
-      return NextResponse.json({ error: "Supabase not configured" }, { status: 500 });
-    }
+    const supabase = await createPrivilegedAdminClient();
 
     const { searchParams } = new URL(request.url);
-    const limit = parseInt(searchParams.get("limit") || "50");
-    const offset = parseInt(searchParams.get("offset") || "0");
+    const pagination = parseAdminPagination(searchParams);
+    if (!pagination.success) {
+      return NextResponse.json(
+        { error: "Invalid pagination" },
+        { status: 400, headers: adminResponseHeaders }
+      );
+    }
+    const { limit, offset } = pagination.data;
 
     const { data, error, count } = await supabase
       .from("chat_sessions")
@@ -116,14 +76,22 @@ export async function GET(request: NextRequest) {
       throw error;
     }
 
-    return NextResponse.json({
-      sessions: data,
-      total: count,
-      limit,
-      offset,
-    });
+    return NextResponse.json(
+      {
+        sessions: data,
+        total: count,
+        limit,
+        offset,
+      },
+      { headers: adminResponseHeaders }
+    );
   } catch (error) {
+    const denied = adminAuthorizationResponse(error);
+    if (denied) return denied;
     console.error("[ChatHistory] GET error:", error);
-    return NextResponse.json({ error: "Failed to fetch chat history" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to fetch chat history" },
+      { status: 500, headers: adminResponseHeaders }
+    );
   }
 }

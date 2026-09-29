@@ -1,20 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "@/utils/supabase/server";
+import { requireAdmin } from "@/lib/auth/admin";
+import { adminAuthorizationResponse } from "@/lib/auth/admin-http";
 import { BlogLanguage, TopicSuggestion } from "@/app/admin/blog-writer/types";
 import { buildTopicSuggestionsPrompt } from "@/lib/prompts/blog-writer";
 import { runWithGrokModelFallback, GrokMessage } from "@/lib/ai/grok";
 
 export async function GET(request: NextRequest) {
   try {
-    // Check authentication
-    const supabase = await createClient();
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-
-    if (!user) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    await requireAdmin();
 
     // Parse query params
     const { searchParams } = new URL(request.url);
@@ -25,9 +18,7 @@ export async function GET(request: NextRequest) {
     const systemPrompt = buildTopicSuggestionsPrompt(language, category);
 
     const apiKey = process.env.XAI_API_KEY || "";
-    const grokMessages: GrokMessage[] = [
-      { role: "user", content: systemPrompt }
-    ];
+    const grokMessages: GrokMessage[] = [{ role: "user", content: systemPrompt }];
     const result = await runWithGrokModelFallback(apiKey, grokMessages);
     const rawText = result.text;
 
@@ -73,6 +64,8 @@ export async function GET(request: NextRequest) {
       data: topics,
     });
   } catch (error) {
+    const denied = adminAuthorizationResponse(error);
+    if (denied) return denied;
     console.error("Topic suggestions error:", error);
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Failed to generate topics" },

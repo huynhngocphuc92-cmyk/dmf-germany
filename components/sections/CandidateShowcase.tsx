@@ -1,50 +1,27 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, LazyMotion, m } from "framer-motion";
 import Image from "next/image";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import type { Candidate } from "@/app/admin/candidates/types";
+import type { PublicCandidate } from "@/lib/candidates/public-profile";
 import { categoryLabelsI18n } from "@/app/admin/candidates/types";
 
 interface CandidateShowcaseProps {
-  candidates?: Candidate[];
+  candidates?: PublicCandidate[];
 }
 
-// Fallback candidate data used when the database is empty.
-const fallbackCandidate: Candidate = {
-  id: "fallback",
-  created_at: new Date().toISOString(),
-  updated_at: new Date().toISOString(),
-  full_name: "Nguyen Thi Mai",
-  email: "example@example.com",
-  category: "azubi",
-  profession: "Pflegefachfrau",
-  experience_years: 3,
-  german_level: "B2",
-  visa_status: true,
-  is_featured: true,
-  avatar_url: undefined,
-};
-
-const loadMotionFeatures = () =>
-  import("@/lib/framer-motion-features").then((mod) => mod.default);
+const loadMotionFeatures = () => import("@/lib/framer-motion-features").then((mod) => mod.default);
 
 export const CandidateShowcase = ({ candidates = [] }: CandidateShowcaseProps) => {
   const { lang, t } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Use database candidates when available, otherwise show the fallback profile.
-  const displayCandidates = useMemo(() => {
-    if (candidates.length > 0) {
-      return candidates;
-    }
-    return [fallbackCandidate];
-  }, [candidates]);
+  const displayCandidates = candidates;
 
   // Rotate the highlighted profile every 4 seconds.
   useEffect(() => {
-    if (displayCandidates.length === 0) return;
+    if (displayCandidates.length < 2) return;
 
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % displayCandidates.length);
@@ -54,11 +31,12 @@ export const CandidateShowcase = ({ candidates = [] }: CandidateShowcaseProps) =
   }, [displayCandidates.length]);
 
   // Always keep a valid candidate object for rendering.
-  const currentCandidate =
-    displayCandidates[currentIndex] || displayCandidates[0] || fallbackCandidate;
+  const currentCandidate = displayCandidates[currentIndex] || displayCandidates[0];
+  if (!currentCandidate) return null;
+  const candidateCode = `DMF-${currentCandidate.id.slice(0, 8).toUpperCase()}`;
 
   // Combine the localized category label with the candidate profession.
-  const getPositionText = (candidate: Candidate) => {
+  const getPositionText = (candidate: PublicCandidate) => {
     if (!candidate) return "";
     const categoryLabel = categoryLabelsI18n[candidate.category]?.[lang] || candidate.category;
     const profession = candidate.profession || "";
@@ -66,7 +44,7 @@ export const CandidateShowcase = ({ candidates = [] }: CandidateShowcaseProps) =
   };
 
   // Build badges from the current candidate data.
-  const getBadges = (candidate: Candidate) => {
+  const getBadges = (candidate: PublicCandidate) => {
     if (!candidate) return [];
 
     const badges = [];
@@ -126,7 +104,7 @@ export const CandidateShowcase = ({ candidates = [] }: CandidateShowcaseProps) =
                 <div className="w-32 h-32 rounded-xl overflow-hidden shadow-lg border border-white/20 relative">
                   <Image
                     src={currentCandidate.avatar_url}
-                    alt={currentCandidate.full_name}
+                    alt={candidateCode}
                     fill
                     sizes="128px"
                     className="object-cover"
@@ -141,9 +119,7 @@ export const CandidateShowcase = ({ candidates = [] }: CandidateShowcaseProps) =
             </div>
 
             {/* Name - Bold, White */}
-            <h3 className="text-2xl font-bold text-white text-center mb-2">
-              {currentCandidate.full_name}
-            </h3>
+            <h3 className="text-2xl font-bold text-white text-center mb-2">{candidateCode}</h3>
 
             {/* Position - Brand Blue */}
             <p className="text-primary text-center font-semibold mb-4 text-sm md:text-base">
