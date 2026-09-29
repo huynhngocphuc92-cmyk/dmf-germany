@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { BLUR_SQUARE } from "@/lib/image-placeholder";
-import type { Candidate } from "@/app/admin/candidates/types";
+import type { PublicCandidate } from "@/lib/candidates/public-profile";
 import { categoryLabelsI18n } from "@/app/admin/candidates/types";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
@@ -38,8 +38,8 @@ function getEmbedUrl(url: string | null | undefined): string | null {
 }
 
 interface CandidateCardProps {
-  candidate: Candidate;
-  onRequestProfile: (candidate: Candidate) => void;
+  candidate: PublicCandidate;
+  onRequestProfile: (candidate: PublicCandidate) => void;
 }
 
 /**
@@ -73,7 +73,7 @@ const getCandidateCode = (id: string): string => {
 /**
  * Get initials from profession or category
  */
-const getInitials = (profession?: string, category?: string): string => {
+const getInitials = (profession?: string | null, category?: string): string => {
   if (profession) {
     const words = profession.split(" ");
     if (words.length >= 2) {
@@ -158,7 +158,7 @@ export const CandidateCard = ({ candidate, onRequestProfile }: CandidateCardProp
           {/* Experience & German Level */}
           <div className="space-y-3 mb-4">
             {/* Experience */}
-            {candidate.experience_years !== undefined && candidate.experience_years > 0 && (
+            {candidate.experience_years != null && candidate.experience_years > 0 && (
               <div className="flex items-center gap-2 text-sm">
                 <Briefcase className="h-4 w-4 text-muted-foreground flex-shrink-0" />
                 <span className="text-foreground">

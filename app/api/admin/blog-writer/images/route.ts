@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "@/utils/supabase/server";
+import { requireAdmin } from "@/lib/auth/admin";
+import { adminAuthorizationResponse } from "@/lib/auth/admin-http";
 import { ImageSuggestion } from "@/app/admin/blog-writer/types";
 
 const UNSPLASH_ACCESS_KEY = process.env.UNSPLASH_ACCESS_KEY;
@@ -23,15 +24,7 @@ interface UnsplashPhoto {
 
 export async function GET(request: NextRequest) {
   try {
-    // Check authentication
-    const supabase = await createClient();
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-
-    if (!user) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    await requireAdmin();
 
     // Parse query params
     const { searchParams } = new URL(request.url);
@@ -91,6 +84,8 @@ export async function GET(request: NextRequest) {
       source: "unsplash",
     });
   } catch (error) {
+    const denied = adminAuthorizationResponse(error);
+    if (denied) return denied;
     console.error("Image search error:", error);
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Failed to search images" },

@@ -1,146 +1,58 @@
 "use server";
 
 import { createPublicClient } from "@/utils/supabase/public";
-import type { Candidate, CandidateCategory, GermanLevel } from "@/app/admin/candidates/types";
+import type { CandidateCategory, GermanLevel } from "@/app/admin/candidates/types";
+import {
+  PUBLIC_CANDIDATE_FIELDS,
+  toPublicCandidates,
+  type PublicCandidate,
+} from "@/lib/candidates/public-profile";
 
-/**
- * Get featured candidates for Kandidaten-Pool page
- * Only returns candidates that are:
- * - is_featured = true (Featured candidates)
- *
- * Fields returned: id, profession, experience_years, german_level, video_url, avatar_url, category, created_at
- * Sorted by created_at descending (newest first)
- *
- * Uses the public anon client so marketing pages can stay static/ISR-friendly.
- */
-export async function getFeaturedCandidates(): Promise<{
-  data: Candidate[] | null;
-  error: string | null;
-}> {
+type CandidateResult = { data: PublicCandidate[] | null; error: string | null };
+
+async function queryPublishedCandidates(
+  options: {
+    limit?: number;
+    readyOnly?: boolean;
+    category?: CandidateCategory;
+    germanLevel?: GermanLevel;
+  } = {}
+): Promise<CandidateResult> {
   try {
     const supabase = createPublicClient();
-
-    const { data, error } = await supabase
+    // is_featured is the existing explicit publication control. Visa readiness is not approval.
+    let query = supabase
       .from("candidates")
-      .select(
-        "id, profession, experience_years, german_level, video_url, avatar_url, category, created_at"
-      )
+      .select(PUBLIC_CANDIDATE_FIELDS)
       .eq("is_featured", true)
       .order("created_at", { ascending: false });
+    if (options.limit) query = query.limit(options.limit);
+    if (options.readyOnly) query = query.eq("visa_status", true);
+    if (options.category) query = query.eq("category", options.category);
+    if (options.germanLevel) query = query.eq("german_level", options.germanLevel);
 
-    if (error) {
-      console.error("[getFeaturedCandidates] Error fetching candidates:", error);
-      return { data: null, error: error.message };
-    }
-
-    return { data: (data || []) as Candidate[], error: null };
-  } catch (err) {
-    console.error("[getFeaturedCandidates] Unexpected error:", err);
-    return {
-      data: null,
-      error: err instanceof Error ? err.message : "Ein unerwarteter Fehler ist aufgetreten.",
-    };
+    const { data, error } = await query;
+    if (error) return { data: null, error: "Profile konnten nicht geladen werden." };
+    return { data: toPublicCandidates(data ?? []), error: null };
+  } catch {
+    // Never broaden the query on errors or when no approved profiles exist.
+    return { data: null, error: "Profile konnten nicht geladen werden." };
   }
 }
 
-/**
- * Get homepage showcase candidates.
- * Prefer featured or visa-ready profiles, then fall back to the newest entries.
- */
-export async function getHomepageFeaturedCandidates(): Promise<{
-  data: Candidate[] | null;
-  error: string | null;
-}> {
-  try {
-    const supabase = createPublicClient();
-
-    const { data: featuredData, error } = await supabase
-      .from("candidates")
-      .select("*")
-      .or("is_featured.eq.true,visa_status.eq.true")
-      .order("created_at", { ascending: false })
-      .limit(20);
-    let data = featuredData;
-
-    if (error || !data || data.length === 0) {
-      const { data: allData, error: allError } = await supabase
-        .from("candidates")
-        .select("*")
-        .order("created_at", { ascending: false })
-        .limit(20);
-
-      if (allError) {
-        console.error("[getHomepageFeaturedCandidates] Error fetching candidates:", allError);
-        return { data: null, error: allError.message };
-      }
-
-      data = allData;
-    }
-
-    if (error && data && data.length === 0) {
-      console.warn("[getHomepageFeaturedCandidates] No candidates found, returning empty array");
-      return { data: [], error: null };
-    }
-
-    return { data: (data || []) as Candidate[], error: null };
-  } catch (err) {
-    console.error("[getHomepageFeaturedCandidates] Unexpected error:", err);
-    return { data: [], error: null };
-  }
+export async function getFeaturedCandidates(): Promise<CandidateResult> {
+  return queryPublishedCandidates();
 }
 
-/**
- * Get public candidates for Kandidaten-Pool page (with filters)
- * Only returns candidates that are:
- * - is_featured = true (Featured candidates)
- * - visa_status = true (Ready to work)
- *
- * Fields returned: id, profession, experience_years, german_level, video_url, avatar_url, category
- */
+export async function getHomepageFeaturedCandidates(): Promise<CandidateResult> {
+  return queryPublishedCandidates({ limit: 20 });
+}
+
 export async function getPublicCandidates(filters?: {
   category?: CandidateCategory;
   germanLevel?: GermanLevel;
-}): Promise<{
-  data: Candidate[] | null;
-  error: string | null;
-}> {
-  try {
-    const supabase = createPublicClient();
-
-    // Build query - Start with base conditions
-    let query = supabase
-      .from("candidates")
-      .select(
-        "id, profession, experience_years, german_level, video_url, avatar_url, category, created_at"
-      )
-      .eq("is_featured", true)
-      .eq("visa_status", true)
-      .order("created_at", { ascending: false });
-
-    // Apply optional filters
-    if (filters?.category) {
-      query = query.eq("category", filters.category);
-    }
-
-    if (filters?.germanLevel) {
-      query = query.eq("german_level", filters.germanLevel);
-    }
-
-    const { data, error } = await query;
-
-    if (error) {
-      console.error("[getPublicCandidates] Error fetching candidates:", error);
-      return { data: null, error: error.message };
-    }
-
-    return { data: (data || []) as Candidate[], error: null };
-  } catch (err) {
-    console.error("[getPublicCandidates] Unexpected error:", err);
-    return {
-      data: null,
-      error: err instanceof Error ? err.message : "Ein unerwarteter Fehler ist aufgetreten.",
-    };
-  }
+}): Promise<CandidateResult> {
+  return queryPublishedCandidates({ ...filters, readyOnly: true });
 }
 
 /**

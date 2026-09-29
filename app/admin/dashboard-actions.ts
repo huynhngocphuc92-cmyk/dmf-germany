@@ -1,6 +1,6 @@
 "use server";
 
-import { createClient } from "@/utils/supabase/server";
+import { createAdminClient as createClient } from "@/lib/auth/admin";
 import type { Candidate, CandidateCategory } from "./candidates/types";
 
 // ============================================

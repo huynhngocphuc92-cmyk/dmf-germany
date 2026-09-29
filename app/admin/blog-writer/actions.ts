@@ -1,6 +1,6 @@
 "use server";
 
-import { createClient } from "@/utils/supabase/server";
+import { createAdminClient as createClient } from "@/lib/auth/admin";
 import {
   BlogGenerationRequest,
   GeneratedBlog,
@@ -41,13 +41,10 @@ export async function generateBlogPost(
 
     const grokMessages: GrokMessage[] = [
       { role: "system", content: buildBlogSystemPrompt(request) },
-      { role: "user", content: `Write a blog post about: "${request.topic}"` }
+      { role: "user", content: `Write a blog post about: "${request.topic}"` },
     ];
 
-    const result = await runWithGrokModelFallback(
-      process.env.XAI_API_KEY,
-      grokMessages
-    );
+    const result = await runWithGrokModelFallback(process.env.XAI_API_KEY, grokMessages);
     const rawText = result.text;
 
     // Extract text content

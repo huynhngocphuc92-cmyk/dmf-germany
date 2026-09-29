@@ -11,17 +11,14 @@ import { SalarySimulator } from "@/components/tools/SalarySimulator";
 import { TalentShowcase } from "@/components/b2b/TalentShowcase";
 import ContactSection from "@/components/sections/ContactSection";
 import { PartnerSection } from "@/components/sections/PartnerSection";
-import { useLanguage } from "@/components/providers/LanguageProvider";
-import type { Candidate } from "@/app/admin/candidates/types";
+import type { PublicCandidate } from "@/lib/candidates/public-profile";
 
 interface HomeClientProps {
   assets: Record<string, string | null>;
-  featuredCandidates: Candidate[];
+  featuredCandidates: PublicCandidate[];
 }
 
 export function HomeClient({ assets, featuredCandidates }: HomeClientProps) {
-  const { t } = useLanguage();
-
   return (
     <div className="min-h-screen">
       <HeroSection

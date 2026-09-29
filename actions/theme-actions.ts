@@ -1,31 +1,9 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { createClient } from "@/utils/supabase/server";
+import { createAdminClient as createClient } from "@/lib/auth/admin";
 import { createPublicClient } from "@/utils/supabase/public";
 import type { SiteConfigItem, SiteConfigGrouped } from "@/types/theme";
-
-// ============================================
-// AUTH HELPER
-// ============================================
-
-/**
- * Verify user is authenticated before performing admin actions
- * Returns user object if authenticated, throws error if not
- */
-async function requireAuth() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-    error,
-  } = await supabase.auth.getUser();
-
-  if (error || !user) {
-    throw new Error("Unauthorized: Authentication required");
-  }
-
-  return user;
-}
 
 // ============================================
 // GET SITE CONFIGS
@@ -195,8 +173,6 @@ export async function updateSiteConfig(
 ): Promise<{ error: string | null }> {
   try {
     // Verify authentication before any mutation
-    await requireAuth();
-
     const supabase = await createClient();
 
     // All asset types use 'value' column in site_assets table
@@ -244,8 +220,6 @@ export async function uploadThemeImage(
 ): Promise<{ url: string | null; error: string | null }> {
   try {
     // Verify authentication before any mutation
-    await requireAuth();
-
     const supabase = await createClient();
 
     const file = formData.get("file") as File;
@@ -295,8 +269,6 @@ export async function uploadThemeImage(
 export async function deleteThemeImage(url: string): Promise<{ error: string | null }> {
   try {
     // Verify authentication before any mutation
-    await requireAuth();
-
     const supabase = await createClient();
 
     // Extract path from URL (after /images/)
@@ -334,8 +306,6 @@ export async function createSiteConfig(
 ): Promise<{ error: string | null }> {
   try {
     // Verify authentication before any mutation
-    await requireAuth();
-
     const supabase = await createClient();
 
     const { error } = await supabase.from("site_assets").insert({

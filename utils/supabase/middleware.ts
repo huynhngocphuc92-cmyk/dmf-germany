@@ -1,5 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { isAdminUser } from "@/lib/auth/admin-policy";
 
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
@@ -33,20 +34,26 @@ export async function updateSession(request: NextRequest) {
 
   const {
     data: { user },
+    error,
   } = await supabase.auth.getUser();
 
-  // Protected routes - redirect to login if not authenticated
-  if (!user && request.nextUrl.pathname.startsWith("/admin")) {
+  const isAdmin = !error && isAdminUser(user);
+  // Page redirects are a UX guard; each private action/API verifies access independently.
+  if (!isAdmin && request.nextUrl.pathname.startsWith("/admin")) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";
-    return NextResponse.redirect(url);
+    const response = NextResponse.redirect(url);
+    supabaseResponse.cookies.getAll().forEach((cookie) => response.cookies.set(cookie));
+    return response;
   }
 
-  // If user is logged in and tries to access login page, redirect to admin
-  if (user && request.nextUrl.pathname === "/login") {
+  // Non-admin users must stay on login, avoiding a redirect loop.
+  if (isAdmin && request.nextUrl.pathname === "/login") {
     const url = request.nextUrl.clone();
     url.pathname = "/admin";
-    return NextResponse.redirect(url);
+    const response = NextResponse.redirect(url);
+    supabaseResponse.cookies.getAll().forEach((cookie) => response.cookies.set(cookie));
+    return response;
   }
 
   // IMPORTANT: You *must* return the supabaseResponse object as it is. If you're

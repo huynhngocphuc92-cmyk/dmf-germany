@@ -165,7 +165,9 @@ export const SmartChatBot = () => {
   const [leadData, setLeadData] = useState<LeadData>({});
   const [leadSubmitted, setLeadSubmitted] = useState(false);
   const [leadFormError, setLeadFormError] = useState<string | null>(null);
-  const [sessionId] = useState(() => `chat-${Date.now()}-${Math.random().toString(36).slice(2)}`);
+  const [sessionId, setSessionId] = useState(
+    () => `chat-${Date.now()}-${Math.random().toString(36).slice(2)}`
+  );
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -325,15 +327,24 @@ export const SmartChatBot = () => {
   const saveChatHistory = useCallback(
     async (newMessages: Message[]) => {
       try {
-        await fetch("/api/chat/history", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            sessionId,
-            messages: newMessages,
-            leadData,
-          }),
-        });
+        const save = (id: string) =>
+          fetch("/api/chat/history", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              sessionId: id,
+              messages: newMessages,
+              leadData,
+            }),
+          });
+        let response = await save(sessionId);
+        if (response.status === 403) {
+          // A legacy/unowned session stays read-only; continue in a new owned session.
+          const freshId = `chat-${crypto.randomUUID()}`;
+          setSessionId(freshId);
+          response = await save(freshId);
+        }
+        if (!response.ok) throw new Error("Chat history could not be saved");
       } catch (error) {
         console.error("[SmartChatBot] Save history error:", error);
       }
@@ -559,7 +570,10 @@ export const SmartChatBot = () => {
             aria-label="Chat öffnen"
           >
             {/* Glowing inner rings */}
-            <div className="absolute inset-0 rounded-full bg-white/20 animate-ping opacity-0 group-hover:opacity-100" style={{ animationDuration: '2s' }} />
+            <div
+              className="absolute inset-0 rounded-full bg-white/20 animate-ping opacity-0 group-hover:opacity-100"
+              style={{ animationDuration: "2s" }}
+            />
             <div className="absolute inset-0 rounded-full bg-white/10 animate-pulse" />
             <MessageCircle className="w-6 h-6 md:w-7 md:h-7 relative z-10 transition-transform duration-300 group-hover:scale-110" />
           </motion.button>

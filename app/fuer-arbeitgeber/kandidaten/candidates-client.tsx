@@ -5,19 +5,20 @@ import { Users, X } from "lucide-react";
 import { CandidateCard } from "@/components/candidates/CandidateCard";
 import { InquiryModal } from "@/components/candidates/InquiryModal";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import type { Candidate, CandidateCategory } from "@/app/admin/candidates/types";
+import type { CandidateCategory } from "@/app/admin/candidates/types";
+import type { PublicCandidate } from "@/lib/candidates/public-profile";
 import { categoryLabelsI18n } from "@/app/admin/candidates/types";
 import { Button } from "@/components/ui/button";
 
 interface CandidatesClientProps {
-  initialCandidates: Candidate[];
+  initialCandidates: PublicCandidate[];
   error: string | null;
 }
 
 export function CandidatesClient({ initialCandidates, error }: CandidatesClientProps) {
   const { lang, t } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<CandidateCategory | "all">("all");
-  const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(null);
+  const [selectedCandidate, setSelectedCandidate] = useState<PublicCandidate | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Get unique categories from candidates
@@ -39,7 +40,7 @@ export function CandidatesClient({ initialCandidates, error }: CandidatesClientP
     return initialCandidates.filter((c) => c.category === selectedCategory);
   }, [initialCandidates, selectedCategory]);
 
-  const handleRequestProfile = (candidate: Candidate) => {
+  const handleRequestProfile = (candidate: PublicCandidate) => {
     setSelectedCandidate(candidate);
     setIsModalOpen(true);
   };
