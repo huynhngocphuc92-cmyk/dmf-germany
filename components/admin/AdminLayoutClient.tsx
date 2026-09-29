@@ -45,8 +45,15 @@ export function AdminLayoutClient({ user, children }: AdminLayoutClientProps) {
       {/* Mobile Sidebar */}
       {!isDesktop && (
         <div
+          aria-hidden={!isMobileMenuOpen}
+          inert={!isMobileMenuOpen}
+          onClick={(event) => {
+            if (event.target instanceof Element && event.target.closest("a")) {
+              setIsMobileMenuOpen(false);
+            }
+          }}
           className={cn(
-            "fixed inset-y-0 left-0 z-[50] transition-transform duration-300",
+            "fixed inset-y-0 left-0 z-[50] w-[260px] transition-transform duration-300",
             isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
           )}
         >
