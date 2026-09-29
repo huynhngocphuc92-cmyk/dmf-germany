@@ -1,9 +1,9 @@
 import { pageMetadata } from "@/lib/site";
 
 export const metadata = pageMetadata(
-  "/roi-rechner",
-  "Personalkosten-Rechner",
-  "Vergleichen Sie Personalkosten anhand Ihrer Annahmen. Eine Modellrechnung ersetzt kein individuelles Angebot."
+  "/ueber-uns/ausbildung",
+  "Ausbildung und Vorbereitung",
+  "Informationen zur Vorbereitung von Auszubildenden aus Vietnam und zur Zusammenarbeit mit Ausbildungsbetrieben."
 );
 
 export default function PageLayout({ children }: { children: React.ReactNode }) {

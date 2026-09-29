@@ -34,9 +34,9 @@ beforeAll(async () => {
     create table auth.users(id uuid primary key,raw_app_meta_data jsonb,is_anonymous boolean default false);
     create function auth.uid() returns uuid language sql as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;
     insert into auth.users values('${admin}','{"role":"admin"}',false),('${person}','{}',false);
-    create table candidates(id uuid primary key default gen_random_uuid(),full_name text,category text,profession text,experience_years integer,german_level text,visa_status boolean,avatar_url text,video_url text,is_featured boolean,created_at timestamptz default now());
+    create table candidates(id uuid primary key default gen_random_uuid(),full_name text,category text,profession text,experience_years integer,german_level text,visa_status boolean,avatar_url text,video_url text,is_featured boolean,created_at timestamptz default now(),updated_at timestamptz default now());
     create table inquiries(id uuid primary key default gen_random_uuid(),created_at timestamptz default now(),email text,phone text,message text,status text,type text,client_name text);
-    create table posts(id uuid primary key default gen_random_uuid(),status text);
+    create table posts(id uuid primary key default gen_random_uuid(),status text,slug text unique,published_at timestamptz);
     create table site_config(id uuid primary key default gen_random_uuid());
     create table site_assets(id uuid primary key default gen_random_uuid());
     create table storage.objects(id uuid primary key default gen_random_uuid(),bucket_id text);
@@ -61,8 +61,14 @@ beforeAll(async () => {
     "20260929100707_reliable_intake.sql",
     "20260929100708_admin_data_boundaries.sql",
     "20260929100748_server_only_intake_cutover.sql",
+    "20260929111530_publication_and_blog_urls.sql",
   ])
     await db.exec(await readFile(`supabase/migrations/${name}`, "utf8"));
+  await role("authenticated", admin);
+  await db.query(
+    "update candidates set publication_status='published',publication_valid_until=current_date+30,publication_consent_note='Fixture consent documented' where id=$1",
+    [profile]
+  );
 }, 30000);
 afterAll(async () => {
   await db?.close();
@@ -210,4 +216,124 @@ it("preserves published blog reads while limiting content and storage mutations 
   await db.query("insert into storage.objects(bucket_id) values('images')");
   await db.query("insert into site_assets default values");
   expect((await db.query("select * from posts")).rows).toHaveLength(2);
+});
+
+it("requires review, hides drafts/expired profiles and preserves private consent evidence", async () => {
+  await role("authenticated", admin);
+  const draft = nextId();
+  await db.query(
+    "insert into candidates(id,full_name,profession,is_featured,visa_status) values($1,'Fixture person','Pflege',true,true)",
+    [draft]
+  );
+  await role("anon");
+  expect((await db.query("select id from candidates where id=$1", [draft])).rows).toHaveLength(0);
+  await expect(db.query("select publication_consent_note from candidates")).rejects.toMatchObject({
+    code: "42501",
+  });
+  await role("authenticated", person);
+  expect(
+    (
+      await db.query(
+        "update candidates set publication_status='published' where id=$1 returning id",
+        [draft]
+      )
+    ).rows
+  ).toHaveLength(0);
+  await role("authenticated", admin);
+  await expect(
+    db.query(
+      "update candidates set publication_status='published',publication_valid_until=current_date+30 where id=$1",
+      [draft]
+    )
+  ).rejects.toMatchObject({ code: "23514" });
+  await db.query(
+    "update candidates set publication_status='published',publication_valid_until=current_date+30,publication_consent_note='Fixture written consent' where id=$1",
+    [draft]
+  );
+  expect(
+    (await db.query("select publication_reviewed_by from candidates where id=$1", [draft])).rows
+  ).toEqual([{ publication_reviewed_by: admin }]);
+  await db.query("update candidates set is_featured=false where id=$1", [draft]);
+  await role("anon");
+  expect((await db.query("select id from candidates where id=$1", [draft])).rows).toHaveLength(1);
+  await role("service_role");
+  expect(await receive(nextId(), "profile", { ...payload, candidateId: draft })).toEqual({
+    duplicate: false,
+  });
+  await role("authenticated", admin);
+  const revision = (
+    await db.query<{ revision: string }>(
+      "select updated_at::text revision from candidates where id=$1",
+      [draft]
+    )
+  ).rows[0].revision;
+  await db.query("update candidates set profession='Elektriker' where id=$1", [draft]);
+  expect(
+    (
+      await db.query(
+        "update candidates set publication_status='published' where id=$1 and updated_at=$2::timestamptz returning id",
+        [draft, revision]
+      )
+    ).rows
+  ).toHaveLength(0);
+  expect(
+    (await db.query("select publication_status from candidates where id=$1", [draft])).rows
+  ).toEqual([{ publication_status: "draft" }]);
+  await role("service_role");
+  await expect(
+    receive(nextId(), "profile", { ...payload, candidateId: draft })
+  ).rejects.toMatchObject({ code: "P0002" });
+  await role("authenticated", admin);
+  await db.query("update candidates set full_name='Test User' where id=$1", [draft]);
+  await expect(
+    db.query("update candidates set publication_status='published' where id=$1", [draft])
+  ).rejects.toMatchObject({ code: "23514" });
+  // Model time passing without granting public access or weakening the actual policy.
+  await role("postgres");
+  await db.exec("alter table candidates disable trigger dmf_candidate_publication_review");
+  await db.query(
+    "update candidates set full_name='Fixture person',publication_status='published',publication_valid_until=current_date-1 where id=$1",
+    [draft]
+  );
+  await db.exec("alter table candidates enable trigger dmf_candidate_publication_review");
+  await role("anon");
+  expect((await db.query("select id from candidates where id=$1", [draft])).rows).toHaveLength(0);
+  await role("service_role");
+  await expect(
+    receive(nextId(), "profile", { ...payload, candidateId: draft })
+  ).rejects.toMatchObject({ code: "P0002" });
+});
+it("keeps blog alias history atomic, avoids collisions and hides unpublished targets", async () => {
+  await role("authenticated", admin);
+  const id = nextId();
+  await db.query(
+    "insert into posts(id,status,slug,published_at) values($1,'published','original',now())",
+    [id]
+  );
+  await db.query("update posts set slug='second' where id=$1", [id]);
+  await db.query("update posts set slug='latest' where id=$1", [id]);
+  await role("anon");
+  expect(
+    (await db.query("select slug,post_id from post_slug_redirects order by slug")).rows
+  ).toEqual([
+    { slug: "original", post_id: id },
+    { slug: "second", post_id: id },
+  ]);
+  await expect(
+    db.query("insert into post_slug_redirects(slug,post_id) values('forged',$1)", [id])
+  ).rejects.toMatchObject({ code: "42501" });
+  await role("authenticated", admin);
+  await expect(
+    db.query("insert into posts(status,slug) values('draft','original')")
+  ).rejects.toMatchObject({ code: "23505" });
+  await db.query("update posts set status='draft' where id=$1", [id]);
+  await role("anon");
+  expect((await db.query("select slug from post_slug_redirects")).rows).toHaveLength(0);
+  await role("authenticated", admin);
+  await db.query("update posts set slug='original',status='published' where id=$1", [id]);
+  await role("anon");
+  expect((await db.query("select slug from post_slug_redirects order by slug")).rows).toEqual([
+    { slug: "latest" },
+    { slug: "second" },
+  ]);
 });

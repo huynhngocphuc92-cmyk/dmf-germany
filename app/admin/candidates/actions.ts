@@ -1,5 +1,11 @@
 "use server";
 
+import { z } from "zod";
+import {
+  candidateFormSchema,
+  publicationReviewSchema,
+  type PublicationReviewData,
+} from "@/lib/validations/schemas";
 import { revalidatePath } from "next/cache";
 import { createAdminClient as createClient } from "@/lib/auth/admin";
 import type { CandidateFormData, Candidate } from "./types";
@@ -57,147 +63,116 @@ export async function getCandidate(id: string): Promise<{
   }
 }
 
-// ============================================
-// HELPER: Sanitize form data for PostgreSQL
-// ============================================
-
-function sanitizeFormData(formData: CandidateFormData | Partial<CandidateFormData>) {
-  // Ensure required fields always have stable values before persistence.
-  return {
-    // Required fields
-    full_name: formData.full_name?.trim() || "",
-    email: formData.email?.trim() || "",
-    category: formData.category || "skilled",
-    experience_years: formData.experience_years ?? 0,
-    german_level: formData.german_level || "B1",
-    visa_status: formData.visa_status ?? false,
-    is_featured: formData.is_featured ?? false,
-
-    // Optional fields - convert empty strings to null
-    phone: formData.phone?.trim() || null,
-    date_of_birth: formData.date_of_birth?.trim() || null,
-    profession: formData.profession?.trim() || null,
-    notes: formData.notes?.trim() || null,
-    avatar_url: formData.avatar_url?.trim() || null,
-    video_url: formData.video_url?.trim() || null, // YouTube video URL
-  };
+function invalidateCandidates(id?: string) {
+  revalidatePath("/admin/candidates");
+  if (id) revalidatePath(`/admin/candidates/${id}/preview`);
+  revalidatePath("/");
+  revalidatePath("/fuer-arbeitgeber/kandidaten");
+  revalidatePath("/sitemap.xml");
 }
 
-// ============================================
-// CREATE CANDIDATE
-// ============================================
+function normalizeCandidate(data: Partial<CandidateFormData>) {
+  return Object.fromEntries(
+    Object.entries(data).map(([key, value]) => [
+      key,
+      typeof value === "string" ? value.trim() || null : value,
+    ])
+  );
+}
 
 export async function createCandidate(
   formData: CandidateFormData
 ): Promise<{ success: boolean; error: string | null; data?: Candidate }> {
   try {
-    // Verify authentication before any mutation
     const supabase = await createClient();
-
-    // Validate required fields
-    if (!formData.full_name?.trim()) {
-      return { success: false, error: "Name ist erforderlich." };
-    }
-    if (!formData.email?.trim()) {
-      return { success: false, error: "E-Mail ist erforderlich." };
-    }
-    if (!formData.category) {
-      return { success: false, error: "Kategorie ist erforderlich." };
-    }
-
-    // Sanitize data before sending to database
-    const sanitizedData = sanitizeFormData(formData);
-
+    const parsed = candidateFormSchema.safeParse(formData);
+    if (!parsed.success) return { success: false, error: parsed.error.issues[0].message };
     const { data, error } = await supabase
       .from("candidates")
       .insert({
-        full_name: sanitizedData.full_name,
-        email: sanitizedData.email,
-        category: sanitizedData.category,
-        phone: sanitizedData.phone,
-        date_of_birth: sanitizedData.date_of_birth,
-        profession: sanitizedData.profession,
-        notes: sanitizedData.notes,
-        experience_years: sanitizedData.experience_years,
-        german_level: sanitizedData.german_level,
-        visa_status: sanitizedData.visa_status,
-        is_featured: sanitizedData.is_featured,
-        avatar_url: sanitizedData.avatar_url,
-        video_url: sanitizedData.video_url,
-        created_at: new Date().toISOString(),
+        ...normalizeCandidate(parsed.data),
+        publication_status: "draft",
         updated_at: new Date().toISOString(),
       })
       .select()
       .single();
-
-    if (error) {
-      console.error("Error creating candidate:", error);
-      return { success: false, error: error.message };
-    }
-
-    revalidatePath("/admin/candidates");
+    if (error) return { success: false, error: "Profil konnte nicht gespeichert werden." };
+    invalidateCandidates(data.id);
     return { success: true, error: null, data: data as Candidate };
-  } catch (err) {
-    console.error("Unexpected error:", err);
-    return { success: false, error: "Ein unerwarteter Fehler ist aufgetreten." };
+  } catch {
+    return { success: false, error: "Profil konnte nicht gespeichert werden." };
   }
 }
-
-// ============================================
-// UPDATE CANDIDATE
-// ============================================
 
 export async function updateCandidate(
   id: string,
   formData: Partial<CandidateFormData>
 ): Promise<{ success: boolean; error: string | null; data?: Candidate }> {
   try {
-    // Verify authentication before any mutation
     const supabase = await createClient();
-
-    // Sanitize data before sending to database
-    const sanitizedData = sanitizeFormData(formData);
-
-    // Build the update payload from the normalized form data.
-    const updateData: Record<string, unknown> = {
-      updated_at: new Date().toISOString(),
-    };
-
-    // Only include fields that should be written back to the database.
-    if (sanitizedData.full_name !== undefined) updateData.full_name = sanitizedData.full_name;
-    if (sanitizedData.email !== undefined) updateData.email = sanitizedData.email;
-    if (sanitizedData.category !== undefined) updateData.category = sanitizedData.category;
-    if (sanitizedData.phone !== undefined) updateData.phone = sanitizedData.phone;
-    if (sanitizedData.date_of_birth !== undefined)
-      updateData.date_of_birth = sanitizedData.date_of_birth;
-    if (sanitizedData.profession !== undefined) updateData.profession = sanitizedData.profession;
-    if (sanitizedData.notes !== undefined) updateData.notes = sanitizedData.notes;
-    if (sanitizedData.experience_years !== undefined)
-      updateData.experience_years = sanitizedData.experience_years;
-    if (sanitizedData.german_level !== undefined)
-      updateData.german_level = sanitizedData.german_level;
-    if (sanitizedData.visa_status !== undefined) updateData.visa_status = sanitizedData.visa_status;
-    if (sanitizedData.is_featured !== undefined) updateData.is_featured = sanitizedData.is_featured;
-    if (sanitizedData.avatar_url !== undefined) updateData.avatar_url = sanitizedData.avatar_url;
-    if (sanitizedData.video_url !== undefined) updateData.video_url = sanitizedData.video_url;
-
+    const parsed = candidateFormSchema.partial().safeParse(formData);
+    if (!z.string().uuid().safeParse(id).success || !parsed.success)
+      return { success: false, error: "Bitte Profildaten prüfen." };
     const { data, error } = await supabase
       .from("candidates")
-      .update(updateData)
+      .update({ ...normalizeCandidate(parsed.data), updated_at: new Date().toISOString() })
       .eq("id", id)
       .select()
       .single();
-
-    if (error) {
-      console.error("Error updating candidate:", error);
-      return { success: false, error: error.message };
-    }
-
-    revalidatePath("/admin/candidates");
+    if (error) return { success: false, error: "Profil konnte nicht gespeichert werden." };
+    invalidateCandidates(id);
     return { success: true, error: null, data: data as Candidate };
-  } catch (err) {
-    console.error("Unexpected error:", err);
-    return { success: false, error: "Ein unerwarteter Fehler ist aufgetreten." };
+  } catch {
+    return { success: false, error: "Profil konnte nicht gespeichert werden." };
+  }
+}
+
+export async function publishCandidate(
+  id: string,
+  input: PublicationReviewData
+): Promise<{ error: string | null }> {
+  try {
+    const supabase = await createClient();
+    const parsed = publicationReviewSchema.safeParse(input);
+    if (!z.string().uuid().safeParse(id).success || !parsed.success)
+      return { error: "Bitte Einwilligung und Gültigkeit vollständig prüfen." };
+    const { error, data } = await supabase
+      .from("candidates")
+      .update({
+        publication_status: "published",
+        publication_valid_until: parsed.data.valid_until,
+        publication_consent_note: parsed.data.consent_note,
+        updated_at: new Date().toISOString(),
+      })
+      .eq("id", id)
+      .eq("updated_at", parsed.data.expected_updated_at)
+      .select("id")
+      .single();
+    if (error || !data)
+      return {
+        error:
+          "Freigabe nicht möglich. Profil neu laden und Angaben, Musterinhalte sowie Einwilligung prüfen.",
+      };
+    invalidateCandidates(id);
+    return { error: null };
+  } catch {
+    return { error: "Freigabe fehlgeschlagen." };
+  }
+}
+
+export async function unpublishCandidate(id: string): Promise<{ error: string | null }> {
+  try {
+    const supabase = await createClient();
+    if (!z.string().uuid().safeParse(id).success) return { error: "Ungültiges Profil." };
+    const { error } = await supabase
+      .from("candidates")
+      .update({ publication_status: "draft", updated_at: new Date().toISOString() })
+      .eq("id", id);
+    if (error) return { error: "Zurückziehen fehlgeschlagen." };
+    invalidateCandidates(id);
+    return { error: null };
+  } catch {
+    return { error: "Zurückziehen fehlgeschlagen." };
   }
 }
 
@@ -235,7 +210,7 @@ export async function deleteCandidate(
       return { success: false, error: error.message };
     }
 
-    revalidatePath("/admin/candidates");
+    invalidateCandidates(id);
     return { success: true, error: null };
   } catch (err) {
     console.error("Unexpected error:", err);

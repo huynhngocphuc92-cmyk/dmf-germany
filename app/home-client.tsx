@@ -3,14 +3,11 @@
 import { HeroSection } from "@/components/sections/HeroSection";
 import { ServiceGateway } from "@/components/home/ServiceGateway";
 import { AboutSection } from "@/components/sections/AboutSection";
-import { StatsDashboard } from "@/components/b2b/StatsDashboard";
 import { ValuesSection } from "@/components/sections/ValuesSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { ProcessRoadmap } from "@/components/b2b/ProcessRoadmap";
 import { SalarySimulator } from "@/components/tools/SalarySimulator";
-import { TalentShowcase } from "@/components/b2b/TalentShowcase";
 import ContactSection from "@/components/sections/ContactSection";
-import { PartnerSection } from "@/components/sections/PartnerSection";
 import type { PublicCandidate } from "@/lib/candidates/public-profile";
 
 interface HomeClientProps {
@@ -26,7 +23,6 @@ export function HomeClient({ assets, featuredCandidates }: HomeClientProps) {
         heroOverlayOpacity={assets["home_hero_overlay_opacity"]}
         featuredCandidates={featuredCandidates}
       />
-      <PartnerSection partnerBanner={assets["home_partner_banner"]} />
       <ServiceGateway
         nursingImg={assets["home_prog_nursing_img"]}
         techImg={assets["home_prog_tech_img"]}
@@ -36,12 +32,10 @@ export function HomeClient({ assets, featuredCandidates }: HomeClientProps) {
         introImg={assets["home_intro_img"]}
         videoThumb={assets["home_intro_video_thumb"]}
       />
-      <StatsDashboard />
       <ValuesSection />
       <ServicesSection />
       <ProcessRoadmap />
       <SalarySimulator />
-      <TalentShowcase />
       <ContactSection />
     </div>
   );

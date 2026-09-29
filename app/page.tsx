@@ -1,10 +1,14 @@
+import { pageMetadata, SITE_DESCRIPTION } from "@/lib/site";
+export const metadata = {
+  ...pageMetadata("/", "Fachkräfte aus Vietnam für Deutschland", SITE_DESCRIPTION),
+  title: { absolute: "Fachkräfte aus Vietnam für Deutschland | DMF Talents" },
+};
 import { HomeClient } from "./home-client";
 import { loadAssets } from "@/lib/theme-helpers";
 import { getHomepageFeaturedCandidates } from "@/lib/supabase/candidates";
 
-// ISR: Revalidate every 60 seconds to balance fresh data and performance
-// Admin updates will appear within 60 seconds
-export const revalidate = 60;
+// Read publication state at request time, including withdrawals and expiry.
+export const dynamic = "force-dynamic";
 
 export default async function Home() {
   // Load all dynamic assets from database

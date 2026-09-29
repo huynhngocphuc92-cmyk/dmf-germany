@@ -10,8 +10,8 @@ import { SmartChatBot } from "@/components/bot/SmartChatBot";
 import { CookieConsent } from "@/components/CookieConsent";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 
-// Base URL for absolute URLs in metadata
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://dmf-vietnam.de";
+import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "@/lib/site";
+
 const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans", display: "swap" });
 const geistMono = Geist_Mono({
   subsets: ["latin"],
@@ -20,13 +20,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(baseUrl),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "DMF Talents | Fachkräfte aus Vietnam für Deutschland",
     template: "%s | DMF Talents",
   },
-  description:
-    "Spezialisierte Personalvermittlung für Pflege, Handwerk & Industrie. Full-Service von Rekrutierung bis Visum. Jetzt Fachkräfte finden!",
+  description: SITE_DESCRIPTION,
   keywords: [
     "Personalvermittlung Vietnam",
     "Fachkräfte Deutschland",
@@ -41,9 +40,9 @@ export const metadata: Metadata = {
     "Handwerk Personal",
     "Industrie Personal",
   ],
-  authors: [{ name: "DMF Vietnam" }],
-  creator: "DMF Vietnam",
-  publisher: "DMF Vietnam",
+  authors: [{ name: SITE_NAME }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
   formatDetection: {
     email: false,
     address: false,
@@ -52,17 +51,15 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "de_DE",
-    url: baseUrl,
+    url: SITE_URL,
     siteName: "DMF Talents",
     title: "DMF Talents | Fachkräfte aus Vietnam für Deutschland",
-    description:
-      "Spezialisierte Personalvermittlung für Pflege, Handwerk & Industrie. Full-Service von Rekrutierung bis Visum. Jetzt Fachkräfte finden!",
+    description: SITE_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
     title: "DMF Talents | Fachkräfte aus Vietnam für Deutschland",
-    description:
-      "Spezialisierte Personalvermittlung für Pflege, Handwerk & Industrie. Full-Service von Rekrutierung bis Visum.",
+    description: SITE_DESCRIPTION,
   },
   icons: {
     icon: [{ url: "/favicon.ico" }, { url: "/icon.png", type: "image/png", sizes: "512x512" }],
@@ -79,13 +76,6 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
-  },
-  alternates: {
-    canonical: baseUrl,
-  },
-  verification: {
-    // Add Google Search Console verification if available
-    // google: 'verification_token_here',
   },
 };
 

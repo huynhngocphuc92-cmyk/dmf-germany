@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 
 import { useState, useMemo } from "react";
 import { Users, X } from "lucide-react";
@@ -118,11 +119,15 @@ export function CandidatesClient({ initialCandidates, error }: CandidatesClientP
             <div className="text-center py-16">
               <Users className="h-16 w-16 text-gray-300 mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                Hiện chưa có hồ sơ phù hợp
+                Aktuell keine passenden öffentlichen Profile
               </h3>
               <p className="text-gray-600">
-                Bitte versuchen Sie es mit anderen Filtern oder kommen Sie später wieder.
+                Senden Sie uns Ihren Personalbedarf. Wir klären passende Profile und Verfügbarkeit
+                mit Ihnen.
               </p>
+              <Link href="/#contact" className="inline-block mt-5 text-primary underline">
+                Personalbedarf besprechen
+              </Link>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">

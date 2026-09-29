@@ -10,6 +10,9 @@ const withBundleAnalyzer = bundleAnalyzer({
 });
 
 const nextConfig: NextConfig = {
+  // Resolve dynamic blog metadata before headers: old URLs must be real 308s,
+  // and unpublished posts real 404s, rather than streamed 200 responses.
+  htmlLimitedBots: /.*/,
   // 1. Image Optimization: Allow Supabase Storage
   images: {
     formats: ["image/avif", "image/webp"],
@@ -42,6 +45,8 @@ const nextConfig: NextConfig = {
   // 3. Security Headers
   async headers() {
     return [
+      { source: "/admin/:path*", headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }] },
+      { source: "/login", headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }] },
       {
         source: "/:path*",
         headers: [
@@ -78,6 +83,7 @@ const nextConfig: NextConfig = {
               "font-src 'self'",
               "img-src 'self' data: blob: https://*.supabase.co https://images.unsplash.com https://dmf.edu.vn https://www.google-analytics.com https://cdnjs.cloudflare.com https://*.tile.openstreetmap.org",
               "connect-src 'self' https://*.supabase.co https://api.telegram.org https://www.google-analytics.com https://*.tile.openstreetmap.org https://api.x.ai",
+              "frame-src https://www.youtube-nocookie.com",
               "frame-ancestors 'self'",
               "form-action 'self'",
               "base-uri 'self'",

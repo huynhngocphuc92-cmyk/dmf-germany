@@ -1,5 +1,6 @@
 "use server";
 
+import { postFormSchema } from "@/lib/validations/schemas";
 import { revalidatePath } from "next/cache";
 import { createAdminClient as createClient } from "@/lib/auth/admin";
 import { createPublicClient } from "@/utils/supabase/public";
@@ -83,7 +84,7 @@ export async function getPostBySlug(
       .select("*")
       .eq("slug", slug)
       .eq("status", "published")
-      .single();
+      .maybeSingle();
 
     if (error) {
       console.error("Error fetching post by slug:", error);
@@ -106,6 +107,7 @@ export async function createPost(
 ): Promise<{ data: Post | null; error: string | null }> {
   try {
     const supabase = await createClient();
+    formData = postFormSchema.parse(formData);
 
     // Get current user
     const {
@@ -133,7 +135,8 @@ export async function createPost(
     }
 
     revalidatePath("/admin/posts");
-    revalidatePath("/blog");
+    revalidatePath("/blog", "layout");
+    revalidatePath("/sitemap.xml");
 
     return { data: data as Post, error: null };
   } catch (err) {
@@ -153,10 +156,11 @@ export async function updatePost(
   try {
     const supabase = await createClient();
 
+    formData = postFormSchema.parse(formData);
     // Get existing post to check if we need to update published_at
     const { data: existingPost } = await supabase
       .from("posts")
-      .select("status, published_at")
+      .select("status, published_at, slug")
       .eq("id", id)
       .single();
 
@@ -192,8 +196,10 @@ export async function updatePost(
     }
 
     revalidatePath("/admin/posts");
-    revalidatePath("/blog");
+    revalidatePath("/blog", "layout");
+    revalidatePath("/sitemap.xml");
     revalidatePath(`/blog/${formData.slug}`);
+    if (existingPost?.slug) revalidatePath(`/blog/${existingPost.slug}`);
 
     return { data: data as Post, error: null };
   } catch (err) {
@@ -233,7 +239,8 @@ export async function deletePost(id: string): Promise<{ error: string | null }> 
     }
 
     revalidatePath("/admin/posts");
-    revalidatePath("/blog");
+    revalidatePath("/blog", "layout");
+    revalidatePath("/sitemap.xml");
     if (post?.slug) {
       revalidatePath(`/blog/${post.slug}`);
     }
@@ -337,4 +344,24 @@ export async function getRelatedPosts(
     console.error("Error in getRelatedPosts:", err);
     return { data: null, error: "Failed to fetch related posts" };
   }
+}
+
+/** Resolve directly to the current published slug, so repeated renames never form chains. */
+export async function getPublishedRedirect(slug: string): Promise<string | null> {
+  const supabase = createPublicClient();
+  const { data: alias, error: aliasError } = await supabase
+    .from("post_slug_redirects")
+    .select("post_id")
+    .eq("slug", slug)
+    .maybeSingle();
+  if (aliasError) throw new Error("Blog URL lookup unavailable");
+  if (!alias) return null;
+  const { data: post, error: postError } = await supabase
+    .from("posts")
+    .select("slug")
+    .eq("id", alias.post_id)
+    .eq("status", "published")
+    .maybeSingle();
+  if (postError) throw new Error("Blog URL target unavailable");
+  return post?.slug && post.slug !== slug ? post.slug : null;
 }

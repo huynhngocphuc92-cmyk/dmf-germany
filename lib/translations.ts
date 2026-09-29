@@ -1,3 +1,4 @@
+import { SERVICE_OVERVIEWS } from "@/lib/content/service-overviews";
 import { VIETNAM_OFFICE_CONTACT } from "@/lib/company/contact";
 
 export const TRANSLATIONS = {
@@ -16,14 +17,14 @@ export const TRANSLATIONS = {
     hero: {
       title: "Brücken bauen zwischen Vietnam und Deutschland",
       subtitle:
-        "DMF Vietnam vermittelt qualifizierte Fachkräfte und Auszubildende aus Vietnam an deutsche Unternehmen.",
+        "DMF Talents vermittelt qualifizierte Fachkräfte und Auszubildende aus Vietnam an deutsche Unternehmen.",
       cta_primary: "Kontakt aufnehmen",
       cta_secondary: "Unternehmensprofil (PDF)",
       stats_candidates: "Kandidaten",
       stats_visa: "Visa Erfolg",
     },
     about: {
-      title: "Über DMF Vietnam",
+      title: "Über DMF Talents",
       subtitle: "Ihr zuverlässiger Partner für die Fachkräftegewinnung",
       description:
         "Wir verbinden deutsche Qualität mit vietnamesischem Fleiß. Unsere Mission ist es, dem Fachkräftemangel in Deutschland durch qualifizierte Talente aus Vietnam entgegenzuwirken.",
@@ -171,7 +172,7 @@ export const TRANSLATIONS = {
             title: "5. Drittanbieter-Tools und Datentransfer",
             hostingTitle: "Hosting (Vercel Inc.)",
             hostingText:
-              "Diese Website wird auf Servern von Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA gehostet. Beim Aufruf unserer Website werden automatisch Verbindungsdaten an die Server von Vercel übermittelt. Die Rechtsgrundlage hierfür ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der technischen Bereitstellung der Website). Vercel ist nach EU-US Privacy Shield zertifiziert und verpflichtet sich, die DSGVO-Standards einzuhalten.",
+              "Diese Website wird auf Servern von Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA gehostet. Beim Aufruf unserer Website werden automatisch Verbindungsdaten an die Server von Vercel übermittelt. Die Rechtsgrundlage hierfür ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der technischen Bereitstellung der Website).",
             telegramTitle: "Telegram API (Interne Benachrichtigungen)",
             telegramText:
               "Zur internen Benachrichtigung unserer Mitarbeiter über eingehende Anfragen (z.B. über Kontaktformular oder Chatbot) nutzen wir die Telegram API. Ihre Daten (Name, E-Mail, Nachricht) werden dabei ausschließlich für die Weiterleitung der Anfrage an unser Team verwendet und nicht für andere Zwecke genutzt. Die Datenübertragung erfolgt verschlüsselt über die Telegram-API. Telegram wird nicht als CRM-System genutzt, sondern ausschließlich für interne Benachrichtigungen.",
@@ -180,7 +181,7 @@ export const TRANSLATIONS = {
               "Auf unserer Website verwenden wir Leaflet in Kombination mit OpenStreetMap (OSM) zur Anzeige von interaktiven Karten. Diese Dienste werden lokal gehostet bzw. über OSM-Server bereitgestellt und erheben keine personenbezogenen Daten von Ihnen. Es werden keine Cookies gesetzt und keine Tracking-Daten an Dritte übertragen.",
             calendlyTitle: "Calendly (Terminvereinbarung)",
             calendlyText:
-              "Für die Terminvereinbarung nutzen wir den Dienst Calendly (Calendly LLC, 271 17th Street NW, 10th Floor, Atlanta, GA 30363, USA). Wenn Sie einen Termin buchen, werden Ihre Angaben (Name, E-Mail, gewählter Termin) an Calendly übermittelt. Calendly ist nach EU-US Privacy Shield zertifiziert. Die Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Durchführung vorvertraglicher Maßnahmen). Weitere Informationen finden Sie in der Datenschutzerklärung von Calendly: https://calendly.com/privacy",
+              "Für die Terminvereinbarung nutzen wir den Dienst Calendly (Calendly LLC, 271 17th Street NW, 10th Floor, Atlanta, GA 30363, USA). Wenn Sie einen Termin buchen, werden Ihre Angaben (Name, E-Mail, gewählter Termin) an Calendly übermittelt. Die Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Durchführung vorvertraglicher Maßnahmen). Weitere Informationen finden Sie in der Datenschutzerklärung von Calendly: https://calendly.com/privacy",
           },
           rights: {
             title: "6. Ihre Rechte als betroffene Person",
@@ -287,7 +288,7 @@ export const TRANSLATIONS = {
       legal: "Rechtliches",
       links: "Links",
       contact: "Kontakt",
-      company_name: "DMF Education",
+      company_name: "DMF Talents",
       links_title: "Links",
       legal_title: "Rechtliches",
       impressum: "Impressum",
@@ -444,7 +445,7 @@ export const TRANSLATIONS = {
     candidates: {
       page_title: "Unsere Top-Talente",
       page_subtitle:
-        "Những ứng viên đã qua sơ tuyển và sẵn sàng làm việc. Alle Kandidaten haben ihre Qualifikationen bestätigt und sind visa-ready.",
+        "Freigegebene Kurzprofile aus Vietnam. Qualifikation und Verfügbarkeit werden für Ihre Anfrage individuell abgestimmt.",
       code_label: "Kandidat",
       year_experience: "Jahr Erfahrung",
       years_experience: "Jahre Erfahrung",
@@ -497,6 +498,7 @@ export const TRANSLATIONS = {
       exp: "10+ Jahre Erfahrung",
     },
     service_pages: {
+      overview: SERVICE_OVERVIEWS.de,
       azubi: {
         hero: {
           badge: "Ausbildung §16a AufenthG",
@@ -1369,7 +1371,7 @@ export const TRANSLATIONS = {
             title: "5. Third-Party Tools and Data Transfer",
             hostingTitle: "Hosting (Vercel Inc.)",
             hostingText:
-              "This website is hosted on servers of Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA. When accessing our website, connection data is automatically transmitted to Vercel's servers. The legal basis for this is Art. 6 para. 1 lit. f GDPR (legitimate interest in the technical provision of the website). Vercel is certified under EU-US Privacy Shield and commits to comply with GDPR standards.",
+              "This website is hosted on servers of Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA. When accessing our website, connection data is automatically transmitted to Vercel's servers. The legal basis for this is Art. 6 para. 1 lit. f GDPR (legitimate interest in the technical provision of the website).",
             telegramTitle: "Telegram API (Internal Notifications)",
             telegramText:
               "For internal notification of our employees about incoming inquiries (e.g., via contact form or chatbot), we use the Telegram API. Your data (name, email, message) is used exclusively for forwarding the inquiry to our team and is not used for other purposes. Data transmission is encrypted via the Telegram API. Telegram is not used as a CRM system, but exclusively for internal notifications.",
@@ -1378,7 +1380,7 @@ export const TRANSLATIONS = {
               "On our website, we use Leaflet in combination with OpenStreetMap (OSM) to display interactive maps. These services are hosted locally or provided via OSM servers and do not collect personal data from you. No cookies are set and no tracking data is transmitted to third parties.",
             calendlyTitle: "Calendly (Appointment Scheduling)",
             calendlyText:
-              "For appointment scheduling, we use the Calendly service (Calendly LLC, 271 17th Street NW, 10th Floor, Atlanta, GA 30363, USA). When you book an appointment, your information (name, email, selected appointment) is transmitted to Calendly. Calendly is certified under EU-US Privacy Shield. The legal basis is Art. 6 para. 1 lit. b GDPR (performance of pre-contractual measures). Further information can be found in Calendly's privacy policy: https://calendly.com/privacy",
+              "For appointment scheduling, we use the Calendly service (Calendly LLC, 271 17th Street NW, 10th Floor, Atlanta, GA 30363, USA). When you book an appointment, your information (name, email, selected appointment) is transmitted to Calendly. The legal basis is Art. 6 para. 1 lit. b GDPR (performance of pre-contractual measures). Further information can be found in Calendly's privacy policy: https://calendly.com/privacy",
           },
           rights: {
             title: "6. Your Rights as a Data Subject",
@@ -1485,7 +1487,7 @@ export const TRANSLATIONS = {
       legal: "Legal",
       links: "Links",
       contact: "Contact",
-      company_name: "DMF Education",
+      company_name: "DMF Talents",
       links_title: "Links",
       legal_title: "Legal",
       impressum: "Imprint",
@@ -1639,7 +1641,7 @@ export const TRANSLATIONS = {
     candidates: {
       page_title: "Our Top Talents",
       page_subtitle:
-        "Pre-screened candidates ready to work. All candidates have confirmed qualifications and are visa-ready.",
+        "Approved short profiles from Vietnam. Qualifications and availability are discussed for your specific request.",
       code_label: "Candidate",
       year_experience: "Year Experience",
       years_experience: "Years Experience",
@@ -1692,6 +1694,7 @@ export const TRANSLATIONS = {
       exp: "10+ Years Experience",
     },
     service_pages: {
+      overview: SERVICE_OVERVIEWS.en,
       azubi: {
         hero: {
           badge: "Training §16a Residence Act",
@@ -2556,7 +2559,7 @@ export const TRANSLATIONS = {
             title: "5. Công cụ Bên thứ ba và Chuyển Dữ liệu",
             hostingTitle: "Hosting (Vercel Inc.)",
             hostingText:
-              "Website này được lưu trữ trên máy chủ của Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA. Khi truy cập website của chúng tôi, dữ liệu kết nối được tự động truyền đến máy chủ của Vercel. Cơ sở pháp lý cho việc này là Điều 6 Khoản 1 Mục f GDPR (lợi ích hợp pháp trong việc cung cấp kỹ thuật website). Vercel được chứng nhận theo EU-US Privacy Shield và cam kết tuân thủ các tiêu chuẩn GDPR.",
+              "Website này được lưu trữ trên máy chủ của Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA. Khi truy cập website của chúng tôi, dữ liệu kết nối được tự động truyền đến máy chủ của Vercel. Cơ sở pháp lý cho việc này là Điều 6 Khoản 1 Mục f GDPR (lợi ích hợp pháp trong việc cung cấp kỹ thuật website).",
             telegramTitle: "Telegram API (Thông báo Nội bộ)",
             telegramText:
               "Để thông báo nội bộ cho nhân viên của chúng tôi về các yêu cầu đến (ví dụ: qua biểu mẫu liên hệ hoặc chatbot), chúng tôi sử dụng Telegram API. Dữ liệu của bạn (tên, email, tin nhắn) chỉ được sử dụng để chuyển tiếp yêu cầu đến nhóm của chúng tôi và không được sử dụng cho mục đích khác. Việc truyền dữ liệu được mã hóa qua Telegram API. Telegram không được sử dụng như hệ thống CRM, mà chỉ cho thông báo nội bộ.",
@@ -2565,7 +2568,7 @@ export const TRANSLATIONS = {
               "Trên website của chúng tôi, chúng tôi sử dụng Leaflet kết hợp với OpenStreetMap (OSM) để hiển thị bản đồ tương tác. Các dịch vụ này được lưu trữ cục bộ hoặc được cung cấp qua máy chủ OSM và không thu thập dữ liệu cá nhân từ bạn. Không có cookie nào được đặt và không có dữ liệu theo dõi nào được truyền cho bên thứ ba.",
             calendlyTitle: "Calendly (Đặt lịch hẹn)",
             calendlyText:
-              "Để đặt lịch hẹn, chúng tôi sử dụng dịch vụ Calendly (Calendly LLC, 271 17th Street NW, 10th Floor, Atlanta, GA 30363, USA). Khi bạn đặt lịch hẹn, thông tin của bạn (tên, email, lịch hẹn đã chọn) được truyền đến Calendly. Calendly được chứng nhận theo EU-US Privacy Shield. Cơ sở pháp lý là Điều 6 Khoản 1 Mục b GDPR (thực hiện các biện pháp trước hợp đồng). Thông tin thêm có thể được tìm thấy trong chính sách bảo mật của Calendly: https://calendly.com/privacy",
+              "Để đặt lịch hẹn, chúng tôi sử dụng dịch vụ Calendly (Calendly LLC, 271 17th Street NW, 10th Floor, Atlanta, GA 30363, USA). Khi bạn đặt lịch hẹn, thông tin của bạn (tên, email, lịch hẹn đã chọn) được truyền đến Calendly. Cơ sở pháp lý là Điều 6 Khoản 1 Mục b GDPR (thực hiện các biện pháp trước hợp đồng). Thông tin thêm có thể được tìm thấy trong chính sách bảo mật của Calendly: https://calendly.com/privacy",
           },
           rights: {
             title: "6. Quyền của Bạn với tư cách là Người bị ảnh hưởng",
@@ -2672,7 +2675,7 @@ export const TRANSLATIONS = {
       legal: "Pháp lý",
       links: "Liên kết",
       contact: "Liên hệ",
-      company_name: "DMF Education",
+      company_name: "DMF Talents",
       links_title: "Liên kết",
       legal_title: "Pháp lý",
       impressum: "Thông tin pháp lý",
@@ -2826,7 +2829,7 @@ export const TRANSLATIONS = {
     candidates: {
       page_title: "Nhân tài Hàng đầu",
       page_subtitle:
-        "Những ứng viên đã qua sơ tuyển và sẵn sàng làm việc. Tất cả ứng viên đã được xác nhận trình độ và sẵn sàng visa.",
+        "Hồ sơ giới thiệu đã được duyệt. Chuyên môn và thời điểm làm việc được xác nhận theo từng yêu cầu.",
       code_label: "Ứng viên",
       year_experience: "Năm kinh nghiệm",
       years_experience: "Năm kinh nghiệm",
@@ -2879,6 +2882,7 @@ export const TRANSLATIONS = {
       exp: "10+ năm kinh nghiệm",
     },
     service_pages: {
+      overview: SERVICE_OVERVIEWS.vn,
       azubi: {
         hero: {
           badge: "Du học nghề §16a AufenthG",

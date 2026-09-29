@@ -1,3 +1,4 @@
+import { PRIVATE_ROBOTS } from "@/lib/site";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
@@ -5,12 +6,9 @@ import { isAdminUser } from "@/lib/auth/admin-policy";
 import { AdminLayoutClient } from "@/components/admin/AdminLayoutClient";
 
 export const metadata: Metadata = {
-  title: "Admin Portal | DMF Vietnam",
-  description: "DMF Vietnam Verwaltungsportal",
-  robots: {
-    index: false,
-    follow: false,
-  },
+  title: "Admin Portal",
+  description: "DMF Talents Verwaltungsportal",
+  robots: PRIVATE_ROBOTS,
 };
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {

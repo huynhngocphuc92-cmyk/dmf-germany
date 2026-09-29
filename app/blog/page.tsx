@@ -1,12 +1,14 @@
-import { Metadata } from "next";
+import { pageMetadata } from "@/lib/site";
 import { getPublishedPosts } from "@/app/admin/posts/actions";
 import { BlogListClient } from "./blog-list-client";
 
-export const metadata: Metadata = {
-  title: "Blog | DMF Vietnam",
-  description:
-    "Aktuelle Nachrichten und Artikel über Fachkräfte aus Vietnam, Visum-Informationen und Rekrutierungstipps.",
-};
+export const metadata = pageMetadata(
+  "/blog",
+  "Blog",
+  "Nachrichten und Artikel zur Personalgewinnung aus Vietnam für Unternehmen in Deutschland."
+);
+
+export const revalidate = 60;
 
 export default async function BlogPage() {
   const { data: posts, error } = await getPublishedPosts();

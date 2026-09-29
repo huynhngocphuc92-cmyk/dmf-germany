@@ -17,19 +17,25 @@ export function extractYouTubeVideoId(url: string): string | null {
     return null;
   }
 
-  // Remove whitespace
-  const cleanUrl = url.trim();
-
-  // Pattern 1: youtube.com/watch?v=VIDEO_ID or youtube.com/embed/VIDEO_ID
-  const watchPattern =
-    /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
-  const match = cleanUrl.match(watchPattern);
-
-  if (match && match[1]) {
-    return match[1];
+  try {
+    const parsed = new URL(url.trim());
+    if (parsed.protocol !== "https:") return null;
+    let id: string | null = null;
+    if (["youtu.be", "www.youtu.be"].includes(parsed.hostname)) id = parsed.pathname.slice(1);
+    else if (
+      ["youtube.com", "www.youtube.com", "m.youtube.com", "www.youtube-nocookie.com"].includes(
+        parsed.hostname
+      )
+    ) {
+      id =
+        parsed.pathname === "/watch"
+          ? parsed.searchParams.get("v")
+          : (/^\/(?:embed|shorts)\/([^/]+)$/.exec(parsed.pathname)?.[1] ?? null);
+    }
+    return id && /^[A-Za-z0-9_-]{11}$/.test(id) && id !== "dQw4w9WgXcQ" ? id : null;
+  } catch {
+    return null;
   }
-
-  return null;
 }
 
 /**

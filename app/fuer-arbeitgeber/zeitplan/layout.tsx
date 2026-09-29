@@ -1,29 +1,11 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Zeitplan & Ablauf | DMF",
-  description:
-    "Planungssicherheit ist uns wichtig. Simulieren Sie hier den zeitlichen Ablauf von der Vertragsunterzeichnung bis zur Ankunft Ihrer Fachkraft in Deutschland.",
-  keywords: [
-    "Zeitplan Personalvermittlung",
-    "Prozessablauf Fachkräfte",
-    "Visum Prozess Zeit",
-    "Zeitplan Simulator",
-    "DMF Zeitplan",
-    "Beschleunigtes Fachkräfteverfahren",
-    "Timeline Rekrutierung",
-  ],
-  openGraph: {
-    title: "Zeitplan & Ablauf | DMF Talents",
-    description:
-      "Planungssicherheit ist uns wichtig. Simulieren Sie hier den zeitlichen Ablauf von der Vertragsunterzeichnung bis zur Ankunft Ihrer Fachkraft in Deutschland.",
-    type: "website",
-  },
-  alternates: {
-    canonical: "/fuer-arbeitgeber/zeitplan",
-  },
-};
+export const metadata = pageMetadata(
+  "/fuer-arbeitgeber/zeitplan",
+  "Zeitplan f\u00fcr Ihre Personalgewinnung",
+  "Planen Sie die Schritte Ihrer Personalgewinnung. Zeitangaben dienen der Orientierung und werden individuell abgestimmt."
+);
 
-export default function ZeitplanLayout({ children }: { children: React.ReactNode }) {
+export default function PageLayout({ children }: { children: React.ReactNode }) {
   return children;
 }

@@ -1,3 +1,4 @@
+import { SITE_URL } from "@/lib/site";
 import { GrokMessage, runWithGrokModelFallback } from "@/lib/ai/grok";
 import { buildKnowledgeContext } from "@/lib/chatbot/knowledge-base";
 import { PRIMARY_CONTACT } from "@/lib/company/contact";
@@ -75,7 +76,7 @@ Wechsle die Sprache nur dann, wenn der Nutzer ausdrücklich darum bittet.
 ## REGELN
 1. Sei höflich und professionell
 2. Antworte präzise und hilfreich
-3. Bei Preisfragen: Erkläre, dass wir nur für Bildung und rechtliche Begleitung berechnen, keine versteckten Vermittlungsgebühren. Für ein individuelles Angebot soll der Kunde uns kontaktieren.
+3. Bei Preisfragen: Verweise auf ein individuelles Angebot. Nenne keine nicht bestätigten Preise, Gebührenmodelle oder Garantien.
 4. Bei konkreten Anfragen: Verweise auf das Anfrageformular im Chat oder das Kontaktformular unter /#contact. Für eine gespeicherte Anfrage ist eine gültige E-Mail-Adresse erforderlich; die Telefonnummer ist optional.
 5. Eine normale Chatnachricht ist noch keine bestätigte Kontaktanfrage. Versprich keinen Rückruf, keine E-Mail und keine Weiterleitung allein aufgrund von Kontaktdaten im Chat. Die Anfrage gilt erst nach der Erfolgsbestätigung des Formulars als gespeichert.
 6. Wenn du etwas nicht weißt, sage es ehrlich und verweise für eine verbindliche Antwort auf das Kontaktformular oder die Kontakt-E-Mail.
@@ -84,9 +85,9 @@ Wechsle die Sprache nur dann, wenn der Nutzer ausdrücklich darum bittet.
 9. Nenne bei allgemeinen Antworten nur die Marke DMF Talents; nenne den rechtlichen Betreiber nur bei ausdrücklichen Fragen zu Impressum, Unternehmen oder Rechtlichem.
 
 ## WICHTIGE LINKS
-- Kontaktanfrage: https://www.dmf-talents.de/#contact; eine Rückrufbitte kann im Formular mit optionaler Telefonnummer angegeben werden
+- Kontaktanfrage: ${SITE_URL}/#contact; eine Rückrufbitte kann im Formular mit optionaler Telefonnummer angegeben werden
 - Kontakt: ${PRIMARY_CONTACT.email}
-- Website: https://dmf-talents.de
+- Website: ${SITE_URL}
 
 ## WISSENSBASIS
 ${knowledgeContext}

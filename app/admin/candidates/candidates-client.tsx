@@ -277,6 +277,7 @@ export function CandidatesClient({
                   <TableHead>Beruf</TableHead>
                   <TableHead>Deutsch</TableHead>
                   <TableHead>Visa Status</TableHead>
+                  <TableHead>Veröffentlichung</TableHead>
                   <TableHead className="text-right">Aktionen</TableHead>
                 </TableRow>
               </TableHeader>
@@ -343,6 +344,21 @@ export function CandidatesClient({
                       </Badge>
                     </TableCell>
 
+                    <TableCell>
+                      <p className="text-sm">
+                        {candidate.publication_status === "published" &&
+                        candidate.publication_valid_until &&
+                        candidate.publication_valid_until >= new Date().toISOString().slice(0, 10)
+                          ? "Veröffentlicht"
+                          : "Nicht öffentlich"}
+                      </p>
+                      <Link
+                        className="text-sm text-emerald-700 underline"
+                        href={`/admin/candidates/${candidate.id}/preview`}
+                      >
+                        Vorschau &amp; Freigabe
+                      </Link>
+                    </TableCell>
                     {/* Actions */}
                     <TableCell className="text-right">
                       <div className="flex items-center justify-end gap-2">
@@ -375,6 +391,7 @@ export function CandidatesClient({
 
       {/* Candidate Form Sheet */}
       <CandidateForm
+        key={`${selectedCandidate?.id ?? "new"}-${isFormOpen}`}
         open={isFormOpen}
         onOpenChange={handleFormClose}
         candidate={selectedCandidate}

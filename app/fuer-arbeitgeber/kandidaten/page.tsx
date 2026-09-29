@@ -2,11 +2,11 @@ import { Suspense } from "react";
 import { getFeaturedCandidates } from "@/lib/supabase/candidates";
 import { CandidatesClient } from "./candidates-client";
 
-// Revalidate regularly so public candidate data stays fresh without forcing request-time rendering.
-export const revalidate = 60;
+// Publication expiry and withdrawal must apply on the next request.
+export const dynamic = "force-dynamic";
 
 export default async function KandidatenPage() {
-  // Fetch featured candidates (is_featured = true)
+  // The pool includes all reviewed, currently published profiles.
   const { data: initialCandidates, error } = await getFeaturedCandidates();
 
   return (

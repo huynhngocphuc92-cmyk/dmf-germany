@@ -1,5 +1,8 @@
 "use client";
 
+import { useForm, useWatch, type PathValue } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { candidateFormSchema } from "@/lib/validations/schemas";
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import {
@@ -21,12 +24,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Loader2, Upload, X, User, AlertCircle, CheckCircle2 } from "lucide-react";
-import {
-  createCandidate,
-  updateCandidate,
-  uploadAvatar,
-  deleteAvatar,
-} from "@/app/admin/candidates/actions";
+import { createCandidate, updateCandidate, uploadAvatar } from "@/app/admin/candidates/actions";
 import type {
   Candidate,
   CandidateFormData,
@@ -56,7 +54,7 @@ export function CandidateForm({ open, onOpenChange, candidate, onSuccess }: Cand
   const isEditing = !!candidate;
 
   // Form state
-  const [formData, setFormData] = useState<CandidateFormData>({
+  const defaultValues: CandidateFormData = {
     full_name: candidate?.full_name || "",
     email: candidate?.email || "",
     phone: candidate?.phone || "",
@@ -70,7 +68,13 @@ export function CandidateForm({ open, onOpenChange, candidate, onSuccess }: Cand
     notes: candidate?.notes || "",
     avatar_url: candidate?.avatar_url || "",
     video_url: candidate?.video_url || "",
+  };
+
+  const form = useForm<CandidateFormData>({
+    resolver: zodResolver(candidateFormSchema),
+    defaultValues,
   });
+  const formData = useWatch({ control: form.control }) as CandidateFormData;
 
   // UI state
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -80,28 +84,17 @@ export function CandidateForm({ open, onOpenChange, candidate, onSuccess }: Cand
 
   // Reset form when candidate changes
   const resetForm = () => {
-    setFormData({
-      full_name: candidate?.full_name || "",
-      email: candidate?.email || "",
-      phone: candidate?.phone || "",
-      date_of_birth: candidate?.date_of_birth || "",
-      category: candidate?.category || "skilled",
-      profession: candidate?.profession || "",
-      experience_years: candidate?.experience_years || 0,
-      german_level: candidate?.german_level || "B1",
-      visa_status: candidate?.visa_status ?? false,
-      is_featured: candidate?.is_featured ?? false,
-      notes: candidate?.notes || "",
-      avatar_url: candidate?.avatar_url || "",
-      video_url: candidate?.video_url || "",
-    });
+    form.reset(defaultValues);
     setError(null);
     setSuccess(false);
   };
 
   // Handle input change
-  const handleChange = (field: keyof CandidateFormData, value: string | number | boolean) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
+  const handleChange = <K extends keyof CandidateFormData>(
+    field: K,
+    value: PathValue<CandidateFormData, K>
+  ) => {
+    form.setValue(field, value, { shouldDirty: true });
     setError(null);
   };
 
@@ -140,11 +133,7 @@ export function CandidateForm({ open, onOpenChange, candidate, onSuccess }: Cand
       const result = await uploadAvatar(uploadFormData);
 
       if (result.success && result.url) {
-        // Delete old avatar if exists
-        if (formData.avatar_url) {
-          await deleteAvatar(formData.avatar_url);
-        }
-        setFormData((prev) => ({ ...prev, avatar_url: result.url! }));
+        form.setValue("avatar_url", result.url, { shouldDirty: true });
       } else {
         setError(result.error || "Upload fehlgeschlagen.");
       }
@@ -159,23 +148,12 @@ export function CandidateForm({ open, onOpenChange, candidate, onSuccess }: Cand
   };
 
   // Handle avatar remove
-  const handleRemoveAvatar = async () => {
-    if (!formData.avatar_url) return;
-
-    setIsUploading(true);
-    try {
-      await deleteAvatar(formData.avatar_url);
-      setFormData((prev) => ({ ...prev, avatar_url: "" }));
-    } catch {
-      setError("Fehler beim Löschen des Bildes.");
-    } finally {
-      setIsUploading(false);
-    }
+  const handleRemoveAvatar = () => {
+    form.setValue("avatar_url", "", { shouldDirty: true });
   };
 
   // Handle form submit
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const saveProfile = async (formData: CandidateFormData) => {
     setIsSubmitting(true);
     setError(null);
 
@@ -230,7 +208,16 @@ export function CandidateForm({ open, onOpenChange, candidate, onSuccess }: Cand
           </SheetDescription>
         </SheetHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <p className="mb-4 text-sm text-slate-600">
+          Neue Profile sind Entwürfe. Änderungen an öffentlichen Angaben erfordern eine erneute
+          Freigabe unter „Vorschau & Freigabe“.
+        </p>
+        <form
+          onSubmit={form.handleSubmit(saveProfile, (errors) =>
+            setError(Object.values(errors)[0]?.message || "Bitte Angaben prüfen.")
+          )}
+          className="space-y-6"
+        >
           {/* Error Message */}
           {error && (
             <div className="flex items-center gap-3 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700">
@@ -407,7 +394,7 @@ export function CandidateForm({ open, onOpenChange, candidate, onSuccess }: Cand
               />
             </div>
             <p className="text-xs text-slate-500">
-              Featured Kandidaten werden auf der Startseite angezeigt
+              Nur freigegebene, gültige Profile werden auf der Startseite hervorgehoben.
             </p>
           </div>
 

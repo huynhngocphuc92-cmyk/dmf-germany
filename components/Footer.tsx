@@ -76,7 +76,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-slate-800 mt-6 md:mt-10 pt-4 md:pt-6 text-center text-[10px] md:text-xs opacity-60">
-          © {new Date().getFullYear()} DMF Vietnam. {t.footer.copyright}
+          © {new Date().getFullYear()} DMF Talents. {t.footer.copyright}
         </div>
       </div>
     </footer>
