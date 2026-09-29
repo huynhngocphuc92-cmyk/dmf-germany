@@ -35,7 +35,13 @@ import { GET as getChats, POST as saveChat } from "@/app/api/chat/history/route"
 import { GET as getLeads, POST as submitLead } from "@/app/api/leads/route";
 import * as chats from "@/app/admin/chats/actions";
 import * as leads from "@/app/admin/leads/actions";
-import { getCandidates, getCandidate } from "@/app/admin/candidates/actions";
+import {
+  getCandidates,
+  getCandidate,
+  publishCandidate,
+  unpublishCandidate,
+  updateCandidate,
+} from "@/app/admin/candidates/actions";
 import { retryNotification } from "@/app/admin/notifications/actions";
 import { getDashboardStats } from "@/app/admin/dashboard-actions";
 
@@ -130,6 +136,15 @@ describe("direct Server Action authorization", () => {
     () => leads.exportLeadsCSV(),
     () => getCandidates(),
     () => getCandidate("fixture"),
+    () =>
+      publishCandidate(admin.id, {
+        consent: true,
+        consent_note: "Fixture consent",
+        valid_until: "2999-12-31",
+        expected_updated_at: "2026-09-29T00:00:00Z",
+      }),
+    () => unpublishCandidate(admin.id),
+    () => updateCandidate(admin.id, { is_featured: true }),
     () => getDashboardStats(),
     () => retryNotification({}, new FormData()),
     () => getPosts(),
@@ -294,4 +309,15 @@ it("blocks preview admin mutations against the production backend even for a rea
   } finally {
     vi.unstubAllEnvs();
   }
+});
+
+it("candidate partial edits preserve omitted fields and cannot set publication state", async () => {
+  mocks.getUser.mockResolvedValue({ data: { user: admin }, error: null });
+  const result = await updateCandidate(admin.id, {
+    is_featured: false,
+    publication_status: "published",
+  } as Parameters<typeof updateCandidate>[1]);
+  expect(result.success).toBe(true);
+  const query = mocks.from.mock.results[0].value;
+  expect(query.update).toHaveBeenCalledWith({ is_featured: false, updated_at: expect.any(String) });
 });

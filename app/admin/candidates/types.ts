@@ -34,6 +34,12 @@ export interface Candidate {
   experience_years: number;
   german_level: GermanLevel;
 
+  publication_status: "draft" | "published";
+  publication_valid_until: string | null;
+  publication_consent_note: string | null;
+  publication_reviewed_at: string | null;
+  publication_reviewed_by: string | null;
+
   // Status (New Schema)
   visa_status: boolean;
   is_featured: boolean;

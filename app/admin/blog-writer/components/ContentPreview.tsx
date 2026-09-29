@@ -1,4 +1,5 @@
 "use client";
+import { SITE_URL } from "@/lib/site";
 
 import { useState } from "react";
 import { FileText, Copy, Check, Edit3, Save, ExternalLink, Clock, Hash } from "lucide-react";
@@ -163,7 +164,9 @@ export function ContentPreview({ blog, onEdit }: ContentPreviewProps) {
             {blog.metaTitle}
             <ExternalLink className="w-3 h-3" />
           </p>
-          <p className="text-xs text-green-700 mt-0.5">dmf-germany.de/blog/{blog.slug}</p>
+          <p className="text-xs text-green-700 mt-0.5">
+            {SITE_URL}/blog/{blog.slug}
+          </p>
           <p className="text-xs text-slate-600 mt-1 line-clamp-2">{blog.metaDescription}</p>
         </div>
       </div>

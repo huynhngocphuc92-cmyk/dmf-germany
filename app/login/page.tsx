@@ -80,7 +80,7 @@ export default function LoginPage() {
           {/* Brand Name */}
           <div className="flex items-center justify-center gap-2 mb-2">
             <span className="text-2xl font-bold text-slate-900">DMF</span>
-            <span className="text-2xl font-light text-slate-600">Vietnam</span>
+            <span className="text-2xl font-light text-slate-600">Talents</span>
           </div>
 
           <CardTitle className="text-xl font-semibold text-slate-800">Admin Portal</CardTitle>
@@ -110,7 +110,7 @@ export default function LoginPage() {
                   id="email"
                   name="email"
                   type="email"
-                  placeholder="admin@dmf-vietnam.de"
+                  placeholder="admin@example.com"
                   className="pl-11 h-12 bg-slate-50 border-slate-200 focus:border-emerald-500 focus:ring-emerald-500/20 rounded-xl"
                   required
                 />
@@ -153,7 +153,7 @@ export default function LoginPage() {
 
       {/* Footer */}
       <div className="absolute bottom-6 text-center text-slate-500 text-sm">
-        <p>© 2026 DMF Vietnam. Alle Rechte vorbehalten.</p>
+        <p>© 2026 DMF Talents. Alle Rechte vorbehalten.</p>
       </div>
     </div>
   );

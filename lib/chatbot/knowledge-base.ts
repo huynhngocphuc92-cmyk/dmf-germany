@@ -1,3 +1,4 @@
+import { SITE_URL } from "@/lib/site";
 import { PRIMARY_CONTACT } from "@/lib/company/contact";
 
 // ============================================
@@ -322,65 +323,14 @@ Wir begleiten bei der Anerkennung ausländischer Abschlüsse und dem erfolgreich
 // ============================================
 
 export function buildKnowledgeContext(): string {
-  const kb = DMF_KNOWLEDGE_BASE;
-
-  return `
-# DMF TALENTS - WISSENSBASIS
-
-## Über uns
-${kb.company.name} - ${kb.company.tagline}
-${kb.company.description}
-Marke/Website: ${kb.company.name} (${kb.company.website})
-Rechtsträger laut Impressum: ${kb.company.legalOperator}
-Gesetzlicher Vertreter laut Impressum: ${kb.company.legalRepresentative}
-Kontakt: ${kb.company.contact.email}, ${kb.company.contact.phone}
-
-## Unsere Programme
-
-### 1. ${kb.programs.ausbildung.name}
-${kb.programs.ausbildung.description}
-Zielgruppe: ${kb.programs.ausbildung.targetGroup}
-Dauer: ${kb.programs.ausbildung.duration}
-Highlights: ${kb.programs.ausbildung.highlights.join(", ")}
-Branchen: ${kb.programs.ausbildung.sectors.join(", ")}
-
-### 2. ${kb.programs.studium.name}
-${kb.programs.studium.description}
-Zielgruppe: ${kb.programs.studium.targetGroup}
-Highlights: ${kb.programs.studium.highlights.join(", ")}
-
-### 3. ${kb.programs.skilled_workers.name}
-${kb.programs.skilled_workers.description}
-Zielgruppe: ${kb.programs.skilled_workers.targetGroup}
-Dauer: ${kb.programs.skilled_workers.duration}
-Highlights: ${kb.programs.skilled_workers.highlights.join(", ")}
-Branchen: ${kb.programs.skilled_workers.sectors.join(", ")}
-
-## Service-Module (P1.1 - P3.7)
-
-### Phase 1: Vorbereitung
-${kb.serviceModules.phase1_preparation.services.map((s) => `- ${s.code}: ${s.name} - ${s.desc}`).join("\n")}
-
-### Phase 2: Administration
-${kb.serviceModules.phase2_administration.services.map((s) => `- ${s.code}: ${s.name} - ${s.desc}`).join("\n")}
-
-### Phase 3: Integration
-${kb.serviceModules.phase3_integration.services.map((s) => `- ${s.code}: ${s.name} - ${s.desc}`).join("\n")}
-
-## Timeline
-Ausbildung: ${kb.timeline.ausbildung.total}
-Fachkräfte: ${kb.timeline.skilled_workers.total}
-
-## Rechtliche Grundlagen
-${kb.legal.visaTypes.map((v) => `- ${v.name}: ${v.purpose}`).join("\n")}
-
-## Häufige Fragen
-${kb.faq.map((f) => `F: ${f.q}\nA: ${f.a}`).join("\n\n")}
-
-## Statistiken
-- Vermittelte Kandidaten: ${kb.statistics.placedCandidates}
-- Visa-Erfolgsquote: ${kb.statistics.visaSuccessRate}
-- Verbleibquote: ${kb.statistics.retentionRate}
-- Abbruchquote: ${kb.statistics.dropoutRate}
-`.trim();
+  // Only the reviewed editorial baseline goes to the model. Legacy detailed copy is
+  // retained above for internal review, not evidence for public claims.
+  return `DMF Talents vermittelt Kontakte zwischen Unternehmen in Deutschland und Talenten aus Vietnam.
+Anfragen zu Fachkräften, Ausbildung und saisonalem Personalbedarf sind über das Kontaktformular möglich.
+Studieninteressierte können Fragen zur Vorbereitung stellen.
+Website: ${SITE_URL}. Kontakt: ${PRIMARY_CONTACT.email}.
+Leistungsumfang, Preise, Termine, Betreuung und mögliche Ersatzregelungen werden individuell vereinbart.
+Es liegen keine freigegebenen Erfolgsquoten, Vermittlungszahlen oder Zertifizierungsnachweise für die öffentliche Beratung vor.
+Versprich weder Visumerteilung, sofortige Verfügbarkeit noch bestimmte Vermittlungsfristen.
+Öffentliche Profile: ${SITE_URL}/fuer-arbeitgeber/kandidaten. Aktuelle Verfügbarkeit wird für jede Anfrage geklärt.`;
 }

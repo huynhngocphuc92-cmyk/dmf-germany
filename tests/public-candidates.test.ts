@@ -32,11 +32,16 @@ const published = {
   avatar_url: null,
   video_url: null,
   is_featured: true,
+  publication_status: "published",
+  publication_valid_until: "2999-12-31",
   ...privateFields,
 };
 
 beforeEach(() => {
-  mock.rows = [published, { ...published, id: "unpublished-but-visa-ready", is_featured: false }];
+  mock.rows = [
+    published,
+    { ...published, id: "unpublished-but-visa-ready", publication_status: "draft" },
+  ];
   mock.error = null;
   const filters: Array<[string, unknown]> = [];
   const query = {
@@ -45,6 +50,7 @@ beforeEach(() => {
       filters.push([field, value]);
       return this;
     }),
+    gte: vi.fn().mockReturnThis(),
     order: vi.fn().mockReturnThis(),
     limit: vi.fn().mockReturnThis(),
     then: (resolve: (result: unknown) => unknown) =>
@@ -64,7 +70,7 @@ describe.each([
   ["pool", getFeaturedCandidates],
   ["filtered pool", getPublicCandidates],
 ] as const)("%s publication boundary", (_name, getProfiles) => {
-  it("returns only explicitly featured profiles and strips private fields at runtime", async () => {
+  it("returns only explicitly published profiles and strips private fields at runtime", async () => {
     const result = await getProfiles();
     expect(result.error).toBeNull();
     expect(result.data).toHaveLength(1);
@@ -72,7 +78,7 @@ describe.each([
     const serialized = JSON.stringify(result);
     for (const sentinel of Object.values(privateFields)) expect(serialized).not.toContain(sentinel);
     expect(mock.select).toHaveBeenCalledWith(expect.not.stringContaining("*"));
-    expect(mock.eq).toHaveBeenCalledWith("is_featured", true);
+    expect(mock.eq).toHaveBeenCalledWith("publication_status", "published");
   });
 
   it.each([false, true])("does not broaden an empty or failed query (error=%s)", async (failed) => {
@@ -89,4 +95,13 @@ it("preserves category and language filters", async () => {
   expect((await getPublicCandidates({ category: "azubi", germanLevel: "B2" })).data).toEqual([]);
   expect(mock.eq).toHaveBeenCalledWith("category", "azubi");
   expect(mock.eq).toHaveBeenCalledWith("german_level", "B2");
+});
+
+it("separates featuring from publication for the public pool", async () => {
+  mock.rows = [{ ...published, is_featured: false }];
+  expect((await getFeaturedCandidates()).data).toHaveLength(1);
+});
+it("only promotes featured profiles on the homepage", async () => {
+  mock.rows = [{ ...published, is_featured: false }];
+  expect((await getHomepageFeaturedCandidates()).data).toEqual([]);
 });

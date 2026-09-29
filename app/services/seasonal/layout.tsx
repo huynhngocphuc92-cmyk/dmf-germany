@@ -1,26 +1,11 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/site";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://dmf-vietnam.de";
+export const metadata = pageMetadata(
+  "/services/seasonal",
+  "Saisonkr\u00e4fte aus Vietnam",
+  "Saisonalen Personalbedarf besprechen: Einsatzbereich, Zeitraum und Voraussetzungen f\u00fcr eine m\u00f6gliche Vermittlung kl\u00e4ren."
+);
 
-export const metadata: Metadata = {
-  title: "Saisonarbeiter aus Vietnam vermitteln | DMF Talents",
-  description:
-    "Zuverlässige Saisonkräfte für Landwirtschaft & Gastronomie. Schnell verfügbar, rechtssicher nach §15a BeschV. Einsatzbereit in 4-8 Wochen.",
-  openGraph: {
-    title: "Saisonarbeiter aus Vietnam vermitteln | DMF Talents",
-    description: "Saisonkräfte für Ihre Hochsaison. Jetzt verfügbarkeit prüfen!",
-    url: `${baseUrl}/services/seasonal`,
-    siteName: "DMF Talents",
-    locale: "de_DE",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Saisonarbeiter aus Vietnam vermitteln | DMF Talents",
-    description: "Saisonkräfte für Ihre Hochsaison. Jetzt verfügbarkeit prüfen!",
-  },
-};
-
-export default function SeasonalLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+export default function PageLayout({ children }: { children: React.ReactNode }) {
+  return children;
 }

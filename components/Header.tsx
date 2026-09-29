@@ -231,7 +231,7 @@ export const Header = memo(function Header({ logoUrl, hotline, email }: HeaderPr
           <Link
             href="/"
             className="flex items-center gap-2 flex-shrink-0"
-            aria-label="DMF Germany - Startseite"
+            aria-label="DMF Talents - Startseite"
           >
             <Logo
               logoUrl={logoUrl}

@@ -1,3 +1,4 @@
+import { SITE_URL } from "@/lib/site";
 import { contactAutoReplyTemplate, profileInquiryAutoReplyTemplate } from "@/lib/email-templates";
 import { getMailTransporter } from "@/lib/email/transporter";
 import { escapeHtml, escapeHtmlWithBreaks } from "@/lib/sanitize";
@@ -50,7 +51,7 @@ export async function deliverNotification(job: Job): Promise<DeliveryResult> {
         signal: AbortSignal.timeout(10000),
         body: JSON.stringify({
           chat_id: chatId,
-          text: `${title}\nEine neue Anfrage wurde gespeichert. Bitte im DMF Admin prüfen.\nhttps://www.dmf-talents.de/admin/${job.kind === "lead" ? "leads" : "requests"}`,
+          text: `${title}\nEine neue Anfrage wurde gespeichert. Bitte im DMF Admin prüfen.\n${SITE_URL}/admin/${job.kind === "lead" ? "leads" : "requests"}`,
         }),
       });
       const result = await response.json().catch(() => null);

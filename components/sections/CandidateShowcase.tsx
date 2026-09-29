@@ -53,7 +53,7 @@ export const CandidateShowcase = ({ candidates = [] }: CandidateShowcaseProps) =
     if (candidate.german_level) {
       badges.push({
         icon: "🇩🇪",
-        text: `${candidate.german_level} ${t.candidate.certified}`,
+        text: `Deutsch ${candidate.german_level}`,
       });
     }
 

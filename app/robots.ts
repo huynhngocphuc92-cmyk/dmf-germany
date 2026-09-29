@@ -1,14 +1,9 @@
 import { MetadataRoute } from "next";
-
+import { siteUrl, SITE_URL } from "@/lib/site";
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = "https://dmf.edu.vn";
-
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-      disallow: ["/api/", "/_next/"],
-    },
-    sitemap: `${baseUrl}/sitemap.xml`,
+    rules: { userAgent: "*", allow: "/", disallow: ["/api/", "/admin/"] },
+    sitemap: siteUrl("/sitemap.xml"),
+    host: SITE_URL,
   };
 }

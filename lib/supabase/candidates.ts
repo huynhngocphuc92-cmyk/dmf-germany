@@ -13,21 +13,21 @@ type CandidateResult = { data: PublicCandidate[] | null; error: string | null };
 async function queryPublishedCandidates(
   options: {
     limit?: number;
-    readyOnly?: boolean;
+    featuredOnly?: boolean;
     category?: CandidateCategory;
     germanLevel?: GermanLevel;
   } = {}
 ): Promise<CandidateResult> {
   try {
     const supabase = createPublicClient();
-    // is_featured is the existing explicit publication control. Visa readiness is not approval.
     let query = supabase
       .from("candidates")
       .select(PUBLIC_CANDIDATE_FIELDS)
-      .eq("is_featured", true)
+      .eq("publication_status", "published")
+      .gte("publication_valid_until", new Date().toISOString().slice(0, 10))
       .order("created_at", { ascending: false });
     if (options.limit) query = query.limit(options.limit);
-    if (options.readyOnly) query = query.eq("visa_status", true);
+    if (options.featuredOnly) query = query.eq("is_featured", true);
     if (options.category) query = query.eq("category", options.category);
     if (options.germanLevel) query = query.eq("german_level", options.germanLevel);
 
@@ -45,14 +45,14 @@ export async function getFeaturedCandidates(): Promise<CandidateResult> {
 }
 
 export async function getHomepageFeaturedCandidates(): Promise<CandidateResult> {
-  return queryPublishedCandidates({ limit: 20 });
+  return queryPublishedCandidates({ limit: 20, featuredOnly: true });
 }
 
 export async function getPublicCandidates(filters?: {
   category?: CandidateCategory;
   germanLevel?: GermanLevel;
 }): Promise<CandidateResult> {
-  return queryPublishedCandidates({ ...filters, readyOnly: true });
+  return queryPublishedCandidates(filters);
 }
 
 /**
@@ -65,8 +65,8 @@ export async function getAvailableCategories(): Promise<CandidateCategory[]> {
     const { data, error } = await supabase
       .from("candidates")
       .select("category")
-      .eq("is_featured", true)
-      .eq("visa_status", true);
+      .eq("publication_status", "published")
+      .gte("publication_valid_until", new Date().toISOString().slice(0, 10));
 
     if (error || !data) {
       return [];
@@ -90,8 +90,8 @@ export async function getAvailableGermanLevels(): Promise<GermanLevel[]> {
     const { data, error } = await supabase
       .from("candidates")
       .select("german_level")
-      .eq("is_featured", true)
-      .eq("visa_status", true);
+      .eq("publication_status", "published")
+      .gte("publication_valid_until", new Date().toISOString().slice(0, 10));
 
     if (error || !data) {
       return [];

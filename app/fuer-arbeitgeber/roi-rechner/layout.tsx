@@ -1,8 +1,8 @@
 import { pageMetadata } from "@/lib/site";
 
 export const metadata = pageMetadata(
-  "/roi-rechner",
-  "Personalkosten-Rechner",
+  "/fuer-arbeitgeber/roi-rechner",
+  "Personalkosten vergleichen",
   "Vergleichen Sie Personalkosten anhand Ihrer Annahmen. Eine Modellrechnung ersetzt kein individuelles Angebot."
 );
 

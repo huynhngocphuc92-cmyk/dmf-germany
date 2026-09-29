@@ -13,33 +13,12 @@ import type { PublicCandidate } from "@/lib/candidates/public-profile";
 import { categoryLabelsI18n } from "@/app/admin/candidates/types";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
-/**
- * Helper function to convert YouTube URL to embed URL
- * Supports: watch?v=..., youtu.be/..., embed/..., shorts/..., and other formats
- */
-function getEmbedUrl(url: string | null | undefined): string | null {
-  if (!url || typeof url !== "string") {
-    return null;
-  }
-
-  const cleanUrl = url.trim();
-
-  // Match IDs from watch URLs, youtu.be links, shorts, and embed URLs.
-  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|shorts\/)([^#&?]*).*/;
-  const match = cleanUrl.match(regExp);
-
-  // Standard YouTube video IDs have 11 characters.
-  if (match && match[2] && match[2].length === 11) {
-    // Use youtube-nocookie.com for better privacy compliance (DSGVO)
-    return `https://www.youtube-nocookie.com/embed/${match[2]}`;
-  }
-
-  return null;
-}
+import { getEmbedUrl } from "@/lib/utils/youtube";
 
 interface CandidateCardProps {
   candidate: PublicCandidate;
-  onRequestProfile: (candidate: PublicCandidate) => void;
+  onRequestProfile?: (candidate: PublicCandidate) => void;
+  preview?: boolean;
 }
 
 /**
@@ -87,10 +66,15 @@ const getInitials = (profession?: string | null, category?: string): string => {
   return "DM";
 };
 
-export const CandidateCard = ({ candidate, onRequestProfile }: CandidateCardProps) => {
+export const CandidateCard = ({
+  candidate,
+  onRequestProfile,
+  preview = false,
+}: CandidateCardProps) => {
   const { lang, t } = useLanguage();
   const [imageError, setImageError] = useState(false);
   const [videoError, setVideoError] = useState(false);
+  const [videoAllowed, setVideoAllowed] = useState(false);
 
   const candidateCode = getCandidateCode(candidate.id);
   const embedUrl = candidate.video_url ? getEmbedUrl(candidate.video_url) : null;
@@ -149,11 +133,11 @@ export const CandidateCard = ({ candidate, onRequestProfile }: CandidateCardProp
         {/* Content */}
         <CardContent className="pt-5 pb-4 flex-1 flex flex-col">
           {/* Profession */}
-          {candidate.profession && (
+          {
             <h3 className="text-lg font-bold text-foreground mb-4 line-clamp-2">
-              {candidate.profession}
+              {candidate.profession || "Beruf auf Anfrage"}
             </h3>
-          )}
+          }
 
           {/* Experience & German Level */}
           <div className="space-y-3 mb-4">
@@ -186,7 +170,15 @@ export const CandidateCard = ({ candidate, onRequestProfile }: CandidateCardProp
           {/* Video Section - Iframe directly in card */}
           {candidate.video_url && (
             <div className="mt-auto pt-4 border-t border-border">
-              {embedUrl && !videoError ? (
+              {embedUrl && !videoAllowed ? (
+                <button
+                  type="button"
+                  className="w-full rounded-lg bg-slate-100 p-5 text-sm text-slate-700"
+                  onClick={() => setVideoAllowed(true)}
+                >
+                  Video laden – dabei wird eine Verbindung zu YouTube hergestellt.
+                </button>
+              ) : embedUrl && !videoError ? (
                 <div className="relative aspect-video rounded-lg overflow-hidden bg-black">
                   <iframe
                     src={embedUrl}
@@ -219,7 +211,8 @@ export const CandidateCard = ({ candidate, onRequestProfile }: CandidateCardProp
         <CardFooter className="pt-4 pb-5 border-t bg-muted/20">
           <Button
             className="w-full gap-2 bg-primary hover:bg-primary/90 shadow-md"
-            onClick={() => onRequestProfile(candidate)}
+            disabled={preview}
+            onClick={() => onRequestProfile?.(candidate)}
           >
             <FileText className="h-4 w-4" />
             {t.candidates?.btn_request_profile || "Profil anfragen"}

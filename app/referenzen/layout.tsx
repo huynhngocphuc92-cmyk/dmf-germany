@@ -1,28 +1,11 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Erfolgsgeschichten & Referenzen | DMF",
-  description:
-    "Überblick über unsere erfolgreichen Vermittlungen vietnamesischer Fachkräfte in ganz Deutschland. Erfahren Sie mehr über unsere Referenzen und Erfolgsgeschichten.",
-  keywords: [
-    "DMF Referenzen",
-    "Erfolgsgeschichten",
-    "Vermittlungen Deutschland",
-    "Fachkräfte Referenzen",
-    "Erfolgreiche Platzierungen",
-    "Testimonials DMF",
-  ],
-  openGraph: {
-    title: "Erfolgsgeschichten & Referenzen | DMF Talents",
-    description:
-      "Überblick über unsere erfolgreichen Vermittlungen vietnamesischer Fachkräfte in ganz Deutschland.",
-    type: "website",
-  },
-  alternates: {
-    canonical: "/referenzen",
-  },
-};
+export const metadata = pageMetadata(
+  "/referenzen",
+  "Referenzen und Zusammenarbeit",
+  "Informieren Sie sich \u00fcber die Zusammenarbeit mit DMF Talents und besprechen Sie Ihren Personalbedarf."
+);
 
-export default function ReferenzenLayout({ children }: { children: React.ReactNode }) {
+export default function PageLayout({ children }: { children: React.ReactNode }) {
   return children;
 }

@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { extractYouTubeVideoId } from "@/lib/utils/youtube";
 import { optionalBusinessPhoneSchema } from "@/lib/validations/phone";
 
 // --- 1. CONTACT FORM SCHEMA ---
@@ -10,11 +11,9 @@ export const contactFormSchema = z.object({
   message: z
     .string()
     .min(10, { message: "Ihre Nachricht sollte mindestens 10 Zeichen enthalten." }),
-  privacy: z
-    .boolean()
-    .refine((val) => val === true, {
-      message: "Sie müssen der Datenschutzerklärung zustimmen.",
-    }),
+  privacy: z.boolean().refine((val) => val === true, {
+    message: "Sie müssen der Datenschutzerklärung zustimmen.",
+  }),
   bot_check: z.string().optional(),
 });
 
@@ -33,24 +32,27 @@ export const inquiryFormSchema = z.object({
   message: z
     .string()
     .min(10, { message: "Ihre Nachricht sollte mindestens 10 Zeichen enthalten." }),
-  privacy: z
-    .boolean()
-    .refine((val) => val === true, {
-      message: "Sie müssen der Datenschutzerklärung zustimmen.",
-    }),
+  privacy: z.boolean().refine((val) => val === true, {
+    message: "Sie müssen der Datenschutzerklärung zustimmen.",
+  }),
 });
 
 // --- 4. CANDIDATE FORM SCHEMA (Full Schema for Admin) ---
 export const candidateFormSchema = z.object({
-  full_name: z.string().min(2, { message: "Name ist erforderlich (mindestens 2 Zeichen)" }),
+  full_name: z
+    .string()
+    .trim()
+    .max(200)
+    .min(2, { message: "Name ist erforderlich (mindestens 2 Zeichen)" }),
   email: z.string().email({ message: "Bitte geben Sie eine gültige E-Mail-Adresse ein." }),
-  phone: z.string().optional(),
+  phone: z.string().max(50).optional(),
   date_of_birth: z
     .string()
     .regex(/^\d{4}-\d{2}-\d{2}$/, { message: "Ungültiges Datumsformat (YYYY-MM-DD)" })
-    .optional(),
+    .optional()
+    .or(z.literal("")),
   category: z.enum(["azubi", "skilled", "seasonal"], { message: "Ungültige Kategorie" }),
-  profession: z.string().optional(),
+  profession: z.string().trim().max(200).optional(),
   experience_years: z
     .number()
     .min(0)
@@ -60,15 +62,26 @@ export const candidateFormSchema = z.object({
   }),
   visa_status: z.boolean(),
   is_featured: z.boolean(),
-  notes: z.string().optional(),
+  notes: z.string().max(5000).optional(),
   avatar_url: z.string().url().optional().or(z.literal("")),
-  video_url: z.string().url().optional().or(z.literal("")),
+  video_url: z
+    .string()
+    .optional()
+    .refine(
+      (value) => !value || !!extractYouTubeVideoId(value),
+      "Bitte einen gültigen YouTube-Link ohne Mustervideo angeben."
+    ),
 });
 
 // --- 5. POST FORM SCHEMA ---
 export const postFormSchema = z.object({
   title: z.string().min(1, { message: "Titel ist erforderlich" }),
-  slug: z.string().min(1, { message: "Slug ist erforderlich" }),
+  slug: z
+    .string()
+    .max(200)
+    .regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, {
+      message: "Nur Kleinbuchstaben, Zahlen und Bindestriche im Slug.",
+    }),
   excerpt: z.string().optional(),
   content: z.string().min(1, { message: "Inhalt ist erforderlich" }),
   cover_image: z.string().url().optional().or(z.literal("")),
@@ -95,3 +108,21 @@ export type InquiryFormData = z.infer<typeof inquiryFormSchema>;
 export type CandidateFormData = z.infer<typeof candidateFormSchema>;
 export type PostFormData = z.infer<typeof postFormSchema>;
 export type ApplicationFormData = z.infer<typeof applicationSchema>;
+
+export const publicationReviewSchema = z.object({
+  consent: z.boolean().refine(Boolean, "Bitte Einwilligung und Inhalte bestätigen."),
+  consent_note: z
+    .string()
+    .trim()
+    .min(10, "Bitte Nachweis/Datum der Einwilligung angeben.")
+    .max(1000),
+  valid_until: z
+    .string()
+    .date()
+    .refine(
+      (value) => value >= new Date().toISOString().slice(0, 10),
+      "Gültigkeit darf nicht in der Vergangenheit liegen."
+    ),
+  expected_updated_at: z.string().min(1),
+});
+export type PublicationReviewData = z.infer<typeof publicationReviewSchema>;

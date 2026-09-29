@@ -1,3 +1,4 @@
+import { SITE_URL } from "@/lib/site";
 /**
  * DMF Germany – Email Templates
  * HTML email templates cho auto-reply và notifications
@@ -11,7 +12,7 @@ const DMF_TEAL = "#0891b2";
 const DMF_ORANGE = "#f97316";
 const IMPRESSUM = TRANSLATIONS.de.legal.impressum.sections;
 const CONTACT_EMAIL = TRANSLATIONS.de.contact.email;
-const WEBSITE_URL = "https://dmf-talents.de";
+const WEBSITE_URL = SITE_URL;
 
 // Base layout wrapper
 function baseLayout(content: string, previewText = ""): string {

@@ -159,9 +159,8 @@ export default function RoiRechnerPage() {
                   Gibt es Garantien für die Kandidaten?
                 </h4>
                 <p className="text-sm text-gray-600 leading-relaxed">
-                  Ja, DMF bietet eine Nachbesserungsgarantie: Falls ein Kandidat nicht den
-                  Anforderungen entspricht, finden wir kostenlos einen Ersatz innerhalb der
-                  vereinbarten Garantiezeit.
+                  Mögliche Ersatzregelungen und deren Voraussetzungen werden im individuellen
+                  Vertrag vereinbart. Eine allgemeine Zusage wird auf dieser Website nicht gegeben.
                 </p>
               </div>
             </div>

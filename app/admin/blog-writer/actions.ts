@@ -1,4 +1,5 @@
 "use server";
+import { revalidatePath } from "next/cache";
 
 import { createAdminClient as createClient } from "@/lib/auth/admin";
 import {
@@ -249,6 +250,9 @@ export async function publishBlog(
       return { success: false, error: error.message };
     }
 
+    revalidatePath("/blog", "layout");
+    revalidatePath("/sitemap.xml");
+    revalidatePath("/admin/posts");
     return { success: true, id: data.id };
   } catch (error) {
     return {
