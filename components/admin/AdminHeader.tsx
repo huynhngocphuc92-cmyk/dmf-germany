@@ -45,7 +45,13 @@ export function AdminHeader({ user, onMenuClick }: AdminHeaderProps) {
       <div className="flex items-center justify-between h-full px-4 lg:px-6">
         {/* Left - Mobile Menu Toggle */}
         <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon" className="lg:hidden" onClick={onMenuClick}>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="lg:hidden"
+            onClick={onMenuClick}
+            aria-label={lang === "vn" ? "Menu quản trị" : "Verwaltungsmenü"}
+          >
             <Menu className="w-5 h-5" />
           </Button>
         </div>
