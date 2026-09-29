@@ -136,7 +136,7 @@ export function BlogListClient({ posts }: BlogListClientProps) {
               animate="visible"
               className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
             >
-              {posts.map((post, index) => (
+              {posts.map((post) => (
                 <motion.article key={post.id} variants={itemVariants} className="group">
                   <Link href={`/blog/${post.slug}`}>
                     <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 h-full flex flex-col">

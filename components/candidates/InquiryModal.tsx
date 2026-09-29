@@ -1,21 +1,9 @@
 "use client";
+import { useSubmissionKey } from "@/lib/intake/client";
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { inquiryFormSchema, type InquiryFormData } from "@/lib/validations/schemas";
-import {
-  X,
-  MessageSquare,
-  User,
-  Mail,
-  Phone,
-  Send,
-  CheckCircle2,
-  AlertCircle,
-  Loader2,
-} from "lucide-react";
+import { trackEvent } from "@/components/analytics/GoogleAnalytics";
+import { useLanguage } from "@/components/providers/LanguageProvider";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -23,13 +11,26 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import type { PublicCandidate } from "@/lib/candidates/public-profile";
-import { useLanguage } from "@/components/providers/LanguageProvider";
-import { trackEvent } from "@/components/analytics/GoogleAnalytics";
+import { inquiryFormSchema, type InquiryFormData } from "@/lib/validations/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  AlertCircle,
+  CheckCircle2,
+  Loader2,
+  Mail,
+  MessageSquare,
+  Phone,
+  Send,
+  User,
+  X,
+} from "lucide-react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 
 interface InquiryModalProps {
   candidate: PublicCandidate | null;
@@ -108,6 +109,7 @@ const getCandidateCode = (id: string): string => {
 };
 
 export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) => {
+  const { forPayload: submissionKey, reset: resetSubmissionKey } = useSubmissionKey();
   const { lang } = useLanguage();
   const locale = lang === "en" ? "en" : lang === "vn" ? "vn" : "de";
   const copy = INQUIRY_MODAL_COPY[locale];
@@ -141,6 +143,7 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
   const candidateCode = candidate ? getCandidateCode(candidate.id) : "";
 
   const onSubmit = async (data: InquiryFormData) => {
+    if (status === "success") return;
     // Early validation - if no candidate, don't submit
     if (!candidate) {
       setStatus("error");
@@ -156,6 +159,7 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Idempotency-Key": submissionKey({ ...data, candidateId: candidate.id }),
         },
         body: JSON.stringify({
           name: data.name,
@@ -171,10 +175,10 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
 
       const result = await response.json();
 
-      if (result.success) {
+      if (response.ok && result.success && result.saved) {
         setStatus("success");
         // Conversion tracking (GA4) — lead từ yêu cầu hồ sơ ứng viên
-        trackEvent("generate_lead", { form: "profile" });
+        if (!result.duplicate) trackEvent("generate_lead", { form: "profile" });
         setStatusMessage(copy.success);
         // Reset form after 2 seconds and close modal
         setTimeout(() => {
@@ -192,6 +196,7 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
   };
 
   const handleClose = () => {
+    resetSubmissionKey();
     reset();
     setStatus(null);
     setStatusMessage("");
@@ -252,7 +257,7 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
               id="name"
               {...register("name")}
               placeholder={copy.namePlaceholder}
-              disabled={isSubmitting}
+              disabled={isSubmitting || status === "success"}
               className={errors.name ? "border-red-500" : ""}
             />
             {errors.name && <p className="text-sm text-red-500">{errors.name.message}</p>}
@@ -269,7 +274,7 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
               type="email"
               {...register("email")}
               placeholder={copy.emailPlaceholder}
-              disabled={isSubmitting}
+              disabled={isSubmitting || status === "success"}
               className={errors.email ? "border-red-500" : ""}
             />
             {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
@@ -286,7 +291,7 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
               type="tel"
               {...register("phone")}
               placeholder={copy.phonePlaceholder}
-              disabled={isSubmitting}
+              disabled={isSubmitting || status === "success"}
               className={errors.phone ? "border-red-500" : ""}
             />
             {errors.phone && <p className="text-sm text-red-500">{errors.phone.message}</p>}
@@ -303,7 +308,7 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
               {...register("message")}
               placeholder={copy.messagePlaceholder}
               rows={5}
-              disabled={isSubmitting}
+              disabled={isSubmitting || status === "success"}
               className={errors.message ? "border-red-500" : ""}
             />
             {errors.message && <p className="text-sm text-red-500">{errors.message.message}</p>}
@@ -321,7 +326,7 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
                   type="checkbox"
                   {...register("privacy")}
                   className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || status === "success"}
                 />
                 <span className="text-slate-700">
                   {lang === "de" ? (
@@ -377,14 +382,14 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
               variant="outline"
               className="flex-1"
               onClick={onClose}
-              disabled={isSubmitting}
+              disabled={isSubmitting || status === "success"}
             >
               {copy.cancel}
             </Button>
             <Button
               type="submit"
               className="flex-1 bg-blue-600 hover:bg-blue-700"
-              disabled={isSubmitting}
+              disabled={isSubmitting || status === "success"}
             >
               {isSubmitting ? (
                 <>

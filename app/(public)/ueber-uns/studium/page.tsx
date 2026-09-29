@@ -15,29 +15,23 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import {
-  GraduationCap,
-  BookOpen,
-  Users,
-  Shield,
-  CheckCircle2,
-  Clock,
-  Award,
-  Building2,
-  FileCheck,
-  Home,
-  Briefcase,
-  Languages,
-  Calendar,
-  Target,
-  Sparkles,
-  PhoneCall,
   ArrowRight,
+  Award,
   BadgeCheck,
+  BookOpen,
   Brain,
-  School,
-  TrendingUp,
+  Briefcase,
+  CheckCircle2,
+  FileCheck,
+  GraduationCap,
+  Home,
+  Languages,
   Lightbulb,
-  ClipboardCheck,
+  PhoneCall,
+  School,
+  Shield,
+  Sparkles,
+  TrendingUp,
 } from "lucide-react";
 
 // ============================================
@@ -93,7 +87,9 @@ function HeroSection() {
 
             {/* Main Statement */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-              <span className="text-white">{b2b?.common?.hero_title || "DMF – Ihre Akademie für"}</span>
+              <span className="text-white">
+                {b2b?.common?.hero_title || "DMF – Ihre Akademie für"}
+              </span>
               <br />
               <span className="bg-gradient-to-r from-indigo-400 via-blue-300 to-emerald-400 bg-clip-text text-transparent">
                 {b2b?.common?.hero_accent || "qualifizierte Talente"}
@@ -104,7 +100,8 @@ function HeroSection() {
 
             {/* Subheadline */}
             <p className="text-lg md:text-xl text-slate-400 leading-relaxed mb-8 max-w-lg">
-              {b2b?.studium?.subheadline || "Wir bereiten vietnamesische Studierende auf ein erfolgreiches Studium in Deutschland vor. TestAS Coaching, 1. Semester Mentoring und Karrierebegleitung bis zum Berufseinstieg."}
+              {b2b?.studium?.subheadline ||
+                "Wir bereiten vietnamesische Studierende auf ein erfolgreiches Studium in Deutschland vor. TestAS Coaching, 1. Semester Mentoring und Karrierebegleitung bis zum Berufseinstieg."}
             </p>
 
             {/* Key Stats */}
@@ -115,7 +112,9 @@ function HeroSection() {
                 </div>
                 <div>
                   <div className="text-white font-bold">TestAS</div>
-                  <div className="text-slate-500 text-xs">{b2b?.studium?.stat1_label || "Coaching"}</div>
+                  <div className="text-slate-500 text-xs">
+                    {b2b?.studium?.stat1_label || "Coaching"}
+                  </div>
                 </div>
               </div>
               <div className="flex items-center gap-2">
@@ -124,7 +123,9 @@ function HeroSection() {
                 </div>
                 <div>
                   <div className="text-white font-bold">1. Semester</div>
-                  <div className="text-slate-500 text-xs">{b2b?.studium?.stat2_label || "Mentoring"}</div>
+                  <div className="text-slate-500 text-xs">
+                    {b2b?.studium?.stat2_label || "Mentoring"}
+                  </div>
                 </div>
               </div>
               <div className="flex items-center gap-2">
@@ -132,8 +133,12 @@ function HeroSection() {
                   <Briefcase className="w-5 h-5 text-indigo-400" />
                 </div>
                 <div>
-                  <div className="text-white font-bold">{t.nav?.cooperation === "Cooperation & Programs" ? "Career" : "Karriere"}</div>
-                  <div className="text-slate-500 text-xs">{b2b?.studium?.stat3_label || "Coaching"}</div>
+                  <div className="text-white font-bold">
+                    {t.nav?.cooperation === "Cooperation & Programs" ? "Career" : "Karriere"}
+                  </div>
+                  <div className="text-slate-500 text-xs">
+                    {b2b?.studium?.stat3_label || "Coaching"}
+                  </div>
                 </div>
               </div>
             </div>
@@ -185,8 +190,12 @@ function HeroSection() {
                     <Brain className="w-6 h-6 text-indigo-400" />
                   </div>
                   <div>
-                    <div className="text-white font-semibold">{b2b?.studium?.testas_prep || "TestAS Vorbereitung"}</div>
-                    <div className="text-slate-400 text-sm">{b2b?.studium?.intensive_coaching || "Intensives Coaching"}</div>
+                    <div className="text-white font-semibold">
+                      {b2b?.studium?.testas_prep || "TestAS Vorbereitung"}
+                    </div>
+                    <div className="text-slate-400 text-sm">
+                      {b2b?.studium?.intensive_coaching || "Intensives Coaching"}
+                    </div>
                   </div>
                   <CheckCircle2 className="w-5 h-5 text-emerald-400 ml-auto" />
                 </div>
@@ -196,8 +205,12 @@ function HeroSection() {
                     <BookOpen className="w-6 h-6 text-emerald-400" />
                   </div>
                   <div>
-                    <div className="text-white font-semibold">{b2b?.studium?.academic_german || "Akademisches Deutsch"}</div>
-                    <div className="text-slate-400 text-sm">{b2b?.studium?.dsh_testdaf || "DSH/TestDaF Niveau"}</div>
+                    <div className="text-white font-semibold">
+                      {b2b?.studium?.academic_german || "Akademisches Deutsch"}
+                    </div>
+                    <div className="text-slate-400 text-sm">
+                      {b2b?.studium?.dsh_testdaf || "DSH/TestDaF Niveau"}
+                    </div>
                   </div>
                   <CheckCircle2 className="w-5 h-5 text-emerald-400 ml-auto" />
                 </div>
@@ -207,16 +220,24 @@ function HeroSection() {
                     <GraduationCap className="w-6 h-6 text-indigo-400" />
                   </div>
                   <div>
-                    <div className="text-white font-semibold">{b2b?.studium?.first_semester || "1. Semester Begleitung"}</div>
-                    <div className="text-slate-400 text-sm">{b2b?.studium?.academic_mentoring || "Akademisches Mentoring"}</div>
+                    <div className="text-white font-semibold">
+                      {b2b?.studium?.first_semester || "1. Semester Begleitung"}
+                    </div>
+                    <div className="text-slate-400 text-sm">
+                      {b2b?.studium?.academic_mentoring || "Akademisches Mentoring"}
+                    </div>
                   </div>
                   <CheckCircle2 className="w-5 h-5 text-emerald-400 ml-auto" />
                 </div>
               </div>
 
               <div className="mt-6 pt-6 border-t border-white/10 text-center">
-                <div className="text-slate-400 text-sm">{b2b?.common?.costs_only_for || "Kosten ausschließlich für"}</div>
-                <div className="text-white font-semibold mt-1">{b2b?.studium?.study_support || "Bildung & Studienbegleitung"}</div>
+                <div className="text-slate-400 text-sm">
+                  {b2b?.common?.costs_only_for || "Kosten ausschließlich für"}
+                </div>
+                <div className="text-white font-semibold mt-1">
+                  {b2b?.studium?.study_support || "Bildung & Studienbegleitung"}
+                </div>
               </div>
             </div>
           </motion.div>
@@ -237,9 +258,24 @@ function TransparencySection() {
   const b2b = t.b2b_pages;
 
   const getPhases = () => [
-    { name: b2b?.common?.phase_preparation || "Vorbereitung", color: "indigo", icon: BookOpen, key: "preparation" },
-    { name: b2b?.common?.phase_administration || "Administration", color: "slate", icon: FileCheck, key: "administration" },
-    { name: b2b?.common?.phase_integration || "Integration", color: "emerald", icon: Home, key: "integration" },
+    {
+      name: b2b?.common?.phase_preparation || "Vorbereitung",
+      color: "indigo",
+      icon: BookOpen,
+      key: "preparation",
+    },
+    {
+      name: b2b?.common?.phase_administration || "Administration",
+      color: "slate",
+      icon: FileCheck,
+      key: "administration",
+    },
+    {
+      name: b2b?.common?.phase_integration || "Integration",
+      color: "emerald",
+      icon: Home,
+      key: "integration",
+    },
   ];
 
   const getServiceModules = () => [
@@ -262,7 +298,8 @@ function TransparencySection() {
       phase: b2b?.common?.phase_preparation || "Vorbereitung",
       phaseKey: "preparation",
       service: b2b?.studium?.p1_3_service || "TestAS Coaching",
-      description: b2b?.studium?.p1_3_desc || "Intensive Vorbereitung auf den Studierfähigkeitstest",
+      description:
+        b2b?.studium?.p1_3_desc || "Intensive Vorbereitung auf den Studierfähigkeitstest",
     },
     {
       code: "P1.4",
@@ -304,7 +341,8 @@ function TransparencySection() {
       phase: b2b?.common?.phase_integration || "Integration",
       phaseKey: "integration",
       service: b2b?.studium?.p3_2_service || "7-Tage Settling-in Kit",
-      description: b2b?.studium?.p3_2_desc || "Wohnung, Anmeldung, Bankkonto, SIM-Karte, Orientierung",
+      description:
+        b2b?.studium?.p3_2_desc || "Wohnung, Anmeldung, Bankkonto, SIM-Karte, Orientierung",
     },
     {
       code: "P3.3",
@@ -318,7 +356,8 @@ function TransparencySection() {
       phase: b2b?.common?.phase_integration || "Integration",
       phaseKey: "integration",
       service: b2b?.studium?.p3_4_service || "1. Semester Mentoring",
-      description: b2b?.studium?.p3_4_desc || "Akademische Begleitung, Lernstrategien, Prüfungsvorbereitung",
+      description:
+        b2b?.studium?.p3_4_desc || "Akademische Begleitung, Lernstrategien, Prüfungsvorbereitung",
     },
     {
       code: "P3.5",
@@ -339,7 +378,9 @@ function TransparencySection() {
       phase: b2b?.common?.phase_integration || "Integration",
       phaseKey: "integration",
       service: b2b?.studium?.p3_7_service || "Karriere-Coaching",
-      description: b2b?.studium?.p3_7_desc || "Praktika-Vermittlung, Bewerbungstraining für deutschen Arbeitsmarkt",
+      description:
+        b2b?.studium?.p3_7_desc ||
+        "Praktika-Vermittlung, Bewerbungstraining für deutschen Arbeitsmarkt",
     },
   ];
 
@@ -370,7 +411,8 @@ function TransparencySection() {
           </h2>
 
           <p className="text-lg md:text-xl text-slate-500 max-w-3xl mx-auto">
-            {b2b?.common?.transparency_subtitle || "Von P1.1 bis P3.7 - jede Leistung ist klar definiert. Kosten ausschließlich für Bildung und Studienbegleitung."}
+            {b2b?.common?.transparency_subtitle ||
+              "Von P1.1 bis P3.7 - jede Leistung ist klar definiert. Kosten ausschließlich für Bildung und Studienbegleitung."}
           </p>
         </motion.div>
 
@@ -390,8 +432,8 @@ function TransparencySection() {
                   phase.color === "indigo"
                     ? "bg-indigo-50 border-indigo-200 text-indigo-700"
                     : phase.color === "emerald"
-                    ? "bg-emerald-50 border-emerald-200 text-emerald-700"
-                    : "bg-slate-50 border-slate-200 text-slate-700"
+                      ? "bg-emerald-50 border-emerald-200 text-emerald-700"
+                      : "bg-slate-50 border-slate-200 text-slate-700"
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -411,11 +453,21 @@ function TransparencySection() {
           <Table>
             <TableHeader>
               <TableRow className="bg-slate-100 hover:bg-slate-100">
-                <TableHead className="font-bold text-slate-900 py-4">{b2b?.common?.table_code || "Code"}</TableHead>
-                <TableHead className="font-bold text-slate-900">{b2b?.common?.table_phase || "Phase"}</TableHead>
-                <TableHead className="font-bold text-slate-900">{b2b?.common?.table_service || "Leistung"}</TableHead>
-                <TableHead className="font-bold text-slate-900 hidden md:table-cell">{b2b?.common?.table_description || "Beschreibung"}</TableHead>
-                <TableHead className="font-bold text-slate-900 text-center">{b2b?.common?.table_included || "Inkl."}</TableHead>
+                <TableHead className="font-bold text-slate-900 py-4">
+                  {b2b?.common?.table_code || "Code"}
+                </TableHead>
+                <TableHead className="font-bold text-slate-900">
+                  {b2b?.common?.table_phase || "Phase"}
+                </TableHead>
+                <TableHead className="font-bold text-slate-900">
+                  {b2b?.common?.table_service || "Leistung"}
+                </TableHead>
+                <TableHead className="font-bold text-slate-900 hidden md:table-cell">
+                  {b2b?.common?.table_description || "Beschreibung"}
+                </TableHead>
+                <TableHead className="font-bold text-slate-900 text-center">
+                  {b2b?.common?.table_included || "Inkl."}
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -426,11 +478,13 @@ function TransparencySection() {
                     module.phaseKey === "preparation"
                       ? "bg-indigo-50/50 hover:bg-indigo-50"
                       : module.phaseKey === "administration"
-                      ? "bg-white hover:bg-slate-50"
-                      : "bg-emerald-50/50 hover:bg-emerald-50"
+                        ? "bg-white hover:bg-slate-50"
+                        : "bg-emerald-50/50 hover:bg-emerald-50"
                   }`}
                 >
-                  <TableCell className="font-mono font-bold text-slate-600">{module.code}</TableCell>
+                  <TableCell className="font-mono font-bold text-slate-600">
+                    {module.code}
+                  </TableCell>
                   <TableCell>
                     <Badge
                       variant="outline"
@@ -438,15 +492,17 @@ function TransparencySection() {
                         module.phaseKey === "preparation"
                           ? "border-indigo-200 text-indigo-700 bg-indigo-100"
                           : module.phaseKey === "administration"
-                          ? "border-slate-200 text-slate-700 bg-slate-100"
-                          : "border-emerald-200 text-emerald-700 bg-emerald-100"
+                            ? "border-slate-200 text-slate-700 bg-slate-100"
+                            : "border-emerald-200 text-emerald-700 bg-emerald-100"
                       }`}
                     >
                       {module.phase}
                     </Badge>
                   </TableCell>
                   <TableCell className="font-semibold text-slate-900">{module.service}</TableCell>
-                  <TableCell className="text-slate-600 hidden md:table-cell">{module.description}</TableCell>
+                  <TableCell className="text-slate-600 hidden md:table-cell">
+                    {module.description}
+                  </TableCell>
                   <TableCell className="text-center">
                     <CheckCircle2 className="w-5 h-5 text-emerald-500 mx-auto" />
                   </TableCell>
@@ -470,7 +526,8 @@ function TransparencySection() {
             </span>
           </div>
           <p className="text-slate-600">
-            {b2b?.common?.cost_disclaimer_text || "Alle Kosten sind ausschließlich für Bildungsdienstleistungen und Studienbegleitung. Keine versteckten Vermittlungsgebühren."}
+            {b2b?.common?.cost_disclaimer_text ||
+              "Alle Kosten sind ausschließlich für Bildungsdienstleistungen und Studienbegleitung. Keine versteckten Vermittlungsgebühren."}
           </p>
         </motion.div>
       </div>
@@ -492,8 +549,11 @@ function QualityGatesSection() {
     {
       gate: `${b2b?.common?.gate || "Gate"} 1`,
       title: b2b?.studium?.gate1_title || "TestAS Coaching",
-      description: b2b?.studium?.gate1_desc || "Intensive Vorbereitung auf den Studierfähigkeitstest",
-      items: (b2b?.studium?.gate1_items || "Kerntest-Training|Fachmodule üben|Strategien & Zeitmanagement").split("|"),
+      description:
+        b2b?.studium?.gate1_desc || "Intensive Vorbereitung auf den Studierfähigkeitstest",
+      items: (
+        b2b?.studium?.gate1_items || "Kerntest-Training|Fachmodule üben|Strategien & Zeitmanagement"
+      ).split("|"),
       icon: Brain,
       color: "indigo",
     },
@@ -501,7 +561,10 @@ function QualityGatesSection() {
       gate: `${b2b?.common?.gate || "Gate"} 2`,
       title: b2b?.studium?.gate2_title || "Sprachkompetenz",
       description: b2b?.studium?.gate2_desc || "DSH/TestDaF Niveau für akademisches Studium",
-      items: (b2b?.studium?.gate2_items || "Akademisches Deutsch|Wissenschaftliches Schreiben|Präsentationstechnik").split("|"),
+      items: (
+        b2b?.studium?.gate2_items ||
+        "Akademisches Deutsch|Wissenschaftliches Schreiben|Präsentationstechnik"
+      ).split("|"),
       icon: Languages,
       color: "emerald",
     },
@@ -509,7 +572,9 @@ function QualityGatesSection() {
       gate: `${b2b?.common?.gate || "Gate"} 3`,
       title: b2b?.studium?.gate3_title || "1. Semester Mentoring",
       description: b2b?.studium?.gate3_desc || "Akademische Begleitung für erfolgreichen Start",
-      items: (b2b?.studium?.gate3_items || "Lernstrategien|Prüfungsvorbereitung|Zeitmanagement").split("|"),
+      items: (
+        b2b?.studium?.gate3_items || "Lernstrategien|Prüfungsvorbereitung|Zeitmanagement"
+      ).split("|"),
       icon: GraduationCap,
       color: "indigo",
     },
@@ -517,7 +582,9 @@ function QualityGatesSection() {
       gate: `${b2b?.common?.gate || "Gate"} 4`,
       title: b2b?.studium?.gate4_title || "Karriereentwicklung",
       description: b2b?.studium?.gate4_desc || "Vorbereitung auf den deutschen Arbeitsmarkt",
-      items: (b2b?.studium?.gate4_items || "Praktika-Vermittlung|Bewerbungstraining|Networking-Events").split("|"),
+      items: (
+        b2b?.studium?.gate4_items || "Praktika-Vermittlung|Bewerbungstraining|Networking-Events"
+      ).split("|"),
       icon: TrendingUp,
       color: "emerald",
     },
@@ -549,7 +616,8 @@ function QualityGatesSection() {
           </h2>
 
           <p className="text-lg md:text-xl text-slate-500 max-w-3xl mx-auto">
-            {b2b?.studium?.quality_subtitle || "Von TestAS Coaching bis Karrierebegleitung - wir begleiten Studierende auf dem gesamten Weg zum erfolgreichen Berufseinstieg in Deutschland."}
+            {b2b?.studium?.quality_subtitle ||
+              "Von TestAS Coaching bis Karrierebegleitung - wir begleiten Studierende auf dem gesamten Weg zum erfolgreichen Berufseinstieg in Deutschland."}
           </p>
         </motion.div>
 
@@ -597,9 +665,11 @@ function QualityGatesSection() {
                   <ul className="space-y-2">
                     {gate.items.map((item, idx) => (
                       <li key={idx} className="flex items-center gap-2 text-sm text-slate-600">
-                        <CheckCircle2 className={`w-4 h-4 ${
-                          gate.color === "indigo" ? "text-indigo-500" : "text-emerald-500"
-                        }`} />
+                        <CheckCircle2
+                          className={`w-4 h-4 ${
+                            gate.color === "indigo" ? "text-indigo-500" : "text-emerald-500"
+                          }`}
+                        />
                         {item}
                       </li>
                     ))}
@@ -619,10 +689,13 @@ function QualityGatesSection() {
         >
           <div className="flex items-center justify-center gap-3 mb-4">
             <GraduationCap className="w-8 h-8 text-white" />
-            <h3 className="text-2xl font-bold text-white">{b2b?.studium?.gate3_title || "1. Semester Mentoring"}</h3>
+            <h3 className="text-2xl font-bold text-white">
+              {b2b?.studium?.gate3_title || "1. Semester Mentoring"}
+            </h3>
           </div>
           <p className="text-indigo-100 max-w-2xl mx-auto mb-6">
-            {b2b?.studium?.mentoring_text || "Die ersten Monate im Studium sind entscheidend. Unser Mentoring-Programm begleitet Studierende bei akademischen Herausforderungen und sichert den Studienerfolg."}
+            {b2b?.studium?.mentoring_text ||
+              "Die ersten Monate im Studium sind entscheidend. Unser Mentoring-Programm begleitet Studierende bei akademischen Herausforderungen und sichert den Studienerfolg."}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Badge className="bg-white/20 text-white border-white/30 px-4 py-2">
@@ -654,43 +727,58 @@ function SettlementKitSection() {
     {
       day: `${b2b?.common?.day || "Tag"} 1`,
       title: b2b?.common?.day1_title || "Ankunft & Transfer",
-      items: (b2b?.common?.day1_items || "Flughafenabholung|Transfer zur Unterkunft|Erste Orientierung").split("|"),
+      items: (
+        b2b?.common?.day1_items || "Flughafenabholung|Transfer zur Unterkunft|Erste Orientierung"
+      ).split("|"),
       icon: "✈️",
     },
     {
       day: `${b2b?.common?.day || "Tag"} 2`,
       title: b2b?.common?.day2_title || "Wohnung & Basics",
-      items: (b2b?.common?.day2_items || "Schlüsselübergabe|Haushaltsausstattung|Nahversorgung erkunden").split("|"),
+      items: (
+        b2b?.common?.day2_items || "Schlüsselübergabe|Haushaltsausstattung|Nahversorgung erkunden"
+      ).split("|"),
       icon: "🏠",
     },
     {
       day: `${b2b?.common?.day || "Tag"} 3`,
       title: b2b?.common?.day3_title || "Behördengänge",
-      items: (b2b?.common?.day3_items || "Einwohnermeldeamt|Aufenthaltstitel|Steuer-ID beantragen").split("|"),
+      items: (
+        b2b?.common?.day3_items || "Einwohnermeldeamt|Aufenthaltstitel|Steuer-ID beantragen"
+      ).split("|"),
       icon: "📋",
     },
     {
       day: `${b2b?.common?.day || "Tag"} 4`,
       title: b2b?.common?.day4_title || "Finanzen & Kommunikation",
-      items: (b2b?.common?.day4_items || "Bankkonto eröffnen|SIM-Karte aktivieren|Semesterticket").split("|"),
+      items: (
+        b2b?.common?.day4_items || "Bankkonto eröffnen|SIM-Karte aktivieren|Semesterticket"
+      ).split("|"),
       icon: "💳",
     },
     {
       day: `${b2b?.common?.day || "Tag"} 5`,
       title: b2b?.common?.day5_title || "Gesundheit & Soziales",
-      items: (b2b?.common?.day5_items || "Krankenkasse anmelden|Hochschulsport|AStA & Beratung").split("|"),
+      items: (
+        b2b?.common?.day5_items || "Krankenkasse anmelden|Hochschulsport|AStA & Beratung"
+      ).split("|"),
       icon: "🏥",
     },
     {
       day: `${b2b?.common?.day || "Tag"} 6`,
       title: b2b?.studium?.day6_title_studium || "Uni-Vorbereitung",
-      items: (b2b?.studium?.day6_items_studium || "Campus-Tour|Bibliotheksausweis|IT-Zugänge einrichten").split("|"),
+      items: (
+        b2b?.studium?.day6_items_studium || "Campus-Tour|Bibliotheksausweis|IT-Zugänge einrichten"
+      ).split("|"),
       icon: "🎓",
     },
     {
       day: `${b2b?.common?.day || "Tag"} 7`,
       title: b2b?.studium?.day7_title_studium || "Studienstart",
-      items: (b2b?.studium?.day7_items_studium || "Einschreibung|Stundenplan erstellen|Bereit für Semester!").split("|"),
+      items: (
+        b2b?.studium?.day7_items_studium ||
+        "Einschreibung|Stundenplan erstellen|Bereit für Semester!"
+      ).split("|"),
       icon: "🎯",
     },
   ];
@@ -721,7 +809,8 @@ function SettlementKitSection() {
           </h2>
 
           <p className="text-lg md:text-xl text-slate-500 max-w-3xl mx-auto">
-            {b2b?.studium?.settlement_subtitle || "Vollständige Betreuung in der ersten Woche garantiert einen stressfreien Studienstart und minimiert das Risiko von Studienabbrüchen."}
+            {b2b?.studium?.settlement_subtitle ||
+              "Vollständige Betreuung in der ersten Woche garantiert einen stressfreien Studienstart und minimiert das Risiko von Studienabbrüchen."}
           </p>
         </motion.div>
 
@@ -778,15 +867,21 @@ function SettlementKitSection() {
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div>
               <div className="text-4xl font-bold text-emerald-600 mb-2">&lt;8%</div>
-              <div className="text-slate-600">{b2b?.studium?.dropout_studium || "Studienabbruchquote"}</div>
+              <div className="text-slate-600">
+                {b2b?.studium?.dropout_studium || "Studienabbruchquote"}
+              </div>
             </div>
             <div>
               <div className="text-4xl font-bold text-indigo-600 mb-2">92%</div>
-              <div className="text-slate-600">{b2b?.studium?.graduation_rate || "Regelstudienzeit"}</div>
+              <div className="text-slate-600">
+                {b2b?.studium?.graduation_rate || "Regelstudienzeit"}
+              </div>
             </div>
             <div>
               <div className="text-4xl font-bold text-emerald-600 mb-2">100%</div>
-              <div className="text-slate-600">{b2b?.studium?.first_sem_support || "Begleitung im 1. Semester"}</div>
+              <div className="text-slate-600">
+                {b2b?.studium?.first_sem_support || "Begleitung im 1. Semester"}
+              </div>
             </div>
           </div>
         </motion.div>
@@ -825,7 +920,8 @@ function CTASection() {
           </h2>
 
           <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10">
-            {b2b?.studium?.cta_subtitle || "Wir bereiten vietnamesische Studierende optimal auf das Studium in Deutschland vor. TestAS Coaching, Sprachkurse und 1. Semester Mentoring inklusive."}
+            {b2b?.studium?.cta_subtitle ||
+              "Wir bereiten vietnamesische Studierende optimal auf das Studium in Deutschland vor. TestAS Coaching, Sprachkurse und 1. Semester Mentoring inklusive."}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

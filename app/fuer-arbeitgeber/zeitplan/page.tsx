@@ -1,8 +1,9 @@
 "use client";
+import Link from "next/link";
 
-import { Calendar, Clock, ArrowRight, CheckCircle2 } from "lucide-react";
-import { TimelineSimulator } from "@/components/tools/TimelineSimulator";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { TimelineSimulator } from "@/components/tools/TimelineSimulator";
+import { ArrowRight, Calendar, CheckCircle2, Clock } from "lucide-react";
 
 export default function ZeitplanPage() {
   const { t } = useLanguage();
@@ -105,20 +106,20 @@ export default function ZeitplanPage() {
                 "Kontaktieren Sie uns für eine individuelle Beratung und erhalten Sie einen maßgeschneiderten Zeitplan für Ihr Projekt."}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
+              <Link
                 href="/#contact"
                 className="px-8 py-4 bg-white text-primary rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg flex items-center justify-center gap-2"
               >
                 {t.timeline?.cta_contact || "Jetzt kontaktieren"}
                 <ArrowRight className="w-5 h-5" />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/fuer-arbeitgeber/roi-rechner"
                 className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-lg font-semibold hover:bg-white/10 transition-colors flex items-center justify-center gap-2"
               >
                 {t.timeline?.cta_costs || "Kosten berechnen"}
                 <ArrowRight className="w-5 h-5" />
-              </a>
+              </Link>
             </div>
           </div>
         </div>

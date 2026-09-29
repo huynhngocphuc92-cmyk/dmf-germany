@@ -1,15 +1,17 @@
 "use client";
 
+import { trackEvent } from "@/components/analytics/GoogleAnalytics";
+import { GERMANY_CONTACT, VIETNAM_OFFICE_CONTACT } from "@/lib/company/contact";
+import { useSubmissionKey } from "@/lib/intake/client";
+import { contactFormSchema, type ContactFormData } from "@/lib/validations/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Globe, Loader2, Mail, MapPin, Phone, Send, User } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { GERMANY_CONTACT, VIETNAM_OFFICE_CONTACT } from "@/lib/company/contact";
-import { contactFormSchema, type ContactFormData } from "@/lib/validations/schemas";
-import { Loader2, Send, MapPin, Phone, Mail, Globe, User } from "lucide-react";
-import { trackEvent } from "@/components/analytics/GoogleAnalytics";
 
 export default function ContactSection() {
+  const { forPayload: submissionKey, reset: resetSubmissionKey } = useSubmissionKey();
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
@@ -43,6 +45,7 @@ export default function ContactSection() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Idempotency-Key": submissionKey(data),
         },
         body: JSON.stringify(data),
       });
@@ -53,7 +56,7 @@ export default function ContactSection() {
 
       const result = await response.json();
 
-      if (!result.success) {
+      if (!result.success || !result.saved) {
         throw new Error(result.message || "Fehler beim Senden");
       }
 
@@ -62,7 +65,7 @@ export default function ContactSection() {
       reset(); // Clear form
 
       // Conversion tracking (GA4) — chỉ bắn khi user đã đồng ý cookie
-      trackEvent("generate_lead", { form: "contact" });
+      if (!result.duplicate) trackEvent("generate_lead", { form: "contact" });
     } catch (err) {
       console.error("Contact form error:", err);
       setSubmitError("Fehler beim Senden. Bitte versuchen Sie es später noch einmal.");
@@ -80,9 +83,12 @@ export default function ContactSection() {
             {isSuccess ? (
               <div className="bg-emerald-50 text-emerald-700 p-8 rounded-xl text-center">
                 <h3 className="text-2xl font-bold mb-2">Vielen Dank!</h3>
-                <p>Ihre Nachricht wurde erfolgreich gesendet.</p>
+                <p>Ihre Anfrage wurde gespeichert. Unser Team meldet sich bei Ihnen.</p>
                 <button
-                  onClick={() => setIsSuccess(false)}
+                  onClick={() => {
+                    resetSubmissionKey();
+                    setIsSuccess(false);
+                  }}
                   className="mt-4 text-sm font-bold underline"
                 >
                   Neue Nachricht
@@ -90,7 +96,12 @@ export default function ContactSection() {
               </div>
             ) : (
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                <input type="text" {...register("bot_check")} className="hidden" autoComplete="off" />
+                <input
+                  type="text"
+                  {...register("bot_check")}
+                  className="hidden"
+                  autoComplete="off"
+                />
 
                 {/* Name & Email */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -157,7 +168,9 @@ export default function ContactSection() {
                 <div className="space-y-2">
                   <div
                     className={`rounded-xl border p-4 ${
-                      errors.privacy ? "border-red-500 bg-red-50/40" : "border-slate-200 bg-slate-50"
+                      errors.privacy
+                        ? "border-red-500 bg-red-50/40"
+                        : "border-slate-200 bg-slate-50"
                     }`}
                   >
                     <div className="flex items-start gap-3">
@@ -219,7 +232,10 @@ export default function ContactSection() {
               <ul className="space-y-4 text-sm text-slate-600">
                 <li className="flex gap-3">
                   <Phone size={16} className="text-slate-400 shrink-0 mt-0.5" />
-                  <a href={VIETNAM_OFFICE_CONTACT.phoneHref} className="hover:text-blue-600 transition-colors">
+                  <a
+                    href={VIETNAM_OFFICE_CONTACT.phoneHref}
+                    className="hover:text-blue-600 transition-colors"
+                  >
                     {VIETNAM_OFFICE_CONTACT.phone}
                   </a>
                 </li>
@@ -264,13 +280,19 @@ export default function ContactSection() {
               <ul className="space-y-4 text-sm text-slate-600">
                 <li className="flex gap-3">
                   <Phone size={16} className="text-slate-400 shrink-0 mt-0.5" />
-                  <a href={GERMANY_CONTACT.phoneHref} className="hover:text-blue-600 transition-colors">
+                  <a
+                    href={GERMANY_CONTACT.phoneHref}
+                    className="hover:text-blue-600 transition-colors"
+                  >
                     {GERMANY_CONTACT.phone}
                   </a>
                 </li>
                 <li className="flex gap-3">
                   <Mail size={16} className="text-slate-400 shrink-0 mt-0.5" />
-                  <a href={GERMANY_CONTACT.emailHref} className="hover:text-blue-600 transition-colors">
+                  <a
+                    href={GERMANY_CONTACT.emailHref}
+                    className="hover:text-blue-600 transition-colors"
+                  >
                     {GERMANY_CONTACT.email}
                   </a>
                 </li>

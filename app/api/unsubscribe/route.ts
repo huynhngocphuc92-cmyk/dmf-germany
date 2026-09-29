@@ -1,6 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { promises as fs } from 'fs';
-import path from 'path';
+import { NextRequest, NextResponse } from "next/server";
+import { promises as fs } from "fs";
 
 /**
  * GET /api/unsubscribe?email=xxx&pid=123
@@ -12,7 +11,7 @@ import path from 'path';
  *   local server can update its database
  */
 
-const UNSUB_LOG = '/tmp/unsubscribes.json';
+const UNSUB_LOG = "/tmp/unsubscribes.json";
 const WEBHOOK_URL = process.env.UNSUB_WEBHOOK_URL; // Optional: forward to local server
 
 interface UnsubEntry {
@@ -26,21 +25,21 @@ async function logUnsubscribe(entry: UnsubEntry) {
   try {
     let entries: UnsubEntry[] = [];
     try {
-      const data = await fs.readFile(UNSUB_LOG, 'utf-8');
+      const data = await fs.readFile(UNSUB_LOG, "utf-8");
       entries = JSON.parse(data);
     } catch {
       // File doesn't exist yet
     }
 
     // Don't duplicate
-    if (entries.some(e => e.email === entry.email)) {
+    if (entries.some((e) => e.email === entry.email)) {
       return;
     }
 
     entries.push(entry);
     await fs.writeFile(UNSUB_LOG, JSON.stringify(entries, null, 2));
   } catch (err) {
-    console.error('Failed to log unsubscribe:', err);
+    console.error("Failed to log unsubscribe:", err);
   }
 }
 
@@ -48,8 +47,8 @@ async function forwardToWebhook(entry: UnsubEntry) {
   if (!WEBHOOK_URL) return;
   try {
     await fetch(WEBHOOK_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(entry),
     });
   } catch {
@@ -59,40 +58,33 @@ async function forwardToWebhook(entry: UnsubEntry) {
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
-  const email = searchParams.get('email');
-  const partnerId = searchParams.get('pid') || searchParams.get('id');
+  const email = searchParams.get("email");
+  const partnerId = searchParams.get("pid") || searchParams.get("id");
 
   if (!email) {
-    return new NextResponse(
-      generateHTML(
-        'Fehler',
-        'Keine E-Mail-Adresse angegeben.',
-        '#ef4444'
-      ),
-      { status: 400, headers: { 'Content-Type': 'text/html; charset=utf-8' } }
-    );
+    return new NextResponse(generateHTML("Fehler", "Keine E-Mail-Adresse angegeben.", "#ef4444"), {
+      status: 400,
+      headers: { "Content-Type": "text/html; charset=utf-8" },
+    });
   }
 
   const entry: UnsubEntry = {
     email: email.toLowerCase(),
     partnerId,
     timestamp: new Date().toISOString(),
-    ip: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip'),
+    ip: request.headers.get("x-forwarded-for") || request.headers.get("x-real-ip"),
   };
 
   // Log and forward in parallel
-  await Promise.all([
-    logUnsubscribe(entry),
-    forwardToWebhook(entry),
-  ]);
+  await Promise.all([logUnsubscribe(entry), forwardToWebhook(entry)]);
 
   return new NextResponse(
     generateHTML(
-      '✅ Erfolgreich abgemeldet',
+      "✅ Erfolgreich abgemeldet",
       `Sie erhalten keine weiteren E-Mails von uns an <strong>${email}</strong>.`,
-      '#10b981'
+      "#10b981"
     ),
-    { status: 200, headers: { 'Content-Type': 'text/html; charset=utf-8' } }
+    { status: 200, headers: { "Content-Type": "text/html; charset=utf-8" } }
   );
 }
 
@@ -101,34 +93,34 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const entry: UnsubEntry = {
-      email: (body.email || '').toLowerCase(),
+      email: (body.email || "").toLowerCase(),
       partnerId: body.partnerId || body.pid || null,
       timestamp: new Date().toISOString(),
-      ip: request.headers.get('x-forwarded-for'),
+      ip: request.headers.get("x-forwarded-for"),
     };
 
     if (!entry.email) {
-      return NextResponse.json({ error: 'Missing email' }, { status: 400 });
+      return NextResponse.json({ error: "Missing email" }, { status: 400 });
     }
 
     await logUnsubscribe(entry);
     return NextResponse.json({ ok: true, email: entry.email });
   } catch {
-    return NextResponse.json({ error: 'Invalid request' }, { status: 400 });
+    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }
 }
 
 // List all unsubscribes (for syncing back to local DB)
 export async function PUT(request: NextRequest) {
   // Simple auth check
-  const auth = request.headers.get('authorization');
-  const expectedKey = process.env.UNSUB_API_KEY || 'dmf-unsub-key';
+  const auth = request.headers.get("authorization");
+  const expectedKey = process.env.UNSUB_API_KEY || "dmf-unsub-key";
   if (auth !== `Bearer ${expectedKey}`) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   try {
-    const data = await fs.readFile(UNSUB_LOG, 'utf-8');
+    const data = await fs.readFile(UNSUB_LOG, "utf-8");
     const entries = JSON.parse(data);
     return NextResponse.json({ data: entries });
   } catch {

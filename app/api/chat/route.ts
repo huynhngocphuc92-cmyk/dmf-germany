@@ -1,77 +1,25 @@
-import { NextRequest, NextResponse } from "next/server";
-import { PRIMARY_CONTACT } from "@/lib/company/contact";
+import { GrokMessage, runWithGrokModelFallback } from "@/lib/ai/grok";
 import { buildKnowledgeContext } from "@/lib/chatbot/knowledge-base";
+import { PRIMARY_CONTACT } from "@/lib/company/contact";
+import { InvalidBody, readJsonBody } from "@/lib/intake/body";
 import { checkRateLimit, getClientIp, RATE_LIMITS } from "@/lib/rate-limit";
-import { runWithGrokModelFallback, GrokMessage } from "@/lib/ai/grok";
-import { getMailTransporter, isSmtpConfigured } from "@/lib/email/transporter";
+import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
 
 // ============================================
 // TYPES
 // ============================================
 
-interface ChatMessage {
-  role: "user" | "assistant";
-  content: string;
-}
-
-interface ChatRequest {
-  message: string;
-  history?: ChatMessage[];
-  language?: "de" | "en" | "vi" | "vn";
-}
+const chatSchema = z.object({
+  message: z.string().trim().min(1).max(2000),
+  history: z
+    .array(z.object({ role: z.enum(["user", "assistant"]), content: z.string().max(10000) }))
+    .max(200)
+    .default([]),
+  language: z.enum(["de", "en", "vi", "vn"]).default("de"),
+});
 
 type SupportedChatLanguage = "de" | "en" | "vi";
-
-// ============================================
-// BACKGROUND NOTIFICATION
-// ============================================
-
-async function notifyAdminAboutLead(userMessage: string, history: ChatMessage[], requestUrl: string) {
-  try {
-    // Detect typical phone numbers (e.g. +49 152 2345678, 0152 234 5678, 0904123456)
-    const isPhone = /(?:\+|0)[1-9][0-9 \-\.()]{7,15}/.test(userMessage);
-    // Detect email
-    const isEmail = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/.test(userMessage);
-
-    if (!isPhone && !isEmail) return; // No lead data found
-
-    const historyText = history.map(msg => `[${msg.role.toUpperCase()}]: ${msg.content}`).join('\n\n');
-    const fullLog = `${historyText}\n\n[USER]: ${userMessage}`;
-
-    // Send Email
-    if (isSmtpConfigured()) {
-      const transporter = getMailTransporter();
-      if (transporter) {
-        await transporter.sendMail({
-          from: `"DMF AI Bot" <${process.env.SMTP_USER}>`,
-          to: process.env.CONTACT_EMAIL || process.env.SMTP_USER,
-          subject: `🚨 NEU: Chatbot Lead gesammelt (DMF Talents)`,
-          html: `
-            <h2 style="color:#0891b2;">Neue Kontaktinformationen im Chat!</h2>
-            <p>Ein Nutzer hat im Chat-Verlauf wahrscheinlich seine Kontaktdaten hinterlassen.</p>
-            <p style="background:#f0f9ff;padding:12px;border-left:4px solid #0891b2;"><strong>Gewonnene Nachricht:</strong><br/>${userMessage}</p>
-            <hr/>
-            <h3>Chat-Verlauf:</h3>
-            <pre style="background:#f4f4f4;padding:15px;white-space:pre-wrap;font-family:monospace;font-size:12px;">${fullLog}</pre>
-          `
-        });
-        console.warn("[Chat API] Lead notification email sent");
-      }
-    }
-    
-    // Send Telegram
-    const telegramMessage = `🤖 <b>CHATBOT LEAD DETECTED</b>\n\n💬 <b>Nachricht:</b>\n${userMessage}\n\nBitte im Admin-Panel oder E-Mail prüfen!`;
-    const host = new URL(requestUrl).origin;
-    await fetch(`${host}/api/telegram`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: telegramMessage }),
-    }).catch(() => {});
-    
-  } catch (err) {
-    console.error("[Chat API] Failed to notify lead:", err);
-  }
-}
 
 // ============================================
 // SYSTEM PROMPT
@@ -157,6 +105,13 @@ ${knowledgeContext}
 
 export async function POST(request: NextRequest) {
   try {
+    // Parse request
+    const parsed = chatSchema.safeParse(await readJsonBody(request, 100000));
+    if (!parsed.success)
+      return NextResponse.json({ error: "Invalid chat request" }, { status: 400 });
+    const { message, history, language } = parsed.data;
+    const normalizedLanguage = normalizeChatLanguage(language);
+
     // Rate limiting
     const ip = getClientIp(request);
     const rateLimitResult = await checkRateLimit(`chat:${ip}`, RATE_LIMITS.CHAT);
@@ -172,23 +127,6 @@ export async function POST(request: NextRequest) {
     if (!apiKey) {
       console.error("XAI_API_KEY not configured");
       return NextResponse.json({ error: "Chat service not configured" }, { status: 500 });
-    }
-
-    // Parse request
-    const body: ChatRequest = await request.json();
-    const { message, history = [], language = "de" } = body;
-    const normalizedLanguage = normalizeChatLanguage(language);
-
-    if (!message || typeof message !== "string") {
-      return NextResponse.json({ error: "Message is required" }, { status: 400 });
-    }
-
-    // Limit message length
-    if (message.length > 2000) {
-      return NextResponse.json(
-        { error: "Message too long (max 2000 characters)" },
-        { status: 400 }
-      );
     }
 
     // Limit history
@@ -208,17 +146,15 @@ export async function POST(request: NextRequest) {
 
     const assistantMessage = result.text || "Entschuldigung, ich konnte keine Antwort generieren.";
 
-    // Process notification asynchronously 
-    // We don't block the response stream completely, but since node isn't edge, Promise.all/await is safer
-    await notifyAdminAboutLead(message, limitedHistory, request.url);
-
     // Return response
     return NextResponse.json({
       message: assistantMessage,
       usage: result.usage,
     });
   } catch (error) {
-    console.error("Chat API error:", error);
+    if (error instanceof InvalidBody)
+      return NextResponse.json({ error: "Invalid chat request" }, { status: error.status });
+    console.error("[Chat] Request failed");
 
     const errMsg = error instanceof Error ? error.message : "";
     if (errMsg.includes("429") || errMsg.toLowerCase().includes("quota")) {
@@ -227,7 +163,11 @@ export async function POST(request: NextRequest) {
         { status: 503 }
       );
     }
-    if (errMsg.includes("401") || errMsg.toLowerCase().includes("api key") || errMsg.includes("403")) {
+    if (
+      errMsg.includes("401") ||
+      errMsg.toLowerCase().includes("api key") ||
+      errMsg.includes("403")
+    ) {
       return NextResponse.json({ error: "Chat service configuration error" }, { status: 500 });
     }
 

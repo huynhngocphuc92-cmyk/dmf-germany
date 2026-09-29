@@ -1,21 +1,21 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import Image from "next/image";
-import dynamic from "next/dynamic";
-import { ArrowLeft, Save, Loader2, X, Upload, Eye } from "lucide-react";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { useLanguage } from "@/components/providers/LanguageProvider";
-import type { Post, PostFormData, AdminLanguage } from "./types";
-import { postTranslations, generateSlug } from "./types";
-import { createPost, updatePost, uploadCoverImage, deleteCoverImage } from "./actions";
+import { Textarea } from "@/components/ui/textarea";
+import { ArrowLeft, Eye, Loader2, Save, Upload, X } from "lucide-react";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { createPost, deleteCoverImage, updatePost, uploadCoverImage } from "./actions";
+import type { AdminLanguage, Post, PostFormData } from "./types";
+import { generateSlug, postTranslations } from "./types";
 
 // Lazy load TiptapEditor - it's a heavy component with many dependencies
 const TiptapEditor = dynamic(
@@ -65,13 +65,6 @@ export function PostFormClient({ mode, initialPost }: PostFormClientProps) {
   const [slugEdited, setSlugEdited] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Auto-generate slug from title (only if not manually edited)
-  useEffect(() => {
-    if (!slugEdited && title) {
-      setSlug(generateSlug(title));
-    }
-  }, [title, slugEdited]);
-
   // Handle slug manual edit
   const handleSlugChange = (value: string) => {
     setSlugEdited(true);
@@ -113,7 +106,7 @@ export function PostFormClient({ mode, initialPost }: PostFormClientProps) {
         }
         setCoverImage(url);
       }
-    } catch (err) {
+    } catch {
       setError(lang === "vn" ? "Lỗi tải ảnh" : "Fehler beim Hochladen");
     }
 
@@ -171,7 +164,7 @@ export function PostFormClient({ mode, initialPost }: PostFormClientProps) {
         router.push("/admin/posts");
         router.refresh();
       }
-    } catch (err) {
+    } catch {
       setError(t.saveError);
     }
 
@@ -250,7 +243,10 @@ export function PostFormClient({ mode, initialPost }: PostFormClientProps) {
                   <Input
                     id="title"
                     value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+                    onChange={(e) => {
+                      setTitle(e.target.value);
+                      if (!slugEdited) setSlug(generateSlug(e.target.value));
+                    }}
                     placeholder={t.formTitlePlaceholder}
                     className="mt-1.5 text-lg"
                   />

@@ -1,27 +1,27 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { getNewInquiriesCount } from "@/app/admin/requests/actions";
+import { useLanguage } from "@/components/providers/LanguageProvider";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import {
-  LayoutDashboard,
-  Users,
-  Newspaper,
-  MessageSquare,
   BarChart3,
-  Settings,
   ChevronLeft,
   ChevronRight,
-  Shield,
-  Palette,
-  Target,
+  LayoutDashboard,
+  MessageSquare,
   MessagesSquare,
+  Newspaper,
+  Palette,
+  Settings,
+  Shield,
   Sparkles,
+  Target,
+  Users,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { useState, useEffect } from "react";
-import { useLanguage } from "@/components/providers/LanguageProvider";
-import { getNewInquiriesCount } from "@/app/admin/requests/actions";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 // ============================================
 // SIDEBAR NAVIGATION ITEMS
@@ -79,6 +79,12 @@ const getNavItems = (newInquiriesCount: number | null): NavItem[] => [
     href: "/admin/requests",
     icon: MessageSquare,
     badge: newInquiriesCount !== null && newInquiriesCount > 0 ? newInquiriesCount : undefined,
+  },
+  {
+    labelDe: "Benachrichtigungen",
+    labelVn: "Thông báo",
+    href: "/admin/notifications",
+    icon: MessageSquare,
   },
   {
     labelDe: "Statistiken",

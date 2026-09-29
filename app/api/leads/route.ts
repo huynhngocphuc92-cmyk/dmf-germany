@@ -1,25 +1,14 @@
-import { NextRequest, NextResponse } from "next/server";
-import { createPublicClient } from "@/utils/supabase/public";
-import { leadRequestSchema } from "@/lib/validations/public-intake";
 import { createPrivilegedAdminClient } from "@/lib/auth/admin";
 import {
   adminAuthorizationResponse,
   adminResponseHeaders,
   parseAdminPagination,
 } from "@/lib/auth/admin-http";
+import { acceptIntake } from "@/lib/intake/route";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
-  const parsed = leadRequestSchema.safeParse(await request.json().catch(() => null));
-  if (!parsed.success)
-    return NextResponse.json({ error: "Invalid lead information" }, { status: 400 });
-  try {
-    const supabase = createPublicClient();
-    const { error } = await supabase.rpc("dmf_submit_lead", { p_lead: parsed.data });
-    if (error) return NextResponse.json({ error: "Lead could not be saved" }, { status: 503 });
-    return NextResponse.json({ success: true, accepted: true }, { headers: adminResponseHeaders });
-  } catch {
-    return NextResponse.json({ error: "Lead could not be saved" }, { status: 503 });
-  }
+  return acceptIntake(request, "lead");
 }
 
 // ============================================

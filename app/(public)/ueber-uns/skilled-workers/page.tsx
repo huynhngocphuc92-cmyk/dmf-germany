@@ -15,33 +15,27 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import {
-  Briefcase,
-  BookOpen,
-  Users,
-  Shield,
-  CheckCircle2,
-  Clock,
-  Award,
-  Building2,
-  FileCheck,
-  Home,
-  Languages,
-  Calendar,
-  Target,
-  Sparkles,
-  PhoneCall,
   ArrowRight,
+  Award,
   BadgeCheck,
-  Wrench,
-  TrendingUp,
-  ClipboardCheck,
-  Handshake,
-  UserCheck,
-  Scale,
-  FileText,
+  BookOpen,
+  Briefcase,
   Building,
+  Calendar,
+  CheckCircle2,
+  FileCheck,
   Hammer,
+  Handshake,
+  Home,
+  PhoneCall,
+  Scale,
+  Shield,
+  Sparkles,
   Stethoscope,
+  Target,
+  UserCheck,
+  Users,
+  Wrench,
 } from "lucide-react";
 
 // ============================================
@@ -97,7 +91,9 @@ function HeroSection() {
 
             {/* Main Statement */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-              <span className="text-white">{b2b?.common?.hero_title || "DMF – Ihre Akademie für"}</span>
+              <span className="text-white">
+                {b2b?.common?.hero_title || "DMF – Ihre Akademie für"}
+              </span>
               <br />
               <span className="bg-gradient-to-r from-emerald-400 via-green-300 to-blue-400 bg-clip-text text-transparent">
                 {b2b?.common?.hero_accent || "qualifizierte Talente"}
@@ -108,7 +104,8 @@ function HeroSection() {
 
             {/* Subheadline */}
             <p className="text-lg md:text-xl text-slate-400 leading-relaxed mb-8 max-w-lg">
-              {b2b?.skilled_workers?.subheadline || "Wir begleiten qualifizierte Fachkräfte bei der Anerkennung ihrer Abschlüsse und dem erfolgreichen Einstieg in den deutschen Arbeitsmarkt. Placement Service und 12 Monate Nachbetreuung inklusive."}
+              {b2b?.skilled_workers?.subheadline ||
+                "Wir begleiten qualifizierte Fachkräfte bei der Anerkennung ihrer Abschlüsse und dem erfolgreichen Einstieg in den deutschen Arbeitsmarkt. Placement Service und 12 Monate Nachbetreuung inklusive."}
             </p>
 
             {/* Key Stats */}
@@ -118,8 +115,12 @@ function HeroSection() {
                   <Scale className="w-5 h-5 text-emerald-400" />
                 </div>
                 <div>
-                  <div className="text-white font-bold">{b2b?.skilled_workers?.recognition || "Anerkennung"}</div>
-                  <div className="text-slate-500 text-xs">{b2b?.skilled_workers?.stat1_label || "Support"}</div>
+                  <div className="text-white font-bold">
+                    {b2b?.skilled_workers?.recognition || "Anerkennung"}
+                  </div>
+                  <div className="text-slate-500 text-xs">
+                    {b2b?.skilled_workers?.stat1_label || "Support"}
+                  </div>
                 </div>
               </div>
               <div className="flex items-center gap-2">
@@ -128,7 +129,9 @@ function HeroSection() {
                 </div>
                 <div>
                   <div className="text-white font-bold">Placement</div>
-                  <div className="text-slate-500 text-xs">{b2b?.skilled_workers?.stat2_label || "Service"}</div>
+                  <div className="text-slate-500 text-xs">
+                    {b2b?.skilled_workers?.stat2_label || "Service"}
+                  </div>
                 </div>
               </div>
               <div className="flex items-center gap-2">
@@ -136,8 +139,12 @@ function HeroSection() {
                   <Calendar className="w-5 h-5 text-emerald-400" />
                 </div>
                 <div>
-                  <div className="text-white font-bold">12 {t.nav?.cooperation === "Cooperation & Programs" ? "Months" : "Monate"}</div>
-                  <div className="text-slate-500 text-xs">{b2b?.skilled_workers?.stat3_label || "Nachbetreuung"}</div>
+                  <div className="text-white font-bold">
+                    12 {t.nav?.cooperation === "Cooperation & Programs" ? "Months" : "Monate"}
+                  </div>
+                  <div className="text-slate-500 text-xs">
+                    {b2b?.skilled_workers?.stat3_label || "Nachbetreuung"}
+                  </div>
                 </div>
               </div>
             </div>
@@ -189,8 +196,12 @@ function HeroSection() {
                     <Scale className="w-6 h-6 text-emerald-400" />
                   </div>
                   <div>
-                    <div className="text-white font-semibold">{b2b?.skilled_workers?.recognition || "Anerkennung"}</div>
-                    <div className="text-slate-400 text-sm">{b2b?.skilled_workers?.deficit_balance || "Defizitbescheid & Ausgleich"}</div>
+                    <div className="text-white font-semibold">
+                      {b2b?.skilled_workers?.recognition || "Anerkennung"}
+                    </div>
+                    <div className="text-slate-400 text-sm">
+                      {b2b?.skilled_workers?.deficit_balance || "Defizitbescheid & Ausgleich"}
+                    </div>
                   </div>
                   <CheckCircle2 className="w-5 h-5 text-emerald-400 ml-auto" />
                 </div>
@@ -200,8 +211,12 @@ function HeroSection() {
                     <Handshake className="w-6 h-6 text-blue-400" />
                   </div>
                   <div>
-                    <div className="text-white font-semibold">{b2b?.skilled_workers?.placement_service || "Placement Service"}</div>
-                    <div className="text-slate-400 text-sm">{b2b?.skilled_workers?.employer_matching || "Matching mit Arbeitgebern"}</div>
+                    <div className="text-white font-semibold">
+                      {b2b?.skilled_workers?.placement_service || "Placement Service"}
+                    </div>
+                    <div className="text-slate-400 text-sm">
+                      {b2b?.skilled_workers?.employer_matching || "Matching mit Arbeitgebern"}
+                    </div>
                   </div>
                   <CheckCircle2 className="w-5 h-5 text-emerald-400 ml-auto" />
                 </div>
@@ -211,16 +226,25 @@ function HeroSection() {
                     <UserCheck className="w-6 h-6 text-emerald-400" />
                   </div>
                   <div>
-                    <div className="text-white font-semibold">{b2b?.skilled_workers?.months_care || "12 Monate Betreuung"}</div>
-                    <div className="text-slate-400 text-sm">{b2b?.skilled_workers?.for_ag_fk || "Für AG und Fachkraft"}</div>
+                    <div className="text-white font-semibold">
+                      {b2b?.skilled_workers?.months_care || "12 Monate Betreuung"}
+                    </div>
+                    <div className="text-slate-400 text-sm">
+                      {b2b?.skilled_workers?.for_ag_fk || "Für AG und Fachkraft"}
+                    </div>
                   </div>
                   <CheckCircle2 className="w-5 h-5 text-emerald-400 ml-auto" />
                 </div>
               </div>
 
               <div className="mt-6 pt-6 border-t border-white/10 text-center">
-                <div className="text-slate-400 text-sm">{b2b?.common?.costs_only_for || "Kosten ausschließlich für"}</div>
-                <div className="text-white font-semibold mt-1">{b2b?.skilled_workers?.education_legal_support || "Bildung & Rechtliche Begleitung"}</div>
+                <div className="text-slate-400 text-sm">
+                  {b2b?.common?.costs_only_for || "Kosten ausschließlich für"}
+                </div>
+                <div className="text-white font-semibold mt-1">
+                  {b2b?.skilled_workers?.education_legal_support ||
+                    "Bildung & Rechtliche Begleitung"}
+                </div>
               </div>
             </div>
           </motion.div>
@@ -241,9 +265,24 @@ function TransparencySection() {
   const b2b = t.b2b_pages;
 
   const getPhases = () => [
-    { name: b2b?.common?.phase_preparation || "Vorbereitung", color: "emerald", icon: BookOpen, key: "preparation" },
-    { name: b2b?.common?.phase_administration || "Administration", color: "slate", icon: FileCheck, key: "administration" },
-    { name: b2b?.common?.phase_integration || "Integration", color: "blue", icon: Home, key: "integration" },
+    {
+      name: b2b?.common?.phase_preparation || "Vorbereitung",
+      color: "emerald",
+      icon: BookOpen,
+      key: "preparation",
+    },
+    {
+      name: b2b?.common?.phase_administration || "Administration",
+      color: "slate",
+      icon: FileCheck,
+      key: "administration",
+    },
+    {
+      name: b2b?.common?.phase_integration || "Integration",
+      color: "blue",
+      icon: Home,
+      key: "integration",
+    },
   ];
 
   const getServiceModules = () => [
@@ -252,7 +291,8 @@ function TransparencySection() {
       phase: b2b?.common?.phase_preparation || "Vorbereitung",
       phaseKey: "preparation",
       service: b2b?.skilled_workers?.p1_1_service || "Rekrutierung & Vorauswahl",
-      description: b2b?.skilled_workers?.p1_1_desc || "Qualifizierte Fachkräfte nach Ihren Anforderungen",
+      description:
+        b2b?.skilled_workers?.p1_1_desc || "Qualifizierte Fachkräfte nach Ihren Anforderungen",
     },
     {
       code: "P1.2",
@@ -266,63 +306,77 @@ function TransparencySection() {
       phase: b2b?.common?.phase_preparation || "Vorbereitung",
       phaseKey: "preparation",
       service: b2b?.skilled_workers?.p1_3_service || "Anerkennung Support",
-      description: b2b?.skilled_workers?.p1_3_desc || "Begleitung beim Anerkennungsverfahren ausländischer Abschlüsse",
+      description:
+        b2b?.skilled_workers?.p1_3_desc ||
+        "Begleitung beim Anerkennungsverfahren ausländischer Abschlüsse",
     },
     {
       code: "P1.4",
       phase: b2b?.common?.phase_preparation || "Vorbereitung",
       phaseKey: "preparation",
       service: b2b?.skilled_workers?.p1_4_service || "Anpassungsqualifizierung",
-      description: b2b?.skilled_workers?.p1_4_desc || "Vorbereitung auf Defizitausgleich und Kenntnisprüfung",
+      description:
+        b2b?.skilled_workers?.p1_4_desc || "Vorbereitung auf Defizitausgleich und Kenntnisprüfung",
     },
     {
       code: "P2.1",
       phase: b2b?.common?.phase_administration || "Administration",
       phaseKey: "administration",
       service: b2b?.skilled_workers?.p2_1_service || "§18a/b Visa-Service",
-      description: b2b?.skilled_workers?.p2_1_desc || "Fachkräfteeinwanderungsgesetz, beschleunigtes Verfahren",
+      description:
+        b2b?.skilled_workers?.p2_1_desc ||
+        "Fachkräfteeinwanderungsgesetz, beschleunigtes Verfahren",
     },
     {
       code: "P2.2",
       phase: b2b?.common?.phase_administration || "Administration",
       phaseKey: "administration",
       service: b2b?.skilled_workers?.p2_2_service || "Beschleunigtes Verfahren",
-      description: b2b?.skilled_workers?.p2_2_desc || "§81a AufenthG Fachkräfteverfahren bei der Ausländerbehörde",
+      description:
+        b2b?.skilled_workers?.p2_2_desc ||
+        "§81a AufenthG Fachkräfteverfahren bei der Ausländerbehörde",
     },
     {
       code: "P2.3",
       phase: b2b?.common?.phase_administration || "Administration",
       phaseKey: "administration",
       service: b2b?.skilled_workers?.p2_3_service || "Behördenkorrespondenz",
-      description: b2b?.skilled_workers?.p2_3_desc || "ZAV, Ausländerbehörde, Botschaft, Anerkennungsstellen",
+      description:
+        b2b?.skilled_workers?.p2_3_desc || "ZAV, Ausländerbehörde, Botschaft, Anerkennungsstellen",
     },
     {
       code: "P3.1",
       phase: b2b?.common?.phase_integration || "Integration",
       phaseKey: "integration",
       service: b2b?.skilled_workers?.p3_1_service || "Flughafenabholung",
-      description: b2b?.skilled_workers?.p3_1_desc || "Persönliche Abholung und Transfer zur Unterkunft",
+      description:
+        b2b?.skilled_workers?.p3_1_desc || "Persönliche Abholung und Transfer zur Unterkunft",
     },
     {
       code: "P3.2",
       phase: b2b?.common?.phase_integration || "Integration",
       phaseKey: "integration",
       service: b2b?.skilled_workers?.p3_2_service || "7-Tage Settling-in Kit",
-      description: b2b?.skilled_workers?.p3_2_desc || "Wohnung, Anmeldung, Bankkonto, SIM-Karte, Orientierung",
+      description:
+        b2b?.skilled_workers?.p3_2_desc || "Wohnung, Anmeldung, Bankkonto, SIM-Karte, Orientierung",
     },
     {
       code: "P3.3",
       phase: b2b?.common?.phase_integration || "Integration",
       phaseKey: "integration",
       service: b2b?.skilled_workers?.p3_3_service || "Behördengänge",
-      description: b2b?.skilled_workers?.p3_3_desc || "Begleitung zu Einwohnermeldeamt, Krankenkasse, Finanzamt",
+      description:
+        b2b?.skilled_workers?.p3_3_desc ||
+        "Begleitung zu Einwohnermeldeamt, Krankenkasse, Finanzamt",
     },
     {
       code: "P3.4",
       phase: b2b?.common?.phase_integration || "Integration",
       phaseKey: "integration",
       service: b2b?.skilled_workers?.p3_4_service || "Placement Service",
-      description: b2b?.skilled_workers?.p3_4_desc || "Matching mit passenden Arbeitgebern, Vertragsverhandlung",
+      description:
+        b2b?.skilled_workers?.p3_4_desc ||
+        "Matching mit passenden Arbeitgebern, Vertragsverhandlung",
     },
     {
       code: "P3.5",
@@ -336,14 +390,17 @@ function TransparencySection() {
       phase: b2b?.common?.phase_integration || "Integration",
       phaseKey: "integration",
       service: b2b?.skilled_workers?.p3_6_service || "Kulturelle Betreuung",
-      description: b2b?.skilled_workers?.p3_6_desc || "Community-Events, Mentoring, Heimweh-Prävention",
+      description:
+        b2b?.skilled_workers?.p3_6_desc || "Community-Events, Mentoring, Heimweh-Prävention",
     },
     {
       code: "P3.7",
       phase: b2b?.common?.phase_integration || "Integration",
       phaseKey: "integration",
       service: b2b?.skilled_workers?.p3_7_service || "Nachbetreuung",
-      description: b2b?.skilled_workers?.p3_7_desc || "12 Monate Ansprechpartner für Arbeitgeber und Fachkraft",
+      description:
+        b2b?.skilled_workers?.p3_7_desc ||
+        "12 Monate Ansprechpartner für Arbeitgeber und Fachkraft",
     },
   ];
 
@@ -374,7 +431,8 @@ function TransparencySection() {
           </h2>
 
           <p className="text-lg md:text-xl text-slate-500 max-w-3xl mx-auto">
-            {b2b?.common?.transparency_subtitle || "Von P1.1 bis P3.7 - jede Leistung ist klar definiert. Kosten ausschließlich für Bildung und rechtliche Begleitung."}
+            {b2b?.common?.transparency_subtitle ||
+              "Von P1.1 bis P3.7 - jede Leistung ist klar definiert. Kosten ausschließlich für Bildung und rechtliche Begleitung."}
           </p>
         </motion.div>
 
@@ -394,8 +452,8 @@ function TransparencySection() {
                   phase.color === "emerald"
                     ? "bg-emerald-50 border-emerald-200 text-emerald-700"
                     : phase.color === "blue"
-                    ? "bg-blue-50 border-blue-200 text-blue-700"
-                    : "bg-slate-50 border-slate-200 text-slate-700"
+                      ? "bg-blue-50 border-blue-200 text-blue-700"
+                      : "bg-slate-50 border-slate-200 text-slate-700"
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -415,11 +473,21 @@ function TransparencySection() {
           <Table>
             <TableHeader>
               <TableRow className="bg-slate-100 hover:bg-slate-100">
-                <TableHead className="font-bold text-slate-900 py-4">{b2b?.common?.table_code || "Code"}</TableHead>
-                <TableHead className="font-bold text-slate-900">{b2b?.common?.table_phase || "Phase"}</TableHead>
-                <TableHead className="font-bold text-slate-900">{b2b?.common?.table_service || "Leistung"}</TableHead>
-                <TableHead className="font-bold text-slate-900 hidden md:table-cell">{b2b?.common?.table_description || "Beschreibung"}</TableHead>
-                <TableHead className="font-bold text-slate-900 text-center">{b2b?.common?.table_included || "Inkl."}</TableHead>
+                <TableHead className="font-bold text-slate-900 py-4">
+                  {b2b?.common?.table_code || "Code"}
+                </TableHead>
+                <TableHead className="font-bold text-slate-900">
+                  {b2b?.common?.table_phase || "Phase"}
+                </TableHead>
+                <TableHead className="font-bold text-slate-900">
+                  {b2b?.common?.table_service || "Leistung"}
+                </TableHead>
+                <TableHead className="font-bold text-slate-900 hidden md:table-cell">
+                  {b2b?.common?.table_description || "Beschreibung"}
+                </TableHead>
+                <TableHead className="font-bold text-slate-900 text-center">
+                  {b2b?.common?.table_included || "Inkl."}
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -430,11 +498,13 @@ function TransparencySection() {
                     module.phaseKey === "preparation"
                       ? "bg-emerald-50/50 hover:bg-emerald-50"
                       : module.phaseKey === "administration"
-                      ? "bg-white hover:bg-slate-50"
-                      : "bg-blue-50/50 hover:bg-blue-50"
+                        ? "bg-white hover:bg-slate-50"
+                        : "bg-blue-50/50 hover:bg-blue-50"
                   }`}
                 >
-                  <TableCell className="font-mono font-bold text-slate-600">{module.code}</TableCell>
+                  <TableCell className="font-mono font-bold text-slate-600">
+                    {module.code}
+                  </TableCell>
                   <TableCell>
                     <Badge
                       variant="outline"
@@ -442,15 +512,17 @@ function TransparencySection() {
                         module.phaseKey === "preparation"
                           ? "border-emerald-200 text-emerald-700 bg-emerald-100"
                           : module.phaseKey === "administration"
-                          ? "border-slate-200 text-slate-700 bg-slate-100"
-                          : "border-blue-200 text-blue-700 bg-blue-100"
+                            ? "border-slate-200 text-slate-700 bg-slate-100"
+                            : "border-blue-200 text-blue-700 bg-blue-100"
                       }`}
                     >
                       {module.phase}
                     </Badge>
                   </TableCell>
                   <TableCell className="font-semibold text-slate-900">{module.service}</TableCell>
-                  <TableCell className="text-slate-600 hidden md:table-cell">{module.description}</TableCell>
+                  <TableCell className="text-slate-600 hidden md:table-cell">
+                    {module.description}
+                  </TableCell>
                   <TableCell className="text-center">
                     <CheckCircle2 className="w-5 h-5 text-emerald-500 mx-auto" />
                   </TableCell>
@@ -474,7 +546,8 @@ function TransparencySection() {
             </span>
           </div>
           <p className="text-slate-600">
-            {b2b?.common?.cost_disclaimer_text || "Alle Kosten sind ausschließlich für Bildungsdienstleistungen und rechtliche Begleitung. Keine versteckten Vermittlungsgebühren."}
+            {b2b?.common?.cost_disclaimer_text ||
+              "Alle Kosten sind ausschließlich für Bildungsdienstleistungen und rechtliche Begleitung. Keine versteckten Vermittlungsgebühren."}
           </p>
         </motion.div>
       </div>
@@ -496,8 +569,12 @@ function QualityGatesSection() {
     {
       gate: `${b2b?.common?.gate || "Gate"} 1`,
       title: b2b?.skilled_workers?.gate1_title || "Anerkennung Support",
-      description: b2b?.skilled_workers?.gate1_desc || "Begleitung beim gesamten Anerkennungsverfahren",
-      items: (b2b?.skilled_workers?.gate1_items || "Defizitbescheid-Analyse|Anpassungsqualifizierung|Kenntnisprüfung-Vorbereitung").split("|"),
+      description:
+        b2b?.skilled_workers?.gate1_desc || "Begleitung beim gesamten Anerkennungsverfahren",
+      items: (
+        b2b?.skilled_workers?.gate1_items ||
+        "Defizitbescheid-Analyse|Anpassungsqualifizierung|Kenntnisprüfung-Vorbereitung"
+      ).split("|"),
       icon: Scale,
       color: "emerald",
     },
@@ -505,7 +582,10 @@ function QualityGatesSection() {
       gate: `${b2b?.common?.gate || "Gate"} 2`,
       title: b2b?.skilled_workers?.gate2_title || "Work Skills Training",
       description: b2b?.skilled_workers?.gate2_desc || "Garantiert produktive Mitarbeiter ab Tag 1",
-      items: (b2b?.skilled_workers?.gate2_items || "Deutsche Arbeitskultur|Teamkommunikation|Arbeitssicherheit").split("|"),
+      items: (
+        b2b?.skilled_workers?.gate2_items ||
+        "Deutsche Arbeitskultur|Teamkommunikation|Arbeitssicherheit"
+      ).split("|"),
       icon: Target,
       color: "blue",
     },
@@ -513,7 +593,10 @@ function QualityGatesSection() {
       gate: `${b2b?.common?.gate || "Gate"} 3`,
       title: b2b?.skilled_workers?.gate3_title || "Placement Service",
       description: b2b?.skilled_workers?.gate3_desc || "Professionelles Matching mit Arbeitgebern",
-      items: (b2b?.skilled_workers?.gate3_items || "Anforderungsanalyse|Kandidatenvorstellung|Vertragsverhandlung").split("|"),
+      items: (
+        b2b?.skilled_workers?.gate3_items ||
+        "Anforderungsanalyse|Kandidatenvorstellung|Vertragsverhandlung"
+      ).split("|"),
       icon: Handshake,
       color: "emerald",
     },
@@ -521,7 +604,10 @@ function QualityGatesSection() {
       gate: `${b2b?.common?.gate || "Gate"} 4`,
       title: b2b?.skilled_workers?.gate4_title || "Nachbetreuung",
       description: b2b?.skilled_workers?.gate4_desc || "12 Monate Support für nachhaltigen Erfolg",
-      items: (b2b?.skilled_workers?.gate4_items || "Ansprechpartner für AG|Konfliktmediation|Retentionsmanagement").split("|"),
+      items: (
+        b2b?.skilled_workers?.gate4_items ||
+        "Ansprechpartner für AG|Konfliktmediation|Retentionsmanagement"
+      ).split("|"),
       icon: UserCheck,
       color: "blue",
     },
@@ -553,7 +639,8 @@ function QualityGatesSection() {
           </h2>
 
           <p className="text-lg md:text-xl text-slate-500 max-w-3xl mx-auto">
-            {b2b?.skilled_workers?.quality_subtitle || "Von der Anerkennung bis zur Nachbetreuung - wir begleiten den gesamten Prozess und garantieren geringe Fluktuation durch professionelles Work Skills Training."}
+            {b2b?.skilled_workers?.quality_subtitle ||
+              "Von der Anerkennung bis zur Nachbetreuung - wir begleiten den gesamten Prozess und garantieren geringe Fluktuation durch professionelles Work Skills Training."}
           </p>
         </motion.div>
 
@@ -601,9 +688,11 @@ function QualityGatesSection() {
                   <ul className="space-y-2">
                     {gate.items.map((item, idx) => (
                       <li key={idx} className="flex items-center gap-2 text-sm text-slate-600">
-                        <CheckCircle2 className={`w-4 h-4 ${
-                          gate.color === "emerald" ? "text-emerald-500" : "text-blue-500"
-                        }`} />
+                        <CheckCircle2
+                          className={`w-4 h-4 ${
+                            gate.color === "emerald" ? "text-emerald-500" : "text-blue-500"
+                          }`}
+                        />
                         {item}
                       </li>
                     ))}
@@ -623,10 +712,13 @@ function QualityGatesSection() {
         >
           <div className="flex items-center justify-center gap-3 mb-4">
             <Target className="w-8 h-8 text-white" />
-            <h3 className="text-2xl font-bold text-white">{b2b?.common?.work_skills_training || "Work Skills Training"}</h3>
+            <h3 className="text-2xl font-bold text-white">
+              {b2b?.common?.work_skills_training || "Work Skills Training"}
+            </h3>
           </div>
           <p className="text-emerald-100 max-w-2xl mx-auto mb-6">
-            {b2b?.skilled_workers?.work_skills_text || "Unsere Fachkräfte sind nicht nur fachlich qualifiziert, sondern auch auf die deutsche Arbeitskultur vorbereitet. Das garantiert Produktivität ab Tag 1 und geringe Fluktuation."}
+            {b2b?.skilled_workers?.work_skills_text ||
+              "Unsere Fachkräfte sind nicht nur fachlich qualifiziert, sondern auch auf die deutsche Arbeitskultur vorbereitet. Das garantiert Produktivität ab Tag 1 und geringe Fluktuation."}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Badge className="bg-white/20 text-white border-white/30 px-4 py-2">
@@ -658,43 +750,60 @@ function SettlementKitSection() {
     {
       day: `${b2b?.common?.day || "Tag"} 1`,
       title: b2b?.common?.day1_title || "Ankunft & Transfer",
-      items: (b2b?.common?.day1_items || "Flughafenabholung|Transfer zur Unterkunft|Erste Orientierung").split("|"),
+      items: (
+        b2b?.common?.day1_items || "Flughafenabholung|Transfer zur Unterkunft|Erste Orientierung"
+      ).split("|"),
       icon: "✈️",
     },
     {
       day: `${b2b?.common?.day || "Tag"} 2`,
       title: b2b?.common?.day2_title || "Wohnung & Basics",
-      items: (b2b?.common?.day2_items || "Schlüsselübergabe|Haushaltsausstattung|Nahversorgung erkunden").split("|"),
+      items: (
+        b2b?.common?.day2_items || "Schlüsselübergabe|Haushaltsausstattung|Nahversorgung erkunden"
+      ).split("|"),
       icon: "🏠",
     },
     {
       day: `${b2b?.common?.day || "Tag"} 3`,
       title: b2b?.common?.day3_title || "Behördengänge",
-      items: (b2b?.common?.day3_items || "Einwohnermeldeamt|Aufenthaltstitel|Steuer-ID beantragen").split("|"),
+      items: (
+        b2b?.common?.day3_items || "Einwohnermeldeamt|Aufenthaltstitel|Steuer-ID beantragen"
+      ).split("|"),
       icon: "📋",
     },
     {
       day: `${b2b?.common?.day || "Tag"} 4`,
       title: b2b?.common?.day4_title || "Finanzen & Kommunikation",
-      items: (b2b?.common?.day4_items || "Bankkonto eröffnen|SIM-Karte aktivieren|ÖPNV-Ticket organisieren").split("|"),
+      items: (
+        b2b?.common?.day4_items ||
+        "Bankkonto eröffnen|SIM-Karte aktivieren|ÖPNV-Ticket organisieren"
+      ).split("|"),
       icon: "💳",
     },
     {
       day: `${b2b?.common?.day || "Tag"} 5`,
       title: b2b?.common?.day5_title || "Gesundheit & Soziales",
-      items: (b2b?.common?.day5_items || "Krankenkasse anmelden|Hausarzt finden|Apotheken & Notdienste").split("|"),
+      items: (
+        b2b?.common?.day5_items || "Krankenkasse anmelden|Hausarzt finden|Apotheken & Notdienste"
+      ).split("|"),
       icon: "🏥",
     },
     {
       day: `${b2b?.common?.day || "Tag"} 6`,
       title: b2b?.skilled_workers?.day6_title_skilled || "Arbeitsplatz-Vorbereitung",
-      items: (b2b?.skilled_workers?.day6_items_skilled || "Weg zum Betrieb üben|Arbeitskleidung|Erste Kontakte im Betrieb").split("|"),
+      items: (
+        b2b?.skilled_workers?.day6_items_skilled ||
+        "Weg zum Betrieb üben|Arbeitskleidung|Erste Kontakte im Betrieb"
+      ).split("|"),
       icon: "👔",
     },
     {
       day: `${b2b?.common?.day || "Tag"} 7`,
       title: b2b?.skilled_workers?.day7_title_skilled || "Arbeitsstart",
-      items: (b2b?.skilled_workers?.day7_items_skilled || "Checkliste durchgehen|Offene Fragen klären|Bereit für Tag 1!").split("|"),
+      items: (
+        b2b?.skilled_workers?.day7_items_skilled ||
+        "Checkliste durchgehen|Offene Fragen klären|Bereit für Tag 1!"
+      ).split("|"),
       icon: "🎯",
     },
   ];
@@ -725,7 +834,8 @@ function SettlementKitSection() {
           </h2>
 
           <p className="text-lg md:text-xl text-slate-500 max-w-3xl mx-auto">
-            {b2b?.skilled_workers?.settlement_subtitle || "Vollständige Betreuung in der ersten Woche garantiert einen stressfreien Start und minimiert das Risiko von frühzeitiger Kündigung durch Überforderung."}
+            {b2b?.skilled_workers?.settlement_subtitle ||
+              "Vollständige Betreuung in der ersten Woche garantiert einen stressfreien Start und minimiert das Risiko von frühzeitiger Kündigung durch Überforderung."}
           </p>
         </motion.div>
 
@@ -782,15 +892,21 @@ function SettlementKitSection() {
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div>
               <div className="text-4xl font-bold text-blue-600 mb-2">&lt;10%</div>
-              <div className="text-slate-600">{b2b?.skilled_workers?.turnover_rate || "Fluktuation im 1. Jahr"}</div>
+              <div className="text-slate-600">
+                {b2b?.skilled_workers?.turnover_rate || "Fluktuation im 1. Jahr"}
+              </div>
             </div>
             <div>
               <div className="text-4xl font-bold text-emerald-600 mb-2">98%</div>
-              <div className="text-slate-600">{b2b?.skilled_workers?.onboarding_success || "Erfolgreiche Einarbeitung"}</div>
+              <div className="text-slate-600">
+                {b2b?.skilled_workers?.onboarding_success || "Erfolgreiche Einarbeitung"}
+              </div>
             </div>
             <div>
               <div className="text-4xl font-bold text-blue-600 mb-2">12 Mo.</div>
-              <div className="text-slate-600">{b2b?.skilled_workers?.aftercare_months || "Nachbetreuung inklusive"}</div>
+              <div className="text-slate-600">
+                {b2b?.skilled_workers?.aftercare_months || "Nachbetreuung inklusive"}
+              </div>
             </div>
           </div>
         </motion.div>
@@ -812,28 +928,33 @@ function SectorsSection() {
   const getSectors = () => [
     {
       title: b2b?.skilled_workers?.sector_healthcare || "Pflege & Gesundheit",
-      description: b2b?.skilled_workers?.sector_healthcare_desc || "Pflegefachkräfte, Altenpfleger, Krankenpfleger",
+      description:
+        b2b?.skilled_workers?.sector_healthcare_desc ||
+        "Pflegefachkräfte, Altenpfleger, Krankenpfleger",
       icon: Stethoscope,
       color: "emerald",
       stats: `60+ ${b2b?.skilled_workers?.workers_label || "Fachkräfte"}`,
     },
     {
       title: b2b?.skilled_workers?.sector_craft || "Handwerk & Bau",
-      description: b2b?.skilled_workers?.sector_craft_desc || "Elektriker, Installateure, Schreiner, Maurer",
+      description:
+        b2b?.skilled_workers?.sector_craft_desc || "Elektriker, Installateure, Schreiner, Maurer",
       icon: Hammer,
       color: "blue",
       stats: `40+ ${b2b?.skilled_workers?.workers_label || "Fachkräfte"}`,
     },
     {
       title: b2b?.skilled_workers?.sector_industry || "Industrie & Technik",
-      description: b2b?.skilled_workers?.sector_industry_desc || "Maschinenbau, Elektrotechnik, Mechatronik",
+      description:
+        b2b?.skilled_workers?.sector_industry_desc || "Maschinenbau, Elektrotechnik, Mechatronik",
       icon: Wrench,
       color: "emerald",
       stats: `50+ ${b2b?.skilled_workers?.workers_label || "Fachkräfte"}`,
     },
     {
       title: b2b?.skilled_workers?.sector_gastro || "Gastronomie & Hotel",
-      description: b2b?.skilled_workers?.sector_gastro_desc || "Köche, Restaurantfachleute, Hotelfachleute",
+      description:
+        b2b?.skilled_workers?.sector_gastro_desc || "Köche, Restaurantfachleute, Hotelfachleute",
       icon: Building,
       color: "blue",
       stats: `30+ ${b2b?.skilled_workers?.workers_label || "Fachkräfte"}`,
@@ -866,7 +987,8 @@ function SectorsSection() {
           </h2>
 
           <p className="text-lg md:text-xl text-slate-500 max-w-3xl mx-auto">
-            {b2b?.skilled_workers?.sectors_subtitle || "Wir vermitteln qualifizierte Fachkräfte aus Vietnam in den Bereichen mit dem größten Bedarf."}
+            {b2b?.skilled_workers?.sectors_subtitle ||
+              "Wir vermitteln qualifizierte Fachkräfte aus Vietnam in den Bereichen mit dem größten Bedarf."}
           </p>
         </motion.div>
 
@@ -944,7 +1066,8 @@ function CTASection() {
           </h2>
 
           <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10">
-            {b2b?.skilled_workers?.cta_subtitle || "Wir begleiten den gesamten Prozess - von der Anerkennung bis zur erfolgreichen Integration. Placement Service und 12 Monate Nachbetreuung inklusive."}
+            {b2b?.skilled_workers?.cta_subtitle ||
+              "Wir begleiten den gesamten Prozess - von der Anerkennung bis zur erfolgreichen Integration. Placement Service und 12 Monate Nachbetreuung inklusive."}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

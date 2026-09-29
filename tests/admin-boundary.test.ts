@@ -6,6 +6,8 @@ const mocks = vi.hoisted(() => ({
   createServiceClient: vi.fn(),
   from: vi.fn(),
   rpc: vi.fn(),
+  intakeClient: vi.fn(),
+  dispatch: vi.fn(),
 }));
 vi.mock("server-only", () => ({}));
 vi.mock("@/utils/supabase/server", () => ({
@@ -13,6 +15,20 @@ vi.mock("@/utils/supabase/server", () => ({
 }));
 vi.mock("@supabase/supabase-js", () => ({ createClient: mocks.createServiceClient }));
 vi.mock("@/utils/supabase/public", () => ({ createPublicClient: () => ({ rpc: mocks.rpc }) }));
+vi.mock("@/lib/supabase/intake", () => ({ createIntakeClient: mocks.intakeClient }));
+vi.mock("@/lib/rate-limit", () => ({
+  checkRateLimit: async () => ({ success: true }),
+  getClientIp: () => "fixture",
+  RATE_LIMITS: { API: {}, CONTACT: {} },
+}));
+vi.mock("@/lib/intake/notifications", () => ({
+  dispatchSubmission: mocks.dispatch,
+  dispatchNotification: mocks.dispatch,
+}));
+vi.mock("next/server", async (original) => ({
+  ...(await original<typeof import("next/server")>()),
+  after: vi.fn(),
+}));
 vi.mock("next/cache", () => ({ revalidatePath: vi.fn() }));
 
 import { GET as getChats, POST as saveChat } from "@/app/api/chat/history/route";
@@ -20,7 +36,15 @@ import { GET as getLeads, POST as submitLead } from "@/app/api/leads/route";
 import * as chats from "@/app/admin/chats/actions";
 import * as leads from "@/app/admin/leads/actions";
 import { getCandidates, getCandidate } from "@/app/admin/candidates/actions";
+import { retryNotification } from "@/app/admin/notifications/actions";
 import { getDashboardStats } from "@/app/admin/dashboard-actions";
+
+import { getPosts, createPost, deletePost } from "@/app/admin/posts/actions";
+import { getInquiries, updateInquiryStatus } from "@/app/admin/requests/actions";
+import { getSiteConfigs, updateSiteConfig } from "@/actions/theme-actions";
+import { GET as getBlogTopics } from "@/app/api/admin/blog-writer/topics/route";
+import { GET as getBlogImages } from "@/app/api/admin/blog-writer/images/route";
+import { POST as generateBlog } from "@/app/api/admin/blog-writer/generate/route";
 
 const admin = { id: "00000000-0000-4000-8000-000000000001", app_metadata: { role: "admin" } };
 const rows = [
@@ -45,6 +69,7 @@ beforeEach(() => {
     then: (resolve: (value: typeof result) => unknown) => Promise.resolve(result).then(resolve),
   };
   mocks.from.mockReturnValue(query);
+  mocks.intakeClient.mockReturnValue({ rpc: mocks.rpc });
   mocks.rpc.mockResolvedValue({ data: true, error: null });
   mocks.createServiceClient.mockReturnValue({ from: mocks.from });
 });
@@ -106,6 +131,20 @@ describe("direct Server Action authorization", () => {
     () => getCandidates(),
     () => getCandidate("fixture"),
     () => getDashboardStats(),
+    () => retryNotification({}, new FormData()),
+    () => getPosts(),
+    () =>
+      createPost({
+        title: "Fixture title",
+        slug: "fixture",
+        content: "Fixture body",
+        status: "draft",
+      }),
+    () => deletePost("00000000-0000-4000-8000-000000000003"),
+    () => getInquiries(),
+    () => updateInquiryStatus("00000000-0000-4000-8000-000000000003", "in_progress"),
+    () => getSiteConfigs(),
+    () => updateSiteConfig("fixture", "value"),
   ];
   it.each([null, { id: "ordinary", app_metadata: {} }])(
     "denies direct private reads/writes for %j",
@@ -118,6 +157,8 @@ describe("direct Server Action authorization", () => {
       }
       expect(mocks.createServiceClient).not.toHaveBeenCalled();
       expect(mocks.from).not.toHaveBeenCalled();
+      expect(mocks.intakeClient).not.toHaveBeenCalled();
+      expect(mocks.dispatch).not.toHaveBeenCalled();
       vi.restoreAllMocks();
     }
   );
@@ -176,17 +217,28 @@ it("denies an unowned chat update without issuing an ownership cookie", async ()
   expect(response.cookies.get("dmf_chat_owner")).toBeUndefined();
 });
 
-it("accepts anonymous lead intake only through the insert-only RPC", async () => {
+it("accepts anonymous lead intake through the durable server RPC", async () => {
+  mocks.rpc.mockResolvedValue({ data: { duplicate: false }, error: null });
   const response = await submitLead(
     new NextRequest("http://localhost/api/leads", {
       method: "POST",
       body: JSON.stringify({ email: "fixture@example.invalid" }),
     })
   );
-  expect(await response.json()).toEqual({ success: true, accepted: true });
-  expect(mocks.rpc).toHaveBeenCalledWith("dmf_submit_lead", {
-    p_lead: { email: "fixture@example.invalid" },
+  expect(await response.json()).toMatchObject({
+    success: true,
+    accepted: true,
+    saved: true,
+    duplicate: false,
   });
+  expect(mocks.rpc).toHaveBeenCalledWith(
+    "dmf_receive_intake",
+    expect.objectContaining({
+      p_id: expect.any(String),
+      p_kind: "lead",
+      p_payload: { email: "fixture@example.invalid" },
+    })
+  );
   expect(mocks.from).not.toHaveBeenCalled();
 });
 
@@ -211,4 +263,35 @@ it("rejects malformed public input before persistence", async () => {
   );
   expect(response.status).toBe(400);
   expect(mocks.rpc).not.toHaveBeenCalled();
+});
+
+it.each([getBlogTopics, getBlogImages, generateBlog])(
+  "blocks direct AI API calls before privileged access",
+  async (handler) => {
+    mocks.getUser.mockResolvedValue({
+      data: { user: { id: "ordinary", app_metadata: {} } },
+      error: null,
+    });
+    const response = await handler(
+      new NextRequest("http://localhost/api/admin/test", { method: "POST", body: "{}" })
+    );
+    expect(response.status).toBe(403);
+    expect(mocks.from).not.toHaveBeenCalled();
+    expect(mocks.intakeClient).not.toHaveBeenCalled();
+  }
+);
+
+it("blocks preview admin mutations against the production backend even for a real admin", async () => {
+  vi.stubEnv("VERCEL_ENV", "preview");
+  vi.stubEnv("INTAKE_TEST_BACKEND", "true");
+  vi.stubEnv("NEXT_PUBLIC_SUPABASE_URL", "https://iihprcuhmilmymlbktpy.supabase.co");
+  mocks.getUser.mockResolvedValue({ data: { user: admin }, error: null });
+  try {
+    expect((await updateSiteConfig("fixture", "value")).error).toBeTruthy();
+    expect((await getLeads(new NextRequest("http://localhost/api/leads"))).status).toBe(403);
+    expect(mocks.from).not.toHaveBeenCalled();
+    expect(mocks.createServiceClient).not.toHaveBeenCalled();
+  } finally {
+    vi.unstubAllEnvs();
+  }
 });

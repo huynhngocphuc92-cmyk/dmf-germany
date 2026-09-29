@@ -1,13 +1,13 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { updateSiteConfig, uploadThemeImage } from "@/actions/theme-actions";
 import { assetUpdateSchema, type AssetUpdateData } from "@/lib/validations/schemas";
-import { Save, X, Loader2, Edit2, Trash2, Upload, XCircle, ImageIcon } from "lucide-react";
-import { toast } from "sonner";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Edit2, ImageIcon, Loader2, Save, Trash2, Upload, XCircle } from "lucide-react";
 import Image from "next/image";
-import { uploadThemeImage, updateSiteConfig } from "@/actions/theme-actions";
+import { useRef, useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 interface AssetCardProps {
   item: { key: string; value: string | null; asset_type: string; id?: string };
@@ -29,6 +29,9 @@ export default function AssetCard({ item, onUpdate, onDelete }: AssetCardProps) 
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const assetType = item.asset_type?.toUpperCase() || "TEXT";
+  const validatedAssetType = assetUpdateSchema.shape.asset_type
+    .catch("text")
+    .parse(item.asset_type.toLowerCase());
   const isImageType = assetType === "IMAGE";
 
   // Initialize Form
@@ -42,7 +45,7 @@ export default function AssetCard({ item, onUpdate, onDelete }: AssetCardProps) 
     defaultValues: {
       key: item.key,
       value: item.value || "", // Ensure value is never null for input
-      asset_type: item.asset_type as any,
+      asset_type: validatedAssetType,
     },
   });
 
@@ -104,11 +107,7 @@ export default function AssetCard({ item, onUpdate, onDelete }: AssetCardProps) 
       }
 
       // Update the config in database
-      const updateResult = await updateSiteConfig(
-        data.key,
-        finalValue || null,
-        item.asset_type as any
-      );
+      const updateResult = await updateSiteConfig(data.key, finalValue || null);
 
       if (updateResult.error) {
         toast.error(updateResult.error);

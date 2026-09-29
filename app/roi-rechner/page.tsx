@@ -1,8 +1,9 @@
 "use client";
+import Link from "next/link";
 
-import dynamic from "next/dynamic";
-import { Calculator } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { Calculator } from "lucide-react";
+import dynamic from "next/dynamic";
 
 // Lazy load RoiCalculator - it's a heavy component (~847 lines)
 const RoiCalculator = dynamic(
@@ -61,18 +62,18 @@ export default function RoiRechnerPage() {
                 "Kontaktieren Sie uns jetzt für ein individuelles Angebot für Ihr Unternehmen."}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
+              <Link
                 href="/#contact"
                 className="px-8 py-4 bg-white text-primary rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg"
               >
                 {t.roi?.cta_contact || "Kontakt aufnehmen"}
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/services/skilled-workers"
                 className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-lg font-semibold hover:bg-white/10 transition-colors"
               >
                 {t.roi?.cta_services || "Unsere Dienstleistungen"}
-              </a>
+              </Link>
             </div>
           </div>
         </div>

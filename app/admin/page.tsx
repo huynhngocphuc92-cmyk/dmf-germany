@@ -22,7 +22,7 @@ export default async function AdminDashboard() {
   }
 
   // Fetch dashboard stats
-  const { data: stats, error: statsError } = await getDashboardStats();
+  const { data: stats } = await getDashboardStats();
 
   // Use mock data if no real data available or error occurred
   const dashboardStats = stats && stats.totalCandidates > 0 ? stats : await getMockDashboardStats();

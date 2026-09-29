@@ -16,6 +16,22 @@ import {
   GraduationCap,
 } from "lucide-react";
 
+interface SimulatorContent {
+  title: string;
+  subtitle: string;
+  badge: string;
+  regionLabel: string;
+  regions: { west: string; east: string };
+  industries: Record<string, string>;
+  yearLabels: { year1: string; year2: string; year3: string; afterGrad: string };
+  livingCost: string;
+  disclaimer: string;
+  perMonth: string;
+  surplus: string;
+  callToAction: string;
+  unitEuro: string;
+}
+
 // ============================================
 // DATA LAYER - Salary Data 2024/2025
 // ============================================
@@ -123,110 +139,6 @@ const MAX_SALARY_DISPLAY = 3500;
 // ============================================
 // CONTENT LAYER - Multilingual Text
 // ============================================
-
-interface SimulatorContent {
-  title: string;
-  subtitle: string;
-  badge: string;
-  regionLabel: string;
-  regions: { west: string; east: string };
-  industries: Record<string, string>;
-  yearLabels: { year1: string; year2: string; year3: string; afterGrad: string };
-  livingCost: string;
-  disclaimer: string;
-  perMonth: string;
-  surplus: string;
-  callToAction: string;
-  unitEuro: string;
-}
-
-const content: Record<"de" | "en" | "vn", SimulatorContent> = {
-  de: {
-    title: "Gehaltsrechner",
-    subtitle: "Entdecken Sie Ihr Verdienstpotenzial während der dualen Ausbildung in Deutschland",
-    badge: "Interaktives Tool",
-    regionLabel: "Region",
-    regions: {
-      west: "Westdeutschland",
-      east: "Ostdeutschland",
-    },
-    industries: {
-      pflege: "Pflege",
-      gastronomie: "Gastronomie",
-      mechatronik: "Mechatronik",
-      bau: "Bau",
-    },
-    yearLabels: {
-      year1: "1. Jahr",
-      year2: "2. Jahr",
-      year3: "3. Jahr",
-      afterGrad: "Nach Abschluss",
-    },
-    livingCost: "Ø Lebenshaltungskosten",
-    disclaimer:
-      "Durchschnittliche Bruttovergütung. Tatsächliche Werte variieren je nach Bundesland und Arbeitgeber.",
-    perMonth: "pro Monat",
-    surplus: "Überschuss",
-    callToAction: "Starten Sie Ihre Karriere in Deutschland",
-    unitEuro: "€",
-  },
-  en: {
-    title: "Salary Calculator",
-    subtitle: "Discover your earning potential during dual training in Germany",
-    badge: "Interactive Tool",
-    regionLabel: "Region",
-    regions: {
-      west: "West Germany",
-      east: "East Germany",
-    },
-    industries: {
-      pflege: "Nursing",
-      gastronomie: "Hospitality",
-      mechatronik: "Mechatronics",
-      bau: "Construction",
-    },
-    yearLabels: {
-      year1: "Year 1",
-      year2: "Year 2",
-      year3: "Year 3",
-      afterGrad: "After Graduation",
-    },
-    livingCost: "Avg. Living Costs",
-    disclaimer: "Average gross salary. Actual values vary by state and employer.",
-    perMonth: "per month",
-    surplus: "Surplus",
-    callToAction: "Start your career in Germany",
-    unitEuro: "€",
-  },
-  vn: {
-    title: "Công cụ tính lương",
-    subtitle: "Khám phá tiềm năng thu nhập trong chương trình đào tạo nghề tại Đức",
-    badge: "Công cụ tương tác",
-    regionLabel: "Khu vực",
-    regions: {
-      west: "Tây Đức",
-      east: "Đông Đức",
-    },
-    industries: {
-      pflege: "Điều dưỡng",
-      gastronomie: "Nhà hàng/KS",
-      mechatronik: "Cơ điện tử",
-      bau: "Xây dựng",
-    },
-    yearLabels: {
-      year1: "Năm 1",
-      year2: "Năm 2",
-      year3: "Năm 3",
-      afterGrad: "Sau tốt nghiệp",
-    },
-    livingCost: "Chi phí sinh hoạt TB",
-    disclaimer: "Mức lương gộp trung bình. Thực tế có thể khác tùy theo bang và nhà tuyển dụng.",
-    perMonth: "mỗi tháng",
-    surplus: "Dư ra",
-    callToAction: "Bắt đầu sự nghiệp tại Đức",
-    unitEuro: "€",
-  },
-};
 
 // ============================================
 // COMPONENT LAYER
