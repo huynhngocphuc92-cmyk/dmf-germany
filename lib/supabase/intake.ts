@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import "server-only";
+import { previewBackendAllowed } from "@/lib/env/backend";
 
 export function getIntakeKey() {
   const key = process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -8,15 +9,10 @@ export function getIntakeKey() {
 }
 
 export function assertIntakeEnvironment() {
-  if (process.env.VERCEL_ENV === "preview" && process.env.INTAKE_TEST_BACKEND !== "true") {
-    throw new Error("Preview intake is disabled");
-  }
-  if (
-    process.env.VERCEL_ENV === "preview" &&
-    process.env.NEXT_PUBLIC_SUPABASE_URL?.includes("iihprcuhmilmymlbktpy")
-  ) {
-    throw new Error("Preview cannot write to the production database");
-  }
+  if (!previewBackendAllowed())
+    throw new Error(
+      "Preview cannot access the production database; configure an isolated test backend"
+    );
 }
 
 // Use only after route validation/rate limiting, or requireAdmin for delivery retries.

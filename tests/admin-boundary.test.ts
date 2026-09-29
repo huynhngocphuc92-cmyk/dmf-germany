@@ -280,3 +280,18 @@ it.each([getBlogTopics, getBlogImages, generateBlog])(
     expect(mocks.intakeClient).not.toHaveBeenCalled();
   }
 );
+
+it("blocks preview admin mutations against the production backend even for a real admin", async () => {
+  vi.stubEnv("VERCEL_ENV", "preview");
+  vi.stubEnv("INTAKE_TEST_BACKEND", "true");
+  vi.stubEnv("NEXT_PUBLIC_SUPABASE_URL", "https://iihprcuhmilmymlbktpy.supabase.co");
+  mocks.getUser.mockResolvedValue({ data: { user: admin }, error: null });
+  try {
+    expect((await updateSiteConfig("fixture", "value")).error).toBeTruthy();
+    expect((await getLeads(new NextRequest("http://localhost/api/leads"))).status).toBe(403);
+    expect(mocks.from).not.toHaveBeenCalled();
+    expect(mocks.createServiceClient).not.toHaveBeenCalled();
+  } finally {
+    vi.unstubAllEnvs();
+  }
+});

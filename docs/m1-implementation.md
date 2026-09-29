@@ -21,7 +21,7 @@ Use Node 24 (`nvm use`), `npm ci`, and copy `.env.example` to `.env.local` with 
 
 Run `npm run lint`, `npm run type-check`, `npm test`, and `npm run test:smoke`. The smoke command builds Next.js and exercises real HTTP routes against an in-process fixture backend, with external delivery disabled. PGlite tests apply the actual migrations and exercise PostgreSQL privileges, RLS, atomic receipts, rate counters and delivery leases. CI runs the same checks after `npm ci`, plus an audit of the lockfile. It requires no deployment/backend secrets.
 
-Vercel Preview cannot write to the production Supabase project, even if someone mistakenly supplies a production server key. To enable preview intake, configure a separate migrated Supabase project and set `INTAKE_TEST_BACKEND=true`. All Preview notifications remain disabled. No hosted staging database or real test email/channel has been provisioned in this release; positive intake tests use isolated local/CI fixtures. Production uses the existing configured SMTP/Telegram destinations. Local delivery requires `NOTIFICATION_DELIVERY=enabled` and an agreed test destination.
+Vercel Preview cannot use admin operations or intake against the production Supabase project, even if someone mistakenly supplies a production server key. To enable preview intake, configure a separate migrated Supabase project and set `INTAKE_TEST_BACKEND=true`. All Preview notifications remain disabled. No hosted staging database or real test email/channel has been provisioned in this release; positive intake tests use isolated local/CI fixtures. Production uses the existing configured SMTP/Telegram destinations. Local delivery requires `NOTIFICATION_DELIVERY=enabled` and an agreed test destination.
 
 ## Deployment order and recovery
 

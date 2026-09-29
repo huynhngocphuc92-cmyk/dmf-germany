@@ -1,4 +1,5 @@
 import "server-only";
+import { previewBackendAllowed } from "@/lib/env/backend";
 import { createClient as createServiceClient } from "@supabase/supabase-js";
 import { createClient } from "@/utils/supabase/server";
 import { isAdminUser } from "./admin-policy";
@@ -17,6 +18,7 @@ export async function requireAdmin() {
     error,
   } = await supabase.auth.getUser();
   if (error || !user) throw new AdminAuthorizationError(401);
+  if (!previewBackendAllowed()) throw new AdminAuthorizationError(403);
   if (!isAdminUser(user)) throw new AdminAuthorizationError(403);
   return { supabase, user };
 }
@@ -29,7 +31,7 @@ export async function createAdminClient() {
 /** A service key must never be constructed before the caller passes authorization. */
 export async function createPrivilegedAdminClient() {
   const { supabase } = await requireAdmin();
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const key = process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!key) return supabase;
   return createServiceClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, key, {
     auth: { persistSession: false, autoRefreshToken: false },
