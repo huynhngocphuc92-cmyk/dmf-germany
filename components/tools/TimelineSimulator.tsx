@@ -1,33 +1,32 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { Input } from "@/components/ui/input";
+import { Switch } from "@/components/ui/switch";
 import {
-  FileSignature,
-  FileText,
-  IdCard,
-  Plane,
-  Calendar,
-  Zap,
-  CheckCircle2,
-  Clock,
-  Briefcase,
-  GraduationCap,
-  Calendar as CalendarIcon,
-  School,
-  ShieldCheck,
-} from "lucide-react";
-import {
-  getTimelineSteps,
-  getStepDuration,
-  calculateTotalDuration,
   getAvailableIndustries,
+  getStepDuration,
+  getTimelineSteps,
   type ProductType,
   type TimelineStep,
 } from "@/lib/config/timeline";
-import { Input } from "@/components/ui/input";
-import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
+import {
+  Briefcase,
+  Calendar,
+  Calendar as CalendarIcon,
+  CheckCircle2,
+  Clock,
+  FileSignature,
+  FileText,
+  GraduationCap,
+  IdCard,
+  Plane,
+  School,
+  ShieldCheck,
+  Zap,
+} from "lucide-react";
+import React, { useMemo, useState } from "react";
 
 interface TimelineNode {
   step: TimelineStep;
@@ -131,11 +130,6 @@ export const TimelineSimulator = () => {
       return t.timeline?.week_singular || "1 Woche";
     }
     return `${weeks} ${t.timeline?.week_plural || "Wochen"}`;
-  };
-
-  const IconComponent = (iconName: string) => {
-    const Icon = iconMap[iconName] || Clock;
-    return <Icon className="w-5 h-5" />;
   };
 
   return (

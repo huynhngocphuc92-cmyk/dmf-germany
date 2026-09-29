@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { Button } from "@/components/ui/button";
-import { Cookie, X, Settings, CheckCircle } from "lucide-react";
+import { CheckCircle, Cookie, Settings, X } from "lucide-react";
+import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 
 // Constants for cookie consent storage
 export const COOKIE_CONSENT_KEY = "dmf-cookie-consent";
@@ -61,6 +61,25 @@ const content: Record<"de" | "en" | "vn", CookieConsentContent> = {
   },
 };
 
+function readConsent(): ConsentValue | null {
+  try {
+    const value = localStorage.getItem(COOKIE_CONSENT_KEY);
+    return value === COOKIE_CONSENT_VALUE.ACCEPTED || value === COOKIE_CONSENT_VALUE.DECLINED
+      ? value
+      : null;
+  } catch {
+    return null;
+  }
+}
+function subscribeConsent(onChange: () => void) {
+  window.addEventListener("cookieConsentChange", onChange);
+  window.addEventListener("storage", onChange);
+  return () => {
+    window.removeEventListener("cookieConsentChange", onChange);
+    window.removeEventListener("storage", onChange);
+  };
+}
+
 // Custom hook to check consent status
 export function useCookieConsent(): {
   hasConsented: boolean;
@@ -68,25 +87,17 @@ export function useCookieConsent(): {
   setConsent: (value: ConsentValue) => void;
   resetConsent: () => void;
 } {
-  const [consentValue, setConsentValue] = useState<ConsentValue | null>(null);
-
-  useEffect(() => {
-    const stored = localStorage.getItem(COOKIE_CONSENT_KEY);
-    if (stored === COOKIE_CONSENT_VALUE.ACCEPTED || stored === COOKIE_CONSENT_VALUE.DECLINED) {
-      setConsentValue(stored);
-    }
-  }, []);
+  const consentValue = useSyncExternalStore(subscribeConsent, readConsent, () => null);
 
   const setConsent = useCallback((value: ConsentValue) => {
     localStorage.setItem(COOKIE_CONSENT_KEY, value);
-    setConsentValue(value);
     // Dispatch custom event for GA to listen
     window.dispatchEvent(new CustomEvent("cookieConsentChange", { detail: value }));
   }, []);
 
   const resetConsent = useCallback(() => {
     localStorage.removeItem(COOKIE_CONSENT_KEY);
-    setConsentValue(null);
+    window.dispatchEvent(new CustomEvent("cookieConsentChange", { detail: null }));
   }, []);
 
   return {

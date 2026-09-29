@@ -1,27 +1,28 @@
 "use client";
+import { useSubmissionKey } from "@/lib/intake/client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "@/components/providers/LanguageProvider";
+import { cn } from "@/lib/utils";
+import { BUSINESS_PHONE_ERROR_MESSAGE, isValidBusinessPhone } from "@/lib/validations/phone";
+import { AnimatePresence, motion } from "framer-motion";
 import {
+  Bot,
+  Briefcase,
+  Building2,
+  Calendar,
+  CheckCircle,
+  GraduationCap,
+  Loader2,
+  Mail,
   MessageCircle,
-  X,
+  Phone,
   Send,
   User,
-  Bot,
-  Loader2,
-  Calendar,
-  GraduationCap,
-  Briefcase,
   Users,
-  Mail,
-  Phone,
-  Building2,
-  CheckCircle,
+  X,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { useLanguage } from "@/components/providers/LanguageProvider";
-import { BUSINESS_PHONE_ERROR_MESSAGE, isValidBusinessPhone } from "@/lib/validations/phone";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 // ============================================
 // TYPES & INTERFACES
@@ -163,6 +164,8 @@ export const SmartChatBot = () => {
   const [logoError, setLogoError] = useState(false);
   const [showLeadForm, setShowLeadForm] = useState(false);
   const [leadData, setLeadData] = useState<LeadData>({});
+  const { forPayload: submissionKey, reset: resetSubmissionKey } = useSubmissionKey();
+  const [isLeadSaving, setIsLeadSaving] = useState(false);
   const [leadSubmitted, setLeadSubmitted] = useState(false);
   const [leadFormError, setLeadFormError] = useState<string | null>(null);
   const [sessionId, setSessionId] = useState(
@@ -260,7 +263,6 @@ export const SmartChatBot = () => {
       setMessages([welcomeMessage]);
 
       // Send notification that chat opened
-      sendTelegramNotification(`🔔 **Neuer Chat gestartet**\nSession: ${sessionId}`);
     }
   }, [isOpen, messages.length, t.welcome, sessionId]);
 
@@ -311,18 +313,6 @@ export const SmartChatBot = () => {
   }, []);
 
   // Send Telegram notification
-  const sendTelegramNotification = async (message: string) => {
-    try {
-      await fetch("/api/telegram", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message }),
-      });
-    } catch (error) {
-      console.error("[SmartChatBot] Telegram notification error:", error);
-    }
-  };
-
   // Save chat to database
   const saveChatHistory = useCallback(
     async (newMessages: Message[]) => {
@@ -445,7 +435,6 @@ export const SmartChatBot = () => {
     if (action.id === "booking") {
       // Open Calendly directly
       window.open(CALENDLY_URL, "_blank", "noopener,noreferrer");
-      sendTelegramNotification(`📅 **Termin-Link geklickt**\nSession: ${sessionId}`);
     } else {
       sendMessage(action.message);
     }
@@ -469,7 +458,7 @@ export const SmartChatBot = () => {
   const handleLeadSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!leadData.email) return;
+    if (!leadData.email || isLeadSaving) return;
 
     if (leadData.phone && !isValidBusinessPhone(leadData.phone)) {
       setLeadFormError(
@@ -483,22 +472,16 @@ export const SmartChatBot = () => {
     }
 
     setLeadFormError(null);
+    setIsLeadSaving(true);
 
     try {
-      // Send to Telegram
-      await sendTelegramNotification(
-        `🎯 **NEUER LEAD**\n\n` +
-          `🏢 Unternehmen: ${leadData.company || "Nicht angegeben"}\n` +
-          `📧 E-Mail: ${leadData.email}\n` +
-          `📞 Telefon: ${leadData.phone || "Nicht angegeben"}\n` +
-          `💡 Interesse: ${leadData.interest || "Allgemein"}\n` +
-          `🆔 Session: ${sessionId}`
-      );
-
       // Save lead to database
       const leadsResponse = await fetch("/api/leads", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Idempotency-Key": submissionKey({ ...leadData, sessionId }),
+        },
         body: JSON.stringify({
           ...leadData,
           sessionId,
@@ -506,11 +489,16 @@ export const SmartChatBot = () => {
         }),
       });
 
-      if (!leadsResponse.ok) {
-        const result = (await leadsResponse.json().catch(() => null)) as { error?: string } | null;
+      const result = (await leadsResponse.json().catch(() => null)) as {
+        error?: string;
+        success?: boolean;
+        saved?: boolean;
+      } | null;
+      if (!leadsResponse.ok || !result?.success || !result?.saved) {
         throw new Error(result?.error || t.error);
       }
 
+      resetSubmissionKey();
       setLeadSubmitted(true);
       setShowLeadForm(false);
 
@@ -525,6 +513,8 @@ export const SmartChatBot = () => {
     } catch (error) {
       console.error("[SmartChatBot] Lead submit error:", error);
       setLeadFormError(error instanceof Error ? error.message : t.error);
+    } finally {
+      setIsLeadSaving(false);
     }
   };
 
@@ -918,6 +908,7 @@ export const SmartChatBot = () => {
                   </button>
                   <button
                     type="submit"
+                    disabled={isLeadSaving}
                     className="flex-1 px-4 py-2.5 bg-primary hover:bg-primary/90 text-white rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2"
                   >
                     <CheckCircle className="w-4 h-4" />

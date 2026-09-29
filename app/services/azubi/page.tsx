@@ -1,43 +1,37 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import Link from "next/link";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { motion, useInView } from "framer-motion";
+import {
+  Award,
+  BookOpen,
+  CheckCircle2,
+  CircleCheck,
+  Clock,
+  FileCheck,
+  GraduationCap,
+  Heart,
+  Home,
+  PhoneCall,
+  Rocket,
+  Shield,
+  Sparkles,
+  TrendingUp,
+  UserCheck,
+  Users,
+  Zap,
+} from "lucide-react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
 // Lazy load FAQ Section (below the fold)
 const FAQSection = dynamic(() => import("@/components/shared/FAQSection"), {
   loading: () => <div className="py-20 text-center text-slate-500">Laden...</div>,
   ssr: true, // Keep SSR for SEO content, but split the JS bundle
 });
-import {
-  ArrowRight,
-  CheckCircle2,
-  Clock,
-  Users,
-  Zap,
-  Calendar,
-  Plane,
-  FileCheck,
-  Briefcase,
-  GraduationCap,
-  BookOpen,
-  Heart,
-  Shield,
-  Timer,
-  TrendingUp,
-  Sparkles,
-  PhoneCall,
-  BadgeCheck,
-  CircleCheck,
-  Rocket,
-  Award,
-  Home,
-  UserCheck,
-} from "lucide-react";
 
 // ============================================
 // ANIMATED COUNTER
@@ -59,17 +53,10 @@ function AnimatedCounter({
   useEffect(() => {
     if (!isInView) return;
 
-    if (value.includes("<") || value.includes("+")) {
-      setDisplayValue(value);
-      return;
-    }
+    const numericValue = Number(value);
+    if (!Number.isFinite(numericValue)) return;
 
-    const numericValue = parseInt(value);
-    if (isNaN(numericValue)) {
-      setDisplayValue(value);
-      return;
-    }
-
+    let frame: number;
     let startTime: number;
     const animate = (currentTime: number) => {
       if (!startTime) startTime = currentTime;
@@ -78,15 +65,16 @@ function AnimatedCounter({
       const current = Math.floor(easeOutQuart * numericValue);
       setDisplayValue(current.toString());
       if (progress < 1) {
-        requestAnimationFrame(animate);
+        frame = requestAnimationFrame(animate);
       }
     };
-    requestAnimationFrame(animate);
+    frame = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frame);
   }, [isInView, value, duration]);
 
   return (
     <span ref={ref}>
-      {displayValue}
+      {Number.isFinite(Number(value)) ? displayValue : value}
       {suffix}
     </span>
   );
@@ -97,7 +85,7 @@ function AnimatedCounter({
 // ============================================
 
 function HeroSection() {
-  const { lang, t } = useLanguage();
+  const { t } = useLanguage();
 
   // Build hero content from translations
   const content = {
@@ -291,7 +279,7 @@ function HeroSection() {
 // ============================================
 
 function AdvantagesSection() {
-  const { lang, t } = useLanguage();
+  const { t } = useLanguage();
 
   // Build content from translations
   const raw = t.service_pages.azubi;
@@ -399,7 +387,7 @@ function AdvantagesSection() {
 // ============================================
 
 function ProcessTimelineSection() {
-  const { lang, t } = useLanguage();
+  const { t } = useLanguage();
   const ref = useRef(null);
 
   // Build content from translations - map process to timeline structure
@@ -439,16 +427,6 @@ function ProcessTimelineSection() {
     key_message: "Schnell und unkompliziert",
   };
   const isInView = useInView(ref, { once: true, amount: 0.3 });
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    if (isInView) {
-      const timer = setTimeout(() => {
-        setProgress(100);
-      }, 300);
-      return () => clearTimeout(timer);
-    }
-  }, [isInView]);
 
   return (
     <section className="py-24 md:py-32 bg-white overflow-hidden">
@@ -549,7 +527,7 @@ function ProcessTimelineSection() {
 // ============================================
 
 function QualitySection() {
-  const { lang, t } = useLanguage();
+  const { t } = useLanguage();
 
   // Build content from translations - map quality to sectors structure
   const raw = t.service_pages.azubi;
@@ -679,7 +657,7 @@ function QualitySection() {
 // ============================================
 
 function StatsSection() {
-  const { lang, t } = useLanguage();
+  const { t } = useLanguage();
 
   // Build content from translations
   const raw = t.service_pages.azubi;
@@ -762,7 +740,7 @@ function StatsSection() {
 // ============================================
 
 function CTASection() {
-  const { lang, t } = useLanguage();
+  const { t } = useLanguage();
 
   // Build content from translations
   const raw = t.service_pages.azubi;

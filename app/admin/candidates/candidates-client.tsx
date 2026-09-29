@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
   Table,
@@ -64,8 +63,6 @@ export function CandidatesClient({
   initialCandidates,
   error: initialError,
 }: CandidatesClientProps) {
-  const router = useRouter();
-
   // Data state
   const [candidates, setCandidates] = useState<Candidate[]>(initialCandidates || []);
   const [error, setError] = useState<string | null>(initialError);
@@ -291,6 +288,7 @@ export function CandidatesClient({
                       <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center overflow-hidden">
                           {candidate.avatar_url ? (
+                            // eslint-disable-next-line @next/next/no-img-element -- Admin preview displays original uploads, including local data/blob URLs.
                             <img
                               src={candidate.avatar_url}
                               alt={candidate.full_name}

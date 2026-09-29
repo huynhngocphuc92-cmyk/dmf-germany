@@ -1,7 +1,8 @@
 "use client";
+import Link from "next/link";
 
+import { ArrowRight, Calculator, CheckCircle2, TrendingDown, Users } from "lucide-react";
 import dynamic from "next/dynamic";
-import { Calculator, TrendingDown, Users, CheckCircle2, ArrowRight } from "lucide-react";
 
 // Lazy load RoiCalculator - it's a heavy component (~847 lines)
 const RoiCalculator = dynamic(
@@ -106,20 +107,20 @@ export default function RoiRechnerPage() {
               Unternehmen zu erhalten.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
+              <Link
                 href="/#contact"
                 className="px-8 py-4 bg-white text-primary rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg flex items-center justify-center gap-2"
               >
                 Angebot anfordern
                 <ArrowRight className="w-5 h-5" />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/services/skilled-workers"
                 className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-lg font-semibold hover:bg-white/10 transition-colors flex items-center justify-center gap-2"
               >
                 Unsere Dienstleistungen
                 <ArrowRight className="w-5 h-5" />
-              </a>
+              </Link>
             </div>
           </div>
         </div>

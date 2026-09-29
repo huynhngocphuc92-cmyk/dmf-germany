@@ -1,18 +1,29 @@
-import { NextRequest, NextResponse } from "next/server";
-import { randomBytes } from "node:crypto";
-import { createPublicClient } from "@/utils/supabase/public";
-import { chatHistorySchema } from "@/lib/validations/public-intake";
 import { createPrivilegedAdminClient } from "@/lib/auth/admin";
 import {
   adminAuthorizationResponse,
   adminResponseHeaders,
   parseAdminPagination,
 } from "@/lib/auth/admin-http";
+import { InvalidBody, readJsonBody } from "@/lib/intake/body";
+import { checkRateLimit, getClientIp, RATE_LIMITS } from "@/lib/rate-limit";
+import { createIntakeClient } from "@/lib/supabase/intake";
+import { chatHistorySchema } from "@/lib/validations/public-intake";
+import { NextRequest, NextResponse } from "next/server";
+import { randomBytes } from "node:crypto";
 
 const OWNER_COOKIE = "dmf_chat_owner";
 
 export async function POST(request: NextRequest) {
-  const parsed = chatHistorySchema.safeParse(await request.json().catch(() => null));
+  let body: unknown;
+  try {
+    body = await readJsonBody(request, 1000000);
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Invalid chat history" },
+      { status: error instanceof InvalidBody ? error.status : 400 }
+    );
+  }
+  const parsed = chatHistorySchema.safeParse(body);
   if (!parsed.success) return NextResponse.json({ error: "Invalid chat history" }, { status: 400 });
   const { sessionId, messages, leadData } = parsed.data;
   const existingToken = request.cookies.get(OWNER_COOKIE)?.value;
@@ -21,7 +32,13 @@ export async function POST(request: NextRequest) {
       ? existingToken
       : randomBytes(32).toString("hex");
   try {
-    const supabase = createPublicClient();
+    const rate = await checkRateLimit(`history:${getClientIp(request)}`, RATE_LIMITS.API);
+    if (!rate.success)
+      return NextResponse.json(
+        { error: "Too many requests" },
+        { status: 429, headers: { "Retry-After": String(rate.resetIn) } }
+      );
+    const supabase = createIntakeClient();
     const { data: saved, error } = await supabase.rpc("dmf_save_chat", {
       p_session_id: sessionId,
       p_owner_token: ownerToken,

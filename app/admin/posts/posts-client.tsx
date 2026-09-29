@@ -1,30 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { format } from "date-fns";
-import { de, vi } from "date-fns/locale";
-import { Plus, Pencil, Trash2, FileText, Eye, MoreHorizontal, Search } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -35,10 +11,33 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { useLanguage } from "@/components/providers/LanguageProvider";
-import type { Post } from "./types";
-import { statusLabelsI18n, statusColors, postTranslations, type AdminLanguage } from "./types";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { format } from "date-fns";
+import { de, vi } from "date-fns/locale";
+import { Eye, FileText, MoreHorizontal, Pencil, Plus, Search, Trash2 } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 import { deletePost } from "./actions";
+import type { Post } from "./types";
+import { postTranslations, statusColors, statusLabelsI18n, type AdminLanguage } from "./types";
 
 // ============================================
 // TYPES
@@ -53,7 +52,6 @@ interface PostsClientProps {
 // ============================================
 
 export function PostsClient({ initialPosts }: PostsClientProps) {
-  const router = useRouter();
   const { lang: currentLang } = useLanguage();
   const lang = currentLang as AdminLanguage;
   const t = postTranslations[lang];

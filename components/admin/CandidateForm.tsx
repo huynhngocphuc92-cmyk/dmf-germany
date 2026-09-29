@@ -256,6 +256,7 @@ export function CandidateForm({ open, onOpenChange, candidate, onSuccess }: Cand
               <div className="relative w-20 h-20 rounded-xl bg-slate-100 border-2 border-dashed border-slate-300 flex items-center justify-center overflow-hidden">
                 {formData.avatar_url ? (
                   <>
+                    {/* eslint-disable-next-line @next/next/no-img-element -- Admin preview displays original uploads, including local data/blob URLs. */}
                     <img
                       src={formData.avatar_url}
                       alt="Avatar"

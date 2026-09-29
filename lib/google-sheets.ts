@@ -129,7 +129,6 @@ async function getSpreadsheet(): Promise<GoogleSpreadsheet | null> {
     const doc = new GoogleSpreadsheet(sheetId, auth);
     await doc.loadInfo();
 
-    console.log(`[Google Sheets] Connected to spreadsheet: "${doc.title}"`);
     return doc;
   } catch (error) {
     console.error("[Google Sheets] Failed to connect to spreadsheet:", error);
@@ -169,7 +168,7 @@ async function getOrCreateContactsSheet(
 
     if (!sheet) {
       // Create new sheet with headers
-      console.log(`[Google Sheets] Creating new sheet: "${SHEET_NAME}"`);
+
       sheet = await doc.addSheet({
         title: SHEET_NAME,
         headerValues: HEADERS,
@@ -262,7 +261,6 @@ export async function appendToSheet(data: ContactFormData): Promise<{
       Status: "Neu",
     });
 
-    console.log(`[Google Sheets] ✅ Contact saved: ${data.name} (${data.email})`);
     return { success: true };
   } catch (error) {
     // Log error but don't fail the user experience
@@ -286,10 +284,6 @@ export async function testConnection(): Promise<boolean> {
     if (!doc) {
       return false;
     }
-
-    console.log("[Google Sheets] Connection test successful!");
-    console.log(`[Google Sheets] Sheet title: ${doc.title}`);
-    console.log(`[Google Sheets] Sheet count: ${doc.sheetCount}`);
 
     return true;
   } catch (error) {

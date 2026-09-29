@@ -1,9 +1,10 @@
 "use client";
+import Link from "next/link";
 
-import { MapPin, Users, Briefcase } from "lucide-react";
-import { successStories, getTotalPlacements } from "@/lib/data/success-stories";
 import MapWrapper from "@/components/map/MapWrapper";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { getTotalPlacements, successStories } from "@/lib/data/success-stories";
+import { Briefcase, MapPin, Users } from "lucide-react";
 
 export default function ReferenzenPage() {
   const { t } = useLanguage();
@@ -117,18 +118,18 @@ export default function ReferenzenPage() {
               finden.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
+              <Link
                 href="/#contact"
                 className="px-8 py-3 bg-white text-primary rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg"
               >
                 Kontakt aufnehmen
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/services/skilled-workers"
                 className="px-8 py-3 bg-transparent border-2 border-white text-white rounded-lg font-semibold hover:bg-white/10 transition-colors"
               >
                 Unsere Dienstleistungen
-              </a>
+              </Link>
             </div>
           </div>
         </div>

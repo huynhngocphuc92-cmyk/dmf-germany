@@ -23,10 +23,7 @@ async function runMigration() {
   });
 
   // Read migration file
-  const migrationPath = path.join(
-    process.cwd(),
-    "supabase/migrations/20240201_chatbot_tables.sql"
-  );
+  const migrationPath = path.join(process.cwd(), "supabase/migrations/20240201_chatbot_tables.sql");
 
   if (!fs.existsSync(migrationPath)) {
     console.error("❌ Migration file not found:", migrationPath);
@@ -62,7 +59,7 @@ async function runMigration() {
         successCount++;
         console.log(`✅ ${statement.substring(0, 50)}...`);
       }
-    } catch (err) {
+    } catch {
       errorCount++;
       console.log(`⚠️  ${statement.substring(0, 50)}...`);
     }

@@ -1,18 +1,16 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
-import { motion } from "framer-motion";
+import type { Post } from "@/app/admin/posts/types";
+import { useLanguage } from "@/components/providers/LanguageProvider";
+import { Button } from "@/components/ui/button";
+import { BLUR_LANDSCAPE } from "@/lib/image-placeholder";
 import { format } from "date-fns";
 import { de, vi } from "date-fns/locale";
+import { motion } from "framer-motion";
 import parse from "html-react-parser";
-import { ArrowLeft, Calendar, Clock, Share2, FileText, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
-import { useLanguage } from "@/components/providers/LanguageProvider";
-import { BLUR_LANDSCAPE } from "@/lib/image-placeholder";
-import type { Post } from "@/app/admin/posts/types";
+import { ArrowLeft, Calendar, Clock, FileText, Share2 } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 // ============================================
 // TRANSLATIONS
@@ -80,7 +78,7 @@ export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) 
           text: post.excerpt || post.title,
           url: window.location.href,
         });
-      } catch (err) {
+      } catch {
         // User cancelled or error
       }
     } else {
@@ -98,14 +96,14 @@ export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) 
         {post.cover_image ? (
           <div className="relative h-[40vh] lg:h-[50vh] overflow-hidden">
             <Image
-                            src={post.cover_image}
-                            alt={post.title}
-                            fill
-                            priority
-                            className="object-cover"
-                            placeholder="blur"
-                            blurDataURL={BLUR_LANDSCAPE}
-                          />
+              src={post.cover_image}
+              alt={post.title}
+              fill
+              priority
+              className="object-cover"
+              placeholder="blur"
+              blurDataURL={BLUR_LANDSCAPE}
+            />
             {/* Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
           </div>

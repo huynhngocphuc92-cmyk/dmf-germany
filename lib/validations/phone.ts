@@ -37,6 +37,10 @@ export function isValidBusinessPhone(value?: string | null) {
   return false;
 }
 
-export const optionalBusinessPhoneSchema = z.string().optional().refine(isValidBusinessPhone, {
-  message: BUSINESS_PHONE_ERROR_MESSAGE,
-});
+export const optionalBusinessPhoneSchema = z
+  .string()
+  .max(50)
+  .optional()
+  .refine(isValidBusinessPhone, {
+    message: BUSINESS_PHONE_ERROR_MESSAGE,
+  });
