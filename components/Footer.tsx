@@ -1,10 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { openConsentSettings } from "@/components/CookieConsent";
+import { COOPERATION_ITEMS, getCooperationLabel } from "@/components/header/nav-data";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export default function Footer() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   return (
     <footer
@@ -34,6 +36,27 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/blog" className="hover:text-white">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link href="/roi-rechner" className="hover:text-white">
+                  {lang === "de"
+                    ? "Personalkosten-Rechner"
+                    : lang === "en"
+                      ? "Staffing cost calculator"
+                      : "Tính chi phí nhân sự"}
+                </Link>
+              </li>
+              {COOPERATION_ITEMS.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className="hover:text-white">
+                    {getCooperationLabel(item.labelKey, lang)}
+                  </Link>
+                </li>
+              ))}
+              <li>
                 <Link href="/#about" className="hover:text-white transition">
                   {t.header.about}
                 </Link>
@@ -51,6 +74,18 @@ export default function Footer() {
                 <Link href="/impressum" className="hover:text-white transition">
                   {t.footer.impressum}
                 </Link>
+              </li>
+              <li>
+                <button
+                  onClick={openConsentSettings}
+                  className="hover:text-white underline text-left min-h-11"
+                >
+                  {lang === "de"
+                    ? "Datenschutzeinstellungen"
+                    : lang === "en"
+                      ? "Privacy settings"
+                      : "Cài đặt quyền riêng tư"}
+                </button>
               </li>
               <li>
                 <Link href="/datenschutz" className="hover:text-white transition">

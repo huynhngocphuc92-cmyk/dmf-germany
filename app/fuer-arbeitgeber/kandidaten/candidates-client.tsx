@@ -1,150 +1,129 @@
 "use client";
 import Link from "next/link";
-
-import { useState, useMemo } from "react";
-import { Users, X } from "lucide-react";
+import { useState } from "react";
+import { Users } from "lucide-react";
 import { CandidateCard } from "@/components/candidates/CandidateCard";
 import { InquiryModal } from "@/components/candidates/InquiryModal";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import type { CandidateCategory } from "@/app/admin/candidates/types";
 import type { PublicCandidate } from "@/lib/candidates/public-profile";
-import { categoryLabelsI18n } from "@/app/admin/candidates/types";
-import { Button } from "@/components/ui/button";
-
-interface CandidatesClientProps {
+import { EMPLOYER_COPY } from "@/lib/content/employers";
+export function CandidatesClient({
+  initialCandidates,
+  error,
+}: {
   initialCandidates: PublicCandidate[];
   error: string | null;
-}
-
-export function CandidatesClient({ initialCandidates, error }: CandidatesClientProps) {
-  const { lang, t } = useLanguage();
-  const [selectedCategory, setSelectedCategory] = useState<CandidateCategory | "all">("all");
-  const [selectedCandidate, setSelectedCandidate] = useState<PublicCandidate | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // Get unique categories from candidates
-  const availableCategories = useMemo(() => {
-    const categories = new Set<CandidateCategory>();
-    initialCandidates.forEach((c) => {
-      if (c.category) {
-        categories.add(c.category);
-      }
-    });
-    return Array.from(categories);
-  }, [initialCandidates]);
-
-  // Filter candidates by category
-  const filteredCandidates = useMemo(() => {
-    if (selectedCategory === "all") {
-      return initialCandidates;
-    }
-    return initialCandidates.filter((c) => c.category === selectedCategory);
-  }, [initialCandidates, selectedCategory]);
-
-  const handleRequestProfile = (candidate: PublicCandidate) => {
-    setSelectedCandidate(candidate);
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setSelectedCandidate(null);
-  };
-
+}) {
+  const { lang } = useLanguage();
+  const copy = EMPLOYER_COPY[lang];
+  const t = copy.pool;
+  const [category, setCategory] = useState("all");
+  const [german, setGerman] = useState("all");
+  const [visa, setVisa] = useState("all");
+  const [candidate, setCandidate] = useState<PublicCandidate | null>(null);
+  const filtered = initialCandidates.filter(
+    (c) =>
+      (category === "all" || c.category === category) &&
+      (german === "all" || c.german_level === german) &&
+      (visa === "all" || c.visa_status)
+  );
+  const field =
+    "block w-full min-h-12 mt-2 rounded-lg border border-input bg-background px-3 text-base";
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      {/* Hero Section */}
-      <section className="bg-primary text-primary-foreground pt-28 md:pt-40 pb-16 md:pb-24">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex justify-center mb-6">
-              <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center">
-                <Users className="w-8 h-8" />
-              </div>
-            </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">Kandidaten-Pool</h1>
-            <p className="text-lg md:text-xl opacity-90 max-w-2xl mx-auto leading-relaxed">
-              Unsere Top-Talente für Ihr Unternehmen
-            </p>
-          </div>
+    <div>
+      <section className="bg-secondary pt-40 md:pt-48 pb-16">
+        <div className="max-w-6xl mx-auto px-5 md:px-8">
+          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-primary">
+            {t.title}
+          </h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mt-5 leading-relaxed">{t.intro}</p>
         </div>
       </section>
-
-      {/* Filter Section - Simple Category Buttons */}
-      {availableCategories.length > 0 && (
-        <section className="py-6 bg-white border-b border-gray-200">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="text-sm font-medium text-gray-700 mr-2">Filter:</span>
-              <Button
-                variant={selectedCategory === "all" ? "default" : "outline"}
-                size="sm"
-                onClick={() => setSelectedCategory("all")}
-                className="text-sm"
-              >
-                Alle
-              </Button>
-              {availableCategories.map((cat) => (
-                <Button
-                  key={cat}
-                  variant={selectedCategory === cat ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setSelectedCategory(cat)}
-                  className="text-sm"
-                >
-                  {categoryLabelsI18n[cat]?.[lang] || cat}
-                </Button>
+      <div className="max-w-6xl mx-auto px-5 md:px-8 py-10 md:py-16">
+        <div className="grid sm:grid-cols-3 gap-5">
+          <label className="text-sm font-medium">
+            {t.category}
+            <select
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              className={field}
+            >
+              <option value="all">{t.all}</option>
+              {(["skilled", "azubi", "seasonal"] as const).map((s) => (
+                <option key={s} value={s}>
+                  {copy.form.services[s]}
+                </option>
               ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Candidates Grid */}
-      <section className="py-12 md:py-16">
-        <div className="container mx-auto px-4">
-          {error ? (
-            <div className="text-center py-12">
-              <div className="inline-flex items-center gap-3 p-6 bg-red-50 border border-red-200 rounded-xl text-red-700">
-                <X className="h-6 w-6" />
-                <div>
-                  <p className="font-semibold">
-                    {t.candidates?.error_loading || "Fehler beim Laden der Kandidaten"}
-                  </p>
-                  <p className="text-sm mt-1">{error}</p>
-                </div>
-              </div>
-            </div>
-          ) : filteredCandidates.length === 0 ? (
-            <div className="text-center py-16">
-              <Users className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                Aktuell keine passenden öffentlichen Profile
-              </h3>
-              <p className="text-gray-600">
-                Senden Sie uns Ihren Personalbedarf. Wir klären passende Profile und Verfügbarkeit
-                mit Ihnen.
-              </p>
-              <Link href="/#contact" className="inline-block mt-5 text-primary underline">
-                Personalbedarf besprechen
-              </Link>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-              {filteredCandidates.map((candidate) => (
-                <CandidateCard
-                  key={candidate.id}
-                  candidate={candidate}
-                  onRequestProfile={handleRequestProfile}
-                />
+            </select>
+          </label>
+          <label className="text-sm font-medium">
+            {t.german}
+            <select value={german} onChange={(e) => setGerman(e.target.value)} className={field}>
+              <option value="all">{t.all}</option>
+              {["A1", "A2", "B1", "B2", "C1", "C2"].map((v) => (
+                <option value={v} key={v}>
+                  {v}
+                </option>
               ))}
-            </div>
-          )}
+            </select>
+          </label>
+          <label className="text-sm font-medium">
+            {t.visa}
+            <select value={visa} onChange={(e) => setVisa(e.target.value)} className={field}>
+              <option value="all">{t.all}</option>
+              <option value="yes">{t.visaYes}</option>
+            </select>
+          </label>
         </div>
-      </section>
-
-      {/* Inquiry Modal */}
-      <InquiryModal candidate={selectedCandidate} isOpen={isModalOpen} onClose={handleCloseModal} />
+        <p className="text-xs text-muted-foreground mt-3">{t.visaNote}</p>
+        <div className="flex justify-between gap-4 my-6">
+          <p role="status" className="text-sm text-muted-foreground">
+            {filtered.length} {t.count}
+          </p>
+          <button
+            onClick={() => {
+              setCategory("all");
+              setGerman("all");
+              setVisa("all");
+            }}
+            className="text-sm text-primary underline"
+          >
+            {t.reset}
+          </button>
+        </div>
+        {error ? (
+          <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-6 text-red-800">
+            <p>{t.error}</p>
+            <button className="underline mt-3" onClick={() => window.location.reload()}>
+              {t.retry}
+            </button>
+          </div>
+        ) : filtered.length ? (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filtered.map((c) => (
+              <CandidateCard key={c.id} candidate={c} onRequestProfile={setCandidate} />
+            ))}
+          </div>
+        ) : (
+          <div className="rounded-xl border bg-secondary px-6 py-12 text-center">
+            <Users className="h-10 w-10 text-primary mx-auto" />
+            <h2 className="text-xl font-semibold mt-5">{t.empty}</h2>
+            <p className="text-muted-foreground mt-3 max-w-xl mx-auto">{copy.emptyProfiles}</p>
+            <Link
+              href="/fuer-arbeitgeber/personalbedarf"
+              className="inline-flex min-h-12 items-center bg-primary text-primary-foreground rounded-lg px-6 mt-6 font-semibold"
+            >
+              {copy.primary}
+            </Link>
+          </div>
+        )}
+      </div>
+      <InquiryModal
+        key={candidate?.id ?? "none"}
+        candidate={candidate}
+        isOpen={Boolean(candidate)}
+        onClose={() => setCandidate(null)}
+      />
     </div>
   );
 }

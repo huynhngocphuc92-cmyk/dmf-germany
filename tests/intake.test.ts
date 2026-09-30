@@ -115,3 +115,36 @@ it("bounds chunked bodies without trusting content-length", async () => {
   await expect(readJsonBody(req, 32)).rejects.toMatchObject({ status: 413 });
   expect(cancelled).toBe(true);
 });
+
+it("accepts hiring intent and profile context without allowing an owner or status to be forged", async () => {
+  const result = await acceptIntake(
+    request({
+      ...body,
+      company: "Fixture Works",
+      service: "azubi",
+      headcount: 2,
+      candidateId: id,
+      sourcePath: "/services/azubi",
+      campaign: { source: "fixture" },
+      assignedTo: id,
+      status: "completed",
+    }),
+    "hiring"
+  );
+  expect(result.status).toBe(200);
+  expect(await result.json()).toMatchObject({ requestId: id, saved: true });
+  expect(mocks.rpc).toHaveBeenCalledWith("dmf_receive_intake", {
+    p_id: id,
+    p_kind: "profile",
+    p_payload: expect.objectContaining({
+      requestPurpose: "hiring",
+      company: "Fixture Works",
+      service: "azubi",
+      candidateId: id,
+      headcount: 2,
+      sourcePath: "/services/azubi",
+    }),
+  });
+  expect(mocks.rpc.mock.calls[0][1].p_payload).not.toHaveProperty("assignedTo");
+  expect(mocks.rpc.mock.calls[0][1].p_payload).not.toHaveProperty("status");
+});

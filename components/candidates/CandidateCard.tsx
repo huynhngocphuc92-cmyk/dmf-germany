@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useConsent, openConsentSettings } from "@/components/CookieConsent";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Briefcase, Award, FileText } from "lucide-react";
@@ -74,7 +75,7 @@ export const CandidateCard = ({
   const { lang, t } = useLanguage();
   const [imageError, setImageError] = useState(false);
   const [videoError, setVideoError] = useState(false);
-  const [videoAllowed, setVideoAllowed] = useState(false);
+  const { externalMedia: videoAllowed } = useConsent();
 
   const candidateCode = getCandidateCode(candidate.id);
   const embedUrl = candidate.video_url ? getEmbedUrl(candidate.video_url) : null;
@@ -174,9 +175,13 @@ export const CandidateCard = ({
                 <button
                   type="button"
                   className="w-full rounded-lg bg-slate-100 p-5 text-sm text-slate-700"
-                  onClick={() => setVideoAllowed(true)}
+                  onClick={openConsentSettings}
                 >
-                  Video laden – dabei wird eine Verbindung zu YouTube hergestellt.
+                  {lang === "de"
+                    ? "Video ansehen: externe Medien in den Datenschutzeinstellungen erlauben."
+                    : lang === "en"
+                      ? "Watch video: allow external media in privacy settings."
+                      : "Xem video: cho phép video bên ngoài trong cài đặt quyền riêng tư."}
                 </button>
               ) : embedUrl && !videoError ? (
                 <div className="relative aspect-video rounded-lg overflow-hidden bg-black">

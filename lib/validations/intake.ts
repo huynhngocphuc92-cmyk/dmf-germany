@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { optionalBusinessPhoneSchema } from "./phone";
 import { leadRequestSchema } from "./public-intake";
+import { requestContextSchema, type HiringService } from "./hiring";
 
 const common = {
   name: z.string().trim().min(2).max(200),
@@ -14,6 +15,7 @@ const common = {
   message: z.string().trim().min(10).max(10000),
   privacy: z.literal(true),
   bot_check: z.string().max(0).optional(),
+  ...requestContextSchema.shape,
 };
 
 export const contactIntakeSchema = z
@@ -39,6 +41,7 @@ export const profileIntakeSchema = z.object({
 export const chatLeadIntakeSchema = leadRequestSchema.extend({
   email: common.email,
   name: z.string().trim().max(200).optional(),
+  ...requestContextSchema.shape,
 });
 export type IntakePayload = {
   email: string;
@@ -51,5 +54,12 @@ export type IntakePayload = {
   candidateId?: string;
   privacy?: boolean;
   type?: "contact" | "profile";
+  requestPurpose?: "hiring";
+  service?: HiringService;
+  headcount?: number;
+  location?: string;
+  timing?: string;
+  sourcePath?: string;
+  campaign?: { source?: string; medium?: string; campaign?: string };
 };
 export type IntakeKind = "contact" | "profile" | "lead";

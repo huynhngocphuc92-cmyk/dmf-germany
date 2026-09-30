@@ -16,7 +16,6 @@ import {
   Settings,
   Shield,
   Sparkles,
-  Target,
   Users,
 } from "lucide-react";
 import Link from "next/link";
@@ -50,12 +49,6 @@ const getNavItems = (newInquiriesCount: number | null): NavItem[] => [
     icon: Users,
   },
   {
-    labelDe: "Leads",
-    labelVn: "Leads",
-    href: "/admin/leads",
-    icon: Target,
-  },
-  {
     labelDe: "Chat-Verlauf",
     labelVn: "Lịch sử chat",
     href: "/admin/chats",
@@ -74,8 +67,8 @@ const getNavItems = (newInquiriesCount: number | null): NavItem[] => [
     icon: Sparkles,
   },
   {
-    labelDe: "Anfragen",
-    labelVn: "Yêu cầu",
+    labelDe: "Anfragen & Personalbedarf",
+    labelVn: "Yêu cầu tuyển dụng",
     href: "/admin/requests",
     icon: MessageSquare,
     badge: newInquiriesCount !== null && newInquiriesCount > 0 ? newInquiriesCount : undefined,

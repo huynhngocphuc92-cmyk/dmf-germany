@@ -1,4 +1,4 @@
-import { ServiceOverview } from "@/components/services/ServiceOverview";
-export default function ServicePage() {
-  return <ServiceOverview service="seasonal" />;
+import { EmployerService } from "@/components/employers/EmployerService";
+export default function Page() {
+  return <EmployerService service="seasonal" />;
 }

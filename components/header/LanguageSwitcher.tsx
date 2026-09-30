@@ -27,6 +27,7 @@ export const LanguageSwitcher = memo(function LanguageSwitcher({
         <button
           key={langOption.code}
           type="button"
+          aria-pressed={lang === langOption.code}
           onClick={() => setLang(langOption.code)}
           className={cn(
             "rounded-md font-semibold transition-all duration-200",
