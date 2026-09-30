@@ -15,7 +15,7 @@ export default async function HiringPage({
   return (
     <div className="bg-secondary pt-40 md:pt-48 pb-16 px-5">
       <div className="max-w-4xl mx-auto rounded-2xl border bg-card p-6 md:p-10">
-        <HiringRequestForm service={service} />
+        <HiringRequestForm service={service} headingLevel={1} />
       </div>
     </div>
   );

@@ -44,13 +44,16 @@ export function HiringRequestForm({
   service = "unsure",
   candidateId,
   candidateProfession,
+  headingLevel = 2,
 }: {
   service?: HiringService;
   candidateId?: string;
   candidateProfession?: string | null;
+  headingLevel?: 1 | 2;
 }) {
   const { lang } = useLanguage();
   const t = EMPLOYER_COPY[lang].form;
+  const Heading = headingLevel === 1 ? "h1" : "h2";
   const prefix = useId();
   const { forPayload, reset: resetKey } = useSubmissionKey();
   const [saved, setSaved] = useState<string | null>(null);
@@ -127,7 +130,7 @@ export function HiringRequestForm({
         className="rounded-xl border border-emerald-200 bg-emerald-50 p-6 md:p-8 text-emerald-950 focus-visible:outline-2"
       >
         <CheckCircle2 className="h-9 w-9 mb-4" />
-        <h2 className="text-2xl font-bold">{t.success}</h2>
+        <Heading className="text-2xl font-bold">{t.success}</Heading>
         <p className="mt-4 leading-relaxed">{t.next}</p>
         <p className="mt-5 text-sm">
           {t.reference}: <span className="font-mono break-all">{saved}</span>
@@ -147,7 +150,7 @@ export function HiringRequestForm({
     );
   return (
     <div>
-      <h2 className="text-2xl md:text-3xl font-bold tracking-tight">{t.title}</h2>
+      <Heading className="text-2xl md:text-3xl font-bold tracking-tight">{t.title}</Heading>
       <p className="mt-3 text-muted-foreground leading-relaxed">{t.intro}</p>
       {candidateId && (
         <p className="my-4 rounded-lg bg-secondary p-3 text-sm">
