@@ -1,6 +1,10 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import { useConsent, openConsentSettings } from "@/components/CookieConsent";
+import { InquiryModal } from "@/components/candidates/InquiryModal";
+import type { PublicCandidate } from "@/lib/candidates/public-profile";
+import { categoryLabelsI18n } from "@/app/admin/candidates/types";
 import { m } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { MotionProvider } from "@/components/shared/MotionProvider";
@@ -34,8 +38,8 @@ import { getEmbedUrl } from "@/lib/utils/youtube";
 // TYPES
 // ============================================
 
-type Industry = "pflege" | "gastronomie" | "handwerk" | "technik";
-type GermanLevel = "A2" | "B1" | "B2" | "C1";
+type Industry = PublicCandidate["category"];
+type GermanLevel = NonNullable<PublicCandidate["german_level"]> | "unknown";
 
 interface Candidate {
   id: string;
@@ -64,7 +68,7 @@ interface IndustryConfig {
 // ============================================
 
 const industryConfig: Record<Industry, IndustryConfig> = {
-  pflege: {
+  azubi: {
     label: "Pflege",
     labelDe: "Gesundheit & Pflege",
     bgColor: "bg-sky-600",
@@ -73,7 +77,7 @@ const industryConfig: Record<Industry, IndustryConfig> = {
     avatarBg: "bg-sky-100",
     avatarText: "text-sky-700",
   },
-  gastronomie: {
+  seasonal: {
     label: "Gastronomie",
     labelDe: "Hotellerie & Gastronomie",
     bgColor: "bg-amber-500",
@@ -82,16 +86,7 @@ const industryConfig: Record<Industry, IndustryConfig> = {
     avatarBg: "bg-amber-100",
     avatarText: "text-amber-700",
   },
-  handwerk: {
-    label: "Handwerk",
-    labelDe: "Handwerk & Bau",
-    bgColor: "bg-orange-600",
-    textColor: "text-white",
-    borderColor: "border-orange-600",
-    avatarBg: "bg-orange-100",
-    avatarText: "text-orange-700",
-  },
-  technik: {
+  skilled: {
     label: "Technik",
     labelDe: "Technik & Industrie",
     bgColor: "bg-slate-700",
@@ -103,74 +98,14 @@ const industryConfig: Record<Industry, IndustryConfig> = {
 };
 
 const germanLevelConfig: Record<GermanLevel, { label: string; description: string }> = {
+  unknown: { label: "—", description: "" },
+  A1: { label: "A1", description: "Anfänger" },
+  C2: { label: "C2", description: "Annähernd muttersprachlich" },
   A2: { label: "A2", description: "Grundkenntnisse" },
   B1: { label: "B1", description: "Fortgeschritten" },
   B2: { label: "B2", description: "Selbständig" },
   C1: { label: "C1", description: "Fachkundig" },
 };
-
-// Mock Data - 4 Kandidaten
-const mockCandidates: Candidate[] = [
-  {
-    id: "1",
-    code: "DMF-2401",
-    industry: "pflege",
-    germanLevel: "B2",
-    qualifications: [
-      "3 Jahre Berufserfahrung in der Altenpflege",
-      "Vollständig geimpft (COVID-19, Hepatitis B)",
-      "Telc-Zertifikat B2 Pflege",
-    ],
-    availability: "03/2024",
-    experience: "Altenpflegeheim & Krankenhaus",
-    videoAvailable: true,
-    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", // Sample YouTube video
-  },
-  {
-    id: "2",
-    code: "DMF-2402",
-    industry: "gastronomie",
-    germanLevel: "B1",
-    qualifications: [
-      "5 Jahre Erfahrung als Souschef",
-      "IHK-anerkanntes Koch-Zertifikat",
-      "Hygieneschulung nach HACCP",
-    ],
-    availability: "02/2024",
-    experience: "5-Sterne-Hotel & Fine Dining",
-    videoAvailable: true,
-    videoUrl: "https://youtu.be/dQw4w9WgXcQ", // Sample YouTube short link
-  },
-  {
-    id: "3",
-    code: "DMF-2403",
-    industry: "handwerk",
-    germanLevel: "B1",
-    qualifications: [
-      "4 Jahre Erfahrung im Hochbau",
-      "Elektroinstallateur-Zertifikat",
-      "Führerschein Klasse B & C",
-    ],
-    availability: "04/2024",
-    experience: "Wohnungsbau & Renovierung",
-    videoAvailable: false,
-  },
-  {
-    id: "4",
-    code: "DMF-2404",
-    industry: "technik",
-    germanLevel: "B2",
-    qualifications: [
-      "Ingenieurstudium (Bachelor)",
-      "CNC-Programmierung & CAD/CAM",
-      "Qualitätsmanagement ISO 9001",
-    ],
-    availability: "05/2024",
-    experience: "Automobilindustrie",
-    videoAvailable: true,
-    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", // Sample YouTube video
-  },
-];
 
 // ============================================
 // SUB-COMPONENTS
@@ -184,7 +119,7 @@ interface CandidateCardProps {
 }
 
 function CandidateCard({ candidate, index, onViewVideo, onRequestProfile }: CandidateCardProps) {
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
   const industry = industryConfig[candidate.industry];
   const germanLevel = germanLevelConfig[candidate.germanLevel];
 
@@ -221,7 +156,7 @@ function CandidateCard({ candidate, index, onViewVideo, onRequestProfile }: Cand
               <Badge
                 className={`${industry.bgColor} ${industry.textColor} text-sm px-3 py-1 font-medium shadow-sm`}
               >
-                {industry.labelDe}
+                {categoryLabelsI18n[candidate.industry][lang]}
               </Badge>
             </div>
           </div>
@@ -327,7 +262,8 @@ interface VideoModalProps {
 }
 
 function VideoModal({ candidate, isOpen, onClose }: VideoModalProps) {
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
+  const { externalMedia: media } = useConsent();
   if (!candidate) return null;
 
   const industry = industryConfig[candidate.industry];
@@ -353,7 +289,7 @@ function VideoModal({ candidate, isOpen, onClose }: VideoModalProps) {
                     variant="outline"
                     className={`${industry.textColor} ${industry.bgColor} text-xs`}
                   >
-                    {industry.label}
+                    {categoryLabelsI18n[candidate.industry][lang]}
                   </Badge>
                 </DialogDescription>
               </div>
@@ -362,7 +298,17 @@ function VideoModal({ candidate, isOpen, onClose }: VideoModalProps) {
         </DialogHeader>
 
         {/* Video Player */}
-        {candidate.videoUrl ? (
+        {!media ? (
+          <div className="p-8 text-center">
+            <button onClick={openConsentSettings} className="text-primary underline">
+              {lang === "de"
+                ? "Externe Medien in den Datenschutzeinstellungen erlauben"
+                : lang === "en"
+                  ? "Allow external media in privacy settings"
+                  : "Cho phép nội dung ngoài trong cài đặt quyền riêng tư"}
+            </button>
+          </div>
+        ) : candidate.videoUrl ? (
           <div className="relative aspect-video bg-black rounded-lg overflow-hidden">
             {(() => {
               const embedUrl = getEmbedUrl(candidate.videoUrl);
@@ -453,7 +399,7 @@ function VideoModal({ candidate, isOpen, onClose }: VideoModalProps) {
 // MAIN COMPONENT
 // ============================================
 
-export function TalentShowcase() {
+export function TalentShowcase({ candidates }: { candidates: PublicCandidate[] }) {
   const { lang, t } = useLanguage();
   const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(null);
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
@@ -463,66 +409,24 @@ export function TalentShowcase() {
     setIsVideoModalOpen(true);
   }, []);
 
-  const scrollToContact = useCallback(
-    (candidateId: string) => {
-      // Find the candidate
-      const candidate = mockCandidates.find((c) => c.id === candidateId);
-      if (!candidate) return;
-
-      const industry = industryConfig[candidate.industry];
-
-      // Scroll to contact section
-      const contactSection = document.getElementById("contact");
-      if (contactSection) {
-        contactSection.scrollIntoView({ behavior: "smooth" });
-      }
-
-      // Pre-fill message after scroll
-      setTimeout(() => {
-        const messageTextarea = document.querySelector<HTMLTextAreaElement>(
-          'textarea[name="message"]'
-        );
-        if (messageTextarea) {
-          const prefillText =
-            lang === "de"
-              ? `Sehr geehrte Damen und Herren,
-
-ich interessiere mich für das Kandidatenprofil #${candidate.code} (${industry.labelDe}, Deutschkenntnisse ${candidate.germanLevel}).
-
-Bitte übersenden Sie mir das vollständige Bewerberprofil sowie weitere Informationen zu den Vermittlungskonditionen.
-
-Mit freundlichen Grüßen`
-              : lang === "en"
-                ? `Dear Sir or Madam,
-
-I am interested in candidate profile #${candidate.code} (${industry.labelDe}, German level ${candidate.germanLevel}).
-
-Please send me the complete applicant profile and further information on the placement conditions.
-
-Best regards`
-                : `Kính gửi Quý công ty,
-
-Tôi quan tâm đến hồ sơ ứng viên #${candidate.code} (${industry.labelDe}, Trình độ tiếng Đức ${candidate.germanLevel}).
-
-Vui lòng gửi cho tôi hồ sơ ứng viên đầy đủ và thông tin về điều kiện giới thiệu.
-
-Trân trọng`;
-
-          messageTextarea.value = prefillText;
-          messageTextarea.dispatchEvent(new Event("input", { bubbles: true }));
-          messageTextarea.focus();
-        }
-      }, 800);
-    },
-    [lang]
-  );
-
-  const handleRequestProfile = useCallback(
-    (candidate: Candidate) => {
-      scrollToContact(candidate.id);
-    },
-    [scrollToContact]
-  );
+  const [requestedProfile, setRequestedProfile] = useState<PublicCandidate | null>(null);
+  const displayCandidates: Candidate[] = candidates.map((profile) => ({
+    id: profile.id,
+    code: profile.id.slice(0, 8).toUpperCase(),
+    industry: profile.category,
+    germanLevel: profile.german_level ?? "unknown",
+    qualifications: profile.profession ? [profile.profession] : [],
+    experience:
+      profile.experience_years == null
+        ? "—"
+        : `${profile.experience_years} ${t.candidates.years_experience}`,
+    availability: lang === "de" ? "Auf Anfrage" : lang === "en" ? "On request" : "Theo yêu cầu",
+    videoAvailable: Boolean(profile.video_url),
+    videoUrl: profile.video_url ?? undefined,
+  }));
+  const handleRequestProfile = (candidate: Candidate) => {
+    setRequestedProfile(candidates.find((profile) => profile.id === candidate.id) ?? null);
+  };
 
   return (
     <MotionProvider>
@@ -559,9 +463,23 @@ Trân trọng`;
             </p>
           </m.div>
 
+          {displayCandidates.length === 0 && (
+            <div className="rounded-2xl border bg-card p-8 text-center text-muted-foreground">
+              <p>
+                {lang === "de"
+                  ? "Aktuell keine öffentlichen Profile. Sprechen Sie uns auf passende Kandidaten an."
+                  : lang === "en"
+                    ? "No public profiles at present. Contact us to discuss suitable candidates."
+                    : "Hiện chưa có hồ sơ công khai. Hãy liên hệ để trao đổi về ứng viên phù hợp."}
+              </p>
+              <a href="#contact" className="inline-block mt-4 text-primary underline">
+                {t.header.contact}
+              </a>
+            </div>
+          )}
           {/* Candidates Grid - 2 Columns */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
-            {mockCandidates.map((candidate, index) => (
+            {displayCandidates.map((candidate, index) => (
               <CandidateCard
                 key={candidate.id}
                 candidate={candidate}
@@ -587,6 +505,12 @@ Trân trọng`;
           </m.div>
         </div>
 
+        <InquiryModal
+          key={requestedProfile?.id ?? "none"}
+          candidate={requestedProfile}
+          isOpen={Boolean(requestedProfile)}
+          onClose={() => setRequestedProfile(null)}
+        />
         {/* Video Modal */}
         <VideoModal
           candidate={selectedCandidate}

@@ -68,10 +68,8 @@ export const HeroSection = ({
 
       {/* Content Container */}
       <LazyMotion features={loadMotionFeatures}>
-        <div className="container mx-auto px-4 lg:px-8 py-16 md:py-24 relative z-10">
-          <div
-            className={`grid grid-cols-1 ${featuredCandidates.length > 0 ? "lg:grid-cols-2" : "max-w-4xl"} gap-12 items-center`}
-          >
+        <div className="container mx-auto px-4 lg:px-8 pt-36 pb-16 md:pt-44 md:pb-24 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Column - Typography */}
             <m.div
               initial="hidden"

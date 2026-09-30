@@ -133,7 +133,7 @@ function PremiumStepCard({ step, index }: PremiumStepCardProps) {
           initial={{ opacity: 0, x: 40, y: 10 }}
           animate={isInView ? { opacity: 1, x: 0, y: 0 } : {}}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="flex-1 pb-16"
+          className="flex-1 min-w-0 break-words pb-16"
         >
           <Card
             className="
@@ -178,7 +178,7 @@ function PremiumStepCard({ step, index }: PremiumStepCardProps) {
                 {step.checklist.map((item: ChecklistItem, idx: number) => (
                   <li key={idx} className="flex items-start gap-3 text-sm">
                     <CheckCircle2 className="h-5 w-5 text-emerald-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-slate-600 leading-relaxed">{item.text}</span>
+                    <span className="min-w-0 text-slate-600 leading-relaxed">{item.text}</span>
                   </li>
                 ))}
               </ul>
@@ -374,167 +374,167 @@ export function ProcessRoadmap() {
   return (
     <MotionProvider>
       <section id="process-roadmap" className="relative py-24 md:py-32 overflow-hidden">
-      {/* Background with subtle pattern */}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-white to-slate-50" />
+        {/* Background with subtle pattern */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-white to-slate-50" />
 
-      {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
+        {/* Decorative elements */}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
 
         <div className="container relative mx-auto px-4 max-w-6xl">
-        {/* Section Header */}
+          {/* Section Header */}
           <m.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-20"
-        >
-          <Badge
-            variant="outline"
-            className="mb-6 px-5 py-2 text-sm font-medium border-blue-200 text-blue-700 bg-blue-50/80 backdrop-blur-sm"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="text-center mb-20"
           >
-            <Sparkles className="h-4 w-4 mr-2" />
-            {t.processRoadmap.badge}
-          </Badge>
+            <Badge
+              variant="outline"
+              className="mb-6 px-5 py-2 text-sm font-medium border-blue-200 text-blue-700 bg-blue-50/80 backdrop-blur-sm"
+            >
+              <Sparkles className="h-4 w-4 mr-2" />
+              {t.processRoadmap.badge}
+            </Badge>
 
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
-            {t.processRoadmap.title}
-          </h2>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
+              {t.processRoadmap.title}
+            </h2>
 
-          <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            {t.processRoadmap.subtitle}
-          </p>
+            <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+              {t.processRoadmap.subtitle}
+            </p>
           </m.div>
 
-        {/* Timeline Container */}
-        <div className="relative">
-          {/* ======================= */}
-          {/* GRADIENT TIMELINE LINE  */}
-          {/* ======================= */}
+          {/* Timeline Container */}
+          <div className="relative">
+            {/* ======================= */}
+            {/* GRADIENT TIMELINE LINE  */}
+            {/* ======================= */}
 
-          {/* Mobile - Left aligned - stops before success node */}
-          <div
-            className="
+            {/* Mobile - Left aligned - stops before success node */}
+            <div
+              className="
               md:hidden absolute left-8 top-0 w-1 
               bg-gradient-to-b from-blue-300 via-blue-500 to-blue-700
               rounded-full
             "
-            style={{ bottom: "140px" }}
-          />
+              style={{ bottom: "140px" }}
+            />
 
-          {/* Desktop - Center aligned - stops before success node */}
-          <div
-            className="
+            {/* Desktop - Center aligned - stops before success node */}
+            <div
+              className="
               hidden md:block absolute left-1/2 top-0 w-1 
               -translate-x-1/2
               bg-gradient-to-b from-blue-300 via-blue-500 to-blue-700
               rounded-full
             "
-            style={{ bottom: "180px" }}
-          />
+              style={{ bottom: "180px" }}
+            />
 
-          {/* Steps */}
-          <div className="space-y-8 md:space-y-20">
-            {processSteps.map((step, index) => (
-              <PremiumStepCard key={step.id} step={step} index={index} />
-            ))}
-          </div>
+            {/* Steps */}
+            <div className="space-y-8 md:space-y-20">
+              {processSteps.map((step, index) => (
+                <PremiumStepCard key={step.id} step={step} index={index} />
+              ))}
+            </div>
 
-          {/* ======================= */}
-          {/* SUCCESS END NODE        */}
-          {/* ======================= */}
-          <m.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex justify-center mt-12 md:mt-20"
-          >
-            {/* Mobile */}
-            <div className="md:hidden flex items-center gap-5">
-              <div
-                className="
+            {/* ======================= */}
+            {/* SUCCESS END NODE        */}
+            {/* ======================= */}
+            <m.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex justify-center mt-12 md:mt-20"
+            >
+              {/* Mobile */}
+              <div className="md:hidden flex items-center gap-5">
+                <div
+                  className="
                   relative w-16 h-16 rounded-full 
                   bg-gradient-to-br from-emerald-400 to-emerald-600 
                   flex items-center justify-center 
                   shadow-[0_0_40px_rgba(16,185,129,0.4)]
                 "
-              >
-                <Check className="h-8 w-8 text-white" strokeWidth={3} />
+                >
+                  <Check className="h-8 w-8 text-white" strokeWidth={3} />
+                </div>
+                <div>
+                  <span className="text-xl font-bold text-slate-800">
+                    {t.processRoadmap.success_title}
+                  </span>
+                  <p className="text-sm text-slate-500">{t.processRoadmap.success_desc_mobile}</p>
+                </div>
               </div>
-              <div>
-                <span className="text-xl font-bold text-slate-800">
-                  {t.processRoadmap.success_title}
-                </span>
-                <p className="text-sm text-slate-500">{t.processRoadmap.success_desc_mobile}</p>
-              </div>
-            </div>
 
-            {/* Desktop */}
-            <div className="hidden md:flex flex-col items-center gap-4">
-              <div
-                className="
+              {/* Desktop */}
+              <div className="hidden md:flex flex-col items-center gap-4">
+                <div
+                  className="
                   relative w-24 h-24 rounded-full 
                   bg-gradient-to-br from-emerald-400 to-emerald-600 
                   flex items-center justify-center 
                   shadow-[0_0_60px_rgba(16,185,129,0.5)]
                 "
-              >
-                <Check className="h-12 w-12 text-white" strokeWidth={3} />
+                >
+                  <Check className="h-12 w-12 text-white" strokeWidth={3} />
+                </div>
+                <div className="text-center">
+                  <span className="text-2xl font-bold text-slate-800 block">
+                    {t.processRoadmap.success_title}
+                  </span>
+                  <p className="text-slate-500">{t.processRoadmap.success_desc}</p>
+                </div>
               </div>
-              <div className="text-center">
-                <span className="text-2xl font-bold text-slate-800 block">
-                  {t.processRoadmap.success_title}
-                </span>
-                <p className="text-slate-500">{t.processRoadmap.success_desc}</p>
-              </div>
-            </div>
-          </m.div>
-        </div>
+            </m.div>
+          </div>
 
-        {/* ======================= */}
-        {/* CTA SECTION             */}
-        {/* ======================= */}
+          {/* ======================= */}
+          {/* CTA SECTION             */}
+          {/* ======================= */}
           <m.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.6 }}
-          className="mt-20 md:mt-28"
-        >
-          <Card
-            className="
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.6 }}
+            className="mt-20 md:mt-28"
+          >
+            <Card
+              className="
               relative overflow-hidden
               max-w-2xl mx-auto 
               bg-gradient-to-br from-slate-900 to-slate-800
               border-0
               shadow-2xl
             "
-          >
-            {/* Decorative gradient orbs */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-600/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+            >
+              {/* Decorative gradient orbs */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+              <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-600/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
 
-            <CardContent className="relative z-10 p-10 md:p-12 text-center">
-              <div className="mb-8">
-                <div
-                  className="
+              <CardContent className="relative z-10 p-10 md:p-12 text-center">
+                <div className="mb-8">
+                  <div
+                    className="
                     w-16 h-16 mx-auto rounded-2xl 
                     bg-gradient-to-br from-blue-500 to-blue-600 
                     flex items-center justify-center 
                     mb-5
                     shadow-lg shadow-blue-500/30
                   "
-                >
-                  <Download className="h-8 w-8 text-white" />
+                  >
+                    <Download className="h-8 w-8 text-white" />
+                  </div>
+                  <p className="text-slate-400 text-sm">{t.processRoadmap.cta_subtext}</p>
                 </div>
-                <p className="text-slate-400 text-sm">{t.processRoadmap.cta_subtext}</p>
-              </div>
 
-              <Button
-                size="lg"
-                className="
+                <Button
+                  size="lg"
+                  className="
                   gap-3
                   bg-white hover:bg-slate-100
                   text-slate-900
@@ -543,18 +543,18 @@ export function ProcessRoadmap() {
                   px-8 py-6 text-base font-semibold
                   hover:-translate-y-0.5
                 "
-                asChild
-              >
-                <a href="/DMF Vietnam Handbuch.pdf" download="DMF_Prozess_Guide.pdf">
-                  <Download className="h-5 w-5" />
-                  {t.processRoadmap.cta_title}
-                  <ArrowRight className="h-4 w-4" />
-                </a>
-              </Button>
+                  asChild
+                >
+                  <a href="/DMF Vietnam Handbuch.pdf" download="DMF_Prozess_Guide.pdf">
+                    <Download className="h-5 w-5" />
+                    {t.processRoadmap.cta_title}
+                    <ArrowRight className="h-4 w-4" />
+                  </a>
+                </Button>
 
-              <p className="mt-6 text-xs text-slate-500">{t.processRoadmap.cta_footer}</p>
-            </CardContent>
-          </Card>
+                <p className="mt-6 text-xs text-slate-500">{t.processRoadmap.cta_footer}</p>
+              </CardContent>
+            </Card>
           </m.div>
         </div>
       </section>
