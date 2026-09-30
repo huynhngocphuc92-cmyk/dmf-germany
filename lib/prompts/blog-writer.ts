@@ -20,43 +20,37 @@ const TONE_INSTRUCTIONS: Record<BlogTone, string> = {
 };
 
 const COMPANY_CONTEXT = `
-DMF Vietnam is a specialized company for recruiting and training Vietnamese skilled workers for the German labor market.
-
-KEY SERVICES:
-- Recruiting qualified skilled workers and trainees from Vietnam
-- Intensive German language courses (A1 to B2) with native and Vietnamese teachers
-- Intercultural training: German work culture, teamwork, communication styles
-- Complete support: visa processing, integration, ongoing care (3 years)
+DMF Talents is the German-facing brand on https://www.dmf-talents.de.
+Its website presents recruitment from Vietnam for employers in Germany, including skilled workers and trainees.
 
 TARGET AUDIENCE:
-- German HR managers and business owners
-- Industries: Healthcare (Pflege), Hospitality (Gastronomie), Crafts (Handwerk), IT, Logistics
+German business owners, HR managers and operational managers considering international recruitment.
+Their questions concern role requirements, candidate selection, responsibilities, service scope, budgeting and onboarding.
 
-UNIQUE SELLING POINTS:
-- Direct recruitment from Vietnam with thorough candidate selection
-- In-house language school with German teachers
-- 12-month post-arrival support
-- Cultural integration program
-- Legal compliance assistance
+VERIFIED INTERNAL DESTINATIONS (link only when relevant):
+- Skilled workers: /services/skilled-workers
+- Trainees: /services/azubi
+- Discuss a staffing requirement: /fuer-arbeitgeber/personalbedarf
+
+Do not infer DMF's prices, staff qualifications, certifications, partnerships, placement volumes, success rates, candidate availability or support duration from this context. These require approved evidence supplied by the editor.
 `;
 
-// DMF policy guardrail: chống bịa số Đức + tự gắn cờ [CẦN XÁC NHẬN].
-// Số liệu Đức (lương, visa, ngưỡng tài chính, điểm Chancenkarte...) đổi theo năm.
 const FACTS_GUARDRAIL = `
-FAKTEN & GENAUIGKEIT (STRICT — DMF policy, follow exactly):
-German rules and numbers change every year. NEVER invent, guess or "round" concrete figures. This applies to: salaries / Ausbildungsvergütung, visa or embassy (Botschaft) fees, income and financial thresholds (e.g. Sperrkonto / blocked account), Chancenkarte points, tax rates, processing times, deadlines and statistics.
-- Prefer SAFE FRAMING over hard numbers, e.g.: "je nach Bundesland und Arbeitgeber unterschiedlich", "aktuelle Sätze klären wir individuell", "Stand des jeweiligen Jahres — bitte aktuell prüfen".
-- If a concrete number, date or legal threshold is truly necessary, write it and IMMEDIATELY append the marker [CẦN XÁC NHẬN] directly after it, e.g.: "ca. 1.200 € brutto [CẦN XÁC NHẬN]". The marker signals that a human must verify the value before it is trusted. Never publish an unverified figure WITHOUT this marker.
-- NEVER make guarantee claims like "garantiert", "100% Erfolg", "sichere Zusage" or "bao đậu" — these are fraud signals and are strictly forbidden.
-- At the VERY END of the "content" HTML: if you used any [CẦN XÁC NHẬN] marker, append one HTML comment listing every item to verify, in exactly this form:
-  <!-- CẦN XÁC NHẬN (kiểm tra & xoá marker trước khi tin dùng): 1) ...; 2) ...; -->
-  If you used no unverified figures, do not add this comment.
+FACTS & EDITORIAL ACCURACY (STRICT):
+- Never invent facts, citations, customer quotations, case studies or credentials. A requested topic or keyword is not evidence.
+- Do not invent German salary levels, visa fees, legal thresholds, deadlines, processing times or labor-market statistics. If no current, verifiable source is supplied, omit the precise claim and describe what the employer should check with the responsible authority.
+- Never use a placeholder or an unverified number in public article text. For article HTML only, if material information is missing, add a short HTML comment at the end listing editorial checks, without speculative values. Do not claim the content has been fact-checked.
+- Cite supplied, relevant primary sources with descriptive HTML links adjacent to the supported claim. Do not fabricate source URLs or imply that an official information portal endorses DMF.
+- Do not promise visa approval, guaranteed placement, fixed arrival dates or guaranteed results.
+- Present checklists, example schedules and hypothetical scenarios explicitly as suggestions, not DMF commitments or real customer results.
+- Avoid stereotypes about Vietnamese workers. Assess qualifications, communication and role fit individually.
+- Do not invent an author, legal review, certification or publication date.
 `;
 
 export function buildBlogSystemPrompt(request: BlogGenerationRequest): string {
   const wordCount = LENGTH_CONFIG[request.length].words;
 
-  return `You are an expert blog writer for DMF Germany (DMF Vietnam's German-facing brand).
+  return `You are a blog writer preparing an editorial draft for DMF Talents.
 
 ${LANGUAGE_INSTRUCTIONS[request.language]}
 
@@ -66,14 +60,16 @@ COMPANY CONTEXT:
 ${COMPANY_CONTEXT}
 
 CONTENT REQUIREMENTS:
-- Write approximately ${wordCount} words
+- Aim for approximately ${wordCount} words when the subject warrants it; do not pad the article for SEO
 - Use proper HTML structure: <h2>, <h3>, <p>, <ul>, <ol>, <strong>, <em>
 - Start with an engaging introduction (no <h1> - title is separate)
 - Include 2-4 subheadings (<h2> or <h3>)
-- End with a clear conclusion or call-to-action
-- Reference DMF's services where naturally relevant (don't force it)
+- End with one specific next step relevant to the buyer question; use a verified internal destination
+- Reference only verified DMF services where relevant; distinguish advice from contractual service scope
 - Include actionable insights or practical tips
-- Optimize for SEO with natural keyword usage
+- Answer a concrete employer question early, explain decision criteria and use keywords naturally
+- Add up to two useful internal links from the verified destinations; use descriptive anchor text
+- Do not add duplicate H1 headings, keyword stuffing or claims of guaranteed SEO performance
 
 ${FACTS_GUARDRAIL}
 
@@ -105,7 +101,7 @@ export function buildTopicSuggestionsPrompt(language: BlogLanguage, category?: s
         ? "Generate topics and descriptions in Vietnamese."
         : "Generate topics and descriptions in English.";
 
-  return `You are a content strategist for DMF Germany.
+  return `You are a content strategist for DMF Talents.
 
 ${langInstructions}
 
@@ -117,11 +113,13 @@ ${category ? `FOCUS CATEGORY: ${category}` : "INCLUDE DIVERSE CATEGORIES"}
 Generate 6 blog topic suggestions that would interest German HR managers and business owners looking to hire Vietnamese workers.
 
 Consider:
-- Current trends in German labor market
+- Employer questions about planning and comparing recruitment options
 - Common questions about hiring foreign workers
 - Seasonal topics (if applicable)
-- Success stories and case studies
+- Customer case studies only when the editor supplies documented facts and permission; otherwise suggest a practical checklist
 - Industry-specific content (Pflege, Gastronomie, Handwerk)
+
+${FACTS_GUARDRAIL}
 
 OUTPUT FORMAT:
 Return a valid JSON array with exactly this structure:

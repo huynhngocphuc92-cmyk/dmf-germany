@@ -4,8 +4,8 @@ import { BlogListClient } from "./blog-list-client";
 
 export const metadata = pageMetadata(
   "/blog",
-  "Blog",
-  "Nachrichten und Artikel zur Personalgewinnung aus Vietnam für Unternehmen in Deutschland."
+  "Personalgewinnung aus Vietnam: Wissen für Arbeitgeber",
+  "Informationen für Arbeitgeber zur Personalgewinnung aus Vietnam: Fachkräfte, Ausbildung und Zusammenarbeit. Lesen Sie den Blog von DMF Talents."
 );
 
 export const revalidate = 60;

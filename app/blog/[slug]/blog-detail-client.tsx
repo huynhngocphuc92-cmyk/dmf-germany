@@ -140,12 +140,15 @@ export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) 
             <div className="bg-white rounded-2xl shadow-xl p-8 lg:p-12 mb-8">
               {/* Meta Info */}
               <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500 mb-6">
-                <span className="flex items-center gap-1">
+                <time
+                  dateTime={post.published_at || post.created_at}
+                  className="flex items-center gap-1"
+                >
                   <Calendar className="w-4 h-4" />
                   {format(new Date(post.published_at || post.created_at), "dd MMMM yyyy", {
                     locale: dateLocale,
                   })}
-                </span>
+                </time>
                 <span className="flex items-center gap-1">
                   <Clock className="w-4 h-4" />
                   {calculateReadTime(post.content)} {t.readTime}
@@ -193,7 +196,7 @@ export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) 
                     viewport={{ once: true }}
                     className="group"
                   >
-                    <Link href={`/blog/${relatedPost.slug}`}>
+                    <Link href={`/blog/${encodeURIComponent(relatedPost.slug)}`}>
                       <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-slate-100">
                         {/* Image */}
                         <div className="relative h-40 overflow-hidden bg-slate-100">
