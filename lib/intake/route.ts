@@ -13,17 +13,23 @@ import "server-only";
 import { z } from "zod";
 import { InvalidBody, readJsonBody } from "./body";
 import { dispatchSubmission } from "./notifications";
+import { hiringIntakeSchema } from "@/lib/validations/hiring";
 
 const responseHeaders = { "Cache-Control": "no-store" };
-export async function acceptIntake(request: NextRequest, route: "contact" | "profile" | "lead") {
+export async function acceptIntake(
+  request: NextRequest,
+  route: "contact" | "profile" | "lead" | "hiring"
+) {
   try {
     const body = await readJsonBody(request);
     const schema =
-      route === "contact"
-        ? contactIntakeSchema
-        : route === "profile"
-          ? profileIntakeSchema
-          : chatLeadIntakeSchema;
+      route === "hiring"
+        ? hiringIntakeSchema
+        : route === "contact"
+          ? contactIntakeSchema
+          : route === "profile"
+            ? profileIntakeSchema
+            : chatLeadIntakeSchema;
     const parsed = schema.safeParse(body);
     if (!parsed.success)
       return NextResponse.json(
@@ -45,8 +51,16 @@ export async function acceptIntake(request: NextRequest, route: "contact" | "pro
         { success: false, error: "Zu viele Anfragen. Bitte versuchen Sie es später erneut." },
         { status: 429, headers: { ...responseHeaders, "Retry-After": String(rate.resetIn) } }
       );
-    const payload: IntakePayload = parsed.data;
-    const kind: IntakeKind = route === "contact" ? payload.type || "contact" : route;
+    const payload: IntakePayload =
+      route === "hiring" ? { ...parsed.data, requestPurpose: "hiring" } : parsed.data;
+    const kind: IntakeKind =
+      route === "hiring"
+        ? payload.candidateId
+          ? "profile"
+          : "contact"
+        : route === "contact"
+          ? payload.type || "contact"
+          : route;
     const id = key || randomUUID(); // Compatibility with already-open pre-release forms.
     const db = createIntakeClient();
     const { data, error } = await db.rpc("dmf_receive_intake", {
@@ -84,6 +98,7 @@ export async function acceptIntake(request: NextRequest, route: "contact" | "pro
         saved: true,
         accepted: true,
         duplicate: data.duplicate,
+        requestId: id,
         message: "Ihre Anfrage wurde gespeichert. Unser Team meldet sich bei Ihnen.",
       },
       { headers: responseHeaders }

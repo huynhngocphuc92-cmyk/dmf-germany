@@ -137,7 +137,7 @@ export async function getNewInquiriesCount(): Promise<number> {
     const supabase = await createClient();
 
     const { count, error } = await supabase
-      .from("inquiries")
+      .from("dmf_request_inbox")
       .select("*", { count: "exact", head: true })
       .eq("status", "new");
 

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/components/providers/LanguageProvider";
+import { RequestContextCapture } from "@/components/providers/RequestContextCapture";
 import { HeaderWrapper } from "@/components/HeaderWrapper";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/seo/JsonLd";
@@ -84,6 +85,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="de">
       <body className={`${geistSans.variable} ${geistMono.variable} font-sans`}>
         <LanguageProvider>
+          <RequestContextCapture />
           <JsonLd />
           <HeaderWrapper />
 

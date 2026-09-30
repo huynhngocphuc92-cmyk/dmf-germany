@@ -1,101 +1,62 @@
 "use client";
-
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { GoogleAnalytics as GA } from "@next/third-parties/google";
-import { COOKIE_CONSENT_KEY, COOKIE_CONSENT_VALUE } from "@/components/CookieConsent";
-
-interface GoogleAnalyticsProps {
-  measurementId?: string;
-}
-
-/**
- * Google Analytics Component with DSGVO Compliance
- *
- * This component only loads GA4 script when:
- * 1. GA_MEASUREMENT_ID is configured
- * 2. User has explicitly accepted cookies via CookieConsent
- *
- * Follows German DSGVO requirements for cookie consent.
- */
-export function GoogleAnalytics({ measurementId }: GoogleAnalyticsProps) {
-  const [hasConsent, setHasConsent] = useState<boolean>(false);
+import { hasAnalyticsConsent, useConsent } from "@/components/CookieConsent";
+export function GoogleAnalytics({ measurementId }: { measurementId?: string }) {
+  const consent = useConsent();
   const gaId = measurementId || process.env.NEXT_PUBLIC_GA_ID;
-
   useEffect(() => {
-    // Check initial consent status
-    const checkConsent = () => {
-      const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
-      setHasConsent(consent === COOKIE_CONSENT_VALUE.ACCEPTED);
-    };
-
-    checkConsent();
-
-    // Listen for consent changes from CookieConsent component
-    const handleConsentChange = (event: CustomEvent<string>) => {
-      setHasConsent(event.detail === COOKIE_CONSENT_VALUE.ACCEPTED);
-    };
-
-    // Listen for storage changes (e.g., if user clears data)
-    const handleStorageChange = (event: StorageEvent) => {
-      if (event.key === COOKIE_CONSENT_KEY) {
-        checkConsent();
-      }
-    };
-
-    window.addEventListener("cookieConsentChange", handleConsentChange as EventListener);
-    window.addEventListener("storage", handleStorageChange);
-
-    return () => {
-      window.removeEventListener("cookieConsentChange", handleConsentChange as EventListener);
-      window.removeEventListener("storage", handleStorageChange);
-    };
-  }, []);
-
-  // Don't render anything if:
-  // 1. No GA ID configured
-  // 2. User hasn't consented
-  if (!gaId || !hasConsent) {
-    return null;
-  }
-
-  return <GA gaId={gaId} />;
+    if (!gaId) return;
+    window[`ga-disable-${gaId}`] = !consent.analytics;
+    window.gtag?.("consent", "update", {
+      analytics_storage: consent.analytics ? "granted" : "denied",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+    });
+    if (!consent.analytics) {
+      const names = document.cookie
+        .split(";")
+        .map((item) => item.trim().split("=")[0])
+        .filter((name) => /^_ga(?:_|$)|^_gid$/.test(name));
+      const hostname = window.location.hostname;
+      const domains = [
+        "",
+        hostname,
+        ...hostname
+          .split(".")
+          .slice(1)
+          .map((_, i) =>
+            hostname
+              .split(".")
+              .slice(i + 1)
+              .join(".")
+          ),
+      ];
+      for (const name of names)
+        for (const domain of domains)
+          document.cookie = `${name}=; Max-Age=0; Path=/${domain ? `; Domain=${domain}` : ""}; SameSite=Lax`;
+    }
+  }, [gaId, consent.analytics]);
+  return gaId && consent.analytics ? <GA gaId={gaId} /> : null;
 }
-
-// Extend Window interface for gtag
 declare global {
   interface Window {
+    [key: `ga-disable-${string}`]: boolean | undefined;
     gtag?: (
-      command: "event" | "config" | "set",
+      command: "event" | "config" | "set" | "consent",
       action: string,
       params?: Record<string, string | number | boolean>
     ) => void;
   }
 }
-
-/**
- * Track custom events to Google Analytics
- * Only sends events if user has consented
- */
 export function trackEvent(
   eventName: string,
   eventParams?: Record<string, string | number | boolean>
 ): void {
-  if (typeof window === "undefined") return;
-
-  const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
-  if (consent !== COOKIE_CONSENT_VALUE.ACCEPTED) return;
-
-  if (typeof window.gtag === "function") {
-    window.gtag("event", eventName, eventParams);
-  }
+  if (!hasAnalyticsConsent()) return;
+  window.gtag?.("event", eventName, eventParams);
 }
-
-/**
- * Track page views manually (optional, GA usually auto-tracks)
- */
 export function trackPageView(path: string, title?: string): void {
-  trackEvent("page_view", {
-    page_path: path,
-    page_title: title || document.title,
-  });
+  trackEvent("page_view", { page_path: path, page_title: title || document.title });
 }

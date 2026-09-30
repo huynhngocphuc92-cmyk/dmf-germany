@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { createServer } from "node:http";
 import { spawn } from "node:child_process";
 import { createHmac } from "node:crypto";
+import { createServerClient } from "@supabase/ssr";
 import { once } from "node:events";
 import { setTimeout as delay } from "node:timers/promises";
 
@@ -43,6 +44,7 @@ const blogPost = {
 };
 let blogPublished = true;
 const receipts = new Map();
+const inbox = new Map();
 const fixtureAdmin = {
   id: "00000000-0000-4000-8000-000000000001",
   aud: "authenticated",
@@ -59,7 +61,7 @@ const fixtureToken = `${tokenPayload}.${createHmac("sha256", "local-fixture-only
 const fixture = createServer(async (request, response) => {
   const url = new URL(request.url, "http://localhost");
   response.setHeader("Content-Type", "application/json");
-  if (url.pathname === "/auth/v1/token" && process.env.SMOKE_KEEP_SERVER === "1") {
+  if (url.pathname === "/auth/v1/token") {
     let raw = "";
     for await (const chunk of request) raw += chunk;
     const login = JSON.parse(raw);
@@ -82,6 +84,61 @@ const fixture = createServer(async (request, response) => {
     request.headers.authorization === `Bearer ${fixtureToken}`
   ) {
     response.end(JSON.stringify(fixtureAdmin));
+  } else if (url.pathname === "/rest/v1/rpc/dmf_request_assignees") {
+    assert.equal(request.headers.authorization, `Bearer ${fixtureToken}`);
+    response.end(JSON.stringify([{ id: fixtureAdmin.id, label: fixtureAdmin.email }]));
+  } else if (
+    url.pathname === "/rest/v1/dmf_request_inbox" ||
+    ["/rest/v1/inquiries", "/rest/v1/leads"].includes(url.pathname)
+  ) {
+    if (request.headers.authorization !== `Bearer ${fixtureToken}`) {
+      response.writeHead(403);
+      response.end("[]");
+      return;
+    }
+    let rows = [...inbox.values()].filter(
+      (row) =>
+        url.pathname.endsWith("dmf_request_inbox") ||
+        row.source === (url.pathname.endsWith("leads") ? "lead" : "inquiry")
+    );
+    for (const [field, filter] of url.searchParams) {
+      if (filter.startsWith("eq."))
+        rows = rows.filter((row) => String(row[field]) === filter.slice(3));
+      if (filter === "is.null") rows = rows.filter((row) => row[field] === null);
+      if (filter.startsWith("neq.")) rows = rows.filter((row) => row[field] !== filter.slice(4));
+      if (filter.startsWith("lt."))
+        rows = rows.filter((row) => row[field] && row[field] < filter.slice(3));
+      if (filter.startsWith("ilike."))
+        rows = rows.filter((row) =>
+          String(row[field])
+            .toLowerCase()
+            .includes(filter.slice(6).replaceAll("%", "").toLowerCase())
+        );
+    }
+    if (request.method === "PATCH") {
+      let raw = "";
+      for await (const chunk of request) raw += chunk;
+      const update = JSON.parse(raw);
+      for (const row of rows)
+        Object.assign(row, update, {
+          workflow_version: row.workflow_version + 1,
+          stage:
+            update.status === "new"
+              ? "new"
+              : ["completed", "converted", "lost"].includes(update.status)
+                ? "closed"
+                : "active",
+          updated_at: new Date().toISOString(),
+        });
+    }
+    rows.sort((a, b) => b.created_at.localeCompare(a.created_at));
+    response.setHeader("Content-Range", `0-${Math.max(0, rows.length - 1)}/${rows.length}`);
+    if (request.method === "HEAD") {
+      response.end();
+      return;
+    }
+    const single = request.headers.accept?.includes("vnd.pgrst.object");
+    response.end(JSON.stringify(single ? (rows[0] ?? null) : rows));
   } else if (url.pathname.startsWith("/rest/v1/rpc/")) {
     assert.equal(
       request.headers.apikey,
@@ -102,6 +159,39 @@ const fixture = createServer(async (request, response) => {
       } else {
         const duplicate = receipts.has(input.p_id);
         receipts.set(input.p_id, input);
+        if (!duplicate) {
+          const p = input.p_payload;
+          const source = input.p_kind === "lead" ? "lead" : "inquiry";
+          inbox.set(`${source}:${input.p_id}`, {
+            reference: input.p_id,
+            id: input.p_id,
+            source,
+            kind: p.requestPurpose || input.p_kind,
+            contact_name: p.name || null,
+            email: p.email,
+            phone: p.phone || null,
+            company: p.company || null,
+            message: p.message || p.interest || null,
+            status: "new",
+            stage: "new",
+            candidate_id: p.candidateId || null,
+            candidate_code: p.candidateId?.slice(0, 8).toUpperCase() || null,
+            service: p.service || null,
+            headcount: p.headcount || null,
+            work_location: p.location || null,
+            start_window: p.timing || null,
+            source_path: p.sourcePath || null,
+            campaign: p.campaign || {},
+            assigned_to: null,
+            follow_up_on: null,
+            next_action: null,
+            notes: null,
+            workflow_version: 0,
+            created_at: new Date().toISOString(),
+            updated_at: null,
+            search_text: [p.company, p.name, p.email].filter(Boolean).join(" "),
+          });
+        }
         response.end(JSON.stringify({ duplicate }));
       }
     } else if (url.pathname.endsWith("/dmf_save_chat")) response.end("true");
@@ -232,6 +322,7 @@ try {
     "/ueber-uns/studium",
     "/ueber-uns/skilled-workers",
     "/fuer-arbeitgeber/kandidaten",
+    "/fuer-arbeitgeber/personalbedarf",
     "/fuer-arbeitgeber/roi-rechner",
     "/fuer-arbeitgeber/zeitplan",
     "/roi-rechner",
@@ -289,7 +380,7 @@ try {
   assert.equal((await fetch(`${base}/blog/fixture-current`)).status, 404);
   assert.ok(!(await (await fetch(`${base}/sitemap.xml`)).text()).includes("/blog/fixture-current"));
   process.stdout.write(
-    "PASS M2: 16 canonical/OG/title pages, no sample claims, robots/login, sitemap, 308 alias and unpublished 404s\n"
+    "PASS M2/M3: 17 canonical/OG/title pages, no sample claims, robots/login, sitemap, 308 alias and unpublished 404s\n"
   );
   for (const path of ["/api/chat/history", "/api/leads"]) {
     const response = await fetch(`${base}${path}`);
@@ -330,6 +421,53 @@ try {
   assert.equal((await post("/api/telegram", { message: "must never dispatch" })).status, 410);
   process.stdout.write(
     "PASS intake: persisted contact/profile/lead, duplicate safe, database failure rejected, owned chat cookie; legacy sender disabled\n"
+  );
+  const hiring = {
+    ...contact,
+    company: "Fixture Hiring Works",
+    service: "azubi",
+    headcount: 3,
+    location: "Hamburg",
+    timing: "2027",
+    sourcePath: "/services/azubi",
+    campaign: { source: "fixture" },
+  };
+  const hiringKey = crypto.randomUUID();
+  assert.equal((await post("/api/hiring", hiring, hiringKey)).status, 200);
+  assert.equal((await (await post("/api/hiring", hiring, hiringKey)).json()).duplicate, true);
+  assert.equal((await post("/api/hiring", { ...hiring, privacy: false })).status, 400);
+  const profileKey = crypto.randomUUID();
+  assert.equal(
+    (await post("/api/hiring", { ...hiring, candidateId: candidate.id }, profileKey)).status,
+    200
+  );
+  assert.equal(receipts.get(profileKey).p_kind, "profile");
+  assert.equal(receipts.get(profileKey).p_payload.candidateId, candidate.id);
+  assert.equal(inbox.get(`inquiry:${hiringKey}`).headcount, 3);
+  assert.equal(receipts.size, 5);
+  const authCookies = [];
+  const authClient = createServerClient(`http://127.0.0.1:${fixturePort}`, "fixture-anon-key", {
+    cookies: { getAll: () => authCookies, setAll: (values) => authCookies.push(...values) },
+  });
+  const signedIn = await authClient.auth.signInWithPassword({
+    email: fixtureAdmin.email,
+    password: "local-fixture-only",
+  });
+  assert.equal(signedIn.error, null);
+  const headers = { Cookie: authCookies.map((c) => `${c.name}=${c.value}`).join("; ") };
+  const adminInbox = await fetch(`${base}/admin/requests?kind=hiring`, { headers });
+  assert.equal(adminInbox.status, 200);
+  assert.ok((await adminInbox.text()).includes("Fixture Hiring Works"));
+  const detail = await fetch(`${base}/admin/requests/inquiry/${hiringKey}`, { headers });
+  assert.equal(detail.status, 200);
+  const detailHtml = await detail.text();
+  for (const value of ["Hamburg", "2027", "Bearbeitung speichern", "admin@example.invalid"])
+    assert.ok(detailHtml.includes(value), value);
+  const legacyLeads = await fetch(`${base}/admin/leads`, { headers, redirect: "manual" });
+  // Admin has a loading boundary; a navigation redirect may use the framework stream.
+  assert.ok([200, 307].includes(legacyLeads.status));
+  process.stdout.write(
+    "PASS M3: employer and profile hiring intake, consent validation, retry, source/campaign, signed-in unified inbox and request detail\n"
   );
   const redirect = await fetch(`${base}/admin`, { redirect: "manual" });
   assert.equal(redirect.status, 307);

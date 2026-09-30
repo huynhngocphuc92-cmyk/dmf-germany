@@ -19,6 +19,11 @@ const jobSchema = z.object({
     message: z.string().optional(),
     interest: z.string().optional(),
     candidateId: z.uuid().optional(),
+    requestPurpose: z.literal("hiring").optional(),
+    service: z.string().optional(),
+    headcount: z.number().optional(),
+    location: z.string().optional(),
+    timing: z.string().optional(),
   }),
 });
 type Job = z.infer<typeof jobSchema>;
@@ -38,7 +43,9 @@ export async function deliverNotification(job: Job): Promise<DeliveryResult> {
       ? `Neue Profil-Anfrage #${code}`
       : job.kind === "lead"
         ? "Neue Anfrage aus dem Chat"
-        : "Neue Kontaktanfrage";
+        : p.requestPurpose === "hiring"
+          ? "Neuer Personalbedarf"
+          : "Neue Kontaktanfrage";
   try {
     if (job.channel === "telegram") {
       const token = process.env.TELEGRAM_BOT_TOKEN;
@@ -51,7 +58,7 @@ export async function deliverNotification(job: Job): Promise<DeliveryResult> {
         signal: AbortSignal.timeout(10000),
         body: JSON.stringify({
           chat_id: chatId,
-          text: `${title}\nEine neue Anfrage wurde gespeichert. Bitte im DMF Admin prüfen.\n${SITE_URL}/admin/${job.kind === "lead" ? "leads" : "requests"}`,
+          text: `${title}\nEine neue Anfrage wurde gespeichert. Bitte im DMF Admin prüfen.\n${SITE_URL}/admin/requests`,
         }),
       });
       const result = await response.json().catch(() => null);
@@ -69,7 +76,7 @@ export async function deliverNotification(job: Job): Promise<DeliveryResult> {
         ? code
           ? profileInquiryAutoReplyTemplate(p.name || p.company || "", code)
           : contactAutoReplyTemplate(p.name || "")
-        : `<h2>${escapeHtml(title)}</h2><p>Name: ${escapeHtml(p.name || "–")}</p><p>E-Mail: ${escapeHtml(p.email)}</p><p>Firma: ${escapeHtml(p.company || "–")}</p><p>Telefon: ${escapeHtml(p.phone || "–")}</p><p>${escapeHtmlWithBreaks(p.message || p.interest || "–")}</p>`;
+        : `<h2>${escapeHtml(title)}</h2><p>Name: ${escapeHtml(p.name || "–")}</p><p>E-Mail: ${escapeHtml(p.email)}</p><p>Firma: ${escapeHtml(p.company || "–")}</p><p>Telefon: ${escapeHtml(p.phone || "–")}</p><p>${escapeHtmlWithBreaks(p.message || p.interest || "–")}</p><p>Dienstleistung: ${escapeHtml(p.service || "–")} · Anzahl: ${escapeHtml(String(p.headcount || "–"))}</p><p>Einsatzort: ${escapeHtml(p.location || "–")} · Start: ${escapeHtml(p.timing || "–")}</p><p><a href="${SITE_URL}/admin/requests">Im Posteingang bearbeiten</a></p>`;
     const result = await transporter.sendMail({
       from: { name: "DMF Talents", address: from },
       to: { address: recipient, name: "" },

@@ -1,4 +1,5 @@
 "use client";
+import { currentRequestContext } from "@/lib/intake/context";
 import { useSubmissionKey } from "@/lib/intake/client";
 
 import { useLanguage } from "@/components/providers/LanguageProvider";
@@ -475,18 +476,19 @@ export const SmartChatBot = () => {
     setIsLeadSaving(true);
 
     try {
-      // Save lead to database
+      const intakePayload = {
+        ...leadData,
+        sessionId,
+        source: "chatbot",
+        ...currentRequestContext(window.location.href),
+      };
       const leadsResponse = await fetch("/api/leads", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Idempotency-Key": submissionKey({ ...leadData, sessionId }),
+          "Idempotency-Key": submissionKey(intakePayload),
         },
-        body: JSON.stringify({
-          ...leadData,
-          sessionId,
-          source: "chatbot",
-        }),
+        body: JSON.stringify(intakePayload),
       });
 
       const result = (await leadsResponse.json().catch(() => null)) as {

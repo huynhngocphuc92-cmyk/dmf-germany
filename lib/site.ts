@@ -45,6 +45,7 @@ export const PUBLIC_ROUTES = [
   "/ueber-uns/studium",
   "/ueber-uns/skilled-workers",
   "/fuer-arbeitgeber/kandidaten",
+  "/fuer-arbeitgeber/personalbedarf",
   "/roi-rechner",
   "/fuer-arbeitgeber/roi-rechner",
   "/fuer-arbeitgeber/zeitplan",

@@ -31,9 +31,9 @@ beforeAll(async () => {
   await db.exec(`
     create role anon;create role authenticated;create role service_role bypassrls;
     create schema auth;create schema storage;
-    create table auth.users(id uuid primary key,raw_app_meta_data jsonb,is_anonymous boolean default false);
+    create table auth.users(id uuid primary key,raw_app_meta_data jsonb,is_anonymous boolean default false,email varchar(255));
     create function auth.uid() returns uuid language sql as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;
-    insert into auth.users values('${admin}','{"role":"admin"}',false),('${person}','{}',false);
+    insert into auth.users(id,raw_app_meta_data,is_anonymous) values('${admin}','{"role":"admin"}',false),('${person}','{}',false);
     create table candidates(id uuid primary key default gen_random_uuid(),full_name text,category text,profession text,experience_years integer,german_level text,visa_status boolean,avatar_url text,video_url text,is_featured boolean,created_at timestamptz default now(),updated_at timestamptz default now());
     create table inquiries(id uuid primary key default gen_random_uuid(),created_at timestamptz default now(),email text,phone text,message text,status text,type text,client_name text);
     create table posts(id uuid primary key default gen_random_uuid(),status text,slug text unique,published_at timestamptz);
@@ -62,6 +62,7 @@ beforeAll(async () => {
     "20260929100708_admin_data_boundaries.sql",
     "20260929100748_server_only_intake_cutover.sql",
     "20260929111530_publication_and_blog_urls.sql",
+    "20260929115942_employer_request_workflow.sql",
   ])
     await db.exec(await readFile(`supabase/migrations/${name}`, "utf8"));
   await role("authenticated", admin);
@@ -336,4 +337,153 @@ it("keeps blog alias history atomic, avoids collisions and hides unpublished tar
     { slug: "latest" },
     { slug: "second" },
   ]);
+});
+
+it("preserves hiring context and the profile reference through the same durable receipt", async () => {
+  await role("service_role");
+  const id = nextId();
+  const request = {
+    ...payload,
+    company: "Fixture Works",
+    requestPurpose: "hiring",
+    service: "skilled",
+    headcount: 2,
+    location: "Berlin",
+    timing: "Nach Absprache",
+    sourcePath: "/services/skilled-workers",
+    campaign: { source: "fixture", campaign: "autumn" },
+    candidateId: profile,
+  };
+  await receive(id, "profile", request);
+  expect(await receive(id, "profile", request)).toEqual({ duplicate: true });
+  const row = (
+    await db.query(
+      "select request_purpose,service,headcount,work_location,start_window,source_path,campaign,candidate_id,workflow_version from inquiries where id=(select record_id from intake_submissions where id=$1)",
+      [id]
+    )
+  ).rows[0];
+  expect(row).toMatchObject({
+    request_purpose: "hiring",
+    service: "skilled",
+    headcount: 2,
+    work_location: "Berlin",
+    start_window: "Nach Absprache",
+    source_path: "/services/skilled-workers",
+    campaign: request.campaign,
+    candidate_id: profile,
+    workflow_version: 0,
+  });
+  await role("authenticated", admin);
+  const inbox = (
+    await db.query<{ id: string; reference: string; search_text: string }>(
+      "select id,reference,search_text from dmf_request_inbox where reference=$1",
+      [id]
+    )
+  ).rows[0];
+  expect(inbox.reference).toBe(id);
+  expect(inbox.id).not.toBe(id);
+  expect(inbox.search_text).toContain(id);
+});
+it("keeps inbox and admin directory private even when called directly", async () => {
+  await role("anon");
+  await expect(db.query("select * from dmf_request_inbox")).rejects.toMatchObject({
+    code: "42501",
+  });
+  await expect(db.query("select * from dmf_request_assignees()")).rejects.toMatchObject({
+    code: "42501",
+  });
+  await role("authenticated", person);
+  expect((await db.query("select * from dmf_request_inbox")).rows).toHaveLength(0);
+  await expect(db.query("select * from dmf_request_assignees()")).rejects.toMatchObject({
+    code: "42501",
+  });
+  await role("authenticated", admin);
+  expect((await db.query("select id from dmf_request_assignees()")).rows).toEqual([{ id: admin }]);
+});
+it("assigns, schedules and notes a request atomically while rejecting stale edits", async () => {
+  await role("service_role");
+  const submission = nextId();
+  await receive(submission);
+  const id = (
+    await db.query<{ record_id: string }>("select record_id from intake_submissions where id=$1", [
+      submission,
+    ])
+  ).rows[0].record_id;
+  await role("authenticated", admin);
+  await expect(
+    db.query("update inquiries set assigned_to=$1 where id=$2", [person, id])
+  ).rejects.toMatchObject({ code: "23514" });
+  const saved = await db.query(
+    "update inquiries set assigned_to=$1,follow_up_on=current_date+1,next_action='Call employer',notes='Internal fixture only',status='in_progress' where id=$2 and workflow_version=0 returning workflow_version",
+    [admin, id]
+  );
+  expect(saved.rows).toEqual([{ workflow_version: 1 }]);
+  expect(
+    (
+      await db.query(
+        "update inquiries set notes='Stale overwrite' where id=$1 and workflow_version=0 returning id",
+        [id]
+      )
+    ).rows
+  ).toHaveLength(0);
+  expect(
+    (
+      await db.query(
+        "select assigned_to,next_action,notes,stage from dmf_request_inbox where id=$1",
+        [id]
+      )
+    ).rows
+  ).toEqual([
+    {
+      assigned_to: admin,
+      next_action: "Call employer",
+      notes: "Internal fixture only",
+      stage: "active",
+    },
+  ]);
+  await db.query("update inquiries set status='completed' where id=$1", [id]);
+  expect(
+    (await db.query("select status,stage from dmf_request_inbox where id=$1", [id])).rows
+  ).toEqual([{ status: "completed", stage: "closed" }]);
+});
+it("preserves chat lead statuses and campaign separately from inquiry completion", async () => {
+  await role("service_role");
+  const id = nextId();
+  await receive(id, "lead", {
+    email: "chat@example.invalid",
+    sourcePath: "/services/azubi",
+    campaign: { medium: "email" },
+  });
+  const record = (
+    await db.query<{ record_id: string }>("select record_id from intake_submissions where id=$1", [
+      id,
+    ])
+  ).rows[0].record_id;
+  await role("authenticated", admin);
+  for (const [status, stage] of [
+    ["contacted", "active"],
+    ["qualified", "active"],
+    ["converted", "closed"],
+    ["lost", "closed"],
+  ]) {
+    await db.query("update leads set status=$1 where id=$2", [status, record]);
+    expect(
+      (
+        await db.query(
+          "select status,stage,source_path,campaign from dmf_request_inbox where source='lead' and id=$1",
+          [record]
+        )
+      ).rows[0]
+    ).toMatchObject({
+      status,
+      stage,
+      source_path: "/services/azubi",
+      campaign: { medium: "email" },
+    });
+  }
+  await role("authenticated", person);
+  expect(
+    (await db.query("update leads set notes='unauthorized' where id=$1 returning id", [record]))
+      .rows
+  ).toHaveLength(0);
 });
