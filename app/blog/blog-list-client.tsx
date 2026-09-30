@@ -138,7 +138,7 @@ export function BlogListClient({ posts }: BlogListClientProps) {
             >
               {posts.map((post) => (
                 <motion.article key={post.id} variants={itemVariants} className="group">
-                  <Link href={`/blog/${post.slug}`}>
+                  <Link href={`/blog/${encodeURIComponent(post.slug)}`}>
                     <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 h-full flex flex-col">
                       {/* Cover Image */}
                       <div className="relative h-52 overflow-hidden bg-slate-100">
@@ -164,12 +164,15 @@ export function BlogListClient({ posts }: BlogListClientProps) {
                       <div className="p-6 flex-1 flex flex-col">
                         {/* Meta */}
                         <div className="flex items-center gap-4 text-sm text-slate-500 mb-3">
-                          <span className="flex items-center gap-1">
+                          <time
+                            dateTime={post.published_at || post.created_at}
+                            className="flex items-center gap-1"
+                          >
                             <Calendar className="w-4 h-4" />
                             {format(new Date(post.published_at || post.created_at), "dd MMM yyyy", {
                               locale: dateLocale,
                             })}
-                          </span>
+                          </time>
                           <span className="flex items-center gap-1">
                             <Clock className="w-4 h-4" />
                             {calculateReadTime(post.content)} {t.readTime}

@@ -355,6 +355,22 @@ try {
     // Privacy boundaries and the ban on fictional candidate/video fallbacks remain.
     for (const sample of ["dQw4w9WgXcQ", "DMF-2401"])
       assert.ok(!html.includes(sample), `${path}: unverified content ${sample}`);
+    if (path === "/blog/fixture-current") {
+      const schemas = [
+        ...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g),
+      ].flatMap((match) => JSON.parse(match[1]));
+      const article = schemas.find((schema) => schema["@type"] === "BlogPosting");
+      assert.equal(article?.headline, blogPost.title, "server-rendered article schema");
+      assert.equal(article?.url, canonical[0]);
+      assert.equal(article?.datePublished, "2026-09-01T00:00:00.000Z");
+      assert.ok(!article?.image, "no invented cover image in article schema");
+      const breadcrumbs = schemas.find((schema) => schema["@type"] === "BreadcrumbList");
+      assert.equal(breadcrumbs?.itemListElement.at(-1)?.item, canonical[0]);
+      assert.ok(html.includes('<time dateTime="2026-09-01T00:00:00Z"'), "semantic visible date");
+      assert.ok(
+        html.includes('name="twitter:image" content="https://www.dmf-talents.de/opengraph-image"')
+      );
+    }
   }
   const robotText = await (await fetch(`${base}/robots.txt`)).text();
   assert.ok(robotText.includes("https://www.dmf-talents.de/sitemap.xml"));

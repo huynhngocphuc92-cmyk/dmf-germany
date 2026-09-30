@@ -1,6 +1,7 @@
 import { cache } from "react";
 import { Metadata } from "next";
-import { pageMetadata } from "@/lib/site";
+import { blogMetadata } from "@/lib/seo/blog";
+import BlogJsonLd from "@/components/seo/BlogJsonLd";
 import { getPublishedRedirect } from "@/app/admin/posts/actions";
 import { notFound, permanentRedirect } from "next/navigation";
 import { getPostBySlug, getRelatedPosts } from "@/app/admin/posts/actions";
@@ -24,21 +25,7 @@ const resolvePost = cache(async (slug: string) => {
 export async function generateMetadata({ params }: BlogDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = await resolvePost(slug);
-  const metadata = pageMetadata(
-    `/blog/${encodeURIComponent(post.slug)}`,
-    post.meta_title || post.title,
-    post.meta_description || post.excerpt || post.title
-  );
-  return {
-    ...metadata,
-    openGraph: {
-      ...metadata.openGraph,
-      type: "article",
-      publishedTime: post.published_at || post.created_at,
-      modifiedTime: post.updated_at,
-      ...(post.cover_image ? { images: [post.cover_image] } : {}),
-    },
-  };
+  return blogMetadata(post);
 }
 
 export const dynamic = "force-dynamic";
@@ -50,5 +37,10 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
   // Fetch related posts
   const { data: relatedPosts } = await getRelatedPosts(slug, 3);
 
-  return <BlogDetailClient post={post} relatedPosts={relatedPosts || []} />;
+  return (
+    <>
+      <BlogJsonLd post={post} />
+      <BlogDetailClient post={post} relatedPosts={relatedPosts || []} />
+    </>
+  );
 }
