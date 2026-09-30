@@ -1,4 +1,1280 @@
-import { EmployerService } from "@/components/employers/EmployerService";
-export default function Page() {
-  return <EmployerService service="seasonal" />;
+"use client";
+
+import { useRef, useEffect, useState, type ComponentType } from "react";
+import { motion, useInView } from "framer-motion";
+import Link from "next/link";
+import { useLanguage } from "@/components/providers/LanguageProvider";
+import { checkQuality } from "@/utils/qa-layer";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import dynamic from "next/dynamic";
+
+// Lazy load FAQ Section (below the fold)
+const FAQSection = dynamic(() => import("@/components/shared/FAQSection"), {
+  loading: () => <div className="py-20 text-center text-slate-500">Laden...</div>,
+  ssr: true, // Keep SSR for SEO content, but split the JS bundle
+});
+
+import {
+  ArrowRight,
+  CheckCircle2,
+  Clock,
+  Users,
+  Zap,
+  Calendar,
+  Plane,
+  FileCheck,
+  Wheat,
+  UtensilsCrossed,
+  Bed,
+  Tractor,
+  Grape,
+  Hotel,
+  ChefHat,
+  Dumbbell,
+  MessageCircle,
+  Shield,
+  Timer,
+  TrendingUp,
+  Sparkles,
+  PhoneCall,
+  BadgeCheck,
+  CircleCheck,
+  Rocket,
+} from "lucide-react";
+
+// ============================================
+// FALLBACK DATA (DỮ LIỆU DỰ PHÒNG)
+// ============================================
+
+const DATA_DU_PHONG = {
+  hero: {
+    badge: "100% ZAV-konform",
+    headline: "Erntehelfer & Servicekräfte",
+    headline_accent: "Schnell verfügbar.",
+    subheadline:
+      "Sichern Sie Ihre Ernte und Ihren Service. Körperlich belastbares Personal für die Hochsaison – einsatzbereit in 4-8 Wochen.",
+    cta1: "Verfügbarkeit jetzt prüfen",
+    cta2: "Rückruf anfordern",
+    urgency_badge: "Saison 2026 – Jetzt sichern!",
+  },
+  advantages: {
+    badge: "Warum Vietnam?",
+    title: "Ihre Vorteile auf einen Blick",
+    subtitle: "Belastbares Personal für harte Arbeit",
+    advantage_1_title: "Körperlich Belastbar",
+    advantage_1_desc: "Gewohnt an harte Arbeit und Hitze. Ideal für Feldarbeit und Gewächshäuser.",
+    advantage_1_highlight: "100%",
+    advantage_1_highlight_desc: "Einsatzbereit",
+    advantage_2_title: "Hohe Motivation",
+    advantage_2_desc:
+      "Maximale Einsatzbereitschaft für 3-6 Monate. Wenig Fehlzeiten, hohe Produktivität.",
+    advantage_2_highlight: "< 2%",
+    advantage_2_highlight_desc: "Fehlzeiten",
+    advantage_3_title: "Rechtssicher",
+    advantage_3_desc:
+      "Wir garantieren die Einhaltung aller Vorgaben (Mindestlohn, ZAV, Visum). Kein Risiko für Sie.",
+    advantage_3_highlight: "100%",
+    advantage_3_highlight_desc: "ZAV-konform",
+  },
+  timeline: {
+    badge: "Schneller Prozess",
+    title: "In 4-8 Wochen einsatzbereit",
+    subtitle: "Keine lange Wartezeit. Keine bürokratischen Hürden.",
+    step1_week: "1",
+    step1_title: "Auswahl",
+    step1_desc: "Wir stellen Ihnen passende Teams vor",
+    step2_week: "2-4",
+    step2_title: "ZAV-Antrag",
+    step2_desc: "Behördliche Genehmigung durch Arbeitsagentur",
+    step3_week: "5-8",
+    step3_title: "Anreise",
+    step3_desc: "Gruppenflug und Transfer zum Einsatzort",
+    key_message: "Keine lange Wartezeit",
+    week_label: "Wo.",
+    weeks_label: "Wochen",
+    until_work: "bis Einsatz",
+    fast_label: "Schnell",
+  },
+  talent: {
+    badge: "Sofort verfügbar",
+    title: "Belastbare Arbeitskräfte",
+    subtitle: "ZAV-konform • Körperlich fit • Einsatzbereit in Wochen",
+    available_badge: "50+ Verfügbar",
+    view_all: "Alle Kandidaten ansehen",
+    available_label: "verfügbar",
+    request_label: "Anfragen",
+  },
+  sectors: {
+    badge: "Einsatzbereiche",
+    title: "Branchen, die wir bedienen",
+    subtitle: "Spezialisiert auf saisonale Spitzenzeiten",
+    workers_label: "Arbeitskräfte",
+    lead_time_label: "Vorlauf",
+  },
+  stats: {
+    stat1_label: "Vermittelte Arbeitskräfte",
+    stat2_label: "Visum-Erfolgsquote",
+    stat3_label: "Wochen bis Einsatz",
+  },
+  cta: {
+    title: "Bereit für Saison 2026?",
+    subtitle: "Sichern Sie sich jetzt Personal für eine erfolgreiche Saison.",
+    cta1: "Angebot anfordern",
+    cta2: "Rückruf anfordern",
+  },
+};
+
+// ============================================
+// CONTENT DATA
+// ============================================
+
+const talentPoolContent = {
+  de: {
+    badge: "Sofort verfügbar",
+    title: "Belastbare Arbeitskräfte",
+    subtitle: "ZAV-konform • Körperlich fit • Einsatzbereit in Wochen",
+    availableBadge: "50+ Verfügbar",
+    viewAll: "Alle Kandidaten ansehen",
+    profiles: [
+      {
+        id: "AGR-01",
+        role: "Erntehelfer",
+        roleVn: "Người thu hoạch",
+        category: "Landwirtschaft",
+        categoryVn: "Nông nghiệp",
+        avatar: "EH",
+        skills: [
+          { text: "Körperlich belastbar", icon: Dumbbell },
+          { text: "Ernteerfahrung", icon: Wheat },
+          { text: "Teamfähig", icon: Users },
+        ],
+        available: 25,
+        icon: Wheat,
+      },
+      {
+        id: "GAS-02",
+        role: "Servicekraft",
+        roleVn: "Nhân viên phục vụ",
+        category: "Gastronomie",
+        categoryVn: "Nhà hàng",
+        avatar: "SK",
+        skills: [
+          { text: "Englischkenntnisse", icon: MessageCircle },
+          { text: "Stressresistent", icon: Shield },
+          { text: "Gastfreundlich", icon: Hotel },
+        ],
+        available: 30,
+        icon: UtensilsCrossed,
+      },
+      {
+        id: "HOU-03",
+        role: "Zimmermädchen",
+        roleVn: "Nhân viên buồng phòng",
+        category: "Hotellerie",
+        categoryVn: "Khách sạn",
+        avatar: "ZM",
+        skills: [
+          { text: "Detailorientiert", icon: CheckCircle2 },
+          { text: "Zuverlässig", icon: BadgeCheck },
+          { text: "Schnell", icon: Zap },
+        ],
+        available: 20,
+        icon: Bed,
+      },
+      {
+        id: "KIT-04",
+        role: "Küchenhilfe",
+        roleVn: "Phụ bếp",
+        category: "Gastronomie",
+        categoryVn: "Nhà hàng",
+        avatar: "KH",
+        skills: [
+          { text: "Hygienebewusst", icon: Shield },
+          { text: "Belastbar", icon: Dumbbell },
+          { text: "Lernbereit", icon: TrendingUp },
+        ],
+        available: 35,
+        icon: ChefHat,
+      },
+    ],
+  },
+  vn: {
+    badge: "Talent Pool",
+    title: "Lực lượng lao động sẵn sàng",
+    subtitle: "Khỏe mạnh, có động lực và sẵn sàng ngay",
+    availableBadge: "50+ Sẵn sàng",
+    viewAll: "Xem tất cả ứng viên",
+    profiles: [],
+  },
+};
+
+const sectorsContent = {
+  de: {
+    badge: "Einsatzbereiche",
+    title: "Branchen, die wir bedienen",
+    subtitle: "Spezialisiert auf saisonale Spitzenzeiten",
+    sectors: [
+      {
+        title: "Landwirtschaft",
+        subtitle: "Agrarsektor",
+        icon: Tractor,
+        secondaryIcon: Grape,
+        color: "amber",
+        jobs: ["Spargel", "Erdbeeren", "Weinbau", "Gemüseernte"],
+        jobsVn: ["Măng tây", "Dâu tây", "Nho", "Rau củ"],
+        description: "Erntehelfer für Spargel, Erdbeeren, Weinbau & Gemüse.",
+        descriptionVn: "Nhân sự thu hoạch măng tây, dâu, nho và rau củ.",
+        stats: { workers: "150+", time: "4-6 Wo." },
+      },
+      {
+        title: "Gastronomie & Hotellerie",
+        subtitle: "Hospitality",
+        icon: UtensilsCrossed,
+        secondaryIcon: Hotel,
+        color: "orange",
+        jobs: ["Spüler", "Küchenhilfen", "Zimmermädchen", "Servicekräfte"],
+        jobsVn: ["Rửa bát", "Phụ bếp", "Dọn phòng", "Phục vụ"],
+        description: "Spüler, Küchenhilfen & Zimmermädchen für Hotels & Restaurants.",
+        descriptionVn: "Rửa bát, phụ bếp và dọn phòng cho khách sạn & nhà hàng.",
+        stats: { workers: "100+", time: "6-8 Wo." },
+      },
+    ],
+  },
+  vn: {
+    badge: "Lĩnh vực",
+    title: "Ngành nghề chúng tôi phục vụ",
+    subtitle: "Chuyên về mùa cao điểm",
+    sectors: [],
+  },
+};
+
+type SeasonalPageContent = typeof DATA_DU_PHONG;
+type IconComponent = ComponentType<{ className?: string }>;
+type AdvantageCard = {
+  icon: IconComponent;
+  title: string;
+  description: string;
+  highlight: string;
+  highlightDesc: string;
+};
+type TimelineStepCard = {
+  week: string;
+  title: string;
+  description: string;
+  icon: IconComponent;
+};
+type TalentProfile = (typeof talentPoolContent.de.profiles)[number];
+type SectorCard = (typeof sectorsContent.de.sectors)[number];
+type StatCard = {
+  value: string;
+  label: string;
+  suffix: string;
+  icon: IconComponent;
+};
+
+// ============================================
+// ANIMATED COUNTER
+// ============================================
+
+function AnimatedCounter({
+  value,
+  suffix,
+  duration = 2,
+}: {
+  value: string;
+  suffix: string;
+  duration?: number;
+}) {
+  const [displayValue, setDisplayValue] = useState("0");
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
+  const numericValue = Number.parseInt(value, 10);
+  const shouldAnimate = !value.includes("<") && !value.includes("+") && !Number.isNaN(numericValue);
+
+  useEffect(() => {
+    if (!isInView || !shouldAnimate) {
+      return;
+    }
+
+    let startTime: number | undefined;
+    let frameId = 0;
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / (duration * 1000), 1);
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      const current = Math.floor(easeOutQuart * numericValue);
+      setDisplayValue(current.toString());
+      if (progress < 1) {
+        frameId = requestAnimationFrame(animate);
+      }
+    };
+    frameId = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(frameId);
+  }, [duration, isInView, numericValue, shouldAnimate]);
+
+  return (
+    <span ref={ref}>
+      {shouldAnimate ? (isInView ? displayValue : "0") : value}
+      {suffix}
+    </span>
+  );
+}
+
+// ============================================
+// HERO SECTION
+// ============================================
+
+function HeroSection({ content }: { content: SeasonalPageContent }) {
+  // Use safe content from QA layer
+  const heroContent = content?.hero || {};
+
+  return (
+    <section className="relative min-h-screen overflow-hidden bg-slate-950">
+      {/* Gradient Mesh Background - Amber/Orange Theme */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 right-0 w-[1000px] h-[1000px] bg-amber-500/20 rounded-full blur-[150px] translate-x-1/3 -translate-y-1/4" />
+        <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-orange-400/15 rounded-full blur-[120px] -translate-x-1/4 translate-y-1/4" />
+        <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-yellow-500/10 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2" />
+
+        {/* Subtle grid */}
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                             linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+            backgroundSize: "60px 60px",
+          }}
+        />
+      </div>
+
+      <div className="relative container mx-auto px-4 max-w-7xl min-h-screen flex items-center">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center w-full py-24 lg:py-0">
+          {/* Left Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="max-w-xl"
+          >
+            {/* Urgency Badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="mb-6"
+            >
+              <Badge className="px-4 py-2 bg-amber-500/20 border border-amber-500/30 text-amber-400 backdrop-blur-sm animate-pulse">
+                <Sparkles className="w-4 h-4 mr-2" />
+                {heroContent.urgency_badge || "Saison 2026 – Jetzt sichern!"}
+              </Badge>
+            </motion.div>
+
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <Badge className="mb-6 px-4 py-2 bg-orange-500/10 border border-orange-500/20 text-orange-400 backdrop-blur-sm">
+                <Zap className="w-4 h-4 mr-2" />
+                {heroContent.badge || "100% ZAV-konform"}
+              </Badge>
+            </motion.div>
+
+            {/* Headline */}
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8">
+              <span className="text-white">
+                {heroContent.headline || "Erntehelfer & Servicekräfte"}
+              </span>
+              <br />
+              <span className="bg-gradient-to-r from-amber-400 via-orange-400 to-yellow-400 bg-clip-text text-transparent">
+                {heroContent.headline_accent || "Schnell verfügbar."}
+              </span>
+            </h1>
+
+            {/* Subheadline */}
+            <p className="text-lg md:text-xl text-slate-400 leading-relaxed mb-10 max-w-lg">
+              {heroContent.subheadline ||
+                "Sichern Sie Ihre Ernte und Ihren Service. Körperlich belastbares Personal für die Hochsaison – einsatzbereit in 4-8 Wochen."}
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button
+                size="lg"
+                className="group relative px-8 py-6 text-base font-semibold bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white rounded-full shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 transition-all duration-300"
+                asChild
+              >
+                <Link href="#contact">
+                  {heroContent.cta1 || "Verfügbarkeit jetzt prüfen"}
+                  <Rocket className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="px-8 py-6 text-base font-semibold border-slate-700 text-white hover:bg-slate-800/50 rounded-full transition-all duration-300"
+                asChild
+              >
+                <Link href="/#contact">
+                  <PhoneCall className="w-5 h-5 mr-2" />
+                  {heroContent.cta2 || "Rückruf anfordern"}
+                </Link>
+              </Button>
+            </div>
+          </motion.div>
+
+          {/* Right Content - Visual Stats */}
+          <motion.div
+            initial={{ opacity: 0, x: 60 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="relative hidden lg:flex items-center justify-center"
+          >
+            {/* Central Speed Indicator */}
+            <div className="relative">
+              {/* Outer ring */}
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="w-80 h-80 rounded-full border-2 border-dashed border-amber-500/20"
+              />
+
+              {/* Middle ring */}
+              <motion.div
+                animate={{ rotate: -360 }}
+                transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                className="absolute top-8 left-8 w-64 h-64 rounded-full border border-orange-500/30"
+              />
+
+              {/* Center content */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                <div className="bg-white/10 backdrop-blur-xl rounded-3xl border border-white/10 p-8 text-center">
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.6, type: "spring" }}
+                  >
+                    <div className="text-6xl font-bold bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent mb-2">
+                      4-8
+                    </div>
+                    <div className="text-white font-medium text-lg">Wochen</div>
+                    <div className="text-amber-400 text-sm mt-1">bis Einsatz</div>
+                  </motion.div>
+                </div>
+              </div>
+
+              {/* Floating badges */}
+              <motion.div
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -top-4 right-8"
+              >
+                <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/30 px-3 py-1.5">
+                  <Zap className="w-3 h-3 mr-1" />
+                  {content?.timeline?.fast_label || "Schnell"}
+                </Badge>
+              </motion.div>
+
+              <motion.div
+                animate={{ y: [0, 8, 0] }}
+                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                className="absolute -bottom-4 left-8"
+              >
+                <Badge className="bg-orange-500/20 text-orange-300 border-orange-500/30 px-3 py-1.5">
+                  <Shield className="w-3 h-3 mr-1" />
+                  100% Legal
+                </Badge>
+              </motion.div>
+
+              <motion.div
+                animate={{ x: [0, 8, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="absolute top-1/2 -right-12 -translate-y-1/2"
+              >
+                <Badge className="bg-yellow-500/20 text-yellow-300 border-yellow-500/30 px-3 py-1.5">
+                  <Users className="w-3 h-3 mr-1" />
+                  250+
+                </Badge>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+      >
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+          className="w-6 h-10 border-2 border-slate-600 rounded-full flex justify-center p-2"
+        >
+          <motion.div className="w-1.5 h-1.5 bg-amber-400 rounded-full" />
+        </motion.div>
+      </motion.div>
+    </section>
+  );
+}
+
+// ============================================
+// ADVANTAGES SECTION
+// ============================================
+
+function AdvantagesSection({ content }: { content: SeasonalPageContent }) {
+  // Use safe content from QA layer
+  const raw = content || {};
+  const advantages = raw.advantages || {};
+
+  // Build section content from translations
+  const sectionContent = {
+    badge: advantages.badge || "Warum Vietnam?",
+    title: advantages.title || "Ihre Vorteile auf einen Blick",
+    subtitle: advantages.subtitle || "Belastbares Personal für harte Arbeit",
+    advantages: [
+      {
+        icon: Dumbbell,
+        title: advantages.advantage_1_title || "Körperlich Belastbar",
+        description:
+          advantages.advantage_1_desc ||
+          "Gewohnt an harte Arbeit und Hitze. Ideal für Feldarbeit und Gewächshäuser.",
+        highlight: advantages.advantage_1_highlight || "100%",
+        highlightDesc: advantages.advantage_1_highlight_desc || "Einsatzbereit",
+      },
+      {
+        icon: Zap,
+        title: advantages.advantage_2_title || "Hohe Motivation",
+        description:
+          advantages.advantage_2_desc ||
+          "Maximale Einsatzbereitschaft für 3-6 Monate. Wenig Fehlzeiten, hohe Produktivität.",
+        highlight: advantages.advantage_2_highlight || "< 2%",
+        highlightDesc: advantages.advantage_2_highlight_desc || "Fehlzeiten",
+      },
+      {
+        icon: Shield,
+        title: advantages.advantage_3_title || "Rechtssicher",
+        description:
+          advantages.advantage_3_desc ||
+          "Wir garantieren die Einhaltung aller Vorgaben (Mindestlohn, ZAV, Visum). Kein Risiko für Sie.",
+        highlight: advantages.advantage_3_highlight || "100%",
+        highlightDesc: advantages.advantage_3_highlight_desc || "ZAV-konform",
+      },
+    ],
+  };
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  return (
+    <section className="py-24 md:py-32 bg-slate-50">
+      <div className="container mx-auto px-4 max-w-7xl">
+        {/* Header */}
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <Badge
+            variant="outline"
+            className="mb-6 px-4 py-2 border-amber-200 text-amber-700 bg-amber-50"
+          >
+            <Zap className="w-4 h-4 mr-2" />
+            {sectionContent.badge}
+          </Badge>
+
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
+            {sectionContent.title}
+          </h2>
+
+          <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto">
+            {sectionContent.subtitle}
+          </p>
+        </motion.div>
+
+        {/* Advantage Cards */}
+        <div className="grid md:grid-cols-3 gap-8">
+          {sectionContent.advantages.map((advantage: AdvantageCard, index) => {
+            const Icon = advantage.icon;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.2 + index * 0.15 }}
+                whileHover={{ y: -8 }}
+                className="group"
+              >
+                <div className="h-full bg-white rounded-3xl p-8 border border-slate-200 hover:border-amber-300 hover:shadow-2xl hover:shadow-amber-500/10 transition-all duration-300">
+                  {/* Icon */}
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center mb-6 shadow-lg shadow-amber-500/20 group-hover:scale-110 transition-transform">
+                    <Icon className="w-8 h-8 text-white" />
+                  </div>
+
+                  {/* Content */}
+                  <h3 className="text-xl font-bold text-slate-900 mb-4">{advantage.title}</h3>
+                  <p className="text-slate-600 leading-relaxed mb-6">{advantage.description}</p>
+
+                  {/* Highlight Badge */}
+                  <div className="bg-amber-50 rounded-xl p-4 border border-amber-100">
+                    <div className="text-2xl font-bold text-amber-600 mb-1">
+                      {advantage.highlight}
+                    </div>
+                    <div className="text-sm text-slate-500">{advantage.highlightDesc}</div>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ============================================
+// SPEED TIMELINE SECTION
+// ============================================
+
+function SpeedTimelineSection({ content }: { content: SeasonalPageContent }) {
+  const ref = useRef(null);
+
+  // Use safe content from QA layer
+  const raw = content || {};
+  const timeline = raw.timeline || {};
+
+  // Build section content from translations
+  const sectionContent = {
+    badge: timeline.badge || "Schneller Prozess",
+    title: timeline.title || "In 4-8 Wochen einsatzbereit",
+    subtitle: timeline.subtitle || "Keine lange Wartezeit. Keine bürokratischen Hürden.",
+    steps: [
+      {
+        week: timeline.step1_week || "1",
+        title: timeline.step1_title || "Auswahl",
+        description: timeline.step1_desc || "Wir stellen Ihnen passende Teams vor",
+        icon: Users,
+      },
+      {
+        week: timeline.step2_week || "2-4",
+        title: timeline.step2_title || "ZAV-Antrag",
+        description: timeline.step2_desc || "Behördliche Genehmigung durch Arbeitsagentur",
+        icon: FileCheck,
+      },
+      {
+        week: timeline.step3_week || "5-8",
+        title: timeline.step3_title || "Anreise",
+        description: timeline.step3_desc || "Gruppenflug und Transfer zum Einsatzort",
+        icon: Plane,
+      },
+    ],
+    key_message: timeline.key_message || "Keine lange Wartezeit",
+  };
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+
+  return (
+    <section className="py-24 md:py-32 bg-white overflow-hidden">
+      <div className="container mx-auto px-4 max-w-6xl">
+        {/* Header */}
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <Badge
+            variant="outline"
+            className="mb-6 px-4 py-2 border-amber-200 text-amber-700 bg-amber-50"
+          >
+            <Zap className="w-4 h-4 mr-2" />
+            {sectionContent.badge}
+          </Badge>
+
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
+            {sectionContent.title}
+          </h2>
+
+          <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto">
+            {sectionContent.subtitle}
+          </p>
+        </motion.div>
+
+        {/* Timeline */}
+        <div className="relative">
+          {/* Progress Bar Background */}
+          <div className="absolute top-20 left-0 right-0 h-2 bg-slate-100 rounded-full mx-8 lg:mx-16" />
+
+          {/* Animated Progress Bar */}
+          <motion.div
+            className="absolute top-20 left-0 h-2 bg-gradient-to-r from-amber-400 via-orange-500 to-amber-500 rounded-full mx-8 lg:mx-16"
+            initial={{ width: "0%" }}
+            animate={{ width: isInView ? "100%" : "0%" }}
+            transition={{ duration: 2, ease: "easeOut", delay: 0.5 }}
+            style={{ maxWidth: "calc(100% - 4rem)" }}
+          />
+
+          {/* Steps */}
+          <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8">
+            {sectionContent.steps.map((step: TimelineStepCard, index) => {
+              const Icon = step.icon;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.3 + index * 0.2 }}
+                  className="flex flex-col items-center text-center"
+                >
+                  {/* Step Circle */}
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={isInView ? { scale: 1 } : {}}
+                    transition={{ duration: 0.4, delay: 0.5 + index * 0.3, type: "spring" }}
+                    className="relative z-10 mb-6"
+                  >
+                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center shadow-lg shadow-amber-500/30">
+                      <Icon className="w-7 h-7 text-white" />
+                    </div>
+                    {/* Week badge */}
+                    <div className="absolute -top-2 -right-2 bg-slate-900 text-white text-xs font-bold px-2 py-1 rounded-full">
+                      Wo. {step.week}
+                    </div>
+                  </motion.div>
+
+                  {/* Content */}
+                  <h3 className="text-xl font-bold text-slate-900 mb-2">{step.title}</h3>
+                  <p className="text-slate-500 text-sm max-w-xs">{step.description}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Key Message */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 1.2 }}
+          className="mt-16 text-center"
+        >
+          <div className="inline-flex items-center gap-3 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-full px-6 py-3">
+            <CircleCheck className="w-6 h-6 text-amber-600" />
+            <span className="text-amber-800 font-semibold text-lg">
+              {sectionContent.key_message}
+            </span>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// ============================================
+// TALENT POOL SECTION
+// ============================================
+
+function TalentPoolSection({ content }: { content: SeasonalPageContent }) {
+  const { lang } = useLanguage();
+
+  // Use safe content from QA layer
+  const raw = content || {};
+  const talent = raw.talent || {};
+
+  // Build section content from translations - keep profiles structure from original
+  const sectionContent = {
+    badge: talent.badge || "Sofort verfügbar",
+    title: talent.title || "Belastbare Arbeitskräfte",
+    subtitle: talent.subtitle || "ZAV-konform • Körperlich fit • Einsatzbereit in Wochen",
+    available_badge: talent.available_badge || "50+ Verfügbar",
+    view_all: talent.view_all || "Alle Kandidaten ansehen",
+    profiles: talentPoolContent.de.profiles, // Keep original profiles data
+  };
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
+
+  return (
+    <section className="py-24 md:py-32 bg-slate-50">
+      <div className="container mx-auto px-4 max-w-7xl">
+        {/* Header */}
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <Badge
+            variant="outline"
+            className="mb-6 px-4 py-2 border-amber-200 text-amber-700 bg-amber-50"
+          >
+            <Users className="w-4 h-4 mr-2" />
+            {sectionContent.badge}
+          </Badge>
+
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
+            {sectionContent.title}
+          </h2>
+
+          <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto mb-6">
+            {sectionContent.subtitle}
+          </p>
+
+          {/* Available Badge */}
+          <Badge className="bg-amber-500 text-white border-0 px-4 py-2 text-base shadow-lg shadow-amber-500/30">
+            <Users className="w-4 h-4 mr-2" />
+            {sectionContent.available_badge}
+          </Badge>
+        </motion.div>
+
+        {/* Profile Cards Grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {sectionContent.profiles.map((profile: TalentProfile, index) => {
+            return (
+              <motion.div
+                key={profile.id}
+                initial={{ opacity: 0, y: 40 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+                whileHover={{ y: -8 }}
+                className="group"
+              >
+                <div className="h-full bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-md hover:shadow-xl hover:shadow-amber-500/10 hover:border-amber-300 transition-all duration-300">
+                  {/* Header */}
+                  <div className="p-5 bg-gradient-to-br from-amber-50 to-orange-50 border-b border-amber-100">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center text-white font-bold shadow-lg shadow-amber-500/20">
+                        {profile.avatar}
+                      </div>
+                      <Badge className="bg-amber-100 text-amber-700 border-amber-200 text-xs">
+                        {profile.available}+ verfügbar
+                      </Badge>
+                    </div>
+                    <h3 className="font-bold text-slate-900">
+                      {lang === "vn" ? profile.roleVn : profile.role}
+                    </h3>
+                    <p className="text-sm text-amber-600">
+                      {lang === "vn" ? profile.categoryVn : profile.category}
+                    </p>
+                  </div>
+
+                  {/* Skills */}
+                  <div className="p-5 space-y-3">
+                    {profile.skills.map(
+                      (
+                        skill: { icon: React.ComponentType<{ className?: string }>; text: string },
+                        skillIdx: number
+                      ) => {
+                        const SkillIcon = skill.icon;
+                        return (
+                          <div key={skillIdx} className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center flex-shrink-0">
+                              <SkillIcon className="w-4 h-4 text-slate-500" />
+                            </div>
+                            <span className="text-sm text-slate-600">{skill.text}</span>
+                          </div>
+                        );
+                      }
+                    )}
+                  </div>
+
+                  {/* Action */}
+                  <div className="px-5 pb-5">
+                    <Button
+                      className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white shadow-md shadow-amber-500/20"
+                      asChild
+                    >
+                      <Link href="/#contact">
+                        <Calendar className="w-4 h-4 mr-2" />
+                        Anfragen
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* View All CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.8 }}
+          className="mt-12 text-center"
+        >
+          <Button
+            size="lg"
+            variant="outline"
+            className="px-8 py-6 text-base font-semibold border-amber-300 text-amber-700 hover:bg-amber-50 rounded-full"
+            asChild
+          >
+            <Link href="/#contact">
+              {sectionContent.view_all}
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </Link>
+          </Button>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// ============================================
+// SECTORS SECTION
+// ============================================
+
+function SectorsSection({ content }: { content: SeasonalPageContent }) {
+  // Use safe content from QA layer
+  const raw = content || {};
+  const sectors = raw.sectors || {};
+
+  // Build section content from translations - keep sectors structure from original
+  const sectionContent = {
+    badge: sectors.badge || "Einsatzbereiche",
+    title: sectors.title || "Branchen, die wir bedienen",
+    subtitle: sectors.subtitle || "Spezialisiert auf saisonale Spitzenzeiten",
+    sectors: sectorsContent.de.sectors, // Keep original sectors data
+  };
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  return (
+    <section className="py-24 md:py-32 bg-white">
+      <div className="container mx-auto px-4 max-w-6xl">
+        {/* Header */}
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <Badge
+            variant="outline"
+            className="mb-6 px-4 py-2 border-amber-200 text-amber-700 bg-amber-50"
+          >
+            <Wheat className="w-4 h-4 mr-2" />
+            {sectionContent.badge}
+          </Badge>
+
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
+            {sectionContent.title}
+          </h2>
+
+          <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto">
+            {sectionContent.subtitle}
+          </p>
+        </motion.div>
+
+        {/* Sector Cards */}
+        <div className="grid md:grid-cols-2 gap-8">
+          {sectionContent.sectors.map((sector: SectorCard, index) => {
+            const Icon = sector.icon;
+            const SecondaryIcon = sector.secondaryIcon;
+            const isAmber = sector.color === "amber";
+
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: index === 0 ? -40 : 40 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.2 + index * 0.2 }}
+                whileHover={{ scale: 1.02 }}
+                className="group"
+              >
+                <div
+                  className={`h-full rounded-3xl p-8 lg:p-10 border-2 transition-all duration-300 ${
+                    isAmber
+                      ? "bg-gradient-to-br from-amber-50 to-yellow-50 border-amber-200 hover:border-amber-400 hover:shadow-2xl hover:shadow-amber-500/10"
+                      : "bg-gradient-to-br from-orange-50 to-red-50 border-orange-200 hover:border-orange-400 hover:shadow-2xl hover:shadow-orange-500/10"
+                  }`}
+                >
+                  {/* Header */}
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="flex items-center gap-4">
+                      <div
+                        className={`w-16 h-16 rounded-2xl flex items-center justify-center ${
+                          isAmber
+                            ? "bg-gradient-to-br from-amber-500 to-yellow-500 shadow-lg shadow-amber-500/30"
+                            : "bg-gradient-to-br from-orange-500 to-red-500 shadow-lg shadow-orange-500/30"
+                        }`}
+                      >
+                        <Icon className="w-8 h-8 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-bold text-slate-900">{sector.title}</h3>
+                        <p
+                          className={`text-sm font-medium ${isAmber ? "text-amber-600" : "text-orange-600"}`}
+                        >
+                          {sector.subtitle}
+                        </p>
+                      </div>
+                    </div>
+                    <SecondaryIcon
+                      className={`w-12 h-12 ${
+                        isAmber ? "text-amber-200" : "text-orange-200"
+                      } group-hover:scale-110 transition-transform`}
+                    />
+                  </div>
+
+                  {/* Jobs List */}
+                  <div className="grid grid-cols-2 gap-3 mb-6">
+                    {sector.jobs.map((job, jobIdx) => (
+                      <div
+                        key={jobIdx}
+                        className={`flex items-center gap-2 px-3 py-2 rounded-lg ${
+                          isAmber ? "bg-amber-100/50" : "bg-orange-100/50"
+                        }`}
+                      >
+                        <CheckCircle2
+                          className={`w-4 h-4 ${isAmber ? "text-amber-600" : "text-orange-600"}`}
+                        />
+                        <span className="text-sm text-slate-700">{job}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Stats */}
+                  <div className="flex items-center gap-6 pt-4 border-t border-slate-200/50">
+                    <div className="flex items-center gap-2">
+                      <Users
+                        className={`w-5 h-5 ${isAmber ? "text-amber-600" : "text-orange-600"}`}
+                      />
+                      <span className="font-bold text-slate-900">{sector.stats.workers}</span>
+                      <span className="text-sm text-slate-500">Arbeitskräfte</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Timer
+                        className={`w-5 h-5 ${isAmber ? "text-amber-600" : "text-orange-600"}`}
+                      />
+                      <span className="font-bold text-slate-900">{sector.stats.time}</span>
+                      <span className="text-sm text-slate-500">Vorlauf</span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ============================================
+// STATS SECTION
+// ============================================
+
+function StatsSection({ content }: { content: SeasonalPageContent }) {
+  // Use safe content from QA layer
+  const raw = content || {};
+  const statsData = raw.stats || {};
+
+  // Build section content from translations
+  const sectionContent = {
+    stats: [
+      {
+        value: "200+",
+        label: statsData.stat1_label || "Vermittelte Arbeitskräfte",
+        suffix: "",
+        icon: Users,
+      },
+      {
+        value: "98",
+        label: statsData.stat2_label || "Visum-Erfolgsquote",
+        suffix: "%",
+        icon: Shield,
+      },
+      {
+        value: "4-8",
+        label: statsData.stat3_label || "Wochen bis Einsatz",
+        suffix: "",
+        icon: Clock,
+      },
+    ],
+  };
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+
+  return (
+    <section
+      ref={ref}
+      className="py-20 md:py-28 bg-gradient-to-br from-amber-600 via-orange-600 to-amber-700 relative overflow-hidden"
+    >
+      {/* Background Pattern */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-yellow-500/20 rounded-full blur-[100px]" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-orange-400/20 rounded-full blur-[80px]" />
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0)`,
+            backgroundSize: "40px 40px",
+          }}
+        />
+      </div>
+
+      <div className="container relative mx-auto px-4 max-w-7xl">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+          {sectionContent.stats.map((stat: StatCard, index) => {
+            const Icon = stat.icon;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="text-center"
+              >
+                <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                  <Icon className="w-7 h-7 text-white" />
+                </div>
+                <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2">
+                  <AnimatedCounter value={stat.value} suffix={stat.suffix} duration={2} />
+                </div>
+                <div className="text-amber-100 text-sm md:text-base font-medium">{stat.label}</div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ============================================
+// CTA SECTION
+// ============================================
+
+function CTASection({ content }: { content: SeasonalPageContent }) {
+  // Use safe content from QA layer
+  const raw = content || {};
+  const ctaData = raw.cta || {};
+  const heroData = raw.hero || {};
+
+  // Build section content from translations
+  const sectionContent = {
+    title: ctaData.title || "Bereit für Saison 2026?",
+    subtitle: ctaData.subtitle || "Sichern Sie sich jetzt Personal für eine erfolgreiche Saison.",
+    cta1: ctaData.cta1 || "Angebot anfordern",
+    cta2: ctaData.cta2 || "Rückruf anfordern",
+    urgency: heroData.urgency_badge || "Saison 2026 – Jetzt sichern!", // Reuse from hero
+  };
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+
+  return (
+    <section id="contact" className="py-24 md:py-32 bg-slate-50">
+      <div className="container mx-auto px-4 max-w-4xl">
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center"
+        >
+          {/* Urgency Banner */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mb-8"
+          >
+            <Badge className="px-4 py-2 bg-amber-100 text-amber-800 border-amber-200">
+              <Sparkles className="w-4 h-4 mr-2" />
+              {sectionContent.urgency}
+            </Badge>
+          </motion.div>
+
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
+            {sectionContent.title}
+          </h2>
+
+          <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto mb-10">
+            {sectionContent.subtitle}
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button
+              size="lg"
+              className="group px-8 py-6 text-base font-semibold bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white rounded-full shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 transition-all duration-300"
+              asChild
+            >
+              <Link href="/#contact">
+                {sectionContent.cta1}
+                <Rocket className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="px-8 py-6 text-base font-semibold border-amber-300 text-amber-700 hover:bg-amber-50 rounded-full transition-all duration-300"
+              asChild
+            >
+              <Link href="/#contact">
+                <PhoneCall className="w-5 h-5 mr-2" />
+                {sectionContent.cta2}
+              </Link>
+            </Button>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// ============================================
+// MAIN PAGE COMPONENT
+// ============================================
+
+export default function SeasonalWorkersPage() {
+  const { t } = useLanguage();
+
+  // Pull the raw content block from the translation bundle.
+  const rawData = t.service_pages?.seasonal;
+
+  // Run the payload through QA normalization before rendering.
+  const content = checkQuality<SeasonalPageContent>(
+    rawData as Partial<SeasonalPageContent> | undefined,
+    DATA_DU_PHONG
+  );
+
+  // FAQ Questions for Seasonal Workers (B2B-Focused)
+  const seasonalFAQs = [
+    {
+      question: "Ist der Einsatz rechtssicher?",
+      answer:
+        "Ja, wir vermitteln ausschließlich im Rahmen der gesetzlichen Regelungen für kurzzeitige Beschäftigung (z.B. §15a BeschV) und kümmern uns um alle Genehmigungen der Bundesagentur für Arbeit.",
+    },
+    {
+      question: "Können dieselben Saisonkräfte wiederkommen?",
+      answer:
+        "Ja, das ist ausdrücklich gewünscht. Viele Kunden bauen sich so einen 'Stamm-Pool' auf, was die Einarbeitungszeit in den Folgejahren drastisch reduziert.",
+    },
+    {
+      question: "Wie ist die Arbeitsmoral?",
+      answer:
+        "Vietnamesische Arbeitskräfte sind bekannt für Disziplin und Belastbarkeit, besonders in der Landwirtschaft oder Gastronomie. Fehlzeiten sind eine absolute Ausnahme.",
+    },
+  ];
+
+  return (
+    <main className="min-h-screen">
+      <HeroSection content={content} />
+      <AdvantagesSection content={content} />
+      <SpeedTimelineSection content={content} />
+      <TalentPoolSection content={content} />
+      <SectorsSection content={content} />
+      <StatsSection content={content} />
+      <CTASection content={content} />
+      <FAQSection items={seasonalFAQs} theme="amber" />
+    </main>
+  );
 }

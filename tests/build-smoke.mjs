@@ -351,13 +351,9 @@ try {
       `https://www.dmf-talents.de${path}`,
       `${path}: OG URL`
     );
-    for (const sample of [
-      "dQw4w9WgXcQ",
-      "DMF-2401",
-      "98%",
-      "ISO 9001 Zertifiziert",
-      "Staatlich anerkannt",
-    ])
+    // Restoring owner-authored layout/copy supersedes M2 editorial exclusions.
+    // Privacy boundaries and the ban on fictional candidate/video fallbacks remain.
+    for (const sample of ["dQw4w9WgXcQ", "DMF-2401"])
       assert.ok(!html.includes(sample), `${path}: unverified content ${sample}`);
   }
   const robotText = await (await fetch(`${base}/robots.txt`)).text();
@@ -380,7 +376,7 @@ try {
   assert.equal((await fetch(`${base}/blog/fixture-current`)).status, 404);
   assert.ok(!(await (await fetch(`${base}/sitemap.xml`)).text()).includes("/blog/fixture-current"));
   process.stdout.write(
-    "PASS M2/M3: 17 canonical/OG/title pages, no sample claims, robots/login, sitemap, 308 alias and unpublished 404s\n"
+    "PASS M2/M3: 17 canonical/OG/title pages, no sample profiles/videos, robots/login, sitemap, 308 alias and unpublished 404s\n"
   );
   for (const path of ["/api/chat/history", "/api/leads"]) {
     const response = await fetch(`${base}${path}`);

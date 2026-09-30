@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { openConsentSettings } from "@/components/CookieConsent";
-import { COOPERATION_ITEMS, getCooperationLabel } from "@/components/header/nav-data";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export default function Footer() {
@@ -35,27 +34,6 @@ export default function Footer() {
                   {t.header.home}
                 </Link>
               </li>
-              <li>
-                <Link href="/blog" className="hover:text-white">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link href="/roi-rechner" className="hover:text-white">
-                  {lang === "de"
-                    ? "Personalkosten-Rechner"
-                    : lang === "en"
-                      ? "Staffing cost calculator"
-                      : "Tính chi phí nhân sự"}
-                </Link>
-              </li>
-              {COOPERATION_ITEMS.map((item) => (
-                <li key={item.href}>
-                  <Link href={item.href} className="hover:text-white">
-                    {getCooperationLabel(item.labelKey, lang)}
-                  </Link>
-                </li>
-              ))}
               <li>
                 <Link href="/#about" className="hover:text-white transition">
                   {t.header.about}

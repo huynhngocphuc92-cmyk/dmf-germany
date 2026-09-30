@@ -51,7 +51,7 @@ export const NavDropdown = memo(function NavDropdown({
       {/* Dropdown Content */}
       <div
         className={cn(
-          "absolute top-full left-1/2 -translate-x-1/2 pt-4 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 translate-y-2 group-hover:translate-y-0 z-50",
+          "absolute top-full left-1/2 -translate-x-1/2 pt-4 invisible opacity-0 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 transition-all duration-200 translate-y-2 group-hover:translate-y-0 group-focus-within:translate-y-0 z-50",
           variant === "simple" ? "w-64" : "w-72"
         )}
       >

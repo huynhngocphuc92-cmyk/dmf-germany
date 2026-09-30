@@ -18,6 +18,13 @@ export const AboutSection = ({ introImg, videoThumb }: AboutSectionProps = {}) =
   const displayImage = videoThumb || introImg;
   const icons = [BookOpen, Globe2, UserCheck];
 
+  // Dynamic stats from translations
+  const stats = [
+    { value: "500+", label: t.about.stat_candidates },
+    { value: "50+", label: t.about.stat_partners },
+    { value: "98%", label: t.about.stat_success },
+  ];
+
   // Features from translations
   const features = [
     {
@@ -36,7 +43,7 @@ export const AboutSection = ({ introImg, videoThumb }: AboutSectionProps = {}) =
 
   return (
     <MotionProvider>
-      <section id="about" className="py-16 md:py-24 lg:py-32 bg-background">
+      <section id="about" className="py-16 md:py-24 lg:py-32 bg-background overflow-hidden">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-6xl mx-auto">
             {/* Section Header */}
@@ -72,6 +79,27 @@ export const AboutSection = ({ introImg, videoThumb }: AboutSectionProps = {}) =
                 <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed">
                   {t.about.description}
                 </p>
+
+                {/* Quick Stats - Responsive */}
+                <div className="grid grid-cols-3 gap-2 md:gap-4 pt-4">
+                  {stats.map((stat, index) => (
+                    <div
+                      key={index}
+                      className={`text-center p-3 md:p-4 rounded-lg ${
+                        index === 1 ? "bg-accent/5" : "bg-primary/5"
+                      }`}
+                    >
+                      <p
+                        className={`text-xl md:text-3xl font-bold ${
+                          index === 1 ? "text-accent" : "text-primary"
+                        }`}
+                      >
+                        {stat.value}
+                      </p>
+                      <p className="text-[10px] md:text-sm text-muted-foreground">{stat.label}</p>
+                    </div>
+                  ))}
+                </div>
               </m.div>
 
               {/* Right - Visual */}
