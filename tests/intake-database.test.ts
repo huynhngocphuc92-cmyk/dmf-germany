@@ -31,7 +31,7 @@ beforeAll(async () => {
   await db.exec(`
     create role anon;create role authenticated;create role service_role bypassrls;
     create schema auth;create schema storage;
-    create table auth.users(id uuid primary key,raw_app_meta_data jsonb,is_anonymous boolean default false,email text);
+    create table auth.users(id uuid primary key,raw_app_meta_data jsonb,is_anonymous boolean default false,email varchar(255));
     create function auth.uid() returns uuid language sql as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;
     insert into auth.users(id,raw_app_meta_data,is_anonymous) values('${admin}','{"role":"admin"}',false),('${person}','{}',false);
     create table candidates(id uuid primary key default gen_random_uuid(),full_name text,category text,profession text,experience_years integer,german_level text,visa_status boolean,avatar_url text,video_url text,is_featured boolean,created_at timestamptz default now(),updated_at timestamptz default now());

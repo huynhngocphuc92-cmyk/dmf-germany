@@ -34,7 +34,7 @@ create function dmf_private.request_assignees() returns table(id uuid,label text
 language plpgsql stable security definer set search_path='' as $$
 begin
   if not public.dmf_is_admin() then raise exception 'Administrator required' using errcode='42501'; end if;
-  return query select u.id,coalesce(u.email,u.id::text) from auth.users u
+  return query select u.id,coalesce(u.email::text,u.id::text) from auth.users u
     where u.raw_app_meta_data->>'role'='admin' and u.is_anonymous is false order by u.email,u.id;
 end $$;
 revoke all on function dmf_private.request_assignees() from public,anon,authenticated;
