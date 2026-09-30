@@ -108,7 +108,15 @@ export function CandidatesClient({
           <div className="rounded-xl border bg-secondary px-6 py-12 text-center">
             <Users className="h-10 w-10 text-primary mx-auto" />
             <h2 className="text-xl font-semibold mt-5">{t.empty}</h2>
-            <p className="text-muted-foreground mt-3 max-w-xl mx-auto">{copy.emptyProfiles}</p>
+            <p className="text-muted-foreground mt-3 max-w-xl mx-auto">
+              {!initialCandidates.length
+                ? copy.emptyProfiles
+                : lang === "de"
+                  ? "Passen Sie die Filter an oder senden Sie uns Ihren Bedarf. Wir klären passende Möglichkeiten mit Ihnen."
+                  : lang === "en"
+                    ? "Adjust the filters or send us your requirements so we can discuss suitable options."
+                    : "Anh chị có thể thay đổi bộ lọc hoặc gửi nhu cầu để DMF trao đổi phương án phù hợp."}
+            </p>
             <Link
               href="/fuer-arbeitgeber/personalbedarf"
               className="inline-flex min-h-12 items-center bg-primary text-primary-foreground rounded-lg px-6 mt-6 font-semibold"
