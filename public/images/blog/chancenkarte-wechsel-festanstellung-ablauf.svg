@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="title desc">
+  <title id="title">Wechsel von der Chancenkarte in die Festanstellung</title>
+  <desc id="desc">Ablauf des rechtssicheren Statuswechsels von § 20a AufenthG (Chancenkarte) zu § 18a/18b (Fachkraftvisum) ohne Ausreise.</desc>
+  <rect width="720" height="540" rx="24" fill="#eef5f9"/>
+  <text x="36" y="48" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#087f9b">STATUSWECHSEL INLAND</text>
+  <text x="36" y="88" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#1e3a5f">Chancenkarte in Festanstellung (§ 20a)</text>
+
+  <!-- Step 1 -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="36" y="125" width="150" height="340" rx="16"/>
+  </g>
+  <rect x="36" y="125" width="150" height="40" rx="16" fill="#1e3a5f"/>
+  <text x="111" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">1. KENNENLERNEN</text>
+  <text x="111" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Chancenkarte</text>
+  <text x="111" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Status prüfen</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="48" y="250">• Fachkraft hält</text>
+    <text x="48" y="270">  gültigen § 20a-Titel</text>
+    <text x="48" y="295">• Bereits in Deutschland</text>
+    <text x="48" y="315">  wohnhaft &amp; gemeldet</text>
+    <text x="48" y="345">• Erlaubt: Bis zu 20h</text>
+    <text x="48" y="365">  Nebenbeschäftigung</text>
+    <text x="48" y="395">• Bis zu 2 Wochen</text>
+    <text x="48" y="415">  Probebeschäftigung</text>
+  </g>
+
+  <!-- Step 2 -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="202" y="125" width="150" height="340" rx="16"/>
+  </g>
+  <rect x="202" y="125" width="150" height="40" rx="16" fill="#0891b2"/>
+  <text x="277" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">2. PROBE &amp; MATCH</text>
+  <text x="277" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Eignungsprüfung</text>
+  <text x="277" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">im Betrieb</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="214" y="250">• Durchführung einer</text>
+    <text x="214" y="270">  Probebeschäftigung</text>
+    <text x="214" y="295">• Fachliche Eignung</text>
+    <text x="214" y="315">  in der Praxis prüfen</text>
+    <text x="214" y="345">• Team-Passung und</text>
+    <text x="214" y="365">  Sprachpraxis testen</text>
+    <text x="214" y="395">• Festes Jobangebot</text>
+    <text x="214" y="415">  erstellen</text>
+  </g>
+
+  <!-- Step 3 -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="368" y="125" width="150" height="340" rx="16"/>
+  </g>
+  <rect x="368" y="125" width="150" height="40" rx="16" fill="#1e3a5f"/>
+  <text x="443" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">3. STATUSWECHSEL</text>
+  <text x="443" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Antrag bei</text>
+  <text x="443" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Ausländerbehörde</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="380" y="250">• Antrag auf Wechsel</text>
+    <text x="380" y="270">  in § 18a / § 18b</text>
+    <text x="380" y="300" font-weight="700" fill="#0284c7">• Keine Ausreise</text>
+    <text x="380" y="320">  notwendig!</text>
+    <text x="380" y="345">• Beteiligung der BA</text>
+    <text x="380" y="365">  (Erklärung zum</text>
+    <text x="380" y="385">  Beschäftigungsverhältnis)</text>
+    <text x="380" y="415">• Fiktionsbescheinigung</text>
+  </g>
+
+  <!-- Step 4 -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="534" y="125" width="150" height="340" rx="16"/>
+  </g>
+  <rect x="534" y="125" width="150" height="40" rx="16" fill="#059669"/>
+  <text x="609" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">4. FESTANSTELLUNG</text>
+  <text x="609" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Volle Fachkraft-</text>
+  <text x="609" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">beschäftigung</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="546" y="250">• Erteilung des neuen</text>
+    <text x="546" y="270">  Aufenthaltstitels</text>
+    <text x="546" y="300">• Nahtloser Beginn der</text>
+    <text x="546" y="320">  Vollzeitbeschäftigung</text>
+    <text x="546" y="350">• Perspektive auf</text>
+    <text x="546" y="370">  Niederlassungserlaubnis</text>
+    <text x="546" y="405">• Volle Planungssicherheit</text>
+    <text x="546" y="425">  für den Arbeitgeber</text>
+  </g>
+
+  <text x="360" y="515" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="600" fill="#64748b">DMF Talents unterstützt Arbeitgeber bei der Prüfung von Chancenkarte-Kandidaten und dem Statuswechsel</text>
+</svg>

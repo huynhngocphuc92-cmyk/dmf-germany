@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="title desc">
+  <title id="title">Ablauf Informationspflicht nach § 45c AufenthG</title>
+  <desc id="desc">Gesetzlicher Ablauf der Informationspflicht für Arbeitgeber bei Einstellung von Fachkräften aus Drittstaaten ab 2026.</desc>
+  <rect width="720" height="540" rx="24" fill="#eef5f9"/>
+  <text x="36" y="48" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#087f9b">COMPLIANCE 2026</text>
+  <text x="36" y="88" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#1e3a5f">§ 45c AufenthG: Informationspflicht</text>
+
+  <!-- Step 1 -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="36" y="125" width="150" height="340" rx="16"/>
+  </g>
+  <rect x="36" y="125" width="150" height="40" rx="16" fill="#1e3a5f"/>
+  <text x="111" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">1. VERTRAG</text>
+  <text x="111" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Arbeitsvertrags-</text>
+  <text x="111" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">abschluss</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="48" y="250">• Vertragsschluss mit</text>
+    <text x="48" y="270">  Drittstaatskraft</text>
+    <text x="48" y="295">• Wohnsitz der Kraft</text>
+    <text x="48" y="315">  liegt im Ausland</text>
+    <text x="48" y="345">• Gilt für Vollzeit,</text>
+    <text x="48" y="365">  Teilzeit &amp; Azubis</text>
+    <text x="48" y="395">• Frist beginnt mit</text>
+    <text x="48" y="415">  Vertragsabschluss</text>
+  </g>
+
+  <!-- Step 2 -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="202" y="125" width="150" height="340" rx="16"/>
+  </g>
+  <rect x="202" y="125" width="150" height="40" rx="16" fill="#0891b2"/>
+  <text x="277" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">2. FORM &amp; FRIST</text>
+  <text x="277" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Hinweis in</text>
+  <text x="277" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Textform</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="214" y="250">• Form: Textform</text>
+    <text x="214" y="270">  (Brief, E-Mail,</text>
+    <text x="214" y="290">  Vertragsanlage)</text>
+    <text x="214" y="320" font-weight="700" fill="#0284c7">• Spätester Termin:</text>
+    <text x="214" y="340">  Erster Tag der</text>
+    <text x="214" y="360">  Arbeitsleistung</text>
+    <text x="214" y="395">• Mehrsprachige</text>
+    <text x="214" y="415">  Vorlage nutzen</text>
+  </g>
+
+  <!-- Step 3 -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="368" y="125" width="150" height="340" rx="16"/>
+  </g>
+  <rect x="368" y="125" width="150" height="40" rx="16" fill="#1e3a5f"/>
+  <text x="443" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">3. INHALT</text>
+  <text x="443" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Faire Integration</text>
+  <text x="443" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Beratungsstelle</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="380" y="250">• Hinweis auf das</text>
+    <text x="380" y="270">  kostenlose Angebot</text>
+    <text x="380" y="300">• Konkrete Adresse</text>
+    <text x="380" y="320">  der nächstgelegenen</text>
+    <text x="380" y="340">  Beratungsstelle</text>
+    <text x="380" y="375">• Aufklärung über</text>
+    <text x="380" y="395">  Rechte &amp; Pflichten</text>
+    <text x="380" y="415">  im Arbeitsrecht</text>
+  </g>
+
+  <!-- Step 4 -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="534" y="125" width="150" height="340" rx="16"/>
+  </g>
+  <rect x="534" y="125" width="150" height="40" rx="16" fill="#059669"/>
+  <text x="609" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">4. SICHERHEIT</text>
+  <text x="609" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Nachweis &amp;</text>
+  <text x="609" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Personalakte</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="546" y="250">• Empfangsbestätigung</text>
+    <text x="546" y="270">  unterzeichnen lassen</text>
+    <text x="546" y="300">• Dokumentation in</text>
+    <text x="546" y="320">  der Personalakte</text>
+    <text x="546" y="350">• Schutz vor Bußgeldern</text>
+    <text x="546" y="370">  &amp; Prüfungen</text>
+    <text x="546" y="405">• Transparente</text>
+    <text x="546" y="425">  Willkommenskultur</text>
+  </g>
+
+  <text x="360" y="515" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="600" fill="#64748b">DMF Talents stellt Partnerbetrieben geprüfte, mehrsprachige Hinweisvorlagen zur Verfügung</text>
+</svg>

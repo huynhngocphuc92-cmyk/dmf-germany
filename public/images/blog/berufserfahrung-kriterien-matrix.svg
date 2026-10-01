@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="title desc">
+  <title id="title">Kriterienmatrix für Fachkräfte mit Berufserfahrung (§ 6 BeschV)</title>
+  <desc id="desc">Die 4 Kernvoraussetzungen für die Rekrutierung von Fachkräften über Berufserfahrung ohne deutsches Anerkennungsverfahren.</desc>
+  <rect width="720" height="540" rx="24" fill="#eef5f9"/>
+  <text x="36" y="48" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#087f9b">ERFAHRUNGSSÄULE</text>
+  <text x="36" y="88" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#1e3a5f">Fachkräfte mit Berufserfahrung (§ 6 BeschV)</text>
+
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="36" y="125" width="315" height="160" rx="16"/>
+    <rect x="369" y="125" width="315" height="160" rx="16"/>
+    <rect x="36" y="305" width="315" height="160" rx="16"/>
+    <rect x="369" y="305" width="315" height="160" rx="16"/>
+  </g>
+
+  <!-- Box 1 -->
+  <rect x="36" y="125" width="315" height="36" rx="16" fill="#1e3a5f"/>
+  <text x="193" y="149" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">1. BERUFSABSCHLUSS IM HERKUNFTSLAND</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="52" y="185">• Staatlich anerkannter Berufs- oder Hochschulabschluss</text>
+    <text x="52" y="210">• Ausbildungsdauer von mindestens 2 Jahren</text>
+    <text x="52" y="235">• Bestätigt durch Digitale ZAB-Auskunft (DAB)</text>
+    <text x="52" y="260">• Keine deutsche Gleichwertigkeitsprüfung nötig</text>
+  </g>
+
+  <!-- Box 2 -->
+  <rect x="369" y="125" width="315" height="36" rx="16" fill="#0891b2"/>
+  <text x="526" y="149" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">2. MINDESTENS 2 JAHRE BERUFSPRAXIS</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="385" y="185">• Mindestens 24 Monate Berufserfahrung in den letzten 5 Jahren</text>
+    <text x="385" y="210">• Tätigkeit muss im fachlichen Zusammenhang zur Stelle stehen</text>
+    <text x="385" y="235">• Nachweise über Arbeitszeugnisse, Verträge &amp; Referenzen</text>
+    <text x="385" y="260">• Praktische Fertigkeiten unmittelbar einsetzbar</text>
+  </g>
+
+  <!-- Box 3 -->
+  <rect x="36" y="305" width="315" height="36" rx="16" fill="#0891b2"/>
+  <text x="193" y="329" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">3. GEHALTSSCHWELLE ODER TARIF</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="52" y="365">• Gesetzliche Mindestgehaltsschwelle (jährlich angepasst)</text>
+    <text x="52" y="390">• Tarifprivileg: Bei Tarifbindung gilt der Tariflohn</text>
+    <text x="52" y="415">• Gewährleistet faire, marktgerechte Entlohnung</text>
+    <text x="52" y="440">• Verhindert Dumping und sichert Visumserteilung</text>
+  </g>
+
+  <!-- Box 4 -->
+  <rect x="369" y="305" width="315" height="36" rx="16" fill="#059669"/>
+  <text x="526" y="329" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">4. NICHT-REGLEMENTIERTER BERUF</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="385" y="365">• Gilt für alle nicht-reglementierten Berufe</text>
+    <text x="385" y="390">• Ideal für IT, Industrie, Handwerk, Technik &amp; Handel</text>
+    <text x="385" y="415">• Ausgeschlossen: Reglementierte Berufe (Pflege, Ärzte, etc.)</text>
+    <text x="385" y="440">• Schnellster Weg zur Arbeitsaufnahme für Techniker</text>
+  </g>
+
+  <text x="360" y="515" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="600" fill="#64748b">DMF Talents prüft vorab die Anrechenbarkeit der vietnamesischen Praxiszeiten nach § 6 BeschV</text>
+</svg>

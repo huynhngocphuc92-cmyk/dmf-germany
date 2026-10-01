@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="title desc">
+  <title id="title">Steuerfreie Arbeitgeberleistungen für Azubis und Fachkräfte</title>
+  <desc id="desc">Fünf gesetzlich begünstigte Arbeitgeberleistungen nach EStG zur gezielten Unterstützung und Bindung internationaler Mitarbeiter.</desc>
+  <rect width="720" height="540" rx="24" fill="#eef5f9"/>
+  <text x="36" y="48" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#087f9b">FINANZEN &amp; STEUERN</text>
+  <text x="36" y="88" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#1e3a5f">Steuerfreie Benefits (§ 8 Abs. 2 EStG)</text>
+
+  <!-- Row 1 -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="36" y="125" width="205" height="155" rx="16"/>
+    <rect x="257" y="125" width="205" height="155" rx="16"/>
+    <rect x="478" y="125" width="205" height="155" rx="16"/>
+  </g>
+
+  <rect x="36" y="125" width="205" height="34" rx="16" fill="#1e3a5f"/>
+  <text x="138" y="147" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="white">50 € SACHBEZUG</text>
+  <g font-family="Arial,sans-serif" font-size="11" fill="#475569">
+    <text x="50" y="180">• § 8 Abs. 2 Satz 11 EStG</text>
+    <text x="50" y="200">• Monatliche Freigrenze: 50 €</text>
+    <text x="50" y="220">• Gutscheinkarten (Einkauf, Tanken)</text>
+    <text x="50" y="240">• 100% abgaben- &amp; steuerfrei</text>
+    <text x="50" y="260">• Direkte Kaufkraft für Azubis</text>
+  </g>
+
+  <rect x="257" y="125" width="205" height="34" rx="16" fill="#0891b2"/>
+  <text x="359" y="147" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="white">FAHRTKOSTEN (ÖPNV)</text>
+  <g font-family="Arial,sans-serif" font-size="11" fill="#475569">
+    <text x="271" y="180">• § 3 Nr. 15 EStG</text>
+    <text x="271" y="200">• Deutschlandticket Jobticket</text>
+    <text x="271" y="220">• Steuer- und sozialversicherungsfrei</text>
+    <text x="271" y="240">• Mobilität zwischen Betrieb,</text>
+    <text x="271" y="260">  Berufsschule &amp; Wohnung</text>
+  </g>
+
+  <rect x="478" y="125" width="205" height="34" rx="16" fill="#059669"/>
+  <text x="580" y="147" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="white">MIETZUSCHUSS / WOHNEN</text>
+  <g font-family="Arial,sans-serif" font-size="11" fill="#475569">
+    <text x="492" y="180">• § 8 Abs. 2 Satz 12 EStG</text>
+    <text x="492" y="200">• Verbilligte Wohnraumüberlassung</text>
+    <text x="492" y="220">• Bewertungsabschlag von einem Drittel</text>
+    <text x="492" y="240">• Entlastung bei hohen Mietkosten</text>
+    <text x="492" y="260">• Werkswohnung / WG-Beteiligung</text>
+  </g>
+
+  <!-- Row 2 -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="36" y="295" width="315" height="170" rx="16"/>
+    <rect x="369" y="295" width="315" height="170" rx="16"/>
+  </g>
+
+  <rect x="36" y="295" width="315" height="34" rx="16" fill="#1e3a5f"/>
+  <text x="193" y="317" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="white">VERPFLEGUNGSZUSCHUSS &amp; KANTINE</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="52" y="350">• Essensgutscheine / Digitale Essensmarken (Sachbezugswert)</text>
+    <text x="52" y="375">• Bis zu 7,23 € kalendertäglich arbeitgeberfinanziert</text>
+    <text x="52" y="400">• Entlastung der Auszubildenden bei täglicher Verpflegung</text>
+    <text x="52" y="425">• Fördert gesunde Ernährung &amp; Teamzusammenhalt</text>
+  </g>
+
+  <rect x="369" y="295" width="315" height="34" rx="16" fill="#0891b2"/>
+  <text x="526" y="317" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="white">WEITERBILDUNG &amp; SPRACHFÖRDERUNG</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="385" y="350">• § 3 Nr. 19 EStG: 100% steuerfreie Weiterbildung</text>
+    <text x="385" y="375">• Deutsch-Sprachkurse &amp; Fachsprachzertifikate (B2/C1)</text>
+    <text x="385" y="400">• Fachbücher, E-Learning-Lizenzen &amp; Kammerlehrgänge</text>
+    <text x="385" y="425">• Gilt nicht als steuerpflichtiger Arbeitslohn</text>
+  </g>
+
+  <text x="360" y="515" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="600" fill="#64748b">DMF Talents berät Unternehmen bei der Gestaltung steueroptimierter Vergütungspakete</text>
+</svg>

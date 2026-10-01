@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="title desc">
+  <title id="title">Anerkennungspartnerschaft nach § 16d Abs. 3 AufenthG</title>
+  <desc id="desc">Drei Stufen der Anerkennungspartnerschaft: Vorab-Check, Einreise zur Vollzeitbeschäftigung und parallele Anerkennung in Deutschland.</desc>
+  <rect width="720" height="540" rx="24" fill="#eef5f9"/>
+  <text x="36" y="48" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#087f9b">FEG NEUREGELUNG</text>
+  <text x="36" y="88" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#1e3a5f">Anerkennungspartnerschaft (§ 16d Abs. 3)</text>
+
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="36" y="125" width="205" height="340" rx="16"/>
+    <rect x="257" y="125" width="205" height="340" rx="16"/>
+    <rect x="478" y="125" width="205" height="340" rx="16"/>
+  </g>
+
+  <!-- Stage 1 -->
+  <rect x="36" y="125" width="205" height="42" rx="16" fill="#1e3a5f"/>
+  <text x="138" y="152" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">STUFE 1: VORAUSSETZUNG</text>
+  <text x="138" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#1e3a5f">Basisprüfung im Ausland</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="50" y="240">• Staatlich anerkannter Abschluss</text>
+    <text x="50" y="260">  im Herkunftsland (min. 2 Jahre)</text>
+    <text x="50" y="290">• ZAB-Auskunft (DAB) liegt vor</text>
+    <text x="50" y="320">• Deutschkenntnisse min. Niveau A2</text>
+    <text x="50" y="350">• Konkreter Arbeitsvertrag</text>
+    <text x="50" y="370">  mit qualifizierter Vergütung</text>
+    <text x="50" y="405">• Partnerschaftsvereinbarung</text>
+    <text x="50" y="425">  zwischen Betrieb &amp; Fachkraft</text>
+  </g>
+
+  <!-- Stage 2 -->
+  <rect x="257" y="125" width="205" height="42" rx="16" fill="#0891b2"/>
+  <text x="359" y="152" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">STUFE 2: EINREISE &amp; PRAXIS</text>
+  <text x="359" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#1e3a5f">Sofortige Beschäftigung</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="271" y="240">• Visum nach § 16d Abs. 3</text>
+    <text x="271" y="260">  ohne vorherigen Defizitbescheid</text>
+    <text x="271" y="290">• Volle Mitarbeit im Betrieb ab Tag 1</text>
+    <text x="271" y="320">• Direkte Wertschöpfung &amp;</text>
+    <text x="271" y="340">  Entlastung des Stammteams</text>
+    <text x="271" y="370">• Aufenthalt zunächst für 1 Jahr</text>
+    <text x="271" y="390">  (verlängerbar bis zu 3 Jahre)</text>
+    <text x="271" y="420">• Begleitender betrieblicher Pate</text>
+  </g>
+
+  <!-- Stage 3 -->
+  <rect x="478" y="125" width="205" height="42" rx="16" fill="#059669"/>
+  <text x="580" y="152" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">STUFE 3: ANERKENNUNG</text>
+  <text x="580" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#1e3a5f">Abschluss &amp; Festanstellung</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="492" y="240">• Anerkennungsantrag wird</text>
+    <text x="492" y="260">  parallel in Deutschland gestellt</text>
+    <text x="492" y="290">• Notwendige Nachqualifizierung</text>
+    <text x="492" y="310">  berufsbegleitend im Unternehmen</text>
+    <text x="492" y="340">• Abschluss mit voller Gleichwertigkeit</text>
+    <text x="492" y="375">• Nahtloser Wechsel in</text>
+    <text x="492" y="395">  Fachkraft-Titel § 18a / § 18b</text>
+    <text x="492" y="425">• Dauerhafte Bindung an den Betrieb</text>
+  </g>
+
+  <text x="360" y="515" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="600" fill="#64748b">DMF Talents koordiniert die ZAB-Auskunft und begleitet den gesamten Nachqualifizierungsprozess</text>
+</svg>

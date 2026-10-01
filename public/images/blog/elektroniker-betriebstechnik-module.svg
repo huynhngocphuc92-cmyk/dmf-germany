@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="title desc">
+  <title id="title">Kompetenzmodule Elektroniker für Betriebstechnik</title>
+  <desc id="desc">DGUV V3 Sicherheitsstufen und Einsatzbereiche für Elektroniker für Betriebstechnik in Industrie und Schaltanlagenbau.</desc>
+  <rect width="720" height="540" rx="24" fill="#eef5f9"/>
+  <text x="36" y="48" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#087f9b">ELEKTROTECHNIK &amp; DGUV</text>
+  <text x="36" y="88" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#1e3a5f">Elektroniker für Betriebstechnik</text>
+
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="36" y="125" width="205" height="340" rx="16"/>
+    <rect x="257" y="125" width="205" height="340" rx="16"/>
+    <rect x="478" y="125" width="205" height="340" rx="16"/>
+  </g>
+
+  <!-- Module 1 -->
+  <rect x="36" y="125" width="205" height="42" rx="16" fill="#1e3a5f"/>
+  <text x="138" y="152" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">SCHALTANLAGENBAU</text>
+  <text x="138" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#1e3a5f">Aufbau &amp; Verdrahtung</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="50" y="235">• Verdrahtung von Schaltschränken</text>
+    <text x="50" y="255">  nach EPLAN / Stromlaufplan</text>
+    <text x="50" y="285">• Bestückung mit Schützen,</text>
+    <text x="50" y="305">  Relais &amp; Sicherungsautomaten</text>
+    <text x="50" y="335">• Anschließen von Frequenz-</text>
+    <text x="50" y="355">  umrichtern und Motoren</text>
+    <text x="50" y="385">• Saubere Aderendhülsen &amp;</text>
+    <text x="50" y="405">  normgerechte Kennzeichnung</text>
+    <text x="50" y="435">• EMV-gerechte Schirmung</text>
+  </g>
+
+  <!-- Module 2 -->
+  <rect x="257" y="125" width="205" height="42" rx="16" fill="#0891b2"/>
+  <text x="359" y="152" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">AUTOMATISIERUNG</text>
+  <text x="359" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#1e3a5f">SPS &amp; Sensorik/Aktorik</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="271" y="235">• Anbindung von Initiatoren,</text>
+    <text x="271" y="255">  Lichtschranken &amp; Encodern</text>
+    <text x="271" y="285">• Einbindung in Feldbusse</text>
+    <text x="271" y="305">  (PROFINET, IO-Link, AS-i)</text>
+    <text x="271" y="335">• Diagnose an Siemens S7-1500 /</text>
+    <text x="271" y="355">  TIA Portal &amp; Beckhoff</text>
+    <text x="271" y="385">• Behebung von Sensorfehlern</text>
+    <text x="271" y="405">  und Busunterbrechungen</text>
+    <text x="271" y="435">• Kalibrierung von Messgebern</text>
+  </g>
+
+  <!-- Module 3 -->
+  <rect x="478" y="125" width="205" height="42" rx="16" fill="#059669"/>
+  <text x="580" y="152" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">SICHERHEIT DGUV V3</text>
+  <text x="580" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#1e3a5f">Prüfung &amp; Schutz</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="492" y="235">• Die 5 Sicherheitsregeln der</text>
+    <text x="492" y="255">  Elektrotechnik sicher anwenden</text>
+    <text x="492" y="285">• Messungen nach DIN VDE 0100-600</text>
+    <text x="492" y="305">  und DIN VDE 0105-100</text>
+    <text x="492" y="335">• RCD-Auslösezeit, Schleifen-</text>
+    <text x="492" y="355">  impedanz &amp; Isolationsprüfung</text>
+    <text x="492" y="385">• Prüfprotokolle gerichtsfest</text>
+    <text x="492" y="405">  dokumentieren</text>
+    <text x="492" y="435">• Status: Elektrofachkraft (EFK)</text>
+  </g>
+
+  <text x="360" y="515" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="600" fill="#64748b">Vorbereitungskurse der DMF-Akademie vertiefen deutsche VDE-Normen und DGUV V3 Vorschriften</text>
+</svg>

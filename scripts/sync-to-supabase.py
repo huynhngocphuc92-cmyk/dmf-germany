@@ -57,6 +57,18 @@ POST_COVER_MAPPING = {
     "fachkraefte-aus-vietnam-einstellen-checkliste": "/images/blog/dmf-betreuung-unterlagen.jpg",
     "vietnamesische-fachkraefte-verlaesslich-statt-riskant-wie-dmf-ausbildungsabbrueche-und-ausbeutung-verhindert": "/images/blog/dmf-achim-fuehrung-seminar.jpg",
     "qualitaetssicherung-durch-sprache-wie-dmf-vietnam-ihre-zukuenftigen-fachkraefte-vorbereitet": "/images/blog/dmf-sprachkurs-praxis-unterricht.jpg",
+    "informationspflicht-arbeitgeber-45c-aufenthg-faire-integration": "/images/blog/dmf-vertrag-unterzeichnung.jpg",
+    "anerkennungspartnerschaft-16d-aufenthg-arbeitgeber-voraussetzungen": "/images/blog/dmf-akademie-abschlussfeier-urkunde.jpg",
+    "berufserfahrung-fachkraefte-drittstaaten-beschv-ohne-anerkennung": "/images/blog/dmf-schulung-werkbank-montage.jpg",
+    "zeitarbeit-drittstaaten-verbot-40-aufenthg-direktvermittlung": "/images/blog/dmf-gespraech-partner-unternehmensleitung.jpg",
+    "anlagenmechaniker-shk-waermepumpen-monteure-vietnam": "/images/blog/dmf-seminar-fachkraft-diskussion.jpg",
+    "erzieherinnen-aus-vietnam-kitas-traeger-anerkennung": "/images/blog/dmf-unterricht-interaktiv.jpg",
+    "industriemechaniker-instandhaltung-maschinenbau-vietnam": "/images/blog/dmf-azubi-erfolgreiche-ausreise.jpg",
+    "elektroniker-betriebstechnik-automatisierung-vietnam": "/images/blog/dmf-lehrkraft-tafel.jpg",
+    "pflegehelfer-1-jaehrige-ausbildung-vietnam-kliniken": "/images/blog/dmf-azubi-ankunft-deutschland.jpg",
+    "koeche-spezialitaetenkoeche-vietnam-beschv-dehoga": "/images/blog/dmf-sprachpraxis-dialog-training.jpg",
+    "steuerfreie-arbeitgeberleistungen-azubis-sachbezug-wohnzuschuss": "/images/blog/dmf-interkulturell-austausch-gruppe.jpg",
+    "chancenkarte-in-festanstellung-wechsel-arbeitgeber-leitfaden": "/images/blog/dmf-praesentation-bildung-arbeitsmarkt.jpg",
 }
 
 def sync_posts():

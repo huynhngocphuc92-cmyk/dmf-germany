@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="title desc">
+  <title id="title">Vergleich: Leiharbeitsverbot (§ 40 AufenthG) vs. Direktvermittlung</title>
+  <desc id="desc">Rechtlicher Vergleich zwischen illegaler Leiharbeit für Drittstaatsangehörige und rechtssicherer Direktvermittlung durch DMF Talents.</desc>
+  <rect width="720" height="540" rx="24" fill="#eef5f9"/>
+  <text x="36" y="48" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#087f9b">RECHTSSICHERHEIT</text>
+  <text x="36" y="88" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#1e3a5f">Zeitarbeit (§ 40) vs. Direktvermittlung</text>
+
+  <!-- Left: Zeitarbeit (Verboten/Riskant) -->
+  <g fill="white" stroke="#ef4444" stroke-width="2">
+    <rect x="36" y="125" width="315" height="340" rx="16"/>
+  </g>
+  <rect x="36" y="125" width="315" height="42" rx="16" fill="#dc2626"/>
+  <text x="193" y="152" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="white">ZEITARBEIT / LEIHARBEIT (§ 40)</text>
+  <text x="193" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#dc2626">Gesetzliches Versagungsverbot</text>
+  <g font-family="Arial,sans-serif" font-size="13" fill="#475569">
+    <text x="52" y="235" font-weight="700" fill="#dc2626">✗ Verbot nach § 40 Abs. 1 Nr. 2 AufenthG:</text>
+    <text x="52" y="255">  BA muss Zustimmung zur Beschäftigung</text>
+    <text x="52" y="275">  in der Leiharbeit zwingend versagen.</text>
+    <text x="52" y="310" font-weight="700" fill="#dc2626">✗ Gravierende Haftungsrisiken:</text>
+    <text x="52" y="330">  Entleiher haftet für Sozialversicherungs-</text>
+    <text x="52" y="350">  beiträge &amp; drohende Bußgelder bis 500.000 €.</text>
+    <text x="52" y="385" font-weight="700" fill="#dc2626">✗ Aufenthaltstitel erlischt:</text>
+    <text x="52" y="405">  Ausländerbehörde widerruft das Visum;</text>
+    <text x="52" y="425">  abrupter Verlust der Arbeitskraft im Betrieb.</text>
+  </g>
+
+  <!-- Right: Direktvermittlung (DMF) -->
+  <g fill="white" stroke="#059669" stroke-width="2">
+    <rect x="369" y="125" width="315" height="340" rx="16"/>
+  </g>
+  <rect x="369" y="125" width="315" height="42" rx="16" fill="#059669"/>
+  <text x="526" y="152" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="white">DIREKTVERMITTLUNG (DMF)</text>
+  <text x="526" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#059669">100% Rechtssicher &amp; Nachhaltig</text>
+  <g font-family="Arial,sans-serif" font-size="13" fill="#475569">
+    <text x="385" y="235" font-weight="700" fill="#059669">✓ Direkter Arbeitsvertrag:</text>
+    <text x="385" y="255">  Fachkraft wird feste/r Mitarbeiter/in</text>
+    <text x="385" y="275">  Ihres Unternehmens (§ 18a / § 18b / § 16a).</text>
+    <text x="385" y="310" font-weight="700" fill="#059669">✓ Vollständige Behördenzustimmung:</text>
+    <text x="385" y="330">  Offizielle Vorabzustimmung der BA</text>
+    <text x="385" y="350">  und transparente Visumerteilung.</text>
+    <text x="385" y="385" font-weight="700" fill="#059669">✓ Langfristige Mitarbeiterbindung:</text>
+    <text x="385" y="405">  Loyale Fachkräfte, eingespieltes Team</text>
+    <text x="385" y="425">  und planbare Zukunft für Ihren Betrieb.</text>
+  </g>
+
+  <text x="360" y="515" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="600" fill="#64748b">DMF Talents vermittelt ausschließlich in rechtssichere Direktanstellung ohne Leiharbeitskonstrukte</text>
+</svg>
