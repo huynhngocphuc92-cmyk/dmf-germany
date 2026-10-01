@@ -30,9 +30,6 @@ Offizielle Informationen zur Erstellung von Stellenprofilen für internationale 
 
 ## 2. Die Unterscheidung: „Must-have“ vs. „Im Betrieb erlernbar“
 
-![Zwei Lernende mit Unterrichtsmaterialien bei der fachlichen Vorbereitung](/images/blog/dmf-unterricht-materialien.jpg)
-_Lernfeld Betrieb und Ausbildung: Fachliche Grundkenntnisse bilden das Fundament, auf dem betriebsspezifische Fertigkeiten aufgebaut werden._
-
 Ein tragfähiges internationales Suchprofil unterscheidet strikt zwischen zwei Kategorien:
 
 ### A. Unverzichtbare Voraussetzungen vor Einreise (Must-have)

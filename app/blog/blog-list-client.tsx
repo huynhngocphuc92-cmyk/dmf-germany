@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { format } from "date-fns";
-import { de, vi } from "date-fns/locale";
+import { de, vi, enUS } from "date-fns/locale";
 import { Calendar, Clock, ArrowRight, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -92,9 +92,9 @@ function calculateReadTime(content: string): number {
 
 export function BlogListClient({ posts }: BlogListClientProps) {
   const { lang: currentLang } = useLanguage();
-  const lang = currentLang as "de" | "vn";
-  const t = translations[lang];
-  const dateLocale = lang === "vn" ? vi : de;
+  const lang = (currentLang as "de" | "en" | "vn") || "de";
+  const t = translations[lang] || translations.de;
+  const dateLocale = lang === "vn" ? vi : lang === "en" ? enUS : de;
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white pt-[120px]">
@@ -210,7 +210,13 @@ export function BlogListClient({ posts }: BlogListClientProps) {
               <h2 className="text-2xl font-bold text-slate-900 mb-3">{t.noPosts}</h2>
               <p className="text-slate-600 mb-8">{t.noPostsDesc}</p>
               <Button asChild>
-                <Link href="/">{lang === "vn" ? "Về trang chủ" : "Zur Startseite"}</Link>
+                <Link href="/">
+                  {lang === "vn"
+                    ? "Về trang chủ"
+                    : lang === "en"
+                      ? "Back to Homepage"
+                      : "Zur Startseite"}
+                </Link>
               </Button>
             </motion.div>
           )}

@@ -39,9 +39,6 @@ Vietnamesische Baufachkräfte bringen fundierte praktische Fertigkeiten mit:
 - **Praxis auf Großbaustellen:** Viele Fachkräfte waren jahrelang auf anspruchsvollen Industrie- und Hochhausbaustellen renommierter asiatischer und europäischer Baukonzerne im Einsatz. Sie beherrschen den sicheren Umgang mit modernen Systemschalungen, Betonpumpen und Rüttelflaschen.
 - **Arbeitssicherheit auf der Baustelle:** Die Fachkräfte durchlaufen vor Ausreise intensive Schulungen zu Absturzsicherungen, Gerüstbenutzung und Baustellenordnung gemäß den Vorschriften der Berufsgenossenschaft der Bauwirtschaft (BG BAU).
 
-![Praktische Handwerksübung an Mauerwerk und Bauelementen](/images/blog/dmf-bau-handwerk-simulation.jpg)
-_Praxisnahe Fertigkeiten: Fachkräfte trainieren den präzisen Aufbau von Mauerwerksverbänden und Schalungen nach deutschen Vorgaben._
-
 ## Wichtige Besonderheiten: SOKA-BAU, BRTV und Saison-KUG
 
 Für ausländische Fachkräfte im Baugewerbe gelten in Deutschland zwingend die Regelungen des Bundesrahmentarifvertrags für das Baugewerbe (BRTV):

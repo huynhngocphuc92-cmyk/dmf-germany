@@ -47,7 +47,7 @@ const NavLink = memo(function NavLink({ href, label, icon, isActive }: NavLinkPr
     <Link
       href={href}
       className={cn(
-        "px-2.5 xl:px-4 py-2 rounded-lg text-sm font-medium transition-colors relative whitespace-nowrap",
+        "px-2 xl:px-3.5 py-2 rounded-lg text-xs xl:text-sm font-medium transition-colors relative whitespace-nowrap flex items-center",
         "hover:text-primary",
         "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full",
         isActive && "text-primary font-semibold after:w-full"
@@ -130,9 +130,9 @@ const ContactButton = memo(function ContactButton({ label, pathname }: ContactBu
     <Link
       href="/#contact"
       onClick={handleClick}
-      className="bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all shadow-lg shadow-primary/20 flex items-center gap-2"
+      className="bg-primary hover:bg-primary/90 text-white px-3.5 xl:px-5 py-2 xl:py-2.5 rounded-full text-xs xl:text-sm font-medium transition-all shadow-lg shadow-primary/20 flex items-center gap-1.5 xl:gap-2 whitespace-nowrap flex-shrink-0"
     >
-      <Phone className="w-4 h-4" />
+      <Phone className="w-3.5 h-3.5 xl:w-4 xl:h-4 flex-shrink-0" />
       <span className="font-semibold">{label}</span>
     </Link>
   );
@@ -235,7 +235,7 @@ export const Header = memo(function Header({ logoUrl, hotline, email }: HeaderPr
             <Logo
               logoUrl={logoUrl}
               fallbackText="DMF"
-              className="h-12 w-auto object-contain"
+              className="h-10 xl:h-12 w-auto object-contain"
               height={48}
             />
           </Link>
@@ -248,7 +248,7 @@ export const Header = memo(function Header({ logoUrl, hotline, email }: HeaderPr
             <NavLink
               href="/"
               label={t.header.home}
-              icon={<Home className="w-4 h-4 inline-block mr-2" />}
+              icon={<Home className="w-3.5 h-3.5 xl:w-4 xl:h-4 hidden xl:inline-block mr-1.5" />}
               isActive={isActive("/")}
             />
 
@@ -262,7 +262,9 @@ export const Header = memo(function Header({ logoUrl, hotline, email }: HeaderPr
             <NavLink
               href="/blog"
               label={t.header.blog}
-              icon={<Newspaper className="w-4 h-4 inline-block mr-2" />}
+              icon={
+                <Newspaper className="w-3.5 h-3.5 xl:w-4 xl:h-4 hidden xl:inline-block mr-1.5" />
+              }
               isActive={isActive("/blog")}
             />
 

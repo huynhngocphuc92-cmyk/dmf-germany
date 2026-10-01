@@ -9,8 +9,8 @@ VALUES ('Fachkräfte aus Vietnam einstellen: Ihre Checkliste für das erste Gesp
 <p>Ergänzen Sie Arbeitsort, Arbeitszeiten, Schichtmodell und die im Alltag eingesetzten Werkzeuge oder Systeme. Fragen Sie die spätere Führungskraft: Welche Tätigkeit muss vom ersten Tag an sicher beherrscht werden? Was können wir intern vermitteln? So trennen Sie notwendige Voraussetzungen von Kenntnissen, die erst im Betrieb erworben werden.</p>
 <p>Auch das Bundesportal empfiehlt, vor der internationalen Suche den Personalbedarf zu prüfen und Stellenprofile konkret zu beschreiben. Die offizielle Orientierung finden Sie bei <a href="https://www.make-it-in-germany.com/de/unternehmen/rekrutieren/rekrutierungsweg/prozess">Make it in Germany zum Rekrutierungsprozess</a>.</p>
 <h2>2. Machen Sie Anforderungen überprüfbar</h2>
-<p><img src="/images/blog/dmf-betreuung-unterlagen.jpg" alt="Vorbereitungsmaterialien und strukturierte Anforderungsprofile bei DMF" /></p>
-<p><em>Einblick in die Vorbereitung: Strukturierte Unterlagen und Anforderungsprofile erleichtern die Klärung vor dem Auswahlgespräch.</em></p>
+<p><img src="/images/blog/dmf-vorstellungsgespraech-online.jpg" alt="Einblick in das digitale Auswahlgespräch bei DMF" /></p>
+<p><em>Einblick in das strukturierte Auswahlgespräch: Klare Anforderungen und gezielte Fachfragen erleichtern die Eignungsprüfung.</em></p>
 <p>Erstellen Sie zwei kurze Listen: „vor Arbeitsbeginn erforderlich“ und „im Betrieb erlernbar“. Beschreiben Sie jeweils, wie Sie die Anforderung im Auswahlgespräch prüfen möchten. Ein Lebenslauf ist ein Ausgangspunkt; eine konkrete Frage zu einem Arbeitsablauf kann Ihnen zusätzliche Anhaltspunkte geben.</p>
 <p>Halten Sie dabei diese Punkte fest:</p>
 <ul>
@@ -165,8 +165,6 @@ INSERT INTO posts (title, slug, excerpt, content, cover_image, status, meta_titl
 VALUES ('Onboarding internationaler Fachkräfte: Ein Plan für die ersten 90 Tage', 'onboarding-internationale-fachkraefte-90-tage', 'Ein vorgeschlagener 90-Tage-Plan hilft, Einarbeitung und Zusammenarbeit vorzubereiten. Entscheidend sind klare Zuständigkeiten und regelmäßiges Feedback.', '<p>Der Arbeitsvertrag ist unterschrieben. Jetzt stellt sich im Betrieb eine praktische Frage: Wie organisieren wir den Einstieg so, dass die neue Kollegin oder der neue Kollege Aufgaben, Ansprechpartner und Arbeitsabläufe kennenlernt? Ein vorbereiteter Ablauf gibt allen Beteiligten eine gemeinsame Orientierung.</p>
 <p>Der folgende 90-Tage-Plan ist ein redaktioneller Vorschlag für Arbeitgeber, auch bei der Einstellung aus Vietnam. Die Zeitabschnitte sind Orientierungspunkte. Sie sind weder eine Zusage, dass die Einarbeitung nach 90 Tagen abgeschlossen ist, noch eine Beschreibung eines vertraglichen DMF-Betreuungsangebots. Passen Sie den Plan an Beruf, Person und Betrieb an.</p>
 <h2>Vor dem Start: Ein Arbeitsblatt und klare Zuständigkeiten</h2>
-<p><img src="/images/blog/dmf-ausreise-flughafen.jpg" alt="Abreise und Vorbereitung auf das Eintreffen in Deutschland" /></p>
-<p><em>Vor dem ersten Arbeitstag: Klare Absprachen zu Ankunft, Unterkunft und behördlichen Schritten schaffen Verlässlichkeit für Betrieb und Mitarbeiter.</em></p>
 <p>Erstellen Sie ein gemeinsames Arbeitsblatt mit vier Feldern: <strong>Aufgabe, zuständige Person, vorgesehener Termin und Status</strong>. Tragen Sie nur Punkte ein, die für den Einstieg tatsächlich relevant sind:</p>
 <ul>
 <li><strong>Behördliche Pflichten:</strong> Anmeldung beim Einwohnermeldeamt (Bürgeramt), Beantragung der Steuer-ID und Sozialversicherungsnummer sowie die termingerechte Vorsprache bei der Ausländerbehörde zur Ausstellung des elektronischen Aufenthaltstitels (eAT).</li>
@@ -240,8 +238,6 @@ INSERT INTO posts (title, slug, excerpt, content, cover_image, status, meta_titl
 VALUES ('Azubis aus Vietnam: So bereitet sich der Ausbildungsbetrieb optimal vor', 'azubis-aus-vietnam-vorbereitung-ausbildungsbetrieb', 'Was muss ein Betrieb vorbereiten, bevor Auszubildende aus Vietnam starten? Dieser Leitfaden strukturiert Betreuung, Wohnraum und den Einstieg in die duale Ausbildung.', '<p>Der Entschluss ist gefasst: Ihr Betrieb möchte eine Ausbildungsstelle mit einer motivierten Nachwuchskraft aus Vietnam besetzen. Damit die duale Ausbildung für beide Seiten ein langfristiger Erfolg wird, reicht ein unterschriebener Ausbildungsvertrag allein nicht aus. Vor dem offiziellen Starttermin am 1. August oder 1. September müssen organisatorische, fachliche und menschliche Weichen im Unternehmen gestellt werden.</p>
 <p>Dieser redaktionelle Leitfaden fasst die wichtigsten Vorbereitungsschritte zusammen. Er hilft Ausbildungsleitern, Personalverantwortlichen und Geschäftsführern, typische Reibungsverluste zu vermeiden und den Einstieg verlässlich zu strukturieren.</p>
 <h2>1. Persönliche Betreuung festlegen: Ausbilder und Mentor trennen</h2>
-<p><img src="/images/blog/dmf-klassenzimmer.jpg" alt="Vorbereitung angehender Auszubildender im Unterricht bei DMF" /></p>
-<p><em>Ausbildungsvorbereitung in Vietnam: Eine solide fachliche und sprachliche Basis erleichtert den Einstieg im deutschen Ausbildungsbetrieb.</em></p>
 <p>In der dualen Ausbildung ist die formale Ausbildungsleitung durch die Kammern (IHK oder HWK) vorgeschrieben. Bei internationalen Auszubildenden hat sich in der Praxis jedoch eine zweigeteilte Begleitung bewährt:</p>
 <ul>
 <li><strong>Der fachliche Ausbilder:</strong> Vermittelt die Ausbildungsinhalte nach dem Rahmenlehrplan, führt regelmäßige Feedbackgespräche und überwacht den Ausbildungsnachweis (Berichtsheft).</li>
@@ -330,8 +326,6 @@ VALUES ('Deutsch im Arbeitsalltag: Sprachliche Anforderungen realistisch bewerte
 <p>In der betrieblichen Praxis stellen sich Arbeitgeber jedoch häufig eine andere Frage: Was bedeutet ein bestandenes B1- oder B2-Zertifikat tatsächlich für das tägliche Miteinander in der Werkstatt, auf der Pflegestation oder auf der Baustelle?</p>
 <p>Dieser redaktionelle Leitfaden erläutert, wie Personalverantwortliche und Führungskräfte Sprachkompetenzen im Vorstellungsgespräch praxisnah überprüfen und wie sprachliche Hürden im Betrieb systematisch abgebaut werden können.</p>
 <h2>1. Sprachzertifikat vs. Arbeitsalltag: Was der GER aussagt</h2>
-<p><img src="/images/blog/dmf-sprachuebung-tablet.jpg" alt="Deutschübung auf einem Tablet mit Aufgaben zum Leseverständnis bei DMF" /></p>
-<p><em>Gezielte Lese- und Verständnisübungen: Praxistraining bereitet Kandidaten auf berufstypische Formulierungen vor.</em></p>
 <p>Ein Sprachzertifikat belegt, dass eine Person Grammatikregeln, Leseverständnis, Hörverstehen und schriftlichen Ausdruck unter standardisierten Prüfungsbedingungen beherrscht. Es ist ein verlässlicher Nachweis für Lernfähigkeit, Disziplin und Grundlagenwissen.</p>
 <p>Gleichzeitig unterscheidet sich ein Prüfungsszenario wesentlich vom betrieblichen Alltag:</p>
 <ul>
@@ -434,8 +428,6 @@ VALUES ('Vom Personalbedarf zum abgestimmten Suchprofil: Typische Hürden vermei
 <p>Wer in seinem Suchprofil zwingend verlangt, dass Bewerber deutsche Normen bereits vor Arbeitsantritt auswendig beherrschen, schließt hochqualifizierte Fachkräfte aus, die den fachlichen Kern der Aufgabe exzellent beherrschen und Detailwissen rasch nachholen könnten.</p>
 <p>Offizielle Informationen zur Erstellung von Stellenprofilen für internationale Fachkräfte stellt <a href="https://www.make-it-in-germany.com/de/unternehmen/rekrutieren/rekrutierungsweg/anforderungsprofil">Make it in Germany zum Thema Anforderungsprofil</a> bereit.</p>
 <h2>2. Die Unterscheidung: „Must-have“ vs. „Im Betrieb erlernbar“</h2>
-<p><img src="/images/blog/dmf-unterricht-materialien.jpg" alt="Zwei Lernende mit Unterrichtsmaterialien bei der fachlichen Vorbereitung" /></p>
-<p><em>Lernfeld Betrieb und Ausbildung: Fachliche Grundkenntnisse bilden das Fundament, auf dem betriebsspezifische Fertigkeiten aufgebaut werden.</em></p>
 <p>Ein tragfähiges internationales Suchprofil unterscheidet strikt zwischen zwei Kategorien:</p>
 <h3>A. Unverzichtbare Voraussetzungen vor Einreise (Must-have)</h3>
 <ul>
@@ -1057,8 +1049,6 @@ VALUES ('Wohnraum für internationale Azubis und Fachkräfte: Praxislösungen f�
 <li><strong>Zwei eigenständige Verträge:</strong> Schließen Sie neben dem Ausbildungs- oder Arbeitsvertrag einen eigenständigen <strong>Untermietvertrag</strong> ab. Die Kündigung des Arbeitsverhältnisses führt im deutschen Mietrecht nicht automatisch zur Beendigung des Mietverhältnisses.</li>
 <li><strong>Steuerliche Sachbezugswerte beachten:</strong> Stellt der Betrieb die Unterkunft kostenfrei oder verbilligt zur Verfügung, handelt es sich um einen geldwerten Vorteil (Sachbezug nach der Sozialversicherungsentgeltverordnung – SvEV). Für freie Unterkunft setzt der Gesetzgeber feste monatliche amtliche Sachbezugswerte an, die der Lohnsteuer und den Sozialabgaben unterliegen. Bei marktüblicher Mietzahlung durch den Mitarbeiter entfällt dieser bürokratische Mehraufwand.</li>
 </ol>
-<p><img src="/images/blog/dmf-wohnraum-azubi-unterkunft.jpg" alt="Unterkunft und Wohnumfeld für Auszubildende" /></p>
-<p><em>Sichere und angemessene Unterkunft: Die Klärung der Wohnsituation ist Voraussetzung für die Visumerteilung und das Wohlbefinden im Betrieb.</em></p>
 <h2>Erstausstattung: Ein schlüsselfertiges Zuhause schaffen</h2>
 <p>Auszubildende und Fachkräfte reisen mit zwei Koffern ein. Eine unmöblierte Wohnung führt in den ersten Tagen zu Frustration und unnötigem Stress.</p>
 <p>Eine praxistaugliche Mindestausstattung umfasst:</p>
@@ -1227,8 +1217,6 @@ VALUES ('IT-Spezialisten aus Vietnam: Softwareentwickler, DevOps und Blaue Karte
 </ul>
 <h2>Sprache im Entwicklerteam: Englisch im Code, Deutsch im Alltag</h2>
 <p>Einer der größten Vorteile der IT-Branche ist die globale Verkehrssprache: Programmiersprachen, Dokumentationen und Ticketsysteme sind ohnehin auf Englisch verfasst.</p>
-<p><img src="/images/blog/dmf-it-arbeitsplaetze-schulung.jpg" alt="Moderne IT-Arbeitsplätze und Software-Schulung bei DMF" /></p>
-<p><em>Moderne IT-Arbeitsplätze und digitale Infrastruktur: Praxisorientierte Vorbereitung auf deutsche Entwicklungsteams.</em></p>
 <p>Für eine nachhaltige und langfristige Bindung an das Unternehmen fördert DMF jedoch parallel den Spracherwerb:</p>
 <ul>
 <li><strong>Englischkenntnisse:</strong> Die meisten IT-Bewerber sprechen fließend technisches Englisch und können sofort in internationalen Entwicklungsteams mitwirken.</li>
@@ -1944,8 +1932,6 @@ VALUES ('Solarteure und Photovoltaik-Monteure aus Vietnam: Fachkräfte für die 
 <li><strong>Praxis in Großprojekten:</strong> Viele Kandidaten haben jahrelang an Solarparks mit Megawatt-Leistungen oder an komplexen Industrieaufdachanlagen gearbeitet. Sie beherrschen das Lesen von Stromlaufplänen und den sicheren Umgang mit Drehmomentschlüsseln und Crimpwerkzeugen.</li>
 <li><strong>Arbeitssicherheit auf dem Dach:</strong> Vietnamesische Monteure, die über DMF vorbereitet werden, durchlaufen intensive Schulungen zur Persönlichen Schutzausrüstung gegen Absturz (PSAgA) gemäß den Berufsgenossenschaftsvorgaben der BG BAU.</li>
 </ul>
-<p><img src="/images/blog/dmf-solar-elektro-schulung.jpg" alt="Praktische Schulung an Schaltschränken und elektrotechnischen Komponenten" /></p>
-<p><em>Praktische Vorbereitung in Vietnam: Fachkräfte vertiefen den Aufbau von Schaltanlagen und Messmethoden vor der Ausreise.</em></p>
 <h2>Rechtlicher Rahmen: Fachkräftevisum nach § 18a AufenthG</h2>
 <p>Für Solarteure und Elektromonteure mit anerkanntem Kollegabschluss erfolgt die Einreise regulär über das Fachkräfteeinwanderungsgesetz:</p>
 <ol>
@@ -2015,8 +2001,6 @@ VALUES ('Kfz-Mechatroniker aus Vietnam: Fachkräfte für Hochvoltsysteme und mod
 <li><strong>Umgang mit modernsten Diagnosetestern:</strong> Die Kandidaten sind geübt im Auslesen von Fehlerspeichern über OBD-II, der Interpretation von Oszilloskop-Signalen und der systematischen Fehlersuche in Bussystemen.</li>
 <li><strong>Herstellerstandards:</strong> Viele Mechatroniker haben mehrjährige Praxiserfahrung in autorisierten Servicezentren namhafter Hersteller (u. a. Toyota, Hyundai, VinFast, Mercedes-Benz) gesammelt.</li>
 </ul>
-<p><img src="/images/blog/dmf-kfz-diagnose-labor.jpg" alt="Diagnosetraining und Arbeit mit elektronischen Prüfständen" /></p>
-<p><em>Praxisorientiertes Diagnosetraining: Fachkräfte analysieren Fehlercodes und Steuergerätefunktionen an modernen Prüfständen.</em></p>
 <h2>Anerkennungsverfahren und Visumerteilung (§ 18a AufenthG)</h2>
 <p>Die rechtliche Einreise basiert auf dem Fachkräfteeinwanderungsgesetz:</p>
 <ol>
@@ -2094,8 +2078,6 @@ VALUES ('Das Gütesiegel „Faire Anwerbung Pflege Deutschland“: Qualitätssta
 <li><strong>Reputationsverlust bei Kontrollen:</strong> Behörden und Berufsverbände prüfen zunehmend, ob kooperierende Agenturen ethische Standards einhalten. Träger, die mit zertifizierten Partnern arbeiten, sind vor Vorwürfen der Ausbeutung geschützt.</li>
 <li><strong>Hohe Mitarbeiterloyalität:</strong> Pflegekräfte, die wissen, dass ihr Arbeitgeber ihre Ausbildung und Reise fair finanziert hat, identifizieren sich stark mit der Einrichtung und bleiben langfristig im Team.</li>
 </ul>
-<p><img src="/images/blog/dmf-klinik-partner-audit.jpg" alt="Gemeinsames Audit und Beratungsgespräch mit Vertretern deutscher Pflegeeinrichtungen" /></p>
-<p><em>Transparenz vor Ort: Deutsche Trägervertreter überzeugen sich persönlich von den fairen Ausbildungsbedingungen an der DMF-Akademie.</em></p>
 <h2>Der Ablauf einer fairen Rekrutierung aus Vietnam</h2>
 <p>Die faire Gewinnung vietnamesischer Pflegekräfte folgt einem transparenten Fünf-Stufen-Modell:</p>
 <ol>
@@ -2176,8 +2158,6 @@ VALUES ('Operationstechnische Assistenten (OTA) und ATA aus Vietnam: Hochqualifi
 <li><strong>OP-Saal-Erfahrung:</strong> Bereits während des Studiums absolvieren Studierende über 1.500 Praxisstunden im OP-Bereich unter fachärztlicher und pflegerischer Anleitung.</li>
 <li><strong>Umgang mit Hochdruck-Situationen:</strong> Vietnamesische Spitzenkliniken behandeln enorme Patientenzahlen. Die Fachkräfte sind stressresistent, teamorientiert und behalten auch bei Notfällen die Ruhe und Konzentration.</li>
 </ul>
-<p><img src="/images/blog/dmf-medizin-simulation-saal.jpg" alt="Simulationstraining und Instrumentenkunde in modernen Schulungssälen" /></p>
-<p><em>OP-Simulation und Instrumentenlehre: Fachkräfte üben den sterilen Ablauf und die zügige Instrumentenübergabe vor der Einreise nach Deutschland.</em></p>
 <h2>Spezifische Fachsprache im Operationssaal</h2>
 <p>Im OP-Saal gibt es keinen Raum für sprachliche Missverständnisse. DMF Talents schult Kandidaten über das allgemeine B2-Niveau hinaus intensiv in OP-Fachdeutsch:</p>
 <ul>
@@ -2654,8 +2634,6 @@ VALUES ('Fachkräfte für den Hoch- und Tiefbau aus Vietnam: Maurer, Betonbauer 
 <li><strong>Praxis auf Großbaustellen:</strong> Viele Fachkräfte waren jahrelang auf anspruchsvollen Industrie- und Hochhausbaustellen renommierter asiatischer und europäischer Baukonzerne im Einsatz. Sie beherrschen den sicheren Umgang mit modernen Systemschalungen, Betonpumpen und Rüttelflaschen.</li>
 <li><strong>Arbeitssicherheit auf der Baustelle:</strong> Die Fachkräfte durchlaufen vor Ausreise intensive Schulungen zu Absturzsicherungen, Gerüstbenutzung und Baustellenordnung gemäß den Vorschriften der Berufsgenossenschaft der Bauwirtschaft (BG BAU).</li>
 </ul>
-<p><img src="/images/blog/dmf-bau-handwerk-simulation.jpg" alt="Praktische Handwerksübung an Mauerwerk und Bauelementen" /></p>
-<p><em>Praxisnahe Fertigkeiten: Fachkräfte trainieren den präzisen Aufbau von Mauerwerksverbänden und Schalungen nach deutschen Vorgaben.</em></p>
 <h2>Wichtige Besonderheiten: SOKA-BAU, BRTV und Saison-KUG</h2>
 <p>Für ausländische Fachkräfte im Baugewerbe gelten in Deutschland zwingend die Regelungen des Bundesrahmentarifvertrags für das Baugewerbe (BRTV):</p>
 <ol>
@@ -2740,8 +2718,6 @@ VALUES ('Maler, Lackierer und Trockenbauer aus Vietnam: Qualifizierte Fachkräft
 <li><strong>Präzision bei Feinarbeiten:</strong> Durch die florierende Fertigung von Luxus-Exportmöbeln und anspruchsvollen Hotelinnenausbauten beherrschen vietnamesische Handwerker das Schleifen, Grundieren und Lackieren auf Weltmarktniveau.</li>
 <li><strong>Airless- und Spritzlackiertechnik:</strong> Vertrautheit mit modernen Hochdruck-Farbspritzgeräten (Airless/Airmix) für den rationellen Farbauftrag auf großen Wand- und Deckenflächen.</li>
 </ul>
-<p><img src="/images/blog/dmf-lackier-ausbau-training.jpg" alt="Praktische Übung an Wandflächen und Farbauftrag" /></p>
-<p><em>Handwerkliche Präzision: Ausbaufachkräfte trainieren den gleichmäßigen Farbauftrag und saubere Schnittkanten vor der Ausreise.</em></p>
 <h2>Rechtliche Voraussetzungen für Betriebe</h2>
 <p>Die Rekrutierung von Malern, Lackierern und Trockenbauern erfolgt über bewährte Pfade des Fachkräfteeinwanderungsgesetzes:</p>
 <ol>
@@ -2821,8 +2797,6 @@ VALUES ('Fachkräfte für Lagerlogistik und Berufskraftfahrer aus Vietnam: Recht
 <li><strong>Flurförderzeuge (Staplerschein):</strong> Viele Fachkräfte beherrschen das Führen von Frontstaplern, Schubmaststaplern und Hochregalstaplern aus modernen Distributionszentren in Vietnam.</li>
 <li><strong>Digitale Lagerverwaltung:</strong> Sicherer Umgang mit Barcode-Scannern, RFID-Systemen und führenden WMS-Softwarelösungen (z. B. SAP EWM).</li>
 </ul>
-<p><img src="/images/blog/dmf-logistik-arbeitsplatz-training.jpg" alt="Arbeit am Logistikarbeitsplatz und Umgang mit Scannersystemen" /></p>
-<p><em>Digitales Lagermanagement: Fachkräfte trainieren vor der Ausreise die zügige Kommissionierung und korrekte Buchung im Warenwirtschaftssystem.</em></p>
 <h2>Die drei Säulen der betrieblichen Vorbereitung</h2>
 <p>Damit internationale Fahrer und Lagerfachkräfte rasch einsatzfähig werden, sollten Speditionen folgende Punkte einplanen:</p>
 <ol>

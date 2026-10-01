@@ -42,9 +42,6 @@ Für Logistikzentren, Paketverteilzentren und industrielle Werkslager sind Fachk
 - **Flurförderzeuge (Staplerschein):** Viele Fachkräfte beherrschen das Führen von Frontstaplern, Schubmaststaplern und Hochregalstaplern aus modernen Distributionszentren in Vietnam.
 - **Digitale Lagerverwaltung:** Sicherer Umgang mit Barcode-Scannern, RFID-Systemen und führenden WMS-Softwarelösungen (z. B. SAP EWM).
 
-![Arbeit am Logistikarbeitsplatz und Umgang mit Scannersystemen](/images/blog/dmf-logistik-arbeitsplatz-training.jpg)
-_Digitales Lagermanagement: Fachkräfte trainieren vor der Ausreise die zügige Kommissionierung und korrekte Buchung im Warenwirtschaftssystem._
-
 ## Die drei Säulen der betrieblichen Vorbereitung
 
 Damit internationale Fahrer und Lagerfachkräfte rasch einsatzfähig werden, sollten Speditionen folgende Punkte einplanen:

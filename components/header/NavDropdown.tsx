@@ -37,15 +37,15 @@ export const NavDropdown = memo(function NavDropdown({
     <div className="relative group">
       <button
         className={cn(
-          "px-2.5 xl:px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-1 relative whitespace-nowrap",
+          "px-2 xl:px-3.5 py-2 rounded-lg text-xs xl:text-sm font-medium transition-colors flex items-center gap-1 relative whitespace-nowrap",
           "hover:text-primary",
           "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full",
           isAnyActive && "text-primary font-semibold after:w-full"
         )}
       >
-        {Icon && <Icon className="w-4 h-4 inline-block mr-2" />}
+        {Icon && <Icon className="w-3.5 h-3.5 xl:w-4 xl:h-4 hidden xl:inline-block mr-1.5" />}
         {label}
-        <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
+        <ChevronDown className="w-3.5 h-3.5 xl:w-4 xl:h-4 transition-transform group-hover:rotate-180" />
       </button>
 
       {/* Dropdown Content */}

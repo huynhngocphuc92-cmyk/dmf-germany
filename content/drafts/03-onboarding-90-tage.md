@@ -16,9 +16,6 @@ Der folgende 90-Tage-Plan ist ein redaktioneller Vorschlag für Arbeitgeber, auc
 
 ## Vor dem Start: Ein Arbeitsblatt und klare Zuständigkeiten
 
-![Abreise und Vorbereitung auf das Eintreffen in Deutschland](/images/blog/dmf-ausreise-flughafen.jpg)
-_Vor dem ersten Arbeitstag: Klare Absprachen zu Ankunft, Unterkunft und behördlichen Schritten schaffen Verlässlichkeit für Betrieb und Mitarbeiter._
-
 Erstellen Sie ein gemeinsames Arbeitsblatt mit vier Feldern: **Aufgabe, zuständige Person, vorgesehener Termin und Status**. Tragen Sie nur Punkte ein, die für den Einstieg tatsächlich relevant sind:
 
 - **Behördliche Pflichten:** Anmeldung beim Einwohnermeldeamt (Bürgeramt), Beantragung der Steuer-ID und Sozialversicherungsnummer sowie die termingerechte Vorsprache bei der Ausländerbehörde zur Ausstellung des elektronischen Aufenthaltstitels (eAT).

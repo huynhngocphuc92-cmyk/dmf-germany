@@ -47,9 +47,6 @@ Vietnamesische Softwareingenieure genießen in internationalen Tech-Konzernen (u
 
 Einer der größten Vorteile der IT-Branche ist die globale Verkehrssprache: Programmiersprachen, Dokumentationen und Ticketsysteme sind ohnehin auf Englisch verfasst.
 
-![Moderne IT-Arbeitsplätze und Software-Schulung bei DMF](/images/blog/dmf-it-arbeitsplaetze-schulung.jpg)
-_Moderne IT-Arbeitsplätze und digitale Infrastruktur: Praxisorientierte Vorbereitung auf deutsche Entwicklungsteams._
-
 Für eine nachhaltige und langfristige Bindung an das Unternehmen fördert DMF jedoch parallel den Spracherwerb:
 
 - **Englischkenntnisse:** Die meisten IT-Bewerber sprechen fließend technisches Englisch und können sofort in internationalen Entwicklungsteams mitwirken.

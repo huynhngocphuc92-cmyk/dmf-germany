@@ -31,7 +31,9 @@ export const LanguageSwitcher = memo(function LanguageSwitcher({
           onClick={() => setLang(langOption.code)}
           className={cn(
             "rounded-md font-semibold transition-all duration-200",
-            isDesktop ? "px-4 py-2 text-sm" : "px-2.5 py-1.5 text-xs",
+            isDesktop
+              ? "px-2.5 xl:px-4 py-1.5 xl:py-2 text-xs xl:text-sm"
+              : "px-2.5 py-1.5 text-xs",
             lang === langOption.code
               ? "bg-blue-600 text-white shadow-md shadow-blue-600/30"
               : "bg-transparent text-slate-600 hover:bg-slate-200 hover:text-slate-800"

@@ -18,9 +18,6 @@ Dieser redaktionelle Leitfaden erläutert, wie Personalverantwortliche und Führ
 
 ## 1. Sprachzertifikat vs. Arbeitsalltag: Was der GER aussagt
 
-![Deutschübung auf einem Tablet mit Aufgaben zum Leseverständnis bei DMF](/images/blog/dmf-sprachuebung-tablet.jpg)
-_Gezielte Lese- und Verständnisübungen: Praxistraining bereitet Kandidaten auf berufstypische Formulierungen vor._
-
 Ein Sprachzertifikat belegt, dass eine Person Grammatikregeln, Leseverständnis, Hörverstehen und schriftlichen Ausdruck unter standardisierten Prüfungsbedingungen beherrscht. Es ist ein verlässlicher Nachweis für Lernfähigkeit, Disziplin und Grundlagenwissen.
 
 Gleichzeitig unterscheidet sich ein Prüfungsszenario wesentlich vom betrieblichen Alltag:

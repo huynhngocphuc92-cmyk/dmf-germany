@@ -40,9 +40,6 @@ Vietnamesische Maler und Ausbaufachkräfte bringen exzellente Grundfertigkeiten 
 - **Präzision bei Feinarbeiten:** Durch die florierende Fertigung von Luxus-Exportmöbeln und anspruchsvollen Hotelinnenausbauten beherrschen vietnamesische Handwerker das Schleifen, Grundieren und Lackieren auf Weltmarktniveau.
 - **Airless- und Spritzlackiertechnik:** Vertrautheit mit modernen Hochdruck-Farbspritzgeräten (Airless/Airmix) für den rationellen Farbauftrag auf großen Wand- und Deckenflächen.
 
-![Praktische Übung an Wandflächen und Farbauftrag](/images/blog/dmf-lackier-ausbau-training.jpg)
-_Handwerkliche Präzision: Ausbaufachkräfte trainieren den gleichmäßigen Farbauftrag und saubere Schnittkanten vor der Ausreise._
-
 ## Rechtliche Voraussetzungen für Betriebe
 
 Die Rekrutierung von Malern, Lackierern und Trockenbauern erfolgt über bewährte Pfade des Fachkräfteeinwanderungsgesetzes:

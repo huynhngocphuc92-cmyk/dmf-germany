@@ -5,7 +5,7 @@ import { useLanguage } from "@/components/providers/LanguageProvider";
 import { Button } from "@/components/ui/button";
 import { BLUR_LANDSCAPE } from "@/lib/image-placeholder";
 import { format } from "date-fns";
-import { de, vi } from "date-fns/locale";
+import { de, vi, enUS } from "date-fns/locale";
 import { motion } from "framer-motion";
 import parse from "html-react-parser";
 import { ArrowLeft, Calendar, Clock, FileText, Share2 } from "lucide-react";
@@ -66,9 +66,9 @@ function calculateReadTime(content: string): number {
 
 export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) {
   const { lang: currentLang } = useLanguage();
-  const lang = currentLang as "de" | "vn";
-  const t = translations[lang];
-  const dateLocale = lang === "vn" ? vi : de;
+  const lang = (currentLang as "de" | "en" | "vn") || "de";
+  const t = translations[lang] || translations.de;
+  const dateLocale = lang === "vn" ? vi : lang === "en" ? enUS : de;
 
   // Share handler
   const handleShare = async () => {
@@ -85,7 +85,7 @@ export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) 
     } else {
       // Fallback: copy to clipboard
       navigator.clipboard.writeText(window.location.href);
-      alert(lang === "vn" ? "Đã sao chép link!" : "Link kopiert!");
+      alert(lang === "vn" ? "Đã sao chép link!" : lang === "en" ? "Link copied!" : "Link kopiert!");
     }
   };
 

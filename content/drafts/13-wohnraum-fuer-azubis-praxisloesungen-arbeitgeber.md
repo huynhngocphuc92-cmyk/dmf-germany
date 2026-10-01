@@ -47,9 +47,6 @@ Aus arbeits- und mietrechtlicher Sicht empfiehlt sich eine saubere juristische T
 1. **Zwei eigenständige Verträge:** Schließen Sie neben dem Ausbildungs- oder Arbeitsvertrag einen eigenständigen **Untermietvertrag** ab. Die Kündigung des Arbeitsverhältnisses führt im deutschen Mietrecht nicht automatisch zur Beendigung des Mietverhältnisses.
 2. **Steuerliche Sachbezugswerte beachten:** Stellt der Betrieb die Unterkunft kostenfrei oder verbilligt zur Verfügung, handelt es sich um einen geldwerten Vorteil (Sachbezug nach der Sozialversicherungsentgeltverordnung – SvEV). Für freie Unterkunft setzt der Gesetzgeber feste monatliche amtliche Sachbezugswerte an, die der Lohnsteuer und den Sozialabgaben unterliegen. Bei marktüblicher Mietzahlung durch den Mitarbeiter entfällt dieser bürokratische Mehraufwand.
 
-![Unterkunft und Wohnumfeld für Auszubildende](/images/blog/dmf-wohnraum-azubi-unterkunft.jpg)
-_Sichere und angemessene Unterkunft: Die Klärung der Wohnsituation ist Voraussetzung für die Visumerteilung und das Wohlbefinden im Betrieb._
-
 ## Erstausstattung: Ein schlüsselfertiges Zuhause schaffen
 
 Auszubildende und Fachkräfte reisen mit zwei Koffern ein. Eine unmöblierte Wohnung führt in den ersten Tagen zu Frustration und unnötigem Stress.

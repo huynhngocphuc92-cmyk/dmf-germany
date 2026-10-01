@@ -24,8 +24,8 @@ Auch das Bundesportal empfiehlt, vor der internationalen Suche den Personalbedar
 
 ## 2. Machen Sie Anforderungen überprüfbar
 
-![Vorbereitungsmaterialien und strukturierte Anforderungsprofile bei DMF](/images/blog/dmf-betreuung-unterlagen.jpg)
-_Einblick in die Vorbereitung: Strukturierte Unterlagen und Anforderungsprofile erleichtern die Klärung vor dem Auswahlgespräch._
+![Einblick in das digitale Auswahlgespräch bei DMF](/images/blog/dmf-vorstellungsgespraech-online.jpg)
+_Einblick in das strukturierte Auswahlgespräch: Klare Anforderungen und gezielte Fachfragen erleichtern die Eignungsprüfung._
 
 Erstellen Sie zwei kurze Listen: „vor Arbeitsbeginn erforderlich“ und „im Betrieb erlernbar“. Beschreiben Sie jeweils, wie Sie die Anforderung im Auswahlgespräch prüfen möchten. Ein Lebenslauf ist ein Ausgangspunkt; eine konkrete Frage zu einem Arbeitsablauf kann Ihnen zusätzliche Anhaltspunkte geben.
 

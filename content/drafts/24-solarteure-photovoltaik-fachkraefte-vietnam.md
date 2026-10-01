@@ -39,9 +39,6 @@ Um die Eignung vietnamesischer Solarteure realistisch zu bewerten, lohnt der Bli
 - **Praxis in Großprojekten:** Viele Kandidaten haben jahrelang an Solarparks mit Megawatt-Leistungen oder an komplexen Industrieaufdachanlagen gearbeitet. Sie beherrschen das Lesen von Stromlaufplänen und den sicheren Umgang mit Drehmomentschlüsseln und Crimpwerkzeugen.
 - **Arbeitssicherheit auf dem Dach:** Vietnamesische Monteure, die über DMF vorbereitet werden, durchlaufen intensive Schulungen zur Persönlichen Schutzausrüstung gegen Absturz (PSAgA) gemäß den Berufsgenossenschaftsvorgaben der BG BAU.
 
-![Praktische Schulung an Schaltschränken und elektrotechnischen Komponenten](/images/blog/dmf-solar-elektro-schulung.jpg)
-_Praktische Vorbereitung in Vietnam: Fachkräfte vertiefen den Aufbau von Schaltanlagen und Messmethoden vor der Ausreise._
-
 ## Rechtlicher Rahmen: Fachkräftevisum nach § 18a AufenthG
 
 Für Solarteure und Elektromonteure mit anerkanntem Kollegabschluss erfolgt die Einreise regulär über das Fachkräfteeinwanderungsgesetz:

@@ -43,9 +43,6 @@ Um die fachliche Kompetenz vietnamesischer Kandidaten einzuschätzen, ist ein Bl
 - **OP-Saal-Erfahrung:** Bereits während des Studiums absolvieren Studierende über 1.500 Praxisstunden im OP-Bereich unter fachärztlicher und pflegerischer Anleitung.
 - **Umgang mit Hochdruck-Situationen:** Vietnamesische Spitzenkliniken behandeln enorme Patientenzahlen. Die Fachkräfte sind stressresistent, teamorientiert und behalten auch bei Notfällen die Ruhe und Konzentration.
 
-![Simulationstraining und Instrumentenkunde in modernen Schulungssälen](/images/blog/dmf-medizin-simulation-saal.jpg)
-_OP-Simulation und Instrumentenlehre: Fachkräfte üben den sterilen Ablauf und die zügige Instrumentenübergabe vor der Einreise nach Deutschland._
-
 ## Spezifische Fachsprache im Operationssaal
 
 Im OP-Saal gibt es keinen Raum für sprachliche Missverständnisse. DMF Talents schult Kandidaten über das allgemeine B2-Niveau hinaus intensiv in OP-Fachdeutsch:

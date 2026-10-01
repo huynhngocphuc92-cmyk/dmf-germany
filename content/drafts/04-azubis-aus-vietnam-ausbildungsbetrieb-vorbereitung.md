@@ -16,9 +16,6 @@ Dieser redaktionelle Leitfaden fasst die wichtigsten Vorbereitungsschritte zusam
 
 ## 1. Persönliche Betreuung festlegen: Ausbilder und Mentor trennen
 
-![Vorbereitung angehender Auszubildender im Unterricht bei DMF](/images/blog/dmf-klassenzimmer.jpg)
-_Ausbildungsvorbereitung in Vietnam: Eine solide fachliche und sprachliche Basis erleichtert den Einstieg im deutschen Ausbildungsbetrieb._
-
 In der dualen Ausbildung ist die formale Ausbildungsleitung durch die Kammern (IHK oder HWK) vorgeschrieben. Bei internationalen Auszubildenden hat sich in der Praxis jedoch eine zweigeteilte Begleitung bewährt:
 
 - **Der fachliche Ausbilder:** Vermittelt die Ausbildungsinhalte nach dem Rahmenlehrplan, führt regelmäßige Feedbackgespräche und überwacht den Ausbildungsnachweis (Berichtsheft).

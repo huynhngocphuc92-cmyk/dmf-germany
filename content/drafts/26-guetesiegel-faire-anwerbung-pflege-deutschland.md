@@ -42,9 +42,6 @@ Für den deutschen Arbeitgeber birgt dies erhebliche Risiken:
 - **Reputationsverlust bei Kontrollen:** Behörden und Berufsverbände prüfen zunehmend, ob kooperierende Agenturen ethische Standards einhalten. Träger, die mit zertifizierten Partnern arbeiten, sind vor Vorwürfen der Ausbeutung geschützt.
 - **Hohe Mitarbeiterloyalität:** Pflegekräfte, die wissen, dass ihr Arbeitgeber ihre Ausbildung und Reise fair finanziert hat, identifizieren sich stark mit der Einrichtung und bleiben langfristig im Team.
 
-![Gemeinsames Audit und Beratungsgespräch mit Vertretern deutscher Pflegeeinrichtungen](/images/blog/dmf-klinik-partner-audit.jpg)
-_Transparenz vor Ort: Deutsche Trägervertreter überzeugen sich persönlich von den fairen Ausbildungsbedingungen an der DMF-Akademie._
-
 ## Der Ablauf einer fairen Rekrutierung aus Vietnam
 
 Die faire Gewinnung vietnamesischer Pflegekräfte folgt einem transparenten Fünf-Stufen-Modell:

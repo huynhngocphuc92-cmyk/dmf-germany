@@ -39,9 +39,6 @@ Vietnamesische Kfz-Fachkräfte bringen fundiertes Fachwissen mit:
 - **Umgang mit modernsten Diagnosetestern:** Die Kandidaten sind geübt im Auslesen von Fehlerspeichern über OBD-II, der Interpretation von Oszilloskop-Signalen und der systematischen Fehlersuche in Bussystemen.
 - **Herstellerstandards:** Viele Mechatroniker haben mehrjährige Praxiserfahrung in autorisierten Servicezentren namhafter Hersteller (u. a. Toyota, Hyundai, VinFast, Mercedes-Benz) gesammelt.
 
-![Diagnosetraining und Arbeit mit elektronischen Prüfständen](/images/blog/dmf-kfz-diagnose-labor.jpg)
-_Praxisorientiertes Diagnosetraining: Fachkräfte analysieren Fehlercodes und Steuergerätefunktionen an modernen Prüfständen._
-
 ## Anerkennungsverfahren und Visumerteilung (§ 18a AufenthG)
 
 Die rechtliche Einreise basiert auf dem Fachkräfteeinwanderungsgesetz:
