@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="720" height="540" fill="#f8fafc" rx="16"/>
+  <rect x="24" y="24" width="672" height="64" rx="12" fill="#1e3a5f"/>
+  <text x="48" y="52" fill="#ffffff" font-family="system-ui, sans-serif" font-size="18" font-weight="700">Duales Studium vs. Duale Ausbildung (§ 16b vs. § 16a AufenthG)</text>
+  <text x="48" y="72" fill="#93c5fd" font-family="system-ui, sans-serif" font-size="13">Vergleich für forschende Mittelständler &amp; High-Tech Betriebe</text>
+
+  <!-- Left: Duales Studium -->
+  <g filter="url(#shadow)">
+    <rect x="36" y="110" width="310" height="395" rx="12" fill="#ffffff" stroke="#0891b2" stroke-width="1.5"/>
+    <rect x="36" y="110" width="310" height="42" rx="12" fill="#0891b2"/>
+    <text x="52" y="137" fill="#ffffff" font-family="system-ui, sans-serif" font-size="15" font-weight="700">Duales Studium (§ 16b AufenthG)</text>
+
+    <text x="52" y="180" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Zielgruppe &amp; Abschluss:</text>
+    <text x="52" y="200" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Bachelor of Science / Engineering</text>
+    <text x="52" y="220" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Gymnasiale Reife oder Uni-Vorbildung</text>
+
+    <text x="52" y="255" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Sprachniveau:</text>
+    <text x="52" y="275" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• B2 oder C1 Deutsch (hochschulabhängig)</text>
+    <text x="52" y="295" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Englischkenntnisse meist B2</text>
+
+    <text x="52" y="330" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Rolle im Unternehmen:</text>
+    <text x="52" y="350" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• F&amp;E, Softwareentwicklung, Konstruktion</text>
+    <text x="52" y="370" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Direkter Pfad zur Blue Card / Führung</text>
+
+    <rect x="52" y="405" width="278" height="80" rx="8" fill="#eef5f9"/>
+    <text x="62" y="430" fill="#0369a1" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Arbeitgeberaufwand:</text>
+    <text x="62" y="450" fill="#475569" font-family="system-ui, sans-serif" font-size="11.5">Monatliche Vergütung ~1.200–1.800 €</text>
+    <text x="62" y="468" fill="#475569" font-family="system-ui, sans-serif" font-size="11.5">+ ggf. Studiengebühren der DHBW</text>
+  </g>
+
+  <!-- Right: Duale Berufsausbildung -->
+  <g filter="url(#shadow)">
+    <rect x="374" y="110" width="310" height="395" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="374" y="110" width="310" height="42" rx="12" fill="#1e3a5f"/>
+    <text x="390" y="137" fill="#ffffff" font-family="system-ui, sans-serif" font-size="15" font-weight="700">Duale Ausbildung (§ 16a AufenthG)</text>
+
+    <text x="390" y="180" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Zielgruppe &amp; Abschluss:</text>
+    <text x="390" y="200" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• IHK- / HWK-Gesellenbrief / Facharbeiter</text>
+    <text x="390" y="220" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• 12 Jahre Schulbildung in Vietnam</text>
+
+    <text x="390" y="255" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Sprachniveau:</text>
+    <text x="390" y="275" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• B1 Zertifikat (Visumsvoraussetzung)</text>
+    <text x="390" y="295" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• B2 begleitend im 1. Lehrjahr</text>
+
+    <text x="390" y="330" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Rolle im Unternehmen:</text>
+    <text x="390" y="350" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Operative Fachkräfte: Montage, Pflege,</text>
+    <text x="390" y="370" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">  Instandhaltung, SHK, Elektrotechnik</text>
+
+    <rect x="390" y="405" width="278" height="80" rx="8" fill="#f8fafc"/>
+    <text x="400" y="430" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Arbeitgeberaufwand:</text>
+    <text x="400" y="450" fill="#475569" font-family="system-ui, sans-serif" font-size="11.5">Tarifliche Azubi-Vergütung nach</text>
+    <text x="400" y="468" fill="#475569" font-family="system-ui, sans-serif" font-size="11.5">BBiG (~950–1.350 €) + Berufsschule</text>
+  </g>
+</svg>

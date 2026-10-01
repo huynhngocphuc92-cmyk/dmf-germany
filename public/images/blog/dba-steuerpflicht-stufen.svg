@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="720" height="540" fill="#f8fafc" rx="16"/>
+  <rect x="24" y="24" width="672" height="64" rx="12" fill="#1e3a5f"/>
+  <text x="48" y="52" fill="#ffffff" font-family="system-ui, sans-serif" font-size="18" font-weight="700">Doppelbesteuerungsabkommen (DBA) &amp; Steuerklassen</text>
+  <text x="48" y="72" fill="#93c5fd" font-family="system-ui, sans-serif" font-size="13">Steuerliche Behandlung vietnamesischer Fachkräfte &amp; Azubis in Deutschland</text>
+
+  <!-- 3 Columns -->
+  <g filter="url(#shadow)">
+    <rect x="36" y="115" width="200" height="385" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="36" y="115" width="200" height="42" rx="12" fill="#0891b2"/>
+    <text x="50" y="141" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">1. Ansässigkeit</text>
+    <text x="50" y="180" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">§ 1 Abs. 1 EStG</text>
+    <text x="50" y="202" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Unbeschränkte Steuerpflicht</text>
+    <text x="50" y="220" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">ab Tag 1 der Wohnsitznahme</text>
+    <text x="50" y="238" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">in Deutschland.</text>
+
+    <line x1="50" y1="260" x2="220" y2="260" stroke="#e2e8f0" stroke-width="1"/>
+
+    <text x="50" y="285" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Art. 15 DBA</text>
+    <text x="50" y="307" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Tätigkeitsortsprinzip:</text>
+    <text x="50" y="325" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Besteuerungsrecht liegt zu</text>
+    <text x="50" y="343" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">100% bei der Bundesrepublik</text>
+    <text x="50" y="361" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Deutschland.</text>
+
+    <rect x="50" y="390" width="172" height="85" rx="8" fill="#eef5f9"/>
+    <text x="60" y="415" fill="#0369a1" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Keine Doppelbelastung</text>
+    <text x="60" y="435" fill="#475569" font-family="system-ui, sans-serif" font-size="11">Freistellung in Vietnam</text>
+    <text x="60" y="453" fill="#475569" font-family="system-ui, sans-serif" font-size="11">durch DBA-Schutzmechanismus.</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="260" y="115" width="200" height="385" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="260" y="115" width="200" height="42" rx="12" fill="#1e3a5f"/>
+    <text x="274" y="141" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">2. Steuerklassen</text>
+    <text x="274" y="180" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Steuerklasse I</text>
+    <text x="274" y="202" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Standard für ledige Azubis</text>
+    <text x="274" y="220" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">und Fachkräfte. Grundfreibetrag</text>
+    <text x="274" y="238" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">greift voll (&gt;11.784 €).</text>
+
+    <line x1="274" y1="260" x2="444" y2="260" stroke="#e2e8f0" stroke-width="1"/>
+
+    <text x="274" y="285" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Steuerklasse III / IV</text>
+    <text x="274" y="307" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Bei verheirateten Kräften,</text>
+    <text x="274" y="325" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">sobald Ehepartner nachzieht</text>
+    <text x="274" y="343" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">und Wohnsitz anmeldet.</text>
+
+    <rect x="274" y="390" width="172" height="85" rx="8" fill="#f0fdf4"/>
+    <text x="284" y="415" fill="#15803d" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Azubi-Vorteil</text>
+    <text x="284" y="435" fill="#475569" font-family="system-ui, sans-serif" font-size="11">Viele Azubis zahlen 0 €</text>
+    <text x="284" y="453" fill="#475569" font-family="system-ui, sans-serif" font-size="11">Lohnsteuer (unter Freibetrag).</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="484" y="115" width="200" height="385" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="484" y="115" width="200" height="42" rx="12" fill="#0f766e"/>
+    <text x="498" y="141" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">3. Rentenerstattung</text>
+    <text x="498" y="180" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">§ 210 SGB VI</text>
+    <text x="498" y="202" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Kein bilaterales SV-Abkommen.</text>
+    <text x="498" y="220" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Bei Rückkehr nach Vietnam</text>
+    <text x="498" y="238" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Erstattung der Beiträge.</text>
+
+    <line x1="498" y1="260" x2="668" y2="260" stroke="#e2e8f0" stroke-width="1"/>
+
+    <text x="498" y="285" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Wartefrist: 24 Monate</text>
+    <text x="498" y="307" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Nach Ablauf von 24 Monaten</text>
+    <text x="498" y="325" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">ohne Versicherungspflicht</text>
+    <text x="498" y="343" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">in der DRV abrufbar.</text>
+
+    <rect x="498" y="390" width="172" height="85" rx="8" fill="#fef3c7"/>
+    <text x="508" y="415" fill="#b45309" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Arbeitnehmeranteil</text>
+    <text x="508" y="435" fill="#475569" font-family="system-ui, sans-serif" font-size="11">Nur AN-Beiträge werden</text>
+    <text x="508" y="453" fill="#475569" font-family="system-ui, sans-serif" font-size="11">erstattet, nicht AG-Anteil.</text>
+  </g>
+</svg>

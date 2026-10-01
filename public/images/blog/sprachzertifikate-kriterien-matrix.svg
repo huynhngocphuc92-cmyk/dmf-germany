@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="720" height="540" fill="#f8fafc" rx="16"/>
+  <rect x="24" y="24" width="672" height="64" rx="12" fill="#1e3a5f"/>
+  <text x="48" y="52" fill="#ffffff" font-family="system-ui, sans-serif" font-size="18" font-weight="700">Anerkannte Sprachzertifikate für das Arbeitsvisum</text>
+  <text x="48" y="72" fill="#93c5fd" font-family="system-ui, sans-serif" font-size="13">Prüfungskriterien der Deutschen Auslandsvertretungen (ALTE-Standard)</text>
+
+  <!-- Comparison Matrix Table -->
+  <g filter="url(#shadow)">
+    <rect x="36" y="110" width="648" height="270" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="36" y="110" width="648" height="40" rx="12" fill="#1e3a5f"/>
+    <text x="52" y="135" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Institut</text>
+    <text x="180" y="135" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="700">ALTE-Mitglied?</text>
+    <text x="320" y="135" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Botschaftsakzeptanz</text>
+    <text x="500" y="135" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Wiederholung Module</text>
+
+    <!-- Row 1: Goethe -->
+    <text x="52" y="175" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Goethe-Zertifikat</text>
+    <text x="180" y="175" fill="#16a34a" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Ja (Vollmitglied)</text>
+    <text x="320" y="175" fill="#16a34a" font-family="system-ui, sans-serif" font-size="13" font-weight="600">100% Akzeptanz (Gold)</text>
+    <text x="500" y="175" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">Einzelsegmente möglich</text>
+    <line x1="36" y1="195" x2="684" y2="195" stroke="#f1f5f9" stroke-width="1.5"/>
+
+    <!-- Row 2: telc -->
+    <text x="52" y="225" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">telc Deutsch</text>
+    <text x="180" y="225" fill="#16a34a" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Ja (Vollmitglied)</text>
+    <text x="320" y="225" fill="#16a34a" font-family="system-ui, sans-serif" font-size="13" font-weight="600">100% Akzeptanz</text>
+    <text x="500" y="225" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">Schriftl./Mündl. getrennt</text>
+    <line x1="36" y1="245" x2="684" y2="245" stroke="#f1f5f9" stroke-width="1.5"/>
+
+    <!-- Row 3: ÖSD -->
+    <text x="52" y="275" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">ÖSD Zertifikat</text>
+    <text x="180" y="275" fill="#16a34a" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Ja (Vollmitglied)</text>
+    <text x="320" y="275" fill="#16a34a" font-family="system-ui, sans-serif" font-size="13" font-weight="600">100% Akzeptanz</text>
+    <text x="500" y="275" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">Modulprüfungen möglich</text>
+    <line x1="36" y1="295" x2="684" y2="295" stroke="#f1f5f9" stroke-width="1.5"/>
+
+    <!-- Row 4: ECL / Private -->
+    <text x="52" y="325" fill="#dc2626" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Private Testzentren</text>
+    <text x="180" y="325" fill="#dc2626" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Nein / Teilweise</text>
+    <text x="320" y="325" fill="#dc2626" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Hohes Ablehnungsrisiko</text>
+    <text x="500" y="325" fill="#64748b" font-family="system-ui, sans-serif" font-size="12.5">Oft nicht anerkannt</text>
+    <line x1="36" y1="345" x2="684" y2="345" stroke="#f1f5f9" stroke-width="1.5"/>
+
+    <!-- Row 5: TestDaF -->
+    <text x="52" y="365" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">TestDaF / DSH</text>
+    <text x="180" y="365" fill="#16a34a" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Ja</text>
+    <text x="320" y="365" fill="#16a34a" font-family="system-ui, sans-serif" font-size="13" font-weight="600">100% (Akademisch)</text>
+    <text x="500" y="365" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">Nur Gesamtwiederholung</text>
+  </g>
+
+  <!-- Note Box -->
+  <g filter="url(#shadow)">
+    <rect x="36" y="405" width="648" height="105" rx="10" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+    <text x="56" y="435" fill="#166534" font-family="system-ui, sans-serif" font-size="14" font-weight="700">DMF-Qualitätsversprechen:</text>
+    <text x="56" y="460" fill="#334155" font-family="system-ui, sans-serif" font-size="12.5">• 100% der DMF-Talente legen ihre Prüfung am Goethe-Institut oder telc-Zentrum ab.</text>
+    <text x="56" y="482" fill="#334155" font-family="system-ui, sans-serif" font-size="12.5">• Keine Fake-Zertifikate, keine Visumsverzögerungen durch Echtheitsprüfungen.</text>
+  </g>
+</svg>

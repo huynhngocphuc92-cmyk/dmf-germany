@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="720" height="540" fill="#f8fafc" rx="16"/>
+  <rect x="24" y="24" width="672" height="64" rx="12" fill="#1e3a5f"/>
+  <text x="48" y="52" fill="#ffffff" font-family="system-ui, sans-serif" font-size="18" font-weight="700">Fleischer &amp; Lebensmitteltechnik: Ausbildung &amp; Hygiene</text>
+  <text x="48" y="72" fill="#93c5fd" font-family="system-ui, sans-serif" font-size="13">HACCP-Konformität, handwerkliche Zerlegung &amp; Wurstwarenherstellung</text>
+
+  <!-- 3 Stages -->
+  <g filter="url(#shadow)">
+    <rect x="36" y="115" width="200" height="385" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="36" y="115" width="200" height="42" rx="12" fill="#b91c1c"/>
+    <text x="50" y="141" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">1. Hygiene &amp; Recht</text>
+    <text x="50" y="180" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">§ 43 IfSG Belehrung</text>
+    <text x="50" y="202" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Gesundheitsamt-Nachweis</text>
+    <text x="50" y="222" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Vor Antritt verpflichtend</text>
+    <text x="50" y="242" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Dokumentation Personalakte</text>
+
+    <line x1="50" y1="265" x2="220" y2="265" stroke="#e2e8f0" stroke-width="1"/>
+
+    <text x="50" y="290" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">HACCP-Standards</text>
+    <text x="50" y="312" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Lückenlose Kühlkette</text>
+    <text x="50" y="332" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Desinfektion &amp; Reinigung</text>
+    <text x="50" y="352" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Rückverfolgbarkeit Chargen</text>
+    <text x="50" y="372" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Kleidungsvorschriften</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="260" y="115" width="200" height="385" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="260" y="115" width="200" height="42" rx="12" fill="#1e3a5f"/>
+    <text x="274" y="141" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">2. Zerlegung &amp; Cut</text>
+    <text x="274" y="180" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Fachgerechtes Ausbeinen</text>
+    <text x="274" y="202" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Rind-, Schwein- &amp; Geflügel</text>
+    <text x="274" y="222" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Anatomische Schnittführung</text>
+    <text x="274" y="242" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Fleischreife &amp; Sortierung</text>
+    <text x="274" y="262" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Edelteile parieren</text>
+
+    <line x1="274" y1="265" x2="444" y2="265" stroke="#e2e8f0" stroke-width="1"/>
+
+    <text x="274" y="290" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Maschinenführung</text>
+    <text x="274" y="312" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Bandsägen, Kutter &amp; Wölfe</text>
+    <text x="274" y="332" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Vakuum-Verpackungsanlagen</text>
+    <text x="274" y="352" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Stechschutzschürze &amp; Handschuh</text>
+    <text x="274" y="372" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• UVV-Sicherheit am Arbeitsplatz</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="484" y="115" width="200" height="385" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="484" y="115" width="200" height="42" rx="12" fill="#047857"/>
+    <text x="498" y="141" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">3. Veredelung &amp; Verkauf</text>
+    <text x="498" y="180" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Wurst- &amp; Feinkost</text>
+    <text x="498" y="202" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Brüh-, Koch- &amp; Rohwurst</text>
+    <text x="498" y="222" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Pökeln &amp; Räuchern</text>
+    <text x="498" y="242" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Gewürzmischungen nach Rezept</text>
+    <text x="498" y="262" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Convenience-Herstellung</text>
+
+    <line x1="498" y1="265" x2="668" y2="265" stroke="#e2e8f0" stroke-width="1"/>
+
+    <text x="498" y="290" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Theke &amp; Beratung</text>
+    <text x="498" y="312" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Fachberatung an Kunden</text>
+    <text x="498" y="332" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Allergenkennzeichnung (LMIV)</text>
+    <text x="498" y="352" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Deutsche Fleischbezeichnungen</text>
+    <text x="498" y="372" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Party- &amp; Cateringservice</text>
+  </g>
+</svg>

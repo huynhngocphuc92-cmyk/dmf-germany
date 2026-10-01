@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="720" height="540" fill="#f8fafc" rx="16"/>
+  <rect x="24" y="24" width="672" height="64" rx="12" fill="#1e3a5f"/>
+  <text x="48" y="52" fill="#ffffff" font-family="system-ui, sans-serif" font-size="18" font-weight="700">Gesetzliche Krankenversicherung (GKV) &amp; DEÜV-Anmeldung</text>
+  <text x="48" y="72" fill="#93c5fd" font-family="system-ui, sans-serif" font-size="13">Vollständiger Onboarding-Leitfaden für die Lohnbuchhaltung</text>
+
+  <!-- 4 Step Flow -->
+  <g filter="url(#shadow)">
+    <rect x="36" y="115" width="150" height="385" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="36" y="115" width="150" height="36" rx="10" fill="#eef5f9"/>
+    <text x="48" y="138" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Schritt 1: Visum</text>
+    <text x="46" y="175" fill="#0891b2" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Vorab-Bescheinigung</text>
+    <text x="46" y="200" fill="#64748b" font-family="system-ui, sans-serif" font-size="11.5">Ausstellung einer</text>
+    <text x="46" y="218" fill="#64748b" font-family="system-ui, sans-serif" font-size="11.5">Mitgliedsbescheinigung</text>
+    <text x="46" y="236" fill="#64748b" font-family="system-ui, sans-serif" font-size="11.5">für den Botschaftstermin</text>
+    <text x="46" y="254" fill="#64748b" font-family="system-ui, sans-serif" font-size="11.5">in Hanoi/HCMC.</text>
+    <rect x="44" y="380" width="134" height="105" rx="6" fill="#f8fafc"/>
+    <text x="50" y="405" fill="#334155" font-family="system-ui, sans-serif" font-size="11" font-weight="600">Kassen:</text>
+    <text x="50" y="423" fill="#64748b" font-family="system-ui, sans-serif" font-size="10.5">• Techniker (TK)</text>
+    <text x="50" y="441" fill="#64748b" font-family="system-ui, sans-serif" font-size="10.5">• BARMER</text>
+    <text x="50" y="459" fill="#64748b" font-family="system-ui, sans-serif" font-size="10.5">• AOK / DAK</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="200" y="115" width="150" height="385" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="200" y="115" width="150" height="36" rx="10" fill="#eef5f9"/>
+    <text x="212" y="138" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Schritt 2: Einreise</text>
+    <text x="210" y="175" fill="#0891b2" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Aktivierung Schutz</text>
+    <text x="210" y="200" fill="#64748b" font-family="system-ui, sans-serif" font-size="11.5">Ab dem 1. Tag des</text>
+    <text x="210" y="218" fill="#64748b" font-family="system-ui, sans-serif" font-size="11.5">Arbeits- oder Ausbil-</text>
+    <text x="210" y="236" fill="#64748b" font-family="system-ui, sans-serif" font-size="11.5">dungsvertrags greift</text>
+    <text x="210" y="254" fill="#64748b" font-family="system-ui, sans-serif" font-size="11.5">der volle GKV-Schutz.</text>
+    <rect x="208" y="380" width="134" height="105" rx="6" fill="#f8fafc"/>
+    <text x="214" y="405" fill="#334155" font-family="system-ui, sans-serif" font-size="11" font-weight="600">Reise-KV:</text>
+    <text x="214" y="423" fill="#64748b" font-family="system-ui, sans-serif" font-size="10.5">Überbrückungs-KV</text>
+    <text x="214" y="441" fill="#64748b" font-family="system-ui, sans-serif" font-size="10.5">vom Flugtag bis</text>
+    <text x="214" y="459" fill="#64748b" font-family="system-ui, sans-serif" font-size="10.5">Vertragsbeginn nötig.</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="364" y="115" width="150" height="385" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="364" y="115" width="150" height="36" rx="10" fill="#eef5f9"/>
+    <text x="376" y="138" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Schritt 3: DEÜV</text>
+    <text x="374" y="175" fill="#0891b2" font-family="system-ui, sans-serif" font-size="12" font-weight="700">SV-Nummer generieren</text>
+    <text x="374" y="200" fill="#64748b" font-family="system-ui, sans-serif" font-size="11.5">Arbeitgeber meldet AN</text>
+    <text x="374" y="218" fill="#64748b" font-family="system-ui, sans-serif" font-size="11.5">mit Geburtsdatum &amp;</text>
+    <text x="374" y="236" fill="#64748b" font-family="system-ui, sans-serif" font-size="11.5">Geburtsort. DRV ver-</text>
+    <text x="374" y="254" fill="#64748b" font-family="system-ui, sans-serif" font-size="11.5">gibt neue SV-Nummer.</text>
+    <rect x="372" y="380" width="134" height="105" rx="6" fill="#f8fafc"/>
+    <text x="378" y="405" fill="#334155" font-family="system-ui, sans-serif" font-size="11" font-weight="600">Lohnabrechnung:</text>
+    <text x="378" y="423" fill="#64748b" font-family="system-ui, sans-serif" font-size="10.5">Erfolgt auch ohne</text>
+    <text x="378" y="441" fill="#64748b" font-family="system-ui, sans-serif" font-size="10.5">vorliegende Karte</text>
+    <text x="378" y="459" fill="#64748b" font-family="system-ui, sans-serif" font-size="10.5">vollkommen legal.</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="528" y="115" width="156" height="385" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="528" y="115" width="156" height="36" rx="10" fill="#eef5f9"/>
+    <text x="540" y="138" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Schritt 4: eGK</text>
+    <text x="538" y="175" fill="#0891b2" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Gesundheitskarte</text>
+    <text x="538" y="200" fill="#64748b" font-family="system-ui, sans-serif" font-size="11.5">Lichtbild-Upload bei</text>
+    <text x="538" y="218" fill="#64748b" font-family="system-ui, sans-serif" font-size="11.5">der Krankenkasse.</text>
+    <text x="538" y="236" fill="#64748b" font-family="system-ui, sans-serif" font-size="11.5">Zusendung der eGK</text>
+    <text x="538" y="254" fill="#64748b" font-family="system-ui, sans-serif" font-size="11.5">an die Meldeadresse.</text>
+    <rect x="536" y="380" width="140" height="105" rx="6" fill="#f0fdf4"/>
+    <text x="542" y="405" fill="#15803d" font-family="system-ui, sans-serif" font-size="11" font-weight="600">Familie:</text>
+    <text x="542" y="423" fill="#64748b" font-family="system-ui, sans-serif" font-size="10.5">Kostenfreie Mit-</text>
+    <text x="542" y="441" fill="#64748b" font-family="system-ui, sans-serif" font-size="10.5">versicherung für</text>
+    <text x="542" y="459" fill="#64748b" font-family="system-ui, sans-serif" font-size="10.5">Kinder (§ 10 SGB V).</text>
+  </g>
+</svg>

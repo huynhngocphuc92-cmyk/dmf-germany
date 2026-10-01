@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="720" height="540" fill="#f8fafc" rx="16"/>
+  <rect x="24" y="24" width="672" height="64" rx="12" fill="#1e3a5f"/>
+  <text x="48" y="52" fill="#ffffff" font-family="system-ui, sans-serif" font-size="18" font-weight="700">Verpflichtungserklärung (§§ 66–68 AufenthG): Haftungsmatrix</text>
+  <text x="48" y="72" fill="#93c5fd" font-family="system-ui, sans-serif" font-size="13">Wann Betriebe haften und warum der reguläre Arbeitsvertrag ausreicht</text>
+
+  <!-- Left: Was umfasst die Verpflichtungserklärung? -->
+  <g filter="url(#shadow)">
+    <rect x="36" y="110" width="310" height="395" rx="12" fill="#ffffff" stroke="#ef4444" stroke-width="1.5"/>
+    <rect x="36" y="110" width="310" height="42" rx="12" fill="#ef4444"/>
+    <text x="52" y="137" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Haftungsumfang (§ 68 AufenthG)</text>
+
+    <text x="52" y="180" fill="#991b1b" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Umfassende Kostenerstattung:</text>
+    <text x="52" y="202" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Sämtliche öffentlichen Mittel</text>
+    <text x="52" y="222" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Krankenhilfe &amp; Pflegekosten</text>
+    <text x="52" y="242" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Wohnraumversorgung</text>
+
+    <line x1="52" y1="262" x2="326" y2="262" stroke="#fee2e2" stroke-width="1.5"/>
+
+    <text x="52" y="287" fill="#991b1b" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Abschiebungskosten (§ 66):</text>
+    <text x="52" y="309" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Flugkosten, Begleitpersonal</text>
+    <text x="52" y="329" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Verwaltungskosten der Ausreise</text>
+
+    <line x1="52" y1="349" x2="326" y2="349" stroke="#fee2e2" stroke-width="1.5"/>
+
+    <text x="52" y="374" fill="#991b1b" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Haftungsdauer:</text>
+    <text x="52" y="396" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Bis zu 5 Jahre ab Einreise!</text>
+    <text x="52" y="416" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Gilt selbst bei Jobwechsel fort</text>
+
+    <rect x="52" y="440" width="278" height="50" rx="6" fill="#fef2f2"/>
+    <text x="60" y="460" fill="#b91c1c" font-family="system-ui, sans-serif" font-size="11.5" font-weight="600">Empfehlung von Arbeitsrechtlern:</text>
+    <text x="60" y="478" fill="#b91c1c" font-family="system-ui, sans-serif" font-size="11.5">Als Betrieb niemals leichtfertig zeichnen!</text>
+  </g>
+
+  <!-- Right: Der DMF Standardweg -->
+  <g filter="url(#shadow)">
+    <rect x="374" y="110" width="310" height="395" rx="12" fill="#ffffff" stroke="#10b981" stroke-width="1.5"/>
+    <rect x="374" y="110" width="310" height="42" rx="12" fill="#1e3a5f"/>
+    <text x="390" y="137" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Der haftungsfreie DMF-Standard</text>
+
+    <text x="390" y="180" fill="#047857" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Regulärer Arbeitsvertrag:</text>
+    <text x="390" y="202" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Ausbildungs- oder Arbeitsvertrag</text>
+    <text x="390" y="222" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">  mit angemessener Vergütung reicht</text>
+    <text x="390" y="242" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">  als Lebensunterhaltssicherung aus.</text>
+
+    <line x1="390" y1="262" x2="664" y2="262" stroke="#dcfce7" stroke-width="1.5"/>
+
+    <text x="390" y="287" fill="#047857" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Keine Bürgschaft nötig:</text>
+    <text x="390" y="309" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Visum nach § 16a / 18a/b AufenthG</text>
+    <text x="390" y="329" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">  erfordert KEINE private AG-Bürgschaft.</text>
+
+    <line x1="390" y1="349" x2="664" y2="349" stroke="#dcfce7" stroke-width="1.5"/>
+
+    <text x="390" y="374" fill="#047857" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Haftungsbeschränkung:</text>
+    <text x="390" y="396" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Betrieb haftet ausschließlich für</text>
+    <text x="390" y="416" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">  vereinbarte Lohn- &amp; SV-Pflichten.</text>
+
+    <rect x="390" y="440" width="278" height="50" rx="6" fill="#ecfdf5"/>
+    <text x="400" y="460" fill="#065f46" font-family="system-ui, sans-serif" font-size="11.5" font-weight="600">Rechtssicherheit mit DMF:</text>
+    <text x="400" y="478" fill="#065f46" font-family="system-ui, sans-serif" font-size="11.5">100% konforme Visumsanträge ohne Bürgschaft.</text>
+  </g>
+</svg>

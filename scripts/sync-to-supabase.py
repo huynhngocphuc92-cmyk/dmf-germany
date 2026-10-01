@@ -69,6 +69,18 @@ POST_COVER_MAPPING = {
     "koeche-spezialitaetenkoeche-vietnam-beschv-dehoga": "/images/blog/dmf-sprachpraxis-dialog-training.jpg",
     "steuerfreie-arbeitgeberleistungen-azubis-sachbezug-wohnzuschuss": "/images/blog/dmf-interkulturell-austausch-gruppe.jpg",
     "chancenkarte-in-festanstellung-wechsel-arbeitgeber-leitfaden": "/images/blog/dmf-praesentation-bildung-arbeitsmarkt.jpg",
+    "fuehrerschein-umschreibung-drittstaaten-drittlaender-vietnam": "/images/blog/dmf-fuehrerschein-verkehr-mobilitaet.jpg",
+    "doppelbesteuerungsabkommen-dba-vietnam-deutschland-arbeitgeber": "/images/blog/dmf-doppelbesteuerung-finanzamt-beratung.jpg",
+    "probezeit-nicht-bestanden-drittstaaten-meldepflicht-aufenthg": "/images/blog/dmf-probezeit-gespraech-auswertung.jpg",
+    "krankenkassen-anmeldung-fachkraefte-drittstaaten-gkv": "/images/blog/dmf-krankenkasse-sozialversicherung-service.jpg",
+    "duales-studium-vietnam-fachhochschule-unternehmen-aufenthg": "/images/blog/dmf-duales-studium-hochschule-akademie.jpg",
+    "sprachzertifikate-goethe-telc-oesd-visum-drittstaaten": "/images/blog/dmf-sprachpruefung-goethe-zertifikat.jpg",
+    "verpflichtungserklaerung-arbeitgeber-66-68-aufenthg-haftung": "/images/blog/dmf-verpflichtungserklaerung-buergschaft-vertrag.jpg",
+    "dachdecker-fassadenbauer-solarmonteure-vietnam-handwerk": "/images/blog/dmf-dachdecker-solar-fassadenbau.jpg",
+    "land-baumaschinenmechatroniker-drittstaaten-vietnam": "/images/blog/dmf-landmaschinen-baumaschinen-werkstatt.jpg",
+    "fleischer-metzger-lebensmitteltechnik-vietnam-drittstaaten": "/images/blog/dmf-fleischer-metzger-lebensmittelhandwerk.jpg",
+    "hotelfachmann-restaurantfachkraft-vietnam-dehoga-gastronomie": "/images/blog/dmf-hotelfach-restaurant-service-training.jpg",
+    "urkundenpruefung-legalisation-vietnam-deutsche-botschaft-hanoi": "/images/blog/dmf-urkundenpruefung-legalisation-botschaft.jpg",
 }
 
 def sync_posts():

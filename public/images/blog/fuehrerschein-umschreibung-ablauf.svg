@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="720" height="540" fill="#f8fafc" rx="16"/>
+  <rect x="24" y="24" width="672" height="64" rx="12" fill="#1e3a5f"/>
+  <text x="48" y="52" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700">Führerschein-Umschreibung aus Drittstaaten (§ 29 &amp; 31 FeV)</text>
+  <text x="48" y="72" fill="#93c5fd" font-family="system-ui, -apple-system, sans-serif" font-size="13">Rechtlicher Ablauf für Arbeitgeber und internationale Fachkräfte</text>
+
+  <!-- Step 1 -->
+  <g filter="url(#shadow)">
+    <rect x="36" y="110" width="310" height="180" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="36" y="110" width="310" height="36" rx="12" fill="#eef5f9"/>
+    <text x="52" y="133" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Phase 1: Die ersten 6 Monate (§ 29 FeV)</text>
+    <circle cx="56" cy="165" r="4" fill="#0891b2"/>
+    <text x="70" y="169" fill="#334155" font-family="system-ui, sans-serif" font-size="13">Gültigkeit ab Wohnsitzbegründung</text>
+    <circle cx="56" cy="195" r="4" fill="#0891b2"/>
+    <text x="70" y="199" fill="#334155" font-family="system-ui, sans-serif" font-size="13">Nur mit beglaubigter Übersetzung (ADAC)</text>
+    <circle cx="56" cy="225" r="4" fill="#0891b2"/>
+    <text x="70" y="229" fill="#334155" font-family="system-ui, sans-serif" font-size="13">Fahrten für Montage &amp; Probezeit erlaubt</text>
+    <rect x="52" y="250" width="278" height="26" rx="6" fill="#fef2f2"/>
+    <text x="62" y="267" fill="#b91c1c" font-family="system-ui, sans-serif" font-size="11.5" font-weight="600">Achtung: Nach 6 Monaten striktes Fahrverbot!</text>
+  </g>
+
+  <!-- Step 2 -->
+  <g filter="url(#shadow)">
+    <rect x="374" y="110" width="310" height="180" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="374" y="110" width="310" height="36" rx="12" fill="#eef5f9"/>
+    <text x="390" y="133" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Phase 2: Umschreibung (Anlage 11 FeV)</text>
+    <circle cx="394" cy="165" r="4" fill="#0891b2"/>
+    <text x="408" y="169" fill="#334155" font-family="system-ui, sans-serif" font-size="13">Vietnam nicht in Anlage 11 geführt</text>
+    <circle cx="394" cy="195" r="4" fill="#0891b2"/>
+    <text x="408" y="199" fill="#334155" font-family="system-ui, sans-serif" font-size="13">Theorie- &amp; Praxisprüfung verpflichtend</text>
+    <circle cx="394" cy="225" r="4" fill="#0891b2"/>
+    <text x="408" y="229" fill="#334155" font-family="system-ui, sans-serif" font-size="13"><tspan font-weight="700">Vorteil:</tspan> Keine Pflichtfahrstunden nötig!</text>
+    <rect x="390" y="250" width="278" height="26" rx="6" fill="#f0fdf4"/>
+    <text x="400" y="267" fill="#15803d" font-family="system-ui, sans-serif" font-size="11.5" font-weight="600">Ersparnis: 50% günstiger als Neuerwerb</text>
+  </g>
+
+  <!-- Bottom Panel: Employer Action -->
+  <g filter="url(#shadow)">
+    <rect x="36" y="315" width="648" height="195" rx="12" fill="#ffffff" stroke="#0891b2" stroke-width="1.5"/>
+    <rect x="36" y="315" width="648" height="36" rx="12" fill="#1e3a5f"/>
+    <text x="52" y="338" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Best Practice für Arbeitgeber: Mobilitäts-Support</text>
+
+    <rect x="56" y="365" width="186" height="125" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="70" y="390" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">1. Sofortige Anmeldung</text>
+    <text x="70" y="415" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Fahrschulanmeldung im 1.</text>
+    <text x="70" y="433" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Monat, um Wartezeiten bei</text>
+    <text x="70" y="451" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">TÜV/DEKRA zu überbrücken.</text>
+
+    <rect x="266" y="365" width="186" height="125" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="280" y="390" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">2. Kostenübernahme</text>
+    <text x="280" y="415" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Prüfungskosten (~800–1.200 €)</text>
+    <text x="280" y="433" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">als steuerfreie Weiterbildung</text>
+    <text x="280" y="451" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">oder Darlehensmodell.</text>
+
+    <rect x="476" y="365" width="186" height="125" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="490" y="390" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">3. Firmenwagen-Check</text>
+    <text x="490" y="415" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Fahrerunterweisung UVV,</text>
+    <text x="490" y="433" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Führerscheinkontrolle alle 6</text>
+    <text x="490" y="451" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Monate dokumentieren.</text>
+  </g>
+</svg>

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="720" height="540" fill="#f8fafc" rx="16"/>
+  <rect x="24" y="24" width="672" height="64" rx="12" fill="#1e3a5f"/>
+  <text x="48" y="52" fill="#ffffff" font-family="system-ui, sans-serif" font-size="18" font-weight="700">Urkundenüberprüfung &amp; Legalisation in Vietnam: Zeitstrahl</text>
+  <text x="48" y="72" fill="#93c5fd" font-family="system-ui, sans-serif" font-size="13">Prüfverfahren der Deutschen Botschaft Hanoi &amp; Vertrauensanwälte</text>
+
+  <!-- Process Timeline Cards -->
+  <g filter="url(#shadow)">
+    <rect x="36" y="115" width="648" height="85" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="36" y="115" width="8" height="85" rx="4" fill="#0891b2"/>
+    <text x="60" y="145" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Schritt 1: Justizministerium &amp; Notariat Vietnam (Woche 1–2)</text>
+    <text x="60" y="170" fill="#64748b" font-family="system-ui, sans-serif" font-size="12.5">• Beglaubigte Übersetzung ins Deutsche durch beeidigte Übersetzer in Vietnam</text>
+    <text x="60" y="188" fill="#64748b" font-family="system-ui, sans-serif" font-size="12.5">• Vorbeglaubigung durch das vietnamesische Außenministerium (Konsularabteilung)</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="36" y="215" width="648" height="85" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="36" y="215" width="8" height="85" rx="4" fill="#1e3a5f"/>
+    <text x="60" y="245" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Schritt 2: Antrag auf Urkundenprüfung bei der Botschaft (Woche 3)</text>
+    <text x="60" y="270" fill="#64748b" font-family="system-ui, sans-serif" font-size="12.5">• Keine Apostille (Vietnam kein Haager Abkommen-Mitglied)!</text>
+    <text x="60" y="288" fill="#64748b" font-family="system-ui, sans-serif" font-size="12.5">• Weiterleitung der Zeugnisse an Vertrauensanwälte der Botschaft vor Ort</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="36" y="315" width="648" height="85" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="36" y="315" width="8" height="85" rx="4" fill="#f59e0b"/>
+    <text x="60" y="345" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Schritt 3: Überprüfung vor Ort durch Vertrauensanwälte (Woche 4–10)</text>
+    <text x="60" y="370" fill="#64748b" font-family="system-ui, sans-serif" font-size="12.5">• Vor-Ort-Besuch bei Schulen, Universitäten &amp; vietnamesischen Standesämtern</text>
+    <text x="60" y="388" fill="#64748b" font-family="system-ui, sans-serif" font-size="12.5">• <tspan font-weight="700" fill="#b45309">Dauer im Normalverfahren: 8 bis 12 Wochen</tspan> | Im § 81a Fast-Track: priorisiert</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="36" y="415" width="648" height="85" rx="10" fill="#ffffff" stroke="#10b981" stroke-width="1.5"/>
+    <rect x="36" y="415" width="8" height="85" rx="4" fill="#10b981"/>
+    <text x="60" y="445" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Schritt 4: Positiver Prüfbericht &amp; Visumserteilung (Woche 11–12)</text>
+    <text x="60" y="470" fill="#64748b" font-family="system-ui, sans-serif" font-size="12.5">• Botschaft bestätigt Echtheit an deutsche Ausländerbehörde / Anerkennungsstelle</text>
+    <text x="60" y="488" fill="#64748b" font-family="system-ui, sans-serif" font-size="12.5">• 100%ige Rechtssicherheit gegen nachträgliche Titelwiderrufe in Deutschland</text>
+  </g>
+</svg>

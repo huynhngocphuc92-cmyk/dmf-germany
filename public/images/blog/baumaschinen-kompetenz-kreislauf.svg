@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="720" height="540" fill="#f8fafc" rx="16"/>
+  <rect x="24" y="24" width="672" height="64" rx="12" fill="#1e3a5f"/>
+  <text x="48" y="52" fill="#ffffff" font-family="system-ui, sans-serif" font-size="18" font-weight="700">Land- &amp; Baumaschinenmechatroniker: Kompetenzmatrix</text>
+  <text x="48" y="72" fill="#93c5fd" font-family="system-ui, sans-serif" font-size="13">Hightech-Instandhaltung für Bagger, Radlader, Traktoren &amp; Anbaugeräte</text>
+
+  <!-- 4 Competence Cards -->
+  <g filter="url(#shadow)">
+    <rect x="36" y="115" width="310" height="185" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="36" y="115" width="310" height="36" rx="12" fill="#eef5f9"/>
+    <text x="52" y="138" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="14" font-weight="700">1. Hydraulik &amp; Pneumatik</text>
+    <text x="52" y="175" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Hydraulikschaltpläne lesen &amp; Fehler suchen</text>
+    <text x="52" y="198" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Hochdruckschläuche &amp; Ventile austauschen</text>
+    <text x="52" y="221" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Proportionalventile &amp; Pumpen einstellen</text>
+    <text x="52" y="244" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• DGUV Druckprüfung &amp; Dichtheitscheck</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="374" y="115" width="310" height="185" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="374" y="115" width="310" height="36" rx="12" fill="#eef5f9"/>
+    <text x="390" y="138" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="14" font-weight="700">2. Elektronik &amp; CAN-Bus</text>
+    <text x="390" y="175" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• OBD-Diagnosegeräte &amp; Software (ISOBUS)</text>
+    <text x="390" y="198" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Kabelbaumreparatur &amp; Sensorik kalibrieren</text>
+    <text x="390" y="221" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• GPS- &amp; Telemetriesysteme konfigurieren</text>
+    <text x="390" y="244" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Hochvolt-Grundlagen für E-Baumaschinen</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="36" y="325" width="310" height="185" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="36" y="325" width="310" height="36" rx="12" fill="#eef5f9"/>
+    <text x="52" y="348" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="14" font-weight="700">3. Dieselmotoren &amp; Abgasreinigung</text>
+    <text x="52" y="385" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Common-Rail Injektoren &amp; Turbosysteme</text>
+    <text x="52" y="408" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• AdBlue / SCR-Katalysator &amp; DPF-Wartung</text>
+    <text x="52" y="431" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Getriebeinstandsetzung (Lastschaltgetriebe)</text>
+    <text x="52" y="454" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Kühl- und Schmiersysteme instand halten</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="374" y="325" width="310" height="185" rx="12" fill="#ffffff" stroke="#0891b2" stroke-width="1.5"/>
+    <rect x="374" y="325" width="310" height="36" rx="12" fill="#0891b2"/>
+    <text x="390" y="348" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">4. Metallbau &amp; Schweißtechnik</text>
+    <text x="390" y="385" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• MAG-Schweißen von Baggerlöffeln</text>
+    <text x="390" y="408" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Hartox-Verschleißbleche anpassen &amp; schweißen</text>
+    <text x="390" y="431" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Bolzen &amp; Buchsen auspressen / aufschweißen</text>
+    <text x="390" y="454" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• UVV-Prüfung nach BetrSichV begleiten</text>
+  </g>
+</svg>
