@@ -1,0 +1,142 @@
+.content {
+  color: #334155;
+  font-size: 1.125rem;
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
+
+.content p {
+  margin: 1.15em 0;
+}
+
+.content h2 {
+  color: #1e3a5f;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 2.4em 0 0.8em;
+  text-wrap: balance;
+}
+
+.content h3 {
+  color: #1e3a5f;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.45;
+  margin: 1.8em 0 0.5em;
+}
+
+.content :is(ul, ol) {
+  margin: 1.25em 0;
+  padding-left: 1.4em;
+}
+
+.content ul {
+  list-style: disc;
+}
+
+.content ol {
+  list-style: decimal;
+}
+
+.content li {
+  margin: 0.65em 0;
+  padding-left: 0.3em;
+}
+
+.content li::marker {
+  color: #0891b2;
+  font-weight: 600;
+}
+
+.content li p {
+  margin: 0.35em 0;
+}
+
+.content strong {
+  color: #1e3a5f;
+  font-weight: 650;
+}
+
+.content a {
+  color: #075e83;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+.content a:hover {
+  color: #1e3a5f;
+  text-decoration-thickness: 2px;
+}
+
+.content a:focus-visible {
+  outline: 2px solid #0891b2;
+  outline-offset: 4px;
+}
+
+.content blockquote {
+  background: #f0f7fa;
+  border-left: 4px solid #0891b2;
+  border-radius: 0 12px 12px 0;
+  margin: 1.8em 0;
+  padding: 1.25rem 1.5rem;
+}
+
+.content blockquote > :first-child {
+  margin-top: 0;
+}
+
+.content blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+.content img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 2rem 0 0.75rem;
+}
+
+/* Captions remain editable with the CMS's standard image + italic paragraph. */
+.content img + p:has(> em:only-child) {
+  color: #64748b;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin: 0 0 2rem;
+}
+
+.content hr {
+  border: 0;
+  border-top: 1px solid #dbe5ed;
+  margin: 2.5rem 0;
+}
+
+.content > :first-child {
+  margin-top: 0;
+}
+
+.content > :last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 639px) {
+  .content {
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  .content h2 {
+    font-size: 1.5rem;
+    margin-top: 2em;
+  }
+
+  .content h3 {
+    font-size: 1.125rem;
+  }
+
+  .content blockquote {
+    padding: 1rem;
+  }
+}

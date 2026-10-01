@@ -11,6 +11,7 @@ import parse from "html-react-parser";
 import { ArrowLeft, Calendar, Clock, FileText, Share2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import styles from "./article.module.css";
 
 // ============================================
 // TRANSLATIONS
@@ -137,7 +138,7 @@ export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) 
             className="max-w-3xl mx-auto"
           >
             {/* Article Header Card */}
-            <div className="bg-white rounded-2xl shadow-xl p-8 lg:p-12 mb-8">
+            <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 lg:p-12 mb-8">
               {/* Meta Info */}
               <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500 mb-6">
                 <time
@@ -173,8 +174,8 @@ export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) 
             </div>
 
             {/* Article Body */}
-            <div className="bg-white rounded-2xl shadow-sm p-8 lg:p-12">
-              <div className="prose prose-lg prose-slate max-w-none">{parse(post.content)}</div>
+            <div className="bg-white rounded-2xl shadow-sm p-6 sm:p-8 lg:p-12">
+              <div className={styles.content}>{parse(post.content)}</div>
             </div>
           </motion.div>
         </div>
