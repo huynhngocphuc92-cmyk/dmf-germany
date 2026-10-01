@@ -90,7 +90,7 @@ export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) 
   };
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-white pt-[120px]">
       {/* Hero Section with Cover Image */}
       <section className="relative">
         {/* Cover Image */}
@@ -129,7 +129,7 @@ export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) 
       </section>
 
       {/* Article Content */}
-      <article className="relative -mt-24 lg:-mt-32 pb-16">
+      <article className="relative -mt-12 lg:-mt-16 pb-16">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
