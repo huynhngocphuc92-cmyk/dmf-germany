@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: ota-ata-fachkraefte-aus-vietnam-kliniken
+cover_image: "/images/blog/dmf-medizin-simulation-saal.jpg"
 meta_title: "OTA & ATA aus Vietnam: OP-Fachpersonal für Kliniken"
 meta_description: "Wie Kliniken Operationstechnische Assistenten (OTA) und ATA aus Vietnam gewinnen: Anerkennung nach neuem ATA-OTA-G, OP-Fachsprache und Integration."
 excerpt: "Leere OP-Säle bremsen den Klinikbetrieb. Erfahren Sie, wie Krankenhäuser qualifizierte OTA und ATA aus Vietnam rechtssicher anerkennen und einsetzen."

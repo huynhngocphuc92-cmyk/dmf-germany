@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: visum-berufsausbildung-16a-voraussetzungen-pflichten
+cover_image: "/images/blog/dmf-campus-lehrsaal-modern.jpg"
 meta_title: "Visum Berufsausbildung § 16a AufenthG: Pflichten für Betriebe"
 meta_description: "Das Visum zur dualen Berufsausbildung nach § 16a AufenthG: Voraussetzungen, Kammervertrag, B1-Sprachnachweis, Lebensunterhalt und Pflichten des Betriebs."
 excerpt: "Was verlangt § 16a AufenthG von Ausbildungsbetrieben? Erfahren Sie alles über Vertragseintragung, Vergütungsgrenzen, Sprachnachweise und Behördenfristen."

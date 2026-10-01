@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: employer-pays-prinzip-296a-sgb-iii-transparenz
+cover_image: "/images/blog/dmf-fachkraefte-auswahl-kommission.jpg"
 meta_title: "Employer-Pays-Prinzip (§ 296a SGB III): Faire Vermittlung"
 meta_description: "Das Employer-Pays-Prinzip nach § 296a SGB III: Warum der Arbeitgeber die Vermittlungskosten tragen muss und wie Sie sich vor illegalen Praktiken schützen."
 excerpt: "Wer zahlt die Vermittlung? Erfahren Sie, warum § 296a SGB III das Employer-Pays-Prinzip vorschreibt und wie faire Rekrutierung Arbeitgeber vor Risiken schützt."

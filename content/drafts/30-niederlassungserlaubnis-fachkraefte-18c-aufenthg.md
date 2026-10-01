@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: niederlassungserlaubnis-fachkraefte-18c-aufenthg
+cover_image: "/images/blog/dmf-azubi-abschluss-zertifikat.jpg"
 meta_title: "Niederlassungserlaubnis (§ 18c): Dauerhafte Fachkräfte"
 meta_description: "Von der befristeten Arbeitserlaubnis zum dauerhaften Aufenthalt: Fristen nach § 18c AufenthG, Rentenbeiträge und Karriereperspektiven im Betrieb."
 excerpt: "Vom Arbeitsvisum zur dauerhaften Heimat: Erfahren Sie, wann Fachkräfte aus Vietnam eine Niederlassungserlaubnis erhalten und wie Betriebe profitieren."

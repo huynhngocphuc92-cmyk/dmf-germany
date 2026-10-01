@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: solarteure-photovoltaik-fachkraefte-vietnam
+cover_image: "/images/blog/dmf-solar-elektro-schulung.jpg"
 meta_title: "Solarteure aus Vietnam: Photovoltaik-Fachkräfte gewinnen"
 meta_description: "Wie Solarbetriebe Photovoltaik-Monteure und Solarteure aus Vietnam gewinnen: Dachmontage, DGUV 38, DC/AC-Verkabelung und rechtssicherer Ablauf."
 excerpt: "Engpass bei der Energiewende? Erfahren Sie, welche Qualifikationen vietnamesische Photovoltaik-Monteure mitbringen und wie Sie die Fachkräftelücke schließen."

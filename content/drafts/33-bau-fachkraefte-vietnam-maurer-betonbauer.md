@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: bau-fachkraefte-vietnam-maurer-betonbauer
+cover_image: "/images/blog/dmf-bau-handwerk-simulation.jpg"
 meta_title: "Bau-Fachkräfte aus Vietnam: Maurer & Betonbauer gewinnen"
 meta_description: "Wie Bauunternehmen Maurer und Betonbauer aus Vietnam einstellen: BQFG-Anerkennung, SOKA-BAU-Regelungen, Saison-KUG und Baustellensicherheit nach DGUV."
 excerpt: "Auftragsstau auf der Baustelle? Erfahren Sie, welche Qualifikationen vietnamesische Maurer, Beton- und Tiefbauer mitbringen und wie die Rekrutierung gelingt."

@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: handwerker-aus-vietnam-elektroniker-mechatroniker-shk
+cover_image: "/images/blog/dmf-talent-partnerschaft-deutschland-vietnam.jpg"
 meta_title: "Handwerker aus Vietnam: Elektroniker, Mechatroniker & SHK"
 meta_description: "Wie Handwerksbetriebe Elektroniker, Mechatroniker und SHK-Profis aus Vietnam rechtssicher einstellen: BQFG-Anerkennung, VDE-Normen und Praxisablauf."
 excerpt: "Der Fachkräftemangel im Handwerk bremst Aufträge. Erfahren Sie, wie Sie qualifizierte Mechatroniker, Elektroniker und Anlagenmechaniker SHK aus Vietnam rekrutieren."

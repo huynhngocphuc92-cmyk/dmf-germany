@@ -18,6 +18,47 @@ SUPABASE_URL = "https://iihprcuhmilmymlbktpy.supabase.co"
 SERVICE_ROLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlpaHByY3VobWlsbXltbGJrdHB5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2NzYwNTk4MiwiZXhwIjoyMDgzMTgxOTgyfQ.JbraSUKjSW4iN1FV-bvBfL1CO943dk29ThQcD3ya0vQ"
 AUTHOR_ID = "f198e552-d96b-48d6-a537-86f8eec86c8a"
 
+POST_COVER_MAPPING = {
+    "lagerlogistik-berufskraftfahrer-vietnam-beschv": "/images/blog/dmf-logistik-arbeitsplatz-training.jpg",
+    "vorstellungsgespraech-azubis-vietnam-fragen": "/images/blog/dmf-achim-interview-coaching.jpg",
+    "maler-lackierer-trockenbau-vietnam-einstellen": "/images/blog/dmf-lackier-ausbau-training.jpg",
+    "bau-fachkraefte-vietnam-maurer-betonbauer": "/images/blog/dmf-bau-handwerk-simulation.jpg",
+    "einstiegsqualifizierung-eq-54a-sgb-iii-azubis": "/images/blog/dmf-dozenten-fachunterricht.jpg",
+    "deufoev-foerderung-45a-aufenthg-sprachkurse": "/images/blog/dmf-fachbibliothek-unterricht.jpg",
+    "niederlassungserlaubnis-fachkraefte-18c-aufenthg": "/images/blog/dmf-azubi-abschluss-zertifikat.jpg",
+    "familiennachzug-fachkraefte-aufenthg-arbeitgeber": "/images/blog/dmf-azubi-leben-in-deutschland.jpg",
+    "interkulturelle-fuehrung-vietnamesische-fachkraefte": "/images/blog/dmf-teamarbeit-fallstudien.jpg",
+    "ota-ata-fachkraefte-aus-vietnam-kliniken": "/images/blog/dmf-medizin-simulation-saal.jpg",
+    "guetesiegel-faire-anwerbung-pflege-deutschland": "/images/blog/dmf-klinik-partner-audit.jpg",
+    "kfz-mechatroniker-hochvolt-e-mobilitaet-vietnam": "/images/blog/dmf-kfz-diagnose-labor.jpg",
+    "solarteure-photovoltaik-fachkraefte-vietnam": "/images/blog/dmf-solar-elektro-schulung.jpg",
+    "roi-kalkulation-auszubildende-amortisation-betrieb": "/images/blog/dmf-karriere-urkunde-erfolg.jpg",
+    "employer-pays-prinzip-296a-sgb-iii-transparenz": "/images/blog/dmf-fachkraefte-auswahl-kommission.jpg",
+    "berufsschule-fachtheorie-asa-flex-vietnamesische-azubis": "/images/blog/dmf-azubi-motivation-lernen.jpg",
+    "visum-berufsausbildung-16a-voraussetzungen-pflichten": "/images/blog/dmf-campus-lehrsaal-modern.jpg",
+    "chancenkarte-feg-aenderungen-arbeitgeber": "/images/blog/dmf-bewerber-profil-pruefung.jpg",
+    "anerkennungsverfahren-vietnam-abschluesse-defizitbescheid": "/images/blog/dmf-fachsprache-lehrkraft.jpg",
+    "cnc-fachkraefte-zerspanungsmechaniker-vietnam": "/images/blog/dmf-azubi-einarbeitung-werkstatt.jpg",
+    "baecker-konditoren-lebensmittelhandwerk-vietnam": "/images/blog/dmf-praxis-uebung-labor.jpg",
+    "it-spezialisten-softwareentwickler-vietnam-blaue-karte": "/images/blog/dmf-it-arbeitsplaetze-schulung.jpg",
+    "schweisser-metallbauer-aus-vietnam-zertifikate": "/images/blog/dmf-arbeitgeber-kooperation-handwerk.jpg",
+    "wohnraum-fuer-azubis-praxisloesungen-arbeitgeber": "/images/blog/dmf-wohnraum-azubi-unterkunft.jpg",
+    "cost-of-vacancy-kosten-unbesetzter-stellen-rekrutierung": "/images/blog/dmf-partner-deutschland-meeting.jpg",
+    "gastronomie-hotellerie-personal-vietnam-einstellen": "/images/blog/dmf-gastronomie-hotellerie-service.jpg",
+    "handwerker-aus-vietnam-elektroniker-mechatroniker-shk": "/images/blog/dmf-talent-partnerschaft-deutschland-vietnam.jpg",
+    "ausbildungsabbrueche-verhindern-fruehwarnsignale-betreuung": "/images/blog/dmf-leben-in-deutschland-freizeit.jpg",
+    "beschleunigtes-fachkraefteverfahren-81a-ablauf": "/images/blog/dmf-delegation-besuch-akademie.jpg",
+    "pflegekraefte-aus-vietnam-anerkennung-sprachpraxis-integration": "/images/blog/dmf-pflege-station-praxis.jpg",
+    "vom-personalbedarf-zum-abgestimmten-suchprofil": "/images/blog/dmf-unterricht-materialien.jpg",
+    "deutsch-im-arbeitsalltag-sprachliche-anforderungen-vorstellungsgespraech": "/images/blog/dmf-sprachuebung-tablet.jpg",
+    "azubis-aus-vietnam-vorbereitung-ausbildungsbetrieb": "/images/blog/dmf-klassenzimmer.jpg",
+    "onboarding-internationale-fachkraefte-90-tage": "/images/blog/dmf-ausreise-flughafen.jpg",
+    "personalvermittlung-vietnam-angebote-vergleichen": "/images/blog/dmf-angebote-pruefung.jpg",
+    "fachkraefte-aus-vietnam-einstellen-checkliste": "/images/blog/dmf-betreuung-unterlagen.jpg",
+    "vietnamesische-fachkraefte-verlaesslich-statt-riskant-wie-dmf-ausbildungsabbrueche-und-ausbeutung-verhindert": "/images/blog/dmf-achim-fuehrung-seminar.jpg",
+    "qualitaetssicherung-durch-sprache-wie-dmf-vietnam-ihre-zukuenftigen-fachkraefte-vorbereitet": "/images/blog/dmf-sprachkurs-praxis-unterricht.jpg",
+}
+
 def sync_posts():
     if not COMPILED_FILE.exists():
         print(f"Error: {COMPILED_FILE} not found. Run compile-drafts.py first.")
@@ -35,12 +76,14 @@ def sync_posts():
         pub_time = base_time - timedelta(days=(len(posts) - 1 - i) * 2, hours=(i % 5) * 3)
         pub_iso = pub_time.isoformat()
 
+        cover = POST_COVER_MAPPING.get(p["slug"], p.get("cover_image") or "/images/blog/dmf-klassenzimmer.jpg")
+
         post_record = {
             "title": p["title"],
             "slug": p["slug"],
             "excerpt": p.get("excerpt") or "",
             "content": p["content"],
-            "cover_image": p.get("cover_image") or "/images/blog/dmf-klassenzimmer.jpg",
+            "cover_image": cover,
             "status": "published",
             "published_at": pub_iso,
             "author_id": AUTHOR_ID,
@@ -76,8 +119,26 @@ def sync_posts():
 
     print(f"\nSUCCESS: Synced all {total_synced} posts to Supabase table 'posts' with status 'published'!")
 
+    # Explicitly update pre-existing posts with dedicated photographic covers
+    pre_existing_updates = [
+        ("vorstellungsgespraech-azubis-vietnam-fragen", POST_COVER_MAPPING["vorstellungsgespraech-azubis-vietnam-fragen"]),
+        ("vietnamesische-fachkraefte-verlaesslich-statt-riskant-wie-dmf-ausbildungsabbrueche-und-ausbeutung-verhindert", POST_COVER_MAPPING["vietnamesische-fachkraefte-verlaesslich-statt-riskant-wie-dmf-ausbildungsabbrueche-und-ausbeutung-verhindert"]),
+        ("qualitaetssicherung-durch-sprache-wie-dmf-vietnam-ihre-zukuenftigen-fachkraefte-vorbereitet", POST_COVER_MAPPING["qualitaetssicherung-durch-sprache-wie-dmf-vietnam-ihre-zukuenftigen-fachkraefte-vorbereitet"])
+    ]
+    for pe_slug, pe_cover in pre_existing_updates:
+        patch_url = f"{SUPABASE_URL}/rest/v1/posts?slug=eq.{pe_slug}"
+        patch_payload = json.dumps({"cover_image": pe_cover, "status": "published"}).encode("utf-8")
+        patch_headers = {
+            "apikey": SERVICE_ROLE_KEY,
+            "Authorization": f"Bearer {SERVICE_ROLE_KEY}",
+            "Content-Type": "application/json"
+        }
+        patch_req = urllib.request.Request(patch_url, data=patch_payload, method="PATCH", headers=patch_headers)
+        with urllib.request.urlopen(patch_req) as p_resp:
+            print(f"Updated pre-existing post [{pe_slug}] cover -> {pe_cover} (Status {p_resp.status})")
+
     # Verify query
-    verify_url = f"{SUPABASE_URL}/rest/v1/posts?select=slug,title,status,published_at&order=published_at.desc"
+    verify_url = f"{SUPABASE_URL}/rest/v1/posts?select=slug,title,status,cover_image,published_at&order=published_at.desc"
     verify_req = urllib.request.Request(verify_url, headers={
         "apikey": SERVICE_ROLE_KEY,
         "Authorization": f"Bearer {SERVICE_ROLE_KEY}"
@@ -85,8 +146,12 @@ def sync_posts():
     with urllib.request.urlopen(verify_req) as resp:
         online_posts = json.loads(resp.read().decode())
         print(f"\nTotal posts currently published in Supabase: {len(online_posts)}")
+        svg_count = sum(1 for op in online_posts if (op.get("cover_image") or "").endswith(".svg"))
+        none_count = sum(1 for op in online_posts if not op.get("cover_image"))
+        jpg_count = sum(1 for op in online_posts if (op.get("cover_image") or "").endswith((".jpg", ".png", ".webp")))
+        print(f"Audit: {jpg_count} Photographic Covers, {svg_count} SVGs, {none_count} None/Missing")
         for op in online_posts[:5]:
-            print(f"  * {op['published_at'][:10]} | [{op['status']}] {op['slug']}")
+            print(f"  * {op['published_at'][:10]} | [{op['status']}] {op['slug']} -> {op.get('cover_image')}")
 
 if __name__ == "__main__":
     sync_posts()

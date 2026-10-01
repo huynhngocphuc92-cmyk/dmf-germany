@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: maler-lackierer-trockenbau-vietnam-einstellen
+cover_image: "/images/blog/dmf-lackier-ausbau-training.jpg"
 meta_title: "Maler & Trockenbauer aus Vietnam: Profis im Ausbauhandwerk"
 meta_description: "Fachkräfte für das Ausbauhandwerk aus Vietnam: Maler, Lackierer und Trockenbauer für deutsche Betriebe. Qualifikationsprüfungen und Oberflächengüten Q1–Q4."
 excerpt: "Perfekte Oberflächen im Innenausbau: Erfahren Sie, welche Qualifikationen Maler, Lackierer und Trockenbauer aus Vietnam mitbringen und wie Sie Betriebe stärken."

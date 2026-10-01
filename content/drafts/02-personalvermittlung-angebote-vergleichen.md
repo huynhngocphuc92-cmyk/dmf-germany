@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: personalvermittlung-vietnam-angebote-vergleichen
+cover_image: "/images/blog/dmf-angebote-pruefung.jpg"
 meta_title: "Personalvermittlung Vietnam: Angebote sinnvoll vergleichen"
 meta_description: "Personalvermittlung aus Vietnam vergleichen: Fragen zu Leistungsumfang, Kosten, Zuständigkeiten und offenen Risiken für Ihr Gespräch mit einem Anbieter."
 excerpt: "Ein Angebot lässt sich erst einordnen, wenn Leistungen und Zuständigkeiten klar sind. Diese Fragen helfen Arbeitgebern beim Vergleich von Vermittlungsangeboten."

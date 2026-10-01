@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: beschleunigtes-fachkraefteverfahren-81a-ablauf
+cover_image: "/images/blog/dmf-delegation-besuch-akademie.jpg"
 meta_title: "§ 81a AufenthG: Beschleunigtes Fachkräfteverfahren erklärt"
 meta_description: "Das beschleunigte Fachkräfteverfahren nach § 81a AufenthG: Ablauf, Fristen, Kosten und Vorabzustimmung. Ein Praxisleitfaden für deutsche Arbeitgeber."
 excerpt: "Wie verkürzt das beschleunigte Fachkräfteverfahren nach § 81a AufenthG die Wartezeiten bei Behörden? Ablauf, Fristen und Handlungsschritte für Arbeitgeber."

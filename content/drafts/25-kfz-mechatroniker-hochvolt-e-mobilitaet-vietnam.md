@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: kfz-mechatroniker-hochvolt-e-mobilitaet-vietnam
+cover_image: "/images/blog/dmf-kfz-diagnose-labor.jpg"
 meta_title: "Kfz-Mechatroniker aus Vietnam: E-Mobilität & Hochvolt-Profis"
 meta_description: "Kfz-Mechatroniker aus Vietnam für Autohäuser und Werkstätten: Hochvolt-Kenntnisse nach DGUV 209-093, BQFG-Gleichwertigkeit und Diagnosetechnik."
 excerpt: "Elektromobilität verändert die Kfz-Werkstatt. Erfahren Sie, welche Hochvolt-Kompetenzen Kfz-Mechatroniker aus Vietnam mitbringen und wie Sie Betriebe verstärken."

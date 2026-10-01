@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: lagerlogistik-berufskraftfahrer-vietnam-beschv
+cover_image: "/images/blog/dmf-logistik-arbeitsplatz-training.jpg"
 meta_title: "Lagerlogistik & Berufskraftfahrer aus Vietnam (§ 24a)"
 meta_description: "Personal für Spedition und Lager: Fachkräfte für Lagerlogistik und Berufskraftfahrer aus Vietnam nach § 24a BeschV rechtssicher rekrutieren und integrieren."
 excerpt: "Räder müssen rollen: Erfahren Sie, wie Speditionen und Logistikzentren Fachkräfte für Lagerlogistik und Lkw-Fahrer aus Vietnam nach § 24a BeschV einstellen."

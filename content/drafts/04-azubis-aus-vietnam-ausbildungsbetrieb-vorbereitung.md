@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: azubis-aus-vietnam-vorbereitung-ausbildungsbetrieb
+cover_image: "/images/blog/dmf-klassenzimmer.jpg"
 meta_title: "Azubis aus Vietnam: Vorbereitung im Ausbildungsbetrieb"
 meta_description: "Auszubildende aus Vietnam im Betrieb aufnehmen: Wohnraum, Betreuung, Berufsschule und Integration. Ein praxisnaher Leitfaden für Ausbildungsbetriebe."
 excerpt: "Was muss ein Betrieb vorbereiten, bevor Auszubildende aus Vietnam starten? Dieser Leitfaden strukturiert Betreuung, Wohnraum und den Einstieg in die duale Ausbildung."

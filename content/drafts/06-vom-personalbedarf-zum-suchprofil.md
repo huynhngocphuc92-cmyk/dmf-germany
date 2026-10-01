@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: vom-personalbedarf-zum-abgestimmten-suchprofil
+cover_image: "/images/blog/dmf-unterricht-materialien.jpg"
 meta_title: "Vom Personalbedarf zum Suchprofil für Fachkräfte"
 meta_description: "Stellenprofil für die internationale Rekrutierung schärfen: Typische Fehler vermeiden, Anforderungen klar definieren und Zeitpläne realistisch planen."
 excerpt: "Warum scheitern klassische Stellenbeschreibungen bei der internationalen Suche? Erfahren Sie, wie Sie ein passgenaues Suchprofil für Fachkräfte aus Vietnam erstellen."

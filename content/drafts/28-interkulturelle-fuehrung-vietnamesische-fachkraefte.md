@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: interkulturelle-fuehrung-vietnamesische-fachkraefte
+cover_image: "/images/blog/dmf-teamarbeit-fallstudien.jpg"
 meta_title: "Interkulturelle Führung: Vietnamesische Fachkräfte leiten"
 meta_description: "Praxisratgeber für Meister und Teamleiter: Wie interkulturelle Führung, konstruktive Feedbackkultur und Vertrauen im Arbeitsalltag gelingen."
 excerpt: "Führung auf Augenhöhe: Erfahren Sie, wie deutsche Meister und Stationsleiter kulturelle Unterschiede verstehen und vietnamesische Mitarbeiter motivieren."

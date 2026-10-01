@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: onboarding-internationale-fachkraefte-90-tage
+cover_image: "/images/blog/dmf-ausreise-flughafen.jpg"
 meta_title: "Internationale Fachkräfte: Onboarding für die ersten 90 Tage"
 meta_description: "Planen Sie das Onboarding internationaler Fachkräfte: Aufgaben, Ansprechpersonen und Feedback für die ersten 90 Tage. Ein Leitfaden für Arbeitgeber."
 excerpt: "Ein vorgeschlagener 90-Tage-Plan hilft, Einarbeitung und Zusammenarbeit vorzubereiten. Entscheidend sind klare Zuständigkeiten und regelmäßiges Feedback."

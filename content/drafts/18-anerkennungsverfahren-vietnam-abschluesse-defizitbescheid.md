@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: anerkennungsverfahren-vietnam-abschluesse-defizitbescheid
+cover_image: "/images/blog/dmf-fachsprache-lehrkraft.jpg"
 meta_title: "Anerkennungsverfahren BQFG: Defizitbescheid verstehen & lösen"
 meta_description: "Anerkennung vietnamesischer Berufsabschlüsse nach dem BQFG: Defizitbescheid verstehen, Anpassungslehrgang (§ 16d) organisieren und Vollanerkennung erreichen."
 excerpt: "Was tun bei einem Defizitbescheid? Erfahren Sie, wie Arbeitgeber Teilanerkennungen nach dem BQFG durch betriebliche Qualifizierung (§ 16d) zur Vollanerkennung führen."

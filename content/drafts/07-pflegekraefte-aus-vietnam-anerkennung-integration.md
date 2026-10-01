@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: pflegekraefte-aus-vietnam-anerkennung-sprachpraxis-integration
+cover_image: "/images/blog/dmf-pflege-station-praxis.jpg"
 meta_title: "Pflegekräfte aus Vietnam: Anerkennung & Stationsintegration"
 meta_description: "Pflegefachkräfte aus Vietnam einstellen: Anerkennungsverfahren, Fachsprache B2 und erfolgreiche Integration auf Station. Ein Leitfaden für Pflegebetriebe."
 excerpt: "Wie gelingt die Einstellung vietnamesischer Pflegekräfte? Erfahren Sie alles über das Anerkennungsverfahren, sprachliche Vorbereitung und Stationsintegration."

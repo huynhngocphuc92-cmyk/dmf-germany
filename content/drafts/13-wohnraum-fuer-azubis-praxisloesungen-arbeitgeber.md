@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: wohnraum-fuer-azubis-praxisloesungen-arbeitgeber
+cover_image: "/images/blog/dmf-wohnraum-azubi-unterkunft.jpg"
 meta_title: "Wohnraum für Azubis aus dem Ausland: Praxislösungen für Betriebe"
 meta_description: "Wie Arbeitgeber die Wohnraumfrage für internationale Azubis und Fachkräfte lösen: 4 bewährte Modelle, Mietrecht, Behördenvorgaben und Praxistipps."
 excerpt: "Ohne Wohnraumnachweis kein Visum. Erfahren Sie, welche vier praxiserprobten Wohnraummodelle Betrieben zur Verfügung stehen und wie Sie Risiken minimieren."

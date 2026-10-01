@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: cost-of-vacancy-kosten-unbesetzter-stellen-rekrutierung
+cover_image: "/images/blog/dmf-partner-deutschland-meeting.jpg"
 meta_title: "Cost of Vacancy: Was kostet eine unbesetzte Stelle im Betrieb?"
 meta_description: "Cost of Vacancy berechnen: Warum unbesetzte Stellen den Mittelstand 25.000–60.000 € kosten und ab wann sich internationale Rekrutierung amortisiert."
 excerpt: "Unbesetzte Stellen bremsen das Wachstum und treiben Überstunden in die Höhe. Erfahren Sie, wie Sie Ihre Vakanzkosten berechnen und wirtschaftlich gegensteuern."

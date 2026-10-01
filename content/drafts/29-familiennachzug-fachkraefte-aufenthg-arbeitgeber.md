@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: familiennachzug-fachkraefte-aufenthg-arbeitgeber
+cover_image: "/images/blog/dmf-azubi-leben-in-deutschland.jpg"
 meta_title: "Familiennachzug für Fachkräfte: Leitfaden für Arbeitgeber"
 meta_description: "Wie Arbeitgeber den Familiennachzug nach §§ 29–32 AufenthG unterstützen: Wohnraumnachweis, Gehaltsanforderungen und langfristige Mitarbeiterbindung."
 excerpt: "Familie gibt Halt: Erfahren Sie, welche Voraussetzungen für den Ehegatten- und Kindernachzug aus Vietnam gelten und wie Betriebe die Bindung stärken."

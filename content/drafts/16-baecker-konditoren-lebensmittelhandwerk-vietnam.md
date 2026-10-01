@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: baecker-konditoren-lebensmittelhandwerk-vietnam
+cover_image: "/images/blog/dmf-praxis-uebung-labor.jpg"
 meta_title: "Bäcker & Konditoren aus Vietnam: Nachwuchs im Handwerk sichern"
 meta_description: "Wie Bäckereien und Konditoreien Nachwuchskräfte aus Vietnam gewinnen: Duale Ausbildung (§ 16a), Backstubenpraxis, Teigführung und HACCP-Standards."
 excerpt: "Leere Backstuben und fehlender Nachwuchs? Erfahren Sie, wie Handwerksbäckereien motivierte Azubis für Bäcker und Konditoren aus Vietnam gewinnen."

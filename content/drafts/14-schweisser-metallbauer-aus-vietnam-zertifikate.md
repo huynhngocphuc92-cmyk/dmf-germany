@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: schweisser-metallbauer-aus-vietnam-zertifikate
+cover_image: "/images/blog/dmf-arbeitgeber-kooperation-handwerk.jpg"
 meta_title: "Schweißer aus Vietnam: ISO 9606 Zertifikate & Metallbau"
 meta_description: "Wie deutsche Betriebe qualifizierte Schweißer und Metallbauer aus Vietnam gewinnen: ISO 9606-1 Schweißprüfung, MAG/WIG-Verfahren und BQFG-Anerkennung."
 excerpt: "Engpass im Stahlbau? Erfahren Sie, welche Schweißprüfungen nach DIN EN ISO 9606 Fachkräfte aus Vietnam mitbringen und wie Sie deren Qualifikation rechtssicher anerkennen."

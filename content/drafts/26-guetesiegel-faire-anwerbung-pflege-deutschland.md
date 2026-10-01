@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: guetesiegel-faire-anwerbung-pflege-deutschland
+cover_image: "/images/blog/dmf-klinik-partner-audit.jpg"
 meta_title: "Gütesiegel Faire Anwerbung Pflege: Leitfaden für Kliniken"
 meta_description: "Warum das Gütesiegel Faire Anwerbung Pflege für Kliniken unverzichtbar ist: Kriterien, Employer-Pays-Prinzip und ethische Rekrutierung aus Vietnam."
 excerpt: "Reputationsschutz und Transparenz: Erfahren Sie, warum deutsche Kliniken und Pflegeheime bei der Auslandsrekrutierung auf das RAL Gütezeichen setzen sollten."

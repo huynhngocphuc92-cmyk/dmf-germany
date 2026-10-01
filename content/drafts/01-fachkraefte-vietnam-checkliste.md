@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: fachkraefte-aus-vietnam-einstellen-checkliste
+cover_image: "/images/blog/dmf-betreuung-unterlagen.jpg"
 meta_title: "Fachkräfte aus Vietnam einstellen: Arbeitgeber-Checkliste"
 meta_description: "Fachkräfte aus Vietnam einstellen: Klären Sie Aufgaben, Qualifikationen, Budget und Zuständigkeiten. Eine praktische Checkliste für Ihr erstes Gespräch."
 excerpt: "Welche Informationen braucht eine fundierte Personalplanung? Diese Checkliste hilft Arbeitgebern, eine Anfrage zur Rekrutierung aus Vietnam vorzubereiten."

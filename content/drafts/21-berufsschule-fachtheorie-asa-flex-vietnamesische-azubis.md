@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: berufsschule-fachtheorie-asa-flex-vietnamesische-azubis
+cover_image: "/images/blog/dmf-azubi-motivation-lernen.jpg"
 meta_title: "Berufsschule & Fachtheorie: AsA flex für Azubis aus Vietnam"
 meta_description: "Wie internationale Azubis die Berufsschule meistern: Fachtheorie, Prüfungsangst abbauen und das kostenfreie AsA-flex-Programm (§ 75 SGB III) nutzen."
 excerpt: "Gute Praxis im Betrieb, aber schlechte Noten in der Berufsschule? Erfahren Sie, wie Betriebe mit AsA flex Fachtheorie und Sprache gezielt und kostenfrei fördern."

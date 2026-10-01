@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: gastronomie-hotellerie-personal-vietnam-einstellen
+cover_image: "/images/blog/dmf-gastronomie-hotellerie-service.jpg"
 meta_title: "Gastronomie & Hotellerie: Personal aus Vietnam einstellen"
 meta_description: "Köche, Service- und Hotelkräfte aus Vietnam für deutsche Betriebe: Ausbildung (§ 16a), Fachkraft (§ 18a) und Saisonbeschäftigung (§ 15c BeschV) im Vergleich."
 excerpt: "Personalmangel im Gastgewerbe? Erfahren Sie, welche drei rechtssicheren Rekrutierungsmodelle Gastronomen und Hoteliers für Personal aus Vietnam offenstehen."

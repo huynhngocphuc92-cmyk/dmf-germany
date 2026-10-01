@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: cnc-fachkraefte-zerspanungsmechaniker-vietnam
+cover_image: "/images/blog/dmf-azubi-einarbeitung-werkstatt.jpg"
 meta_title: "CNC-Fachkräfte & Zerspanungsmechaniker aus Vietnam gewinnen"
 meta_description: "CNC-Dreher und Fräser aus Vietnam einstellen: CNC-Steuerungen (Siemens, Heidenhain, Fanuc), 5-Achs-Zerspanung, BQFG-Anerkennung und Einarbeitung im Werk."
 excerpt: "CNC-Maschinen stehen still? Erfahren Sie, wie mittelständische Zerspanungs- und Maschinenbaubetriebe qualifizierte CNC-Dreher und Fräser aus Vietnam rekrutieren."

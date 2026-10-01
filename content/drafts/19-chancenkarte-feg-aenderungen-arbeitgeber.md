@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: chancenkarte-feg-aenderungen-arbeitgeber
+cover_image: "/images/blog/dmf-bewerber-profil-pruefung.jpg"
 meta_title: "Chancenkarte nach § 20a AufenthG: Leitfaden für Arbeitgeber"
 meta_description: "Die Chancenkarte im Fachkräfteeinwanderungsgesetz: Punktesystem, Probebeschäftigung für Unternehmen und Umwandlung in den Fachkrafttitel (§ 18a/b)."
 excerpt: "Was bringt die Chancenkarte deutschen Unternehmen? Erfahren Sie, wie Betriebe Kandidaten vor Ort erproben und unkompliziert in eine Festanstellung übernehmen."

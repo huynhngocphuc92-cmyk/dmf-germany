@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: ausbildungsabbrueche-verhindern-fruehwarnsignale-betreuung
+cover_image: "/images/blog/dmf-leben-in-deutschland-freizeit.jpg"
 meta_title: "Ausbildungsabbrüche vermeiden: Leitfaden für Betriebe"
 meta_description: "Wie Ausbildungsbetriebe Abbrüche bei Azubis aus Vietnam verhindern: Frühwarnsignale, AsA flex und das 3-Säulen-Betreuungsdreieck im Betrieb."
 excerpt: "Ausbildungsabbrüche kosten Betriebe Zeit und Geld. Erfahren Sie, wie Sie Frühwarnsignale bei internationalen Azubis erkennen und durch ein Betreuungsdreieck gegensteuern."

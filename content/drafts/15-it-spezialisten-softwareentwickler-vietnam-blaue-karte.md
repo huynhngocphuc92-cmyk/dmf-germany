@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: it-spezialisten-softwareentwickler-vietnam-blaue-karte
+cover_image: "/images/blog/dmf-it-arbeitsplaetze-schulung.jpg"
 meta_title: "IT-Spezialisten aus Vietnam: Softwareentwickler & Blaue Karte EU"
 meta_description: "IT-Fachkräfte aus Vietnam einstellen: Blaue Karte EU (§ 18g), IT-Spezialistenvisum ohne Uni-Abschluss (§ 19c) und Tech-Stacks im Praxisvergleich."
 excerpt: "Softwareentwickler und DevOps-Engineers aus Vietnam für deutsche Tech-Teams: Visumwege, Gehaltsschwellen und wie Sie Tech-Stacks verlässlich prüfen."

@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: roi-kalkulation-auszubildende-amortisation-betrieb
+cover_image: "/images/blog/dmf-karriere-urkunde-erfolg.jpg"
 meta_title: "ROI-Kalkulation Azubis: Ab wann amortisiert sich die Ausbildung?"
 meta_description: "Lohnt sich ein internationaler Azubi wirtschaftlich? Detaillierte ROI-Kalkulation, Kosten-Nutzen-Rechnung über 3 Lehrjahre und Rechner für Arbeitgeber."
 excerpt: "Ausbildung kostet – Nicht-Ausbilden kostet mehr. Erfahren Sie anhand einer detaillierten 3-Jahres-Kalkulation, ab wann sich ein internationaler Azubi amortisiert."

@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: einstiegsqualifizierung-eq-54a-sgb-iii-azubis
+cover_image: "/images/blog/dmf-dozenten-fachunterricht.jpg"
 meta_title: "Einstiegsqualifizierung (EQ): Vorbereitung für Azubis"
 meta_description: "Das EQ-Modell nach § 54a SGB III für Azubis aus Vietnam: Praktische Vorbereitung im Betrieb, Vergütungszuschuss der Arbeitsagentur und Kammeranerkennung."
 excerpt: "Sicherer Einstieg in die Ausbildung: Erfahren Sie, wie Betriebe die geförderte Einstiegsqualifizierung (§ 54a SGB III) als Brücke für Azubis aus Vietnam nutzen."

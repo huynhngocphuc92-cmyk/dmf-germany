@@ -219,9 +219,14 @@ def compile_all():
         # Convert markdown body to HTML
         html_content = markdown_to_html(body)
 
-        # Find cover image (first image in content or default)
-        img_match = re.search(r'<img\s+src="([^"]+)"', html_content)
-        cover_image = img_match.group(1) if img_match else "/images/blog/dmf-klassenzimmer.jpg"
+        # Find cover image: prioritize frontmatter meta, then first non-SVG image
+        if meta.get("cover_image"):
+            cover_image = meta["cover_image"]
+        else:
+            img_matches = re.findall(r'<img\s+src="([^"]+)"', html_content)
+            # Filter for photographic images (exclude SVG diagrams)
+            photo_imgs = [img for img in img_matches if not img.endswith(".svg")]
+            cover_image = photo_imgs[0] if photo_imgs else "/images/blog/dmf-klassenzimmer.jpg"
 
         slug = meta.get("slug", file_path.stem)
         post_data = {

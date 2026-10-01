@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: deufoev-foerderung-45a-aufenthg-sprachkurse
+cover_image: "/images/blog/dmf-fachbibliothek-unterricht.jpg"
 meta_title: "DeuFöV-Förderung (§ 45a): Zuschüsse für Deutschkurse"
 meta_description: "Wie Arbeitgeber bis zu 100 % Zuschuss für berufsbezogene Deutschkurse nach § 45a AufenthG (DeuFöV) erhalten: Antragstellung, Kriterien und Vorteile."
 excerpt: "Sprachförderung ohne hohe Betriebskosten: Erfahren Sie, wie Unternehmen staatliche Zuschüsse für berufsbezogenes Deutsch nach § 45a AufenthG nutzen."

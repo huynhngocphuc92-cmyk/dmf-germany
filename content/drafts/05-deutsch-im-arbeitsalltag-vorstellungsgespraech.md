@@ -2,6 +2,7 @@
 status: draft
 language: de
 slug: deutsch-im-arbeitsalltag-sprachliche-anforderungen-vorstellungsgespraech
+cover_image: "/images/blog/dmf-sprachuebung-tablet.jpg"
 meta_title: "Deutsch im Arbeitsalltag: Sprachniveau im Interview prüfen"
 meta_description: "Sprachkenntnisse ausländischer Fachkräfte realistisch beurteilen: Leitfaden und Beispielfragen für das Vorstellungsgespräch jenseits von B1/B2-Zertifikaten."
 excerpt: "Reicht ein B1-Zertifikat für den Arbeitsalltag? Erfahren Sie, wie Arbeitgeber Sprachkompetenzen im Vorstellungsgespräch praxisnah und aufgabenbezogen bewerten."
