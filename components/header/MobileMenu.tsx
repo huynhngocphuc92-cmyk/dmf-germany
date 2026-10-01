@@ -92,7 +92,7 @@ export const MobileMenu = memo(function MobileMenu({
         <>
           {/* Backdrop */}
           <div
-            className="xl:hidden fixed inset-0 bg-black/20 z-[998]"
+            className="lg:hidden fixed inset-0 bg-black/20 z-[998]"
             onClick={() => setIsOpen(false)}
           />
           {/* Menu */}
@@ -104,7 +104,7 @@ export const MobileMenu = memo(function MobileMenu({
               top: isScrolled ? "4rem" : "7.5rem",
               height: isScrolled ? "calc(100dvh - 4rem)" : "calc(100dvh - 7.5rem)",
             }}
-            className="xl:hidden fixed left-0 right-0 bg-white z-[999] p-4 border-t overflow-y-auto shadow-2xl"
+            className="lg:hidden fixed left-0 right-0 bg-white z-[999] p-4 border-t overflow-y-auto shadow-2xl"
           >
             <div className="flex flex-col gap-4 pb-safe">
               <Link
@@ -163,18 +163,16 @@ export const MobileMenu = memo(function MobileMenu({
                 )}
               </div>
 
-              {/* TODO: Uncomment when blog has content
-            <Link
-              href="/blog"
-              onClick={closeMenu}
-              className={cn(
-                "text-lg font-medium py-2",
-                isActive("/blog") ? "text-primary font-semibold" : "text-foreground"
-              )}
-            >
-              {t.header.blog}
-            </Link>
-            */}
+              <Link
+                href="/blog"
+                onClick={closeMenu}
+                className={cn(
+                  "text-lg font-medium py-2",
+                  isActive("/blog") ? "text-primary font-semibold" : "text-foreground"
+                )}
+              >
+                {t.header.blog}
+              </Link>
 
               {/* Für Arbeitgeber - Mobile Dropdown */}
               <div>

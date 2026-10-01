@@ -3,8 +3,7 @@
 import { useState, useEffect, useCallback, memo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Phone, Mail, Home, Users, Handshake } from "lucide-react";
-// import { Newspaper } from "lucide-react"; // TODO: Uncomment when blog is enabled
+import { Phone, Mail, Home, Users, Newspaper, Handshake } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { GERMANY_CONTACT, PRIMARY_CONTACT } from "@/lib/company/contact";
 import { Logo } from "@/components/Logo";
@@ -48,7 +47,7 @@ const NavLink = memo(function NavLink({ href, label, icon, isActive }: NavLinkPr
     <Link
       href={href}
       className={cn(
-        "px-4 py-2 rounded-lg text-sm font-medium transition-colors relative",
+        "px-2.5 xl:px-4 py-2 rounded-lg text-sm font-medium transition-colors relative whitespace-nowrap",
         "hover:text-primary",
         "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full",
         isActive && "text-primary font-semibold after:w-full"
@@ -243,7 +242,7 @@ export const Header = memo(function Header({ logoUrl, hotline, email }: HeaderPr
 
           {/* Desktop Navigation */}
           <nav
-            className="hidden xl:flex items-center gap-1 md:gap-2 lg:gap-4 flex-1 justify-center"
+            className="hidden lg:flex items-center gap-1 xl:gap-2 flex-1 justify-center"
             aria-label="Hauptnavigation"
           >
             <NavLink
@@ -260,14 +259,12 @@ export const Header = memo(function Header({ logoUrl, hotline, email }: HeaderPr
               variant="simple"
             />
 
-            {/* TODO: Uncomment when blog has content
             <NavLink
               href="/blog"
               label={t.header.blog}
               icon={<Newspaper className="w-4 h-4 inline-block mr-2" />}
               isActive={isActive("/blog")}
             />
-            */}
 
             <NavDropdown
               label={t.nav?.employers || "Für Arbeitgeber"}
@@ -289,13 +286,13 @@ export const Header = memo(function Header({ logoUrl, hotline, email }: HeaderPr
           </nav>
 
           {/* Right Side - Desktop */}
-          <div className="hidden xl:flex items-center gap-2 md:gap-3 flex-shrink-0">
+          <div className="hidden lg:flex items-center gap-2 xl:gap-3 flex-shrink-0">
             <LanguageSwitcher variant="desktop" />
             <ContactButton label={t.header.contact} pathname={pathname} />
           </div>
 
           {/* Mobile */}
-          <div className="xl:hidden flex items-center gap-2">
+          <div className="lg:hidden flex items-center gap-2">
             <LanguageSwitcher variant="mobile" />
             <MobileMenu onContactClick={handleContactClick} isScrolled={isScrolled} />
           </div>

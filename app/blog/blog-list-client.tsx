@@ -97,9 +97,9 @@ export function BlogListClient({ posts }: BlogListClientProps) {
   const dateLocale = lang === "vn" ? vi : de;
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+    <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white pt-[120px]">
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-28 overflow-hidden">
+      <section className="relative py-12 lg:py-16 overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-[0.03]">
           <div
