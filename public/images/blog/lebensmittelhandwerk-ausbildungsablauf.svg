@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="title desc">
+  <title id="title">Ausbildung und Fachkräftegewinnung im Bäcker- und Konditorenhandwerk</title>
+  <desc id="desc">Drei Bausteine zur Nachwuchssicherung: Sprachliche Vorbereitung auf die Backstube, 3-jährige duale Ausbildung und langfristige Gesellenübernahme.</desc>
+  <rect width="720" height="540" rx="24" fill="#eef5f9"/>
+  <text x="36" y="48" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#087f9b">LEBENSMITTELHANDWERK</text>
+  <text x="36" y="88" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#1e3a5f">Nachwuchssicherung in Backstube &amp; Konditorei</text>
+
+  <!-- Pillar 1: Backstuben-Vorbereitung -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="36" y="125" width="206" height="340" rx="16"/>
+  </g>
+  <rect x="36" y="125" width="206" height="42" rx="16" fill="#1e3a5f"/>
+  <text x="139" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="white">1. Vorbereitung</text>
+  <text x="139" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#0891b2">Sprache &amp; Praxis</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="50" y="225" font-weight="700" fill="#1e3a5f">Sprachkompetenz:</text>
+    <text x="50" y="243">• Deutsch bis B1/B2</text>
+    <text x="50" y="261">• Backfachbegriffe</text>
+    <text x="50" y="279">  (Gärung, Teigruhe)</text>
+
+    <text x="50" y="315" font-weight="700" fill="#1e3a5f">Körperliche Fitness:</text>
+    <text x="50" y="333">Vorbereitung auf</text>
+    <text x="50" y="351">stehende Tätigkeit &amp;</text>
+    <text x="50" y="369">frühe Arbeitszeiten</text>
+
+    <text x="50" y="405" font-weight="700" fill="#1e3a5f">Hygienebasis:</text>
+    <text x="50" y="423">HACCP-Standards &amp;</text>
+    <text x="50" y="441">§ 43 IfSG Schulung</text>
+  </g>
+
+  <!-- Pillar 2: Duale Ausbildung -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="257" y="125" width="206" height="340" rx="16"/>
+  </g>
+  <rect x="257" y="125" width="206" height="42" rx="16" fill="#0891b2"/>
+  <text x="360" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="white">2. Duale Ausbildung</text>
+  <text x="360" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#1e3a5f">3 Jahre (§ 16a)</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="271" y="225" font-weight="700" fill="#1e3a5f">Berufsbilder:</text>
+    <text x="271" y="243">• Bäcker/in</text>
+    <text x="271" y="261">• Konditor/in</text>
+    <text x="271" y="279">• Fachverkäufer/in</text>
+
+    <text x="271" y="315" font-weight="700" fill="#1e3a5f">Ausbildungsinhalte:</text>
+    <text x="271" y="333">Rohstoffkunde, Ofen-</text>
+    <text x="271" y="351">führung, Feinbäckerei,</text>
+    <text x="271" y="369">Konditorei &amp; Patisserie</text>
+
+    <text x="271" y="405" font-weight="700" fill="#1e3a5f">Theorie-Begleitung:</text>
+    <text x="271" y="423">AsA flex Nachhilfe</text>
+    <text x="271" y="441">für Berufsschulnoten</text>
+  </g>
+
+  <!-- Pillar 3: Gesellenübernahme -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="478" y="125" width="206" height="340" rx="16"/>
+  </g>
+  <rect x="478" y="125" width="206" height="42" rx="16" fill="#059669"/>
+  <text x="581" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="white">3. Gesellenstatus</text>
+  <text x="581" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#059669">Fachkraft (§ 18a)</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="492" y="225" font-weight="700" fill="#1e3a5f">Abschlussprüfung:</text>
+    <text x="492" y="243">• Anerkannter Gesellen-</text>
+    <text x="492" y="261">  brief der Handwerks-</text>
+    <text x="492" y="279">  kammer (HWK)</text>
+
+    <text x="492" y="315" font-weight="700" fill="#1e3a5f">Betriebliche Treue:</text>
+    <text x="492" y="333">Überdurchschnittlich</text>
+    <text x="492" y="351">hohe Verweildauer im</text>
+    <text x="492" y="369">Ausbildungsbetrieb</text>
+
+    <text x="492" y="405" font-weight="700" fill="#1e3a5f">Perspektive:</text>
+    <text x="492" y="423">Postenleitung &amp;</text>
+    <text x="492" y="441">Meisterqualifikation</text>
+  </g>
+
+  <text x="360" y="515" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="600" fill="#64748b">Handwerksbäckereien sichern mit DMF ihre Produktion und Filialversorgung langfristig ab</text>
+</svg>

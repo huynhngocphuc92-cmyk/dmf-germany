@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="title desc">
+  <title id="title">Das AsA flex Fördersystem für internationale Auszubildende</title>
+  <desc id="desc">Zusammenwirken von Bundesagentur für Arbeit, Bildungsträger, Ausbildungsbetrieb und Azubi zur Sicherung des Prüfungserfolgs.</desc>
+  <rect width="720" height="540" rx="24" fill="#eef5f9"/>
+  <text x="36" y="48" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#087f9b">STAATLICHE FÖRDERUNG (§ 75 SGB III)</text>
+  <text x="36" y="88" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#1e3a5f">Das AsA flex Unterstützungsmodell</text>
+
+  <!-- Top Banner: 100% Kostenfrei für Betriebe -->
+  <rect x="36" y="115" width="648" height="40" rx="8" fill="#1e3a5f"/>
+  <text x="360" y="140" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#38bdf8">100 % KOSTENFREI FÜR BETRIEBE &amp; AZUBIS — FINANZIERT DURCH DIE BUNDESAGENTUR FÜR ARBEIT</text>
+
+  <!-- 3 Pillars of Support -->
+  <!-- Col 1: Stützunterricht -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="36" y="175" width="206" height="290" rx="16"/>
+  </g>
+  <rect x="36" y="175" width="206" height="38" rx="16" fill="#0891b2"/>
+  <text x="139" y="200" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="white">1. Fachtheorie</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="50" y="240" font-weight="700" fill="#1e3a5f">Lerninhalte:</text>
+    <text x="50" y="258">• Aufarbeitung von</text>
+    <text x="50" y="276">  Berufsschulstoff</text>
+    <text x="50" y="294">• Technisches Rechnen</text>
+    <text x="50" y="312">  &amp; Physikgrundlagen</text>
+
+    <text x="50" y="348" font-weight="700" fill="#1e3a5f">Umfang:</text>
+    <text x="50" y="366">2 bis 4 Stunden / Woche</text>
+    <text x="50" y="384">in Kleingruppen</text>
+    <text x="50" y="402">außerhalb der Arbeitszeit</text>
+  </g>
+
+  <!-- Col 2: Sprachförderung & Prüfung -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="257" y="175" width="206" height="290" rx="16"/>
+  </g>
+  <rect x="257" y="175" width="206" height="38" rx="16" fill="#1e3a5f"/>
+  <text x="360" y="200" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="white">2. Sprachcoaching</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="271" y="240" font-weight="700" fill="#1e3a5f">Sprachpraxis:</text>
+    <text x="271" y="258">• Verstehen von</text>
+    <text x="271" y="276">  Prüfungsfragen</text>
+    <text x="271" y="294">• Fachbegriffe und</text>
+    <text x="271" y="312">  Berichtsführung</text>
+
+    <text x="271" y="348" font-weight="700" fill="#1e3a5f">Prüfungsvorbereitung:</text>
+    <text x="271" y="366">• Simulation von</text>
+    <text x="271" y="384">  Zwischenprüfungen</text>
+    <text x="271" y="402">• Training mündlicher</text>
+    <text x="271" y="420">  Fachgespräche</text>
+  </g>
+
+  <!-- Col 3: Sozialpädagogische Begleitung -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="478" y="175" width="206" height="290" rx="16"/>
+  </g>
+  <rect x="478" y="175" width="206" height="38" rx="16" fill="#059669"/>
+  <text x="581" y="200" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="white">3. Krisenbegleitung</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="492" y="240" font-weight="700" fill="#1e3a5f">Alltagsstabilität:</text>
+    <text x="492" y="258">• Mediation bei Konflikten</text>
+    <text x="492" y="276">  im Ausbildungsbetrieb</text>
+    <text x="492" y="294">• Hilfe bei Heimweh &amp;</text>
+    <text x="492" y="312">  persönlichen Sorgen</text>
+
+    <text x="492" y="348" font-weight="700" fill="#1e3a5f">Effekt:</text>
+    <text x="492" y="366">• Ausbildungsabbrüche</text>
+    <text x="492" y="384">  sinken auf unter 5 %</text>
+    <text x="492" y="402">• Feste Ansprechperson</text>
+  </g>
+
+  <text x="360" y="500" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="600" fill="#64748b">Beantragung erfolgt formlos beim Arbeitgeber-Service der örtlichen Arbeitsagentur</text>
+</svg>

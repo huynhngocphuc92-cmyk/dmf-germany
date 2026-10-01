@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="title desc">
+  <title id="title">Cost of Vacancy im Vergleich zur Rekrutierung</title>
+  <desc id="desc">Gegenüberstellung der monatlichen Ausfallkosten unbesetzter Fachkraftstellen und der einmaligen Investition in internationale Rekrutierung.</desc>
+  <rect width="720" height="540" rx="24" fill="#eef5f9"/>
+  <text x="36" y="48" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#087f9b">WIRTSCHAFTLICHKEITSVERGLEICH</text>
+  <text x="36" y="88" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#1e3a5f">Kosten unbesetzter Stellen (Cost of Vacancy)</text>
+
+  <!-- Left Column: Kosten unbesetzter Stelle (Vakanzkosten) -->
+  <g fill="white" stroke="#fca5a5" stroke-width="1.5">
+    <rect x="36" y="125" width="310" height="350" rx="16"/>
+  </g>
+  <rect x="36" y="125" width="310" height="45" rx="16" fill="#fee2e2"/>
+  <text x="191" y="153" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#991b1b">Unbesetzte Stelle (6–12 Mon.)</text>
+
+  <g font-family="Arial,sans-serif" font-size="13" fill="#475569">
+    <text x="56" y="200" font-weight="700" fill="#1e3a5f">Umsatzausfall &amp; Projektstopp:</text>
+    <text x="56" y="220">Verlorene Aufträge mangels Kapazität</text>
+
+    <text x="56" y="260" font-weight="700" fill="#1e3a5f">Überstunden &amp; Teamüberlastung:</text>
+    <text x="56" y="280">Erhöhte Krankentage &amp; Fluktuation</text>
+
+    <text x="56" y="320" font-weight="700" fill="#1e3a5f">Teure Übergangslösungen:</text>
+    <text x="56" y="340">Zeitarbeit &amp; externe Subunternehmer</text>
+
+    <line x1="56" y1="375" x2="326" y2="375" stroke="#e2e8f0" stroke-width="1"/>
+
+    <text x="56" y="410" font-size="12" fill="#64748b">Geschätzte Vakanzkosten (IW Köln):</text>
+    <text x="56" y="445" font-size="24" font-weight="700" fill="#dc2626">25.000 – 60.000 €</text>
+  </g>
+
+  <!-- Right Column: Internationale Rekrutierung -->
+  <g fill="white" stroke="#6ee7b7" stroke-width="1.5">
+    <rect x="374" y="125" width="310" height="350" rx="16"/>
+  </g>
+  <rect x="374" y="125" width="310" height="45" rx="16" fill="#d1fae5"/>
+  <text x="529" y="153" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#065f46">Rekrutierung aus Vietnam</text>
+
+  <g font-family="Arial,sans-serif" font-size="13" fill="#475569">
+    <text x="394" y="200" font-weight="700" fill="#1e3a5f">Planbare Einmalinvestition:</text>
+    <text x="394" y="220">Auswahl, Sprachkurs &amp; Administration</text>
+
+    <text x="394" y="260" font-weight="700" fill="#1e3a5f">Langfristige Teamentlastung:</text>
+    <text x="394" y="280">Loyale Vollzeit-Fachkraft ab Tag 1</text>
+
+    <text x="394" y="320" font-weight="700" fill="#1e3a5f">Feste Vergütung nach Tarif:</text>
+    <text x="394" y="340">Keine prohibitiven Zeitarbeitsaufschläge</text>
+
+    <line x1="394" y1="375" x2="664" y2="375" stroke="#e2e8f0" stroke-width="1"/>
+
+    <text x="394" y="410" font-size="12" fill="#64748b">Amortisation im Schnitt:</text>
+    <text x="394" y="445" font-size="24" font-weight="700" fill="#059669">nach 3 – 5 Monaten</text>
+  </g>
+
+  <text x="360" y="515" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="600" fill="#64748b">Berechnen Sie Ihren Fall im DMF ROI-Rechner (/roi-rechner)</text>
+</svg>

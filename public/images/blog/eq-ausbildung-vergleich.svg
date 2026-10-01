@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="100%" height="100%">
+  <defs>
+    <linearGradient id="eqGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a5f" />
+      <stop offset="100%" stop-color="#0c4a6e" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.06" />
+    </filter>
+  </defs>
+
+  <rect width="800" height="420" fill="#f8fafc" rx="16" />
+
+  <!-- Header -->
+  <rect x="30" y="24" width="740" height="54" rx="10" fill="url(#eqGrad)" />
+  <text x="50" y="58" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Vergleich: Einstiegsqualifizierung (EQ § 54a SGB III) vs. Duale Ausbildung</text>
+
+  <!-- Left: EQ -->
+  <g transform="translate(30, 96)">
+    <rect width="355" height="280" rx="12" fill="#ffffff" stroke="#0891b2" stroke-width="2" filter="url(#shadow)" />
+    <rect x="0" y="0" width="355" height="8" rx="4" fill="#0891b2" />
+    <circle cx="36" cy="40" r="18" fill="#e0f2fe" />
+    <text x="36" y="46" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#0369a1" text-anchor="middle">EQ</text>
+    <text x="68" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700" fill="#1e3a5f">Einstiegsqualifizierung (§ 54a)</text>
+    
+    <text x="24" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#0891b2">MERKMALE &amp; VORTEILE</text>
+    <text x="24" y="106" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#334155">• <strong>Dauer:</strong> 6 bis maximal 12 Monate</text>
+    <text x="24" y="130" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#334155">• <strong>Zweck:</strong> Praktisches Kennenlernen &amp; Sprachtraining</text>
+    <text x="24" y="154" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#334155">• <strong>Förderung:</strong> BA erstattet Vergütung bis 262 € + SV</text>
+    <text x="24" y="178" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#334155">• <strong>Berufsschule:</strong> Begleitender Schultag möglich</text>
+    <text x="24" y="202" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#334155">• <strong>Kammer-Zertifikat:</strong> Anrechenbar auf spätere Lehre</text>
+    
+    <rect x="22" y="226" width="311" height="38" rx="6" fill="#e0f2fe" />
+    <text x="177" y="250" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#0369a1" text-anchor="middle">Ideal als Sprach- &amp; Eignungsbrücke</text>
+  </g>
+
+  <!-- Right: Duale Ausbildung -->
+  <g transform="translate(415, 96)">
+    <rect width="355" height="280" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow)" />
+    <rect x="0" y="0" width="355" height="8" rx="4" fill="#1e3a5f" />
+    <circle cx="36" cy="40" r="18" fill="#f1f5f9" />
+    <text x="36" y="46" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#1e3a5f" text-anchor="middle">AZ</text>
+    <text x="68" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700" fill="#1e3a5f">Reguläre Ausbildung (§ 16a)</text>
+    
+    <text x="24" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#1e3a5f">STANDARD-BERUFSAUSBILDUNG</text>
+    <text x="24" y="106" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#334155">• <strong>Dauer:</strong> 3 bis 3,5 Jahre nach BBiG / HwO</text>
+    <text x="24" y="130" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#334155">• <strong>Zweck:</strong> Vollständiger staatlicher Facharbeiterbrief</text>
+    <text x="24" y="154" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#334155">• <strong>Vergütung:</strong> Voller Tariflohn (mind. gesetzl. Mindest-AV)</text>
+    <text x="24" y="178" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#334155">• <strong>Berufsschule:</strong> Pflichtunterricht 1–2 Tage/Woche</text>
+    <text x="24" y="202" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#334155">• <strong>Prüfungen:</strong> Zwischenprüfung &amp; Gesellenprüfung</text>
+    
+    <rect x="22" y="226" width="311" height="38" rx="6" fill="#f1f5f9" />
+    <text x="177" y="250" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#1e3a5f" text-anchor="middle">Direkte Fachkräftesicherung</text>
+  </g>
+</svg>

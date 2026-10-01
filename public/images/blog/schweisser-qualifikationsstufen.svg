@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="title desc">
+  <title id="title">Qualifikations- und Prüfstufen für Schweißer aus Vietnam</title>
+  <desc id="desc">Schweißverfahren nach DIN EN ISO 9606-1, zerstörungsfreie Prüfungen und Arbeitssicherheit für deutsche Stahl- und Metallbaubetriebe.</desc>
+  <rect width="720" height="540" rx="24" fill="#eef5f9"/>
+  <text x="36" y="48" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#087f9b">STAHL- &amp; METALLBAU</text>
+  <text x="36" y="88" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#1e3a5f">Qualifikationsstufen für Schweißfachkräfte</text>
+
+  <!-- Step 1: Verfahren & Praxis in Vietnam -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="36" y="125" width="206" height="340" rx="16"/>
+  </g>
+  <rect x="36" y="125" width="206" height="42" rx="16" fill="#1e3a5f"/>
+  <text x="139" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="white">1. Schweißverfahren</text>
+  <text x="139" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#0891b2">ISO 4063 Prozesse</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="50" y="225" font-weight="700" fill="#1e3a5f">Gängige Verfahren:</text>
+    <text x="50" y="243">• MAG (135 / 138):</text>
+    <text x="50" y="261">  Massiv- &amp; Fülldraht</text>
+    <text x="50" y="282">• WIG / TIG (141):</text>
+    <text x="50" y="300">  Rohrleitungsbau &amp; V2A</text>
+    <text x="50" y="321">• E-Hand (111):</text>
+    <text x="50" y="339">  Montage- &amp; Baustelle</text>
+
+    <text x="50" y="375" font-weight="700" fill="#1e3a5f">Materialgruppen:</text>
+    <text x="50" y="393">Baustähle (S235–S355),</text>
+    <text x="50" y="411">CrNi-Stähle &amp; Alu</text>
+  </g>
+
+  <!-- Step 2: ISO 9606 Prüfungen -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="257" y="125" width="206" height="340" rx="16"/>
+  </g>
+  <rect x="257" y="125" width="206" height="42" rx="16" fill="#0891b2"/>
+  <text x="360" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="white">2. Zertifizierung</text>
+  <text x="360" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#1e3a5f">DIN EN ISO 9606-1</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="271" y="225" font-weight="700" fill="#1e3a5f">Geltungsbereich:</text>
+    <text x="271" y="243">• Blech (P) &amp; Rohr (T)</text>
+    <text x="271" y="261">• Schweißpositionen:</text>
+    <text x="271" y="279">  PA, PB, PC, PF, HL-045</text>
+    <text x="271" y="299">• Nahtarten: Kehlnaht (FW)</text>
+    <text x="271" y="317">  &amp; Stumpfnaht (BW)</text>
+
+    <text x="271" y="355" font-weight="700" fill="#1e3a5f">Prüfstellen:</text>
+    <text x="271" y="373">TÜV / DVS / SLV</text>
+    <text x="271" y="391">anerkannte Prüfstücke</text>
+    <text x="271" y="409">inkl. Röntgen-Befund</text>
+  </g>
+
+  <!-- Step 3: Normen & Arbeitssicherheit -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="478" y="125" width="206" height="340" rx="16"/>
+  </g>
+  <rect x="478" y="125" width="206" height="42" rx="16" fill="#059669"/>
+  <text x="581" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="white">3. Betriebseinsatz</text>
+  <text x="581" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#059669">EN 1090 &amp; DGUV</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="492" y="225" font-weight="700" fill="#1e3a5f">Qualitätssicherung:</text>
+    <text x="492" y="243">• Schweißanweisungen</text>
+    <text x="492" y="261">  (WPS) lesen &amp; anwenden</text>
+    <text x="492" y="282">• ZfP-Prüfmethoden:</text>
+    <text x="492" y="300">  Sichtprüfung (VT)</text>
+    <text x="492" y="321">• Arbeitssicherheit:</text>
+    <text x="492" y="339">  DGUV Regel 109-002</text>
+    <text x="492" y="357">  (Rauchabsaugung / PSA)</text>
+
+    <text x="492" y="393" font-weight="700" fill="#1e3a5f">Gesellenstatus:</text>
+    <text x="492" y="411">Sofortige Werkstatt-</text>
+    <text x="492" y="429">produktivität</text>
+  </g>
+
+  <text x="360" y="515" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="600" fill="#64748b">DMF Talents organisiert Probeschweißungen und ISO 9606 Gültigkeitsnachweise vor Abreise</text>
+</svg>

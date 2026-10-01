@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="100%" height="100%">
+  <defs>
+    <linearGradient id="pvGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a5f" />
+      <stop offset="100%" stop-color="#0c4a6e" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.06" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="420" fill="#f8fafc" rx="16" />
+
+  <!-- Header -->
+  <rect x="30" y="24" width="740" height="54" rx="10" fill="url(#pvGrad)" />
+  <text x="50" y="58" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Qualifikations- und Aufgabenbereiche: Photovoltaik-Fachkräfte</text>
+
+  <!-- Step 1: Mechanik & Unterkonstruktion -->
+  <g transform="translate(30, 96)">
+    <rect width="230" height="280" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow)" />
+    <rect x="0" y="0" width="230" height="8" rx="4" fill="#0891b2" />
+    <circle cx="36" cy="40" r="18" fill="#e0f2fe" />
+    <text x="36" y="46" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#0369a1" text-anchor="middle">1</text>
+    <text x="66" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Dachmontage (DC)</text>
+    
+    <text x="20" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#0891b2">MECHANIK &amp; SICHERHEIT</text>
+    <text x="20" y="104" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">• Montage Unterkonstruktion</text>
+    <text x="20" y="126" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">• Dachhaken &amp; Schienensysteme</text>
+    <text x="20" y="148" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">• Modulverlegung &amp; Klemmung</text>
+    <text x="20" y="170" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">• Absturzsicherung (PSAgA)</text>
+    <text x="20" y="192" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">• DGUV Vorschrift 38 (Dach)</text>
+    
+    <rect x="18" y="224" width="194" height="38" rx="6" fill="#f1f5f9" />
+    <text x="115" y="248" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#0f172a" text-anchor="middle">Profil: Solarmonteur / Dach</text>
+  </g>
+
+  <!-- Step 2: DC-Verkabelung & Wechselrichter -->
+  <g transform="translate(285, 96)">
+    <rect width="230" height="280" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow)" />
+    <rect x="0" y="0" width="230" height="8" rx="4" fill="#1e3a5f" />
+    <circle cx="36" cy="40" r="18" fill="#e0f2fe" />
+    <text x="36" y="46" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#0369a1" text-anchor="middle">2</text>
+    <text x="66" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">DC-Strangverkabelung</text>
+    
+    <text x="20" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#0891b2">ELEKTROTECHNIK (DC)</text>
+    <text x="20" y="104" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">• String-Verschaltung (MC4)</text>
+    <text x="20" y="126" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">• Leitungsverlegung zum WR</text>
+    <text x="20" y="148" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">• Montage DC-Trennschalter</text>
+    <text x="20" y="170" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">• Überspannungsschutz (SPD)</text>
+    <text x="20" y="192" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">• Isolations- &amp; Strangmessung</text>
+    
+    <rect x="18" y="224" width="194" height="38" rx="6" fill="#f1f5f9" />
+    <text x="115" y="248" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#0f172a" text-anchor="middle">Profil: Elektroniker (DC)</text>
+  </g>
+
+  <!-- Step 3: AC-Netzanschluss & Speicher -->
+  <g transform="translate(540, 96)">
+    <rect width="230" height="280" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow)" />
+    <rect x="0" y="0" width="230" height="8" rx="4" fill="#059669" />
+    <circle cx="36" cy="40" r="18" fill="#d1fae5" />
+    <text x="36" y="46" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#047857" text-anchor="middle">3</text>
+    <text x="66" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">AC-Netzanschluss</text>
+    
+    <text x="20" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#059669">NETZ &amp; SPEICHERSYSTEME</text>
+    <text x="20" y="104" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">• Zählerschrank &amp; SLS-Schalter</text>
+    <text x="20" y="126" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">• Batteriegroßspeicher-Setup</text>
+    <text x="20" y="148" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">• Smart Meter &amp; EMS-Anbindung</text>
+    <text x="20" y="170" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">• VDE-AR-N 4105 Protokoll</text>
+    <text x="20" y="192" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">• Inbetriebnahme &amp; Netzbetreiber</text>
+    
+    <rect x="18" y="224" width="194" height="38" rx="6" fill="#f1f5f9" />
+    <text x="115" y="248" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#047857" text-anchor="middle">Profil: Elektromeister / TREI</text>
+  </g>
+</svg>

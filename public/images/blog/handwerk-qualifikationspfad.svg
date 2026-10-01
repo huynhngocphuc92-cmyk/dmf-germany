@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="title desc">
+  <title id="title">Qualifikations- und Integrationspfad für Handwerker aus Vietnam</title>
+  <desc id="desc">Vierstufiger Weg von der Fachausbildung in Vietnam über Sprachqualifizierung und BQFG-Anerkennung bis zur betrieblichen Integration in deutschen Handwerksbetrieben.</desc>
+  <rect width="720" height="540" rx="24" fill="#eef5f9"/>
+  <text x="36" y="48" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#087f9b">HANDWERK &amp; INDUSTRIE</text>
+  <text x="36" y="88" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#1e3a5f">Qualifikationspfad für Handwerksfachkräfte</text>
+
+  <!-- Step 1 -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="36" y="125" width="150" height="340" rx="16"/>
+  </g>
+  <rect x="36" y="125" width="150" height="40" rx="16" fill="#1e3a5f"/>
+  <text x="111" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">1. AUSBILDUNG</text>
+  <text x="111" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Fachbildung</text>
+  <text x="111" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">in Vietnam</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="48" y="250">• 3 Jahre Berufskolleg</text>
+    <text x="48" y="270">  (Cao đẳng) oder Uni</text>
+    <text x="48" y="300">• Praxisbezug:</text>
+    <text x="48" y="320">  Elektrik, SHK,</text>
+    <text x="48" y="340">  Mechatronik, Metall</text>
+    <text x="48" y="375">• Vorprüfungs-Audit</text>
+    <text x="48" y="395">  der Lehrinhalte</text>
+    <text x="48" y="415">  durch DMF</text>
+  </g>
+
+  <!-- Step 2 -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="202" y="125" width="150" height="340" rx="16"/>
+  </g>
+  <rect x="202" y="125" width="150" height="40" rx="16" fill="#0891b2"/>
+  <text x="277" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">2. SPRACHE</text>
+  <text x="277" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Deutsch &amp;</text>
+  <text x="277" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Fachvokabular</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="214" y="250">• Intensivkurs bis</text>
+    <text x="214" y="270">  B1 / B2 telc/Goethe</text>
+    <text x="214" y="300">• Werkstatt-Deutsch:</text>
+    <text x="214" y="320">  Werkzeuge, Pläne,</text>
+    <text x="214" y="340">  Sicherheitsbegriffe</text>
+    <text x="214" y="375">• Fachinterviews via</text>
+    <text x="214" y="395">  Video vor Ausreise</text>
+    <text x="214" y="415">  mit Arbeitgeber</text>
+  </g>
+
+  <!-- Step 3 -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="368" y="125" width="150" height="340" rx="16"/>
+  </g>
+  <rect x="368" y="125" width="150" height="40" rx="16" fill="#1e3a5f"/>
+  <text x="443" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">3. ANERKENNUNG</text>
+  <text x="443" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">BQFG-Prüfung</text>
+  <text x="443" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">&amp; § 81a Visum</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="380" y="250">• IHK FOSA oder</text>
+    <text x="380" y="270">  Handwerkskammer</text>
+    <text x="380" y="300">• Bescheidprüfung:</text>
+    <text x="380" y="320">  Voll-Gleichwertig-</text>
+    <text x="380" y="340">  keit vs. Teilbescheid</text>
+    <text x="380" y="375">• Vorabzustimmung</text>
+    <text x="380" y="395">  der ZAV &amp; Ausländer-</text>
+    <text x="380" y="415">  behörde (§ 81a)</text>
+  </g>
+
+  <!-- Step 4 -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="534" y="125" width="150" height="340" rx="16"/>
+  </g>
+  <rect x="534" y="125" width="150" height="40" rx="16" fill="#059669"/>
+  <text x="609" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">4. PRAXIS</text>
+  <text x="609" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Betriebliche</text>
+  <text x="609" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Integration</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="546" y="250">• VDE / DIN Normen-</text>
+    <text x="546" y="270">  Unterweisung</text>
+    <text x="546" y="300">• Ggf. Anpassungs-</text>
+    <text x="546" y="320">  lehrgang bei</text>
+    <text x="546" y="340">  Teilanerkennung</text>
+    <text x="546" y="375">• Volle Produktivität</text>
+    <text x="546" y="395">  als loyaler Geselle</text>
+    <text x="546" y="415">  im Handwerksteam</text>
+  </g>
+
+  <text x="360" y="515" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="600" fill="#64748b">DMF Talents begleitet alle vier Schritte von Hanoi bis zur deutschen Werkstatt</text>
+</svg>

@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="title desc">
+  <title id="title">Amortisations- und Produktivitätsverlauf eines Auszubildenden</title>
+  <desc id="desc">3-Jahres-Verlauf: Von der anfänglichen Ausbildungs- und Vermittlungsinvestition bis zur vollen Amortisation und Wertschöpfung als Fachkraft ab dem 3. Lehrjahr.</desc>
+  <rect width="720" height="540" rx="24" fill="#eef5f9"/>
+  <text x="36" y="48" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#087f9b">WIRTSCHAFTLICHKEIT &amp; ROI</text>
+  <text x="36" y="88" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#1e3a5f">Amortisation eines internationalen Azubis</text>
+
+  <!-- 4 Step Chronology -->
+  <!-- Year 1 -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="36" y="125" width="150" height="340" rx="16"/>
+  </g>
+  <rect x="36" y="125" width="150" height="40" rx="16" fill="#1e3a5f"/>
+  <text x="111" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">1. LEHRJAHR</text>
+  <text x="111" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Investition &amp;</text>
+  <text x="111" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Einarbeitung</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="48" y="250" font-weight="700" fill="#dc2626">Kostenphase:</text>
+    <text x="48" y="268">• Vermittlung &amp; Visum</text>
+    <text x="48" y="286">• Ausbildungsgehalt</text>
+    <text x="48" y="304">• Einarbeitungszeit</text>
+
+    <text x="48" y="340" font-weight="700" fill="#1e3a5f">Produktivität:</text>
+    <text x="48" y="358">ca. 35 – 45 %</text>
+    <text x="48" y="376">Gesellenleistung</text>
+    <text x="48" y="405" font-size="11" fill="#64748b">Fokus auf Schule</text>
+    <text x="48" y="420" font-size="11" fill="#64748b">&amp; Arbeitskultur</text>
+  </g>
+
+  <!-- Year 2 -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="202" y="125" width="150" height="340" rx="16"/>
+  </g>
+  <rect x="202" y="125" width="150" height="40" rx="16" fill="#0891b2"/>
+  <text x="277" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">2. LEHRJAHR</text>
+  <text x="277" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Eigenständige</text>
+  <text x="277" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Mitarbeit</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="214" y="250" font-weight="700" fill="#0284c7">Wendephase:</text>
+    <text x="214" y="268">• Sinkender Anleitungs-</text>
+    <text x="214" y="286">  aufwand im Betrieb</text>
+    <text x="214" y="304">• Feste Routinearbeiten</text>
+
+    <text x="214" y="340" font-weight="700" fill="#1e3a5f">Produktivität:</text>
+    <text x="214" y="358">ca. 65 – 75 %</text>
+    <text x="214" y="376">Gesellenleistung</text>
+    <text x="214" y="405" font-size="11" fill="#64748b">Deckungsbeitrag</text>
+    <text x="214" y="420" font-size="11" fill="#64748b">gleicht Kosten aus</text>
+  </g>
+
+  <!-- Year 3 -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="368" y="125" width="150" height="340" rx="16"/>
+  </g>
+  <rect x="368" y="125" width="150" height="40" rx="16" fill="#059669"/>
+  <text x="443" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">3. LEHRJAHR</text>
+  <text x="443" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Volle Netto-</text>
+  <text x="443" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Wertschöpfung</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="380" y="250" font-weight="700" fill="#059669">Amortisation:</text>
+    <text x="380" y="268">• Investition ist</text>
+    <text x="380" y="286">  voll amortisiert!</text>
+    <text x="380" y="304">• Volle Werkstatt-</text>
+    <text x="380" y="322">  verrechnungssätze</text>
+
+    <text x="380" y="350" font-weight="700" fill="#1e3a5f">Produktivität:</text>
+    <text x="380" y="368">ca. 85 – 95 %</text>
+    <text x="380" y="386">Gesellenleistung</text>
+    <text x="380" y="415" font-size="11" fill="#059669">Reiner Gewinnbeitrag</text>
+  </g>
+
+  <!-- Year 4+ -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="534" y="125" width="150" height="340" rx="16"/>
+  </g>
+  <rect x="534" y="125" width="150" height="40" rx="16" fill="#1e3a5f"/>
+  <text x="609" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">AB JAHR 4</text>
+  <text x="609" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Loyale Fach-</text>
+  <text x="609" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">kraft im Team</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="546" y="250" font-weight="700" fill="#1e3a5f">Strategischer ROI:</text>
+    <text x="546" y="268">• Keine erneuten</text>
+    <text x="546" y="286">  Recruitingkosten</text>
+    <text x="546" y="304">• 0 Tage Vakanzzeit</text>
+    <text x="546" y="322">• Perfekt im Team</text>
+    <text x="546" y="340">  integriert</text>
+
+    <text x="546" y="375" font-weight="700" fill="#059669">Ersparnis gesamt:</text>
+    <text x="546" y="395" font-size="14" font-weight="700" fill="#059669">&gt; 35.000 €</text>
+    <text x="546" y="420" font-size="11" fill="#64748b">vs. externe Suche</text>
+  </g>
+
+  <text x="360" y="505" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="600" fill="#64748b">Berechnen Sie Ihren Ausbildungs-ROI live im DMF Rechner (/roi-rechner)</text>
+</svg>

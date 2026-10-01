@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="title desc">
+  <title id="title">Das Punktesystem der Chancenkarte (§ 20a / § 20b AufenthG)</title>
+  <desc id="desc">Aufbau der Chancenkarte: Grundvoraussetzungen, das 6-Punkte-System und Vorteile wie die zweiwöchige Probebeschäftigung für Arbeitgeber.</desc>
+  <rect width="720" height="540" rx="24" fill="#eef5f9"/>
+  <text x="36" y="48" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#087f9b">FACHKRÄFTEEINWANDERUNGSGESETZ</text>
+  <text x="36" y="88" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#1e3a5f">Die Chancenkarte: Das Punktesystem</text>
+
+  <!-- Left: Basisvoraussetzungen -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="36" y="125" width="206" height="340" rx="16"/>
+  </g>
+  <rect x="36" y="125" width="206" height="42" rx="16" fill="#1e3a5f"/>
+  <text x="139" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="white">1. Basiskriterien</text>
+  <text x="139" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#0891b2">Zwingend nötig</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="50" y="225" font-weight="700" fill="#1e3a5f">Abschluss im Ausland:</text>
+    <text x="50" y="243">• Mind. 2-jährige</text>
+    <text x="50" y="261">  Berufsausbildung</text>
+    <text x="50" y="279">  oder Uni-Abschluss</text>
+
+    <text x="50" y="315" font-weight="700" fill="#1e3a5f">Sprachminimum:</text>
+    <text x="50" y="333">• Deutsch A1 ODER</text>
+    <text x="50" y="351">• Englisch B2</text>
+
+    <text x="50" y="388" font-weight="700" fill="#1e3a5f">Existenzsicherung:</text>
+    <text x="50" y="406">Sperrkonto oder</text>
+    <text x="50" y="424">Arbeitsvertrag vor Ort</text>
+  </g>
+
+  <!-- Center: Punktematrix -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="257" y="125" width="206" height="340" rx="16"/>
+  </g>
+  <rect x="257" y="125" width="206" height="42" rx="16" fill="#0891b2"/>
+  <text x="360" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="white">2. Punktekatalog</text>
+  <text x="360" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#1e3a5f">Mind. 6 Punkte</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="271" y="225">• Teilanerkennung (BQFG):</text>
+    <text x="271" y="243">  <tspan font-weight="700" fill="#0284c7">4 Punkte</tspan></text>
+    <text x="271" y="268">• Berufspraxis (2–5 Jahre):</text>
+    <text x="271" y="286">  <tspan font-weight="700" fill="#0284c7">2 bis 3 Punkte</tspan></text>
+    <text x="271" y="311">• Deutsch (A2/B1/B2):</text>
+    <text x="271" y="329">  <tspan font-weight="700" fill="#0284c7">1 bis 3 Punkte</tspan></text>
+    <text x="271" y="354">• Alter (unter 35 Jahre):</text>
+    <text x="271" y="372">  <tspan font-weight="700" fill="#0284c7">2 Punkte</tspan> (unter 40: 1 Pkt)</text>
+    <text x="271" y="397">• Engpassberuf (Mangel):</text>
+    <text x="271" y="415">  <tspan font-weight="700" fill="#0284c7">1 Punkt</tspan></text>
+  </g>
+
+  <!-- Right: Vorteile für Betriebe -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="478" y="125" width="206" height="340" rx="16"/>
+  </g>
+  <rect x="478" y="125" width="206" height="42" rx="16" fill="#059669"/>
+  <text x="581" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="white">3. Betriebsvorteil</text>
+  <text x="581" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#059669">Probebeschäftigung</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="492" y="225" font-weight="700" fill="#1e3a5f">Kennenlernen vor Ort:</text>
+    <text x="492" y="243">• Bis zu 2 Wochen</text>
+    <text x="492" y="261">  Probebeschäftigung</text>
+    <text x="492" y="279">  gesetzlich erlaubt</text>
+
+    <text x="492" y="315" font-weight="700" fill="#1e3a5f">Nebenbeschäftigung:</text>
+    <text x="492" y="333">• Bis zu 20 Stunden /</text>
+    <text x="492" y="351">  Woche sofort möglich</text>
+
+    <text x="492" y="388" font-weight="700" fill="#1e3a5f">Nahtloser Übergang:</text>
+    <text x="492" y="406">Titelwechsel im Inland</text>
+    <text x="492" y="424">direkt zu § 18a / § 18b</text>
+  </g>
+
+  <text x="360" y="515" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="600" fill="#64748b">Mit der Chancenkarte können Arbeitgeber Kandidaten vor Ort ohne Auslandsbürokratie testen</text>
+</svg>

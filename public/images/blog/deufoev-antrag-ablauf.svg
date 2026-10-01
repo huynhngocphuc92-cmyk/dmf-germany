@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="100%" height="100%">
+  <defs>
+    <linearGradient id="deuGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a5f" />
+      <stop offset="100%" stop-color="#0c4a6e" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.06" />
+    </filter>
+  </defs>
+
+  <rect width="800" height="420" fill="#f8fafc" rx="16" />
+
+  <!-- Header -->
+  <rect x="30" y="24" width="740" height="54" rx="10" fill="url(#deuGrad)" />
+  <text x="50" y="58" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#ffffff">DeuFöV-Förderung (§ 45a AufenthG): Ablauf zur Sprachförderung</text>
+
+  <!-- Step 1: Bedarfsfeststellung -->
+  <g transform="translate(30, 96)">
+    <rect width="170" height="280" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow)" />
+    <rect x="0" y="0" width="170" height="8" rx="4" fill="#64748b" />
+    <circle cx="32" cy="38" r="16" fill="#f1f5f9" />
+    <text x="32" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#475569" text-anchor="middle">1</text>
+    <text x="56" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#1e3a5f">Bedarf klären</text>
+    
+    <text x="16" y="78" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748b">BETRIEBLICH</text>
+    <text x="16" y="102" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Feststellung aktuelles</text>
+    <text x="16" y="122" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">  Niveau (z. B. B1)</text>
+    <text x="16" y="146" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Ziel: B2 allgemein</text>
+    <text x="16" y="166" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">  oder Fachmodul</text>
+    <text x="16" y="186" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Klärung Unterrichts-</text>
+    <text x="16" y="206" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">  zeiten (Schichtplan)</text>
+    
+    <rect x="14" y="230" width="142" height="34" rx="6" fill="#f1f5f9" />
+    <text x="85" y="251" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">Vorauswahl Kurs</text>
+  </g>
+
+  <!-- Step 2: Berechtigungsschein -->
+  <g transform="translate(220, 96)">
+    <rect width="170" height="280" rx="12" fill="#ffffff" stroke="#0891b2" stroke-width="2" filter="url(#shadow)" />
+    <rect x="0" y="0" width="170" height="8" rx="4" fill="#0891b2" />
+    <circle cx="32" cy="38" r="16" fill="#e0f2fe" />
+    <text x="32" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#0369a1" text-anchor="middle">2</text>
+    <text x="56" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#1e3a5f">Berechtigung</text>
+    
+    <text x="16" y="78" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#0891b2">BEHÖRDENANTRAG</text>
+    <text x="16" y="102" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Antrag bei der</text>
+    <text x="16" y="122" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">  Agentur für Arbeit</text>
+    <text x="16" y="146" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Ausstellung des</text>
+    <text x="16" y="166" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">  Berechtigungsscheins</text>
+    <text x="16" y="186" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Gültigkeit 3 Monate</text>
+    <text x="16" y="206" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• BAMF-Trägerwahl</text>
+    
+    <rect x="14" y="230" width="142" height="34" rx="6" fill="#e0f2fe" />
+    <text x="85" y="251" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#0369a1" text-anchor="middle">Zulassung gesichert</text>
+  </g>
+
+  <!-- Step 3: Kursteilnahme -->
+  <g transform="translate(410, 96)">
+    <rect width="170" height="280" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow)" />
+    <rect x="0" y="0" width="170" height="8" rx="4" fill="#1e3a5f" />
+    <circle cx="32" cy="38" r="16" fill="#f1f5f9" />
+    <text x="32" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#1e3a5f" text-anchor="middle">3</text>
+    <text x="56" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#1e3a5f">Durchführung</text>
+    
+    <text x="16" y="78" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#1e3a5f">400–500 U-STD</text>
+    <text x="16" y="102" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Berufsbegleitend</text>
+    <text x="16" y="122" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">  oder Vollzeit</text>
+    <text x="16" y="146" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Online oder Präsenz</text>
+    <text x="16" y="166" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Branchenwortschatz</text>
+    <text x="16" y="186" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• E-Mail &amp; Berichte</text>
+    <text x="16" y="206" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Praxissimulationen</text>
+    
+    <rect x="14" y="230" width="142" height="34" rx="6" fill="#f1f5f9" />
+    <text x="85" y="251" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" fill="#334155" text-anchor="middle">Zertifizierter Träger</text>
+  </g>
+
+  <!-- Step 4: Kostenübernahme -->
+  <g transform="translate(600, 96)">
+    <rect width="170" height="280" rx="12" fill="#ffffff" stroke="#059669" stroke-width="2" filter="url(#shadow)" />
+    <rect x="0" y="0" width="170" height="8" rx="4" fill="#059669" />
+    <circle cx="32" cy="38" r="16" fill="#d1fae5" />
+    <text x="32" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#047857" text-anchor="middle">€</text>
+    <text x="56" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#059669">Kostenerlass</text>
+    
+    <text x="16" y="78" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#059669">FÖRDERHÖHE</text>
+    <text x="16" y="102" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Bis zu 100 % Zuschuss</text>
+    <text x="16" y="122" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">  für Betriebe &lt; 250 MA</text>
+    <text x="16" y="146" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• 50 % Eigenanteil bei</text>
+    <text x="16" y="166" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">  Großunternehmen</text>
+    <text x="16" y="186" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Kostenlose telc /</text>
+    <text x="16" y="206" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">  Goethe-Prüfung</text>
+    
+    <rect x="14" y="230" width="142" height="34" rx="6" fill="#d1fae5" />
+    <text x="85" y="251" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#047857" text-anchor="middle">Maximale Ersparnis</text>
+  </g>
+</svg>

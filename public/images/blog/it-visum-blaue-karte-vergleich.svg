@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="title desc">
+  <title id="title">Visumwege für IT-Spezialisten aus Vietnam</title>
+  <desc id="desc">Drei Wege nach Deutschland: Blaue Karte EU (§ 18g), IT-Berufserfahrung ohne formalen Abschluss (§ 19c) und Fachkraft mit Ausbildung (§ 18a).</desc>
+  <rect width="720" height="540" rx="24" fill="#eef5f9"/>
+  <text x="36" y="48" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#087f9b">IT &amp; TECH-REKRUTIERUNG</text>
+  <text x="36" y="88" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#1e3a5f">3 Visumpfade für IT-Fachkräfte</text>
+
+  <!-- Pathway 1: Blaue Karte EU -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="36" y="125" width="206" height="340" rx="16"/>
+  </g>
+  <rect x="36" y="125" width="206" height="42" rx="16" fill="#1e3a5f"/>
+  <text x="139" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="white">Blaue Karte EU</text>
+  <text x="139" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#0891b2">§ 18g AufenthG</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="50" y="225" font-weight="700" fill="#1e3a5f">Voraussetzung:</text>
+    <text x="50" y="243">• Anerkannter Bachelor-</text>
+    <text x="50" y="261">  oder Masterabschluss</text>
+    <text x="50" y="280">• Arbeitsvertrag in IT</text>
+
+    <text x="50" y="315" font-weight="700" fill="#1e3a5f">Gehaltsschwelle:</text>
+    <text x="50" y="333">Reduzierte Mindest-</text>
+    <text x="50" y="351">grenze für Engpass-</text>
+    <text x="50" y="369">berufe (ca. 41.042 €)</text>
+
+    <text x="50" y="405" font-weight="700" fill="#1e3a5f">Vorteil:</text>
+    <text x="50" y="423">Kein Vorrangprüfungs-</text>
+    <text x="50" y="441">stopp, Englisch genügt</text>
+  </g>
+
+  <!-- Pathway 2: IT mit Berufserfahrung -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="257" y="125" width="206" height="340" rx="16"/>
+  </g>
+  <rect x="257" y="125" width="206" height="42" rx="16" fill="#0891b2"/>
+  <text x="360" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="white">IT-Berufserfahrung</text>
+  <text x="360" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#1e3a5f">§ 19c Abs. 2 / § 6 BeschV</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="271" y="225" font-weight="700" fill="#1e3a5f">Voraussetzung:</text>
+    <text x="271" y="243">• Kein Uni-Abschluss</text>
+    <text x="271" y="261">  erforderlich!</text>
+    <text x="271" y="280">• Mind. 3 Jahre IT-</text>
+    <text x="271" y="298">  Erfahrung in 7 Jahren</text>
+
+    <text x="271" y="333" font-weight="700" fill="#1e3a5f">Sprachniveau:</text>
+    <text x="271" y="351">Deutsch B1 oder</text>
+    <text x="271" y="369">Projekt-Englisch</text>
+
+    <text x="271" y="405" font-weight="700" fill="#1e3a5f">Vorteil:</text>
+    <text x="271" y="423">Sofortiger Zugang für</text>
+    <text x="271" y="441">praxiserprobte Devs</text>
+  </g>
+
+  <!-- Pathway 3: IT-Fachkraft nach Ausbildung -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="478" y="125" width="206" height="340" rx="16"/>
+  </g>
+  <rect x="478" y="125" width="206" height="42" rx="16" fill="#059669"/>
+  <text x="581" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="white">IT-Fachkraft BQFG</text>
+  <text x="581" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#059669">§ 18a AufenthG</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="492" y="225" font-weight="700" fill="#1e3a5f">Voraussetzung:</text>
+    <text x="492" y="243">• 3 Jahre Kollegaus-</text>
+    <text x="492" y="261">  bildung (Cao đẳng)</text>
+    <text x="492" y="280">• IHK Gleichwertig-</text>
+    <text x="492" y="298">  keitsbescheid</text>
+
+    <text x="492" y="333" font-weight="700" fill="#1e3a5f">Rollen:</text>
+    <text x="492" y="351">Fachinformatiker</text>
+    <text x="492" y="369">Anwendungsentwicklung</text>
+    <text x="492" y="387">oder Systemintegration</text>
+
+    <text x="492" y="423" font-weight="700" fill="#1e3a5f">Vorteil:</text>
+    <text x="492" y="441">Tarifliche Sicherheit</text>
+  </g>
+
+  <text x="360" y="515" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="600" fill="#64748b">DMF Talents matcht Tech-Stacks und übernimmt das Behördenverfahren via § 81a</text>
+</svg>

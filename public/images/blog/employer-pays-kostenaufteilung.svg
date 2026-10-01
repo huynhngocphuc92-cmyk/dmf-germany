@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="title desc">
+  <title id="title">Das Employer-Pays-Prinzip nach § 296a SGB III</title>
+  <desc id="desc">Gesetzliche Kostenaufteilung: Vollständige Übernahme der Rekrutierungskosten durch den Arbeitgeber und gesetzlicher Schutz ausländischer Fachkräfte vor Vermittlungsgebühren.</desc>
+  <rect width="720" height="540" rx="24" fill="#eef5f9"/>
+  <text x="36" y="48" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#087f9b">GESETZLICHE COMPLIANCE (§ 296a SGB III)</text>
+  <text x="36" y="88" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#1e3a5f">Das Employer-Pays-Prinzip</text>
+
+  <!-- Left Column: Arbeitgeberpflichten -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="36" y="125" width="310" height="340" rx="16"/>
+  </g>
+  <rect x="36" y="125" width="310" height="42" rx="16" fill="#1e3a5f"/>
+  <text x="191" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="white">Kosten trägt der Arbeitgeber</text>
+
+  <g font-family="Arial,sans-serif" font-size="13" fill="#475569">
+    <text x="56" y="200" font-weight="700" fill="#1e3a5f">• Vermittlungsdienstleistung:</text>
+    <text x="56" y="220">  Auswahl, Matching &amp; Interviewkoordination</text>
+
+    <text x="56" y="255" font-weight="700" fill="#1e3a5f">• Behörden- &amp; Verwaltungsverfahren:</text>
+    <text x="56" y="275">  Gebühr § 81a (411 €), IHK/HWK Prüfgebühren</text>
+
+    <text x="56" y="310" font-weight="700" fill="#1e3a5f">• Beglaubigungen &amp; Übersetzungen:</text>
+    <text x="56" y="330">  Vereidigte Fachübersetzungen der Zeugnisse</text>
+
+    <text x="56" y="365" font-weight="700" fill="#1e3a5f">• Reise &amp; Ankunft:</text>
+    <text x="56" y="385">  Flugticket, Transfer &amp; Wohnraumkoordination</text>
+
+    <line x1="56" y1="415" x2="326" y2="415" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="56" y="442" font-size="12" font-weight="700" fill="#059669">Gesetzlich vorgeschrieben nach deutschem Recht</text>
+  </g>
+
+  <!-- Right Column: Gesetzlicher Schutz des Bewerbers -->
+  <g fill="white" stroke="#fca5a5" stroke-width="2">
+    <rect x="374" y="125" width="310" height="340" rx="16"/>
+  </g>
+  <rect x="374" y="125" width="310" height="42" rx="16" fill="#dc2626"/>
+  <text x="529" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="white">Gesetzlich verboten für Bewerber</text>
+
+  <g font-family="Arial,sans-serif" font-size="13" fill="#475569">
+    <text x="394" y="200" font-weight="700" fill="#991b1b">KEINE Vermittlungsgebühren (§ 296a):</text>
+    <text x="394" y="220">Azubis &amp; Arbeitsuchende dürfen für die</text>
+    <text x="394" y="240">Stellenvermittlung nichts bezahlen!</text>
+
+    <text x="394" y="275" font-weight="700" fill="#991b1b">KEINE verdeckten Vorabpauschalen:</text>
+    <text x="394" y="295">Keine illegalen Vermittlungsprämien</text>
+    <text x="394" y="315">oder Bürgschaften über Dritte</text>
+
+    <text x="394" y="350" font-weight="700" fill="#991b1b">KEINE Schuldknechtschaft:</text>
+    <text x="394" y="370">Verbot von Knebelverträgen und Koppelung</text>
+    <text x="394" y="390">an überteuerte Privatkredite</text>
+
+    <line x1="394" y1="415" x2="664" y2="415" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="394" y="442" font-size="12" font-weight="700" fill="#dc2626">Schützt Betrieb &amp; Mitarbeiter vor Sanktionen</text>
+  </g>
+
+  <text x="360" y="505" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="600" fill="#64748b">DMF Talents garantiert 100 % faire Vermittlung nach den Standards der ILO und des SGB III</text>
+</svg>

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="title desc">
+  <title id="title">Kompetenzprofil für CNC-Fachkräfte und Zerspanungsmechaniker aus Vietnam</title>
+  <desc id="desc">Fertigungskompetenzen in der Präzisionszerspanung: CNC-Drehen, CNC-Fräsen, Steuerungen (Siemens, Heidenhain, Fanuc) und Qualitätskontrolle.</desc>
+  <rect width="720" height="540" rx="24" fill="#eef5f9"/>
+  <text x="36" y="48" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#087f9b">PRÄZISIONSTECHNIK &amp; INDUSTRIE</text>
+  <text x="36" y="88" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#1e3a5f">Kompetenzprofil: CNC-Zerspanungsmechaniker</text>
+
+  <!-- Box 1: Fertigungsverfahren -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="36" y="125" width="206" height="340" rx="16"/>
+  </g>
+  <rect x="36" y="125" width="206" height="42" rx="16" fill="#1e3a5f"/>
+  <text x="139" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="white">1. Fertigung</text>
+  <text x="139" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#0891b2">Drehen &amp; Fräsen</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="50" y="225" font-weight="700" fill="#1e3a5f">Verfahren:</text>
+    <text x="50" y="243">• CNC-Drehtechnik</text>
+    <text x="50" y="261">  (Lang- &amp; Kurzdrehen)</text>
+    <text x="50" y="282">• CNC-Frästechnik</text>
+    <text x="50" y="300">  (3- bis 5-Achs-Zentren)</text>
+    <text x="50" y="321">• Flach- &amp; Rundschleifen</text>
+
+    <text x="50" y="360" font-weight="700" fill="#1e3a5f">Werkstoffe:</text>
+    <text x="50" y="378">Edelstahl, Werkzeugstahl,</text>
+    <text x="50" y="396">Aluminium, Titan &amp;</text>
+    <text x="50" y="414">technische Kunststoffe</text>
+  </g>
+
+  <!-- Box 2: Steuerungen & CAM -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="257" y="125" width="206" height="340" rx="16"/>
+  </g>
+  <rect x="257" y="125" width="206" height="42" rx="16" fill="#0891b2"/>
+  <text x="360" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="white">2. Programmierung</text>
+  <text x="360" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#1e3a5f">CNC-Steuerungen</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="271" y="225" font-weight="700" fill="#1e3a5f">Gängige Systeme:</text>
+    <text x="271" y="243">• Siemens Sinumerik</text>
+    <text x="271" y="261">  (840D sl / Operate)</text>
+    <text x="271" y="282">• Heidenhain (TNC 640)</text>
+    <text x="271" y="303">• Fanuc Series (0i / 31i)</text>
+
+    <text x="271" y="342" font-weight="700" fill="#1e3a5f">Praxiskompetenz:</text>
+    <text x="271" y="360">• DIN/ISO G-Code</text>
+    <text x="271" y="378">• Werkzeugkorrekturen</text>
+    <text x="271" y="396">• Nullpunkt-Einmessen</text>
+    <text x="271" y="414">• CAM-Datenübernahme</text>
+  </g>
+
+  <!-- Box 3: Qualität & QS -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="478" y="125" width="206" height="340" rx="16"/>
+  </g>
+  <rect x="478" y="125" width="206" height="42" rx="16" fill="#059669"/>
+  <text x="581" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="white">3. Messtechnik</text>
+  <text x="581" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#059669">DIN EN ISO 9001</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="492" y="225" font-weight="700" fill="#1e3a5f">Prüfmittel:</text>
+    <text x="492" y="243">• Mikrometer, Messschieber,</text>
+    <text x="492" y="261">  Innenfeinmessgeräte</text>
+    <text x="492" y="282">• 3D-Koordinatenmessung</text>
+    <text x="492" y="303">• Rauheitsmessung (Ra/Rz)</text>
+
+    <text x="492" y="342" font-weight="700" fill="#1e3a5f">Zeichnungslesen:</text>
+    <text x="492" y="360">• Form- &amp; Lagetoleranzen</text>
+    <text x="492" y="378">  nach ISO 1101</text>
+    <text x="492" y="396">• Passungen (ISO 286)</text>
+    <text x="492" y="414">• Erststückprüfung &amp; SPC</text>
+  </g>
+
+  <text x="360" y="515" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="600" fill="#64748b">Vietnamesische Zerspanungsmechaniker bringen 3 Jahre Praxisausbildung am Kolleg mit</text>
+</svg>

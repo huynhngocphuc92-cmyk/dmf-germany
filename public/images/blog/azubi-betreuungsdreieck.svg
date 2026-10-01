@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="title desc">
+  <title id="title">Das Betreuungsdreieck für internationale Auszubildende</title>
+  <desc id="desc">Zusammenwirken von Ausbildungsbetrieb, Berufsschule und begleitender Betreuung zur Vermeidung von Ausbildungsabbrüchen.</desc>
+  <rect width="720" height="540" rx="24" fill="#eef5f9"/>
+  <text x="36" y="48" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#087f9b">ERFOLGSFAKTOR AUSBILDUNG</text>
+  <text x="36" y="88" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#1e3a5f">Das 3-Säulen-Betreuungsdreieck</text>
+
+  <!-- Triangle lines in background -->
+  <polygon points="360,150 160,420 560,420" fill="none" stroke="#cbd5e1" stroke-width="3" stroke-dasharray="6,6"/>
+
+  <!-- Top Pillar: Ausbildungsbetrieb -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="230" y="115" width="260" height="100" rx="16"/>
+  </g>
+  <text x="360" y="148" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#1e3a5f">Ausbildungsbetrieb</text>
+  <text x="360" y="172" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#426077">Fachlicher Ausbilder &amp; Pate im Team</text>
+  <text x="360" y="192" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#426077">Betriebliche Praxis &amp; Feedbackkultur</text>
+
+  <!-- Bottom Left Pillar: Berufsschule & Fachtheorie -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="40" y="370" width="260" height="100" rx="16"/>
+  </g>
+  <text x="170" y="403" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#1e3a5f">Berufsschule</text>
+  <text x="170" y="427" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#426077">Theorieunterricht &amp; Fachbegriffe</text>
+  <text x="170" y="447" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#426077">Stützunterricht via AsA flex</text>
+
+  <!-- Bottom Right Pillar: Begleitende Betreuung / DMF -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="420" y="370" width="260" height="100" rx="16"/>
+  </g>
+  <text x="550" y="403" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#1e3a5f">Begleitende Betreuung</text>
+  <text x="550" y="427" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#426077">Wohnraum, Behörden &amp; Alltag</text>
+  <text x="550" y="447" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#426077">Interkulturelle Konfliktmediation</text>
+
+  <!-- Center Badge: Auszubildender -->
+  <circle cx="360" cy="300" r="45" fill="#1e3a5f" stroke="#0891b2" stroke-width="3"/>
+  <text x="360" y="297" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#38bdf8">ZENTRUM</text>
+  <text x="360" y="315" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="white">Azubi</text>
+
+  <text x="360" y="515" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="600" fill="#64748b">Zusammenarbeit reduziert Abbrüche auf unter 10 %</text>
+</svg>

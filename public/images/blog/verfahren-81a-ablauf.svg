@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="title desc">
+  <title id="title">Beschleunigtes Fachkräfteverfahren nach § 81a AufenthG</title>
+  <desc id="desc">Vier Schritte von der Bevollmächtigung über die Vorabzustimmung der ZAV bis zum Visumantrag bei der Botschaft.</desc>
+  <rect width="720" height="540" rx="24" fill="#eef5f9"/>
+  <text x="36" y="48" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#087f9b">§ 81a AUFENTHG VERFAHREN</text>
+  <text x="36" y="88" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#1e3a5f">Der behördliche Ablauf in 4 Schritten</text>
+
+  <!-- Step cards -->
+  <g fill="white" stroke="#d9e6ed" stroke-width="1.5">
+    <rect x="32" y="120" width="320" height="175" rx="16"/>
+    <rect x="368" y="120" width="320" height="175" rx="16"/>
+    <rect x="32" y="315" width="320" height="175" rx="16"/>
+    <rect x="368" y="315" width="320" height="175" rx="16"/>
+  </g>
+
+  <!-- Step numbers -->
+  <g font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#0891b2">
+    <text x="52" y="152">SCHRITT 01</text>
+    <text x="388" y="152">SCHRITT 02</text>
+    <text x="52" y="347">SCHRITT 03</text>
+    <text x="388" y="347">SCHRITT 04</text>
+  </g>
+
+  <!-- Step titles -->
+  <g font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#1e3a5f">
+    <text x="52" y="184">Vereinbarung &amp; Vollmacht</text>
+    <text x="388" y="184">Anerkennung &amp; ZAV</text>
+    <text x="52" y="379">Vorabzustimmung</text>
+    <text x="388" y="379">Visumtermin &amp; Einreise</text>
+  </g>
+
+  <!-- Step descriptions -->
+  <g font-family="Arial,sans-serif" font-size="14" fill="#426077" line-height="1.5">
+    <text x="52" y="215">Arbeitgeber schließt Vereinbarung mit</text>
+    <text x="52" y="235">der Ausländerbehörde ab. Vollmacht</text>
+    <text x="52" y="255">des Bewerbers liegt vor (Gebühr: 411 €).</text>
+
+    <text x="388" y="215">Behörde leitet Gleichwertigkeitsprüfung</text>
+    <text x="388" y="235">ein und holt die Zustimmung der</text>
+    <text x="388" y="255">Bundesagentur für Arbeit (ZAV) ein.</text>
+
+    <text x="52" y="410">Ausländerbehörde erteilt verbindliche</text>
+    <text x="52" y="430">Vorabzustimmung nach Prüfung aller</text>
+    <text x="52" y="450">Voraussetzungen und Arbeitsbedingungen.</text>
+
+    <text x="388" y="410">Botschaft vergibt Termin innerhalb von</text>
+    <text x="388" y="430">3 Wochen. Visumantrag wird innerhalb</text>
+    <text x="388" y="450">weiterer 3 Wochen entschieden.</text>
+  </g>
+
+  <!-- Flow connector arrows -->
+  <path d="M352 207 L368 207" stroke="#0891b2" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M352 402 L368 402" stroke="#0891b2" stroke-width="2"/>
+  
+  <text x="360" y="515" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="600" fill="#64748b">Gesetzliche Grundlage: § 81a Aufenthaltsgesetz (AufenthG)</text>
+</svg>

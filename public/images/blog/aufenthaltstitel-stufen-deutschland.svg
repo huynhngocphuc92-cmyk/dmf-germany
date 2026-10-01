@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="100%" height="100%">
+  <defs>
+    <linearGradient id="aufGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a5f" />
+      <stop offset="100%" stop-color="#0c4a6e" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.06" />
+    </filter>
+  </defs>
+
+  <rect width="800" height="420" fill="#f8fafc" rx="16" />
+
+  <!-- Header -->
+  <rect x="30" y="24" width="740" height="54" rx="10" fill="url(#aufGrad)" />
+  <text x="50" y="58" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Stufenplan: Vom befristeten Aufenthalt zur Niederlassungserlaubnis (§ 18c)</text>
+
+  <!-- Step 1: Einreise & Befristeter Titel -->
+  <g transform="translate(30, 96)">
+    <rect width="170" height="280" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow)" />
+    <rect x="0" y="0" width="170" height="8" rx="4" fill="#64748b" />
+    <circle cx="32" cy="38" r="16" fill="#f1f5f9" />
+    <text x="32" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#475569" text-anchor="middle">1</text>
+    <text x="56" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#1e3a5f">Arbeitsvisum</text>
+    
+    <text x="16" y="78" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748b">MONATE 0 – 36</text>
+    <text x="16" y="102" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Titel nach § 18a / § 18b</text>
+    <text x="16" y="122" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">  oder § 18g (Blaue Karte)</text>
+    <text x="16" y="146" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Bindung an Arbeitgeber</text>
+    <text x="16" y="166" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">  in den ersten Jahren</text>
+    <text x="16" y="186" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Laufende Einzahlung in</text>
+    <text x="16" y="206" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">  Rentenversicherung</text>
+    
+    <rect x="14" y="230" width="142" height="34" rx="6" fill="#f1f5f9" />
+    <text x="85" y="251" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">Befristeter Aufenthalt</text>
+  </g>
+
+  <!-- Step 2: Verkürzte Frist Blaue Karte -->
+  <g transform="translate(220, 96)">
+    <rect width="170" height="280" rx="12" fill="#ffffff" stroke="#0891b2" stroke-width="2" filter="url(#shadow)" />
+    <rect x="0" y="0" width="170" height="8" rx="4" fill="#0891b2" />
+    <circle cx="32" cy="38" r="16" fill="#e0f2fe" />
+    <text x="32" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#0369a1" text-anchor="middle">⚡</text>
+    <text x="56" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#1e3a5f">Blaue Karte</text>
+    
+    <text x="16" y="78" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#0891b2">21 – 27 MONATE</text>
+    <text x="16" y="102" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Nach 27 Monaten mit</text>
+    <text x="16" y="122" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">  Deutsch A1</text>
+    <text x="16" y="146" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Nach nur 21 Monaten</text>
+    <text x="16" y="166" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">  mit Deutsch B1</text>
+    <text x="16" y="186" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Schnellster Pfad zur</text>
+    <text x="16" y="206" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">  Niederlassungserlaubnis</text>
+    
+    <rect x="14" y="230" width="142" height="34" rx="6" fill="#e0f2fe" />
+    <text x="85" y="251" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#0369a1" text-anchor="middle">§ 18g Fast-Track</text>
+  </g>
+
+  <!-- Step 3: Fachkräfte mit Berufsausbildung -->
+  <g transform="translate(410, 96)">
+    <rect width="170" height="280" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow)" />
+    <rect x="0" y="0" width="170" height="8" rx="4" fill="#1e3a5f" />
+    <circle cx="32" cy="38" r="16" fill="#f1f5f9" />
+    <text x="32" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#1e3a5f" text-anchor="middle">★</text>
+    <text x="56" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#1e3a5f">§ 18c Abs. 1</text>
+    
+    <text x="16" y="78" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#1e3a5f">NACH 3 JAHREN</text>
+    <text x="16" y="102" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• 36 Monate Beschäftigung</text>
+    <text x="16" y="122" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">  als Fachkraft</text>
+    <text x="16" y="146" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• 36 Monatsbeiträge GRV</text>
+    <text x="16" y="166" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Deutschkenntnisse B1</text>
+    <text x="16" y="186" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Test „Leben in DE“</text>
+    <text x="16" y="206" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Ausbildungsabsolventen: 2J</text>
+    
+    <rect x="14" y="230" width="142" height="34" rx="6" fill="#f1f5f9" />
+    <text x="85" y="251" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" fill="#334155" text-anchor="middle">Unbefristeter Titel</text>
+  </g>
+
+  <!-- Step 4: Einbürgerung -->
+  <g transform="translate(600, 96)">
+    <rect width="170" height="280" rx="12" fill="#ffffff" stroke="#059669" stroke-width="2" filter="url(#shadow)" />
+    <rect x="0" y="0" width="170" height="8" rx="4" fill="#059669" />
+    <circle cx="32" cy="38" r="16" fill="#d1fae5" />
+    <text x="32" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#047857" text-anchor="middle">🇩🇪</text>
+    <text x="56" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#059669">Einbürgerung</text>
+    
+    <text x="16" y="78" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#059669">REFORM 2024 (StAG)</text>
+    <text x="16" y="102" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Bereits nach 5 Jahren</text>
+    <text x="16" y="122" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">  (vorher 8 Jahre)</text>
+    <text x="16" y="146" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Bei besonderen</text>
+    <text x="16" y="166" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">  Leistungen (C1): 3J</text>
+    <text x="16" y="186" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Mehrstaatigkeit erlaubt</text>
+    <text x="16" y="206" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Deutsche Staatsbürgerschaft</text>
+    
+    <rect x="14" y="230" width="142" height="34" rx="6" fill="#d1fae5" />
+    <text x="85" y="251" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#047857" text-anchor="middle">Vollbürger in DE</text>
+  </g>
+</svg>

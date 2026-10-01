@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="title desc">
+  <title id="title">Voraussetzungen für das Visum zur Berufsausbildung (§ 16a AufenthG)</title>
+  <desc id="desc">Fünf Pflichtbausteine für das Ausbildungsvisum: Kammervertrag, Ausbildungsvergütung, B1-Sprachnachweis, Krankenversicherung und Wohnraumnachweis.</desc>
+  <rect width="720" height="540" rx="24" fill="#eef5f9"/>
+  <text x="36" y="48" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#087f9b">§ 16a AUFENTHG PRÜFUNG</text>
+  <text x="36" y="88" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#1e3a5f">Checkliste: Visum zur Berufsausbildung</text>
+
+  <!-- 5 Checklist Cards -->
+  <!-- Card 1 -->
+  <g fill="white" stroke="#0891b2" stroke-width="1.5">
+    <rect x="36" y="125" width="310" height="95" rx="12"/>
+  </g>
+  <circle cx="68" cy="172" r="18" fill="#1e3a5f"/>
+  <text x="68" y="178" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="white">1</text>
+  <text x="100" y="160" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Eingetragener Ausbildungsvertrag</text>
+  <text x="100" y="180" font-family="Arial,sans-serif" font-size="12" fill="#475569">Bestätigung &amp; Eintragung bei zuständiger Kammer</text>
+  <text x="100" y="196" font-family="Arial,sans-serif" font-size="12" fill="#0891b2">(IHK, HWK oder Landwirtschaftskammer)</text>
+
+  <!-- Card 2 -->
+  <g fill="white" stroke="#0891b2" stroke-width="1.5">
+    <rect x="374" y="125" width="310" height="95" rx="12"/>
+  </g>
+  <circle cx="406" cy="172" r="18" fill="#1e3a5f"/>
+  <text x="406" y="178" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="white">2</text>
+  <text x="438" y="160" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Angemessene Ausbildungsvergütung</text>
+  <text x="438" y="180" font-family="Arial,sans-serif" font-size="12" fill="#475569">Sicherung des Lebensunterhalts (Mindestlohn-</text>
+  <text x="438" y="196" font-family="Arial,sans-serif" font-size="12" fill="#0891b2">vorgabe BBiG oder geltender Tarifvertrag)</text>
+
+  <!-- Card 3 -->
+  <g fill="white" stroke="#0891b2" stroke-width="1.5">
+    <rect x="36" y="240" width="310" height="95" rx="12"/>
+  </g>
+  <circle cx="68" cy="287" r="18" fill="#1e3a5f"/>
+  <text x="68" y="293" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="white">3</text>
+  <text x="100" y="275" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Sprachzertifikat Deutsch (B1)</text>
+  <text x="100" y="295" font-family="Arial,sans-serif" font-size="12" fill="#475569">Anerkanntes Zertifikat (Goethe, telc, ÖSD)</text>
+  <text x="100" y="311" font-family="Arial,sans-serif" font-size="12" fill="#0891b2">oder vorbereitender Deutschintensivkurs</text>
+
+  <!-- Card 4 -->
+  <g fill="white" stroke="#0891b2" stroke-width="1.5">
+    <rect x="374" y="240" width="310" height="95" rx="12"/>
+  </g>
+  <circle cx="406" cy="287" r="18" fill="#1e3a5f"/>
+  <text x="406" y="293" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="white">4</text>
+  <text x="438" y="275" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Wohnraumnachweis &amp; Mietvertrag</text>
+  <text x="438" y="295" font-family="Arial,sans-serif" font-size="12" fill="#475569">Ausreichende Wohnfläche (mind. 12 m² p. P.)</text>
+  <text x="438" y="311" font-family="Arial,sans-serif" font-size="12" fill="#0891b2">mit schriftlicher Wohnungsgeberbestätigung</text>
+
+  <!-- Card 5 (Full width) -->
+  <g fill="white" stroke="#059669" stroke-width="1.5">
+    <rect x="36" y="355" width="648" height="95" rx="12"/>
+  </g>
+  <circle cx="68" cy="402" r="18" fill="#059669"/>
+  <text x="68" y="408" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="white">5</text>
+  <text x="100" y="390" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Zustimmung der Bundesagentur für Arbeit (ZAV)</text>
+  <text x="100" y="410" font-family="Arial,sans-serif" font-size="12" fill="#475569">Prüfung der Arbeits- und Ausbildungsbedingungen (keine Vorrangprüfung mehr!).</text>
+  <text x="100" y="426" font-family="Arial,sans-serif" font-size="12" fill="#059669">Im beschleunigten Verfahren (§ 81a) entscheidet die ZAV innerhalb von 1 Woche.</text>
+
+  <text x="360" y="500" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="600" fill="#64748b">Vollständige Unterlagen garantieren planbare Visumerteilungsfristen bei der Botschaft</text>
+</svg>

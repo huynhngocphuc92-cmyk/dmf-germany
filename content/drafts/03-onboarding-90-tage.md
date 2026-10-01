@@ -15,15 +15,22 @@ Der folgende 90-Tage-Plan ist ein redaktioneller Vorschlag für Arbeitgeber, auc
 
 ## Vor dem Start: Ein Arbeitsblatt und klare Zuständigkeiten
 
-Erstellen Sie ein gemeinsames Arbeitsblatt mit vier Feldern: **Aufgabe, zuständige Person, vorgesehener Termin und Status**. Tragen Sie nur Punkte ein, die für den Einstieg tatsächlich relevant sind. So können Fachbereich und Personalabteilung erkennen, was erledigt ist und wo eine Entscheidung fehlt.
+![Abreise und Vorbereitung auf das Eintreffen in Deutschland](/images/blog/dmf-ausreise-flughafen.jpg)
+_Vor dem ersten Arbeitstag: Klare Absprachen zu Ankunft, Unterkunft und behördlichen Schritten schaffen Verlässlichkeit für Betrieb und Mitarbeiter._
 
-Beginnen Sie mit dem ersten Arbeitstag: Wer empfängt die neue Person? Wo findet das erste Gespräch statt? Wer stellt Arbeitsmittel bereit? Halten Sie die vereinbarten Informationen in einer verständlichen Nachricht fest. Fragen Sie nach, ob noch etwas unklar ist, statt die eigene Orientierung im Betrieb vorauszusetzen.
+Erstellen Sie ein gemeinsames Arbeitsblatt mit vier Feldern: **Aufgabe, zuständige Person, vorgesehener Termin und Status**. Tragen Sie nur Punkte ein, die für den Einstieg tatsächlich relevant sind:
 
-Vereinbaren Sie außerdem eine fachliche Ansprechperson und eine Vertretung. Falls Ihr Unternehmen bei Fragen rund um den Alltag unterstützt, benennen Sie auch dafür den konkreten Kontakt und den vereinbarten Umfang. So entstehen keine Erwartungen an Hilfe, die intern noch niemand übernommen hat.
+- **Behördliche Pflichten:** Anmeldung beim Einwohnermeldeamt (Bürgeramt), Beantragung der Steuer-ID und Sozialversicherungsnummer sowie die termingerechte Vorsprache bei der Ausländerbehörde zur Ausstellung des elektronischen Aufenthaltstitels (eAT).
+- **Alltägliche Grundlagen:** Eröffnung eines deutschen Girokontos für Gehaltsüberweisungen und Abschluss der gesetzlichen Krankenversicherung.
+- **Betriebliche Vorbereitung:** Wer empfängt die neue Fachkraft am ersten Tag? Wo findet das Einführungsgespräch statt? Wer richtet Spind, Arbeitskleidung und Zugänge ein?
+
+Vereinbaren Sie außerdem eine fachliche Ansprechperson und einen persönlichen Paten im Team. So können Fachbereich und Personalabteilung auf einen Blick erkennen, was erledigt ist und wo noch Unterstützung nötig ist.
 
 ## Tage 1 bis 7: Fragen ermöglichen
 
-Planen Sie ausreichend Zeit für den Einstieg und für Rückfragen ein. Zeigen Sie, an wen sich neue Mitarbeitende mit welcher Frage wenden können. Besprechen Sie eine überschaubare erste Aufgabe und erklären Sie, woran ein gutes Ergebnis im jeweiligen Betrieb erkennbar ist. Fachliche Unterweisungen und notwendige Sicherheitsanforderungen bleiben dabei Teil Ihrer betrieblichen Abläufe.
+Planen Sie ausreichend Zeit für den Einstieg und für Rückfragen ein. Zeigen Sie, an wen sich neue Mitarbeitende mit welcher Frage wenden können. Besprechen Sie eine überschaubare erste Aufgabe und erklären Sie, woran ein gutes Ergebnis im jeweiligen Betrieb erkennbar ist.
+
+Gemäß § 12 ArbSchG (Arbeitsschutzgesetz) sind Arbeitgeber verpflichtet, neue Beschäftigte vor Aufnahme der Tätigkeit über Sicherheit und Gesundheitsschutz am Arbeitsplatz ausreichend und angemessen zu unterweisen. Bei Auszubildenden greift zusätzlich § 14 BBiG (Berufsbildungsgesetz), wonach die Vermittlung der Ausbildungsinhalte planmäßig und zielgerichtet erfolgen muss. Halten Sie diese Unterweisungen stets schriftlich in den Personalakten fest.
 
 Das Bundesportal empfiehlt einen strukturierten Einstieg und einen Willkommenstag, an dem Arbeitsumfeld, Aufgaben und Team vorgestellt werden. Weitere Anregungen bietet [Make it in Germany zum Onboarding](https://www.make-it-in-germany.com/de/unternehmen/integrieren/neue-mitarbeiter/onboarding).
 
@@ -47,12 +54,22 @@ Nutzen Sie einen fest eingeplanten Termin, um die bisherigen Ziele gemeinsam dur
 
 Halten Sie höchstens wenige nächste Schritte fest und ordnen Sie jedem eine verantwortliche Person zu. „Deutsch verbessern“ ist als Arbeitsauftrag zu ungenau. „Die Begriffe für die nächste Schichtübergabe gemeinsam durchgehen“ lässt sich dagegen konkret vorbereiten. Mögliche Sprachlernangebote und dafür verfügbare Zeit sollten Sie gesondert besprechen.
 
+![Erfolgreiche Ankunft und Beginn der Einarbeitung in Deutschland](/images/blog/dmf-azubi-ankunft-deutschland.jpg)
+_Erfolgreiche Ankunft in Deutschland: Strukturierte Begleitung in den ersten 90 Tagen im Betrieb._
+
 ## Tage 61 bis 90: Den nächsten Abschnitt planen
 
 Vergleichen Sie den aktuellen Stand mit den zu Beginn vereinbarten Aufgaben. Beschreiben Sie Fortschritte anhand beobachtbarer Arbeitsschritte und besprechen Sie weiterhin offene Punkte. Die neue Person sollte dabei ebenso schildern können, wie sie die Zusammenarbeit erlebt und welche Unterstützung ihr fehlt.
 
 Vereinbaren Sie anschließend Ziele und Ansprechpartner für den nächsten Zeitraum. Falls die Einarbeitung länger dauert, führen Sie den Plan entsprechend fort. Die 90-Tage-Marke ist ein Anlass zur gemeinsamen Bestandsaufnahme, kein automatischer Abschluss und kein Ersatz für arbeitsrechtliche Entscheidungen.
 
+| Onboarding-Phase           | Kernaufgaben & Meilensteine                                                   | Ziel für Fachkraft & Betrieb                                |
+| -------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| **Woche 1–2 (Ankommen)**   | Behördenanmeldung, Bankkonto, Krankenkasse, SIM-Karte, Rundgang & Begrüßung   | Sicheres Fundament und administrativer Abschluss            |
+| **Monat 1 (Orientierung)** | Feste Begleitung durch Mentor, Sicherheitsunterweisung, Dokumentationsabläufe | Verständnis der betrieblichen Kernstrukturen                |
+| **Monat 2 (Vertiefung)**   | Übernahme erster eigenständiger Aufgaben, Fachsprache im Schichtalltag        | Zunehmende Handlungssicherheit und Teamverankerung          |
+| **Monat 3 (Festigung)**    | Strukturiertes Feedbackgespräch, Zielvereinbarung für die weitere Probezeit   | Vollwertige Integration und langfristige Mitarbeiterbindung |
+
 ## Denken Sie die Einarbeitung schon bei der Anfrage mit
 
-Wenn Sie [Fachkräfte aus Vietnam gewinnen möchten](https://www.dmf-talents.de/services/skilled-workers), können Sie Ihre Einarbeitungskapazität bereits bei der Personalplanung festhalten. [Teilen Sie DMF Talents Ihren Personalbedarf mit](https://www.dmf-talents.de/fuer-arbeitgeber/personalbedarf) und beschreiben Sie, wer den Einstieg im Betrieb begleiten kann. Welche ergänzende Unterstützung für Ihr Vorhaben infrage kommt, lässt sich dann im Gespräch klären.
+Wenn Sie [Fachkräfte aus Vietnam gewinnen möchten](/services/skilled-workers), können Sie Ihre Einarbeitungskapazität bereits bei der Personalplanung festhalten. [Teilen Sie DMF Talents Ihren Personalbedarf mit](/fuer-arbeitgeber/personalbedarf) und beschreiben Sie, wer den Einstieg im Betrieb begleiten kann. Welche ergänzende Unterstützung für Ihr Vorhaben infrage kommt, lässt sich dann im Gespräch klären.

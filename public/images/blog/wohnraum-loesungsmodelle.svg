@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="title desc">
+  <title id="title">Wohnraum-Lösungsmodelle für internationale Azubis und Fachkräfte</title>
+  <desc id="desc">Vier praxiserprobte Wohnraummodelle für Arbeitgeber: Werkswohnungen, Azubi-WGs, Kooperationen mit Wohnungsgesellschaften und Gastunterkünfte.</desc>
+  <rect width="720" height="540" rx="24" fill="#eef5f9"/>
+  <text x="36" y="48" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#087f9b">INTEGRATION &amp; INFRASTRUKTUR</text>
+  <text x="36" y="88" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#1e3a5f">4 Wohnraummodelle für Arbeitgeber</text>
+
+  <!-- Model 1: Betriebliche Azubi-WG -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="36" y="125" width="150" height="340" rx="16"/>
+  </g>
+  <rect x="36" y="125" width="150" height="40" rx="16" fill="#1e3a5f"/>
+  <text x="111" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">MODELL 1</text>
+  <text x="111" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Betriebliche</text>
+  <text x="111" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Azubi-WG</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="48" y="250">• Betrieb mietet</text>
+    <text x="48" y="270">  Mehrzimmerwohnung</text>
+    <text x="48" y="300">• Untervermietung</text>
+    <text x="48" y="320">  an 2–3 Azubis</text>
+    <text x="48" y="350">• Geteilte Küche</text>
+    <text x="48" y="370">  &amp; Gemeinschaft</text>
+    <text x="48" y="405">• Geringe Kosten</text>
+    <text x="48" y="425">  pro Kopf</text>
+  </g>
+
+  <!-- Model 2: Werkswohnung / Mitarbeiterzimmer -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="202" y="125" width="150" height="340" rx="16"/>
+  </g>
+  <rect x="202" y="125" width="150" height="40" rx="16" fill="#0891b2"/>
+  <text x="277" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">MODELL 2</text>
+  <text x="277" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Mitarbeiter-</text>
+  <text x="277" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Zimmer</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="214" y="250">• Eigene Immobilie</text>
+    <text x="214" y="270">  des Betriebs</text>
+    <text x="214" y="300">• Häufig in Gastro,</text>
+    <text x="214" y="320">  Pflege &amp; Hotels</text>
+    <text x="214" y="350">• Sofortige Visums-</text>
+    <text x="214" y="370">  bestätigung</text>
+    <text x="214" y="405">• Maximale</text>
+    <text x="214" y="425">  Planbarkeit</text>
+  </g>
+
+  <!-- Model 3: Kommunale Kooperation -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="368" y="125" width="150" height="340" rx="16"/>
+  </g>
+  <rect x="368" y="125" width="150" height="40" rx="16" fill="#1e3a5f"/>
+  <text x="443" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">MODELL 3</text>
+  <text x="443" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Wohnungsbau-</text>
+  <text x="443" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Partner</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="380" y="250">• Kontingent bei</text>
+    <text x="380" y="270">  städtischen Trägern</text>
+    <text x="380" y="300">• Bürgschaft durch</text>
+    <text x="380" y="320">  den Arbeitgeber</text>
+    <text x="380" y="350">• Faire Mietpreise</text>
+    <text x="380" y="370">  nach Mietspiegel</text>
+    <text x="380" y="405">• Langfristige</text>
+    <text x="380" y="425">  Partnerschaft</text>
+  </g>
+
+  <!-- Model 4: Gastfamilie / Paten -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="534" y="125" width="150" height="340" rx="16"/>
+  </g>
+  <rect x="534" y="125" width="150" height="40" rx="16" fill="#059669"/>
+  <text x="609" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">MODELL 4</text>
+  <text x="609" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Paten &amp; Privat-</text>
+  <text x="609" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">vermietung</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="546" y="250">• Einliegerwohnung</text>
+    <text x="546" y="270">  bei Mitarbeitern</text>
+    <text x="546" y="300">• Schnelle soziale</text>
+    <text x="546" y="320">  Anbindung</text>
+    <text x="546" y="350">• Tägliche Sprach-</text>
+    <text x="546" y="370">  praxis im Alltag</text>
+    <text x="546" y="405">• Ideal für die</text>
+    <text x="546" y="425">  ersten 6–12 Mon.</text>
+  </g>
+
+  <text x="360" y="515" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="600" fill="#64748b">Gesicherter Wohnraum ist zwingende Voraussetzung für die Visumserteilung (§ 16a / § 18a)</text>
+</svg>

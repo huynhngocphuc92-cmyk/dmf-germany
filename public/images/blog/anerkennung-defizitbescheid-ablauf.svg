@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="title desc">
+  <title id="title">Ablauf des Anerkennungsverfahrens und Defizitbescheid</title>
+  <desc id="desc">Vom Antrag bei IHK FOSA oder Handwerkskammer über den Defizitbescheid zur Anpassungsqualifizierung (§ 16d) und vollen Gleichwertigkeit (§ 18a).</desc>
+  <rect width="720" height="540" rx="24" fill="#eef5f9"/>
+  <text x="36" y="48" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#087f9b">BQFG ANERKENNUNG</text>
+  <text x="36" y="88" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#1e3a5f">Ablauf: Anerkennung &amp; Defizitbescheid</text>
+
+  <!-- Step 1: Antragstellung -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="36" y="125" width="150" height="340" rx="16"/>
+  </g>
+  <rect x="36" y="125" width="150" height="40" rx="16" fill="#1e3a5f"/>
+  <text x="111" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">1. ANTRAG</text>
+  <text x="111" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Unterlagen-</text>
+  <text x="111" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">einreichung</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="48" y="250">• Kollegabschluss</text>
+    <text x="48" y="270">  &amp; Fächerübersicht</text>
+    <text x="48" y="295">• Vereidigte deutsche</text>
+    <text x="48" y="315">  Übersetzungen</text>
+    <text x="48" y="340">• Nachweise der</text>
+    <text x="48" y="360">  Berufspraxis</text>
+    <text x="48" y="390">• Zuständig: IHK,</text>
+    <text x="48" y="410">  HWK oder Land</text>
+  </g>
+
+  <!-- Step 2: Bescheid -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="202" y="125" width="150" height="340" rx="16"/>
+  </g>
+  <rect x="202" y="125" width="150" height="40" rx="16" fill="#0891b2"/>
+  <text x="277" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">2. PRÜFUNG</text>
+  <text x="277" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Gleichwertig-</text>
+  <text x="277" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">keitsbescheid</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="214" y="250">• Gesetzliche Frist:</text>
+    <text x="214" y="270">  max. 2 Monate (§ 81a)</text>
+    <text x="214" y="300" font-weight="700" fill="#0284c7">Zwei Ergebnisse:</text>
+    <text x="214" y="325">A: Vollanerkennung</text>
+    <text x="214" y="345">   (direkt Visum)</text>
+    <text x="214" y="375">B: Defizitbescheid</text>
+    <text x="214" y="395">   (wesentliche Unter-</text>
+    <text x="214" y="415">   schiede benannt)</text>
+  </g>
+
+  <!-- Step 3: Ausgleichsmaßnahme -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="368" y="125" width="150" height="340" rx="16"/>
+  </g>
+  <rect x="368" y="125" width="150" height="40" rx="16" fill="#1e3a5f"/>
+  <text x="443" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">3. ANPASSUNG</text>
+  <text x="443" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Qualifizierung</text>
+  <text x="443" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">im Betrieb</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="380" y="250">• Einreisevisum</text>
+    <text x="380" y="270">  nach § 16d AufenthG</text>
+    <text x="380" y="300">• Gezielte Praxis im</text>
+    <text x="380" y="320">  Unternehmen</text>
+    <text x="380" y="345">• Ggf. Lehrgänge</text>
+    <text x="380" y="365">  an Kammerzentren</text>
+    <text x="380" y="395">• Mitarbeit ab Tag 1</text>
+    <text x="380" y="415">  als Fachassistent</text>
+  </g>
+
+  <!-- Step 4: Volle Fachkraft -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="534" y="125" width="150" height="340" rx="16"/>
+  </g>
+  <rect x="534" y="125" width="150" height="40" rx="16" fill="#059669"/>
+  <text x="609" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">4. ERFOLG</text>
+  <text x="609" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Volle Aner-</text>
+  <text x="609" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">kennung</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="546" y="250">• Abschlussgespräch</text>
+    <text x="546" y="270">  oder Kenntnisprüfung</text>
+    <text x="546" y="300">• Ausstellung der</text>
+    <text x="546" y="320">  Voll-Gleichwertigkeit</text>
+    <text x="546" y="350">• Titelwechsel zu</text>
+    <text x="546" y="370">  § 18a Fachkraft</text>
+    <text x="546" y="405">• Langfristig loyale</text>
+    <text x="546" y="425">  Stammkraft</text>
+  </g>
+
+  <text x="360" y="515" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="600" fill="#64748b">DMF Talents analysiert vietnamesische Lehrpläne vorab zur Vermeidung unnötiger Defizite</text>
+</svg>

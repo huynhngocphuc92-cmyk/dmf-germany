@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="title desc">
+  <title id="title">Anerkennungsverfahren für Pflegefachkräfte aus Vietnam</title>
+  <desc id="desc">Vier Schritte von der Gleichwertigkeitsprüfung über die Anpassungsqualifizierung (§ 16d) bis zur staatlichen Berufszulassung als Pflegefachkraft.</desc>
+  <rect width="720" height="540" rx="24" fill="#eef5f9"/>
+  <text x="36" y="48" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#087f9b">PFLEGEBERUFEGESETZ (PflBG)</text>
+  <text x="36" y="88" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#1e3a5f">Anerkennungsweg für Pflegekräfte</text>
+
+  <!-- Step 1: Einreichung -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="36" y="125" width="150" height="340" rx="16"/>
+  </g>
+  <rect x="36" y="125" width="150" height="40" rx="16" fill="#1e3a5f"/>
+  <text x="111" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">1. ANTRAG</text>
+  <text x="111" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Unterlagen</text>
+  <text x="111" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">&amp; Vorprüfung</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="48" y="250">• 3–4 Jahre Pflege-</text>
+    <text x="48" y="270">  studium / College</text>
+    <text x="48" y="295">• Fächer- &amp; Stunden-</text>
+    <text x="48" y="315">  übersicht (Curriculum)</text>
+    <text x="48" y="340">• Beglaubigte Über-</text>
+    <text x="48" y="360">  setzungen Deutsch</text>
+    <text x="48" y="390">• Zuständig: Landesamt</text>
+    <text x="48" y="410">  für Pflege / Gesundheit</text>
+  </g>
+
+  <!-- Step 2: Defizitbescheid -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="202" y="125" width="150" height="340" rx="16"/>
+  </g>
+  <rect x="202" y="125" width="150" height="40" rx="16" fill="#0891b2"/>
+  <text x="277" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">2. PRÜFUNG</text>
+  <text x="277" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Defizit-</text>
+  <text x="277" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">bescheid</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="214" y="250">• Vergleich mit PflBG</text>
+    <text x="214" y="270">  (deutsche Standards)</text>
+    <text x="214" y="300" font-weight="700" fill="#0284c7">Zwei Wege:</text>
+    <text x="214" y="325">A: Anpassungs-</text>
+    <text x="214" y="345">   lehrgang (Station)</text>
+    <text x="214" y="375">B: Kenntnis-</text>
+    <text x="214" y="395">   prüfung (Theorie</text>
+    <text x="214" y="415">   &amp; praktische Prüfung)</text>
+  </g>
+
+  <!-- Step 3: Ausgleich auf Station -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="368" y="125" width="150" height="340" rx="16"/>
+  </g>
+  <rect x="368" y="125" width="150" height="40" rx="16" fill="#1e3a5f"/>
+  <text x="443" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">3. PRAXIS</text>
+  <text x="443" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Anpassung</text>
+  <text x="443" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">nach § 16d</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="380" y="250">• Visum § 16d AufenthG</text>
+    <text x="380" y="270">  zur Qualifizierung</text>
+    <text x="380" y="300">• Mitarbeit als</text>
+    <text x="380" y="320">  Pflegeassistenzkraft</text>
+    <text x="380" y="345">• Praxisanleitung</text>
+    <text x="380" y="365">  durch Pflegeteam</text>
+    <text x="380" y="395">• Begleitender Kurs</text>
+    <text x="380" y="415">  Fachsprache Pflege</text>
+  </g>
+
+  <!-- Step 4: Berufszulassung -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="534" y="125" width="150" height="340" rx="16"/>
+  </g>
+  <rect x="534" y="125" width="150" height="40" rx="16" fill="#0891b2"/>
+  <text x="609" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white">4. ZULASSUNG</text>
+  <text x="609" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Vollwertige</text>
+  <text x="609" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Pflegefachkraft</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="546" y="250">• Staatliche Urkunde</text>
+    <text x="546" y="270">  (Berufserlaubnis)</text>
+    <text x="546" y="300">• Sprachnachweis</text>
+    <text x="546" y="320">  B2 Pflege erfüllt</text>
+    <text x="546" y="350">• Nahtloser Wechsel</text>
+    <text x="546" y="370">  in Fachkrafttitel</text>
+    <text x="546" y="390">  nach § 18a / § 18b</text>
+    <text x="546" y="420" font-weight="700" fill="#0284c7">Volle Schichtlast</text>
+  </g>
+
+  <!-- Bottom highlight footer -->
+  <rect x="36" y="480" width="648" height="36" rx="8" fill="#1e3a5f"/>
+  <text x="360" y="503" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="white">DMF Talents organisiert Anpassungslehrgang, B2-Fachsprache und Behördenabstimmung aus einer Hand</text>
+</svg>

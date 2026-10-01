@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bauGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a5f" />
+      <stop offset="100%" stop-color="#0c4a6e" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.06" />
+    </filter>
+  </defs>
+
+  <rect width="800" height="420" fill="#f8fafc" rx="16" />
+
+  <!-- Header -->
+  <rect x="30" y="24" width="740" height="54" rx="10" fill="url(#bauGrad)" />
+  <text x="50" y="58" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Qualifikations- &amp; Anerkennungsmatrix: Bauhauptgewerbe</text>
+
+  <!-- 3 Pillars: Maurer, Betonbauer, Tiefbauer -->
+  <g transform="translate(30, 96)">
+    <rect width="230" height="280" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow)" />
+    <rect x="0" y="0" width="230" height="8" rx="4" fill="#b45309" />
+    <circle cx="36" cy="40" r="18" fill="#fef3c7" />
+    <text x="36" y="46" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#b45309" text-anchor="middle">🧱</text>
+    <text x="66" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Maurerhandwerk</text>
+    
+    <text x="20" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#b45309">HOCHBAU &amp; MAUERWERK</text>
+    <text x="20" y="104" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">• Mauerverbände &amp; Schichten</text>
+    <text x="20" y="126" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">• Dämmung &amp; Feuchteschutz</text>
+    <text x="20" y="148" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">• Pläne &amp; Baustellenaufmaß</text>
+    <text x="20" y="170" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">• Putzarbeiten &amp; Ausfugen</text>
+    <text x="20" y="192" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">• SOKA-BAU Tariflohn 1 &amp; 2</text>
+    
+    <rect x="18" y="224" width="194" height="38" rx="6" fill="#fef3c7" />
+    <text x="115" y="248" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#92400e" text-anchor="middle">Referenz: Maurer Geselle</text>
+  </g>
+
+  <g transform="translate(285, 96)">
+    <rect width="230" height="280" rx="12" fill="#ffffff" stroke="#0891b2" stroke-width="2" filter="url(#shadow)" />
+    <rect x="0" y="0" width="230" height="8" rx="4" fill="#0891b2" />
+    <circle cx="36" cy="40" r="18" fill="#e0f2fe" />
+    <text x="36" y="46" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#0369a1" text-anchor="middle">🏗️</text>
+    <text x="66" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Beton- &amp; Stahlbeton</text>
+    
+    <text x="20" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#0891b2">SCHALUNG &amp; BEWEHRUNG</text>
+    <text x="20" y="104" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">• Schalungssysteme (Doka/Peri)</text>
+    <text x="20" y="126" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">• Bewehrungsverlegung (BSt)</text>
+    <text x="20" y="148" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">• Frischbetoneinbau &amp; Verdichten</text>
+    <text x="20" y="170" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">• Betonnachbehandlung</text>
+    <text x="20" y="192" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">• Sichtbeton-Präzision</text>
+    
+    <rect x="18" y="224" width="194" height="38" rx="6" fill="#e0f2fe" />
+    <text x="115" y="248" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#0369a1" text-anchor="middle">Hohe Nachfrage Industrie</text>
+  </g>
+
+  <g transform="translate(540, 96)">
+    <rect width="230" height="280" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow)" />
+    <rect x="0" y="0" width="230" height="8" rx="4" fill="#1e3a5f" />
+    <circle cx="36" cy="40" r="18" fill="#e0f2fe" />
+    <text x="36" y="46" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#1e3a5f" text-anchor="middle">🚧</text>
+    <text x="66" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="700" fill="#1e3a5f">Tief- &amp; Straßenbau</text>
+    
+    <text x="20" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#1e3a5f">INFRASTRUKTUR &amp; KANAL</text>
+    <text x="20" y="104" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">• Erdbau &amp; Planumserstellung</text>
+    <text x="20" y="126" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">• Rohrleitungs- &amp; Kanalbau</text>
+    <text x="20" y="148" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">• Pflaster- &amp; Asphaltarbeiten</text>
+    <text x="20" y="170" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">• Verbau- &amp; Grabensicherung</text>
+    <text x="20" y="192" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">• Baumaschinen-Bedienung</text>
+    
+    <rect x="18" y="224" width="194" height="38" rx="6" fill="#f1f5f9" />
+    <text x="115" y="248" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#1e3a5f" text-anchor="middle">Kanalbauer / Tiefbauer</text>
+  </g>
+</svg>

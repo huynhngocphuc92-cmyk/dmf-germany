@@ -23,6 +23,9 @@ Auch das Bundesportal empfiehlt, vor der internationalen Suche den Personalbedar
 
 ## 2. Machen Sie Anforderungen überprüfbar
 
+![Vorbereitungsmaterialien und strukturierte Anforderungsprofile bei DMF](/images/blog/dmf-betreuung-unterlagen.jpg)
+_Einblick in die Vorbereitung: Strukturierte Unterlagen und Anforderungsprofile erleichtern die Klärung vor dem Auswahlgespräch._
+
 Erstellen Sie zwei kurze Listen: „vor Arbeitsbeginn erforderlich“ und „im Betrieb erlernbar“. Beschreiben Sie jeweils, wie Sie die Anforderung im Auswahlgespräch prüfen möchten. Ein Lebenslauf ist ein Ausgangspunkt; eine konkrete Frage zu einem Arbeitsablauf kann Ihnen zusätzliche Anhaltspunkte geben.
 
 Halten Sie dabei diese Punkte fest:
@@ -38,13 +41,21 @@ Eine pauschale Aussage wie „gute Deutschkenntnisse“ lässt sich schwer bespr
 
 Notieren Sie Ihren gewünschten Start und erklären Sie, weshalb dieser Termin relevant ist. Steht ein Auftrag an, geht jemand in den Ruhestand oder soll das Team wachsen? Trennen Sie anschließend den betrieblichen Bedarf von einem bereits belastbar bestätigten Arbeitsbeginn.
 
-Fragen Sie im Gespräch, welche Voraussetzungen noch offen sind und wer sie klärt. Lassen Sie notwendige Qualifikations-, Anerkennungs- und Einreisefragen für den jeweiligen Fall bei den zuständigen Stellen prüfen. Eine allgemeine Checkliste kann diese Prüfung nicht ersetzen. Für Ihre interne Planung ist hilfreich: Welche Aufgabe läuft weiter, falls sich ein Schritt verzögert, und wann müssen Sie neu entscheiden?
+Fragen Sie im Gespräch, welche Voraussetzungen noch offen sind und wer sie klärt. Lassen Sie notwendige Qualifikations-, Anerkennungs- und Einreisefragen für den jeweiligen Fall bei den zuständigen Stellen prüfen. Wer behördliche Wartezeiten planbar verkürzen möchte, sollte prüfen, ob das beschleunigte Fachkräfteverfahren nach **§ 81a AufenthG** über die örtliche Ausländerbehörde infrage kommt. Eine allgemeine Checkliste kann diese Einzelfallprüfung nicht ersetzen. Für Ihre interne Planung ist hilfreich: Welche Aufgabe läuft weiter, falls sich ein Schritt verzögert, und wann müssen Sie neu entscheiden?
 
 ## 4. Benennen Sie Budget und interne Kapazität
 
-Eine Budgetplanung sollte die gesamte Vorbereitung berücksichtigen. Legen Sie fest, welche Ausgaben Sie im Angebot erläutert haben möchten und welche Aufgaben Ihr Betrieb selbst übernimmt. Dazu können beispielsweise Auswahlgespräche, Dokumentenorganisation, sprachliche Vorbereitung, Anreise oder die Einarbeitung gehören. Welche Positionen tatsächlich anfallen, bleibt Teil der individuellen Klärung.
+Eine Budgetplanung sollte die gesamte Vorbereitung berücksichtigen. Legen Sie fest, welche Ausgaben Sie im Angebot erläutert haben möchten und welche Aufgaben Ihr Betrieb selbst übernimmt. Dazu gehören Auswahlgespräche, Dokumentenorganisation, amtliche Beglaubigungen, Sprachunterricht, Anreise und Einarbeitung. Beachten Sie dabei die gesetzlichen Vorgaben des **Employer-Pays-Prinzips (§ 296a SGB III)**: Seriöse Vermittlungen stellen sicher, dass Rekrutierungskosten vom Arbeitgeber getragen und nicht verdeckt auf ausländische Fachkräfte umgelegt werden.
 
 Planen Sie auch Arbeitszeit ein: Wer führt Interviews, gibt Rückmeldungen und begleitet die ersten Wochen? Wenn für diese Aufgaben niemand verfügbar ist, sollte das vor dem Start der Suche sichtbar werden. Ein kurzer Abstimmungstermin mit Personalabteilung und Fachbereich ist dafür ein sinnvoller erster Schritt.
+
+| Phase / Bereich            | Zentrale Prüffrage                                                                  | Gesetzliche / Praktische Grundlage          |
+| -------------------------- | ----------------------------------------------------------------------------------- | ------------------------------------------- |
+| **Bedarfsanalyse**         | Welche konkreten Qualifikationen und Sprachstufen werden am Arbeitsplatz gebraucht? | Anforderungsprofil (§ 18a/§ 18b AufenthG)   |
+| **Anerkennung & Defizit**  | Liegt ein anerkennungsfähiger vietnamesischer Berufsabschluss vor?                  | BQFG-Gleichwertigkeitsprüfung (IHK / HWK)   |
+| **Behördenverfahren**      | Soll das Verfahren durch § 81a AufenthG planbar beschleunigt werden?                | Vorabzustimmung der Ausländerbehörde & ZAV  |
+| **Kosten & Compliance**    | Werden alle Vermittlungskosten transparent vom Arbeitgeber übernommen?              | Employer-Pays-Prinzip (§ 296a SGB III)      |
+| **Integration & Wohnraum** | Gibt es einen verbindlichen 90-Tage-Onboardingplan und gesicherten Wohnraum?        | Betriebliches Integrations- und Patenmodell |
 
 ## 5. Ihr Briefing für die Anfrage
 
@@ -58,6 +69,9 @@ Kopieren Sie diese Punkte in Ihre Gesprächsnotizen:
 
 Sind einzelne Antworten noch offen, kennzeichnen Sie sie als offen. Für ein erstes Gespräch ist ein ehrliches, unvollständiges Briefing hilfreicher als eine vermeintlich fertige Planung mit ungeprüften Annahmen.
 
+![Sorgfältige Prüfung der Bewerberprofile und Qualifikationsnachweise](/images/blog/dmf-bewerber-profil-pruefung.jpg)
+_Sorgfältige Prüfung der Bewerberprofile und Qualifikationsnachweise vor dem ersten Kundengespräch._
+
 ## Besprechen Sie Ihren konkreten Personalbedarf
 
-Einen Überblick über den Bereich finden Sie bei [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](https://www.dmf-talents.de/services/skilled-workers). Wenn Sie eine konkrete Stelle besprechen möchten, [beschreiben Sie Ihren Personalbedarf](https://www.dmf-talents.de/fuer-arbeitgeber/personalbedarf). Nennen Sie dabei möglichst Tätigkeit, Standort und gewünschten Start. Diese Angaben bilden die Grundlage für die weitere Klärung Ihres Vorhabens.
+Einen Überblick über den Bereich finden Sie bei [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers). Wenn Sie eine konkrete Stelle besprechen möchten, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf). Nennen Sie dabei möglichst Tätigkeit, Standort und gewünschten Start. Diese Angaben bilden die Grundlage für die weitere Klärung Ihres Vorhabens.

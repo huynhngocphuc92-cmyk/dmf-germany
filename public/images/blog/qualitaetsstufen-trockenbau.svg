@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="100%" height="100%">
+  <defs>
+    <linearGradient id="qGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a5f" />
+      <stop offset="100%" stop-color="#0c4a6e" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.06" />
+    </filter>
+  </defs>
+
+  <rect width="800" height="420" fill="#f8fafc" rx="16" />
+
+  <!-- Header -->
+  <rect x="30" y="24" width="740" height="54" rx="10" fill="url(#qGrad)" />
+  <text x="50" y="58" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Oberflächengüten Trockenbau &amp; Spachtelung (Qualitätsstufen Q1–Q4)</text>
+
+  <!-- Q1 -->
+  <g transform="translate(30, 96)">
+    <rect width="170" height="280" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow)" />
+    <rect x="0" y="0" width="170" height="8" rx="4" fill="#64748b" />
+    <circle cx="32" cy="38" r="16" fill="#f1f5f9" />
+    <text x="32" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#475569" text-anchor="middle">Q1</text>
+    <text x="56" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#1e3a5f">Grundverspachtelung</text>
+    
+    <text x="16" y="78" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748b">TECHNISCHE BASIS</text>
+    <text x="16" y="102" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Fugen füllen &amp;</text>
+    <text x="16" y="122" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">  Bewehrungsstreifen</text>
+    <text x="16" y="146" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Schraubenköpfe</text>
+    <text x="16" y="166" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">  überspachteln</text>
+    <text x="16" y="186" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Für Beläge mit Fliesen</text>
+    <text x="16" y="206" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">  oder Platten</text>
+    
+    <rect x="14" y="230" width="142" height="34" rx="6" fill="#f1f5f9" />
+    <text x="85" y="251" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">Keine opt. Ansprüche</text>
+  </g>
+
+  <!-- Q2 -->
+  <g transform="translate(220, 96)">
+    <rect width="170" height="280" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow)" />
+    <rect x="0" y="0" width="170" height="8" rx="4" fill="#0891b2" />
+    <circle cx="32" cy="38" r="16" fill="#e0f2fe" />
+    <text x="32" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#0369a1" text-anchor="middle">Q2</text>
+    <text x="56" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#1e3a5f">Standard</text>
+    
+    <text x="16" y="78" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#0891b2">REGELVERSPACHTELUNG</text>
+    <text x="16" y="102" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Nachspachteln &amp;</text>
+    <text x="16" y="122" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">  stufenloser Übergang</text>
+    <text x="16" y="146" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Fugenbereich schleifen</text>
+    <text x="16" y="166" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Für Raufasertapeten</text>
+    <text x="16" y="186" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">  und matte Anstriche</text>
+    <text x="16" y="206" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Gipsplatten DIN 18180</text>
+    
+    <rect x="14" y="230" width="142" height="34" rx="6" fill="#e0f2fe" />
+    <text x="85" y="251" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#0369a1" text-anchor="middle">Standard im Bau</text>
+  </g>
+
+  <!-- Q3 -->
+  <g transform="translate(410, 96)">
+    <rect width="170" height="280" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow)" />
+    <rect x="0" y="0" width="170" height="8" rx="4" fill="#1e3a5f" />
+    <circle cx="32" cy="38" r="16" fill="#f1f5f9" />
+    <text x="32" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#1e3a5f" text-anchor="middle">Q3</text>
+    <text x="56" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#1e3a5f">Sonderanspruch</text>
+    
+    <text x="16" y="78" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#1e3a5f">FEINE OBERFLÄCHEN</text>
+    <text x="16" y="102" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Breiteres Ausziehen</text>
+    <text x="16" y="122" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">  der Fugenbereiche</text>
+    <text x="16" y="146" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Porenverschluss auf</text>
+    <text x="16" y="166" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">  der Restkartonfläche</text>
+    <text x="16" y="186" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Für feine Tapeten und</text>
+    <text x="16" y="206" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">  matte Lackanstriche</text>
+    
+    <rect x="14" y="230" width="142" height="34" rx="6" fill="#f1f5f9" />
+    <text x="85" y="251" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" fill="#334155" text-anchor="middle">Gehobener Ausbau</text>
+  </g>
+
+  <!-- Q4 -->
+  <g transform="translate(600, 96)">
+    <rect width="170" height="280" rx="12" fill="#ffffff" stroke="#059669" stroke-width="2" filter="url(#shadow)" />
+    <rect x="0" y="0" width="170" height="8" rx="4" fill="#059669" />
+    <circle cx="32" cy="38" r="16" fill="#d1fae5" />
+    <text x="32" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#047857" text-anchor="middle">Q4</text>
+    <text x="56" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#059669">Höchste Güte</text>
+    
+    <text x="16" y="78" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#059669">VOLLFLÄCHIG VOLLENDET</text>
+    <text x="16" y="102" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Vollflächiger Überzug</text>
+    <text x="16" y="122" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">  mit Spachtelmasse (&gt;1mm)</text>
+    <text x="16" y="146" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Komplettes Finish &amp;</text>
+    <text x="16" y="166" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">  Feinschliff mit Lampe</text>
+    <text x="16" y="186" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">• Für Glanzlacke, Seide,</text>
+    <text x="16" y="206" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">  Streiflichtbeleuchtung</text>
+    
+    <rect x="14" y="230" width="142" height="34" rx="6" fill="#d1fae5" />
+    <text x="85" y="251" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#047857" text-anchor="middle">Premium-Handwerk</text>
+  </g>
+</svg>

@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="title desc">
+  <title id="title">Beschäftigungsmodelle für Gastronomie und Hotellerie aus Vietnam</title>
+  <desc id="desc">Drei rechtssichere Rekrutierungswege: Duale Ausbildung, Fachkraftanstellung und Saisonbeschäftigung im direkten Vergleich.</desc>
+  <rect width="720" height="540" rx="24" fill="#eef5f9"/>
+  <text x="36" y="48" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#087f9b">HORECA &amp; TOURISMUS</text>
+  <text x="36" y="88" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#1e3a5f">Personalmodelle für Gastronomie &amp; Hotels</text>
+
+  <!-- Model 1: Duale Ausbildung -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="36" y="125" width="206" height="340" rx="16"/>
+  </g>
+  <rect x="36" y="125" width="206" height="42" rx="16" fill="#1e3a5f"/>
+  <text x="139" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="white">Duale Ausbildung</text>
+  <text x="139" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#0891b2">§ 16a AufenthG</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="50" y="225" font-weight="700" fill="#1e3a5f">Berufsbilder:</text>
+    <text x="50" y="243">Koch, Fachkraft Küche,</text>
+    <text x="50" y="261">Hotelfachmann/-frau</text>
+
+    <text x="50" y="295" font-weight="700" fill="#1e3a5f">Dauer &amp; Status:</text>
+    <text x="50" y="313">3 Jahre (DEHOGA-Tarif)</text>
+    <text x="50" y="331">Ausbildungsvergütung</text>
+
+    <text x="50" y="365" font-weight="700" fill="#1e3a5f">Hauptvorteil:</text>
+    <text x="50" y="383">Systematische Schulung</text>
+    <text x="50" y="401">im eigenen Betrieb,</text>
+    <text x="50" y="419">sehr hohe Bleibequote</text>
+  </g>
+
+  <!-- Model 2: Fachkraftanstellung -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="257" y="125" width="206" height="340" rx="16"/>
+  </g>
+  <rect x="257" y="125" width="206" height="42" rx="16" fill="#0891b2"/>
+  <text x="360" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="white">Fachkraftanstellung</text>
+  <text x="360" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#1e3a5f">§ 18a / § 18b AufenthG</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="271" y="225" font-weight="700" fill="#1e3a5f">Berufsbilder:</text>
+    <text x="271" y="243">Köche &amp; Restaurantchefs</text>
+    <text x="271" y="261">mit anerkanntem Abschluss</text>
+
+    <text x="271" y="295" font-weight="700" fill="#1e3a5f">Dauer &amp; Status:</text>
+    <text x="271" y="313">Unbefristete Festanstellung</text>
+    <text x="271" y="331">Vollzeit, Tariflohn</text>
+
+    <text x="271" y="365" font-weight="700" fill="#1e3a5f">Hauptvorteil:</text>
+    <text x="271" y="383">Sofort voll einsetzbar,</text>
+    <text x="271" y="401">Erfahrung in Profi-</text>
+    <text x="271" y="419">küche &amp; Service</text>
+  </g>
+
+  <!-- Model 3: Saisonbeschäftigung -->
+  <g fill="white" stroke="#0891b2" stroke-width="2">
+    <rect x="478" y="125" width="206" height="340" rx="16"/>
+  </g>
+  <rect x="478" y="125" width="206" height="42" rx="16" fill="#059669"/>
+  <text x="581" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="white">Saisonbeschäftigung</text>
+  <text x="581" y="195" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#059669">§ 15c BeschV (FEG)</text>
+  <g font-family="Arial,sans-serif" font-size="12" fill="#475569">
+    <text x="492" y="225" font-weight="700" fill="#1e3a5f">Berufsbilder:</text>
+    <text x="492" y="243">Service-, Küchen- &amp;</text>
+    <text x="492" y="261">Housekeeping-Kräfte</text>
+
+    <text x="492" y="295" font-weight="700" fill="#1e3a5f">Dauer &amp; Status:</text>
+    <text x="492" y="313">Bis zu 8 Monate pro Jahr</text>
+    <text x="492" y="331">Tarifbindung / ZAV-Kontingent</text>
+
+    <text x="492" y="365" font-weight="700" fill="#1e3a5f">Hauptvorteil:</text>
+    <text x="492" y="383">Abdeckung saisonaler</text>
+    <text x="492" y="401">Spitzenzeiten im</text>
+    <text x="492" y="419">Tourismus / Gastgewerbe</text>
+  </g>
+
+  <text x="360" y="515" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="600" fill="#64748b">Rechtssichere Beratung für Hotels und Gaststätten durch DMF Talents</text>
+</svg>

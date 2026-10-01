@@ -17,6 +17,9 @@ Die folgenden Fragen sind ein Vorschlag für Ihren Angebotsvergleich. Sie beschr
 
 ## Was genau wird geliefert?
 
+![Sechs wesentliche Leistungsbereiche im Vermittlungsvergleich](/images/blog/vermittlung-leistungsbereiche.svg)
+_Die sechs wesentlichen Leistungsbereiche für einen transparenten Angebotsvergleich: Auswahl, Sprache, Interview, Unterlagen, Anreise und Begleitung._
+
 Bitten Sie jeden Anbieter, das Angebot auf dasselbe Stellenprofil zu beziehen. Andernfalls vergleichen Sie möglicherweise unterschiedliche Berufsgruppen, Voraussetzungen oder Aufgabenpakete. Halten Sie zunächst fest: Welche Stelle, welcher Standort und welche Anforderungen sind Gegenstand der Anfrage?
 
 Lassen Sie anschließend erklären, welches Ergebnis zu jedem angebotenen Arbeitsschritt gehört. „Unterstützung im Bewerbungsprozess“ kann vieles bedeuten. Fragen Sie konkreter: Werden Gespräche organisiert? Erhalten Sie eine Zusammenfassung der Auswahlkriterien? Wer sammelt offene Fragen und klärt sie mit den Bewerbenden? Welche Entscheidung bleibt bei Ihnen?
@@ -25,7 +28,10 @@ Eine einfache Vergleichstabelle kann vier Spalten haben: **Leistung, enthaltenes
 
 ## Welche Kosten entstehen unter welchen Bedingungen?
 
-Fragen Sie nach einer nachvollziehbaren Aufstellung der angebotenen Leistungen. Prüfen Sie auch, ob weitere Ausgaben hinzukommen können und wer sie trägt. Je nach Vorhaben können beispielsweise Übersetzungen, Prüfungen, Sprachvorbereitung, Reise oder Unterkunft relevant werden. Diese Aufzählung ist eine Planungshilfe, keine Aussage darüber, was ein bestimmtes Angebot umfasst.
+![Gemeinsame Abstimmung mit deutschen Partnern](/images/blog/dmf-partner-deutschland-meeting.jpg)
+_Gemeinsame Abstimmung mit deutschen Partnern: Transparente Leistungs- und Kostenprüfung vor Vertragsabschluss._
+
+Fragen Sie nach einer nachvollziehbaren Aufstellung der angebotenen Leistungen. Prüfen Sie insbesondere die strikte Einhaltung des in Deutschland gesetzlich geregelten **Employer-Pays-Prinzips (§ 296a SGB III)**: Seriöse Vermittler erheben keine Vermittlungsgebühren von den ausländischen Arbeitsuchenden oder Azubis. Prüfen Sie auch, ob weitere betriebliche Ausgaben hinzukommen können und wer sie trägt. Je nach Vorhaben können beispielsweise Übersetzungen, behördliche Gebühren, Sprachzertifikate, Reise oder Unterkunft relevant werden. Diese Aufzählung ist eine Planungshilfe, keine Aussage darüber, was ein bestimmtes Angebot umfasst.
 
 Für die kaufmännische Prüfung können Sie folgende Fragen verwenden:
 
@@ -57,6 +63,13 @@ Besprechen Sie, ob und in welcher Form Leistungen nach dem Start vorgesehen sind
 
 Benennen Sie gleichzeitig die Aufgaben, die Ihr Betrieb übernimmt: fachliche Einarbeitung, Feedback und Abstimmung im Team. Prüfen Sie vor einer Beauftragung, ob diese Aufgaben intern organisiert sind und ob die vertraglichen Regelungen zu Ihrer Erwartung passen. Vertragsfragen sollten Sie bei Bedarf gesondert fachlich prüfen lassen.
 
+| Kriterium              | Seriöse Fachkräftevermittlung (DMF)                    | Unregulierte Pauschalagentur                          | Reine Direktsuche ohne Partner                           |
+| ---------------------- | ------------------------------------------------------ | ----------------------------------------------------- | -------------------------------------------------------- |
+| **Kostenstruktur**     | 100 % transparent nach § 296a SGB III (Employer-Pays)  | Verdeckte Gebühren oder Abwälzung auf Kandidaten      | Keine Vermittlungsgebühr, aber hohe interne Zeitkosten   |
+| **Sprachvorbereitung** | Berufsbezogenes Deutsch bis B1/B2 inkl. Fachwortschatz | Meist nur allgemeines Alltagsdeutsch ohne Praxisbezug | Keine institutionalisierte Vorbereitung im Herkunftsland |
+| **Anerkennung & Visa** | Vollständige Steuerung der BQFG- und § 81a-Verfahren   | Häufig unvollständige Dossiers, Verzögerungsrisiko    | Betrieb muss alle Amtswege eigenständig bewältigen       |
+| **Nachbetreuung**      | Begleitung bei Behördengängen, Wohnung und Onboarding  | Endet meist mit der Landung am Flughafen              | Vollständig beim Arbeitgeber                             |
+
 ## Nutzen Sie Ihren Bedarf als Grundlage des Vergleichs
 
-DMF Talents stellt auf der Website den Bereich [Fachkräftevermittlung aus Vietnam](https://www.dmf-talents.de/services/skilled-workers) vor. Für ein Gespräch über Ihr Vorhaben können Sie [Ihren Personalbedarf übermitteln](https://www.dmf-talents.de/fuer-arbeitgeber/personalbedarf). Beschreiben Sie neben der Stelle auch, welche Aufgaben Sie selbst übernehmen können und zu welchen Punkten Sie Unterstützung suchen. So wird die anschließende Leistungsabklärung konkreter.
+DMF Talents stellt auf der Website den Bereich [Fachkräftevermittlung aus Vietnam](/services/skilled-workers) vor. Für ein Gespräch über Ihr Vorhaben können Sie [Ihren Personalbedarf übermitteln](/fuer-arbeitgeber/personalbedarf). Beschreiben Sie neben der Stelle auch, welche Aufgaben Sie selbst übernehmen können und zu welchen Punkten Sie Unterstützung suchen. So wird die anschließende Leistungsabklärung konkreter.
