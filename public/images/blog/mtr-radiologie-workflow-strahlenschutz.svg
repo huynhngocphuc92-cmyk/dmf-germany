@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <rect width="720" height="540" fill="#F8FAFC"/>
+  <rect x="30" y="30" width="660" height="70" rx="12" fill="#003366"/>
+  <text x="360" y="62" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="20" font-weight="700" text-anchor="middle">Medizinische Technologen für Radiologie (MTR)</text>
+  <text x="360" y="86" fill="#93C5FD" font-family="system-ui, sans-serif" font-size="13" text-anchor="middle">Prüfschritte im radiologischen Untersuchungsablauf nach StrlSchG und ALARA-Prinzip</text>
+
+  <!-- 4 Step Process -->
+  <g transform="translate(50, 130)">
+    <rect width="620" height="75" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <rect width="8" height="75" rx="4" fill="#003366"/>
+    <text x="35" y="32" fill="#1E293B" font-family="system-ui, sans-serif" font-size="15" font-weight="700">1. Rechtfertigende Indikation &amp; Patientenvorbereitung</text>
+    <text x="35" y="55" fill="#475569" font-family="system-ui, sans-serif" font-size="12">Prüfung des Facharztantrags nach § 83 StrlSchG; Ausschluss von Schwangerschaft und Metallimplantaten (MRT).</text>
+  </g>
+
+  <g transform="translate(50, 220)">
+    <rect width="620" height="75" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <rect width="8" height="75" rx="4" fill="#FF6600"/>
+    <text x="35" y="32" fill="#1E293B" font-family="system-ui, sans-serif" font-size="15" font-weight="700">2. Bildakquisition nach dem ALARA-Prinzip</text>
+    <text x="35" y="55" fill="#475569" font-family="system-ui, sans-serif" font-size="12">As Low As Reasonably Achievable: Dosisoptimierung bei CT (kV/mAs-Modulation) und digitalem Röntgen.</text>
+  </g>
+
+  <g transform="translate(50, 310)">
+    <rect width="620" height="75" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <rect width="8" height="75" rx="4" fill="#003366"/>
+    <text x="35" y="32" fill="#1E293B" font-family="system-ui, sans-serif" font-size="15" font-weight="700">3. Kontrastmittel-Management &amp; Vitalüberwachung</text>
+    <text x="35" y="55" fill="#475569" font-family="system-ui, sans-serif" font-size="12">Sichere Bedienung automatischer Hochdruckinjektoren; Prüfung von Nierenwerten (GFR/Kreatinin) und TSH.</text>
+  </g>
+
+  <g transform="translate(50, 400)">
+    <rect width="620" height="75" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <rect width="8" height="75" rx="4" fill="#003366"/>
+    <text x="35" y="32" fill="#1E293B" font-family="system-ui, sans-serif" font-size="15" font-weight="700">4. 3D-Rekonstruktion &amp; PACS-Übertragung</text>
+    <text x="35" y="55" fill="#475569" font-family="system-ui, sans-serif" font-size="12">MPR/MIP/VRT-Rekonstruktionen; lückenlose Dokumentation des Dosislängenprodukts (DLP) im Radiologie-System.</text>
+  </g>
+
+  <rect x="50" y="490" width="620" height="30" rx="6" fill="#003366" opacity="0.08"/>
+  <text x="360" y="510" fill="#003366" font-family="system-ui, sans-serif" font-size="12" font-weight="600" text-anchor="middle">Gesetzliche Fachkunde im Strahlenschutz nach § 47 StrlSchV</text>
+</svg>

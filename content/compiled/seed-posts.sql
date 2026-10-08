@@ -822,6 +822,671 @@ ON CONFLICT (slug) DO UPDATE SET
   updated_at = NOW();
 
 INSERT INTO posts (title, slug, excerpt, content, cover_image, status, meta_title, meta_description, language)
+VALUES ('MTL aus Vietnam für medizinische Labore: MTLG & Rili-BÄK', 'medizinische-technologen-labor-mtla-mtl-vietnam-anerkennung', 'Vollautomatisierte Großanalytik, PCR und Notfalldiagnostik: Wie diagnostische Labore und Kliniken MTL aus Vietnam erfolgreich anerkennen lassen.', '<p>Medizinische Großlabore, universitäre Laborzentren und mikrobiologische Institute bilden das analytische Rückgrat des deutschen Gesundheitssystems: Rund 70 Prozent aller ärztlichen Diagnosen stützen sich auf Befunde aus der Labormedizin. Gleichzeitig durchlebt das Berufsbild der ehemals als MTLA bekannten <strong>Medizinischen Technologen für Laboratoriumsanalytik (MTL)</strong> den schwersten Fachkräftemangel seiner Geschichte. Das zum 1. Januar 2023 in Kraft getretene <strong>MT-Gesetz (MTLG)</strong> hat die Ausbildung reformiert und den Weg für internationale Fachkräfte klarer strukturiert.</p>
+<p>Vietnam verfügt über ein hoch angesehenes universitäres Ausbildungssystem für medizinische Labortechnologie (Kỹ thuật Xét nghiệm Y học). Absolventen bringen fundierte Kenntnisse in molekularbiologischer Diagnostik, Hämatologie, Histologie und klinischer Chemie mit.</p>
+<p><img src="/images/blog/mtl-laboranalytik-arbeitsablauf.svg" alt="Medizinische Technologen für Laboratoriumsanalytik Diagnostischer Workflow" /></p>
+<p><em>Der vierstufige diagnostische Workflow im Labor: Präanalytik &amp; Probenannahme, Hämatologie, Klinische Chemie &amp; RT-PCR sowie Freigabe nach Rili-BÄK.</em></p>
+<h2>1. Gesetzliche Grundlagen: Das MT-Gesetz (MTLG) und Berufserlaubnis</h2>
+<p>Seit 2023 regelt das <strong>Gesetz über die Berufe in der medizinischen Technologie (MTLG)</strong> die Berufszulassung bundesweit einheitlich. Wer als MTL eigenverantwortlich tätig sein möchte, benötigt die staatliche Erlaubnis zum Führen der Berufsbezeichnung:</p>
+<ul>
+<li><strong>Gleichwertigkeitsprüfung (§ 14 MTLG):</strong> Die zuständige Landesbehörde prüft, ob die in Vietnam absolvierte Hochschul- oder Kollegausbildung wesentliche Unterschiede zur dreijährigen deutschen MTL-Ausbildung aufweist.</li>
+<li><strong>Anpassungslehrgang oder Kenntnisprüfung:</strong> Bei festgestellten Defiziten (oft im Bereich Histologie/Zytologie oder spezifischem deutschem Seuchenschutzrecht) kann der Bewerber zwischen einem maximal dreijährigen Anpassungslehrgang und einer staatlichen Kenntnisprüfung wählen.</li>
+<li><strong>Sprachnachweis:</strong> Vorgeschrieben ist das allgemeinsprachliche Zertifikat B2 GER sowie der Nachweis fachspezifischer Deutschkenntnisse für Gesundheitsberufe.</li>
+</ul>
+<h2>2. Kernkompetenzen und Einsatzbereiche im Laboralltag</h2>
+<p>Vietnamesische Laborfachkräfte decken sämtliche Hauptbereiche moderner Diagnostikzentren ab:</p>
+<ol>
+<li><strong>Präanalytik & Probenlogistik:</strong> Beurteilung der Probenqualität (Hämolyse, Lipämie, Ikterus), Barcode-Scanning in das Laborinformationssystem (LIS) und automatisierte Probenverteilung.</li>
+<li><strong>Klinische Chemie & Immunologie:</strong> Bedienung vollautomatischer Analysensysteme (z. B. Roche Cobas, Abbott Alinity, Siemens Atellica) für Enzyme, Elektrolyte, Hormone und Tumormarker.</li>
+<li><strong>Hämatologie & Gerinnung:</strong> Durchführung von großem Blutbild, Durchflusszytometrie, Auswertung pathologischer Blutausstriche unter dem Mikroskop sowie Überprüfung von Quick/INR- und PTT-Werten.</li>
+<li><strong>Mikrobiologie & Molekularbiologie:</strong> Kulturelle Erregeranzucht, Resistenztestung (Antibiogramm nach EUCAST) sowie Real-Time RT-PCR zum Nachweis viraler und bakterieller Pathogene.</li>
+</ol>
+<h2>3. Die Rili-BÄK: Garant für analytische Präzision</h2>
+<p>Die Arbeit im deutschen Medizinlabor unterliegt strikt den <strong>Richtlinien der Bundesärztekammer zur Qualitätssicherung laboratoriumsmedizinischer Untersuchungen (Rili-BÄK)</strong>:</p>
+<ul>
+<li><strong>Interne Qualitätskontrolle (Teil A & B1 Rili-BÄK):</strong> Kontrollprobenmessung mindestens an jedem Arbeitstag vor Beginn der Patientenmessungen; grafische Auswertung mittels Levey-Jennings-Kontrollkarten und Prüfung gegen festgelegte Fehlergrenzen.</li>
+<li><strong>Externe Ringversuche:</strong> Regelmäßige Teilnahme an bundesweiten Ringversuchen (z. B. INSTAND, RfB) zur Zertifizierung der Laboranalyseverfahren.</li>
+<li><strong>Plausibilitätskontrolle:</strong> Extremwerte und diskrepante Vorbefunde (Delta-Check) werden vor der technischen Freigabe an den Laborarzt systematisch überprüft.</li>
+</ul>
+<div class="table-responsive"><table>
+<thead><tr>
+<th>Fachbereich</th>
+<th>Typische Analysen</th>
+<th>Automatisierungsgrad</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Klinische Chemie</strong></td>
+<td>Blutzucker, Troponin, Kreatinin, CRP</td>
+<td>Vollautomatisiert (High-Throughput)</td>
+</tr>
+<tr>
+<td><strong>Hämatologie</strong></td>
+<td>Leukozytendifferenzierung, Thrombozyten</td>
+<td>Automatisiert + manuelle Mikroskopie</td>
+</tr>
+<tr>
+<td><strong>Molekularbiologie</strong></td>
+<td>Erreger-PCR, Genotypisierung</td>
+<td>Teilautomatisiert (Thermocycler)</td>
+</tr>
+<tr>
+<td><strong>Blutbank</strong></td>
+<td>Blutgruppenbestimmung, Antikörpersuchtest</td>
+<td>Höchste Sicherheitsstufe nach TFG</td>
+</tr>
+</tbody>
+</table></div>
+<h2>4. Rekrutierungspfad über die Anerkennungspartnerschaft (§ 16d Abs. 3)</h2>
+<p>Damit Großlabore und Kliniken nicht monatelang auf Anerkennungsbescheide warten müssen, hat sich die <a href="/blog/anerkennungspartnerschaft-16d-aufenthg-arbeitgeber-voraussetzungen">Anerkennungspartnerschaft nach § 16d Abs. 3 AufenthG</a> bewährt:</p>
+<ul>
+<li>Die vietnamesische Fachkraft reist mit B1-Deutschkenntnissen und Arbeitsvertrag ein.</li>
+<li>Sie arbeitet ab Tag 1 als Laborassistenzkraft in der Probenannahme und an Analysengeräten mit.</li>
+<li>Die noch fehlenden Stunden im Bereich Histologie oder Transfusionsmedizin werden berufsbegleitend im Kooperationskrankenhaus absolviert, bevor die staatliche Berufserlaubnis erteilt wird.</li>
+</ul>
+<h2>5. Strukturierter Einarbeitungsplan im Diagnostikzentrum</h2>
+<p>Für einen reibungslosen Übergang empfiehlt sich ein modularer Einarbeitungsablauf:</p>
+<ol>
+<li><strong>Monat 1:</strong> Intensivschulung am Laborinformationssystem (LIS), Einweisung in Rili-BÄK-Kontrollzyklen und Notfallprozeduren bei Alarmwerten.</li>
+<li><strong>Monat 2:</strong> Selbstständiges Führen der automatisierten Analysenstraßen in der klinischen Chemie unter Aufsicht erfahrener MTL.</li>
+<li><strong>Monat 3:</strong> Übernahme von Routine-Bereitschaftsdiensten und manuelle Differenzierung pathologischer Blutausstriche.</li>
+</ol>
+<p>DMF Talents begleitet Labore und Kliniken bei der Validierung der Studienpläne, der Antragstellung bei den Landesprüfungsämtern und der Visumerteilung.</p>
+<p>Erfahren Sie mehr über unsere Angebote auf der Seite <a href="/services/skilled-workers">Für Arbeitgeber: Medizin & Pflege</a> oder erfassen Sie Ihren <a href="/fuer-arbeitgeber/personalbedarf">Personalbedarf unverbindlich</a>.</p>', '/images/blog/dmf-klassenzimmer.jpg', 'published', 'MTL aus Vietnam für medizinische Labore: MTLG & Rili-BÄK', 'Medizinische Technologen für Laboratoriumsanalytik (MTLA): Hämatologie, klinische Chemie, PCR, Rili-BÄK Richtlinien und Anerkennung nach dem MTL-Gesetz.', 'de')
+ON CONFLICT (slug) DO UPDATE SET
+  title = EXCLUDED.title,
+  excerpt = EXCLUDED.excerpt,
+  content = EXCLUDED.content,
+  cover_image = EXCLUDED.cover_image,
+  meta_title = EXCLUDED.meta_title,
+  meta_description = EXCLUDED.meta_description,
+  updated_at = NOW();
+
+INSERT INTO posts (title, slug, excerpt, content, cover_image, status, meta_title, meta_description, language)
+VALUES ('MTR aus Vietnam für Radiologie: MTLG & Strahlenschutz StrlSchG', 'medizinische-technologen-radiologie-mtra-mtr-vietnam-anerkennung', 'Schnittbilddiagnostik, Dosisoptimierung nach ALARA und Patientenbetreuung: Wie Radiologie-Praxen und Spitäler MTR aus Vietnam rechtskonform rekrutieren.', '<p>Moderne Spitzenmedizin ist ohne hochauflösende bildgebende Diagnostik und strahlentherapeutische Präzision undenkbar. Computertomographie (CT), Magnetresonanztomographie (MRT), interventionelle Angiographie und Linearbeschleuniger fordern täglich höchste Fachkompetenz. Doch der Personalnotstand bei den ehemals als MTRA bekannten <strong>Medizinischen Technologen für Radiologie (MTR)</strong> bedroht die Versorgung: Bundesweit müssen radiologische Praxen und Spitäler Untersuchungskontingente kürzen, weil qualifiziertes Fachpersonal für den Schicht- und Notfalldienst fehlt.</p>
+<p>Vietnam bildet an medizinischen Universitäten spezialisierte Bachelor-Absolventen der diagnostischen Radiologie (Kỹ thuật Hình ảnh Y học) aus. Die Bewerber verfügen über fundierte Kenntnisse in digitaler Bildgebung, Schnittbildanatomie und Strahlenschutz.</p>
+<p><img src="/images/blog/mtr-radiologie-workflow-strahlenschutz.svg" alt="Medizinische Technologen für Radiologie Workflow nach StrlSchG" /></p>
+<p><em>Der vierstufige Ablauf im radiologischen Praxisbetrieb: Indikationsprüfung (§ 83 StrlSchG), ALARA-optimierte Bildakquisition, Kontrastmittelmanagement und 3D-PACS-Transfer.</em></p>
+<h2>1. Gesetzliche Vorgaben: MTLG und Strahlenschutzrecht</h2>
+<p>Die Ausübung des MTR-Berufs ist in Deutschland an strenge gesetzliche Auflagen geknüpft:</p>
+<ul>
+<li><strong>Berufszulassung nach dem MT-Gesetz (MTLG):</strong> Staatliche Erlaubnis zur Führung der Berufsbezeichnung nach Feststellung der Gleichwertigkeit durch das zuständige Landesprüfungsamt für Gesundheitsberufe.</li>
+<li><strong>Strahlenschutzgesetz (StrlSchG) & Strahlenschutzverordnung (StrlSchV):</strong> Wer Röntgen- und Bestrahlungseinrichtungen technisch bedient, muss die gesetzliche <strong>Fachkunde im Strahlenschutz</strong> besitzen oder unter unmittelbarer Aufsicht eines fachkundigen Arztes tätig sein (§ 47 StrlSchV).</li>
+<li><strong>Das ALARA-Prinzip (As Low As Reasonably Achievable):</strong> Gesetzliche Verpflichtung zur Minimierung der Strahlenexposition durch optimale Wahl von Röhrenspannung (kV), Strom-Zeit-Produkt (mAs) und Dosismodulationssoftware.</li>
+</ul>
+<h2>2. Fachliches Leistungsspektrum vietnamesischer MTR</h2>
+<p>Internationale Radiologie-Fachkräfte aus Vietnam bringen umfangreiche Vorkenntnisse an modernen Großgeräten führender Hersteller (Siemens Healthineers, Philips, GE Healthcare, Canon) mit:</p>
+<ol>
+<li><strong>Computertomographie (CT):</strong> Durchführung von Polytrauma-Spiral-CTs, CT-Angiographien von Aorta und Hirngefäßen, Kardio-CTs sowie Niedrigdosis-Thoraxuntersuchungen.</li>
+<li><strong>Magnetresonanztomographie (MRT):</strong> Protokollauswahl für Neuro-, Muskuloskelettal- und Abdomen-MRT; strikte Überprüfung von Kontraindikationen (Schrittmacher, Cochlea-Implantate).</li>
+<li><strong>Konventionelles Röntgen & Durchleuchtung:</strong> Digitale Skelettradiographie, Thoraxaufnahmen am Bucky-Arbeitsplatz und intraoperative Bildgebung mit C-Bögen.</li>
+<li><strong>Strahlentherapie & Nuklearmedizin:</strong> Lagerung von Krebspatienten am Linearbeschleuniger (Linac), Bestrahlungsfeldkontrolle mittels Portal Imaging sowie Vorbereitung von Radiopharmaka für PET-CT-Scans.</li>
+</ol>
+<div class="table-responsive"><table>
+<thead><tr>
+<th>Modalität</th>
+<th>Typische Anforderungen</th>
+<th>Risikomanagement</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>CT</strong></td>
+<td>Dosisoptimierung, KM-Injektion</td>
+<td>Nierenfunktionswerte (GFR), TSH-Wert</td>
+</tr>
+<tr>
+<td><strong>MRT</strong></td>
+<td>Sequenzauswahl, Artefaktunterdrückung</td>
+<td>Starkes Magnetfeld (bis 3 Tesla), Implantate</td>
+</tr>
+<tr>
+<td><strong>Konventionell</strong></td>
+<td>Einblendung, korrekte Zentrierung</td>
+<td>Bleischutz, Keimdrüsenabschirmung</td>
+</tr>
+<tr>
+<td><strong>Strahlentherapie</strong></td>
+<td>Millimetergenaue Patientenpositionierung</td>
+<td>Vermeidung von Bestrahlungsgeometriefehlern</td>
+</tr>
+</tbody>
+</table></div>
+<h2>3. Der Anerkennungsweg zur vollwertigen MTR-Berufserlaubnis</h2>
+<p>Für vietnamesische Absolventen verläuft das Verfahren vor den Landesgesundheitsämtern strukturiert:</p>
+<ul>
+<li><strong>Defizitbescheid-Prüfung:</strong> Häufig werden geringfügige Abweichungen im Bereich der dosimetrischen Messtechnik oder speziellen Strahlentherapieprotokollen festgestellt.</li>
+<li><strong>Anpassungslehrgang im Betrieb (§ 14 MTLG):</strong> Der Arbeitgeber schult die Fachkraft gezielt in den fehlenden Modulen nach, während der Kandidat bereits regulär im Schichtdienst an CT- und MRT-Geräten mitarbeitet.</li>
+<li><strong>Sprachkompetenz B2:</strong> Sichere Kommunikation mit ängstlichen Patienten während der Untersuchung (Atemkommandos, Lagerungsanweisungen) und präzise Übergaben an den Radiologen.</li>
+</ul>
+<h2>4. Kontrastmittel-Management und Notfallbereitschaft</h2>
+<p>MTR tragen hohe Verantwortung bei der intravenösen Kontrastmittelapplikation:</p>
+<ul>
+<li><strong>Bedienung automatischer Doppelkolbeninjektoren:</strong> Programmierung von Flussraten (bis zu 5 ml/s bei Angiographien) und NaCl-Boli.</li>
+<li><strong>Extravasations- und Anaphylaxie-Prävention:</strong> Erkennung paravenöser Fehllagen und rasches Handeln bei allergischen Reaktionen (Urtikaria, Larynxödem, anaphylaktischer Schock) gemäß Notfallalgorithmus.</li>
+<li><strong>Digitale Dokumentation:</strong> Automatische Erfassung des Dosisflächenprodukts (DFP) und Dosislängenprodukts (DLP) im Radiologie-Informationssystem (RIS) und Bildarchiv (PACS).</li>
+</ul>
+<h2>5. Leitfaden für die ersten 90 Tage im Praxis- oder Klinikbetrieb</h2>
+<p>Ein vierstufiges Onboarding sichert höchste Untersuchungsqualität:</p>
+<ol>
+<li><strong>Monat 1:</strong> Einweisung in Gerätesoftware, Strahlenschutzunterweisung, Hospitation bei Notfall-CTs und Kennenlernen des RIS/PACS-Systems.</li>
+<li><strong>Monat 2:</strong> Eigenständige Durchführung von Routine-CT- und Röntgenuntersuchungen unter ärztlicher Aufsicht.</li>
+<li><strong>Monat 3:</strong> Einarbeitung in anspruchsvolle MRT-Untersuchungen und Vorbereitung auf die Teilnahme an Bereitschafts- und Nachtdiensten.</li>
+</ol>
+<p>DMF Talents begleitet Spitäler und radiologische Verbünde bei der Beglaubigung von Dokumenten, Sprachprüfungen und allen Behördenwegen bis zur Approbationserteilung.</p>
+<p>Informieren Sie sich über unsere Angebote unter <a href="/services/skilled-workers">Für Arbeitgeber: Medizin & Pflege</a> oder erfassen Sie Ihren <a href="/fuer-arbeitgeber/personalbedarf">Personalbedarf direkt</a>.</p>', '/images/blog/dmf-klassenzimmer.jpg', 'published', 'MTR aus Vietnam für Radiologie: MTLG & Strahlenschutz StrlSchG', 'Medizinische Technologen für Radiologie (MTRA): CT, MRT, Strahlentherapie, Fachkunde nach StrlSchG/StrlSchV und berufliche Anerkennung aus Drittstaaten.', 'de')
+ON CONFLICT (slug) DO UPDATE SET
+  title = EXCLUDED.title,
+  excerpt = EXCLUDED.excerpt,
+  content = EXCLUDED.content,
+  cover_image = EXCLUDED.cover_image,
+  meta_title = EXCLUDED.meta_title,
+  meta_description = EXCLUDED.meta_description,
+  updated_at = NOW();
+
+INSERT INTO posts (title, slug, excerpt, content, cover_image, status, meta_title, meta_description, language)
+VALUES ('Augenoptiker aus Vietnam: Refraktion & RAL-RG 915 Handwerk', 'augenoptiker-optometrie-fachgeschaefte-drittstaaten-vietnam', 'Brillenglasbestimmung, Videozentrierung und Werkstatttechnik: Wie augenoptische Betriebe und Filialisten Fachkräfte aus Vietnam gewinnen.', '<p>Der demografische Wandel führt in Deutschland zu einem stetig steigenden Bedarf an Sehhilfen: Mehr als zwei Drittel der erwachsenen Bevölkerung tragen eine Brille, während die Nachfrage nach komplexen Gleitsichtgläsern, Arbeitsplatzbrillen und Kontaktlinsen kontinuierlich wächst. Gleichzeitig leidet das Augenoptiker-Handwerk unter einem akuten Gesellenmangel. Nach Angaben des <a href="https://www.zva.de">Zentralverbands der Augenoptiker und Optometristen (ZVA)</a> können bundesweit hunderte offene Stellen in inhabergeführten Fachgeschäften und Augenoptik-Filialketten nicht besetzt werden.</p>
+<p>Vietnam verfügt über ein dynamisches Ausbildungswesen für Optometrie und Augenoptik. An medizinischen Hochschulen und optischen Fachkollegs werden Fachkräfte ausgebildet, die präzise Refraktionstechniken, moderne Videozentriersysteme und hochautomatisierte CNC-Schleifautomaten beherrschen.</p>
+<p><img src="/images/blog/augenoptik-anpassungs-workflow.svg" alt="Augenoptiker Handwerk Ablauf der Brillenanpassung" /></p>
+<p><em>Der vierstufige Prozess im Augenoptikerbetrieb: Anamnese &amp; Refraktionsbestimmung, Fassungs- &amp; Glasberatung, Videozentrierung nach RAL-RG 915 und CNC-Werkstattfertigung.</em></p>
+<h2>1. Das Aufgabenspektrum des Augenoptikers</h2>
+<p>Augenoptiker ist ein zulassungspflichtiges Handwerk der <strong>Anlage A der Handwerksordnung (HwO Nr. 12)</strong>, das modische Stilberatung mit physikalischer Präzision verbindet:</p>
+<ul>
+<li><strong>Refraktionsbestimmung (Sehstärkenmessung):</strong> Ermittlung der Fehlsichtigkeit (Myopie, Hyperopie, Astigmatismus, Presbyopie) mittels objektiver Autorefraktion und subjektivem Feinabgleich an Phoropter oder Messbrille.</li>
+<li><strong>Videozentrierung nach RAL-RG 915:</strong> Ermittlung anatomischer Parameter: Pupillendistanz (PD), Durchblickshöhe, Hornhautscheitelabstand (HSA), Vorneigungswinkel (pantometrischer Winkel) und Fassungsscheibenwinkel zur Vermeidung prismatischer Nebenwirkungen.</li>
+<li><strong>Werkstatttechnik & CNC-Formrandung:</strong> Zentrieren, Blocken und Einschleifen von mineralischen Gläsern und Kunststoffgläsern (CR39, Polycarbonat, Trivex) auf computergesteuerten Schleifautomaten; Rillen für Nylor-Brillen und Bohren für randlose Brillen.</li>
+<li><strong>Kundenberatung & Anpassung:</strong> Anatomisches Anpassen von Brillenbügeln und Nasenstegen (Pads) an die individuelle Physiognomie des Kunden.</li>
+</ul>
+<h2>2. Qualifikationsvergleich: Deutsche Gesellenausbildung vs. vietnamesische Optikerausbildung</h2>
+<p>In Vietnam ist der Beruf stark optometrisch geprägt:</p>
+<div class="table-responsive"><table>
+<thead><tr>
+<th>Qualifikationsbereich</th>
+<th>Deutscher Augenoptiker Geselle (HwO)</th>
+<th>Vietnamesischer Optometrie-Absolvent</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Ausbildungsdauer</strong></td>
+<td>3 Jahre dual (Betrieb &amp; Berufsschule)</td>
+<td><strong>3 bis 4 Jahre Vollzeitstudium / Fachkolleg</strong></td>
+</tr>
+<tr>
+<td><strong>Refraktion &amp; Ophthalmoskopie</strong></td>
+<td>Vertiefung im 3. Lehrjahr / Meisterkurs</td>
+<td><strong>Sehr tiefe theoretische und klinische Routine am Patienten</strong></td>
+</tr>
+<tr>
+<td><strong>Werkstattfertigung (Schleifen)</strong></td>
+<td>Umfassende manuelle und CNC-Ausbildung</td>
+<td><strong>Vertraut mit modernen Schleifautomaten (Essilor, Nidek)</strong></td>
+</tr>
+<tr>
+<td><strong>Gütebestimmungen</strong></td>
+<td>RAL-RG 915 und DIN EN ISO 8980</td>
+<td><strong>Internationale ISO-Standards; Anpassung an RAL erforderlich</strong></td>
+</tr>
+<tr>
+<td><strong>Kundenberatung &amp; Verkauf</strong></td>
+<td>Schwerpunkt im Verkaufsraum</td>
+<td><strong>Hohe Servicekultur; deutsches Fachvokabular erforderlich</strong></td>
+</tr>
+<tr>
+<td><strong>Sprachkompetenz</strong></td>
+<td>Deutsch B2 für Verkaufsgespräche</td>
+<td><strong>B1 GER vor Einreise; berufsbezogenes B2 parallel</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h2>3. Rechtliche Zuwanderungspfade für Optikerfachgeschäfte</h2>
+<p>Für Betriebe bieten sich zwei erprobte Rekrutierungsmodelle an:</p>
+<ol>
+<li><strong>Anerkennungspartnerschaft nach § 16d Abs. 3 AufenthG:</strong> Vietnamesische Absolventen reisen direkt ein und arbeiten in der optischen Werkstatt, bei Vorprüfungen oder bei Zentriermessungen mit. Die Handwerkskammer führt das Gleichwertigkeitsfeststellungsverfahren durch; eventuelle Anpassungen (z. B. im deutschen Handwerksrecht) erfolgen berufsbegleitend.</li>
+<li><strong>Duale Ausbildung zum Augenoptiker (§ 16a AufenthG):</strong> Dreijährige Gesellenausbildung im Betrieb für engagierte Abiturienten aus Vietnam, die das Augenoptiker-Handwerk nach deutschem Standard erlernen.</li>
+</ol>
+<h2>4. Qualitätsstandards nach RAL-RG 915 und DIN EN ISO 21987</h2>
+<p>Gute Augenoptik zeichnet sich durch kompromisslose Maßhaltigkeit aus:</p>
+<ul>
+<li><strong>Einhaltung von Zentriertoleranzen:</strong> Abweichungen der optischen Mittelpunkte von den Bezugspunkten des Auges führen zu Kopfschmerzen und Schwindel. Die Gütebestimmungen nach <strong>RAL-RG 915</strong> definieren maximale Toleranzen im Millimeterbruchteilbereich.</li>
+<li><strong>Prüfung der Glasoberflächen:</strong> Visuelle Qualitätskontrolle von Entspiegelungsschichten, Hartversiegelungen und Lotuseffekten auf Spannungsfreiheit unter dem Spannungsprüfer (Polariskop).</li>
+<li><strong>Reklamationsmanagement:</strong> Professionelle Ursachenanalyse bei Unverträglichkeiten von Gleitsichtgläsern.</li>
+</ul>
+<h2>5. Einarbeitungsplan im Fachgeschäft</h2>
+<p>Ein dreimonatiger Einarbeitungsplan sichert den erfolgreichen Übergang in den Verkaufs- und Werkstattalltag:</p>
+<ol>
+<li><strong>Woche 1–2:</strong> Einarbeitung in die optische Werkstatt (CNC-Schleifmaschinen, Taster, Polierräder), Kennenlernen der Brillenkollektionen und Software (z. B. IPRO, Euronet).</li>
+<li><strong>Woche 3–6:</strong> Selbstständiges Einschleifen und Montieren aller Kundenaufträge; Begleitung erfahrener Kollegen bei Refraktionsbestimmungen.</li>
+<li><strong>Monat 2–3:</strong> Durchführung eigenständiger Sehtests und Beratungsgespräche mit Kunden unter Anleitung des Augenoptikermeisters.</li>
+</ol>
+<p>DMF Talents begleitet Fachgeschäfte und Ketten bei der Auswahl qualifizierter Kandidaten, führt praktische Werkstatttests in Vietnam durch und steuert den gesamten Visumsprozess.</p>
+<p>Informieren Sie sich über unsere Angebote unter <a href="/services/skilled-workers">Für Arbeitgeber: Handwerk & Industrie</a> oder erfassen Sie Ihren <a href="/fuer-arbeitgeber/personalbedarf">Personalbedarf unverbindlich</a>.</p>', '/images/blog/dmf-klassenzimmer.jpg', 'published', 'Augenoptiker aus Vietnam: Refraktion & RAL-RG 915 Handwerk', 'Augenoptiker Gesellen aus Drittstaaten: Refraktionsbestimmung, Fassungsberatung, CNC-Einschleiftechnik nach RAL-RG 915 und HwO-Anerkennung.', 'de')
+ON CONFLICT (slug) DO UPDATE SET
+  title = EXCLUDED.title,
+  excerpt = EXCLUDED.excerpt,
+  content = EXCLUDED.content,
+  cover_image = EXCLUDED.cover_image,
+  meta_title = EXCLUDED.meta_title,
+  meta_description = EXCLUDED.meta_description,
+  updated_at = NOW();
+
+INSERT INTO posts (title, slug, excerpt, content, cover_image, status, meta_title, meta_description, language)
+VALUES ('Betriebsrat & Drittstaaten Einstellung: § 99 BetrVG Leitfaden', 'betriebsrat-mitbestimmung-99-betrvg-einstellung-drittstaaten', 'Vorlagefristen, Informationspflichten und tarifliche Eingruppierung: Wie Arbeitgeber das Beteiligungsverfahren nach § 99 BetrVG reibungslos gestalten.', '<p>Unternehmen mit in der Regel mehr als 20 wahlberechtigten Arbeitnehmern verfügen nach dem <strong>Betriebsverfassungsgesetz (BetrVG)</strong> über einen Betriebsrat. Beabsichtigt die Geschäftsführung die Einstellung einer internationalen Fachkraft oder eines Auszubildenden aus einem Drittstaat (z. B. Vietnam), stellt sich häufig Verunsicherung ein: Welche Beteiligungsrechte hat das Gremium? Welche Unterlagen müssen vorgelegt werden? Welche Fristen gelten? Und darf der Betriebsrat die Zustimmung verweigern, weil eine ausländische Fachkraft eingestellt werden soll?</p>
+<p>Grundsatz für Arbeitgeber: <strong>Die Mitbestimmung bei personellen Einzelmaßnahmen nach § 99 BetrVG gilt für alle Einstellungen gleichermaßen.</strong> Eine Diskriminierung aufgrund von Herkunft oder Staatsangehörigkeit ist gesetzlich ausgeschlossen. Eine strukturierte Vorbereitung der Betriebsratsanhörung verhindert zeitliche Verzögerungen im Visumsverfahren.</p>
+<p><img src="/images/blog/betriebsrat-99-betrvg-prueffrist-ablauf.svg" alt="Betriebsrat Mitbestimmung nach § 99 BetrVG Prüffrist und Ablauf" /></p>
+<p><em>Der gesetzliche Beteiligungsablauf nach § 99 BetrVG: Vollständige Unterrichtung, gesetzliche Wochenfrist, abschließende Widerspruchsgründe und arbeitsgerichtliche Zustimmungsersetzung.</em></p>
+<h2>1. Die Unterrichtungsverpflichtung des Arbeitgebers nach § 99 Abs. 1 BetrVG</h2>
+<p>Der Arbeitgeber muss den Betriebsrat <strong>vor jeder Einstellung</strong> umfassend und rechtzeitig unterrichten. Dazu gehört die Vorlage folgender Unterlagen:</p>
+<ul>
+<li><strong>Bewerbungsunterlagen:</strong> Lebenslauf, Qualifikationsnachweise, Berufsabschlüsse und Sprachzertifikate des ausgewählten Bewerbers.</li>
+<li><strong>Arbeitsvertragsentwurf:</strong> Tätigkeitsbeschreibung, Arbeitsort, Arbeitszeit, Urlaubsanspruch und Befristungsdauer.</li>
+<li><strong>Geplante Eingruppierung:</strong> Einordnung in das betriebliche oder tarifliche Vergütungssystem (z. B. Entgeltgruppe nach TVöD, TV-L, IGM- oder Dehoga-Tarifvertrag).</li>
+<li><strong>Auskunft über das Auswahlverfahren:</strong> Information darüber, welche internen oder externen Bewerbungen vorlagen und warum der Kandidat ausgewählt wurde (§ 99 Abs. 1 Satz 2 BetrVG).</li>
+</ul>
+<h2>2. Die gesetzliche Ein-Wochen-Frist (§ 99 Abs. 3 BetrVG)</h2>
+<p>Nach Zugang der vollständigen Unterlagen beim Betriebsratsvorsitzenden beginnt die gesetzliche <strong>Frist von einer Woche</strong>:</p>
+<ul>
+<li><strong>Fristbeginn:</strong> Der Tag des Zugangs wird nicht mitgezählt (§ 187 Abs. 1 BGB). Die Frist beginnt am darauffolgenden Tag.</li>
+<li><strong>Zustimmungsfiktion (§ 99 Abs. 3 Satz 2 BetrVG):</strong> Äußert sich der Betriebsrat nicht innerhalb der Wochenfrist schriftlich, gilt die Zustimmung kraft Gesetzes als erteilt. Der Arbeitgeber kann die Einstellung vollziehen.</li>
+<li><strong>Form des Widerspruchs:</strong> Ein Widerspruch muss <strong>schriftlich</strong> erfolgen und die gesetzlichen Gründe detailliert darlegen. Ein pauschales „Wir stimmen nicht zu“ ist rechtlich unbeachtlich.</li>
+</ul>
+<h2>3. Gesetzliche Zustimmungsverweigerungsgründe (§ 99 Abs. 2 BetrVG)</h2>
+<p>Der Betriebsrat kann die Zustimmung nicht nach freiem Ermessen verweigern. Das Gesetz zählt in <strong>§ 99 Abs. 2 Nr. 1 bis 6 BetrVG</strong> abschließende Gründe auf:</p>
+<ol>
+<li><strong>Verstoß gegen Gesetz oder Verordnung (Nr. 1):</strong> Z. B. Verstoß gegen das Allgemeine Gleichbehandlungsgesetz (AGG), das Arbeitszeitgesetz oder zwingende Mindestlöhne.</li>
+<li><strong>Verstoß gegen Auswahlrichtlinien (Nr. 2):</strong> Sofern im Betrieb mit dem Betriebsrat vereinbarte Richtlinien nach § 95 BetrVG existieren.</li>
+<li><strong>Benachteiligung vorhandener Arbeitnehmer (Nr. 3):</strong> Die begründete Besorgnis, dass durch die Einstellung betriebsangehörige Mitarbeiter gekündigt oder unberechtigt herabgestuft werden.</li>
+<li><strong>Fehlende interne Stellenausschreibung (Nr. 5):</strong> Hat der Betriebsrat nach <strong>§ 93 BetrVG</strong> verlangt, dass Stellen vor ihrer Besetzung betriebsintern ausgeschrieben werden, und unterließ der Arbeitgeber dies, liegt ein berechtigter Verweigerungsgrund vor.</li>
+<li><strong>Störung des Betriebsfriedens (Nr. 6):</strong> Durch rassistische oder gesetzwidrige Verhaltensweisen des Bewerbers.</li>
+</ol>
+<div class="table-responsive"><table>
+<thead><tr>
+<th>Verweigerungsgrund</th>
+<th>Rechtliche Zulässigkeit</th>
+<th>Rechtsfolge</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Einstellung einer Fachkraft aus Drittstaat</strong></td>
+<td><strong>Rechtswidrig &amp; unzulässig</strong></td>
+<td>Verweigerung ist unbeachtlich (§ 99 Abs. 3 Satz 2)</td>
+</tr>
+<tr>
+<td><strong>Fehlende interne Stellenausschreibung (§ 93)</strong></td>
+<td><strong>Zulässig</strong></td>
+<td>Arbeitgeber muss intern ausschreiben; Frist hemmt</td>
+</tr>
+<tr>
+<td><strong>Tarifwidrig zu niedrige Eingruppierung</strong></td>
+<td><strong>Zulässig (§ 99 Abs. 2 Nr. 1)</strong></td>
+<td>Arbeitgeber muss Gehalt korrigieren</td>
+</tr>
+<tr>
+<td><strong>Besorgnis über Sprachbarrieren</strong></td>
+<td><strong>Unzulässig</strong></td>
+<td>Begründet keinen gesetzlichen Verweigerungsgrund</td>
+</tr>
+</tbody>
+</table></div>
+<h2>4. Vorgehen bei unberechtigtem Widerspruch: § 100 BetrVG & Arbeitsgericht</h2>
+<p>Verweigert der Betriebsrat die Zustimmung aus unzulässigen Gründen (z. B. aus genereller Skepsis gegenüber Zuwanderung), stehen dem Arbeitgeber klare juristische Instrumente zur Verfügung:</p>
+<ul>
+<li><strong>Zustimmungsersetzungsverfahren (§ 99 Abs. 4 BetrVG):</strong> Der Arbeitgeber beantragt beim zuständigen Arbeitsgericht, die verweigerte Zustimmung des Betriebsrats gerichtlich zu ersetzen.</li>
+<li><strong>Vorläufige personelle Maßnahme (§ 100 BetrVG):</strong> Ist die Einstellung aus sachlichen Gründen dringend erforderlich (z. B. zur Vermeidung von Produktionsstillstand oder zur Aufrechterhaltung des Schichtplans), kann der Arbeitgeber die Fachkraft vorläufig einstellen und den Betriebsrat hierüber unverzüglich unterrichten.</li>
+</ul>
+<h2>5. Praxistipps für Personalabteilungen</h2>
+<p>Eine kooperative Einbindung des Betriebsrats verhindert Friktionen von vornherein:</p>
+<ol>
+<li><strong>Frühzeitige Information im Wirtschaftsausschuss:</strong> Informieren Sie das Gremium bereits bei Beginn internationaler Rekrutierungsprojekte über den Fachkräftebedarf.</li>
+<li><strong>Saubere interne Ausschreibung (§ 93 BetrVG):</strong> Schreiben Sie die vakante Position parallel intern aus, um formalen Blockaden den Boden zu entziehen.</li>
+<li><strong>Transparenz bei Integrationsmaßnahmen:</strong> Zeigen Sie dem Betriebsrat auf, welche Sprach- und Integrationsunterstützung der neue Mitarbeiter erhält.</li>
+</ol>
+<p>DMF Talents stellt Arbeitgebern standardisierte Informationsblätter und Musterbeschreibungen bereit, die eine reibungslose Betriebsratsbeteiligung gewährleisten.</p>
+<p>Erfahren Sie mehr über unsere Betreuungskonzepte unter <a href="/services/skilled-workers">Für Arbeitgeber: Lösungen</a> oder registrieren Sie Ihren <a href="/fuer-arbeitgeber/personalbedarf">Personalbedarf unverbindlich</a>.</p>', '/images/blog/dmf-klassenzimmer.jpg', 'published', 'Betriebsrat & Drittstaaten Einstellung: § 99 BetrVG Leitfaden', 'Beteiligung des Betriebsrats bei ausländischen Fachkräften: Wochenfrist (§ 99 Abs. 3 BetrVG), zulässige Verweigerungsgründe und Arbeitsgerichtsverfahren.', 'de')
+ON CONFLICT (slug) DO UPDATE SET
+  title = EXCLUDED.title,
+  excerpt = EXCLUDED.excerpt,
+  content = EXCLUDED.content,
+  cover_image = EXCLUDED.cover_image,
+  meta_title = EXCLUDED.meta_title,
+  meta_description = EXCLUDED.meta_description,
+  updated_at = NOW();
+
+INSERT INTO posts (title, slug, excerpt, content, cover_image, status, meta_title, meta_description, language)
+VALUES ('Rentenbeitragserstattung bei Ausreise: § 210 SGB VI Leitfaden', 'rentenbeitraege-erstattung-anspruch-210-sgb-vi-vietnam-drittstaaten', 'Beitragserstattung der Arbeitnehmeranteile vs. Altersrentenanspruch: Leitfaden für Personalabteilungen und ausscheidende Fachkräfte aus Drittstaaten.', '<p>Arbeiten Fachkräfte aus Drittstaaten (z. B. Vietnam) für einige Jahre in Deutschland und kehren anschließend dauerhaft in ihr Heimatland zurück, stellt sich bei Personalabteilungen und Mitarbeitern regelmäßig dieselbe Frage: <strong>Was geschieht mit den monatlich eingezahlten Beiträgen zur gesetzlichen Rentenversicherung (GRV)?</strong> Verfallen die erworbenen Ansprüche? Besteht ein Anspruch auf Auszahlung? Und welche Fristen müssen eingehalten werden?</p>
+<p>Das deutsche Rentenrecht bietet in <strong>§ 210 des Sechsten Buches Sozialgesetzbuch (SGB VI)</strong> eine klare gesetzliche Regelung zur <strong>Beitragserstattung</strong>. Allerdings unterliegt das Verfahren strengen Wartezeiten und formalen Voraussetzungen, die Personalverantwortliche kennen sollten.</p>
+<p><img src="/images/blog/rentenbeitrag-erstattung-210-sgb-vi-ablauf.svg" alt="Rentenbeitragserstattung bei Ausreise nach § 210 SGB VI Ablauf" /></p>
+<p><em>Der vierstufige Ablauf der Rentenbeitragserstattung: Ausreise &amp; Abmeldung, gesetzliche 24-Monate-Wartefrist, Antragstellung bei der DRV und Erstattung der Arbeitnehmeranteile.</em></p>
+<h2>1. Gesetzliche Voraussetzungen der Beitragserstattung nach § 210 SGB VI</h2>
+<p>Gemäß <strong>§ 210 Abs. 1 Nr. 1 SGB VI</strong> werden Beiträge auf Antrag erstattet, wenn der Versicherte nicht mehr der Versicherungspflicht unterliegt und nicht das Recht zur freiwilligen Versicherung hat:</p>
+<ul>
+<li><strong>Erlöschen der Versicherungspflicht:</strong> Das Arbeitsverhältnis in Deutschland ist beendet, der Mitarbeiter hat seinen Wohnsitz im Bundesgebiet offiziell abgemeldet und keinen Aufenthaltstitel mehr inne.</li>
+<li><strong>Kein Recht zur freiwilligen Versicherung:</strong> Drittstaatsangehörige, die außerhalb der Europäischen Union, des EWR oder der Schweiz leben und mit deren Heimatland kein bilaterales Sozialversicherungsabkommen (SVA) besteht (wie zwischen Deutschland und Vietnam), haben nach Ausreise grundsätzlich kein Recht auf freiwillige Weiterversicherung in der deutschen Rentenkasse.</li>
+<li><strong>Gesetzliche Wartefrist von 24 Monaten (§ 210 Abs. 2 SGB VI):</strong> Der Antrag kann frühestens nach Ablauf von <strong>zwei Jahren (24 Kalendermonaten)</strong> nach dem Ende der Versicherungspflicht gestellt werden. Zahlt der Mitarbeiter in dieser Zeit erneut auch nur einen einzigen Beitrag ein, beginnt die Frist von neuem.</li>
+</ul>
+<h2>2. Umfang der Erstattung: Was wird ausgezahlt – und was verfällt?</h2>
+<p>Ein weit verbreiteter Irrtum besagt, dass die gesamten Rentenbeiträge ausgezahlt würden. Die Realität sieht nach <strong>§ 210 Abs. 3 SGB VI</strong> differenzierter aus:</p>
+<ol>
+<li><strong>Erstattung der reinen Arbeitnehmeranteile:</strong> Erstattet werden ausschließlich die tatsächlich vom Gehalt des Mitarbeiters einbehaltenen Arbeitnehmerbeiträge (derzeit die Hälfte des Beitragssatzes von 18,6 %, also <strong>9,3 % des Bruttoentgelts</strong>).</li>
+<li><strong>Arbeitgeberanteile verbleiben in der Rentenkasse:</strong> Der vom Arbeitgeber geleistete Beitragsanteil verfällt vollständig zugunsten der Versichertengemeinschaft.</li>
+<li><strong>Keine Zinsen:</strong> Die Rentenversicherung zahlt die Beiträge ohne jede Verzinsung oder Inflationsausgleich zurück.</li>
+<li><strong>Erlöschen aller bisherigen Rentenanwartschaften:</strong> Mit der Auszahlung der Erstattung erlischt das bisherige Versicherungsverhältnis vollständig (§ 210 Abs. 6 SGB VI). Frühere Beitragszeiten können bei einer späteren Wiedereinreise nach Deutschland nicht mehr geltend gemacht werden.</li>
+</ol>
+<div class="table-responsive"><table>
+<thead><tr>
+<th>Merkmal</th>
+<th>Erstattung nach § 210 SGB VI</th>
+<th>Spätere Regelaltersrente im Ausland</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Voraussetzung</strong></td>
+<td>24 Monate Wartezeit nach Ausreise</td>
+<td><strong>Mindestversicherungszeit von 60 Monaten (5 Jahre)</strong></td>
+</tr>
+<tr>
+<td><strong>Auszahlung</strong></td>
+<td>Einmalige Kapitalabfindung (nur AN-Anteil)</td>
+<td><strong>Lebenslange monatliche Rentenzahlung nach Vietnam</strong></td>
+</tr>
+<tr>
+<td><strong>Arbeitgeberanteil</strong></td>
+<td><strong>Verfällt ersatzlos</strong></td>
+<td><strong>Fließt voll in die monatliche Rentenberechnung ein</strong></td>
+</tr>
+<tr>
+<td><strong>Krankenversicherungsschutz</strong></td>
+<td>Keiner</td>
+<td>Möglicher Zuschuss zur Krankenversicherung</td>
+</tr>
+<tr>
+<td><strong>Empfehlung</strong></td>
+<td>Bei kurzer Verweildauer (&lt; 5 Jahre)</td>
+<td><strong>Ab 5 Beitragsjahren in Deutschland fast immer lukrativer</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h2>3. Alternative ab fünf Beitragsjahren: Die lebenslange deutsche Rente in Vietnam</h2>
+<p>Hat die Fachkraft mindestens <strong>fünf Jahre (60 Beitragsmonate)</strong> in Deutschland gearbeitet und Beiträge entrichtet, hat sie die sogenannte <strong>allgemeine Wartezeit für die Regelaltersrente (§ 50 Abs. 1 SGB VI)</strong> erfüllt.</p>
+<p>In diesem Fall ist eine Beitragserstattung meist finanziell nachteilig:</p>
+<ul>
+<li>Der Mitarbeiter hat mit Erreichen des regulären deutschen Rentenalters (derzeit zwischen 65 und 67 Jahren) einen <strong>lebenslangen Rechtsanspruch auf monatliche Rentenzahlung</strong> – auch bei Wohnsitz in Vietnam.</li>
+<li>Die Deutsche Rentenversicherung überweist die verdiente Rente zuverlässig monatlich auf das vietnamesische Bankkonto des Ruheständlers.</li>
+<li>Da bei der Rente auch die vom Arbeitgeber gezahlten Beiträge in die Entgeltpunkte einfließen, übersteigt der Wert einer lebenslangen Rente die einmalige Beitragserstattung meist um ein Vielfaches.</li>
+</ul>
+<h2>4. Das Antragsverfahren bei der Deutschen Rentenversicherung</h2>
+<p>Die Abwicklung erfolgt über den zuständigen Träger der Deutschen Rentenversicherung (oft DRV Bund in Berlin oder DRV Bayern Süd):</p>
+<ol>
+<li><strong>Abmeldebestätigung:</strong> Vorlage der amtlichen Abmeldebescheinigung des deutschen Einwohnermeldeamts.</li>
+<li><strong>Formular V0901:</strong> Vollständig ausgefüllter „Antrag auf Beitragserstattung“.</li>
+<li><strong>Identitätsprüfung:</strong> Bestätigung der Identität und der vietnamesischen Bankverbindung durch die Deutsche Botschaft in Hanoi oder das Generalkonsulat in Ho-Chi-Minh-Stadt.</li>
+<li><strong>Prüfung und Überweisung:</strong> Nach formeller Prüfung überweist die Rentenversicherung den Erstattungsbetrag gebührenfrei auf das angegebene Auslandskonto.</li>
+</ol>
+<h2>5. Beratungsempfehlung für Personalabteilungen</h2>
+<p>Personalverantwortliche sollten scheidende Fachkräfte sachlich und objektiv informieren:</p>
+<ul>
+<li>Hat der Mitarbeiter weniger als 60 Monate gearbeitet und plant keine Rückkehr nach Deutschland, sichert der Antrag nach Ablauf der 24 Monate eine spürbare Rückvergütung von mehreren tausend Euro.</li>
+<li>Stand der Mitarbeiter kurz vor der 5-Jahres-Grenze (z. B. nach 48 Monaten), kann geprüft werden, ob eine Verlängerung des Arbeitsverhältnisses sinnvoll ist, um den lebenslangen Rentenanspruch zu sichern.</li>
+</ul>
+<p>DMF Talents berät Unternehmen bei allen Fragen der sozialversicherungsrechtlichen Entsendung und des On- und Offboardings internationaler Fachkräfte.</p>
+<p>Informieren Sie sich über unsere Angebote unter <a href="/services/skilled-workers">Für Arbeitgeber: Beratung</a> oder erfassen Sie Ihren <a href="/fuer-arbeitgeber/personalbedarf">Personalbedarf unverbindlich</a>.</p>', '/images/blog/dmf-klassenzimmer.jpg', 'published', 'Rentenbeitragserstattung bei Ausreise: § 210 SGB VI Leitfaden', 'Rückzahlung der Rentenversicherungsbeiträge für Drittstaatsangehörige: 24-Monate-Wartefrist (§ 210 SGB VI), DRV-Antrag und Besteuerungsregeln.', 'de')
+ON CONFLICT (slug) DO UPDATE SET
+  title = EXCLUDED.title,
+  excerpt = EXCLUDED.excerpt,
+  content = EXCLUDED.content,
+  cover_image = EXCLUDED.cover_image,
+  meta_title = EXCLUDED.meta_title,
+  meta_description = EXCLUDED.meta_description,
+  updated_at = NOW();
+
+INSERT INTO posts (title, slug, excerpt, content, cover_image, status, meta_title, meta_description, language)
+VALUES ('ZAB Zeugnisbewertung & Statement of Comparability: anabin Leitfaden', 'zab-zeugnisbewertung-statement-of-comparability-anabin-leitfaden', 'Akademische Abschlüsse rechtssicher einstufen: Wie Personalabteilungen die ZAB-Zeugnisbewertung zügig durchlaufen und anabin-Vorgaben erfüllen.', '<p>Soll ein Softwareentwickler, Bauingenieur, Betriebswirt oder Labortechniker mit ausländischem Hochschulabschluss (z. B. Bachelor oder Master aus Vietnam) für eine Fachkraftposition oder eine <strong>EU Blaue Karte (§ 18b Abs. 2 AufenthG)</strong> eingestellt werden, verlangen die deutschen Auslandsvertretungen und Ausländerbehörden einen formalen Nachweis über die Gleichwertigkeit des akademischen Grades.</p>
+<p>Hierfür ist die <strong>Zentralstelle für ausländisches Bildungswesen (ZAB)</strong> beim Sekretariat der Ständigen Konferenz der Kultusminister der Länder (KMK) in Bonn die maßgebliche Bundesbehörde. Mit dem digitalen <strong>Statement of Comparability</strong> hat die ZAB das Antragsverfahren grundlegend modernisiert. Arbeitgeber und Bewerber sollten den Prüfprozess genau kennen, um Wochen an bürokratischer Wartezeit einzusparen.</p>
+<p><img src="/images/blog/zab-zeugnisbewertung-antragsschritte.svg" alt="ZAB-Zeugnisbewertung Ablauf und Verifizierung" /></p>
+<p><em>Die vier Schritte zur digitalen Zeugnisbewertung bei der ZAB: anabin-Vorprüfung, Gebührenzahlung, gutachterliche Gleichwertigkeitsprüfung und digitales Statement of Comparability.</em></p>
+<h2>1. anabin-Datenbank vs. Individuelle ZAB-Zeugnisbewertung</h2>
+<p>Für das Visumverfahren existieren zwei Stufen der Überprüfung:</p>
+<ul>
+<li><strong>Stufe 1: Abfrage der anabin-Datenbank (<a href="https://anabin.kmk.org">anabin.kmk.org</a>):</strong> Die Datenbank listet ausländische Hochschulen und Studiengänge. Gilt die ausländische Universität als <strong>H+</strong> eingestuft und ist der konkrete Studiengang als vergleichbar aufgeführt, genügt den deutschen Botschaften oft ein einfacher Ausdruck aus der anabin-Datenbank als Gleichwertigkeitsnachweis.</li>
+<li><strong>Stufe 2: Individuelle Zeugnisbewertung der ZAB:</strong> Ist die Hochschule mit <strong>H+/-</strong> bewertet, fehlt der Studiengang in der Datenbank oder verlangt die Behörde eine Einzelfallprüfung, muss ein offizielles <strong>Statement of Comparability</strong> bei der ZAB beantragt werden.</li>
+</ul>
+<h2>2. Der digitale ZAB-Antragsprozess</h2>
+<p>Seit 2024 wickelt die ZAB Anträge vollständig papierlos über ihr digitales Serviceportal ab:</p>
+<ol>
+<li><strong>Online-Antragstellung:</strong> Der Bewerber oder der bevollmächtigte Arbeitgeber legt ein Nutzerkonto an und lädt Scans der Originaldokumente hoch (Hochschuldiplom, Notenübersicht/Transcript of Records, Reisepass, Sekundarschulabschlusszeugnis).</li>
+<li><strong>Keine Beglaubigungen mehr erforderlich:</strong> Für den digitalen Erstantrag genügen in der Regel qualitativ hochwertige Farbscans der Originale; beglaubigte Kopien werden nur bei Zweifeln nachgefordert.</li>
+<li><strong>Übersetzungen:</strong> Bildungsdokumente aus Vietnam müssen mit vereidigten deutschen oder englischen Übersetzungen eingereicht werden.</li>
+<li><strong>Bearbeitungsgebühr:</strong> Die gesetzliche Gebühr beträgt <strong>208 Euro</strong> für die Erstbewertung und <strong>104 Euro</strong> für jede weitere Bewertung desselben Antragstellers. Die Zahlung erfolgt online (z. B. Kreditkarte, Giropay).</li>
+</ol>
+<h2>3. Beschleunigung durch das Fachkräfteverfahren (§ 81a AufenthG)</h2>
+<p>Die reguläre Bearbeitungsdauer bei der ZAB beträgt zwischen einem und drei Monaten. Dieser Zeitraum lässt sich signifikant verkürzen:</p>
+<ul>
+<li><strong>Beschleunigtes Fachkräfteverfahren:</strong> Leitet der Arbeitgeber das Verfahren nach <strong>§ 81a AufenthG</strong> bei der zentralen Ausländerbehörde ein, erhält der ZAB-Antrag ein behördliches Eil-Aktenzeichen.</li>
+<li><strong>Bearbeitungsfrist von zwei Wochen:</strong> Gemäß § 81a Abs. 3 Nr. 1 AufenthG ist die ZAB gesetzlich gehalten, das Statement of Comparability innerhalb von <strong>zwei Wochen</strong> nach Eingang der vollständigen Unterlagen und Gebührenzahlung zu erstellen.</li>
+</ul>
+<div class="table-responsive"><table>
+<thead><tr>
+<th>Verfahrensweg</th>
+<th>Bearbeitungsdauer ZAB</th>
+<th>Kosten</th>
+<th>Beantragung durch</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Regulärer ZAB-Einzelantrag</strong></td>
+<td>4 bis 12 Wochen</td>
+<td>208 Euro</td>
+<td>Bewerber selbst</td>
+</tr>
+<tr>
+<td><strong>Beschleunigtes Verfahren (§ 81a)</strong></td>
+<td><strong>2 Wochen</strong></td>
+<td>208 Euro (+ 411 € ABH)</td>
+<td>Arbeitgeber via Vollmacht</td>
+</tr>
+<tr>
+<td><strong>anabin-Direktausdruck (H+)</strong></td>
+<td>Sofort</td>
+<td>Kostenlos</td>
+<td>Arbeitgeber / Bewerber</td>
+</tr>
+</tbody>
+</table></div>
+<h2>4. Inhalt und rechtliche Wirkung des Statement of Comparability</h2>
+<p>Das ausgestellte Dokument ist ein rechtlich fundiertes Gutachten:</p>
+<ul>
+<li>Es bescheinigt, welchem deutschen Bildungsgrad der ausländische Abschluss entspricht (z. B. „entspricht einem deutschen Hochschulabschluss auf Bachelorebene“).</li>
+<li>Es nennt das deutsche Fachgebiet und weist nach, ob die Hochschule nach dem Recht des Herkunftslandes staatlich anerkannt ist.</li>
+<li>Es enthält einen kryptografischen QR-Code, über den Visastellen und Arbeitgeber die Echtheit der Bescheinigung in Sekundenschnelle auf dem ZAB-Server verifizieren können.</li>
+</ul>
+<p><strong>Wichtiger Unterschied:</strong> Für <strong>reglementierte Berufe</strong> (z. B. Ärzte, Zahnärzte, Krankenpfleger, Ingenieure mit Berufsbezeichnungsschutz) ersetzt die ZAB-Zeugnisbewertung <strong>nicht</strong> die berufsrechtliche Approbation oder Berufszulassung durch die Landesbehörden!</p>
+<h2>5. Leitfaden für die betriebliche HR-Praxis</h2>
+<p>Personalabteilungen optimieren den Rekrutierungsprozess durch folgendes Vorgehen:</p>
+<ol>
+<li><strong>Sofort-Check bei Bewerbungseingang:</strong> Prüfen Sie die Universität des Kandidaten noch am Tag des Vorstellungsgesprächs in der anabin-Datenbank auf den Status H+.</li>
+<li><strong>Vollständigkeit der Transcripts:</strong> Achten Sie darauf, dass alle Semesterübersichten inklusive Studienfächern und Semesterwochenstunden lückenlos vorliegen.</li>
+<li><strong>Kopplung mit § 81a:</strong> Nutzen Sie bei akademischen Fachkräften konsequent das beschleunigte Fachkräfteverfahren, um die ZAB-Zweiwochenfrist zu aktivieren.</li>
+</ol>
+<p>DMF Talents prüft vietnamesische Studienabschlüsse vorab auf Konformität und steuert den ZAB-Prozess Hand in Hand mit den Ausländerbehörden.</p>
+<p>Erfahren Sie mehr über unsere Angebote unter <a href="/services/skilled-workers">Für Arbeitgeber: Fachkräfte</a> oder registrieren Sie Ihren <a href="/fuer-arbeitgeber/personalbedarf">Personalbedarf direkt</a>.</p>', '/images/blog/dmf-klassenzimmer.jpg', 'published', 'ZAB Zeugnisbewertung & Statement of Comparability: anabin Leitfaden', 'Hochschulabschlüsse aus Drittstaaten prüfen: Digitale ZAB-Zeugnisbewertung der KMK, anabin H+ Status, Gebühren und Visumbeschleunigung (§ 18b).', 'de')
+ON CONFLICT (slug) DO UPDATE SET
+  title = EXCLUDED.title,
+  excerpt = EXCLUDED.excerpt,
+  content = EXCLUDED.content,
+  cover_image = EXCLUDED.cover_image,
+  meta_title = EXCLUDED.meta_title,
+  meta_description = EXCLUDED.meta_description,
+  updated_at = NOW();
+
+INSERT INTO posts (title, slug, excerpt, content, cover_image, status, meta_title, meta_description, language)
+VALUES ('Sprachkurs Förderung nach § 82 SGB III: Qualifizierungschancengesetz', 'sprachfoerderung-betrieb-qualifizierungschancengesetz-82-sgb-iii', 'Bis zu 100 % Lehrgangskosten und 75 % Lohnfortzahlung: Wie Unternehmen Sprachkurse für ausländische Mitarbeiter über die Bundesagentur für Arbeit finanzieren.', '<p>Internationale Fachkräfte und Auszubildende aus Drittstaaten bringen fundierte fachliche Qualifikationen mit. Für den langfristigen Erfolg im Unternehmen entscheidet jedoch die sprachliche Handlungssicherheit: Das Verstehen komplexer Sicherheitsvorschriften, die kollegiale Übergabe am Schichtende und die souveräne Kommunikation mit Kunden und Patienten verlangen solide Deutschkenntnisse auf dem Niveau B2 GER.</p>
+<p>Viele Arbeitgeber scheuen die hohen Kosten für berufsbegleitenden Sprachunterricht und die Freistellung von der Arbeitszeit. Was viele Geschäftsführer und HR-Manager nicht wissen: Die Bundesagentur für Arbeit fördert betriebliche Weiterbildungen und arbeitsplatzbezogene Sprachkurse über das <strong>Qualifizierungschancengesetz (§ 82 Drittes Buch Sozialgesetzbuch – SGB III)</strong> mit <strong>massiven finanziellen Zuschüssen</strong> – bei Kleinstbetrieben werden bis zu 100 Prozent der Kurskosten übernommen.</p>
+<p><img src="/images/blog/qualifizierungschancengesetz-foerderstaffel-schema.svg" alt="Betriebliche Weiterbildungsförderung nach § 82 SGB III Förderstaffel" /></p>
+<p><em>Die Förderstaffel nach Betriebsgröße gemäß § 82 SGB III: Bis zu 100 % Zuschuss zu den Lehrgangskosten und bis zu 75 % Arbeitsentgeltzuschuss (AEZ) für freigestellte Mitarbeiter.</em></p>
+<h2>1. Gesetzliche Förderkriterien nach § 82 SGB III</h2>
+<p>Damit eine betriebliche Sprach- oder Weiterbildungsmaßnahme förderfähig ist, müssen folgende gesetzliche Voraussetzungen erfüllt sein:</p>
+<ol>
+<li><strong>Umfang der Maßnahme:</strong> Die Weiterbildung muss <strong>mehr als 120 Unterrichtsstunden</strong> umfassen (§ 82 Abs. 1 Nr. 1 SGB III).</li>
+<li><strong>Akkreditierung nach AZAV:</strong> Maßnahmenträger und Lehrgang müssen nach der <strong>Akkreditierungs- und Zulassungsverordnung Arbeitsförderung (AZAV)</strong> von einer fachkundigen Stelle zertifiziert sein. Reine interne Firmenschulungen sind nicht förderfähig.</li>
+<li><strong>Vermittlung zukunftsorientierter Kompetenzen:</strong> Die Maßnahme muss über eine rein arbeitsplatzbezogene Kurzunterweisung hinausgehen und Fertigkeiten vermitteln, die auf dem allgemeinen Arbeitsmarkt verwertbar sind (berufsbezogenes Deutsch, Fachwortschatz Handwerk, Pflege oder Industrie).</li>
+<li><strong>Bestehendes Arbeitsverhältnis:</strong> Der Mitarbeiter muss sozialversicherungspflichtig beschäftigt sein.</li>
+</ol>
+<h2>2. Die Förderstaffel nach Unternehmensgröße</h2>
+<p>Die Höhe der staatlichen Zuschüsse richtet sich gestaffelt nach der Mitarbeiterzahl des Unternehmens:</p>
+<div class="table-responsive"><table>
+<thead><tr>
+<th>Unternehmensgröße</th>
+<th>Zuschuss zu den Lehrgangskosten</th>
+<th>Arbeitsentgeltzuschuss (AEZ)</th>
+<th>Eigenanteil des Arbeitgebers</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Kleinstbetriebe (&lt; 10 Beschäftigte)</strong></td>
+<td><strong>bis zu 100 %</strong></td>
+<td><strong>bis zu 75 %</strong></td>
+<td>0 % Kurskosten / 25 % Lohn</td>
+</tr>
+<tr>
+<td><strong>Kleine &amp; mittlere Betriebe (10–249 MA)</strong></td>
+<td><strong>bis zu 50 %</strong></td>
+<td><strong>bis zu 50 %</strong></td>
+<td>50 % Kurskosten / 50 % Lohn</td>
+</tr>
+<tr>
+<td><strong>Größere Betriebe (250–2.499 MA)</strong></td>
+<td><strong>bis zu 25 %</strong></td>
+<td><strong>bis zu 25 %</strong></td>
+<td>75 % Kurskosten / 75 % Lohn</td>
+</tr>
+<tr>
+<td><strong>Großkonzerne (ab 2.500 MA)</strong></td>
+<td><strong>bis zu 15 %</strong></td>
+<td><strong>bis zu 20 %</strong></td>
+<td>85 % Kurskosten / 80 % Lohn</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Besonderer Bonus:</strong> Liegt eine Betriebsvereinbarung zur betrieblichen Weiterbildung vor oder gilt ein tarifvertraglicher Weiterbildungsanspruch, können sich die Fördersätze um weitere 5 bis 15 Prozentpunkte erhöhen (§ 82 Abs. 2 SGB III).</p>
+<h2>3. Der Arbeitsentgeltzuschuss (AEZ): Lohnkosten während der Schulung abfedern</h2>
+<p>Neben den reinen Unterrichtskosten stellt der Arbeitsausfall für Betriebe das größte Hindernis dar. Hier greift der <strong>Arbeitsentgeltzuschuss (AEZ nach § 82 Abs. 5 SGB III)</strong>:</p>
+<ul>
+<li>Stellt der Arbeitgeber die Fachkraft für den Besuch eines Intensivsprachkurses bezahlt von der Arbeit frei, erstattet die Bundesagentur für Arbeit einen prozentualen Anteil des Bruttoarbeitsentgelts inklusive der pauschalierten Sozialversicherungsbeiträge.</li>
+<li>Bei einem Handwerksbetrieb mit 8 Mitarbeitern übernimmt die Arbeitsagentur beispielsweise 100 Prozent der Sprachkursgebühren und erstattet <strong>75 Prozent des Gehalts</strong> für die Stunden, in denen der Mitarbeiter die Schulbank drückt.</li>
+</ul>
+<h2>4. Kombination mit DeuFöV-Sprachkursen des BAMF</h2>
+<p>Neben dem SGB III existieren staatliche berufsbezogene Sprachkurse nach der <strong>Deutschsprachförderverordnung (DeuFöV)</strong> des Bundesamts für Migration und Flüchtlinge (BAMF):</p>
+<ul>
+<li>Für Auszubildende sind DeuFöV-Kurse (z. B. Zielsprachniveau B2) in der Regel <strong>vollständig kostenfrei</strong>.</li>
+<li>Für Beschäftigte fällt lediglich ein geringer Eigenanteil an, der vom Arbeitgeber steuerfrei als Weiterbildungskosten übernommen werden kann (§ 3 Nr. 19 EStG).</li>
+</ul>
+<h2>5. Schritt-für-Schritt-Leitfaden zur Beantragung bei der Agentur für Arbeit</h2>
+<p>So sichern sich Personalabteilungen die staatliche Förderung:</p>
+<ol>
+<li><strong>Kontaktaufnahme mit dem Arbeitgeber-Service (AG-S):</strong> Wenden Sie sich frühzeitig an Ihren regionalen Firmenkundenberater der Arbeitsagentur und bekunden Sie den Weiterbildungsbedarf.</li>
+<li><strong>Auswahl eines AZAV-zertifizierten Bildungsträgers:</strong> Wählen Sie eine Sprachschule, die über eine gültige AZAV-Zertifikatsnummer verfügt und flexible Online- oder Abendkurse anbietet.</li>
+<li><strong>Gemeinsamer Förderantrag:</strong> Arbeitgeber und Mitarbeiter stellen den Antrag auf Arbeitsentgeltzuschuss und Ausstellung eines Weiterbildungsgutscheins vor Beginn der Maßnahme.</li>
+<li><strong>Abrechnung & Auszahlung:</strong> Die Sprachschule rechnet die Lehrgangskosten direkt mit der Arbeitsagentur ab; der Arbeitgeber ruft den Lohnkostenzuschuss monatlich über Abrechnungslisten ab.</li>
+</ol>
+<p>DMF Talents berät Partnerbetriebe bei der Auswahl geeigneter Sprachbildungsträger und vermittelt AZAV-akkreditierte Kooperationspartner.</p>
+<p>Erfahren Sie mehr über unsere Fördermittelberatung unter <a href="/services/skilled-workers">Für Arbeitgeber: Transparenz & Qualität</a> oder erfassen Sie Ihren <a href="/fuer-arbeitgeber/personalbedarf">Personalbedarf unverbindlich</a>.</p>', '/images/blog/dmf-klassenzimmer.jpg', 'published', 'Sprachkurs Förderung nach § 82 SGB III: Qualifizierungschancengesetz', 'Staatliche Zuschüsse für betriebliche Sprachkurse: Bis zu 100 % Lehrgangskostenförderung und Arbeitsentgeltzuschuss (AEZ) nach § 82 SGB III.', 'de')
+ON CONFLICT (slug) DO UPDATE SET
+  title = EXCLUDED.title,
+  excerpt = EXCLUDED.excerpt,
+  content = EXCLUDED.content,
+  cover_image = EXCLUDED.cover_image,
+  meta_title = EXCLUDED.meta_title,
+  meta_description = EXCLUDED.meta_description,
+  updated_at = NOW();
+
+INSERT INTO posts (title, slug, excerpt, content, cover_image, status, meta_title, meta_description, language)
+VALUES ('Statusfeststellung nach § 7a SGB IV: Scheinselbstständigkeit Drittstaaten', 'statusfeststellungsverfahren-7a-sgb-iv-scheinselbststaendigkeit-drittstaaten', 'Weisungsgebundenheit, Eingliederung und Haftungsrisiken: Wie Unternehmen internationale Spezialisten rechtssicher beauftragen oder fest anstellen.', '<p>Um dem gravierenden Mangel an hochqualifizierten IT-Entwicklern, Cloud-Architekten oder Ingenieuren zu begegnen, greifen deutsche Technologieunternehmen und Projektgesellschaften gerne auf freiberufliche Experten zurück. Immer häufiger werden Spezialisten aus Drittstaaten (z. B. Vietnam) auf Basis von Dienst- oder Werkverträgen als Freelancer beauftragt – sei es remote aus dem Ausland oder nach Einreise mit einem Visum zur freiberuflichen Tätigkeit (§ 21 AufenthG).</p>
+<p>Dabei lauert eine der gefährlichsten Haftungsfallen des deutschen Wirtschaftsrechts: die <strong>Scheinselbstständigkeit</strong>. Stellt die Deutsche Rentenversicherung (DRV) bei einer Betriebsprüfung fest, dass der vermeintliche Freiberufler wie ein Arbeitnehmer in den Betrieb eingegliedert war, drohen existenzbedrohende Beitragsnachzahlungen und strafrechtliche Ermittlungen.</p>
+<p>Mit dem <strong>Statusfeststellungsverfahren nach § 7a des Vierten Buches Sozialgesetzbuch (SGB IV)</strong> können Unternehmen im Vorfeld verbindliche Rechtssicherheit schaffen.</p>
+<p><img src="/images/blog/statusfeststellung-clearingstelle-kriterienmatrix.svg" alt="Statusfeststellungsverfahren nach § 7a SGB IV Kriterienmatrix" /></p>
+<p><em>Abgrenzung nach Kriterien der Clearingstelle der DRV Bund: Echte unternehmerische Selbstständigkeit vs. verdeckte Scheinselbstständigkeit mit Nachzahlungsrisiko.</em></p>
+<h2>1. Die Abgrenzungskriterien der Clearingstelle der DRV Bund</h2>
+<p>Entscheidend für die sozialversicherungsrechtliche Einstufung ist nicht die Bezeichnung im Vertrag („Consulting Agreement“, „Freelance Contract“), sondern die <strong>tatsächliche Durchführung der Zusammenarbeit</strong>:</p>
+<ul>
+<li><strong>Weisungsgebundenheit (§ 7 Abs. 1 SGB IV):</strong> Ist der Auftragnehmer an Weisungen des Auftraggebers bezüglich Arbeitszeit, Arbeitsort, Pausengestaltung und Arbeitsinhalten gebunden? Ein echter Freelancer bestimmt seine Arbeitsweise eigenverantwortlich.</li>
+<li><strong>Eingliederung in die Arbeitsorganisation:</strong> Nimmt der Experte an täglichen internen Stand-ups, Team-Meetings und Schichtplänen teil? Nutzt er Firmen-Laptops, betriebliche E-Mail-Adressen (@unternehmen.de) und wird er im Organigramm geführt?</li>
+<li><strong>Unternehmerisches Risiko:</strong> Setzt der Experte eigenes Kapital und eigene Arbeitsmittel ein? Trägt er das Verlustrisiko bei mangelhafter Leistung oder erhält er eine garantierte Stundenvergütung ohne unternehmerisches Wagnis?</li>
+<li><strong>Eigenwerbung und Kundenvielfalt:</strong> Tritt der Auftragnehmer am Markt mit eigener Website auf oder arbeitet er dauerhaft und im Wesentlichen nur für einen einzigen Hauptauftraggeber (§ 2 Nr. 9 SGB VI)?</li>
+</ul>
+<h2>2. Die drakonischen Konsequenzen einer Scheinselbstständigkeit</h2>
+<p>Wird eine Scheinselbstständigkeit rückwirkend durch die DRV Bund oder die Finanzkontrolle Schwarzarbeit (FKS) des Zolls aufgedeckt, trifft die Haftung primär den Auftraggeber:</p>
+<ol>
+<li><strong>Rückwirkende Sozialversicherungsbeiträge:</strong> Der Auftraggeber muss die gesamten Arbeitgeber- und Arbeitnehmeranteile zur Renten-, Kranken-, Pflege- und Arbeitslosenversicherung für bis zu <strong>vier Jahre rückwirkend</strong> nachentrichten (§ 25 Abs. 1 SGB IV).</li>
+<li><strong>Säumniszuschläge:</strong> 1 Prozent pro angefangenem Monat auf die rückständigen Beträge.</li>
+<li><strong>Lohnsteuernachforderung:</strong> Das Finanzamt fordert die nicht einbehaltene Lohnsteuer samt Zinsen vom Auftraggeber nach (§ 42d EStG).</li>
+<li><strong>Strafbarkeit nach § 266a StGB:</strong> Das Vorenthalten und Veruntreuen von Arbeitsentgelt ist ein Straftatbestand, der gegen Geschäftsführer und Personalverantwortliche mit Geldstrafe oder Freiheitsstrafe von bis zu fünf Jahren geahndet werden kann.</li>
+<li><strong>Aufenthaltsrechtliche Folgen:</strong> Für die Fachkraft kann ein Visum zur freiberuflichen Tätigkeit nach § 21 AufenthG wegen unzutreffender Angaben widerrufen werden.</li>
+</ol>
+<div class="table-responsive"><table>
+<thead><tr>
+<th>Prüfpunkt</th>
+<th>Echter Freelancer</th>
+<th>Scheinselbstständiger (Arbeitnehmer)</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Arbeitszeit</strong></td>
+<td>Vollkommen frei wählbar</td>
+<td>Feste Anwesenheitspflicht / Kernarbeitszeiten</td>
+</tr>
+<tr>
+<td><strong>Arbeitsmittel</strong></td>
+<td>Eigene Hardware &amp; Softwarelizenzen</td>
+<td>Gestellter Firmen-Laptop &amp; Firmen-Zugänge</td>
+</tr>
+<tr>
+<td><strong>Urlaub</strong></td>
+<td>Keine Vergütung bei Abwesenheit</td>
+<td>Bezahlte Fehltage oder Freistellungen</td>
+</tr>
+<tr>
+<td><strong>Auftretung</strong></td>
+<td>Eigenes Firmenbranding</td>
+<td>Firmen-Visitenkarte, Signatur des Auftraggebers</td>
+</tr>
+<tr>
+<td><strong>Vergütung</strong></td>
+<td>Honorar nach Meilenstein/Ergebnis</td>
+<td>Pauschales Monatsgehalt / fester Stundensatz</td>
+</tr>
+</tbody>
+</table></div>
+<h2>3. Das Statusfeststellungsverfahren nach § 7a SGB IV: Der sichere Ausweg</h2>
+<p>Um jedes Haftungsrisiko von vornherein auszuschließen, können Auftraggeber und Auftragnehmer gemeinsam ein <strong>Statusfeststellungsverfahren bei der Clearingstelle der DRV Bund</strong> beantragen:</p>
+<ul>
+<li><strong>Antrag binnen eines Monats:</strong> Wird der Antrag innerhalb eines Monats nach Aufnahme der Tätigkeit gestellt, tritt eine etwaige Versicherungspflicht erst mit der Bekanntgabe der Entscheidung ein (§ 7a Abs. 6 SGB IV) – rückwirkende Beitragsnachforderungen sind damit ausgeschlossen!</li>
+<li><strong>Elementenfeststellung seit 2022:</strong> Seit der Reform können Unternehmen auch vorab klären lassen, ob bestimmte vertragliche Vereinbarungen (z. B. typische Rahmenverträge) zur Sozialversicherungspflicht führen.</li>
+<li><strong>Rechtsverbindlichkeit:</strong> Die Entscheidung der Clearingstelle entfaltet Bindungswirkung für alle Zweige der Sozialversicherung (Krankenkassen, Rentenversicherung, Bundesagentur für Arbeit).</li>
+</ul>
+<h2>4. Festanstellung als strategische und rechtssichere Alternative</h2>
+<p>In vielen Fällen erweist sich der Versuch, ausländische Spezialisten als Scheinselbstständige zu beschäftigen, als unnötiges Risiko. Das moderne Fachkräfteeinwanderungsgesetz bietet hervorragende Wege zur regulären Festeinstellung:</p>
+<ul>
+<li><strong>EU Blaue Karte (§ 18b Abs. 2 AufenthG):</strong> Für IT-Kräfte mit Hochschulabschluss gilt eine stark reduzierte Mindestgehaltsschwelle (unter 46.000 €).</li>
+<li><strong>IT-Spezialistenregelung (§ 19c Abs. 2 AufenthG i. V. m. § 6 BeschV):</strong> Festeinstellung erfahrener Software- und Netzwerkarchitekten auch <strong>ohne formalen Studienabschluss</strong> bei mindestens zwei Jahren Berufserfahrung.</li>
+<li><strong>Volle Planungs- und Bindungssicherheit:</strong> Der Arbeitgeber sichert sich loyale Stammkräfte ohne Compliance-Risiken.</li>
+</ul>
+<h2>5. Compliance-Checkliste für Personalabteilungen</h2>
+<p>Vor Beauftragung ausländischer Experten sollten HR-Verantwortliche folgende Punkte prüfen:</p>
+<ol>
+<li><strong>Vertragsgestaltung:</strong> Verwenden Sie ergebnisorientierte Werk- oder Dienstverträge mit klar definierten Leistungsmeilensteinen statt Stundenkontingenten.</li>
+<li><strong>Keine Einbindung in Hierarchien:</strong> Stellen Sie sicher, dass der externe Dienstleister keine Mitarbeiter führt, keine Genehmigungen von Urlauben einholen muss und eigene Hardware nutzt.</li>
+<li><strong>Im Zweifel § 7a SGB IV:</strong> Nutzen Sie bei längerfristigen Projekten konsequent das Antragsverfahren bei der Clearingstelle der DRV Bund.</li>
+</ol>
+<p>DMF Talents begleitet Unternehmen bei der rechtskonformen Rekrutierung und Festeinstellung internationaler IT- und Technologiespezialisten.</p>
+<p>Informieren Sie sich über unsere Angebote unter <a href="/services/skilled-workers">Für Arbeitgeber: IT & Engineering</a> oder erfassen Sie Ihren <a href="/fuer-arbeitgeber/personalbedarf">Personalbedarf direkt</a>.</p>', '/images/blog/dmf-klassenzimmer.jpg', 'published', 'Statusfeststellung nach § 7a SGB IV: Scheinselbstständigkeit Drittstaaten', 'Internationale IT-Freelancer und Berater: Abgrenzung Scheinselbstständigkeit vs. Anstellung, Clearingstelle der DRV Bund und Haftung nach § 266a StGB.', 'de')
+ON CONFLICT (slug) DO UPDATE SET
+  title = EXCLUDED.title,
+  excerpt = EXCLUDED.excerpt,
+  content = EXCLUDED.content,
+  cover_image = EXCLUDED.cover_image,
+  meta_title = EXCLUDED.meta_title,
+  meta_description = EXCLUDED.meta_description,
+  updated_at = NOW();
+
+INSERT INTO posts (title, slug, excerpt, content, cover_image, status, meta_title, meta_description, language)
 VALUES ('Gastronomie & Hotellerie: Personal aus Vietnam rechtssicher einstellen', 'gastronomie-hotellerie-personal-vietnam-einstellen', 'Personalmangel im Gastgewerbe? Erfahren Sie, welche drei rechtssicheren Rekrutierungsmodelle Gastronomen und Hoteliers für Personal aus Vietnam offenstehen.', '<p>Eingeschränkte Öffnungszeiten, geschlossene Ruhetage und verringerte Tischanzahlen: Der akute Mangel an Küchen-, Service- und Hotelpersonal ist für die deutsche Gastronomie und Hotellerie längst zur existenzbedrohenden Wachstumsbremse geworden. Nach aktuellen Konjunkturumfragen des <a href="https://www.dehoga-bundesverband.de">DEHOGA Bundesverbands</a> suchen mehr als 60 Prozent der gastgewerblichen Betriebe händeringend nach Mitarbeitern.</p>
 <p>Vietnam verfügt über eine lebendige Tourismus- und Gastronomiekultur sowie ein ausgeprägtes Berufsbildungssystem für das Hotel- und Gaststättengewerbe (HoReCa). Gastfreundschaft, Serviceorientierung und handwerkliche Sorgfalt genießen in Vietnam einen hohen gesellschaftlichen Stellenwert.</p>
 <p>Für deutsche Gastronomen und Hoteliers eröffnen sich über das Fachkräfteeinwanderungsgesetz (FEG) und die Beschäftigungsverordnung (BeschV) drei konkrete Wege, um Personal aus Vietnam legal und nachhaltig zu beschäftigen.</p>
@@ -7443,6 +8108,341 @@ VALUES ('Daueraufenthalt-EU vs. Niederlassungserlaubnis: Vergleich § 9a & 18c',
 <p>Beide Titel schließen sich nicht gegenseitig aus. Ein Mitarbeiter kann zunächst die <strong>schnellere Niederlassungserlaubnis nach § 18c AufenthG</strong> beantragen, um den Aufenthaltsstatus nach 21 bis 36 Monaten abzusichern. Erreicht der Mitarbeiter nach fünf Jahren die Marke von 60 Beitragsmonaten zur Rentenversicherung, kann zusätzlich der <strong>Daueraufenthalt – EU nach § 9a AufenthG</strong> beantragt werden.</p>
 <p>DMF Talents begleitet Arbeitgeber und langjährige Fachkräfte bei der Vorbereitung aller behördlichen Nachweise für das Verwaltungsverfahren vor der Ausländerbehörde.</p>
 <p>Erfahren Sie mehr über unsere langfristigen Betreuungskonzepte unter <a href="/services/skilled-workers">Für Arbeitgeber: Dauerhafte Integration</a>.</p>', '/images/blog/dmf-klassenzimmer.jpg', 'published', 'Daueraufenthalt-EU vs. Niederlassungserlaubnis: Vergleich § 9a & 18c', 'Unbefristete Aufenthaltstitel für Fachkräfte: Unterschiede zwischen Daueraufenthalt-EU (§ 9a) und Niederlassungserlaubnis (§ 18c) im Überblick.', 'de')
+ON CONFLICT (slug) DO UPDATE SET
+  title = EXCLUDED.title,
+  excerpt = EXCLUDED.excerpt,
+  content = EXCLUDED.content,
+  cover_image = EXCLUDED.cover_image,
+  meta_title = EXCLUDED.meta_title,
+  meta_description = EXCLUDED.meta_description,
+  updated_at = NOW();
+
+INSERT INTO posts (title, slug, excerpt, content, cover_image, status, meta_title, meta_description, language)
+VALUES ('Feinwerkmechaniker Vietnam Formenbau: DIN ISO 1101 & Erodieren', 'feinwerkmechaniker-werkzeugmechaniker-formenbau-vietnam', 'Spritzgusswerkzeuge, Stanz- und Umformtechnik: Wie mittelständische Formenbauer hochqualifizierte Feinwerkmechaniker aus Vietnam rechtssicher integrieren.', '<p>Der deutsche Werkzeug- und Formenbau bildet das technologische Fundament der automobilen Serienfertigung, der Medizintechnik und der kunststoffverarbeitenden Industrie. Ohne hochpräzise Spritzgussformen, Druckgusswerkzeuge und Schnittwerkzeuge können moderne Konsum- und Industriegüter nicht wirtschaftlich produziert werden. Gleichzeitig steht die Branche vor einem beispiellosen Fachkräftemangel: Nach Erhebungen des <a href="https://www.vdwf.de">Verbands Deutscher Werkzeug- und Formenbauer (VDWF)</a> suchen mittelständische Werkzeugbaubetriebe händeringend nach erfahrenen Feinwerkmechanikern und Werkzeugmachern, die Toleranzen im Mikrometerbereich beherrschen.</p>
+<p>Vietnam hat sich durch massive Industrieansiedlungen internationaler Technologiekonzerne zu einem regionalen Zentrum für Präzisionszerspanung und Formenbau entwickelt. Technische Hochschulen und staatliche Fachkollegs in Hanoi und Ho-Chi-Minh-Stadt bilden Zerspanungs- und Werkzeugtechniker nach internationalen Industriestandards aus.</p>
+<p><img src="/images/blog/feinwerkmechanik-formenbau-prozesskette.svg" alt="Präzisionswerkzeugbau Prozesskette im Formenbau" /></p>
+<p><em>Die vier Kernstufen im Formenbau: 3D-CAD/CAM-Konstruktion, 5-Achs-Fräsen und Erodieren (EDM), manuelle Tuschierung und 3D-Koordinatenmesstechnik nach DIN ISO 1101.</em></p>
+<h2>1. Das technische Leistungsspektrum im Werkzeug- und Formenbau</h2>
+<p>Qualifizierte Werkzeugmechaniker aus Vietnam decken sämtliche Arbeitsschritte der Werkzeugerstellung ab:</p>
+<ul>
+<li><strong>5-Achs-HSC-Fräsen von Formeinsätzen:</strong> Sichere Programmierung und Bedienung von High-Speed-Cutting-Fräszentren (z. B. Hermle, DMG MORI, Röders) zur Zerspanung hochfester Werkzeugstähle (z. B. 1.2343 ESR, 1.2083) im gehärteten Zustand (bis 56 HRC).</li>
+<li><strong>Funkenerosion (EDM):</strong> Rüsten und Programmieren von Drahterodiermaschinen (WEDM) für Schnittstempel und Matrizen sowie Senkerodieranlagen mit automatischem Elektrodenwechsler.</li>
+<li><strong>Tuschieren und Passungsarbeit:</strong> Präzises Einpassen von Schiebern, Kernen, Auswerferpaketen und Heißkanalsystemen auf Tuschierpressen; manuelle Feinpolitur bis zum Hochglanzfinish (Ra &lt; 0,05 µm).</li>
+<li><strong>Form- und Lagetoleranzen nach DIN ISO 1101:</strong> Sichere Interpretation technischer Zeichnungen mit engen Bezügen (Rundheit, Zylindrizität, Rechtwinkligkeit, Gesamtlauf) und Erstbemusterung (EMPB).</li>
+</ul>
+<h2>2. Qualifikationsvergleich: Deutsche Gesellenausbildung vs. vietnamesisches Fachdiplom</h2>
+<p>Die Ausbildung an vietnamesischen technischen Fachschulen (Cao Đẳng Cơ khí chính xác) zeichnet sich durch einen hohen Anteil praktischer Maschinenstunden aus:</p>
+<div class="table-responsive"><table>
+<thead><tr>
+<th>Qualifikationsmerkmal</th>
+<th>Deutscher Werkzeugmechaniker (HwO/BBiG)</th>
+<th>Vietnamesischer Feinwerktechniker (Cao Đẳng)</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Regelausbildungsdauer</strong></td>
+<td>3,5 Jahre dual</td>
+<td><strong>3 Jahre vollschulisch mit 12 Monaten Labor- &amp; Betriebspraxis</strong></td>
+</tr>
+<tr>
+<td><strong>CAD/CAM-Kenntnisse</strong></td>
+<td>Mastercam, Tebis, Siemens NX</td>
+<td><strong>Siemens NX, Cimatron, SolidWorks, Mastercam</strong></td>
+</tr>
+<tr>
+<td><strong>Erodiertechnik (EDM)</strong></td>
+<td>Fester Ausbildungsbestandteil</td>
+<td><strong>Umfassende Schulung an Mitsubishi-, Sodick- oder Makino-Maschinen</strong></td>
+</tr>
+<tr>
+<td><strong>Manuelle Feinpassung</strong></td>
+<td>Schaben, Tuschieren, Polieren</td>
+<td><strong>Hohe Fingerfertigkeit und Geduld bei filigranen Formkonturen</strong></td>
+</tr>
+<tr>
+<td><strong>Toleranzvorgaben</strong></td>
+<td>Mikrometergenaue Fertigung (IT-Klassen)</td>
+<td><strong>Routine in IT6- bis IT7-Passungen; Anpassung an DIN ISO 1101</strong></td>
+</tr>
+<tr>
+<td><strong>Sprachkompetenz</strong></td>
+<td>Deutsch B2 für Betriebsübergaben</td>
+<td><strong>B1 GER vor Ausreise; berufsspezifisches B2 begleitend</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h2>3. Rechtliche Zuwanderungswege für Werkzeugbaubetriebe</h2>
+<p>Für den betrieblichen Einstieg vietnamesischer Präzisionsmechaniker stehen zwei Wege offen:</p>
+<ol>
+<li><strong>Anerkennungspartnerschaft (§ 16d Abs. 3 AufenthG):</strong> Die Fachkraft reist direkt ein und arbeitet ab dem ersten Monat in der CAM-Programmierung, beim Fräsen von Elektroden oder bei der Montage von Werkzeugaufbauten mit. Die formale Gleichwertigkeitsfeststellung bei der Handwerkskammer (HWK) oder Industrie- und Handelskammer (IHK FOSA) läuft parallel innerhalb von bis zu drei Jahren.</li>
+<li><strong>Duale Berufsausbildung (§ 16a AufenthG):</strong> Dreieinhalbjährige Ausbildung im eigenen Betrieb. Schulabgänger aus Vietnam mit mathematisch-technischem Grundverständnis erlernen das Handwerk nach deutschem Ausbildungsrahmenplan von Grund auf.</li>
+</ol>
+<h2>4. Arbeitsschutz, Maschinensicherheit und DGUV-Richtlinien</h2>
+<p>Im Werkzeugbau gelten strenge Sicherheitsvorgaben der Berufsgenossenschaft Holz und Metall (BGHM):</p>
+<ul>
+<li><strong>Sicherheitsunterweisung an Zerspanungsmaschinen:</strong> Unterweisung nach <strong>DGUV Regel 109-003</strong> hinsichtlich geschlossener Schutzhauben, Späneflug und Not-Aus-Funktionen.</li>
+<li><strong>Umgang mit Dielektrika beim Erodieren:</strong> Hautschutz und Brandverhütung beim Einsatz von Kohlenwasserstoff-Dielektrika nach TRGS 615.</li>
+<li><strong>Kran- und Anschlagschein:</strong> Fachgerechtes Wenden tonnenschwerer Spritzgussformen mit Hallenkranen unter Beachtung der DGUV Information 209-013.</li>
+</ul>
+<h2>5. Integrationsleitfaden für Werkzeugbaubetriebe</h2>
+<p>Ein dreimonatiger Einarbeitungsplan sichert den raschen Übergang in die selbstständige Schichtarbeit:</p>
+<ol>
+<li><strong>Monat 1:</strong> Kennenlernen der betrieblichen CAD/CAM-Schnittstellen, Werkzeugausgabe, Spannmittelsysteme (z. B. Erowa, System 3R) und Sicherheitsrichtlinien.</li>
+<li><strong>Monat 2:</strong> Selbstständiges Rüsten und Einfahren von 3-Achs- und 5-Achs-Fräsprogrammen unter Aufsicht des Schichtführers.</li>
+<li><strong>Monat 3:</strong> Eigenverantwortliche Werkzeugmontage, Tuschierarbeiten und Vorbereitung von Werkzeugabstimmungen für das erste Probespritzen (T0/T1).</li>
+</ol>
+<p>DMF Talents unterstützt Werkzeugbaubetriebe bei der Vorprüfung von Fachzeugnissen, praktischen Fachinterviews in Vietnam und der gesamten behördlichen Visumabwicklung.</p>
+<p>Informieren Sie sich über unsere Angebote unter <a href="/services/skilled-workers">Für Arbeitgeber: Handwerk & Industrie</a> oder erfassen Sie Ihren <a href="/fuer-arbeitgeber/personalbedarf">Personalbedarf direkt</a>.</p>', '/images/blog/dmf-klassenzimmer.jpg', 'published', 'Feinwerkmechaniker Vietnam Formenbau: DIN ISO 1101 & Erodieren', 'Werkzeugmechaniker aus Drittstaaten: Präzisionsformenbau, 5-Achs-HSC-Fräsen, Senk- und Drahterodieren (EDM), DIN ISO 1101 und HwO-Anerkennung.', 'de')
+ON CONFLICT (slug) DO UPDATE SET
+  title = EXCLUDED.title,
+  excerpt = EXCLUDED.excerpt,
+  content = EXCLUDED.content,
+  cover_image = EXCLUDED.cover_image,
+  meta_title = EXCLUDED.meta_title,
+  meta_description = EXCLUDED.meta_description,
+  updated_at = NOW();
+
+INSERT INTO posts (title, slug, excerpt, content, cover_image, status, meta_title, meta_description, language)
+VALUES ('Brauer & Mälzer aus Vietnam einstellen: IFS Food & BierStG', 'brauer-maelzer-getraenketechnologie-drittstaaten-vietnam', 'Sudhausführung, Kaltreifung und moderne Abfüllanlagen: Wie Brauereien und Getränkebetriebe qualifizierte Fachkräfte aus Vietnam gewinnen.', '<p>Das deutsche Brauwesen genießt weltweites Renommee. Vom traditionellen mittelständischen Brauhaus mit regionaler Gastronomie bis zur vollautomatisierten Großbrauerei und modernen Softdrink-Abfüllbetrieben verlangt die Getränkeherstellung kompromisslose mikrobiologische Sauberkeit, verfahrenstechnisches Know-how und handwerkliche Leidenschaft. Doch der demografische Wandel trifft auch die traditionsreiche Zunft: Der <a href="https://www.brauer-bund.de">Deutsche Brauer-Bund (DBB)</a> meldet eine stetig sinkende Zahl an Auszubildenden und Gesellen im Beruf des <strong>Brauers und Mälzers</strong>.</p>
+<p>Gleichzeitig boomt in Vietnam die Brau- und Getränkewirtschaft seit zwei Jahrzehnten. Mit hochmodernen Braustätten, die nach mitteleuropäischen Standards (z. B. Ziemann Holvrieka, Krones) errichtet wurden, und spezialisierten universitären Fakultäten für Lebensmittel- und Fermentationstechnologie bildet Vietnam hervorragend geschultes Fachpersonal aus.</p>
+<p><img src="/images/blog/brauprozess-qualitaet-haccp-ifs.svg" alt="Brau- und Getränketechnologie Qualitätssicherung nach HACCP und IFS Food" /></p>
+<p><em>Die vier Schlüsselstufen der modernen Getränkeproduktion: Sudhaus &amp; Würzekochen, Gärung &amp; Kaltreifung, Filtration &amp; CIP-Reinigung sowie IFS-konforme Abfüllung.</em></p>
+<h2>1. Technologisches Aufgabenprofil des modernen Brauers</h2>
+<p>Der Beruf des Brauers und Mälzers vereint Biochemie, Maschinenbau und striktes Hygienemanagement:</p>
+<ul>
+<li><strong>Sudhausführung & Maischarbeit:</strong> Einmaischen von Malzschroten, Steuerung von Rastzeiten (Proteolytische Rast, Maltoserast, Verzuckerungsrast), Läutern und Würzekochen mit Hopfengaben unter strikter Beachtung des <strong>Vorläufigen Biergesetzes (BierStG)</strong>.</li>
+<li><strong>Hefemanagement & Gärführung:</strong> Reinzucht, Zellzahlbestimmung mittels Zählkammer, Steuerung zylindrokonischer Gärtanks (ZKT), Überwachung des scheinbaren und tatsächlichen Vergärungsgrads sowie gezielter Diacetylabbau.</li>
+<li><strong>Filtration und Stabilisierung:</strong> Bedienung moderner Kieselgur- und Membranfiltrationsanlagen zur Erzielung von Glanzfeinheit und kolloidaler Stabilität.</li>
+<li><strong>CIP-Reinigung & Hygiene (HACCP):</strong> Automatische und manuelle Reinigungskreisläufe mit Natronlauge, Salpetersäure und Heißwasser nach <strong>DIN 10516</strong> zur Vermeidung von Bierschädlingen (Laktobazillen, Pediokokken).</li>
+<li><strong>Abfülltechnik & IFS Food:</strong> Steuerung isobarometrischer Flaschen-, Dosen- und Fassabfüllanlagen (Keg-Linien) unter Sauerstoffausschluss (Rest-O2 &lt; 50 ppb).</li>
+</ul>
+<h2>2. Qualifikationsvergleich: Deutsches Handwerk vs. vietnamesische Fachausbildung</h2>
+<p>In Vietnam ist die Getränketechnologie stark akademisch und verfahrenstechnisch geprägt:</p>
+<div class="table-responsive"><table>
+<thead><tr>
+<th>Fachbereich</th>
+<th>Deutscher Brauer und Mälzer (Geselle)</th>
+<th>Vietnamesischer Brauingenieur / Techniker</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Ausbildungsform</strong></td>
+<td>3 Jahre dual (Betrieb &amp; Berufsschule)</td>
+<td><strong>3 bis 4 Jahre Fachkolleg oder Bachelor Lebensmitteltechnologie</strong></td>
+</tr>
+<tr>
+<td><strong>Biochemie &amp; Mikrobiologie</strong></td>
+<td>Fundierte Grundlagen</td>
+<td><strong>Sehr tiefe theoretische Ausbildung in Enzymatik und Zellphysiologie</strong></td>
+</tr>
+<tr>
+<td><strong>Anlagentechnik (Krones/GEA)</strong></td>
+<td>Bedienung im jeweiligen Betrieb</td>
+<td><strong>Vertraut mit internationalen Großbrauanlagen und CIP-Systemen</strong></td>
+</tr>
+<tr>
+<td><strong>Traditionelle Brauverfahren</strong></td>
+<td>Dekoktions- &amp; Infusionsverfahren</td>
+<td><strong>Überwiegend Infusionsverfahren; Dekoktion bedarf kurzer Einweisung</strong></td>
+</tr>
+<tr>
+<td><strong>Lebensmittelrecht</strong></td>
+<td>LFGB, BierStG, TrinkwV</td>
+<td><strong>Codex Alimentarius, HACCP; Vertiefung in BierStG erforderlich</strong></td>
+</tr>
+<tr>
+<td><strong>Sprachzertifikat</strong></td>
+<td>Muttersprache Deutsch</td>
+<td><strong>B1 GER vor Einreise; lebensmitteltechnisches Fachdeutsch</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h2>3. Rekrutierungswege für Brauereien und Abfüllbetriebe</h2>
+<p>Mittelständische Privatbrauereien und industrielle Getränkehersteller nutzen zwei erprobte Verfahren:</p>
+<ol>
+<li><strong>Anerkennungspartnerschaft nach § 16d Abs. 3 AufenthG:</strong> Absolventen vietnamesischer Brautechnologie-Kollegs reisen direkt ein und übernehmen Verantwortung an den Abfülllinien, im Gärkeller oder im Sudhaus. Die formale Feststellung der Gleichwertigkeit durch die IHK FOSA erfolgt berufsbegleitend.</li>
+<li><strong>Duale Ausbildung zum Brauer und Mälzer (§ 16a AufenthG):</strong> Junge vietnamesische Schulabgänger erlernen das deutsche Brauhandwerk fundiert nach dem bundeseinheitlichen Ausbildungsrahmenplan und sichern mittel- bis langfristig die handwerkliche Nachfolge im Sudhaus.</li>
+</ol>
+<h2>4. Qualitätsstandards, IFS Food v8 und Rückverfolgbarkeit</h2>
+<p>Industriebrauereien und Lohnabfüller unterliegen strengen Zertifizierungsanforderungen des <strong>International Featured Standard (IFS Food v8)</strong>:</p>
+<ul>
+<li><strong>Lückenlose Chargenrückverfolgung:</strong> Jede verarbeitete Malzpartie, jede Hopfendosage und jeder Hefestamm muss chargengenau mit Verarbeitungszeitpunkt im ERP-System hinterlegt sein.</li>
+<li><strong>Allergene & Fremdkörpermanagement:</strong> Kontrolliertes Handling von glutenhaltigem Getreide und kontinuierliche Prüfung der Metalldetektoren und Flascheninspektoren (EBI).</li>
+<li><strong>Arbeitssicherheit nach DGUV Regel 110-004:</strong> Schutz vor CO2-Erstickungsgefahren in tiefgelegenen Gärkellern durch stationäre Gaswarnanlagen und persönliche CO2-Warngeräte.</li>
+</ul>
+<h2>5. Strukturierter Einarbeitungsplan für Brauereien</h2>
+<p>Ein dreimonatiger Einarbeitungsplan garantiert beste Bierqualität und hohe Betriebssicherheit:</p>
+<ol>
+<li><strong>Woche 1–2:</strong> Sicherheitsunterweisung zu CO2-Gefahren, Laugen/Säuren und Einweisung in die betriebsspezifische CIP-Reinigungsmatrix.</li>
+<li><strong>Woche 3–6:</strong> Einarbeitung an den Abfüll- und Filtrationsanlagen, Qualitätskontrollen im Betriebslabor (Trübungsmessung, Stammwürzespindelung).</li>
+<li><strong>Monat 2–3:</strong> Begleitung der Sudhausführung, eigenständige Steuerung der Gärprozesse und Rezepturabstimmung mit dem Ersten Braumeister.</li>
+</ol>
+<p>DMF Talents begleitet Braubetriebe bei der Auswahl qualifizierter Kandidaten, führt fachbezogene Vorab-Interviews und organisiert das gesamte Visumverfahren.</p>
+<p>Erfahren Sie mehr über unsere Dienstleistungen auf der Seite <a href="/services/skilled-workers">Für Arbeitgeber: Handwerk & Industrie</a> oder erfassen Sie Ihren <a href="/fuer-arbeitgeber/personalbedarf">Personalbedarf unverbindlich</a>.</p>', '/images/blog/dmf-klassenzimmer.jpg', 'published', 'Brauer & Mälzer aus Vietnam einstellen: IFS Food & BierStG', 'Brauer und Getränketechnologen aus Drittstaaten: Sudhaus, Gärführung, CIP-Reinigung nach HACCP, IFS Food v8 und rechtssichere Rekrutierung.', 'de')
+ON CONFLICT (slug) DO UPDATE SET
+  title = EXCLUDED.title,
+  excerpt = EXCLUDED.excerpt,
+  content = EXCLUDED.content,
+  cover_image = EXCLUDED.cover_image,
+  meta_title = EXCLUDED.meta_title,
+  meta_description = EXCLUDED.meta_description,
+  updated_at = NOW();
+
+INSERT INTO posts (title, slug, excerpt, content, cover_image, status, meta_title, meta_description, language)
+VALUES ('Schornsteinfeger aus Drittstaaten: SchfHwG & 1. BImSchV', 'schornsteinfeger-brandschutz-feuerungstechnik-drittstaaten-vietnam', 'Kehrarbeiten, messtechnische Emissionsprüfungen und Brandschutz: Wie Schornsteinfegerbetriebe motivierte Nachwuchskräfte aus Vietnam ausbilden.', '<p>Das Schornsteinfegerhandwerk nimmt im deutschen Handwerk eine absolute Sonderstellung ein: Als Mittler zwischen staatlichem Sicherheitsauftrag, Brandverhütung, Umweltschutz und moderner Gebäudeenergieberatung sorgen Schornsteinfegerbetriebe für die Betriebs- und Brandsicherheit von Millionen Heizungsanlagen. Doch die Nachwuchssorgen im Zunfthandwerk sind gravierend: Nach Angaben des <a href="https://www.schornsteinfeger.de">Bundesverbands des Schornsteinfegerhandwerks (ZIV)</a> bleiben bundesweit hunderte Kehrbezirke unbesetzt oder können mangels qualifizierter Gesellen nur unter immenser Überlastung betreut werden.</p>
+<p>Vietnam bietet für handwerkliche Betriebe exzellente Perspektiven: Junge vietnamesische Bewerber überzeugen durch Höflichkeit im Kundenkontakt, absolute Schwindelfreiheit, körperliche Agilität und ausgeprägtes technisches Verständnis.</p>
+<p><img src="/images/blog/schornsteinfeger-sicherheitspruefung-schema.svg" alt="Schornsteinfeger Handwerk Gesetzlicher Prüfzyklus nach SchfHwG" /></p>
+<p><em>Der vierstufige gesetzliche Prüfzyklus im Schornsteinfegerhandwerk: Hoheitliche Feuerstättenschau, 1. BImSchV Abgasmessung, KÜO-Kehrarbeiten und GEG-Energieberatung.</em></p>
+<h2>1. Gesetzlicher Handlungsrahmen: SchfHwG, 1. BImSchV und KÜO</h2>
+<p>Die Tätigkeiten des Schornsteinfegers teilen sich in zwei rechtliche Säulen:</p>
+<ul>
+<li><strong>Hoheitliche Tätigkeiten des bevollmächtigten Bezirksschornsteinfegers:</strong> Durchführung der Feuerstättenschau zweimal innerhalb des siebenjährigen Bestellungszeitraums (§ 14 Schornsteinfeger-Handwerksgesetz – SchfHwG) und Erlass des rechtsverbindlichen Feuerstättenbescheids.</li>
+<li><strong>Freie Schornsteinfegerarbeiten im Wettbewerb:</strong> Mess-, Kehr- und Überprüfungsarbeiten nach der <strong>Kehr- und Überprüfungsordnung (KÜO)</strong> sowie Emissionsmessungen nach der <strong>Ersten Verordnung zur Durchführung des Bundes-Immissionsschutzgesetzes (1. BImSchV)</strong>.</li>
+<li><strong>Kohlenmonoxid-Sicherheitsprüfungen:</strong> Messung des CO-Gehalts im unverdünnten Abgas raumluftabhängiger Feuerstätten zur Verhütung lebensgefährlicher CO-Vergiftungen im Wohnbereich.</li>
+<li><strong>Energieberatung nach dem Gebäudeenergiegesetz (GEG):</strong> Ausstellung von Energieausweisen und Beratung von Hauseigentümern beim Umstieg auf Wärmepumpen oder Hybridanlagen.</li>
+</ul>
+<h2>2. Anforderungsprofil und Eignung vietnamesischer Bewerber</h2>
+<p>Der Beruf verlangt eine Kombination aus handwerklicher Zähigkeit und serviceorientiertem Kundenumgang:</p>
+<ol>
+<li><strong>Schwindelfreiheit und Trittsicherheit:</strong> Sicheres Begehen von Dächern über Laufstege, Dachleitern und Dachausstiege unter Beachtung der Absturzsicherungsvorschriften nach <strong>DGUV Vorschrift 38</strong>.</li>
+<li><strong>Messtechnisches Verständnis:</strong> Bedienung moderner elektronischer Rauchgasanalysegeräte (z. B. Testo, Wöhler) zur Ermittlung von Abgasverlust, O2-, CO- und NOx-Werten.</li>
+<li><strong>Kommunikation und Höflichkeit:</strong> Als Handwerker, der private Wohnungen betritt, sind sauberes Auftreten, Respekt vor dem Kundeneigentum und verbindliche Umgangsformen unerlässlich.</li>
+</ol>
+<div class="table-responsive"><table>
+<thead><tr>
+<th>Tätigkeit</th>
+<th>Gesetzliche Vorgabe</th>
+<th>Vorbereitung durch DMF Talents</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>Abgasmessung</strong></td>
+<td>1. BImSchV Grenzwerte</td>
+<td>Mathematisch-physikalische Grundlagen im Sprachkurs</td>
+</tr>
+<tr>
+<td><strong>Kehrarbeiten</strong></td>
+<td>KÜO Reinigungsintervalle</td>
+<td>Praktische Unterweisung im Umgang mit Kehrgeräten &amp; Haspeln</td>
+</tr>
+<tr>
+<td><strong>Brandschutz</strong></td>
+<td>Muster-Feuerungsverordnung (MFeuV)</td>
+<td>Vermittlung von Brandschutz- und Abstandsregeln</td>
+</tr>
+<tr>
+<td><strong>Kundenkontakt</strong></td>
+<td>Deutsch B1/B2 GER</td>
+<td>Spezifisches Telefontraining und Höflichkeitsfloskeln vor Ort</td>
+</tr>
+</tbody>
+</table></div>
+<h2>3. Der Ausbildungsweg zum Schornsteinfegergesellen (§ 16a AufenthG)</h2>
+<p>Für Schornsteinfegermeisterbetriebe ist die <strong>3-jährige duale Ausbildung (§ 16a AufenthG)</strong> der rechtssicherste Weg zur dauerhaften Nachwuchssicherung:</p>
+<ul>
+<li><strong>Betriebliche Ausbildung:</strong> Der Auszubildende begleitet den Meister oder erfahrene Gesellen im Kehrbezirk und erlernt Kehrtechniken, Messverfahren und Kundenbetreuung direkt in der Praxis.</li>
+<li><strong>Überbetriebliche Ausbildung (ÜA):</strong> Intensive Blocklehrgänge in den Bildungszentren der Schornsteinfeger-Innungen (z. B. Lüftungsanlagenprüfung, Messtechnik, Festbrennstoffberatung).</li>
+<li><strong>Berufsschule:</strong> Fachunterricht in Verbrennungslehre, Strömungsmechanik, Umweltschutz und Baurecht.</li>
+</ul>
+<h2>4. Arbeitssicherheit und Persönliche Schutzausrüstung (PSA)</h2>
+<p>Die Arbeit auf Dächern und an staubigen Kaminen unterliegt strengen Vorschriften der Berufsgenossenschaft der Bauwirtschaft (BG BAU):</p>
+<ul>
+<li><strong>Absturzsicherung (PSAgA):</strong> Auffanggurte, Verbindungsmittel mit Falldämpfer und Anschlagpunkte nach DIN EN 363 bei Arbeiten auf ungesicherten Dachflächen.</li>
+<li><strong>Atemschutz bei Kaminreinigungen:</strong> Partikelfiltrierende Halbmasken (mindestens FFP2, bei Ruß- und Staubbelastung FFP3) nach DGUV Regel 112-190.</li>
+<li><strong>Rutschfeste Dachdeckerstiefel:</strong> Spezielles Schuhwerk mit profilloser Gummisohle zur optimalen Reibung auf Dachziegeln und Schiefer.</li>
+</ul>
+<h2>5. Einarbeitung und Integration im Kehrbezirk</h2>
+<p>Damit die Integration im Kehrbezirk reibungslos verläuft, empfiehlt sich ein strukturierter Start:</p>
+<ol>
+<li><strong>Woche 1–2:</strong> Sicherheitsunterweisung Dacharbeit, Kennenlernen des Betriebsfahrzeugs, Begleitung bei reinen Kehrarbeiten im Mehrfamilienhausbereich.</li>
+<li><strong>Monat 1–2:</strong> Selbstständige Durchführung von Kehrarbeiten an Schornsteinen von der Sohle aus, Erlernen der Dokumentation im elektronischen Kehrbuch.</li>
+<li><strong>Ab Monat 3:</strong> Einweisung in elektronische Messgeräte und Begleitung bei Abgasüberprüfungen nach 1. BImSchV.</li>
+</ol>
+<p>DMF Talents unterstützt Schornsteinfegermeisterbetriebe bei Ausbildungsverträgen mit der Handwerkskammer und organisiert den vollständigen Visumsprozess.</p>
+<p>Erfahren Sie mehr über unsere Betreuungsangebote auf der Seite <a href="/services/azubi">Für Arbeitgeber: Auszubildende</a> oder registrieren Sie Ihren <a href="/fuer-arbeitgeber/personalbedarf">Personalbedarf unverbindlich</a>.</p>', '/images/blog/dmf-klassenzimmer.jpg', 'published', 'Schornsteinfeger aus Drittstaaten: SchfHwG & 1. BImSchV', 'Schornsteinfeger Gesellen aus Vietnam: Feuerstättenschau nach SchfHwG, Abgasverlustmessung 1. BImSchV, Brandschutz und GEG-Energieberatung.', 'de')
+ON CONFLICT (slug) DO UPDATE SET
+  title = EXCLUDED.title,
+  excerpt = EXCLUDED.excerpt,
+  content = EXCLUDED.content,
+  cover_image = EXCLUDED.cover_image,
+  meta_title = EXCLUDED.meta_title,
+  meta_description = EXCLUDED.meta_description,
+  updated_at = NOW();
+
+INSERT INTO posts (title, slug, excerpt, content, cover_image, status, meta_title, meta_description, language)
+VALUES ('Fluggerätmechaniker aus Vietnam: EASA Part-66 & Part-145', 'fluggeraetmechaniker-luftfahrt-instandhaltung-easa-vietnam', 'Line Maintenance, Triebwerkswartung und Strukturreparaturen: Wie Luftfahrtunternehmen und MRO-Dienstleister Fluggerätmechaniker aus Vietnam einbinden.', '<p>Die zivile Luftfahrt verzeichnet nach der pandemiebedingten Krise historische Passagier- und Frachtrekorde. Gleichzeitig stellt die Instandhaltung, Reparatur und Überholung von Flugzeugen (Maintenance, Repair and Overhaul – MRO) Fluggesellschaften und Wartungsbetriebe vor dramatische Personalengpässe. Die europäische Flugsicherheitsbehörde EASA und das <a href="https://www.lba.de">Luftfahrt-Bundesamt (LBA)</a> verlangen für jede am Luftfahrzeug durchgeführte Arbeit höchste personelle Qualifikationen und lückenlose Zertifizierungen.</p>
+<p>Vietnam hat in den vergangenen fünfzehn Jahren massiv in die zivile Luftfahrtinfrastruktur investiert. Wartungsunternehmen wie VAECO (Vietnam Airlines Engineering Company) betreiben nach EASA Part-145 und FAA zertifizierte Großhangars in Hanoi und Ho-Chi-Minh-Stadt. Tausende vietnamesische Techniker arbeiten täglich an modernen Verkehrsflugzeugen der Muster Airbus A320/A350 und Boeing 787 Dreamliner.</p>
+<p><img src="/images/blog/easa-part66-lizenzierungsstufen.svg" alt="Fluggerätmechaniker EASA Part-66 Lizenzstruktur" /></p>
+<p><em>Die drei Lizenzstufen für Instandhaltungspersonal nach EASA Part-66: Kategorie A (Linienwartung), Kategorie B1/B2 (Prüfpersonal Mechanik/Avionik) und Kategorie C (Base Maintenance Freigabe).</em></p>
+<h2>1. Das regulatorische System: EASA Part-66 und Part-145</h2>
+<p>In kaum einer Industrie ist die personelle Freigabeberechtigung so strikt europarechtlich normiert wie in der Luftfahrt nach der <strong>Verordnung (EU) Nr. 1321/2014</strong>:</p>
+<ul>
+<li><strong>EASA Part-145 Wartungsbetrieb:</strong> Genehmigter Instandhaltungsbetrieb, der für die Qualität und Durchführung aller Arbeiten haftet.</li>
+<li><strong>Kategorie A Lizenz:</strong> Berechtigt zur Freigabe kleinerer, planmäßiger Linienwartungsarbeiten (Line Maintenance) und einfacher Fehlerbehebungen vor dem Weiterflug.</li>
+<li><strong>Kategorie B1 (Mechanik):</strong> Umfasst Flugzeugstruktur, Triebwerke (Turbinen), Hydraulik, Pneumatik und mechanische Systeme. Berechtigt zur Ausstellung des <strong>Certificate of Release to Service (CRS)</strong>.</li>
+<li><strong>Kategorie B2 (Avionik):</strong> Spezialisiert auf elektrische Bordsysteme, Radaranlagen, Autopiloten, Navigations- und Funksysteme.</li>
+<li><strong>Kategorie C (Base Maintenance):</strong> Freigabeberechtigung für das gesamte Luftfahrzeug nach Abschluss schwerer Wartungsereignisse (C-Check, D-Check).</li>
+</ul>
+<h2>2. Zuverlässigkeitsüberprüfung nach § 7 LuftSiG: Zwingende Voraussetzung</h2>
+<p>Bevor ein ausländischer Mechaniker den Sicherheitsbereich eines deutschen Verkehrsflughafens betreten darf, muss er zwingend die <strong>Zuverlässigkeitsüberprüfung (ZÜP nach § 7 des Luftsicherheitsgesetzes – LuftSiG)</strong> erfolgreich durchlaufen:</p>
+<ol>
+<li><strong>Behördliche Überprüfung:</strong> Die zuständige Luftsicherheitsbehörde des Bundeslandes holt Auskünfte beim Bundeskriminalamt (BKA), beim Verfassungsschutz, im Bundeszentralregister und beim Zollkriminalamt ein.</li>
+<li><strong>Führungszeugnis aus dem Heimatland:</strong> Vietnamesische Fachkräfte müssen ein polizeiliches Führungszeugnis (Lý lịch tư pháp số 2) mit konsularischer Überbeglaubigung und deutscher Fachübersetzung vorlegen.</li>
+<li><strong>Gültigkeitsdauer:</strong> Die ZÜP wird in der Regel für die Dauer von fünf Jahren erteilt und berechtigt zur Beantragung des Flughafen-Sicherheitsausweises.</li>
+</ol>
+<div class="table-responsive"><table>
+<thead><tr>
+<th>Kriterium</th>
+<th>Anforderung an den Bewerber</th>
+<th>Nachweis / Behörde</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>EASA Lizenz</strong></td>
+<td>Part-66 Modulprüfungen oder Part-147 Diplom</td>
+<td>Luftfahrt-Bundesamt (LBA) / EASA</td>
+</tr>
+<tr>
+<td><strong>Flughafenzugang</strong></td>
+<td>Zuverlässigkeitsüberprüfung nach § 7 LuftSiG</td>
+<td>Regionale Luftsicherheitsbehörde</td>
+</tr>
+<tr>
+<td><strong>Fachsprache</strong></td>
+<td>Technisches Englisch nach ICAO Level 4</td>
+<td>Internationales Sprachzertifikat</td>
+</tr>
+<tr>
+<td><strong>Deutschkenntnisse</strong></td>
+<td>Deutsch B1 für betriebliche Dokumentation</td>
+<td>Goethe / telc Sprachzertifikat</td>
+</tr>
+</tbody>
+</table></div>
+<h2>3. Typische Einsatzbereiche im MRO-Betrieb</h2>
+<p>Vietnamesische Fluggerätmechaniker können sofort in spezialisierten Abteilungen eingesetzt werden:</p>
+<ul>
+<li><strong>Triebwerksinstandhaltung:</strong> Demontage, Schaufelinspektion mit Boreskopen, Austausch von Nebenaggregaten und Testläufe von CFM LEAP- oder Trent-Triebwerken.</li>
+<li><strong>Strukturreparaturen (Sheet Metal & Composite):</strong> Reparatur von Verbundwerkstoffen (CFK/GFK) und Nieten von Rumpfpaneelen nach Structural Repair Manual (SRM).</li>
+<li><strong>Fahrwerksüberholung (Landing Gear):</strong> Austausch von Bremsaggregaten, Stoßdämpfern und Dichtungsprüfungen unter Druckbelastung.</li>
+<li><strong>Kabinenumrüstung (Cabin Retrofit):</strong> Installation moderner Sitze, Bordküchen (Galleys), Toilettensysteme und In-Flight-Entertainment (IFE).</li>
+</ul>
+<h2>4. Rechtliche Zuwanderung nach § 18a und § 19c BeschV</h2>
+<p>Fluggerätmechaniker mit vietnamesischem Fachdiplom und mehrjähriger MRO-Praxis erfüllen die Kriterien des novellierten Fachkräfteeinwanderungsgesetzes:</p>
+<ul>
+<li><strong>Visum nach § 18a AufenthG:</strong> Bei behördlich festgestellter Gleichwertigkeit mit dem deutschen Ausbildungsberuf des Fluggerätmechanikers.</li>
+<li><strong>Visum nach § 19c Abs. 1 AufenthG i. V. m. § 6 BeschV:</strong> Bei langjähriger Berufserfahrung in EASA-zertifizierten Betrieben in Vietnam.</li>
+<li><strong>Anerkennungspartnerschaft (§ 16d Abs. 3 AufenthG):</strong> Direkte Arbeitsaufnahme im Hangar unter Anleitung, während verbleibende EASA Part-66 Modulprüfungen beim LBA absolviert werden.</li>
+</ul>
+<h2>5. Leitfaden für das betriebliche Onboarding</h2>
+<p>Luftfahrtbetriebe sichern eine zügige Einbindung durch ein dreistufiges Sicherheits- und Qualitätsprogramm:</p>
+<ol>
+<li><strong>Monat 1:</strong> Einweisung in betriebliche Quality-Management-Systeme (MOE – Maintenance Organisation Exposition), Human-Factors-Schulung nach EASA-Vorgaben und ZÜP-Ausweiserteilung.</li>
+<li><strong>Monat 2:</strong> Zuweisung zu einem lizenzierten B1/B2-Prüfer als Mentor; Dokumentation von Wartungstätigkeiten im persönlichen Logbuch (CAP 741).</li>
+<li><strong>Monat 3:</strong> Selbstständige Durchführung standardisierter Wartungsarbeiten mit Zeichnungsberechtigung unter Aufsicht.</li>
+</ol>
+<p>DMF Talents begleitet MRO-Unternehmen von der Zeugnisprüfung über ZÜP-Unterlagen bis zur behördlichen Arbeitsmarktzulassung.</p>
+<p>Informieren Sie sich über unsere Angebote unter <a href="/services/skilled-workers">Für Arbeitgeber: Handwerk & Industrie</a> oder erfassen Sie Ihren <a href="/fuer-arbeitgeber/personalbedarf">Personalbedarf unverbindlich</a>.</p>', '/images/blog/dmf-klassenzimmer.jpg', 'published', 'Fluggerätmechaniker aus Vietnam: EASA Part-66 & Part-145', 'Luftfahrt Instandhaltung (MRO): Fluggerätmechaniker aus Drittstaaten nach EASA Part-66, Zuverlässigkeitsüberprüfung (§ 7 LuftSiG) und LBA-Zulassung.', 'de')
 ON CONFLICT (slug) DO UPDATE SET
   title = EXCLUDED.title,
   excerpt = EXCLUDED.excerpt,

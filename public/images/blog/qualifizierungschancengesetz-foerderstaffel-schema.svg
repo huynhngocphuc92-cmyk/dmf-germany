@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <rect width="720" height="540" fill="#F8FAFC"/>
+  <rect x="30" y="30" width="660" height="70" rx="12" fill="#003366"/>
+  <text x="360" y="62" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="20" font-weight="700" text-anchor="middle">Betriebliche Förderung: § 82 SGB III</text>
+  <text x="360" y="86" fill="#93C5FD" font-family="system-ui, sans-serif" font-size="13" text-anchor="middle">Zuschüsse zu Lehrgangs- und Lohnkosten nach Betriebsgröße (Qualifizierungschancengesetz)</text>
+
+  <!-- 3 Tier Cards -->
+  <g transform="translate(50, 130)">
+    <rect width="195" height="330" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <rect width="195" height="40" rx="8" fill="#FF6600"/>
+    <text x="97" y="25" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="700" text-anchor="middle">Kleinstbetriebe</text>
+    <text x="97" y="65" fill="#003366" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">&lt; 10 Beschäftigte</text>
+    <line x1="20" y1="80" x2="175" y2="80" stroke="#E2E8F0"/>
+    <text x="20" y="110" fill="#1E293B" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Lehrgangskosten:</text>
+    <text x="20" y="135" fill="#FF6600" font-family="system-ui, sans-serif" font-size="22" font-weight="800">bis zu 100 %</text>
+    <text x="20" y="180" fill="#1E293B" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Arbeitsentgeltzuschuss:</text>
+    <text x="20" y="205" fill="#003366" font-family="system-ui, sans-serif" font-size="22" font-weight="800">bis zu 75 %</text>
+    <text x="20" y="250" fill="#475569" font-family="system-ui, sans-serif" font-size="11">Maximale Entlastung für Handwerks- und Praxisinhaber bei berufsbezogenen Deutschkursen.</text>
+  </g>
+
+  <g transform="translate(262, 130)">
+    <rect width="195" height="330" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <rect width="195" height="40" rx="8" fill="#003366"/>
+    <text x="97" y="25" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="700" text-anchor="middle">Mittelstand</text>
+    <text x="97" y="65" fill="#003366" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">10 – 249 Beschäftigte</text>
+    <line x1="20" y1="80" x2="175" y2="80" stroke="#E2E8F0"/>
+    <text x="20" y="110" fill="#1E293B" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Lehrgangskosten:</text>
+    <text x="20" y="135" fill="#003366" font-family="system-ui, sans-serif" font-size="22" font-weight="800">bis zu 50 %</text>
+    <text x="20" y="180" fill="#1E293B" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Arbeitsentgeltzuschuss:</text>
+    <text x="20" y="205" fill="#003366" font-family="system-ui, sans-serif" font-size="22" font-weight="800">bis zu 50 %</text>
+    <text x="20" y="250" fill="#475569" font-family="system-ui, sans-serif" font-size="11">Attraktive Kofinanzierung für Industrie- und Pflegebetriebe mit Weiterbildungsvereinbarung.</text>
+  </g>
+
+  <g transform="translate(475, 130)">
+    <rect width="195" height="330" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <rect width="195" height="40" rx="8" fill="#003366"/>
+    <text x="97" y="25" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="700" text-anchor="middle">Großunternehmen</text>
+    <text x="97" y="65" fill="#003366" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">ab 250 Beschäftigte</text>
+    <line x1="20" y1="80" x2="175" y2="80" stroke="#E2E8F0"/>
+    <text x="20" y="110" fill="#1E293B" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Lehrgangskosten:</text>
+    <text x="20" y="135" fill="#003366" font-family="system-ui, sans-serif" font-size="22" font-weight="800">15 % – 25 %</text>
+    <text x="20" y="180" fill="#1E293B" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Arbeitsentgeltzuschuss:</text>
+    <text x="20" y="205" fill="#003366" font-family="system-ui, sans-serif" font-size="22" font-weight="800">bis zu 25 %</text>
+    <text x="20" y="250" fill="#475569" font-family="system-ui, sans-serif" font-size="11">Förderung für großflächige Transformations- und Qualifizierungsprogramme im Konzern.</text>
+  </g>
+
+  <rect x="50" y="485" width="620" height="35" rx="6" fill="#003366" opacity="0.08"/>
+  <text x="360" y="507" fill="#003366" font-family="system-ui, sans-serif" font-size="12" font-weight="600" text-anchor="middle">Voraussetzung: AZAV-zertifizierte Maßnahme mit mehr als 120 Unterrichtsstunden</text>
+</svg>

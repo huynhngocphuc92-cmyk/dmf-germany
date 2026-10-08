@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <rect width="720" height="540" fill="#F8FAFC"/>
+  <rect x="30" y="30" width="660" height="70" rx="12" fill="#003366"/>
+  <text x="360" y="62" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="20" font-weight="700" text-anchor="middle">Medizinische Technologen für Laboratoriumsanalytik (MTL)</text>
+  <text x="360" y="86" fill="#93C5FD" font-family="system-ui, sans-serif" font-size="13" text-anchor="middle">Diagnostischer Workflow im medizinischen Labor nach MTL-Gesetz und Rili-BÄK</text>
+
+  <!-- 4 Columns Horizontal Flow -->
+  <g transform="translate(50, 130)">
+    <rect width="140" height="330" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <rect width="140" height="36" rx="8" fill="#003366"/>
+    <text x="70" y="23" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">1. Präanalytik</text>
+    <text x="12" y="60" fill="#1E293B" font-family="system-ui, sans-serif" font-size="11" font-weight="600">• Probenannahme</text>
+    <text x="12" y="80" fill="#475569" font-family="system-ui, sans-serif" font-size="10">• Barcode-Scan (LIS)</text>
+    <text x="12" y="100" fill="#475569" font-family="system-ui, sans-serif" font-size="10">• Hämolyse-Prüfung</text>
+    <text x="12" y="120" fill="#475569" font-family="system-ui, sans-serif" font-size="10">• Zentrifugation</text>
+    <text x="12" y="140" fill="#475569" font-family="system-ui, sans-serif" font-size="10">• Aliquotierung</text>
+  </g>
+
+  <g transform="translate(210, 130)">
+    <rect width="140" height="330" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <rect width="140" height="36" rx="8" fill="#FF6600"/>
+    <text x="70" y="23" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">2. Hämatologie</text>
+    <text x="12" y="60" fill="#1E293B" font-family="system-ui, sans-serif" font-size="11" font-weight="600">• Großes Blutbild</text>
+    <text x="12" y="80" fill="#475569" font-family="system-ui, sans-serif" font-size="10">• Durchflusszytometrie</text>
+    <text x="12" y="100" fill="#475569" font-family="system-ui, sans-serif" font-size="10">• Manuelle Differenzierung</text>
+    <text x="12" y="120" fill="#475569" font-family="system-ui, sans-serif" font-size="10">• Blutausstriche</text>
+    <text x="12" y="140" fill="#475569" font-family="system-ui, sans-serif" font-size="10">• Gerinnungsdiagnostik</text>
+  </g>
+
+  <g transform="translate(370, 130)">
+    <rect width="140" height="330" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <rect width="140" height="36" rx="8" fill="#003366"/>
+    <text x="70" y="23" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">3. Klin. Chemie / PCR</text>
+    <text x="12" y="60" fill="#1E293B" font-family="system-ui, sans-serif" font-size="11" font-weight="600">• Elektrolyte, Enzyme</text>
+    <text x="12" y="80" fill="#475569" font-family="system-ui, sans-serif" font-size="10">• Immunoassays (ELISA)</text>
+    <text x="12" y="100" fill="#475569" font-family="system-ui, sans-serif" font-size="10">• Real-Time RT-PCR</text>
+    <text x="12" y="120" fill="#475569" font-family="system-ui, sans-serif" font-size="10">• Erregernachweis</text>
+    <text x="12" y="140" fill="#475569" font-family="system-ui, sans-serif" font-size="10">• Resistenzbestimmung</text>
+  </g>
+
+  <g transform="translate(530, 130)">
+    <rect width="140" height="330" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <rect width="140" height="36" rx="8" fill="#003366"/>
+    <text x="70" y="23" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">4. Freigabe &amp; QC</text>
+    <text x="12" y="60" fill="#1E293B" font-family="system-ui, sans-serif" font-size="11" font-weight="600">• Interne Qualitätskontrolle</text>
+    <text x="12" y="80" fill="#475569" font-family="system-ui, sans-serif" font-size="10">• Rili-BÄK Tabellen</text>
+    <text x="12" y="100" fill="#475569" font-family="system-ui, sans-serif" font-size="10">• Plausibilitätsprüfung</text>
+    <text x="12" y="120" fill="#475569" font-family="system-ui, sans-serif" font-size="10">• Technische Validation</text>
+    <text x="12" y="140" fill="#475569" font-family="system-ui, sans-serif" font-size="10">• Laborarzt-Befundung</text>
+  </g>
+
+  <rect x="50" y="485" width="620" height="35" rx="6" fill="#003366" opacity="0.08"/>
+  <text x="360" y="507" fill="#003366" font-family="system-ui, sans-serif" font-size="12" font-weight="600" text-anchor="middle">Rechtliche Grundlage: Gesetz über die Berufe in der medizinischen Technologie (MTLG 2023)</text>
+</svg>

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <rect width="720" height="540" fill="#F8FAFC"/>
+  <rect x="30" y="30" width="660" height="70" rx="12" fill="#003366"/>
+  <text x="360" y="62" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="20" font-weight="700" text-anchor="middle">Schornsteinfeger-Handwerk: Gesetzlicher Prüfzyklus</text>
+  <text x="360" y="86" fill="#93C5FD" font-family="system-ui, sans-serif" font-size="13" text-anchor="middle">Aufgaben nach SchfHwG, 1. BImSchV und Kehr- und Überprüfungsordnung (KÜO)</text>
+
+  <!-- 4 Step Flow -->
+  <g transform="translate(50, 130)">
+    <rect width="620" height="75" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <rect width="8" height="75" rx="4" fill="#FF6600"/>
+    <text x="35" y="32" fill="#1E293B" font-family="system-ui, sans-serif" font-size="15" font-weight="700">1. Feuerstättenschau (Hoheitliche Aufgabe nach § 14 SchfHwG)</text>
+    <text x="35" y="55" fill="#475569" font-family="system-ui, sans-serif" font-size="12">Durchführung zweimal in 7 Jahren durch den bevollmächtigten Bezirksschornsteinfeger.</text>
+  </g>
+
+  <g transform="translate(50, 220)">
+    <rect width="620" height="75" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <rect width="8" height="75" rx="4" fill="#003366"/>
+    <text x="35" y="32" fill="#1E293B" font-family="system-ui, sans-serif" font-size="15" font-weight="700">2. Emissions- &amp; Abgasmessung nach 1. BImSchV</text>
+    <text x="35" y="55" fill="#475569" font-family="system-ui, sans-serif" font-size="12">Prüfung von Abgasverlust, Rußzahl, CO-Gehalt und Staubemissionen bei Öl-, Gas- und Feststoffkesseln.</text>
+  </g>
+
+  <g transform="translate(50, 310)">
+    <rect width="620" height="75" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <rect width="8" height="75" rx="4" fill="#003366"/>
+    <text x="35" y="32" fill="#1E293B" font-family="system-ui, sans-serif" font-size="15" font-weight="700">3. Kehrung &amp; Überprüfung der Abgasanlage (KÜO)</text>
+    <text x="35" y="55" fill="#475569" font-family="system-ui, sans-serif" font-size="12">Reinigung von Schornsteinen, Verbindungsstücken und Lüftungsanlagen zur Brandverhütung.</text>
+  </g>
+
+  <g transform="translate(50, 400)">
+    <rect width="620" height="75" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <rect width="8" height="75" rx="4" fill="#003366"/>
+    <text x="35" y="32" fill="#1E293B" font-family="system-ui, sans-serif" font-size="15" font-weight="700">4. Energieberatung &amp; Gebäudeenergiegesetz (GEG)</text>
+    <text x="35" y="55" fill="#475569" font-family="system-ui, sans-serif" font-size="12">Beratung zu Wärmepumpen, Hybridheizungen und Ausstellung des elektronischen Feuerstättenbescheids.</text>
+  </g>
+
+  <rect x="50" y="490" width="620" height="30" rx="6" fill="#003366" opacity="0.08"/>
+  <text x="360" y="510" fill="#003366" font-family="system-ui, sans-serif" font-size="12" font-weight="600" text-anchor="middle">Zulassungspflichtiges Handwerk: Handwerksordnung Anlage A Nr. 11</text>
+</svg>

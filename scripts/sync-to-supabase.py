@@ -117,6 +117,18 @@ POST_COVER_MAPPING = {
     "arbeitsunfall-berufsgenossenschaft-dguv-drittstaaten-sgb-vii": "/images/blog/dmf-arbeitsunfall-berufsgenossenschaft-schutz.jpg",
     "rueckzahlungsklauseln-vermittlungskosten-arbeitsvertrag-bag-rechtsprechung": "/images/blog/dmf-arbeitsvertrag-rueckzahlung-klausel-pruefung.jpg",
     "daueraufenthalt-eu-9a-aufenthg-niederlassungserlaubnis-vergleich": "/images/blog/dmf-daueraufenthalt-eu-niederlassung-pass.jpg",
+    "feinwerkmechaniker-werkzeugmechaniker-formenbau-vietnam": "/images/blog/dmf-werkzeugmechaniker-feinwerkmechanik-formenbau.jpg",
+    "brauer-maelzer-getraenketechnologie-drittstaaten-vietnam": "/images/blog/dmf-brauer-maelzer-getraenketechnik-brauerei.jpg",
+    "schornsteinfeger-brandschutz-feuerungstechnik-drittstaaten-vietnam": "/images/blog/dmf-schornsteinfeger-brandschutz-feuerungsanlage.jpg",
+    "fluggeraetmechaniker-luftfahrt-instandhaltung-easa-vietnam": "/images/blog/dmf-fluggeraetmechaniker-luftfahrt-wartung-hangar.jpg",
+    "medizinische-technologen-labor-mtla-mtl-vietnam-anerkennung": "/images/blog/dmf-mtla-medizinische-technologen-labor-analyse.jpg",
+    "medizinische-technologen-radiologie-mtra-mtr-vietnam-anerkennung": "/images/blog/dmf-mtra-radiologie-computertomographie-klinik.jpg",
+    "augenoptiker-optometrie-fachgeschaefte-drittstaaten-vietnam": "/images/blog/dmf-augenoptiker-optometrie-brillen-refraktion.jpg",
+    "betriebsrat-mitbestimmung-99-betrvg-einstellung-drittstaaten": "/images/blog/dmf-betriebsrat-mitbestimmung-99-betrvg-personal.jpg",
+    "rentenbeitraege-erstattung-anspruch-210-sgb-vi-vietnam-drittstaaten": "/images/blog/dmf-rentenbeitraege-drv-erstattung-antrag.jpg",
+    "zab-zeugnisbewertung-statement-of-comparability-anabin-leitfaden": "/images/blog/dmf-zab-zeugnisbewertung-statement-comparability.jpg",
+    "sprachfoerderung-betrieb-qualifizierungschancengesetz-82-sgb-iii": "/images/blog/dmf-sprachfoerderung-qualifizierungschancengesetz-schulung.jpg",
+    "statusfeststellungsverfahren-7a-sgb-iv-scheinselbststaendigkeit-drittstaaten": "/images/blog/dmf-statusfeststellung-scheinselbststaendigkeit-clearing.jpg",
 }
 
 def sync_posts():

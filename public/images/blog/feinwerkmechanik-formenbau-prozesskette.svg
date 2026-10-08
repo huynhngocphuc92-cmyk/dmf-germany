@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <rect width="720" height="540" fill="#F8FAFC"/>
+  <rect x="30" y="30" width="660" height="70" rx="12" fill="#003366"/>
+  <text x="360" y="62" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" text-anchor="middle">Präzisionswerkzeugbau: Prozesskette im Formenbau</text>
+  <text x="360" y="86" fill="#93C5FD" font-family="system-ui, -apple-system, sans-serif" font-size="13" text-anchor="middle">Vom CAD-Datensatz bis zur mikrometergenauen Freigabe nach DIN ISO 1101</text>
+
+  <!-- Step 1 -->
+  <g transform="translate(50, 130)">
+    <rect width="620" height="75" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <rect width="8" height="75" rx="4" fill="#FF6600"/>
+    <circle cx="45" cy="37" r="18" fill="#FF6600"/>
+    <text x="45" y="43" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="700" text-anchor="middle">1</text>
+    <text x="80" y="32" fill="#1E293B" font-family="system-ui, sans-serif" font-size="15" font-weight="700">3D-CAD/CAM Konstruktion &amp; Elektrodenableitung</text>
+    <text x="80" y="55" fill="#475569" font-family="system-ui, sans-serif" font-size="12">Import von STEP/Parasolid, Werkzeugteilung, Ableitung von Kupferelektroden</text>
+  </g>
+
+  <!-- Step 2 -->
+  <g transform="translate(50, 220)">
+    <rect width="620" height="75" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <rect width="8" height="75" rx="4" fill="#003366"/>
+    <circle cx="45" cy="37" r="18" fill="#003366"/>
+    <text x="45" y="43" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="700" text-anchor="middle">2</text>
+    <text x="80" y="32" fill="#1E293B" font-family="system-ui, sans-serif" font-size="15" font-weight="700">5-Achs-HSC-Fräsen &amp; Erodiertechnik (EDM)</text>
+    <text x="80" y="55" fill="#475569" font-family="system-ui, sans-serif" font-size="12">Hartfräsen gehärteter Formeinsätze, Drahterodieren (WEDM) und Senkerodieren</text>
+  </g>
+
+  <!-- Step 3 -->
+  <g transform="translate(50, 310)">
+    <rect width="620" height="75" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <rect width="8" height="75" rx="4" fill="#003366"/>
+    <circle cx="45" cy="37" r="18" fill="#003366"/>
+    <text x="45" y="43" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="700" text-anchor="middle">3</text>
+    <text x="80" y="32" fill="#1E293B" font-family="system-ui, sans-serif" font-size="15" font-weight="700">Manuelle Tuschierung &amp; Hochglanzpolitur</text>
+    <text x="80" y="55" fill="#475569" font-family="system-ui, sans-serif" font-size="12">Passungstest auf Tuschierpressen, Diamantpolitur für optische Oberflächen (Ra &lt; 0,05 µm)</text>
+  </g>
+
+  <!-- Step 4 -->
+  <g transform="translate(50, 400)">
+    <rect width="620" height="75" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <rect width="8" height="75" rx="4" fill="#003366"/>
+    <circle cx="45" cy="37" r="18" fill="#003366"/>
+    <text x="45" y="43" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="700" text-anchor="middle">4</text>
+    <text x="80" y="32" fill="#1E293B" font-family="system-ui, sans-serif" font-size="15" font-weight="700">3D-Koordinatenmesstechnik &amp; Erstbemusterung (EMPB)</text>
+    <text x="80" y="55" fill="#475569" font-family="system-ui, sans-serif" font-size="12">Prüfung von Form- und Lagetoleranzen nach DIN ISO 1101, FAI-Prüfbericht</text>
+  </g>
+
+  <rect x="50" y="490" width="620" height="30" rx="6" fill="#003366" opacity="0.08"/>
+  <text x="360" y="510" fill="#003366" font-family="system-ui, sans-serif" font-size="12" font-weight="600" text-anchor="middle">Qualifikationsstandard: Handwerksordnung Anlage A Nr. 7 (Feinwerkmechaniker)</text>
+</svg>
