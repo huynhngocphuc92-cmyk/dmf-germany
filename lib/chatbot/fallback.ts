@@ -18,8 +18,9 @@ export function getFallbackChatResponse(
     lower.includes("azubi") ||
     lower.includes("du học nghề") ||
     lower.includes("học nghề") ||
-    lower.includes("vocational") ||
-    lower.includes("apprenticeship")
+    lower.includes("vocation") ||
+    lower.includes("apprentice") ||
+    lower.includes("trainee")
   ) {
     if (language === "vi") {
       return `DMF Talents cung cấp chương trình **Du học nghề tại Đức** toàn diện:
@@ -60,8 +61,13 @@ So erreichen Sie unsere Berater:
     lower.includes("fachkraft") ||
     lower.includes("fachkräfte") ||
     lower.includes("pflege") ||
-    lower.includes("nurse") ||
+    lower.includes("nurs") ||
     lower.includes("skilled") ||
+    lower.includes("worker") ||
+    lower.includes("hire") ||
+    lower.includes("hiring") ||
+    lower.includes("staff") ||
+    lower.includes("recruit") ||
     lower.includes("lao động") ||
     lower.includes("tay nghề") ||
     lower.includes("mitarbeiter") ||
@@ -104,11 +110,11 @@ Kontaktieren Sie unser Beratungsteam für ein konkretes Kandidatenprofil:
   // 3. Studium / University
   if (
     lower.includes("studium") ||
-    lower.includes("universität") ||
-    lower.includes("university") ||
+    lower.includes("universit") ||
     lower.includes("đại học") ||
     lower.includes("bachelor") ||
-    lower.includes("master")
+    lower.includes("master") ||
+    lower.includes("student")
   ) {
     if (language === "vi") {
       return `DMF Talents đồng hành cùng sinh viên Việt Nam trong **Chương trình Du học Đại học tại Đức**:
@@ -145,7 +151,8 @@ Sprechen Sie mit unserem Bildungsteam:
     lower.includes("termin") ||
     lower.includes("beratung") ||
     lower.includes("buch") ||
-    lower.includes("booking") ||
+    lower.includes("book") ||
+    lower.includes("consult") ||
     lower.includes("appointment") ||
     lower.includes("lịch") ||
     lower.includes("liên hệ") ||
