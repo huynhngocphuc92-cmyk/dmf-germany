@@ -71,4 +71,4 @@ Für Arbeitgeber stehen zwei hocheffiziente Einwanderungswege zur Verfügung:
 1. **Klassische Fachkraftanerkennung (§ 18a AufenthG):** Mit Vollanerkennung oder Defizitausgleich über die zuständige IHK FOSA.
 2. **Rekrutierung über Berufserfahrung (§ 19c Abs. 2 AufenthG i. V. m. § 6 BeschV):** Wer mindestens zwei Jahre nachweisbare Berufspraxis im Maschinenbau mitbringt, kann bei Einhaltung der Gehaltsschwelle ganz ohne langwierige deutsche Anerkennungsprüfung einreisen.
 
-DMF Talents prüft vorab die fachliche Eignung vietnamesischer Mechaniker durch praktische Werkstatttests an der Akademie. [Registrieren Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf), um maßgeschneiderte Bewerberdossiers zu erhalten.
+DMF Talents prüft vorab die fachliche Eignung vietnamesischer Mechaniker durch praktische Werkstatttests an der Akademie. [Registrieren Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf), um fachlich geprüfte Bewerberdossiers zu erhalten.

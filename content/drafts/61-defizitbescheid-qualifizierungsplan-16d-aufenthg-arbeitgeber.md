@@ -13,7 +13,7 @@ status: "published"
 
 Wenn die zuständige Anerkennungsstelle (IHK FOSA, Handwerkskammer oder Landesprüfungsamt) einen ausländischen Berufsabschluss prüft, lautet das Ergebnis bei Fachkräften aus Nicht-EU-Staaten wie Vietnam nur selten sofort „volle Gleichwertigkeit“. In den allermeisten Fällen erlassen die Kammern einen sogenannten **Feststellungsbescheid mit wesentlichen Unterschieden – im Fachjargon kurz „Defizitbescheid“ genannt**.
 
-Viele Geschäftsführer und Personalverantwortliche missverstehen dieses Dokument als bürokratische Absage. Das Gegenteil ist der Fall: **Der Defizitbescheid ist das rechtliche Fundament für das Visum zur Anerkennungspartnerschaft und Nachqualifizierung nach § 16d Abs. 1 Aufenthaltsgesetz (AufenthG).** Wer die im Bescheid definierten Lücken durch einen maßgeschneiderten betrieblichen Weiterbildungsplan schließt, gewinnt eine hochqualifizierte Fachkraft, die ab Tag eins produktiv im Unternehmen mitarbeitet.
+Viele Geschäftsführer und Personalverantwortliche missverstehen dieses Dokument als bürokratische Absage. Das Gegenteil ist der Fall: **Der Defizitbescheid ist das rechtliche Fundament für das Visum zur Anerkennungspartnerschaft und Nachqualifizierung nach § 16d Abs. 1 Aufenthaltsgesetz (AufenthG).** Wer die im Bescheid definierten Lücken durch einen gezielten betrieblichen Weiterbildungsplan schließt, gewinnt eine hochqualifizierte Fachkraft, die ab Tag eins produktiv im Unternehmen mitarbeitet.
 
 ![Defizitbescheid Qualifizierungsplan Matrix](/images/blog/defizitbescheid-qualifizierungsplan-matrix.svg)
 
@@ -26,7 +26,7 @@ Der Bescheid gliedert sich in zwei Abschnitte:
 - **Vorhandene Berufsqualifikationen:** Fachgebiete, in denen die ausländische Ausbildung als voll gleichwertig eingestuft wurde (z. B. handwerkliche Grundfertigkeiten, Drehen, Fräsen, Basiselektrik).
 - **Wesentliche Unterschiede (Defizite):** Spezifische theoretische oder praktische Module, die in der vietnamesischen Ausbildung nicht in vergleichbarem Umfang vermittelt wurden (z. B. deutsche VDE-Sicherheitsnormen, Steuerungstechnik SPS, energetische Sanierung nach GEG oder Dokumentation im QM-System).
 
-## 2. Der betriebliche Weiterbildungsplan: Herzstück des Visumsantrags
+## 2. Der betriebliche Weiterbildungsplan: Zentrales Dokument des Visumsantrags
 
 Um das Visum nach **§ 16d Abs. 1 AufenthG** bei der Deutschen Botschaft zu erhalten, muss der Arbeitgeber verbindlich darlegen, wie die im Defizitbescheid festgestellten Lücken innerhalb von **maximal 24 bis 36 Monaten** geschlossen werden.
 

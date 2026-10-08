@@ -77,4 +77,4 @@ Zudem verpflichtet **§ 12 AGG (Allgemeines Gleichbehandlungsgesetz)** Arbeitgeb
 
 Kultursensible Führung verwandelt neue Mitarbeitende rasch in loyale, eigenverantwortliche Leistungsträger. Einen Überblick über unsere Vorbereitungs- und Onboarding-Konzepte finden Sie bei [DMF Talents zur Fachkräftevermittlung](/services/skilled-workers) sowie im [Leitfaden zum 90-Tage-Onboarding](/blog/onboarding-internationale-fachkraefte-90-tage).
 
-Möchten Sie Ihr Führungsteam gezielt auf die Ankunft internationaler Fachkräfte vorbereiten? [Teilen Sie uns Ihren Personalbedarf mit](/fuer-arbeitgeber/personalbedarf), um maßgeschneiderte Integrationskonzepte für Ihren Betrieb zu besprechen.
+Möchten Sie Ihr Führungsteam gezielt auf die Ankunft internationaler Fachkräfte vorbereiten? [Teilen Sie uns Ihren Personalbedarf mit](/fuer-arbeitgeber/personalbedarf), um passgenaue Integrationskonzepte für Ihren Betrieb zu besprechen.

@@ -56,7 +56,7 @@ Die Sprachförderung nach § 45a AufenthG ist modular aufgebaut und umfasst in d
 - **Berufsbegleitende Abendkurse:** Zwei bis drei Abende pro Woche à 3–4 Unterrichtsstunden.
 - **Wochenendkurse:** Samstagsunterricht für Schichtarbeiter in Produktion oder Gastronomie.
 - **Virtuelle Klassenzimmer (Online-Kurse):** Ortsunabhängige Teilnahme über interaktive Videoplattformen mit muttersprachlichen Dozenten.
-- **Spezielle Fachmodule:** Maßgeschneiderte Kurse für akademische Heilberufe, Pflegeberufe, kaufmännische Berufe oder gewerblich-technische Berufe.
+- **Spezielle Fachmodule:** Branchenspezifische Fachkurse für akademische Heilberufe, Pflegeberufe, kaufmännische Berufe oder gewerblich-technische Berufe.
 
 ## Kombination mit Lohnkostenzuschüssen nach § 82 SGB III
 

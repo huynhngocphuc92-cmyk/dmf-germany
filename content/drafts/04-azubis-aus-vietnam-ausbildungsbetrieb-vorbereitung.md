@@ -55,7 +55,7 @@ _Moderne Lernumgebung an der Akademie: Gezielte Vorbereitung auf die Anforderung
 Die Zusammenarbeit gelingt am besten, wenn auch das bestehende Team gut vorbereitet ist. Informieren Sie Ihre Belegschaft rechtzeitig über den Neuzugang:
 
 - **Aufgaben und Rolle kommunizieren:** Erklären Sie, dass der neue Auszubildende zum Lernen im Betrieb ist und am Anfang mehr Erklärungen und Geduld benötigt.
-- **Feedbackkultur besprechen:** In der vietnamesischen Kultur gilt es oft als unhöflich, Vorgesetzten direkt zu widersprechen oder Unverständnis offen einzugestehen. Ermutigen Sie Ihr Team, Arbeitsanweisungen mit der Bitte um Rückfragen zu verbinden: „Lassen Sie uns den nächsten Schritt kurz gemeinsam durchgehen“, statt nur abstrakt zu fragen „Ist alles verstanden?“.
+- **Feedbackkultur besprechen:** In der vietnamesischen Kultur gilt es oft als unhöflich, Vorgesetzten direkt zu widersprechen oder Unverständnis offen einzugestehen. Ermutigen Sie Ihr Team, Arbeitsanweisungen mit der Bitte um Rückfragen zu verbinden: „Gehen wir den nächsten Schritt kurz gemeinsam durch“, statt nur abstrakt zu fragen „Ist alles verstanden?“.
 - **Gemeinsame Pausen ermöglichen:** Integration findet vor allem in den Kaffeepausen und beim gemeinsamen Mittagessen statt. Achten Sie darauf, dass Auszubildende von Beginn an in informelle Runden eingebunden werden.
 
 ## 5. Checkliste für Ihren Ausbildungsbetrieb

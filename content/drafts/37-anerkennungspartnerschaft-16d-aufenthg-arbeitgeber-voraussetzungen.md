@@ -12,7 +12,7 @@ excerpt: "Das FEG ermöglicht die Einreise zur Beschäftigung vor Abschluss der 
 
 Das langwierige Verfahren zur Anerkennung ausländischer Berufsabschlüsse galt über viele Jahre als größter Bremsklotz der Fachkräfteeinwanderung nach Deutschland. Bis die zuständigen Kammern (IHK FOSA, Handwerkskammern oder Landesbehörden) die Gleichwertigkeit prüften und einen Defizitbescheid ausstellten, vergingen oft sechs bis neun Monate – Zeit, in der offene Stellen unbesetzt blieben und Betriebe Aufträge ablehnen mussten.
 
-Mit der Einführung der **Anerkennungspartnerschaft nach § 16d Abs. 3 Aufenthaltsgesetz (AufenthG)** i. V. m. **§ 2a BeschV** hat der Bundesgesetzgeber einen Paradigmenwechsel eingeleitet: Qualifizierte Fachkräfte aus Drittstaaten können nach Deutschland einreisen und ab Tag 1 im Betrieb arbeiten, während das offizielle Anerkennungsverfahren erst nach der Einreise im Inland durchgeführt und begleitet wird.
+Mit der Einführung der **Anerkennungspartnerschaft nach § 16d Abs. 3 Aufenthaltsgesetz (AufenthG)** i. V. m. **§ 2a BeschV** hat der Bundesgesetzgeber eine grundlegende Erleichterung geschaffen: Qualifizierte Fachkräfte aus Drittstaaten können nach Deutschland einreisen und ab Tag 1 im Betrieb arbeiten, während das offizielle Anerkennungsverfahren erst nach der Einreise im Inland durchgeführt und begleitet wird.
 
 ## 1. Was ist die Anerkennungspartnerschaft?
 

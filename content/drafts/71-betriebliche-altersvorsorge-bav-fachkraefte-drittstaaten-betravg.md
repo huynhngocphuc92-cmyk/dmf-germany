@@ -62,7 +62,7 @@ Deutsche Lebensversicherer und Versorgungsträger zahlen Rentenleistungen oder e
 
 ## 4. bAV als mächtiges Bindungsinstrument
 
-In Zeiten des Fachkräftemangels ist die bAV für mittelständische Unternehmen ein herausragendes Argument im Recruiting:
+Für mittelständische Betriebe ist ein überzeugendes bAV-Angebot ein starker Wettbewerbsvorteil bei der Personalgewinnung:
 
 - Sie signalisiert Fürsorge, Wertschätzung und Professionalität.
 - Betriebe, die über den gesetzlichen 15%-Zuschuss hinausgehen (z. B. 20% oder 50 € Festzuschuss), heben sich im internationalen Wettbewerb deutlich von der Masse ab.
