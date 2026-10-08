@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <rect width="720" height="540" fill="#F8FAFC" rx="12"/>
+  <rect x="30" y="30" width="660" height="60" rx="8" fill="#002B49"/>
+  <text x="360" y="68" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="20" font-weight="700" text-anchor="middle">Fachinformatiker Systemintegration: IT-Infrastruktur</text>
+
+  <!-- Layer 4: Cloud & DevOps -->
+  <g transform="translate(50, 115)">
+    <rect width="620" height="75" rx="8" fill="#FFFFFF" stroke="#00A86B" stroke-width="2"/>
+    <rect x="0" y="0" width="160" height="75" rx="8" fill="#00A86B"/>
+    <text x="80" y="43" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">Cloud &amp; DevOps</text>
+    <text x="180" y="35" fill="#0F172A" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Hybride Architekturen: AWS, Azure, Google Cloud</text>
+    <text x="180" y="58" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">Kubernetes, Docker Container, Terraform (Infrastructure as Code), CI/CD-Pipelines</text>
+  </g>
+
+  <!-- Layer 3: Security & Compliance -->
+  <g transform="translate(50, 205)">
+    <rect width="620" height="75" rx="8" fill="#FFFFFF" stroke="#EE1C25" stroke-width="2"/>
+    <rect x="0" y="0" width="160" height="75" rx="8" fill="#EE1C25"/>
+    <text x="80" y="43" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">Cyber Security</text>
+    <text x="180" y="35" fill="#0F172A" font-family="system-ui, sans-serif" font-size="13" font-weight="600">NIS-2 Richtlinie &amp; BSI IT-Grundschutz Standards</text>
+    <text x="180" y="58" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">Next-Gen Firewalls, VPN, Zero-Trust Architecture, Endpoint Detection (EDR), SIEM</text>
+  </g>
+
+  <!-- Layer 2: Virtualisierung & Server -->
+  <g transform="translate(50, 295)">
+    <rect width="620" height="75" rx="8" fill="#FFFFFF" stroke="#002B49" stroke-width="2"/>
+    <rect x="0" y="0" width="160" height="75" rx="8" fill="#002B49"/>
+    <text x="80" y="43" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">Server &amp; Services</text>
+    <text x="180" y="35" fill="#0F172A" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Linux (Debian/RHEL) &amp; Windows Server Administration</text>
+    <text x="180" y="58" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">Proxmox / VMware ESXi, Active Directory, DNS/DHCP, Backup-Konzepte (Veeam)</text>
+  </g>
+
+  <!-- Layer 1: Physische Netzwerkinfrastruktur -->
+  <g transform="translate(50, 385)">
+    <rect width="620" height="75" rx="8" fill="#FFFFFF" stroke="#64748B" stroke-width="2"/>
+    <rect x="0" y="0" width="160" height="75" rx="8" fill="#64748B"/>
+    <text x="80" y="43" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">Hardware &amp; LAN</text>
+    <text x="180" y="35" fill="#0F172A" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Rechenzentren, Switches, Router, Glasfaserverkabelung</text>
+    <text x="180" y="58" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">VLAN-Segmentierung, USV-Systeme, Patchmanagement, Hardware-Rollout</text>
+  </g>
+
+  <rect x="50" y="485" width="620" height="30" rx="6" fill="#E2E8F0"/>
+  <text x="360" y="505" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600" text-anchor="middle">Duale Ausbildung (§ 16a AufenthG) &amp; IT-Spezialisten mit Berufserfahrung (§ 19c BeschV)</text>
+</svg>

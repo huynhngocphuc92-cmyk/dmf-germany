@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <rect width="720" height="540" fill="#F8FAFC" rx="12"/>
+  <rect x="30" y="30" width="660" height="60" rx="8" fill="#002B49"/>
+  <text x="360" y="68" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="20" font-weight="700" text-anchor="middle">Entgeltfortzahlung (EFZG) &amp; Erkrankung im Ausland</text>
+
+  <!-- Step 1: Krankmeldung -->
+  <g transform="translate(50, 115)">
+    <rect width="280" height="165" rx="8" fill="#FFFFFF" stroke="#002B49" stroke-width="2"/>
+    <rect x="0" y="0" width="280" height="34" rx="8" fill="#002B49"/>
+    <text x="140" y="23" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="600" text-anchor="middle">1. Meldung vor Arbeitsbeginn</text>
+    <text x="20" y="65" fill="#0F172A" font-family="system-ui, sans-serif" font-size="13" font-weight="600">• Gesetzliche Pflicht (§ 5 Abs. 1 EFZG)</text>
+    <text x="20" y="90" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Unverzügliche Mitteilung per Telefon/Mail</text>
+    <text x="20" y="115" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Voraussichtliche Krankheitsdauer angeben</text>
+    <text x="20" y="145" fill="#002B49" font-family="system-ui, sans-serif" font-size="11" font-weight="600">✓ Gilt im Inland wie im Ausland gleichermaßen</text>
+  </g>
+
+  <!-- Step 2: eAU vs Ausland -->
+  <g transform="translate(390, 115)">
+    <rect width="280" height="165" rx="8" fill="#FFFFFF" stroke="#EE1C25" stroke-width="2"/>
+    <rect x="0" y="0" width="280" height="34" rx="8" fill="#EE1C25"/>
+    <text x="140" y="23" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="600" text-anchor="middle">2. Ärztliches Attest (eAU vs. Papier)</text>
+    <text x="20" y="65" fill="#0F172A" font-family="system-ui, sans-serif" font-size="13" font-weight="600">• Inland: Digitaler eAU-Abruf bei Krankenkasse</text>
+    <text x="20" y="90" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Im Ausland (Vietnam): Papier-Attest mit Diagnose,</text>
+    <text x="20" y="110" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">  ICD-10-Code &amp; Arbeitsunfähigkeitsbestätigung</text>
+    <text x="20" y="145" fill="#EE1C25" font-family="system-ui, sans-serif" font-size="11" font-weight="600">✓ § 5 Abs. 2 EFZG Sonderregeln beachten</text>
+  </g>
+
+  <!-- Step 3: Lohnfortzahlung -->
+  <g transform="translate(50, 310)">
+    <rect width="280" height="165" rx="8" fill="#FFFFFF" stroke="#00A86B" stroke-width="2"/>
+    <rect x="0" y="0" width="280" height="34" rx="8" fill="#00A86B"/>
+    <text x="140" y="23" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="600" text-anchor="middle">3. 6 Wochen Entgeltfortzahlung</text>
+    <text x="20" y="65" fill="#0F172A" font-family="system-ui, sans-serif" font-size="13" font-weight="600">• Anspruch nach 4-wöchiger Wartezeit (§ 3 EFZG)</text>
+    <text x="20" y="90" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• 100 % des regulären Arbeitsentgelts</text>
+    <text x="20" y="115" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• U1-Umlageerstattung (40–80 %) für Kleinbetriebe</text>
+    <text x="20" y="145" fill="#00A86B" font-family="system-ui, sans-serif" font-size="11" font-weight="600">✓ Ab Woche 7: Krankengeld durch GKV (§ 44 SGB V)</text>
+  </g>
+
+  <!-- Step 4: Heimaturlaub Rückkehr -->
+  <g transform="translate(390, 310)">
+    <rect width="280" height="165" rx="8" fill="#FFFFFF" stroke="#002B49" stroke-width="2"/>
+    <rect x="0" y="0" width="280" height="34" rx="8" fill="#002B49"/>
+    <text x="140" y="23" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="600" text-anchor="middle">4. Heimaturlaub &amp; Reiseunfähigkeit</text>
+    <text x="20" y="65" fill="#0F172A" font-family="system-ui, sans-serif" font-size="13" font-weight="600">• Meldeadresse &amp; Aufenthaltsort im Ausland</text>
+    <text x="20" y="90" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Flugunfähigkeitsbescheinigung (Fit to fly Test)</text>
+    <text x="20" y="115" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Krankenkassen-Information nach § 5 Abs. 2 EFZG</text>
+    <text x="20" y="145" fill="#002B49" font-family="system-ui, sans-serif" font-size="11" font-weight="600">✓ Urlaubsunterbrechung nach § 9 BUrlG</text>
+  </g>
+
+  <rect x="50" y="495" width="620" height="30" rx="6" fill="#E2E8F0"/>
+  <text x="360" y="515" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600" text-anchor="middle">Rechtssicherer Umgang mit Attesten aus Nicht-EU-Staaten: BAG-Grundsätze zur Erschütterung des Beweiswerts</text>
+</svg>

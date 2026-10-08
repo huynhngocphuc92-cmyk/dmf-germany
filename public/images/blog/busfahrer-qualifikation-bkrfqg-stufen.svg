@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <rect width="720" height="540" fill="#F8FAFC" rx="12"/>
+  <rect x="30" y="30" width="660" height="60" rx="8" fill="#002B49"/>
+  <text x="360" y="68" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="20" font-weight="700" text-anchor="middle">Busfahrer im Linien- &amp; ÖPNV-Verkehr (§ 24a BeschV)</text>
+
+  <!-- Step 1 -->
+  <g transform="translate(50, 115)">
+    <rect width="280" height="165" rx="8" fill="#FFFFFF" stroke="#002B49" stroke-width="2"/>
+    <rect x="0" y="0" width="280" height="34" rx="8" fill="#002B49"/>
+    <text x="140" y="23" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="600" text-anchor="middle">1. Fahrerlaubnis Klasse D/DE</text>
+    <text x="20" y="65" fill="#0F172A" font-family="system-ui, sans-serif" font-size="13" font-weight="600">• Umschreibung nach § 31 FeV</text>
+    <text x="20" y="90" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Theoretische &amp; praktische Fahrprüfung</text>
+    <text x="20" y="115" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Verkehrsmedizinisches Gutachten &amp; Sehtest</text>
+    <text x="20" y="145" fill="#00A86B" font-family="system-ui, sans-serif" font-size="11" font-weight="600">✓ Mindestalter 21 / 24 Jahre (FeV)</text>
+  </g>
+
+  <!-- Step 2 -->
+  <g transform="translate(390, 115)">
+    <rect width="280" height="165" rx="8" fill="#FFFFFF" stroke="#EE1C25" stroke-width="2"/>
+    <rect x="0" y="0" width="280" height="34" rx="8" fill="#EE1C25"/>
+    <text x="140" y="23" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="600" text-anchor="middle">2. BKrFQG &amp; Schlüsselzahl 95</text>
+    <text x="20" y="65" fill="#0F172A" font-family="system-ui, sans-serif" font-size="13" font-weight="600">• Beschleunigte Grundqualifikation (140 Std.)</text>
+    <text x="20" y="90" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• IHK-Theorieprüfung Personenverkehr</text>
+    <text x="20" y="115" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Eintragung Fahrerqualifizierungsnachweis (FQN)</text>
+    <text x="20" y="145" fill="#EE1C25" font-family="system-ui, sans-serif" font-size="11" font-weight="600">✓ Gesetzliche Pflicht für gewerblichen ÖPNV</text>
+  </g>
+
+  <!-- Step 3 -->
+  <g transform="translate(50, 310)">
+    <rect width="280" height="165" rx="8" fill="#FFFFFF" stroke="#00A86B" stroke-width="2"/>
+    <rect x="0" y="0" width="280" height="34" rx="8" fill="#00A86B"/>
+    <text x="140" y="23" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="600" text-anchor="middle">3. Fachsprach- &amp; Kundentraining</text>
+    <text x="20" y="65" fill="#0F172A" font-family="system-ui, sans-serif" font-size="13" font-weight="600">• B1 Sprachzertifikat vor Visumserteilung</text>
+    <text x="20" y="90" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Fahrticket-Verkauf &amp; Tariferklärung</text>
+    <text x="20" y="115" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Durchsagen bei Störungen &amp; Umleitungen</text>
+    <text x="20" y="145" fill="#00A86B" font-family="system-ui, sans-serif" font-size="11" font-weight="600">✓ Deeskalation &amp; Fahrgastbetreuung</text>
+  </g>
+
+  <!-- Step 4 -->
+  <g transform="translate(390, 310)">
+    <rect width="280" height="165" rx="8" fill="#FFFFFF" stroke="#002B49" stroke-width="2"/>
+    <rect x="0" y="0" width="280" height="34" rx="8" fill="#002B49"/>
+    <text x="140" y="23" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="600" text-anchor="middle">4. Betriebliche Linienkunde</text>
+    <text x="20" y="65" fill="#0F172A" font-family="system-ui, sans-serif" font-size="13" font-weight="600">• Streckenkunde &amp; Haltestellenfolgen</text>
+    <text x="20" y="90" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Bordsysteme (IBIS, RBL, Entwerter)</text>
+    <text x="20" y="115" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• E-Bus Lademanagement &amp; Telematik</text>
+    <text x="20" y="145" fill="#002B49" font-family="system-ui, sans-serif" font-size="11" font-weight="600">✓ ZAV-Zustimmung nach § 24a Abs. 1 BeschV</text>
+  </g>
+
+  <rect x="50" y="495" width="620" height="30" rx="6" fill="#E2E8F0"/>
+  <text x="360" y="515" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600" text-anchor="middle">Beschleunigtes Fachkräfteverfahren für Verkehrsbetriebe &amp; private Busunternehmen</text>
+</svg>

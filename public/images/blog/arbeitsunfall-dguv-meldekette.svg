@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <rect width="720" height="540" fill="#F8FAFC" rx="12"/>
+  <rect x="30" y="30" width="660" height="60" rx="8" fill="#002B49"/>
+  <text x="360" y="68" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="20" font-weight="700" text-anchor="middle">Arbeitsunfall (SGB VII) &amp; Berufsgenossenschaft: Meldekette</text>
+
+  <!-- Step 1 -->
+  <g transform="translate(45, 120)">
+    <rect width="140" height="340" rx="8" fill="#FFFFFF" stroke="#EE1C25" stroke-width="2"/>
+    <rect x="0" y="0" width="140" height="40" rx="8" fill="#EE1C25"/>
+    <text x="70" y="25" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">1. Akutphase</text>
+    <text x="15" y="70" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Erstversorgung</text>
+    <text x="15" y="95" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Betriebliche Ersthelfer</text>
+    <text x="15" y="115" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Notruf 112</text>
+    <text x="15" y="135" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Verbandbucheintrag</text>
+    <text x="15" y="165" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600">D-Arzt</text>
+    <text x="15" y="190" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Vorstellung beim</text>
+    <text x="15" y="208" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">  Durchgangsarzt</text>
+    <text x="15" y="315" fill="#EE1C25" font-family="system-ui, sans-serif" font-size="10" font-weight="600">✓ Sofort handeln</text>
+  </g>
+
+  <!-- Step 2 -->
+  <g transform="translate(210, 120)">
+    <rect width="140" height="340" rx="8" fill="#FFFFFF" stroke="#002B49" stroke-width="2"/>
+    <rect x="0" y="0" width="140" height="40" rx="8" fill="#002B49"/>
+    <text x="70" y="25" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">2. BG-Meldung</text>
+    <text x="15" y="70" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600">3-Tage-Frist</text>
+    <text x="15" y="95" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Gesetzliche Pflicht</text>
+    <text x="15" y="115" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">  nach § 193 SGB VII</text>
+    <text x="15" y="135" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Bei &gt; 3 Tagen AU</text>
+    <text x="15" y="165" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Unfallanzeige</text>
+    <text x="15" y="190" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Online-Portal der BG</text>
+    <text x="15" y="210" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Kopie an Betriebsrat</text>
+    <text x="15" y="315" fill="#002B49" font-family="system-ui, sans-serif" font-size="10" font-weight="600">✓ Gesetzliche Pflicht</text>
+  </g>
+
+  <!-- Step 3 -->
+  <g transform="translate(375, 120)">
+    <rect width="140" height="340" rx="8" fill="#FFFFFF" stroke="#00A86B" stroke-width="2"/>
+    <rect x="0" y="0" width="140" height="40" rx="8" fill="#00A86B"/>
+    <text x="70" y="25" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">3. Leistungen</text>
+    <text x="15" y="70" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Behandlung</text>
+    <text x="15" y="95" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• 100% Kostenübernahme</text>
+    <text x="15" y="115" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Keine Zuzahlungen</text>
+    <text x="15" y="135" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Reha &amp; Heilmittel</text>
+    <text x="15" y="165" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Verletztengeld</text>
+    <text x="15" y="190" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• 80% des Regelentgelts</text>
+    <text x="15" y="210" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Nach 6 Wochen EFZ</text>
+    <text x="15" y="315" fill="#00A86B" font-family="system-ui, sans-serif" font-size="10" font-weight="600">✓ Durch BG finanziert</text>
+  </g>
+
+  <!-- Step 4 -->
+  <g transform="translate(540, 120)">
+    <rect width="140" height="340" rx="8" fill="#FFFFFF" stroke="#002B49" stroke-width="2"/>
+    <rect x="0" y="0" width="140" height="40" rx="8" fill="#002B49"/>
+    <text x="70" y="25" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">4. Reha &amp; Titel</text>
+    <text x="15" y="70" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600">BEM-Verfahren</text>
+    <text x="15" y="95" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• § 167 Abs. 2 SGB IX</text>
+    <text x="15" y="115" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Stufenweise Rückkehr</text>
+    <text x="15" y="135" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">  (Hamburger Modell)</text>
+    <text x="15" y="165" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Visumsschutz</text>
+    <text x="15" y="190" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Kein Visumsverlust</text>
+    <text x="15" y="210" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Unfallschutz ab Tag 1</text>
+    <text x="15" y="315" fill="#002B49" font-family="system-ui, sans-serif" font-size="10" font-weight="600">✓ Aufenthaltsrecht sicher</text>
+  </g>
+
+  <!-- Connectors -->
+  <line x1="185" y1="290" x2="210" y2="290" stroke="#EE1C25" stroke-width="3"/>
+  <line x1="350" y1="290" x2="375" y2="290" stroke="#002B49" stroke-width="3"/>
+  <line x1="515" y1="290" x2="540" y2="290" stroke="#00A86B" stroke-width="3"/>
+
+  <rect x="45" y="485" width="635" height="30" rx="6" fill="#E2E8F0"/>
+  <text x="362" y="505" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600" text-anchor="middle">Voller Gesetzlicher Unfallversicherungsschutz ab dem ersten Tag – unabhängig von der Nationalität</text>
+</svg>

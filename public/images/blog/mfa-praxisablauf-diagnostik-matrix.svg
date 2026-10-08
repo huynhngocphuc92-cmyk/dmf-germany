@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <rect width="720" height="540" fill="#F8FAFC" rx="12"/>
+  <rect x="30" y="30" width="660" height="60" rx="8" fill="#002B49"/>
+  <text x="360" y="68" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="20" font-weight="700" text-anchor="middle">Medizinische Fachangestellte (MFA): Praxisablauf</text>
+
+  <!-- Step 1: Anmeldung & Triage -->
+  <g transform="translate(45, 120)">
+    <rect width="140" height="340" rx="8" fill="#FFFFFF" stroke="#002B49" stroke-width="2"/>
+    <rect x="0" y="0" width="140" height="40" rx="8" fill="#002B49"/>
+    <text x="70" y="25" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">1. Empfang</text>
+    <text x="15" y="70" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Patientenannahme</text>
+    <text x="15" y="95" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• eGK einlesen</text>
+    <text x="15" y="115" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Notfalltriage</text>
+    <text x="15" y="135" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Terminplanung</text>
+    <text x="15" y="165" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Digitales PVS</text>
+    <text x="15" y="190" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Medistar, Turbomed</text>
+    <text x="15" y="210" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• eRezept &amp; eAU</text>
+    <text x="15" y="315" fill="#00A86B" font-family="system-ui, sans-serif" font-size="10" font-weight="600">✓ B2 Sprachniveau</text>
+  </g>
+
+  <!-- Step 2: Labor & Diagnostik -->
+  <g transform="translate(210, 120)">
+    <rect width="140" height="340" rx="8" fill="#FFFFFF" stroke="#EE1C25" stroke-width="2"/>
+    <rect x="0" y="0" width="140" height="40" rx="8" fill="#EE1C25"/>
+    <text x="70" y="25" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">2. Labor</text>
+    <text x="15" y="70" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Venenpunktion</text>
+    <text x="15" y="95" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Blutabnahme</text>
+    <text x="15" y="115" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Zentrifugieren</text>
+    <text x="15" y="135" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Probenversand</text>
+    <text x="15" y="165" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Schnelltests</text>
+    <text x="15" y="190" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Troponin, CRP, Urin</text>
+    <text x="15" y="210" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Blutzuckermessung</text>
+    <text x="15" y="315" fill="#EE1C25" font-family="system-ui, sans-serif" font-size="10" font-weight="600">✓ IfSG Hygienerichtlinie</text>
+  </g>
+
+  <!-- Step 3: Funktionsdiagnostik -->
+  <g transform="translate(375, 120)">
+    <rect width="140" height="340" rx="8" fill="#FFFFFF" stroke="#002B49" stroke-width="2"/>
+    <rect x="0" y="0" width="140" height="40" rx="8" fill="#002B49"/>
+    <text x="70" y="25" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">3. Diagnostik</text>
+    <text x="15" y="70" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Kardiologie</text>
+    <text x="15" y="95" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Ruhe- &amp; Belastungs-EKG</text>
+    <text x="15" y="115" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Langzeit-Blutdruck</text>
+    <text x="15" y="135" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Pulsoxymetrie</text>
+    <text x="15" y="165" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Pneumologie</text>
+    <text x="15" y="190" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Spirometrie (Lufu)</text>
+    <text x="15" y="210" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Peak-Flow-Messung</text>
+    <text x="15" y="315" fill="#002B49" font-family="system-ui, sans-serif" font-size="10" font-weight="600">✓ Gerätesicherheit MPG</text>
+  </g>
+
+  <!-- Step 4: Abrechnung -->
+  <g transform="translate(540, 120)">
+    <rect width="140" height="340" rx="8" fill="#FFFFFF" stroke="#00A86B" stroke-width="2"/>
+    <rect x="0" y="0" width="140" height="40" rx="8" fill="#00A86B"/>
+    <text x="70" y="25" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">4. Abrechnung</text>
+    <text x="15" y="70" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Gebührenziffern</text>
+    <text x="15" y="95" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• EBM (Kassensitze)</text>
+    <text x="15" y="115" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• GOÄ (Privatabrechnung)</text>
+    <text x="15" y="135" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• DMP-Dokumentation</text>
+    <text x="15" y="165" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Rechtssicherheit</text>
+    <text x="15" y="190" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• KV-Quartalsabrechnung</text>
+    <text x="15" y="210" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Datenschutz DSGVO</text>
+    <text x="15" y="315" fill="#00A86B" font-family="system-ui, sans-serif" font-size="10" font-weight="600">✓ KV-Prüfsicherheit</text>
+  </g>
+
+  <!-- Connectors -->
+  <line x1="185" y1="290" x2="210" y2="290" stroke="#002B49" stroke-width="3"/>
+  <line x1="350" y1="290" x2="375" y2="290" stroke="#EE1C25" stroke-width="3"/>
+  <line x1="515" y1="290" x2="540" y2="290" stroke="#002B49" stroke-width="3"/>
+
+  <rect x="45" y="485" width="635" height="30" rx="6" fill="#E2E8F0"/>
+  <text x="362" y="505" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600" text-anchor="middle">Ausbildung &amp; Anerkennung nach BBiG über die zuständige Bezirksärztekammer</text>
+</svg>

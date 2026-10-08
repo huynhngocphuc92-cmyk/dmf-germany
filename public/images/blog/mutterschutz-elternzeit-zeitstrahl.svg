@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <rect width="720" height="540" fill="#F8FAFC" rx="12"/>
+  <rect x="30" y="30" width="660" height="60" rx="8" fill="#002B49"/>
+  <text x="360" y="68" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="20" font-weight="700" text-anchor="middle">Mutterschutz (MuSchG) &amp; Elternzeit (BEEG) bei Drittstaatenkräften</text>
+
+  <!-- Timeline Phase 1 -->
+  <g transform="translate(50, 115)">
+    <rect width="180" height="240" rx="8" fill="#FFFFFF" stroke="#002B49" stroke-width="2"/>
+    <rect x="0" y="0" width="180" height="36" rx="8" fill="#002B49"/>
+    <text x="90" y="24" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">6 Wochen vor Geburt</text>
+    <text x="15" y="65" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Schutzfrist § 3 MuSchG</text>
+    <text x="15" y="90" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Beschäftigungsverbot</text>
+    <text x="15" y="110" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Ausnahme nur bei</text>
+    <text x="15" y="128" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">  ausdrücklicher Erklärung</text>
+    <text x="15" y="155" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Vergütung</text>
+    <text x="15" y="180" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Mutterschaftsgeld</text>
+    <text x="15" y="200" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• AG-Zuschuss (§ 20 MuSchG)</text>
+    <text x="15" y="222" fill="#00A86B" font-family="system-ui, sans-serif" font-size="10" font-weight="600">✓ 100% U2-Umlage Erstattung</text>
+  </g>
+
+  <!-- Timeline Phase 2 -->
+  <g transform="translate(270, 115)">
+    <rect width="180" height="240" rx="8" fill="#FFFFFF" stroke="#EE1C25" stroke-width="2"/>
+    <rect x="0" y="0" width="180" height="36" rx="8" fill="#EE1C25"/>
+    <text x="90" y="24" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">8 bzw. 12 W. nach Geburt</text>
+    <text x="15" y="65" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Absolutes Verbot</text>
+    <text x="15" y="90" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Keine Arbeit zulässig</text>
+    <text x="15" y="110" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• 12 Wochen bei Früh- oder</text>
+    <text x="15" y="128" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">  Mehrlingsgeburten</text>
+    <text x="15" y="155" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Aufenthaltsstatus</text>
+    <text x="15" y="180" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Aufenthaltstitel bleibt</text>
+    <text x="15" y="200" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">  vollumfänglich gültig</text>
+    <text x="15" y="222" fill="#EE1C25" font-family="system-ui, sans-serif" font-size="10" font-weight="600">✓ Absoluter Kündigungsschutz</text>
+  </g>
+
+  <!-- Timeline Phase 3 -->
+  <g transform="translate(490, 115)">
+    <rect width="180" height="240" rx="8" fill="#FFFFFF" stroke="#00A86B" stroke-width="2"/>
+    <rect x="0" y="0" width="180" height="36" rx="8" fill="#00A86B"/>
+    <text x="90" y="24" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">Elternzeit (bis 3 Jahre)</text>
+    <text x="15" y="65" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600">BEEG Anspruch</text>
+    <text x="15" y="90" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Rechtsanspruch nach BEEG</text>
+    <text x="15" y="110" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Elterngeldbezug bei</text>
+    <text x="15" y="128" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">  Erwerbstätigentiteln</text>
+    <text x="15" y="155" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Ausbildungsvertrag</text>
+    <text x="15" y="180" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Verlängerungsantrag bei</text>
+    <text x="15" y="200" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">  Kammer (§ 8 Abs. 2 BBiG)</text>
+    <text x="15" y="222" fill="#00A86B" font-family="system-ui, sans-serif" font-size="10" font-weight="600">✓ Sichere Rückkehr in Betrieb</text>
+  </g>
+
+  <!-- Connectors -->
+  <line x1="230" y1="235" x2="270" y2="235" stroke="#002B49" stroke-width="3"/>
+  <line x1="450" y1="235" x2="490" y2="235" stroke="#EE1C25" stroke-width="3"/>
+
+  <!-- Info Box bottom -->
+  <g transform="translate(50, 380)">
+    <rect width="620" height="90" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <text x="25" y="30" fill="#002B49" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Wichtig für Arbeitgeber bei Drittstaatsangehörigen (§ 16a / § 18a / § 18b):</text>
+    <text x="25" y="55" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12">• Mutterschutz &amp; Elternzeit gefährden den Aufenthaltstitel nicht. Die ABH verlängert das Visum zweckentsprechend.</text>
+    <text x="25" y="75" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• U2-Umlage erstattet Arbeitgebern 100% des Zuschusses zum Mutterschaftsgeld sowie die Arbeitgeberbeiträge.</text>
+  </g>
+
+  <rect x="50" y="490" width="620" height="30" rx="6" fill="#E2E8F0"/>
+  <text x="360" y="510" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600" text-anchor="middle">Gesetzeskonforme Begleitung durch DMF Talents: HR-Compliance, Kammerabstimmung &amp; ABH-Meldung</text>
+</svg>

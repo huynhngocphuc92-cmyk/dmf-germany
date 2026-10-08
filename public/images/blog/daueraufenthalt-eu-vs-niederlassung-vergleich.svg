@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <rect width="720" height="540" fill="#F8FAFC" rx="12"/>
+  <rect x="30" y="30" width="660" height="60" rx="8" fill="#002B49"/>
+  <text x="360" y="68" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="20" font-weight="700" text-anchor="middle">Daueraufenthalt-EU (§ 9a) vs. Niederlassungserlaubnis (§ 18c)</text>
+
+  <!-- Column 1: Kriterium -->
+  <g transform="translate(45, 115)">
+    <rect width="180" height="350" rx="8" fill="#FFFFFF" stroke="#002B49" stroke-width="2"/>
+    <rect x="0" y="0" width="180" height="36" rx="8" fill="#002B49"/>
+    <text x="90" y="24" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">Kriterium</text>
+    
+    <text x="15" y="70" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Rechtsgrundlage</text>
+    <text x="15" y="115" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Wartezeit (Aufenthalt)</text>
+    <text x="15" y="160" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Rentenbeiträge</text>
+    <text x="15" y="205" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="700">EU-Mobilität</text>
+    <text x="15" y="250" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Sprachanforderung</text>
+    <text x="15" y="295" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Erlöschen bei Abwesenheit</text>
+    <text x="15" y="335" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Hauptvorteil</text>
+  </g>
+
+  <!-- Column 2: Daueraufenthalt-EU (§ 9a) -->
+  <g transform="translate(235, 115)">
+    <rect width="215" height="350" rx="8" fill="#FFFFFF" stroke="#00A86B" stroke-width="2"/>
+    <rect x="0" y="0" width="215" height="36" rx="8" fill="#00A86B"/>
+    <text x="107" y="24" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">§ 9a Daueraufenthalt-EU</text>
+    
+    <text x="15" y="70" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">EU-Richtlinie 2003/109/EG</text>
+    <text x="15" y="115" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">5 Jahre (60 Monate) ununterbrochen</text>
+    <text x="15" y="160" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">60 Monate Pflichtbeiträge</text>
+    <text x="15" y="205" fill="#00A86B" font-family="system-ui, sans-serif" font-size="11" font-weight="600">✓ Ja, vereinfachte Erwerbstätigkeit</text>
+    <text x="15" y="218" fill="#00A86B" font-family="system-ui, sans-serif" font-size="10">  in fast allen EU-Ländern</text>
+    <text x="15" y="250" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">B1 Deutsch (ausreichend)</text>
+    <text x="15" y="295" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">Erst nach 12 Monaten Nicht-EU</text>
+    <text x="15" y="308" fill="#64748B" font-family="system-ui, sans-serif" font-size="10">oder 6 Jahren Nicht-D</text>
+    <text x="15" y="335" fill="#00A86B" font-family="system-ui, sans-serif" font-size="11" font-weight="600">Freizügigkeit im EU-Raum</text>
+  </g>
+
+  <!-- Column 3: Niederlassungserlaubnis (§ 18c) -->
+  <g transform="translate(460, 115)">
+    <rect width="215" height="350" rx="8" fill="#FFFFFF" stroke="#002B49" stroke-width="2"/>
+    <rect x="0" y="0" width="215" height="36" rx="8" fill="#002B49"/>
+    <text x="107" y="24" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">§ 18c Niederlassungserlaubnis</text>
+    
+    <text x="15" y="70" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">Nationales Aufenthaltsgesetz</text>
+    <text x="15" y="115" fill="#002B49" font-family="system-ui, sans-serif" font-size="11" font-weight="600">Nur 3 Jahre (21–27 M. Blaue Karte)</text>
+    <text x="15" y="160" fill="#002B49" font-family="system-ui, sans-serif" font-size="11" font-weight="600">Nur 36 bzw. 21–27 Monate</text>
+    <text x="15" y="205" fill="#EE1C25" font-family="system-ui, sans-serif" font-size="11">❌ Nein, nur auf Deutschland</text>
+    <text x="15" y="218" fill="#EE1C25" font-family="system-ui, sans-serif" font-size="10">  beschränkt</text>
+    <text x="15" y="250" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">B1 Deutsch (bei BK: A1 nach 27 M.)</text>
+    <text x="15" y="295" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">Bereits nach 6 Monaten</text>
+    <text x="15" y="308" fill="#64748B" font-family="system-ui, sans-serif" font-size="10">Auslandsaufenthalt (§ 51)</text>
+    <text x="15" y="335" fill="#002B49" font-family="system-ui, sans-serif" font-size="11" font-weight="600">Schnellere Verfestigung in D</text>
+  </g>
+
+  <rect x="50" y="485" width="620" height="30" rx="6" fill="#E2E8F0"/>
+  <text x="360" y="505" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600" text-anchor="middle">Strategische Mitarbeiterbindung: Beide Titel schließen sich nicht gegenseitig aus</text>
+</svg>

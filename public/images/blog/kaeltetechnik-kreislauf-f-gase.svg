@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <rect width="720" height="540" fill="#F8FAFC" rx="12"/>
+  <rect x="30" y="30" width="660" height="60" rx="8" fill="#002B49"/>
+  <text x="360" y="68" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" text-anchor="middle">Kältekreislauf &amp; F-Gase Sachkunde (EU 2024/573)</text>
+  
+  <!-- Step 1: Verdampfer -->
+  <g transform="translate(50, 120)">
+    <rect width="280" height="160" rx="8" fill="#FFFFFF" stroke="#002B49" stroke-width="2"/>
+    <rect x="0" y="0" width="280" height="34" rx="8" fill="#002B49"/>
+    <text x="140" y="24" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="600" text-anchor="middle">1. Verdampfer (Niederdruck)</text>
+    <text x="20" y="65" fill="#0F172A" font-family="system-ui, sans-serif" font-size="13" font-weight="600">• Wärmeaufnahme aus Raum/Kühlgut</text>
+    <text x="20" y="90" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Kältemittel siedet bei Minustemperatur</text>
+    <text x="20" y="115" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Phasenwechsel: flüssig zu dampfförmig</text>
+    <text x="20" y="140" fill="#00A86B" font-family="system-ui, sans-serif" font-size="11" font-weight="600">✓ Prüfpflicht nach ChemKlimaschutzV</text>
+  </g>
+
+  <!-- Step 2: Verdichter -->
+  <g transform="translate(390, 120)">
+    <rect width="280" height="160" rx="8" fill="#FFFFFF" stroke="#EE1C25" stroke-width="2"/>
+    <rect x="0" y="0" width="280" height="34" rx="8" fill="#EE1C25"/>
+    <text x="140" y="24" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="600" text-anchor="middle">2. Verdichter / Kompressor</text>
+    <text x="20" y="65" fill="#0F172A" font-family="system-ui, sans-serif" font-size="13" font-weight="600">• Druckerhöhung des Heißgases</text>
+    <text x="20" y="90" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Hubkolben-, Schrauben- oder Scroll-Technik</text>
+    <text x="20" y="115" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Frequenzumrichter &amp; MSR-Steuerung</text>
+    <text x="20" y="140" fill="#EE1C25" font-family="system-ui, sans-serif" font-size="11" font-weight="600">✓ Hochdrucküberwachung DIN EN 378</text>
+  </g>
+
+  <!-- Step 3: Verflüssiger -->
+  <g transform="translate(390, 310)">
+    <rect width="280" height="160" rx="8" fill="#FFFFFF" stroke="#002B49" stroke-width="2"/>
+    <rect x="0" y="0" width="280" height="34" rx="8" fill="#002B49"/>
+    <text x="140" y="24" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="600" text-anchor="middle">3. Verflüssiger / Kondensator</text>
+    <text x="20" y="65" fill="#0F172A" font-family="system-ui, sans-serif" font-size="13" font-weight="600">• Wärmeabgabe an Umwelt / Rückgewinnung</text>
+    <text x="20" y="90" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Luft- oder wassergekühlte Wärmetauscher</text>
+    <text x="20" y="115" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Phasenwechsel zurück in flüssigen Zustand</text>
+    <text x="20" y="140" fill="#002B49" font-family="system-ui, sans-serif" font-size="11" font-weight="600">✓ Dichtheitsprüfung nach F-Gase-VO</text>
+  </g>
+
+  <!-- Step 4: Expansionsorgan -->
+  <g transform="translate(50, 310)">
+    <rect width="280" height="160" rx="8" fill="#FFFFFF" stroke="#00A86B" stroke-width="2"/>
+    <rect x="0" y="0" width="280" height="34" rx="8" fill="#00A86B"/>
+    <text x="140" y="24" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="600" text-anchor="middle">4. Expansionsventil</text>
+    <text x="20" y="65" fill="#0F172A" font-family="system-ui, sans-serif" font-size="13" font-weight="600">• Druckentlastung vor Verdampfereintritt</text>
+    <text x="20" y="90" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Thermostatisches oder elektronisches EEV</text>
+    <text x="20" y="115" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Präzise Überhitzungsregelung</text>
+    <text x="20" y="140" fill="#00A86B" font-family="system-ui, sans-serif" font-size="11" font-weight="600">✓ Sachkundenachweis Kategorie I obligatorisch</text>
+  </g>
+
+  <!-- Circular connecting arrows -->
+  <path d="M 330 200 L 390 200" fill="none" stroke="#EE1C25" stroke-width="3" stroke-dasharray="6,4"/>
+  <path d="M 530 280 L 530 310" fill="none" stroke="#002B49" stroke-width="3" stroke-dasharray="6,4"/>
+  <path d="M 390 390 L 330 390" fill="none" stroke="#00A86B" stroke-width="3" stroke-dasharray="6,4"/>
+  <path d="M 190 310 L 190 280" fill="none" stroke="#002B49" stroke-width="3" stroke-dasharray="6,4"/>
+
+  <!-- Footer Banner -->
+  <rect x="50" y="490" width="620" height="32" rx="6" fill="#E2E8F0"/>
+  <text x="360" y="511" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600" text-anchor="middle">DMF Talents: Fachausbildung Mechatroniker Kältetechnik nach ChemKlimaschutzV &amp; DIN EN 378</text>
+</svg>

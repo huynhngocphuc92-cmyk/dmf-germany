@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <rect width="720" height="540" fill="#F8FAFC" rx="12"/>
+  <rect x="30" y="30" width="660" height="60" rx="8" fill="#002B49"/>
+  <text x="360" y="68" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="20" font-weight="700" text-anchor="middle">GaLaBau: Die 4 Kern-Leistungsbereiche nach BGL</text>
+
+  <!-- Card 1: Pflaster- & Wegebau -->
+  <g transform="translate(50, 115)">
+    <rect width="290" height="170" rx="8" fill="#FFFFFF" stroke="#002B49" stroke-width="2"/>
+    <rect x="0" y="0" width="290" height="34" rx="8" fill="#002B49"/>
+    <text x="145" y="23" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="600" text-anchor="middle">1. Pflaster- &amp; Wegebau</text>
+    <text x="20" y="65" fill="#0F172A" font-family="system-ui, sans-serif" font-size="13" font-weight="600">• Naturstein- &amp; Betonsteinpflaster</text>
+    <text x="20" y="90" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Tragschichten &amp; Gefälle nach DIN 18318</text>
+    <text x="20" y="115" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Randeinfassungen, Treppenanlagen, Mauern</text>
+    <text x="20" y="145" fill="#00A86B" font-family="system-ui, sans-serif" font-size="11" font-weight="600">✓ Bedienung Rüttelplatten &amp; Minibagger</text>
+  </g>
+
+  <!-- Card 2: Vegetationstechnik -->
+  <g transform="translate(380, 115)">
+    <rect width="290" height="170" rx="8" fill="#FFFFFF" stroke="#00A86B" stroke-width="2"/>
+    <rect x="0" y="0" width="290" height="34" rx="8" fill="#00A86B"/>
+    <text x="145" y="23" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="600" text-anchor="middle">2. Vegetation &amp; Pflanzung</text>
+    <text x="20" y="65" fill="#0F172A" font-family="system-ui, sans-serif" font-size="13" font-weight="600">• Gehölzpflanzung &amp; Bodenvorbereitung</text>
+    <text x="20" y="90" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Rasenansaat &amp; Rollrasenverlegung</text>
+    <text x="20" y="115" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Gehölzschnitt &amp; Staudenpflege (FLL)</text>
+    <text x="20" y="145" fill="#00A86B" font-family="system-ui, sans-serif" font-size="11" font-weight="600">✓ Botanisches Grundwissen &amp; Pflanzenschutz</text>
+  </g>
+
+  <!-- Card 3: Baumpflege -->
+  <g transform="translate(50, 310)">
+    <rect width="290" height="170" rx="8" fill="#FFFFFF" stroke="#EE1C25" stroke-width="2"/>
+    <rect x="0" y="0" width="290" height="34" rx="8" fill="#EE1C25"/>
+    <text x="145" y="23" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="600" text-anchor="middle">3. Baumpflege &amp; Forstarbeit</text>
+    <text x="20" y="65" fill="#0F172A" font-family="system-ui, sans-serif" font-size="13" font-weight="600">• Totholzbeseitigung &amp; Kronenpflege</text>
+    <text x="20" y="90" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Motorsägen-Zertifikat AS Baum I / II</text>
+    <text x="20" y="115" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Fällungen &amp; Häckslerbedienung</text>
+    <text x="20" y="145" fill="#EE1C25" font-family="system-ui, sans-serif" font-size="11" font-weight="600">✓ UVV Forsten &amp; DGUV Information 214-059</text>
+  </g>
+
+  <!-- Card 4: Wasser- & Dachbegrünung -->
+  <g transform="translate(380, 310)">
+    <rect width="290" height="170" rx="8" fill="#FFFFFF" stroke="#002B49" stroke-width="2"/>
+    <rect x="0" y="0" width="290" height="34" rx="8" fill="#002B49"/>
+    <text x="145" y="23" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="600" text-anchor="middle">4. Entwässerung &amp; Gründächer</text>
+    <text x="20" y="65" fill="#0F172A" font-family="system-ui, sans-serif" font-size="13" font-weight="600">• Rigolenversickerung &amp; Drainageleitungen</text>
+    <text x="20" y="90" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Extensive &amp; intensive Dachbegrünung</text>
+    <text x="20" y="115" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Zisternenanschluss &amp; automatische Bewässerung</text>
+    <text x="20" y="145" fill="#002B49" font-family="system-ui, sans-serif" font-size="11" font-weight="600">✓ Klimaanpassung &amp; Schwammstadt-Konzepte</text>
+  </g>
+
+  <rect x="50" y="495" width="620" height="30" rx="6" fill="#E2E8F0"/>
+  <text x="360" y="515" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600" text-anchor="middle">Qualifizierungsstandards des Bundesverbands Garten-, Landschafts- und Sportplatzbau (BGL)</text>
+</svg>

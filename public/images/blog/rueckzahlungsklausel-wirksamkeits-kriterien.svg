@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <rect width="720" height="540" fill="#F8FAFC" rx="12"/>
+  <rect x="30" y="30" width="660" height="60" rx="8" fill="#002B49"/>
+  <text x="360" y="68" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="20" font-weight="700" text-anchor="middle">Rückzahlungsklauseln: BAG-Rechtsprechung &amp; § 12 BBiG</text>
+
+  <!-- Unwirksam (Rot) -->
+  <g transform="translate(50, 115)">
+    <rect width="290" height="350" rx="8" fill="#FFFFFF" stroke="#EE1C25" stroke-width="2"/>
+    <rect x="0" y="0" width="290" height="36" rx="8" fill="#EE1C25"/>
+    <text x="145" y="24" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="700" text-anchor="middle">❌ Gesetzlich UNWIRKSAM</text>
+    
+    <text x="20" y="70" fill="#0F172A" font-family="system-ui, sans-serif" font-size="13" font-weight="700">1. Auszubildende (§ 12 BBiG):</text>
+    <text x="20" y="95" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Absolute Unwirksamkeit aller</text>
+    <text x="20" y="115" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">  Kostenrückzahlungen für Azubis</text>
+    <text x="20" y="135" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Zwingendes Schutzrecht des BBiG</text>
+
+    <text x="20" y="175" fill="#0F172A" font-family="system-ui, sans-serif" font-size="13" font-weight="700">2. Vermittlungskosten Fachkräfte:</text>
+    <text x="20" y="200" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Agenturhonorare sind reines AG-Risiko</text>
+    <text x="20" y="220" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Keine Abwälzung auf Arbeitnehmer</text>
+    <text x="20" y="240" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Klausel ist nach § 307 BGB nichtig</text>
+
+    <text x="20" y="280" fill="#0F172A" font-family="system-ui, sans-serif" font-size="13" font-weight="700">3. Starre Bindungsfristen:</text>
+    <text x="20" y="305" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Ohne monatliche Abschmelzung</text>
+    <text x="20" y="325" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Kündigung durch AG unverschuldet</text>
+  </g>
+
+  <!-- Wirksam (Grün) -->
+  <g transform="translate(380, 115)">
+    <rect width="290" height="350" rx="8" fill="#FFFFFF" stroke="#00A86B" stroke-width="2"/>
+    <rect x="0" y="0" width="290" height="36" rx="8" fill="#00A86B"/>
+    <text x="145" y="24" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="700" text-anchor="middle">✓ Unter Auflagen WIRKSAM</text>
+
+    <text x="20" y="70" fill="#0F172A" font-family="system-ui, sans-serif" font-size="13" font-weight="700">1. Echter geldwerter Vorteil:</text>
+    <text x="20" y="95" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Erwerb übertragbarer Qualifikationen</text>
+    <text x="20" y="115" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Z. B. Sprachkurse C1, Schweißerschein,</text>
+    <text x="20" y="135" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">  Führerschein Klasse C/CE oder D</text>
+
+    <text x="20" y="175" fill="#0F172A" font-family="system-ui, sans-serif" font-size="13" font-weight="700">2. Angemessene Bindungsdauer:</text>
+    <text x="20" y="200" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Bis 1 Monat Kurs: max. 6 Monate</text>
+    <text x="20" y="220" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Bis 6 Monate Kurs: max. 12 Monate</text>
+    <text x="20" y="240" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Bis 2 Jahre Weiterbildung: max. 24–36 Mon.</text>
+
+    <text x="20" y="280" fill="#0F172A" font-family="system-ui, sans-serif" font-size="13" font-weight="700">3. Pro-rata-temporis Abschmelzung:</text>
+    <text x="20" y="305" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Minderung um z. B. 1/24 pro Monat</text>
+    <text x="20" y="325" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Genaue Aufschlüsselung der Kosten</text>
+  </g>
+
+  <rect x="50" y="485" width="620" height="30" rx="6" fill="#E2E8F0"/>
+  <text x="360" y="505" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600" text-anchor="middle">BAG-Leitlinien: Employer-Pays-Prinzip (§ 296a SGB III) schützt Betriebe vor teuren Abmahnungen</text>
+</svg>

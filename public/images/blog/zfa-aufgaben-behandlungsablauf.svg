@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <rect width="720" height="540" fill="#F8FAFC" rx="12"/>
+  <rect x="30" y="30" width="660" height="60" rx="8" fill="#002B49"/>
+  <text x="360" y="68" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="20" font-weight="700" text-anchor="middle">Zahnmedizinische Fachangestellte (ZFA): Tätigkeitsmatrix</text>
+
+  <!-- Block 1: Behandlungsassistenz -->
+  <g transform="translate(50, 115)">
+    <rect width="280" height="165" rx="8" fill="#FFFFFF" stroke="#002B49" stroke-width="2"/>
+    <rect x="0" y="0" width="280" height="34" rx="8" fill="#002B49"/>
+    <text x="140" y="23" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="600" text-anchor="middle">1. Stuhlassistenz (4-Hand-Technik)</text>
+    <text x="20" y="65" fill="#0F172A" font-family="system-ui, sans-serif" font-size="13" font-weight="600">• Konservierende &amp; chirurgische Eingriffe</text>
+    <text x="20" y="90" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Absaugtechnik &amp; Trockenlegung (Kofferdam)</text>
+    <text x="20" y="115" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Anmischen von Füllungswerkstoffen &amp; Alginat</text>
+    <text x="20" y="145" fill="#00A86B" font-family="system-ui, sans-serif" font-size="11" font-weight="600">✓ Empathische Angstpatienten-Betreuung</text>
+  </g>
+
+  <!-- Block 2: Strahlenschutz & Röntgen -->
+  <g transform="translate(390, 115)">
+    <rect width="280" height="165" rx="8" fill="#FFFFFF" stroke="#EE1C25" stroke-width="2"/>
+    <rect x="0" y="0" width="280" height="34" rx="8" fill="#EE1C25"/>
+    <text x="140" y="23" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="600" text-anchor="middle">2. Röntgen &amp; Strahlenschutz</text>
+    <text x="20" y="65" fill="#0F172A" font-family="system-ui, sans-serif" font-size="13" font-weight="600">• Gesetzlicher Röntgenschein nach StrlSchG</text>
+    <text x="20" y="90" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Intraorale Zahnfilme &amp; Bissflügelaufnahmen</text>
+    <text x="20" y="115" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Orthopantomogramm (OPG) &amp; DVT 3D</text>
+    <text x="20" y="145" fill="#EE1C25" font-family="system-ui, sans-serif" font-size="11" font-weight="600">✓ Konstanzprüfung &amp; Dokumentationspflicht</text>
+  </g>
+
+  <!-- Block 3: Hygiene & Aufbereitung -->
+  <g transform="translate(50, 310)">
+    <rect width="280" height="165" rx="8" fill="#FFFFFF" stroke="#00A86B" stroke-width="2"/>
+    <rect x="0" y="0" width="280" height="34" rx="8" fill="#00A86B"/>
+    <text x="140" y="23" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="600" text-anchor="middle">3. Hygiene &amp; Sterilisation</text>
+    <text x="20" y="65" fill="#0F172A" font-family="system-ui, sans-serif" font-size="13" font-weight="600">• RKI- und BfArM-konforme Aufbereitung</text>
+    <text x="20" y="90" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Thermodesinfektor (RDG) &amp; Autoklav</text>
+    <text x="20" y="115" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Siegelung, Chargenfreigabe &amp; Barcode</text>
+    <text x="20" y="145" fill="#00A86B" font-family="system-ui, sans-serif" font-size="11" font-weight="600">✓ Sachkundenachweis Instrumentenaufbereitung</text>
+  </g>
+
+  <!-- Block 4: Verwaltung & Abrechnung -->
+  <g transform="translate(390, 310)">
+    <rect width="280" height="165" rx="8" fill="#FFFFFF" stroke="#002B49" stroke-width="2"/>
+    <rect x="0" y="0" width="280" height="34" rx="8" fill="#002B49"/>
+    <text x="140" y="23" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="600" text-anchor="middle">4. Praxisorganisation &amp; BEMA/GOZ</text>
+    <text x="20" y="65" fill="#0F172A" font-family="system-ui, sans-serif" font-size="13" font-weight="600">• Kassenabrechnung (BEMA) &amp; Privat (GOZ)</text>
+    <text x="20" y="90" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Heil- und Kostenpläne (HKP) digital</text>
+    <text x="20" y="115" fill="#64748B" font-family="system-ui, sans-serif" font-size="12">• Praxisverwaltungssoftware (Charly, Dampsoft)</text>
+    <text x="20" y="145" fill="#002B49" font-family="system-ui, sans-serif" font-size="11" font-weight="600">✓ Telefonischer Patientenservice in Deutsch B2</text>
+  </g>
+
+  <rect x="50" y="495" width="620" height="30" rx="6" fill="#E2E8F0"/>
+  <text x="360" y="515" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600" text-anchor="middle">Anerkennung nach ZHKG / Kammerprüfung vor der Landeszahnärztekammer (LZÄK)</text>
+</svg>

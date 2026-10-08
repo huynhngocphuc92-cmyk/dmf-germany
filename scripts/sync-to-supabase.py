@@ -105,6 +105,18 @@ POST_COVER_MAPPING = {
     "physiotherapeuten-aus-drittstaaten-anerkennung-mphg-praxen": "/images/blog/dmf-physiotherapie-reha-behandlung.jpg",
     "girokonto-eroeffnung-drittstaaten-schufa-zkg-arbeitgeber": "/images/blog/dmf-bankkonto-girokonto-beratung.jpg",
     "wohnung-anmeldung-bmg-rundfunkbeitrag-gez-unterkunft-arbeitgeber": "/images/blog/dmf-einwohnermeldeamt-anmeldung-wohnung.jpg",
+    "mechatroniker-kaeltetechnik-kaelteanlagen-klimasysteme-vietnam": "/images/blog/dmf-kaeltetechnik-klimaanlage-wartung.jpg",
+    "garten-landschaftsbau-galabau-fachkraefte-vietnam": "/images/blog/dmf-galabau-gartenbau-aussenanlage.jpg",
+    "zahntechniker-dentallabor-cad-cam-drittstaaten-vietnam": "/images/blog/dmf-zahntechnik-dentallabor-fraesen.jpg",
+    "busfahrer-oepnv-linienverkehr-drittstaaten-vietnam-beschv": "/images/blog/dmf-busfahrer-oepnv-linienbus-depot.jpg",
+    "fachinformatiker-systemintegration-cloud-netzwerke-vietnam": "/images/blog/dmf-systemintegration-rechenzentrum-server.jpg",
+    "zahnmedizinische-fachangestellte-zfa-praxen-vietnam-anerkennung": "/images/blog/dmf-zfa-zahnarztpraxis-behandlung-stuhl.jpg",
+    "medizinische-fachangestellte-mfa-arztpraxen-mvz-vietnam": "/images/blog/dmf-mfa-arztpraxis-blutentnahme-labor.jpg",
+    "mutterschutz-elternzeit-drittstaaten-fachkraefte-aufenthg": "/images/blog/dmf-mutterschutz-elternzeit-beratung-personal.jpg",
+    "entgeltfortzahlung-efzg-krankmeldung-eau-drittstaaten-heimaturlaub": "/images/blog/dmf-entgeltfortzahlung-attest-krankmeldung.jpg",
+    "arbeitsunfall-berufsgenossenschaft-dguv-drittstaaten-sgb-vii": "/images/blog/dmf-arbeitsunfall-berufsgenossenschaft-schutz.jpg",
+    "rueckzahlungsklauseln-vermittlungskosten-arbeitsvertrag-bag-rechtsprechung": "/images/blog/dmf-arbeitsvertrag-rueckzahlung-klausel-pruefung.jpg",
+    "daueraufenthalt-eu-9a-aufenthg-niederlassungserlaubnis-vergleich": "/images/blog/dmf-daueraufenthalt-eu-niederlassung-pass.jpg",
 }
 
 def sync_posts():
