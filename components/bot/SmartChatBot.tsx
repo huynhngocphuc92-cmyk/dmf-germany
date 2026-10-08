@@ -223,6 +223,17 @@ export const SmartChatBot = () => {
             ? "Tôi đang tìm kiếm lao động có tay nghề cho công ty."
             : "I'm looking for skilled workers for my company.",
     },
+    {
+      id: "contact",
+      label: lang === "de" ? "Kontakt aufnehmen" : lang === "vn" ? "Để lại liên hệ" : "Contact us",
+      icon: <Mail className="w-3.5 h-3.5" />,
+      message:
+        lang === "de"
+          ? "Ich möchte eine Kontaktanfrage stellen."
+          : lang === "vn"
+            ? "Tôi muốn để lại thông tin liên hệ."
+            : "I would like to submit a contact request.",
+    },
   ];
 
   // Fetch logo URL from database
@@ -399,12 +410,12 @@ export const SmartChatBot = () => {
         // Save chat history
         saveChatHistory(finalMessages);
 
-        // Check for lead intent and show form after a few messages
-        if (messages.length >= 3 && !leadSubmitted && detectLeadIntent(message)) {
+        // Check for lead intent and show form when user expresses interest
+        if (!leadSubmitted && detectLeadIntent(message)) {
           setTimeout(() => {
-            setLeadData({ interest: message });
+            setLeadData((prev) => ({ ...prev, interest: prev.interest || message }));
             setShowLeadForm(true);
-          }, 1500);
+          }, 1200);
         }
       } catch (error) {
         console.error("[SmartChatBot] Error:", error);
@@ -436,6 +447,8 @@ export const SmartChatBot = () => {
     if (action.id === "booking") {
       // Open Calendly directly
       window.open(CALENDLY_URL, "_blank", "noopener,noreferrer");
+    } else if (action.id === "contact") {
+      setShowLeadForm(true);
     } else {
       sendMessage(action.message);
     }
@@ -527,12 +540,40 @@ export const SmartChatBot = () => {
 
   // Format message content with markdown-like styling
   const formatContent = (content: string) => {
-    // Convert **bold** to <strong>
-    let formatted = content.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
-    // Convert bullet points
+    // 1. Escape HTML
+    let formatted = content.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+    // 2. Bold: **text** -> <strong>text</strong>
+    formatted = formatted.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+
+    // 3. Markdown links: [label](url) -> <a>
+    formatted = formatted.replace(
+      /\[(.*?)\]\((https?:\/\/[^\s)]+)\)/g,
+      '<a href="$2" target="_blank" rel="noopener noreferrer" class="underline text-blue-600 hover:text-blue-800 font-medium inline-flex items-center gap-0.5">$1</a>'
+    );
+
+    // 4. Standalone URLs (not preceded by href=")
+    formatted = formatted.replace(
+      /(?<!href=")(https?:\/\/[^\s<]+)/g,
+      '<a href="$1" target="_blank" rel="noopener noreferrer" class="underline text-blue-600 hover:text-blue-800 font-medium">$1</a>'
+    );
+
+    // 5. Standalone emails: [label](mailto:...) or raw email
+    formatted = formatted.replace(
+      /\[(.*?)\]\(mailto:([^\s)]+)\)/g,
+      '<a href="mailto:$2" class="underline text-blue-600 hover:text-blue-800 font-medium">$1</a>'
+    );
+    formatted = formatted.replace(
+      /(?<!mailto:|">)([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/g,
+      '<a href="mailto:$1" class="underline text-blue-600 hover:text-blue-800 font-medium">$1</a>'
+    );
+
+    // 6. Bullet points
     formatted = formatted.replace(/^- /gm, "• ");
-    // Convert line breaks
+
+    // 7. Line breaks
     formatted = formatted.replace(/\n/g, "<br />");
+
     return formatted;
   };
 
@@ -634,13 +675,26 @@ export const SmartChatBot = () => {
                   </div>
                 </div>
               </div>
-              <button
-                onClick={handleClose}
-                className="w-8 h-8 rounded-full hover:bg-white/20 flex items-center justify-center transition-colors"
-                aria-label={t.close}
-              >
-                <X className="w-4 h-4" />
-              </button>
+              <div className="flex items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => setShowLeadForm(true)}
+                  title={t.leadForm.title}
+                  className="text-xs bg-white/20 hover:bg-white/30 text-white px-2.5 py-1 rounded-full flex items-center gap-1 transition-colors"
+                >
+                  <Mail className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">
+                    {lang === "de" ? "Kontakt" : lang === "vn" ? "Liên hệ" : "Contact"}
+                  </span>
+                </button>
+                <button
+                  onClick={handleClose}
+                  className="w-8 h-8 rounded-full hover:bg-white/20 flex items-center justify-center transition-colors"
+                  aria-label={t.close}
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
             </div>
 
             {/* Messages Area */}
@@ -745,7 +799,7 @@ export const SmartChatBot = () => {
             </div>
 
             {/* Quick Actions */}
-            {messages.length <= 2 && !isLoading && (
+            {messages.length <= 4 && !isLoading && (
               <div className="px-4 py-2 bg-gray-50 border-t border-gray-100 flex-shrink-0">
                 <div className="flex flex-wrap gap-2">
                   {quickActions.map((action) => (

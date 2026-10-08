@@ -1,5 +1,15 @@
-export const DEFAULT_GROK_MODEL = "grok-4-fast-non-reasoning";
-const GROK_MODEL_FALLBACKS = [DEFAULT_GROK_MODEL, "grok-3", "grok-3-mini", "grok-beta"];
+export const DEFAULT_GROK_MODEL = process.env.XAI_MODEL || "grok-2-latest";
+
+const GROK_MODEL_FALLBACKS = [
+  process.env.XAI_MODEL,
+  "grok-2-latest",
+  "grok-2",
+  "grok-2-1212",
+  "grok-beta",
+  "grok-3",
+  "grok-3-mini",
+  "grok-4-fast-non-reasoning",
+].filter(Boolean) as string[];
 
 export interface GrokMessage {
   role: "system" | "user" | "assistant";
@@ -26,12 +36,21 @@ function getCandidateModels(): string[] {
 export function isGrokModelUnavailableError(error: unknown): boolean {
   const message =
     error instanceof Error ? error.message.toLowerCase() : String(error).toLowerCase();
+  const status = (error as { status?: number })?.status;
 
   return (
+    status === 400 ||
+    status === 404 ||
     message.includes("404") ||
     message.includes("not found") ||
+    message.includes("not_found") ||
     message.includes("model does not exist") ||
-    message.includes("400") // catch 400 Bad Request to trigger fallback since x.ai throws 400 for model not found
+    message.includes("does not exist") ||
+    message.includes("invalid model") ||
+    message.includes("unknown model") ||
+    message.includes("unsupported") ||
+    message.includes("400") ||
+    message.includes("bad request")
   );
 }
 
@@ -59,8 +78,13 @@ export async function runWithGrokModelFallback(
       const data = await response.json();
 
       if (!response.ok) {
-        const errorMsg = typeof data.error === 'string' ? data.error : (data.error?.message || `API Error: ${response.status}`);
-        throw new Error(errorMsg);
+        const errorMsg =
+          typeof data.error === "string"
+            ? data.error
+            : data.error?.message || `API Error: ${response.status} ${response.statusText}`;
+        const err = new Error(errorMsg);
+        (err as unknown as { status: number }).status = response.status;
+        throw err;
       }
 
       const text = data.choices[0]?.message?.content || "";
@@ -76,7 +100,10 @@ export async function runWithGrokModelFallback(
       lastError = error;
 
       if (isGrokModelUnavailableError(error)) {
-        console.warn(`[Grok] Model "${modelName}" unavailable, trying fallback.`);
+        console.warn(
+          `[Grok] Model "${modelName}" unavailable, trying fallback:`,
+          error instanceof Error ? error.message : error
+        );
         continue;
       }
 
