@@ -53,7 +53,7 @@ Erklären Sie den optimalen Arbeitsgriff und lassen Sie die Fachkraft den Schrit
 Schließen Sie das Feedback immer mit einer Würdigung des Gesamteinsatzes ab: _„Ihre Schweißnähte am Rahmen gestern waren hervorragend. Wenn wir diesen Arbeitsschritt noch anpassen, ist das Bauteil perfekt.“_
 
 ![Schulung zur interkulturellen Arbeitskultur und Teamintegration](/images/blog/dmf-achim-fuehrung-seminar.jpg)
-_Kulturelle Brücken schlagen: Herr Achim Betticher vermittelt Fachkräften und Arbeitgebern praxisnahe Kommunikationswerkzeuge._
+_Interkulturelle Kommunikation in der Praxis: Herr Achim Betticher vermittelt Fachkräften und Arbeitgebern bewährte Handlungsempfehlungen._
 
 ## Die Rolle von betrieblichen Integrationspaten
 

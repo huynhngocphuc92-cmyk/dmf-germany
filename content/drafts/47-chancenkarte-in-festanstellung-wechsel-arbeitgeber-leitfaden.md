@@ -12,7 +12,7 @@ excerpt: "Internationale Bewerber mit Chancenkarte sind bereits in Deutschland. 
 
 Seit Einführung der **Chancenkarte zur Arbeitsplatzsuche nach § 20a Aufenthaltsgesetz (AufenthG)** halten sich tausende gut ausgebildete Fachkräfte aus Drittstaaten legal in Deutschland auf, um vor Ort einen passenden Arbeitgeber zu finden. Für deutsche Betriebe, die unter akutem Fachkräftemangel leiden, eröffnet sich damit ein hochinteressanter Rekrutierungskanal: Die Kandidaten sind bereits im Bundesgebiet gemeldet, können persönlich zum Vorstellungsgespräch erscheinen und vor Vertragsunterzeichnung im Betrieb hospitieren.
 
-Doch sobald der Funke überspringt und das Unternehmen den Kandidaten fest anstellen möchte, stellen sich in den Personalabteilungen drängende Rechtsfragen: Muss die Fachkraft für den Visumsantrag zurück in ihr Herkunftsland reisen? Welche Probebeschäftigungen sind während der Chancenkarte erlaubt? Und wie gelingt der nahtlose Übergang in einen dauerhaften Fachkrafttitel nach **§ 18a oder § 18b AufenthG**?
+Sobald die fachliche und persönliche Eignung im Betrieb überzeugt und das Unternehmen eine Festanstellung anstrebt, stellen sich in den Personalabteilungen konkrete Rechtsfragen: Muss die Fachkraft für den Visumsantrag zurück in ihr Herkunftsland reisen? Welche Probebeschäftigungen sind während der Chancenkarte erlaubt? Und wie gelingt der nahtlose Übergang in einen dauerhaften Fachkrafttitel nach **§ 18a oder § 18b AufenthG**?
 
 ## 1. Der 4-Stufen-Weg vom Suchstatus zur Festanstellung
 

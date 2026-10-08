@@ -10,7 +10,7 @@ excerpt: "Leere Backstuben und fehlender Nachwuchs? Erfahren Sie, wie Handwerksb
 
 # Bäcker und Konditoren aus Vietnam: Nachwuchssicherung für das Lebensmittelhandwerk
 
-Früh aufstehen, mehlbestäubte Hände, der Duft von frischem Sauerteigbrot und filigran dekorierte Torten: Das Bäcker- und Konditorenhandwerk gehört zu den traditionsreichsten Säulen der deutschen Handwerkskultur. Doch hinter den Kulissen kämpfen viele Bäckereibetriebe mit akuter Personalnot. Nach Berichten des [Zentralverbands des Deutschen Bäckerhandwerks](https://www.baeckerhandwerk.de) bleibt jedes Jahr eine erhebliche Anzahl der Ausbildungsplätze unbesetzt. Familiengeführte Traditionsbäckereien müssen Filialen schließen oder Öffnungszeiten kürzen, weil qualifizierte Gesellen fehlen.
+Früh aufstehen, mehlbestäubte Hände, der Duft von frischem Sauerteigbrot und filigran dekorierte Torten: Das Bäcker- und Konditorenhandwerk gehört zu den traditionsreichsten Säulen der deutschen Handwerkskultur. In der betrieblichen Praxis kämpfen viele Bäckereibetriebe mit akuter Personalnot. Nach Berichten des [Zentralverbands des Deutschen Bäckerhandwerks](https://www.baeckerhandwerk.de) bleibt jedes Jahr eine erhebliche Anzahl der Ausbildungsplätze unbesetzt. Familiengeführte Traditionsbäckereien müssen Filialen schließen oder Öffnungszeiten kürzen, weil qualifizierte Gesellen fehlen.
 
 Um den Betrieb und die Backtradition für die nächste Generation zu sichern, öffnen sich immer mehr Handwerksmeister der Ausbildung internationaler Nachwuchskräfte über die duale Berufsausbildung (§ 16a AufenthG). Vietnam erweist sich dabei als einer der spannendsten und erfolgreichsten Partner: Das Land verbindet eine lebendige, französisch geprägte Back- und Patisseriekultur (_Bánh mì_, feine Choux-Teige, kunstvolle Torten) mit einer jungen Generation, die hohes handwerkliches Geschick und Fleiß mitbringt.
 
@@ -35,7 +35,7 @@ Informationen zu den rechtlichen Pflichten des Ausbildungsbetriebs bietet das Bu
 
 In Vietnam genießt das Backhandwerk hohes gesellschaftliches Ansehen. Junge Menschen, die sich für eine Ausbildung in Deutschland bewerben, bringen beste Voraussetzungen mit:
 
-- **Echte Motivation:** Bewerber entscheiden sich bewusst für das Bäcker- oder Konditorenhandwerk in Deutschland, da die deutsche Brot- und Backkunst (UNESCO-Kulturerbe) weltweit als Goldstandard gilt.
+- **Echte Motivation:** Bewerber entscheiden sich bewusst für das Bäcker- oder Konditorenhandwerk in Deutschland, da die deutsche Brot- und Backkunst (UNESCO-Kulturerbe) weltweit als internationales Referenzmaß geschätzt wird.
 - **Hohe Fingerfertigkeit:** Vietnamesische Auszubildende zeichnen sich durch Geduld, Genauigkeit und handwerkliche Sorgfalt bei der Formung von Teiglingen und beim Dekorieren von Feingebäcken aus.
 - **Respekt vor dem Handwerksmeister:** In der vietnamesischen Kultur hat das Meister-Schüler-Verhältnis einen hohen Stellenwert. Anweisungen des Meisters werden mit großem Respekt und Lernwillen aufgenommen.
 

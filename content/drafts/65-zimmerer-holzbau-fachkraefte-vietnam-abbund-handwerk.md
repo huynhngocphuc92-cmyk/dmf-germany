@@ -44,7 +44,7 @@ Vietnam besitzt eine jahrhundertealte Tradition in der Holzbearbeitung und im tr
 
 ## 3. Der Weg in den Betrieb: Duale Ausbildung (§ 16a) oder Direkteinstieg
 
-- **3-jährige duale Ausbildung (§ 16a AufenthG):** Der ideale Pfad für nachhaltige Mitarbeiterbindung. Der Azubi lernt im Betrieb, im regionalen Zimmerer-Ausbildungszentrum und in der Berufsschule alle Facetten des Berufs von der Pike auf. Nach bestandener Gesellenprüfung vor der Handwerkskammer wird er nahtlos als Geselle übernommen.
+- **3-jährige duale Ausbildung (§ 16a AufenthG):** Der ideale Pfad für nachhaltige Mitarbeiterbindung. Der Auszubildende erlernt im Betrieb, im regionalen Zimmerer-Ausbildungszentrum und in der Berufsschule alle Facetten des Holzbaus von Grund auf praxisnah und theoretisch fundiert. Nach bestandener Gesellenprüfung vor der Handwerkskammer folgt die direkte Übernahme als Geselle.
 - **Fachkräfte mit Vorerfahrung (§ 16d / § 19c AufenthG):** Absolventen vietnamesischer Technikkollegs für Holztechnik können im Rahmen der [Anerkennungspartnerschaft](/blog/anerkennungspartnerschaft-16d-aufenthg-arbeitgeber-voraussetzungen) direkt in der Vorfertigung und Elementmontage eingesetzt werden.
 
 DMF Talents begleitet Zimmereibetriebe bei der Bewerberauswahl, organisiert persönliche Video-Interviews und übernimmt alle behördlichen Genehmigungen bei HWK und Ausländerbehörde.

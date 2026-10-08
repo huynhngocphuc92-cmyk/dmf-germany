@@ -52,7 +52,7 @@ Patienten in deutschen Kliniken und Heimen spüren diese Zuwendung sofort:
 - **Hohe Dienstleistungsbereitschaft:** Schichtdienst, Wochenenddienste und Nachtwachen werden mit hoher Zuverlässigkeit übernommen.
 - **Teamharmonie:** Konflikte werden im Team konstruktiv und respektvoll besprochen; die Integration in bestehende Kollegien verläuft harmonisch.
 
-## 3. Win-Win für Träger und Mitarbeitende
+## 3. Beidseitige Vorteile für Pflegeeinrichtungen und Mitarbeitende
 
 Für Träger rechnet sich das Modell doppelt:
 

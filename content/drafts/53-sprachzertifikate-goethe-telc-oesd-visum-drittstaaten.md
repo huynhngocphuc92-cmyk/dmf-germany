@@ -17,7 +17,7 @@ Der Grund liegt fast immer in der Wahl des falschen Prüfungsinstituts oder nich
 
 ![Sprachzertifikate Kriterien Matrix](/images/blog/sprachzertifikate-kriterien-matrix.svg)
 
-## 1. Der Goldstandard: Die ALTE-Zertifizierung
+## 1. Verbindliche Gütekriterien: Die ALTE-Zertifizierung
 
 Gemäß den offiziellen Visumshandbüchern des Auswärtigen Amts und den Weisungen der Bundesagentur für Arbeit werden für nationale Visa zur Erwerbstätigkeit und Ausbildung grundsätzlich nur Sprachzertifikate akzeptiert, die auf den Standards der **ALTE (Association of Language Testers in Europe)** beruhen.
 

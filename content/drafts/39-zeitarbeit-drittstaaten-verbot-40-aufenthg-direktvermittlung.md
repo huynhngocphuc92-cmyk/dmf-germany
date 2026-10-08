@@ -10,7 +10,7 @@ excerpt: "Leiharbeit für Arbeitskräfte aus Drittstaaten ist gesetzlich grunds�
 
 # Zeitarbeit vs. Direktvermittlung: Warum Leiharbeit für Drittstaatsangehörige nach § 40 AufenthG verboten ist
 
-In Zeiten akuten Personalmangels greifen viele deutsche Unternehmen auf Personaldienstleister zurück, um Produktionsspitzen abzufedern oder vakante Schichten kurzfristig zu besetzen. Was im innereuropäischen Markt (EU-Arbeitnehmerfreizügigkeit) gang und gäbe ist, führt bei der Rekrutierung aus Drittstaaten (z. B. Vietnam, Indien, Philippinen) jedoch regelmäßig zu schwerwiegenden rechtlichen Verfehlungen.
+Zur Überbrückung kurzfristiger Personalengpässe greifen viele deutsche Unternehmen auf Personaldienstleister zurück, um Produktionsspitzen abzufedern oder vakante Schichten rasch zu besetzen. Was im innereuropäischen Binnenmarkt (EU-Arbeitnehmerfreizügigkeit) eine weit verbreitete Praxis darstellt, führt bei Arbeitskräften aus Drittstaaten (z. B. Vietnam, Indien, Philippinen) jedoch regelmäßig zu schwerwiegenden Rechtsverstößen.
 
 Immer wieder bieten dubiose Vermittlungsagenturen deutschen Betrieben vietnamesische oder andere Drittstaats-Kräfte im Wege der Arbeitnehmerüberlassung (Zeitarbeit) an. Den wenigsten Verantwortlichen ist bewusst: **Die Beschäftigung von Drittstaatsangehörigen in der Leiharbeit ist in Deutschland gesetzlich grundsätzlich verboten.** Wer gegen diese Vorschrift verstößt, riskiert existenzbedrohende Bußgelder und den sofortigen Verlust des Personals.
 

@@ -51,7 +51,7 @@ Für Solarteure und Elektromonteure mit anerkanntem Kollegabschluss erfolgt die 
 
 Die Montage auf Steil- und Flachdächern unterliegt strengen berufsgenossenschaftlichen Regelwerken. Vor dem ersten Einsatz organisieren Betriebe die obligatorische arbeitsmedizinische Vorsorgeuntersuchung nach dem DGUV-Grundsatz G41 (Arbeiten mit Absturzgefahr).
 
-Zudem verlangt die BG BAU die strikte Einhaltung der DGUV Vorschrift 38 (Bauarbeiten) und der DGUV Regel 112-198 für den Einsatz von Auffanggurten, Anschlagpunkten und Höhensicherungsgeräten. Auf der elektrischen Seite müssen die Niederspannungsanschlussverordnung (NAV) und die technischen Anwendungsregeln der Netzbetreiber (insbesondere VDE-AR-N 4105 für Erzeugungsanlagen am Niederspannungsnetz) beachtet werden. Vietnamesische Monteure werden bereits in Vorbereitungskursen auf diese Regelwerke sensibilisiert, sodass sie im Team mit erfahrenen Obermonteuren nahtlos agieren können.
+Zudem verlangt die BG BAU die strikte Einhaltung der DGUV Vorschrift 38 (Bauarbeiten) und der DGUV Regel 112-198 für den Einsatz von Auffanggurten, Anschlagpunkten und Höhensicherungsgeräten. Auf der elektrischen Seite müssen die Niederspannungsanschlussverordnung (NAV) und die technischen Anwendungsregeln der Netzbetreiber (insbesondere VDE-AR-N 4105 für Erzeugungsanlagen am Niederspannungsnetz) beachtet werden. Vietnamesische Monteure werden bereits in Vorbereitungskursen auf diese Regelwerke sensibilisiert, sodass sie Arbeitsabläufe und Sicherheitsstandards gemeinsam mit erfahrenen Obermonteuren fachgerecht umsetzen.
 
 ## Werkstatt- und Baustellen-Deutsch für Solarmonteure
 

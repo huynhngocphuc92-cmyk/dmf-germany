@@ -74,7 +74,7 @@ Einrichtungen, die sich aktiv um die Willkommenskultur kümmern, profitieren von
 
 ## Fachkräfte für Ihre Pflegeeinrichtung gewinnen
 
-Die Rekrutierung von Pflegefachkräften aus Vietnam ist eine zukunftssichere Antwort auf den Fachkräftemangel, wenn Vorbereitung, Behördenmanagement und betriebliche Einarbeitung Hand in Hand greifen.
+Die Rekrutierung von Pflegefachkräften aus Vietnam stabilisiert die Stationsbesetzung dauerhaft, wenn fachliche Vorbereitung, behördliche Genehmigungsverfahren und die betriebliche Einarbeitung eng aufeinander abgestimmt sind.
 
 Einen Überblick über die Betreuung von Pflegebetrieben und qualifizierten Kandidaten bietet [DMF Talents zur Fachkräftevermittlung](/services/skilled-workers).
 

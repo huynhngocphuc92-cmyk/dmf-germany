@@ -10,7 +10,7 @@ excerpt: "Wer zahlt die Vermittlung? Erfahren Sie, warum § 296a SGB III das Emp
 
 # Das Employer-Pays-Prinzip nach § 296a SGB III: Faire Vermittlung ohne versteckte Kosten
 
-Auf dem Markt der internationalen Personalvermittlung werben viele Agenturen mit scheinbar verlockenden Angeboten: „Kostenfreie Vermittlung von Azubis“ oder „Fachkräfte zum Nulltarif für deutsche Betriebe“. Was auf den ersten Blick wie ein wirtschaftliches Schnäppchen für den Arbeitgeber wirkt, entpuppt sich bei genauerem Hinsehen häufig als rechtlich brisante und unethische Falle.
+Auf dem Markt der internationalen Personalvermittlung werben manche Agenturen mit scheinbar verlockenden Konditionen: „Kostenfreie Vermittlung von Azubis“ oder „Fachkräfte ohne Vermittlungshonorar für deutsche Betriebe“. Was vordergründig wie eine willkommene Kostenersparnis für den Betrieb erscheint, birgt bei genauerer Betrachtung erhebliche rechtliche Risiken und gravierende Reputationsschäden.
 
 Denn wer die Dienstleistung einer Vermittlungsagentur nicht bezahlt, delegiert die Rechnung an die Schwächsten der Kette: die ausländischen Bewerber und Auszubildenden selbst. Diese werden im Herkunftsland oft mit horrenden „Vermittlungsgebühren“ von mehreren tausend Euro belastet, die sie nur über hochverzinsten Kredite finanzieren können.
 

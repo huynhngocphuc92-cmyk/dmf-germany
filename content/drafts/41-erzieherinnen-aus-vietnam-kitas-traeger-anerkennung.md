@@ -57,6 +57,6 @@ DMF Talents legt im Sprachentraining größten Wert auf rollenbasierte Simulatio
 
 ## 3. Kulturelle Bereicherung für Kinder und Teams
 
-Vietnamesische Erzieherinnen bringen Eigenschaften mit, die im Kita-Alltag hochgeschätzt werden: außergewöhnliche Herzlichkeit, Geduld, Respekt gegenüber Kindern und Teamfähigkeit. In Zeiten wachsender Vielfalt in deutschen Kitas ist ihre Anwesenheit eine gelebte interkulturelle Bereicherung für Kinder, Kolleginnen und Eltern.
+Vietnamesische Erzieherinnen bringen Eigenschaften mit, die im Kita-Alltag hochgeschätzt werden: außergewöhnliche Herzlichkeit, Geduld, Respekt gegenüber Kindern und Teamfähigkeit. Angesichts zunehmend mehrsprachiger Kindergruppen bereichert ihre ausgeprägte interkulturelle Sensibilität den Alltag von Kindern, Team und Eltern nachhaltig.
 
 Suchen Sie als Kita-Träger nach verlässlichen Lösungen gegen Gruppenschließungen? Informieren Sie sich über unsere Betreuungsangebote auf der Seite [Für Arbeitgeber: Lösungen](/services/skilled-workers) oder vereinbaren Sie ein Beratungsgespräch.

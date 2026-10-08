@@ -64,7 +64,7 @@ Verläuft die Einstiegsqualifizierung erfolgreich, schließt der Betrieb direkt 
 
 Ergänzend kann während der regulären Ausbildungszeit die [ausbildungsbegleitende Hilfe AsA flex](/blog/berufsschule-fachtheorie-asa-flex-vietnamesische-azubis) genutzt werden, um theoretische Fächer gezielt zu stützen.
 
-## Gestalten Sie Ihre Ausbildung zukunftssicher
+## Sichern Sie Ihren Ausbildungsnachwuchs nachhaltig ab
 
 Die Einstiegsqualifizierung bietet maximale Sicherheit für Arbeitgeber und Auszubildende. Informieren Sie sich über die Auswahl passender Nachwuchskräfte bei [DMF Talents zur Auszubildendenvermittlung](/services/azubi).
 

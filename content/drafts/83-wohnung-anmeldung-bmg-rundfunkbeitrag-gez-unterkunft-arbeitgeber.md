@@ -49,7 +49,7 @@ Der Arbeitnehmer ist nach **§ 17 Abs. 1 BMG** verpflichtet, sich **innerhalb vo
 
 Wenige Wochen nach der Anmeldung erhält jeder gemeldete Bewohner automatisch einen Brief vom **Beitragsservice (ehemals GEZ)**. Hier gilt es, Doppelzahlungen und Mahnungen von vornherein zu vermeiden:
 
-- **Das Grundprinzip:** Es gilt die gesetzliche Regel: **„Eine Wohnung – ein Beitrag“ (18,36 Euro pro Monat)** nach dem Rundfunkbeitragsstaatsvertrag (RBStV). Wie viele Personen in der Wohnung leben und wie viele Geräte vorhanden sind, spielt keine Rolle.
+- **Das Grundprinzip:** Es gilt die gesetzliche Regel: **„Eine Wohnung – ein Beitrag“ (18,36 Euro pro Monat)** nach dem Rundfunkbeitragsstaatsvertrag (RBStV). Die Personenanzahl im Haushalt und die Anzahl der vorhandenen Empfangsgeräte sind dabei rechtlich unerheblich.
 - **Die WG-Regelung:** In einer Wohngemeinschaft muss **nur eine einzige Person** den Rundfunkbeitrag anmelden und bezahlen. Alle anderen Mitbewohner können sich auf das Aktenzeichen (die Beitragsnummer) dieser zahlenden Person berufen und sind damit vollständig befreit.
 - **Tipp für Arbeitgeber:** Klären Sie im Miet- oder Überlassungsvertrag, ob der Rundfunkbeitrag in den Nebenkosten enthalten ist und zentral vom Betrieb abgeführt wird, oder ob ein namentlich benannter Azubi das Beitragskonto führt und die Kosten intern durch die Bewohner geteilt werden.
 

@@ -19,13 +19,13 @@ Mit einer vorausschauenden Begleitung und festen Ansprechpartnern lässt sich da
 ## Das 3-Säulen-Betreuungsdreieck im Betrieb
 
 ![Das Betreuungsdreieck zur Vermeidung von Ausbildungsabbrüchen](/images/blog/azubi-betreuungsdreieck.svg)
-_Das Betreuungsdreieck: Betrieb, Azubi und Vermittlungspartner arbeiten Hand in Hand zur Vermeidung von Ausbildungsabbrüchen._
+_Das Betreuungsdreieck: Betrieb, Auszubildender und Vermittlungspartner koordinieren alle Maßnahmen zur Vermeidung von Ausbildungsabbrüchen._
 
 Ein stabiles Ausbildungsumfeld stützt sich auf drei tragende Säulen, die den Auszubildenden im Zentrum gemeinsam absichern:
 
 1. **Der Ausbildungsbetrieb:** Vermittelt die praktischen Fertigkeiten, stellt einen fachlichen Ausbilder sowie einen persönlichen Teampaten und pflegt eine verlässliche Feedbackkultur.
 2. **Die Berufsschule:** Vermittelt die theoretischen Grundlagen des Rahmenlehrplans und arbeitet bei sprachlichen Defiziten eng mit Förderprogrammen zusammen.
-3. **Die begleitende Betreuung (DMF Talents):** Schlägt die Brücke außerhalb der Werkstatt – von der Unterstützung bei behördlichen Anmeldungen und Wohnraumfragen bis hin zur interkulturellen Konfliktmediation.
+3. **Die begleitende Betreuung (DMF Talents):** Übernimmt die persönliche Unterstützung außerhalb der Arbeitsstätte – von behördlichen Anmeldungen und Wohnraumfragen bis hin zur interkulturellen Konfliktmediation.
 
 ## Frühwarnsignale im Ausbildungsalltag rechtzeitig erkennen
 
@@ -59,11 +59,11 @@ Ein fachlicher Ausbilder trägt die rechtliche und pädagogische Verantwortung, 
 - **Aufgaben:** Erklären informeller Betriebsabläufe (Pausenregelungen, Kantine, Werkzeugausgabe), gemeinsame Mittagspausen und Unterstützung bei alltäglichen Fragen abseits von Leistungsbewertungen.
 - **Entlastung:** Hemmschwellen werden abgebaut, da der Azubi alltägliche Unsicherheiten ohne Versagensangst ansprechen kann.
 
-## DMF Talents als verlässliche Brücke vor Ort
+## DMF Talents als persönlicher Begleiter vor Ort
 
 Die Verantwortung eines Ausbildungsbetriebs endet am Werkstor – die Integrationsherausforderungen eines jungen Menschen aus Vietnam hingegen nicht. Behördliche Pflichten (Ausländerbehörde, Einwohnermeldeamt, Krankenkasse), die Orientierung im deutschen Gesundheitssystem oder schlicht das Zurechtfinden im fremden Umfeld erfordern Zeit.
 
-DMF Talents begleitet Unternehmen und Auszubildende daher ganzheitlich:
+DMF Talents begleitet Unternehmen und Auszubildende daher kontinuierlich und über die gesamte Ausbildungsdauer hinweg:
 
 - **Präsenz in Deutschland und Vietnam:** Wir verstehen die Lebenswirklichkeit beider Kulturen und können Missverständnisse aufklären, bevor sie zu verhärteten Konflikten führen.
 - **Konfliktmediation:** Bei sprachlichen Blockaden oder Unstimmigkeiten moderieren zweisprachige DMF-Betreuer zeitnah und lösungsorientiert.
