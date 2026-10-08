@@ -795,6 +795,8 @@ export const TRANSLATIONS = {
     },
     nav: {
       employers: "Für Arbeitgeber",
+      hiring_request: "Personalbedarf melden",
+      hiring_request_desc: "Bedarf unverbindlich anfragen",
       references: "Referenzen",
       references_desc: "Erfolgreiche Vermittlungen",
       roi_calculator: "ROI-Rechner",
@@ -1991,6 +1993,8 @@ export const TRANSLATIONS = {
     },
     nav: {
       employers: "For Employers",
+      hiring_request: "Submit Hiring Request",
+      hiring_request_desc: "Inquire without obligation",
       references: "References",
       references_desc: "Successful Placements",
       roi_calculator: "ROI Calculator",
@@ -3177,6 +3181,8 @@ export const TRANSLATIONS = {
     },
     nav: {
       employers: "Nhà tuyển dụng",
+      hiring_request: "Gửi nhu cầu tuyển dụng",
+      hiring_request_desc: "Đăng ký tư vấn miễn phí",
       references: "Dự án tiêu biểu",
       references_desc: "Dự án thành công",
       roi_calculator: "Tính hiệu quả đầu tư",

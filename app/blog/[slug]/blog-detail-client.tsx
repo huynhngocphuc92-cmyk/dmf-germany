@@ -8,7 +8,16 @@ import { format } from "date-fns";
 import { de, vi, enUS } from "date-fns/locale";
 import { motion } from "framer-motion";
 import parse from "html-react-parser";
-import { ArrowLeft, Calendar, Clock, FileText, Share2 } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Calendar,
+  Clock,
+  FileText,
+  Share2,
+  Calculator,
+  Users,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./article.module.css";
@@ -24,6 +33,17 @@ const translations = {
     share: "Teilen",
     relatedPosts: "Verwandte Beiträge",
     readMore: "Weiterlesen",
+    cta: {
+      badge: "B2B-Fachkräfte-Service für Arbeitgeber",
+      title: "Suchen Sie qualifizierte Fachkräfte oder Auszubildende?",
+      desc: "DMF Talents begleitet deutsche Unternehmen bei der passgenauen Auswahl, rechtssicheren FEG-Visabeschleunigung und nachhaltigen betrieblichen Integration von Talenten aus Vietnam.",
+      trust_feg: "Rechtssicher nach FEG & § 296a SGB III",
+      trust_success: "Erfolgsbasiertes Honorarmodell",
+      trust_guarantee: "Kostenlose Ersatzgarantie bei Abbruch",
+      btn_primary: "Personalbedarf unverbindlich melden",
+      btn_secondary: "Einsparpotenzial kalkulieren",
+      btn_profiles: "Kandidaten-Pool einsehen",
+    },
   },
   en: {
     backToBlog: "Back to Blog",
@@ -31,6 +51,17 @@ const translations = {
     share: "Share",
     relatedPosts: "Related Posts",
     readMore: "Read More",
+    cta: {
+      badge: "B2B Talent Service for Employers",
+      title: "Looking for qualified professionals or apprentices?",
+      desc: "DMF Talents supports German enterprises with tailored candidate selection, accelerated FEG visa procedures, and sustainable integration of talents from Vietnam.",
+      trust_feg: "Fully compliant with FEG & § 296a SGB III",
+      trust_success: "Success-based recruitment fee",
+      trust_guarantee: "Free replacement guarantee upon dropout",
+      btn_primary: "Submit hiring inquiry without obligation",
+      btn_secondary: "Calculate ROI savings",
+      btn_profiles: "Browse candidate pool",
+    },
   },
   vn: {
     backToBlog: "Quay lại Blog",
@@ -38,6 +69,17 @@ const translations = {
     share: "Chia sẻ",
     relatedPosts: "Bài viết liên quan",
     readMore: "Đọc thêm",
+    cta: {
+      badge: "Dịch vụ Nhân sự B2B cho Doanh nghiệp",
+      title: "Doanh nghiệp bạn đang tìm kiếm nhân sự hoặc học nghề?",
+      desc: "DMF Talents đồng hành cùng các doanh nghiệp tại Đức từ khâu tuyển chọn, thủ tục visa FEG nhanh chóng đến việc hội nhập bền vững cho nhân tài từ Việt Nam.",
+      trust_feg: "Tuân thủ pháp luật FEG & § 296a SGB III",
+      trust_success: "Phí môi giới theo kết quả",
+      trust_guarantee: "Bảo hành đổi ứng viên miễn phí",
+      btn_primary: "Gửi nhu cầu nhân sự ngay",
+      btn_secondary: "Tính toán chi phí ROI",
+      btn_profiles: "Xem danh sách ứng viên",
+    },
   },
 };
 
@@ -176,6 +218,69 @@ export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) 
             {/* Article Body */}
             <div className="bg-white rounded-2xl shadow-sm p-6 sm:p-8 lg:p-12">
               <div className={styles.content}>{parse(post.content)}</div>
+            </div>
+
+            {/* B2B Conversion CTA Card */}
+            <div className="mt-8 bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 rounded-2xl shadow-xl p-6 sm:p-10 text-white border border-blue-800/40 relative overflow-hidden">
+              <div className="relative z-10 space-y-6">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-semibold uppercase tracking-wider">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  {t.cta?.badge || "B2B-Fachkräfte-Service für Arbeitgeber"}
+                </div>
+
+                <div className="space-y-3">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-snug">
+                    {t.cta?.title || "Suchen Sie qualifizierte Fachkräfte oder Auszubildende?"}
+                  </h3>
+                  <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl">
+                    {t.cta?.desc ||
+                      "DMF Talents begleitet deutsche Unternehmen bei der passgenauen Auswahl, rechtssicheren FEG-Visabeschleunigung und nachhaltigen betrieblichen Integration von Talenten aus Vietnam."}
+                  </p>
+                </div>
+
+                {/* Trust Badges */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 pb-2 border-y border-white/10 text-xs sm:text-sm text-slate-200">
+                  <div className="flex items-center gap-2">
+                    <span className="text-emerald-400 font-bold">✓</span>
+                    <span>{t.cta?.trust_feg || "Rechtssicher nach FEG & § 296a SGB III"}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-emerald-400 font-bold">✓</span>
+                    <span>{t.cta?.trust_success || "Erfolgsbasiertes Honorarmodell"}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-emerald-400 font-bold">✓</span>
+                    <span>{t.cta?.trust_guarantee || "Kostenlose Ersatzgarantie bei Abbruch"}</span>
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                  <Link
+                    href="/fuer-arbeitgeber/personalbedarf"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl text-sm sm:text-base transition-all shadow-lg hover:shadow-blue-500/25 group"
+                  >
+                    <span>{t.cta?.btn_primary || "Personalbedarf unverbindlich melden"}</span>
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
+
+                  <Link
+                    href="/roi-rechner"
+                    className="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl text-sm sm:text-base transition-all border border-white/20 backdrop-blur-sm"
+                  >
+                    <Calculator className="w-4 h-4" />
+                    <span>{t.cta?.btn_secondary || "ROI kalkulieren"}</span>
+                  </Link>
+
+                  <Link
+                    href="/fuer-arbeitgeber/kandidaten"
+                    className="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-white/5 hover:bg-white/10 text-slate-200 hover:text-white font-medium rounded-xl text-sm sm:text-base transition-all border border-white/10"
+                  >
+                    <Users className="w-4 h-4" />
+                    <span>{t.cta?.btn_profiles || "Kandidaten-Pool"}</span>
+                  </Link>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>

@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useMemo, useEffect, memo } from "react";
-import { Clock } from "lucide-react";
+import Link from "next/link";
+import { Clock, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { SliderWithMarker } from "./roi/SliderWithMarker";
 import { ProductTypeTabs, type ProductType } from "./roi/ProductTypeTabs";
@@ -170,7 +171,7 @@ const getProductDefaultsFromIndustry = (
 // ============================================
 
 export const RoiCalculator = memo(function RoiCalculator() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [productType, setProductType] = useState<ProductType>("fachkraefte");
   const [selectedIndustry, setSelectedIndustry] = useState<
     SkilledIndustryKey | AzubiIndustryKey | SeasonalIndustryKey | null
@@ -439,6 +440,55 @@ export const RoiCalculator = memo(function RoiCalculator() {
               {t.roi?.disclaimer ||
                 "Hinweis: Diese Berechnung dient nur als Referenz und berücksichtigt keine zusätzlichen Zulagen, Sozialabgaben, Steuern oder andere Nebenkosten. Die tatsächlichen Kosten können je nach individuellem Fall variieren."}
             </p>
+          </div>
+
+          {/* Conversion CTA Card */}
+          <div className="bg-gradient-to-br from-blue-900 via-indigo-950 to-slate-900 rounded-xl p-6 text-white shadow-lg border border-blue-800/50 space-y-4">
+            <div className="space-y-1">
+              <span className="text-xs uppercase font-bold tracking-wider text-amber-400">
+                {lang === "de"
+                  ? "Praxistransfer"
+                  : lang === "en"
+                    ? "Action Plan"
+                    : "Ứng dụng thực tế"}
+              </span>
+              <h4 className="text-lg font-bold text-white">
+                {lang === "de"
+                  ? "Dieses Einsparpotenzial für Ihr Unternehmen realisieren?"
+                  : lang === "en"
+                    ? "Realize this cost-saving potential for your business?"
+                    : "Hiện thực hóa mức tiết kiệm này cho doanh nghiệp của bạn?"}
+              </h4>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                {lang === "de"
+                  ? "Lassen Sie Ihren konkreten Personalbedarf unverbindlich prüfen. Wir erstellen Ihnen eine passgenaue Kostenkalkulation inklusive FEG-Terminplan."
+                  : lang === "en"
+                    ? "Request a non-binding consultation. We provide a customized cost calculation and FEG timeline for your company."
+                    : "Đăng ký tư vấn miễn phí. Chúng tôi sẽ lập bảng dự toán chi phí chi tiết và lộ trình visa FEG cho doanh nghiệp bạn."}
+              </p>
+            </div>
+
+            <div className="pt-2">
+              <Link
+                href={`/fuer-arbeitgeber/personalbedarf?service=${
+                  productType === "azubi"
+                    ? "azubi"
+                    : productType === "saisonkraefte"
+                      ? "seasonal"
+                      : "skilled"
+                }`}
+                className="w-full inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg text-sm transition-all shadow-md hover:shadow-lg group"
+              >
+                <span>
+                  {lang === "de"
+                    ? "Unverbindliches Angebot mit diesen Werten anfordern"
+                    : lang === "en"
+                      ? "Request quote with these parameters"
+                      : "Yêu cầu báo giá theo thông số này"}
+                </span>
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
           </div>
         </div>
       </div>

@@ -7,6 +7,7 @@ import {
   GraduationCap,
   School,
   Briefcase,
+  ClipboardCheck,
 } from "lucide-react";
 
 // Navigation item types
@@ -44,10 +45,16 @@ export const SOLUTIONS_ITEMS: DropdownItem[] = [
 // Für Arbeitgeber dropdown items
 export const EMPLOYER_ITEMS: DropdownItem[] = [
   {
-    href: "/referenzen",
-    labelKey: "references",
-    descKey: "references_desc",
-    icon: MapPin,
+    href: "/fuer-arbeitgeber/personalbedarf",
+    labelKey: "hiring_request",
+    descKey: "hiring_request_desc",
+    icon: ClipboardCheck,
+  },
+  {
+    href: "/fuer-arbeitgeber/kandidaten",
+    labelKey: "candidates",
+    descKey: "candidates_desc",
+    icon: Users,
   },
   {
     href: "/roi-rechner",
@@ -62,15 +69,16 @@ export const EMPLOYER_ITEMS: DropdownItem[] = [
     icon: Calendar,
   },
   {
-    href: "/fuer-arbeitgeber/kandidaten",
-    labelKey: "candidates",
-    descKey: "candidates_desc",
-    icon: Users,
+    href: "/referenzen",
+    labelKey: "references",
+    descKey: "references_desc",
+    icon: MapPin,
   },
 ];
 
 // Employer active routes for highlighting
 export const EMPLOYER_ACTIVE_ROUTES = [
+  "/fuer-arbeitgeber/personalbedarf",
   "/referenzen",
   "/roi-rechner",
   "/fuer-arbeitgeber/zeitplan",

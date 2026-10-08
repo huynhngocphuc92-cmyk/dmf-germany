@@ -1,6 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import {
@@ -12,6 +13,7 @@ import {
 } from "@/lib/config/timeline";
 import { cn } from "@/lib/utils";
 import {
+  ArrowRight,
   Briefcase,
   Calendar,
   Calendar as CalendarIcon,
@@ -44,7 +46,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 };
 
 export const TimelineSimulator = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   // Default start date: today
   const today = new Date();
@@ -426,6 +428,53 @@ export const TimelineSimulator = () => {
               </div>
             );
           })}
+        </div>
+
+        {/* Timeline Action CTA Card */}
+        <div className="mt-10 bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 rounded-xl p-6 sm:p-8 text-white shadow-lg border border-blue-800/50 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="space-y-2 text-center sm:text-left">
+            <span className="text-xs uppercase font-bold tracking-wider text-amber-400">
+              {lang === "de"
+                ? "Termingerechte Besetzung"
+                : lang === "en"
+                  ? "On-Time Placement"
+                  : "Đúng tiến độ"}
+            </span>
+            <h4 className="text-xl font-bold text-white">
+              {lang === "de"
+                ? "Diesen Zeitplan für Ihr Unternehmen sichern?"
+                : lang === "en"
+                  ? "Secure this recruitment timeline for your company?"
+                  : "Đảm bảo lộ trình tuyển dụng này cho doanh nghiệp bạn?"}
+            </h4>
+            <p className="text-xs sm:text-sm text-slate-300 max-w-xl leading-relaxed">
+              {lang === "de"
+                ? "Starten Sie jetzt die Vorprüfung, um das beschleunigte Fachkräfteverfahren (§ 81a AufenthG) fristgerecht einzuleiten und Ihre Wunschkandidaten pünktlich im Betrieb zu begrüßen."
+                : lang === "en"
+                  ? "Start the preliminary verification today to initiate the fast-track procedure (§ 81a AufenthG) on time."
+                  : "Bắt đầu thẩm định hồ sơ ngay hôm nay để kích hoạt thủ tục rút gọn (§ 81a AufenthG) và đón nhân sự đúng hạn."}
+            </p>
+          </div>
+
+          <Link
+            href={`/fuer-arbeitgeber/personalbedarf?service=${
+              productType === "azubi"
+                ? "azubi"
+                : productType === "saisonkraefte"
+                  ? "seasonal"
+                  : "skilled"
+            }`}
+            className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl text-sm sm:text-base transition-all shadow-md hover:shadow-lg whitespace-nowrap flex-shrink-0 group"
+          >
+            <span>
+              {lang === "de"
+                ? "Projekt jetzt anfragen"
+                : lang === "en"
+                  ? "Request project now"
+                  : "Bắt đầu dự án ngay"}
+            </span>
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          </Link>
         </div>
       </div>
     </div>
