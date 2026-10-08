@@ -87,7 +87,7 @@ describe("Chatbot & AI Fallback Suite", () => {
   });
 
   it("returns health check from GET /api/chat", async () => {
-    const res = await GET();
+    const res = await GET(new NextRequest("http://localhost/api/chat"));
     expect(res.status).toBe(200);
     const data = await res.json();
     expect(data.status).toBeDefined();

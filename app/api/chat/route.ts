@@ -228,10 +228,25 @@ export async function POST(request: NextRequest) {
 // HEALTH CHECK
 // ============================================
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   const hasXai = !!process.env.XAI_API_KEY;
   const hasGemini = !!process.env.GEMINI_API_KEY;
   const isReady = hasXai || hasGemini;
+
+  const { searchParams } = new URL(request.url);
+  const runDiagnostics = searchParams.get("diagnostics") === "1";
+
+  let xaiDiagnostic: string | null = null;
+  if (runDiagnostics && hasXai) {
+    try {
+      const res = await runWithGrokModelFallback(process.env.XAI_API_KEY!, [
+        { role: "user", content: "Test ping" },
+      ]);
+      xaiDiagnostic = `OK (${res.modelName})`;
+    } catch (err) {
+      xaiDiagnostic = err instanceof Error ? err.message : String(err);
+    }
+  }
 
   return NextResponse.json({
     status: isReady ? "ready" : "fallback_mode",
@@ -239,6 +254,7 @@ export async function GET() {
       xai: hasXai,
       gemini: hasGemini,
     },
+    xaiDiagnostic: runDiagnostics ? xaiDiagnostic : undefined,
     message: isReady ? "Chat API is ready" : "Chat running in fallback mode",
   });
 }
