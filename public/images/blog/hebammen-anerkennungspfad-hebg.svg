@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#eef5f9"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="720" height="540" fill="url(#bgGrad)"/>
+  <rect x="30" y="25" width="660" height="70" rx="8" fill="#1e3a5f" filter="url(#shadow)"/>
+  <text x="360" y="55" fill="#ffffff" font-size="20" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">Anerkennung von Hebammen aus Drittstaaten</text>
+  <text x="360" y="80" fill="#93c5fd" font-size="13" font-family="system-ui, sans-serif" text-anchor="middle">Verfahrensschritte nach Hebammengesetz (HebG) &amp; Studienreform</text>
+
+  <!-- 4 Process Cards -->
+  <rect x="40" y="125" width="145" height="370" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="40" y="125" width="145" height="36" rx="8" fill="#0891b2"/>
+  <text x="112" y="148" fill="#ffffff" font-size="12" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">1. Antragstellung</text>
+  <text x="50" y="180" fill="#1e3a5f" font-size="11" font-weight="bold" font-family="system-ui, sans-serif">Landesprüfungsamt</text>
+  <text x="50" y="200" fill="#475569" font-size="10" font-family="system-ui, sans-serif">• Bachelor-Diplom Vietnam (4 Jahre)</text>
+  <text x="50" y="230" fill="#475569" font-size="10" font-family="system-ui, sans-serif">• Fächer- &amp; Notenübersichten</text>
+  <text x="50" y="260" fill="#475569" font-size="10" font-family="system-ui, sans-serif">• Nachweis Geburten- und Praxisstunden</text>
+  <text x="50" y="300" fill="#475569" font-size="10" font-family="system-ui, sans-serif">• Straffreiheit &amp; Gesundheitseignung</text>
+
+  <rect x="205" y="125" width="145" height="370" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="205" y="125" width="145" height="36" rx="8" fill="#0284c7"/>
+  <text x="277" y="148" fill="#ffffff" font-size="12" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">2. Defizitprüfung</text>
+  <text x="215" y="180" fill="#1e3a5f" font-size="11" font-weight="bold" font-family="system-ui, sans-serif">Gutachten HebG</text>
+  <text x="215" y="200" fill="#475569" font-size="10" font-family="system-ui, sans-serif">• Vergleich mit deutschem Hebammenstudium</text>
+  <text x="215" y="240" fill="#475569" font-size="10" font-family="system-ui, sans-serif">• Feststellung wesentlicher Unterschiede</text>
+  <text x="215" y="280" fill="#475569" font-size="10" font-family="system-ui, sans-serif">• Defizitbescheid mit Ausgleichsmaßnahmen</text>
+
+  <rect x="370" y="125" width="145" height="370" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="370" y="125" width="145" height="36" rx="8" fill="#1e3a5f"/>
+  <text x="442" y="148" fill="#ffffff" font-size="12" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">3. Qualifizierung</text>
+  <text x="380" y="180" fill="#1e3a5f" font-size="11" font-weight="bold" font-family="system-ui, sans-serif">Anpassungslehrgang</text>
+  <text x="380" y="200" fill="#475569" font-size="10" font-family="system-ui, sans-serif">• Klinik-Einsatz im Kreißsaal (§ 16d)</text>
+  <text x="380" y="230" fill="#475569" font-size="10" font-family="system-ui, sans-serif">• Begleitung von Geburten unter Aufsicht</text>
+  <text x="380" y="270" fill="#475569" font-size="10" font-family="system-ui, sans-serif">• Fachsprachprüfung B2 Geburtshilfe</text>
+  <text x="380" y="310" fill="#475569" font-size="10" font-family="system-ui, sans-serif">• Oder: Kenntnisprüfung (mündlich/praktisch)</text>
+
+  <rect x="535" y="125" width="145" height="370" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="535" y="125" width="145" height="36" rx="8" fill="#0e7490"/>
+  <text x="607" y="148" fill="#ffffff" font-size="12" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">4. Berufserlaubnis</text>
+  <text x="545" y="180" fill="#1e3a5f" font-size="11" font-weight="bold" font-family="system-ui, sans-serif">Staatliche Anerkennung</text>
+  <text x="545" y="200" fill="#475569" font-size="10" font-family="system-ui, sans-serif">• Erteilung der Erlaubnis zum Führen der Berufsbezeichnung</text>
+  <text x="545" y="250" fill="#475569" font-size="10" font-family="system-ui, sans-serif">• Eigenständige Geburtsleitung im Kreißsaal</text>
+  <text x="545" y="290" fill="#475569" font-size="10" font-family="system-ui, sans-serif">• TVöD-P / TV-L Eingruppierung Fachkraft</text>
+</svg>

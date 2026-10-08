@@ -93,6 +93,18 @@ POST_COVER_MAPPING = {
     "krankenpflegehelfer-weiterbildung-pflegefachkraft-1plus2-modell": "/images/blog/dmf-pflege-station-visite-team.jpg",
     "familiennachzug-fachkraefte-29-aufenthg-wohnraumnachweis": "/images/blog/dmf-familiennachzug-wohnung-beratung.jpg",
     "betriebliche-altersvorsorge-bav-fachkraefte-drittstaaten-betravg": "/images/blog/dmf-vorsorge-beratung-arbeitsplatz.jpg",
+    "geruestbauer-drittstaaten-vietnam-trbs-2121-handwerk": "/images/blog/dmf-geruestbau-montage-hoehe.jpg",
+    "gleisbauer-schienenverkehr-bahn-infrastruktur-drittstaaten": "/images/blog/dmf-gleisbau-schienen-infrastruktur.jpg",
+    "karosseriebauer-fahrzeuglackierer-unfallinstandsetzung-vietnam": "/images/blog/dmf-karosserie-lackier-werkstatt.jpg",
+    "konstruktionsmechaniker-stahlbau-schweissen-din-en-1090": "/images/blog/dmf-konstruktionsmechanik-stahlbau-halle.jpg",
+    "kuendigung-aufhebungsvertrag-drittstaaten-meldepflicht-auslaenderbehoerde": "/images/blog/dmf-personalbuero-kuendigung-beratung.jpg",
+    "vergleichsentgelt-lohnpruefung-zav-arbeitsbedingungen-entgeltatlas": "/images/blog/dmf-gehaltsabrechnung-lohnpruefung-tabelle.jpg",
+    "arbeitszeitgesetz-ueberstunden-schichtarbeit-drittstaaten-arbeitgeber": "/images/blog/dmf-arbeitszeiterfassung-stempeluhr-schicht.jpg",
+    "nebenjob-minijob-auszubildende-fachkraefte-drittstaaten-erlaubnis": "/images/blog/dmf-azubi-beratung-nebenjob-arbeitsvertrag.jpg",
+    "hebammen-entbindungspfleger-vietnam-anerkennung-hebg-klinik": "/images/blog/dmf-klinik-geburtshilfe-hebammen-team.jpg",
+    "physiotherapeuten-aus-drittstaaten-anerkennung-mphg-praxen": "/images/blog/dmf-physiotherapie-reha-behandlung.jpg",
+    "girokonto-eroeffnung-drittstaaten-schufa-zkg-arbeitgeber": "/images/blog/dmf-bankkonto-girokonto-beratung.jpg",
+    "wohnung-anmeldung-bmg-rundfunkbeitrag-gez-unterkunft-arbeitgeber": "/images/blog/dmf-einwohnermeldeamt-anmeldung-wohnung.jpg",
 }
 
 def sync_posts():

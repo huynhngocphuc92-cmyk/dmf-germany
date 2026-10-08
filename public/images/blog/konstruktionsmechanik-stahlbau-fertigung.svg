@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#eef5f9"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="720" height="540" fill="url(#bgGrad)"/>
+  <rect x="30" y="25" width="660" height="70" rx="8" fill="#1e3a5f" filter="url(#shadow)"/>
+  <text x="360" y="55" fill="#ffffff" font-size="20" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">Konstruktionsmechanik &amp; Stahlbau</text>
+  <text x="360" y="80" fill="#93c5fd" font-size="13" font-family="system-ui, sans-serif" text-anchor="middle">Fertigungs- und Qualitätsstandards nach DIN EN 1090 (EXC 1 bis EXC 3)</text>
+
+  <!-- 3 Pillars -->
+  <rect x="40" y="125" width="200" height="370" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="40" y="125" width="200" height="38" rx="8" fill="#0891b2"/>
+  <text x="140" y="150" fill="#ffffff" font-size="13" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">Zuschnitt &amp; Umformen</text>
+  <text x="55" y="185" fill="#1e3a5f" font-size="12" font-weight="bold" font-family="system-ui, sans-serif">CNC-Brennschneiden</text>
+  <text x="55" y="205" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Plasma- &amp; Autogenschneiden</text>
+  <text x="55" y="225" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Fasenvorbereitung Schweißnaht</text>
+  <text x="55" y="245" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Werkstoffzeugnisse EN 10204</text>
+  <text x="55" y="275" fill="#1e3a5f" font-size="12" font-weight="bold" font-family="system-ui, sans-serif">Abkanten &amp; Richten</text>
+  <text x="55" y="295" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• CNC-Gesenkbiegepressen</text>
+  <text x="55" y="315" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Walzen &amp; Profilstahlscheren</text>
+  <text x="55" y="335" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Wärmerichten mit Flammbrenner</text>
+  <rect x="55" y="440" width="170" height="30" rx="4" fill="#e0f2fe"/>
+  <text x="140" y="460" fill="#0369a1" font-size="11" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">Präzise Vorfertigung</text>
+
+  <rect x="260" y="125" width="200" height="370" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="260" y="125" width="200" height="38" rx="8" fill="#0284c7"/>
+  <text x="360" y="150" fill="#ffffff" font-size="13" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">Schweißbaugruppen</text>
+  <text x="275" y="185" fill="#1e3a5f" font-size="12" font-weight="bold" font-family="system-ui, sans-serif">Schweißprozesse</text>
+  <text x="275" y="205" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• MAG (135) &amp; Fülldraht (136)</text>
+  <text x="275" y="225" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• WIG (141) für Wurzellagen</text>
+  <text x="275" y="245" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• E-Hand (111) für Baustelle</text>
+  <text x="275" y="275" fill="#1e3a5f" font-size="12" font-weight="bold" font-family="system-ui, sans-serif">Heften &amp; Ausrichten</text>
+  <text x="275" y="295" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Schweißtische &amp; Spannsysteme</text>
+  <text x="275" y="315" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Verzugsfreies Heften nach WPS</text>
+  <text x="275" y="335" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Vorwärmen bei Dickblechen</text>
+  <rect x="275" y="440" width="170" height="30" rx="4" fill="#e0f2fe"/>
+  <text x="360" y="460" fill="#0369a1" font-size="11" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">Zertifizierte Schweißer</text>
+
+  <rect x="480" y="125" width="200" height="370" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="480" y="125" width="200" height="38" rx="8" fill="#1e3a5f"/>
+  <text x="580" y="150" fill="#ffffff" font-size="13" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">Prüfung &amp; Montage</text>
+  <text x="495" y="185" fill="#1e3a5f" font-size="12" font-weight="bold" font-family="system-ui, sans-serif">Zerstörungsfreie Prüfung</text>
+  <text x="495" y="205" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Sichtprüfung VT (ISO 17637)</text>
+  <text x="495" y="225" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Magnetpulverprüfung MT</text>
+  <text x="495" y="245" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Ultraschall- &amp; Röntgenprüfung</text>
+  <text x="495" y="275" fill="#1e3a5f" font-size="12" font-weight="bold" font-family="system-ui, sans-serif">Endmontage</text>
+  <text x="495" y="295" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Schraubverbindungen HV-Sätze</text>
+  <text x="495" y="315" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Hallenbau &amp; Brückenkonstruktion</text>
+  <text x="495" y="335" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• CE-Kennzeichnung nach EN 1090</text>
+  <rect x="495" y="440" width="170" height="30" rx="4" fill="#e0f2fe"/>
+  <text x="580" y="460" fill="#0369a1" font-size="11" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">Lückenlose Werkskontrolle</text>
+</svg>

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#eef5f9"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="720" height="540" fill="url(#bgGrad)"/>
+  <rect x="30" y="25" width="660" height="70" rx="8" fill="#1e3a5f" filter="url(#shadow)"/>
+  <text x="360" y="55" fill="#ffffff" font-size="20" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">Anerkennung von Physiotherapeuten (MPhG)</text>
+  <text x="360" y="80" fill="#93c5fd" font-size="13" font-family="system-ui, sans-serif" text-anchor="middle">Stufenmodell für Praxen, Kliniken und ambulante Rehazentren</text>
+
+  <!-- 3 Big Cards -->
+  <rect x="40" y="125" width="200" height="370" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="40" y="125" width="200" height="38" rx="8" fill="#0891b2"/>
+  <text x="140" y="148" fill="#ffffff" font-size="13" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">1. Vorbildung Vietnam</text>
+  <text x="55" y="185" fill="#1e3a5f" font-size="12" font-weight="bold" font-family="system-ui, sans-serif">Bachelor Physiotherapie</text>
+  <text x="55" y="205" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• 4-jähriges Vollzeitstudium an medizinischen Universitäten</text>
+  <text x="55" y="245" fill="#1e3a5f" font-size="12" font-weight="bold" font-family="system-ui, sans-serif">Starke Praxiserfahrung</text>
+  <text x="55" y="265" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Neurologische Reha (Schlaganfall)</text>
+  <text x="55" y="285" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Orthopädie &amp; Traumatologie</text>
+  <text x="55" y="305" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Manuelle Techniken &amp; Faszientherapie</text>
+  <rect x="55" y="440" width="170" height="30" rx="4" fill="#e0f2fe"/>
+  <text x="140" y="460" fill="#0369a1" font-size="11" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">Akademische Basis</text>
+
+  <rect x="260" y="125" width="200" height="370" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="260" y="125" width="200" height="38" rx="8" fill="#0284c7"/>
+  <text x="360" y="148" fill="#ffffff" font-size="13" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">2. Anpassung in Praxis</text>
+  <text x="275" y="185" fill="#1e3a5f" font-size="12" font-weight="bold" font-family="system-ui, sans-serif">Visum § 16d AufenthG</text>
+  <text x="275" y="205" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Mitarbeit als Therapieassistent</text>
+  <text x="275" y="225" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Vergütung nach Vereinbarung</text>
+  <text x="275" y="255" fill="#1e3a5f" font-size="12" font-weight="bold" font-family="system-ui, sans-serif">Ausgleichsmaßnahmen</text>
+  <text x="275" y="275" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Ausgleich deutscher Heilmittelrichtlinien</text>
+  <text x="275" y="295" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Dokumentation in Praxissoftware</text>
+  <text x="275" y="315" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• B2 Medizin-Fachsprachprüfung</text>
+  <rect x="275" y="440" width="170" height="30" rx="4" fill="#e0f2fe"/>
+  <text x="360" y="460" fill="#0369a1" font-size="11" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">Klinische Einarbeitung</text>
+
+  <rect x="480" y="125" width="200" height="370" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="480" y="125" width="200" height="38" rx="8" fill="#1e3a5f"/>
+  <text x="580" y="148" fill="#ffffff" font-size="13" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">3. Vollanerkennung</text>
+  <text x="495" y="185" fill="#1e3a5f" font-size="12" font-weight="bold" font-family="system-ui, sans-serif">Berufszulassung MPhG</text>
+  <text x="495" y="205" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Staatliche Urkunde Physiotherapeut</text>
+  <text x="495" y="235" fill="#1e3a5f" font-size="12" font-weight="bold" font-family="system-ui, sans-serif">Kassenabrechnung</text>
+  <text x="495" y="255" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Volle Abrechnungsfähigkeit gegenüber GKV (Krankenkassen)</text>
+  <text x="495" y="295" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Weiterbildung: Manuelle Lymphdrainage (MLD), Bobath, PNF</text>
+  <rect x="495" y="440" width="170" height="30" rx="4" fill="#e0f2fe"/>
+  <text x="580" y="460" fill="#0369a1" font-size="11" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">Volle Wertschöpfung</text>
+</svg>

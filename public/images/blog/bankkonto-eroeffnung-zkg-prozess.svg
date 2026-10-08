@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#eef5f9"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="720" height="540" fill="url(#bgGrad)"/>
+  <rect x="30" y="25" width="660" height="70" rx="8" fill="#1e3a5f" filter="url(#shadow)"/>
+  <text x="360" y="55" fill="#ffffff" font-size="20" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">Girokonto-Eröffnung für internationale Fachkräfte</text>
+  <text x="360" y="80" fill="#93c5fd" font-size="13" font-family="system-ui, sans-serif" text-anchor="middle">Gesetzlicher Anspruch auf das Basiskonto nach §§ 31 ff. ZKG (Zahlungskontengesetz)</text>
+
+  <!-- 3 Workflow Boxes -->
+  <rect x="40" y="125" width="200" height="370" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="40" y="125" width="200" height="38" rx="8" fill="#0891b2"/>
+  <text x="140" y="148" fill="#ffffff" font-size="13" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">1. Voraussetzungen</text>
+  <text x="55" y="185" fill="#1e3a5f" font-size="12" font-weight="bold" font-family="system-ui, sans-serif">Erforderliche Dokumente</text>
+  <text x="55" y="205" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Gültiger Reisepass Vietnam</text>
+  <text x="55" y="225" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Visum (§ 16a, § 18a, § 16d)</text>
+  <text x="55" y="245" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Meldebescheinigung Einwohnermeldeamt</text>
+  <text x="55" y="275" fill="#1e3a5f" font-size="12" font-weight="bold" font-family="system-ui, sans-serif">Steuer-ID</text>
+  <text x="55" y="295" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Steuer-Identifikationsnummer</text>
+  <text x="55" y="315" fill="#475569" font-size="11" font-family="system-ui, sans-serif">  (wird vom BZSt nach Anmeldung per Post zugestellt)</text>
+  <rect x="55" y="440" width="170" height="30" rx="4" fill="#e0f2fe"/>
+  <text x="140" y="460" fill="#0369a1" font-size="11" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">Lückenlose Identifikation</text>
+
+  <rect x="260" y="125" width="200" height="370" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="260" y="125" width="200" height="38" rx="8" fill="#0284c7"/>
+  <text x="360" y="148" fill="#ffffff" font-size="13" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">2. ZKG Basiskonto</text>
+  <text x="275" y="185" fill="#1e3a5f" font-size="12" font-weight="bold" font-family="system-ui, sans-serif">Rechtsanspruch</text>
+  <text x="275" y="205" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Jede Bank ist verpflichtet, ein Basiskonto zu eröffnen (§ 31 ZKG)</text>
+  <text x="275" y="245" fill="#1e3a5f" font-size="12" font-weight="bold" font-family="system-ui, sans-serif">Keine Schufa-Prüfung</text>
+  <text x="275" y="265" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Fehlende Kredithistorie darf kein Ablehnungsgrund sein</text>
+  <text x="275" y="305" fill="#1e3a5f" font-size="12" font-weight="bold" font-family="system-ui, sans-serif">Guthabenbasis</text>
+  <text x="275" y="325" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Kein Dispositionskredit</text>
+  <text x="275" y="345" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Debitkarte &amp; Onlinebanking</text>
+  <rect x="275" y="440" width="170" height="30" rx="4" fill="#e0f2fe"/>
+  <text x="360" y="460" fill="#0369a1" font-size="11" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">Gesetzliche Eröffnungspflicht</text>
+
+  <rect x="480" y="125" width="200" height="370" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="480" y="125" width="200" height="38" rx="8" fill="#1e3a5f"/>
+  <text x="580" y="148" fill="#ffffff" font-size="13" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">3. Gehaltsüberweisung</text>
+  <text x="495" y="185" fill="#1e3a5f" font-size="12" font-weight="bold" font-family="system-ui, sans-serif">IBAN für Arbeitgeber</text>
+  <text x="495" y="205" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Bereitstellung innerhalb der ersten 7–10 Tage</text>
+  <text x="495" y="235" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Pünktliche Überweisung der ersten Ausbildungsvergütung</text>
+  <text x="495" y="275" fill="#1e3a5f" font-size="12" font-weight="bold" font-family="system-ui, sans-serif">Heimatüberweisungen</text>
+  <text x="495" y="295" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Sichere Geldtransfers nach Vietnam über zugelassene Institute</text>
+  <text x="495" y="335" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Vermeidung dubioser Bargeldkuriere</text>
+  <rect x="495" y="440" width="170" height="30" rx="4" fill="#e0f2fe"/>
+  <text x="580" y="460" fill="#0369a1" font-size="11" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">Finanzielle Stabilität</text>
+</svg>

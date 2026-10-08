@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#eef5f9"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="720" height="540" fill="url(#bgGrad)"/>
+  <rect x="30" y="25" width="660" height="70" rx="8" fill="#1e3a5f" filter="url(#shadow)"/>
+  <text x="360" y="55" fill="#ffffff" font-size="20" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">Karosserie- &amp; Fahrzeuginstandsetzung</text>
+  <text x="360" y="80" fill="#93c5fd" font-size="13" font-family="system-ui, sans-serif" text-anchor="middle">Vierphasen-Prozess: Von der Richtbank bis zur Hochvolt-Freigabe</text>
+
+  <!-- Step 1 -->
+  <rect x="40" y="125" width="300" height="170" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="40" y="125" width="300" height="34" rx="8" fill="#0891b2"/>
+  <text x="190" y="148" fill="#ffffff" font-size="13" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">Phase 1: Diagnose &amp; Vermessung</text>
+  <text x="55" y="180" fill="#1e3a5f" font-size="12" font-weight="bold" font-family="system-ui, sans-serif">• Elektronische 3D-Karosserievermessung</text>
+  <text x="55" y="200" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Schadensanalyse Tragstruktur &amp; Längsträger</text>
+  <text x="55" y="220" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Auslesen von Fehlerspeichern &amp; Airbag-Sensorik</text>
+  <text x="55" y="240" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• DGUV Information 209-093 (HV-Freischaltung)</text>
+  <text x="55" y="270" fill="#0891b2" font-size="11" font-weight="bold" font-family="system-ui, sans-serif">Sicherer Reparaturplan</text>
+
+  <!-- Step 2 -->
+  <rect x="380" y="125" width="300" height="170" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="380" y="125" width="300" height="34" rx="8" fill="#0284c7"/>
+  <text x="530" y="148" fill="#ffffff" font-size="13" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">Phase 2: Richten &amp; Trennen</text>
+  <text x="395" y="180" fill="#1e3a5f" font-size="12" font-weight="bold" font-family="system-ui, sans-serif">• Rückverformung auf der Dozer-Richtbank</text>
+  <text x="395" y="200" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Maßhaltigkeit nach Herstellertoleranz (mm)</text>
+  <text x="395" y="220" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Trennschnitte an definierten Trennstellen</text>
+  <text x="395" y="240" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Ausbeulen ohne Lackieren (Smart Repair)</text>
+  <text x="395" y="270" fill="#0284c7" font-size="11" font-weight="bold" font-family="system-ui, sans-serif">Originalgetreue Geometrie</text>
+
+  <!-- Step 3 -->
+  <rect x="40" y="325" width="300" height="170" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="40" y="325" width="300" height="34" rx="8" fill="#1e3a5f"/>
+  <text x="190" y="348" fill="#ffffff" font-size="13" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">Phase 3: Fügen &amp; Schweißen</text>
+  <text x="55" y="380" fill="#1e3a5f" font-size="12" font-weight="bold" font-family="system-ui, sans-serif">• MSG-Löten &amp; Punktschweißen (Inverter)</text>
+  <text x="55" y="400" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Hochfeste Stähle (Borstahl / USIBOR)</text>
+  <text x="55" y="420" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Kleben &amp; Nieten im Mischbau (Alu/Stahl)</text>
+  <text x="55" y="440" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Hohlraumkonservierung &amp; Korrosionsschutz</text>
+  <text x="55" y="470" fill="#1e3a5f" font-size="11" font-weight="bold" font-family="system-ui, sans-serif">Crashsichere Verbindungen</text>
+
+  <!-- Step 4 -->
+  <rect x="380" y="325" width="300" height="170" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="380" y="325" width="300" height="34" rx="8" fill="#0e7490"/>
+  <text x="530" y="348" fill="#ffffff" font-size="13" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">Phase 4: Finish &amp; Kalibrierung</text>
+  <text x="395" y="380" fill="#1e3a5f" font-size="12" font-weight="bold" font-family="system-ui, sans-serif">• Spaltmaß-Einpassung Türen &amp; Hauben</text>
+  <text x="395" y="400" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Übergabe an Lackiererei (Füller/Basis)</text>
+  <text x="395" y="420" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Kalibrierung Fahrerassistenzsysteme (ADAS)</text>
+  <text x="395" y="440" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Endabnahme &amp; Probefahrt</text>
+  <text x="395" y="470" fill="#0e7490" font-size="11" font-weight="bold" font-family="system-ui, sans-serif">Zertifizierte Verkehrsfreigabe</text>
+</svg>

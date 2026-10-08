@@ -211,11 +211,16 @@ def run_ultra_qc():
             # strip punctuation
             w_clean = re.sub(r"[^\w]", "", word).lower()
             if w_clean in {"du", "dich", "dir", "dein", "deine", "deinem", "deinen", "deiner", "deines", "euch"}:
-                # Check for Vietnamese phrases like "du lịch" (tourism)
-                if w_clean == "du" and i + 1 < len(words):
-                    next_w = re.sub(r"[^\w]", "", words[i + 1]).lower()
-                    if next_w in {"lich", "lịch", "hoc", "học"}:
-                        continue
+                # Check for Vietnamese phrases like "du lịch" (tourism) or "Từ Dũ" (hospital)
+                if w_clean == "du":
+                    if i + 1 < len(words):
+                        next_w = re.sub(r"[^\w]", "", words[i + 1]).lower()
+                        if next_w in {"lich", "lịch", "hoc", "học"}:
+                            continue
+                    if i > 0:
+                        prev_w = re.sub(r"[^\w]", "", words[i - 1]).lower()
+                        if prev_w in {"tu", "từ"}:
+                            continue
                 informal_hits.append(w_clean)
         if informal_hits:
             warnings.append(f"Post [{slug}] flagged potential informal pronoun(s): {set(informal_hits)}")

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#eef5f9"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="720" height="540" fill="url(#bgGrad)"/>
+  <rect x="30" y="25" width="660" height="70" rx="8" fill="#1e3a5f" filter="url(#shadow)"/>
+  <text x="360" y="55" fill="#ffffff" font-size="20" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">Arbeitszeitgesetz (ArbZG) im Betrieb</text>
+  <text x="360" y="80" fill="#93c5fd" font-size="13" font-family="system-ui, sans-serif" text-anchor="middle">Gesetzliche Höchstgrenzen, Pausen und Ruhezeiten für internationale Teams</text>
+
+  <!-- 4 Grid Boxes -->
+  <rect x="50" y="125" width="280" height="170" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="50" y="125" width="280" height="34" rx="8" fill="#0891b2"/>
+  <text x="190" y="148" fill="#ffffff" font-size="13" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">1. Tägliche Höchstarbeitszeit</text>
+  <text x="70" y="180" fill="#1e3a5f" font-size="12" font-weight="bold" font-family="system-ui, sans-serif">Grundsatz: 8 Stunden / Tag (§ 3)</text>
+  <text x="70" y="200" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Verlängerung auf 10 Stunden möglich,</text>
+  <text x="70" y="218" fill="#475569" font-size="11" font-family="system-ui, sans-serif">  wenn innerhalb von 6 Monaten ein</text>
+  <text x="70" y="236" fill="#475569" font-size="11" font-family="system-ui, sans-serif">  Durchschnitt von 8 Std. erreicht wird.</text>
+  <text x="70" y="265" fill="#0891b2" font-size="11" font-weight="bold" font-family="system-ui, sans-serif">Wöchentlich: Max. 48 Stunden</text>
+
+  <rect x="390" y="125" width="280" height="170" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="390" y="125" width="280" height="34" rx="8" fill="#0284c7"/>
+  <text x="530" y="148" fill="#ffffff" font-size="13" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">2. Ruhepausen während der Arbeit</text>
+  <text x="410" y="180" fill="#1e3a5f" font-size="12" font-weight="bold" font-family="system-ui, sans-serif">Feste Pausenzeiten (§ 4)</text>
+  <text x="410" y="200" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• 6 bis 9 Stunden: Mind. 30 Minuten</text>
+  <text x="410" y="220" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Über 9 Stunden: Mind. 45 Minuten</text>
+  <text x="410" y="240" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Stückelung in mind. 15 Min. erlaubt</text>
+  <text x="410" y="265" fill="#0284c7" font-size="11" font-weight="bold" font-family="system-ui, sans-serif">Keine Arbeit länger als 6 Std. ohne Pause</text>
+
+  <rect x="50" y="325" width="280" height="170" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="50" y="325" width="280" height="34" rx="8" fill="#1e3a5f"/>
+  <text x="190" y="348" fill="#ffffff" font-size="13" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">3. Ununterbrochene Ruhezeit</text>
+  <text x="70" y="380" fill="#1e3a5f" font-size="12" font-weight="bold" font-family="system-ui, sans-serif">11 Stunden Ruhezeit (§ 5)</text>
+  <text x="70" y="400" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Zwischen Arbeitsende und Arbeitsbeginn</text>
+  <text x="70" y="420" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Ausnahme: Pflege &amp; Gastronomie auf 10 Std.</text>
+  <text x="70" y="438" fill="#475569" font-size="11" font-family="system-ui, sans-serif">  verkürzbar bei Ausgleich binnen 4 Wochen</text>
+  <text x="70" y="465" fill="#1e3a5f" font-size="11" font-weight="bold" font-family="system-ui, sans-serif">Gilt streng auch bei Schichtwechseln</text>
+
+  <rect x="390" y="325" width="280" height="170" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="390" y="325" width="280" height="34" rx="8" fill="#0e7490"/>
+  <text x="530" y="348" fill="#ffffff" font-size="13" font-weight="bold" font-family="system-ui, sans-serif" text-anchor="middle">4. Dokumentationspflicht</text>
+  <text x="410" y="380" fill="#1e3a5f" font-size="12" font-weight="bold" font-family="system-ui, sans-serif">BAG-Urteil &amp; EuGH-Vorgabe</text>
+  <text x="410" y="400" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Lückenlose Aufzeichnung von Beginn,</text>
+  <text x="410" y="418" fill="#475569" font-size="11" font-family="system-ui, sans-serif">  Ende und Dauer der Arbeitszeit</text>
+  <text x="410" y="438" fill="#475569" font-size="11" font-family="system-ui, sans-serif">• Prüfung bei Verlängerung des Aufenthaltstitels</text>
+  <text x="410" y="465" fill="#0e7490" font-size="11" font-weight="bold" font-family="system-ui, sans-serif">Digitale Stempeluhr oder Zeiterfassung</text>
+</svg>
