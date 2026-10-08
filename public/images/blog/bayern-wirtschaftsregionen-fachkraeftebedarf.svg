@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <rect width="720" height="540" fill="#F8FAFC"/>
+  <rect x="30" y="30" width="660" height="70" rx="12" fill="#003366"/>
+  <text x="360" y="62" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" text-anchor="middle">Bayern: Industriestandorte &amp; Fachkräftebedarf</text>
+  <text x="360" y="86" fill="#93C5FD" font-family="system-ui, -apple-system, sans-serif" font-size="13" text-anchor="middle">Schwerpunkte für Fachkräfte und Auszubildende aus Vietnam im Freistaat</text>
+
+  <!-- 4 Regional Cards -->
+  <g transform="translate(50, 130)">
+    <rect width="295" height="155" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <rect width="295" height="36" rx="8" fill="#003366"/>
+    <text x="147" y="24" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="700" text-anchor="middle">1. Metropolregion München / Oberbayern</text>
+    <text x="20" y="62" fill="#1E293B" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Industrieschwerpunkte:</text>
+    <text x="20" y="82" fill="#475569" font-family="system-ui, sans-serif" font-size="11">• IT, Halbleiter, Softwareentwicklung</text>
+    <text x="20" y="100" fill="#475569" font-family="system-ui, sans-serif" font-size="11">• Luft- und Raumfahrt, Automatisierung</text>
+    <text x="20" y="118" fill="#475569" font-family="system-ui, sans-serif" font-size="11">• Kliniken &amp; universitäre Spitzenmedizin</text>
+  </g>
+
+  <g transform="translate(375, 130)">
+    <rect width="295" height="155" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <rect width="295" height="36" rx="8" fill="#FF6600"/>
+    <text x="147" y="24" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="700" text-anchor="middle">2. Nürnberg / Mittelfranken</text>
+    <text x="20" y="62" fill="#1E293B" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Industrieschwerpunkte:</text>
+    <text x="20" y="82" fill="#475569" font-family="system-ui, sans-serif" font-size="11">• Maschinenbau, Antriebstechnik, Mechatronik</text>
+    <text x="20" y="100" fill="#475569" font-family="system-ui, sans-serif" font-size="11">• Leistungselektronik, Energietechnik</text>
+    <text x="20" y="118" fill="#475569" font-family="system-ui, sans-serif" font-size="11">• Sitz der ZABF Bayern (Zentrale Ausländerbehörde)</text>
+  </g>
+
+  <g transform="translate(50, 310)">
+    <rect width="295" height="155" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <rect width="295" height="36" rx="8" fill="#003366"/>
+    <text x="147" y="24" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="700" text-anchor="middle">3. Augsburg / Schwaben</text>
+    <text x="20" y="62" fill="#1E293B" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Industrieschwerpunkte:</text>
+    <text x="20" y="82" fill="#475569" font-family="system-ui, sans-serif" font-size="11">• Robotik, Faserverbundtechnologie (CFK)</text>
+    <text x="20" y="100" fill="#475569" font-family="system-ui, sans-serif" font-size="11">• Bauhandwerk, SHK, Elektrotechnik</text>
+    <text x="20" y="118" fill="#475569" font-family="system-ui, sans-serif" font-size="11">• Mittelständische Zulieferbetriebe</text>
+  </g>
+
+  <g transform="translate(375, 310)">
+    <rect width="295" height="155" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <rect width="295" height="36" rx="8" fill="#003366"/>
+    <text x="147" y="24" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="700" text-anchor="middle">4. Niederbayern &amp; Oberpfalz</text>
+    <text x="20" y="62" fill="#1E293B" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Industrieschwerpunkte:</text>
+    <text x="20" y="82" fill="#475569" font-family="system-ui, sans-serif" font-size="11">• Automobilfertigung (Dingolfing, Regensburg)</text>
+    <text x="20" y="100" fill="#475569" font-family="system-ui, sans-serif" font-size="11">• Starker Nachwuchsmangel im ländlichen Handwerk</text>
+    <text x="20" y="118" fill="#475569" font-family="system-ui, sans-serif" font-size="11">• Hohe betriebliche Übernahmequoten</text>
+  </g>
+
+  <rect x="50" y="485" width="620" height="35" rx="6" fill="#003366" opacity="0.08"/>
+  <text x="360" y="507" fill="#003366" font-family="system-ui, sans-serif" font-size="12" font-weight="600" text-anchor="middle">Behördenpartner: ZABF Nürnberg &amp; IHK/HWK Bayern für beschleunigte Verfahren (§ 81a AufenthG)</text>
+</svg>

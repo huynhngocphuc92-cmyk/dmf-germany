@@ -129,6 +129,18 @@ POST_COVER_MAPPING = {
     "zab-zeugnisbewertung-statement-of-comparability-anabin-leitfaden": "/images/blog/dmf-zab-zeugnisbewertung-statement-comparability.jpg",
     "sprachfoerderung-betrieb-qualifizierungschancengesetz-82-sgb-iii": "/images/blog/dmf-sprachfoerderung-qualifizierungschancengesetz-schulung.jpg",
     "statusfeststellungsverfahren-7a-sgb-iv-scheinselbststaendigkeit-drittstaaten": "/images/blog/dmf-statusfeststellung-scheinselbststaendigkeit-clearing.jpg",
+    "fachkraefte-aus-vietnam-bayern-mittelstand-industrie": "/images/blog/dmf-bayern-mittelstand-industrie-fachkraefte.jpg",
+    "auszubildende-vietnam-baden-wuerttemberg-handwerk-maschinenbau": "/images/blog/dmf-baden-wuerttemberg-maschinenbau-azubis.jpg",
+    "pflegekraefte-vietnam-nordrhein-westfalen-nrw-kliniken": "/images/blog/dmf-nrw-kliniken-pflege-krankenhaus-team.jpg",
+    "fachkraefte-drittstaaten-hessen-rhein-main-logistik-it": "/images/blog/dmf-hessen-rhein-main-it-logistik-frankfurt.jpg",
+    "handwerk-azubis-vietnam-niedersachsen-bremen-industrie": "/images/blog/dmf-niedersachsen-bremen-handwerk-industrie.jpg",
+    "fachkraefte-nachwuchs-vietnam-ostdeutschland-sachsen-thueringen": "/images/blog/dmf-ostdeutschland-sachsen-thueringen-dresden.jpg",
+    "personalvermittlung-vietnam-kosten-preise-honorarmodelle-vergleich": "/images/blog/dmf-kosten-preise-honorarmodell-kalkulation.jpg",
+    "agentur-fuer-fachkraefte-aus-vietnam-qualitaetskriterien-checkliste": "/images/blog/dmf-agentur-qualitaetskriterien-pruefung-audit.jpg",
+    "ausbildungsabbruch-garantie-risikoabsicherung-dmf-talents": "/images/blog/dmf-ausbildungsabbruch-risikoabsicherung-garantie.jpg",
+    "eigenrekrutierung-vs-agentur-drittstaaten-aufwand-vergleich": "/images/blog/dmf-eigenrekrutierung-vs-agentur-analyse-vergleich.jpg",
+    "anerkennungspartnerschaft-erfahrungsberichte-arbeitgeber-praxis": "/images/blog/dmf-anerkennungspartnerschaft-praxis-erfahrungen.jpg",
+    "fachkraefte-vietnam-deutschland-leitfaden-geschaeftsfuehrer-2026": "/images/blog/dmf-leitfaden-geschaeftsfuehrer-executive-strategie.jpg",
 }
 
 def sync_posts():

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <rect width="720" height="540" fill="#F8FAFC"/>
+  <rect x="30" y="30" width="660" height="70" rx="12" fill="#003366"/>
+  <text x="360" y="62" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="20" font-weight="700" text-anchor="middle">Ostdeutschland: Demografiewandel &amp; Fachkräftesicherung</text>
+  <text x="360" y="86" fill="#93C5FD" font-family="system-ui, sans-serif" font-size="13" text-anchor="middle">Lösungsmodelle für Sachsen, Thüringen und Sachsen-Anhalt</text>
+
+  <!-- 2 Big Comparison Boxes -->
+  <g transform="translate(50, 130)">
+    <rect width="295" height="330" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <rect width="295" height="40" rx="8" fill="#FF6600"/>
+    <text x="147" y="25" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="700" text-anchor="middle">Herausforderung in Ostdeutschland</text>
+    <text x="20" y="65" fill="#1E293B" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Demografischer Befund:</text>
+    <text x="20" y="90" fill="#475569" font-family="system-ui, sans-serif" font-size="11">⚠ Renteneintritt der geburtenstarken Jahrgänge</text>
+    <text x="20" y="115" fill="#475569" font-family="system-ui, sans-serif" font-size="11">⚠ Über 30 % unbesetzte Ausbildungsplätze im Handwerk</text>
+    <text x="20" y="140" fill="#475569" font-family="system-ui, sans-serif" font-size="11">⚠ Boom in Silicon Saxony (Dresden Microchips)</text>
+    <text x="20" y="165" fill="#475569" font-family="system-ui, sans-serif" font-size="11">⚠ Massive Konkurrenz um regionale Bewerber</text>
+    <text x="20" y="190" fill="#475569" font-family="system-ui, sans-serif" font-size="11">⚠ Praxis- und Betriebsschließungen mangels Nachfolge</text>
+  </g>
+
+  <g transform="translate(375, 130)">
+    <rect width="295" height="330" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <rect width="295" height="40" rx="8" fill="#003366"/>
+    <text x="147" y="25" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="14" font-weight="700" text-anchor="middle">Lösung durch DMF Talents</text>
+    <text x="20" y="65" fill="#1E293B" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Strategischer Ansatz:</text>
+    <text x="20" y="90" fill="#475569" font-family="system-ui, sans-serif" font-size="11">✓ Junge, motivierte Fachkräfte &amp; Azubis aus Vietnam</text>
+    <text x="20" y="115" fill="#475569" font-family="system-ui, sans-serif" font-size="11">✓ Historische Verbundenheit &amp; kulturelle Nähe</text>
+    <text x="20" y="140" fill="#475569" font-family="system-ui, sans-serif" font-size="11">✓ Günstigere Lebenshaltung &amp; Wohnkosten im Osten</text>
+    <text x="20" y="165" fill="#475569" font-family="system-ui, sans-serif" font-size="11">✓ Feste DMF Integrationspaten vor Ort in Dresden/Leipzig</text>
+    <text x="20" y="190" fill="#475569" font-family="system-ui, sans-serif" font-size="11">✓ Langfristige Bindung an regionale Betriebe</text>
+  </g>
+
+  <rect x="50" y="485" width="620" height="35" rx="6" fill="#003366" opacity="0.08"/>
+  <text x="360" y="507" fill="#003366" font-family="system-ui, sans-serif" font-size="12" font-weight="600" text-anchor="middle">Erfolgsfaktor: Gezielte Willkommenskultur und Begleitung im ländlichen Raum</text>
+</svg>

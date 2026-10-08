@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <rect width="720" height="540" fill="#F8FAFC"/>
+  <rect x="30" y="30" width="660" height="70" rx="12" fill="#003366"/>
+  <text x="360" y="62" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="20" font-weight="700" text-anchor="middle">Baden-Württemberg: Industrie- &amp; Handwerkscluster</text>
+  <text x="360" y="86" fill="#93C5FD" font-family="system-ui, sans-serif" font-size="13" text-anchor="middle">Technologieführer, Formenbau und duale Ausbildung im Südwesten</text>
+
+  <g transform="translate(50, 130)">
+    <rect width="620" height="75" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <rect width="8" height="75" rx="4" fill="#FF6600"/>
+    <text x="35" y="32" fill="#1E293B" font-family="system-ui, sans-serif" font-size="15" font-weight="700">1. Region Stuttgart / Neckar-Alb: Maschinenbau &amp; Automotive</text>
+    <text x="35" y="55" fill="#475569" font-family="system-ui, sans-serif" font-size="12">Weltmarktführer in Antriebstechnik, Werkzeugmaschinen und E-Mobilität. Hoher Bedarf an Mechatronikern.</text>
+  </g>
+
+  <g transform="translate(50, 220)">
+    <rect width="620" height="75" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <rect width="8" height="75" rx="4" fill="#003366"/>
+    <text x="35" y="32" fill="#1E293B" font-family="system-ui, sans-serif" font-size="15" font-weight="700">2. Schwarzwald-Baar-Heuberg: Präzisionstechnik &amp; Medizintechnik</text>
+    <text x="35" y="55" fill="#475569" font-family="system-ui, sans-serif" font-size="12">Europäisches Zentrum für chirurgische Instrumente und Feinmechanik. Bedarf an Zerspanern und Werkzeugmachern.</text>
+  </g>
+
+  <g transform="translate(50, 310)">
+    <rect width="620" height="75" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <rect width="8" height="75" rx="4" fill="#003366"/>
+    <text x="35" y="32" fill="#1E293B" font-family="system-ui, sans-serif" font-size="15" font-weight="700">3. TechnologieRegion Karlsruhe &amp; Rhein-Neckar: IT &amp; Automatisierung</text>
+    <text x="35" y="55" fill="#475569" font-family="system-ui, sans-serif" font-size="12">Führender IT- und Forschungsstandort. Hohe Nachfrage nach Fachinformatikern und Cloud-Spezialisten.</text>
+  </g>
+
+  <g transform="translate(50, 400)">
+    <rect width="620" height="75" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <rect width="8" height="75" rx="4" fill="#003366"/>
+    <text x="35" y="32" fill="#1E293B" font-family="system-ui, sans-serif" font-size="15" font-weight="700">4. Bodensee-Oberschwaben: Handwerk, Tourismus &amp; Zulieferer</text>
+    <text x="35" y="55" fill="#475569" font-family="system-ui, sans-serif" font-size="12">Starke Handwerksdichte mit akutem Nachwuchsmangel in SHK, Holzbau, Gastronomie und Pflege.</text>
+  </g>
+
+  <rect x="50" y="490" width="620" height="30" rx="6" fill="#003366" opacity="0.08"/>
+  <text x="360" y="510" fill="#003366" font-family="system-ui, sans-serif" font-size="12" font-weight="600" text-anchor="middle">Tarifniveau: Metall BW / Dehoga BW bieten höchste Attraktivität für internationale Talente</text>
+</svg>
