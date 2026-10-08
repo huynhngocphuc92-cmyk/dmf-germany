@@ -39,6 +39,13 @@ describe("Chatbot & AI Fallback Suite", () => {
     expect(enRes).toContain("Vocational Training");
     expect(enRes).toContain("calendly.com");
 
+    const enHireRes = getFallbackChatResponse(
+      "en",
+      "I would like to book a consultation for hiring nursing staff"
+    );
+    expect(enHireRes).toContain("Skilled Workers");
+    expect(enHireRes).toContain("calendly.com");
+
     // Vietnamese
     const viRes = getFallbackChatResponse("vi", "Tôi muốn tìm hiểu về du học nghề");
     expect(viRes).toContain("DMF Talents");
