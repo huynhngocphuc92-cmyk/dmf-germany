@@ -550,7 +550,7 @@ export const SmartChatBot = () => {
             onClick={() => setIsOpen(true)}
             className={cn(
               "fixed z-[100] group",
-              "bottom-5 right-5 md:bottom-8 md:right-8",
+              "bottom-18 right-4 md:bottom-8 md:right-8",
               "w-14 h-14 md:w-16 md:h-16 rounded-full",
               "bg-gradient-to-br from-primary via-blue-500 to-indigo-500",
               "text-white shadow-[0_8px_30px_rgba(59,130,246,0.4)]",

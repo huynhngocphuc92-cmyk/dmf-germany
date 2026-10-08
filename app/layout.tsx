@@ -10,6 +10,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import { SmartChatBot } from "@/components/bot/SmartChatBot";
 import { CookieConsent } from "@/components/CookieConsent";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
+import { MobileStickyBar } from "@/components/layout/MobileStickyBar";
 
 import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "@/lib/site";
 
@@ -89,7 +90,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <JsonLd />
           <HeaderWrapper />
 
-          <main className="min-h-screen">{children}</main>
+          <main className="min-h-screen pb-16 lg:pb-0">{children}</main>
 
           <Footer />
 
@@ -97,6 +98,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
           {/* Google Analytics 4 — DSGVO: chỉ nạp sau khi user đồng ý cookie */}
           <GoogleAnalytics />
+
+          <MobileStickyBar />
 
           <SmartChatBot />
         </LanguageProvider>

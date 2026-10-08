@@ -215,6 +215,22 @@ export default function ContactSection() {
                   )}
                   Nachricht senden
                 </button>
+
+                {/* Trust Badges */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-3 text-xs text-slate-500 text-center">
+                  <div className="flex items-center justify-center gap-1.5">
+                    <span className="text-emerald-600 font-bold">✓</span>
+                    <span>100% FEG & § 296a SGB III</span>
+                  </div>
+                  <div className="flex items-center justify-center gap-1.5">
+                    <span className="text-emerald-600 font-bold">✓</span>
+                    <span>Kostenfreie Erstberatung</span>
+                  </div>
+                  <div className="flex items-center justify-center gap-1.5">
+                    <span className="text-emerald-600 font-bold">✓</span>
+                    <span>Antwort in 24 Stunden</span>
+                  </div>
+                </div>
               </form>
             )}
           </div>

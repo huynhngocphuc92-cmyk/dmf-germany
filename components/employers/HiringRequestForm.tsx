@@ -63,6 +63,7 @@ export function HiringRequestForm({
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<HiringFormValues>({
     resolver: zodResolver(hiringFormSchema),
@@ -222,6 +223,49 @@ export function HiringRequestForm({
           </Field>
         </div>
         <Field id={id("message")} label={`${t.message} *`} error={errors.message?.message}>
+          {/* Quick Choice Suggestion Chips */}
+          <div className="mb-2">
+            <span className="text-xs text-muted-foreground block mb-1.5 font-medium">
+              {lang === "de"
+                ? "Schnellauswahl per Klick (optional):"
+                : lang === "en"
+                  ? "Quick select (optional):"
+                  : "Chọn nhanh nội dung (tùy chọn):"}
+            </span>
+            <div className="flex flex-wrap gap-1.5">
+              {[
+                lang === "de"
+                  ? "2 Auszubildende ab Herbst 2026 gesucht"
+                  : lang === "en"
+                    ? "Looking for 2 apprentices starting Autumn 2026"
+                    : "Cần tuyển 2 học viên nghề từ Thu 2026",
+                lang === "de"
+                  ? "Pflegefachkräfte mit Anerkennung (§ 18a/b)"
+                  : lang === "en"
+                    ? "Qualified nursing professionals with recognition (§ 18a/b)"
+                    : "Điều dưỡng viên có chứng nhận (§ 18a/b)",
+                lang === "de"
+                  ? "CNC- & Zerspanungsmechaniker gesucht"
+                  : lang === "en"
+                    ? "CNC and machining technicians needed"
+                    : "Thợ tiện CNC và cơ khí chính xác",
+                lang === "de"
+                  ? "Unverbindliches Beratungsgespräch & Angebot"
+                  : lang === "en"
+                    ? "Non-binding consultation & customized proposal"
+                    : "Yêu cầu tư vấn miễn phí & nhận báo giá",
+              ].map((chip) => (
+                <button
+                  key={chip}
+                  type="button"
+                  onClick={() => setValue("message", chip, { shouldValidate: true })}
+                  className="text-xs px-2.5 py-1 rounded-full bg-secondary hover:bg-primary/10 hover:text-primary text-secondary-foreground transition-colors border border-border"
+                >
+                  + {chip}
+                </button>
+              ))}
+            </div>
+          </div>
           <textarea
             {...register("message")}
             {...accessibility("message")}
@@ -316,6 +360,26 @@ export function HiringRequestForm({
           )}
           {isSubmitting ? t.sending : t.submit}
         </button>
+
+        {/* Trust Badges */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-border/80 text-xs text-muted-foreground">
+          <div className="flex items-center gap-1.5">
+            <CheckCircle2 className="h-4 w-4 text-emerald-600 flex-shrink-0" />
+            <span>100% FEG & § 296a SGB III konform</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <CheckCircle2 className="h-4 w-4 text-emerald-600 flex-shrink-0" />
+            <span>Erfolgsbasiertes Honorar</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <CheckCircle2 className="h-4 w-4 text-emerald-600 flex-shrink-0" />
+            <span>Kostenlose Ersatzgarantie</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <CheckCircle2 className="h-4 w-4 text-emerald-600 flex-shrink-0" />
+            <span>DSGVO-Datenschutz</span>
+          </div>
+        </div>
       </form>
     </div>
   );
