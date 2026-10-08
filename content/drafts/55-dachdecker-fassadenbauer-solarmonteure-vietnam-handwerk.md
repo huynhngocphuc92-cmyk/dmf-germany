@@ -54,3 +54,21 @@ Um den Einstand perfekt zu gestalten, empfiehlt sich:
 - **Mobilitätsförderung:** Da Dachdecker früh morgens am Betriebshof sein müssen, sollte die [Führerschein-Umschreibung](/blog/fuehrerschein-umschreibung-drittstaaten-drittlaender-vietnam) im ersten Halbjahr forciert werden.
 
 Sichern Sie sich die Dachdecker-Gesellen von morgen. DMF Talents begleitet Ihren Betrieb von der Kandidatenauswahl über die HWK-Eintragung bis zur Gesellenprüfung.
+
+## 4. Rechtliche Rahmenbedingungen & HWK-Ausbildungsvertrag
+
+Um einen vietnamesischen Auszubildenden oder eine Fachkraft im Dachdeckerhandwerk rechtssicher einzustellen, müssen Arbeitgeber folgende gesetzliche Schritte beachten:
+
+- **Eintragung in die Lehrlingsrolle der Handwerkskammer (HWK):** Der Ausbildungsvertrag muss von der zuständigen HWK geprüft und eingetragen werden. Voraussetzung ist, dass der Betrieb über eine anerkannte Ausbilderberechtigung (AEVO) im Dachdeckerhandwerk verfügt.
+- **Mindestausbildungsvergütung im Dachdeckerhandwerk:** Die tarifliche Ausbildungsvergütung nach dem Rahmentarifvertrag für das Dachdeckerhandwerk liegt deutlich über dem gesetzlichen Mindeststandard und garantiert eine reibungslose Lebensunterhaltssicherung für die Visumerteilung durch die deutsche Botschaft.
+- **Berufsschule & Überbetriebliche Lehrlingsunterweisung (ÜLU):** Neben der dualen Berufsschule besuchen die Auszubildenden verpflichtende Blockkurse in den überbetrieblichen Bildungszentren der Dachdecker-Innungen, in denen traditionelle Schieferdeckungen und Schweißbahnentechniken intensiv vertieft werden.
+
+## 5. Checkliste für den erfolgreichen Baustellenstart
+
+Damit der Übergang von der Akademie in Hanoi auf das deutsche Dach reibungslos gelingt, sollten Handwerksmeister folgende Punkte vorbereiten:
+
+1. **Witterungsgerechte Schutzkleidung:** Bereitstellung von hochwertiger, atmungsaktiver Arbeitskleidung (S3-Sicherheitsstiefel mit durchtrittsicherer Sohle, Kälte- und Regenschutz, passgenaue Handschuhe).
+2. **Begleitendes Sprachcoaching:** Einbindung von digitalen Wörterbüchern und Fachsprache-Apps für dachspezifische Werkzeuge (z. B. Lattenhammer, Schieferhammer, Haubrücke).
+3. **Patenmodell im Kollegium:** Ein erfahrener Geselle übernimmt die persönliche Mentorenschaft auf den ersten Gerüstbauten und gibt tägliches Feedback.
+
+Sichern Sie sich jetzt motivierte Dachdecker-Azubis für das kommende Ausbildungsjahr. DMF Talents unterstützt Sie von der Bewerberauswahl über das Visumverfahren bis zur erfolgreichen Gesellenprüfung.

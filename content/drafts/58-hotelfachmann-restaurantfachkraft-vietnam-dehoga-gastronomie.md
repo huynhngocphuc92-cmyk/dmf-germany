@@ -60,3 +60,21 @@ Für die Erteilung des Visums nach **§ 16a Aufenthaltsgesetz** verlangt die Bun
 Lesen Sie hierzu unseren Praxisbericht zu [Gastronomie- und Hotellerie-Personal aus Vietnam](/blog/gastronomie-hotellerie-personal-vietnam-einstellen).
 
 DMF Talents begleitet renommierte Hotelketten und private Ferienresorts bei der Auswahl passgenauer Kandidaten und übernimmt die gesamte Visa-Abwicklung bis zur Ankunft am Flughafen.
+
+## 4. Rechtliche Rahmenbedingungen & DEHOGA-Tarifbindung
+
+Die Beschäftigung ausländischer Fachkräfte und Auszubildender im Hotel- und Gaststättengewerbe erfordert die Einhaltung klarer gesetzlicher Vorgaben:
+
+- **Einhaltung der Tarifverträge:** Die Bundesagentur für Arbeit (ZAV) prüft im Rahmen der Vorabzustimmung streng, ob die ortsübliche oder tarifliche Vergütung nach den DEHOGA-Entgelttarifverträgen des jeweiligen Bundeslandes gewährt wird.
+- **Kost und Logis als Sachbezug:** Viele Hotelbetriebe bieten ihren internationalen Mitarbeitern Personalzimmer an. Nach § 17 Abs. 1 SGB IV in Verbindung mit der Sachbezugsverordnung können die amtlichen Sachbezugswerte für freie Verpflegung und Unterkunft rechtssicher mit dem Gehalt verrechnet werden, ohne den Visumstatus zu gefährden.
+- **Arbeitszeitgesetz (ArbZG) in der Gastronomie:** Die strikte Einhaltung von Ruhezeiten (mindestens 11 Stunden zwischen den Schichten) und Ausgleichstagen für Sonn- und Feiertagsarbeit schützt Auszubildende vor Überlastung und garantiert eine nachhaltige Bindung.
+
+## 5. Onboarding-Plan für Hotellerie & Spitzengastronomie
+
+Für eine erfolgreiche Integration im Service- und Rezeptionsbereich hat sich ein strukturierter 4-Wochen-Plan bewährt:
+
+1. **Woche 1 (Back-of-House & Orientierung):** Kennenlernen der Hotelsoftware (PMS), Menükunde, Serviertechniken und Weinkunde im internen Schulungsumfeld.
+2. **Woche 2-3 (Shadowing im Service):** Begleitung eines erfahrenen Demi-Chefs de Rang im Restaurantbetrieb, Aufnahme einfacher Bestellungen und Besteckkunde.
+3. **Ab Woche 4 (Selbstständiger Gästekontakt):** Eigene Station im Abendservice mit direktem, herzlichem Gästebetreuungsfokus.
+
+Beleben Sie Ihr Hotel und Restaurant mit erstklassig geschultem Personal aus Vietnam. DMF Talents garantiert rechtssichere DEHOGA-Verträge und lückenlose Behördenbegleitung.

@@ -48,3 +48,21 @@ Inhabergeführte Handwerksmetzgereien sind häufig Familienbetriebe mit engen so
 - **Zukunftsperspektive Geselle & Meister:** Nach erfolgreicher 3-jähriger Ausbildung (§ 16a AufenthG) stehen den Absolventen alle Wege offen – bis hin zur Meisterausbildung und späteren Werkstatt- oder Filialleitung.
 
 DMF Talents berät Sie zu Ausbildungsverträgen bei der Handwerkskammer und begleitet Ihre neuen Fleischer auf jedem Schritt bis zum erfolgreichen Berufsabschluss.
+
+## 4. Gesetzliche Auflagen & Hygiene-Standards für Arbeitgeber
+
+Lebensmittelbetriebe unterliegen strengsten Kontrollen durch die Veterinär- und Lebensmittelüberwachungsämter. Folgende Voraussetzungen müssen für vietnamesische Mitarbeiter erfüllt sein:
+
+- **Infektionsschutzgesetz (§ 43 IfSG):** Vor Aufnahme der Tätigkeit muss die mündliche und schriftliche Belehrung beim Gesundheitsamt absolviert werden. DMF Talents begleitet diesen Behördengang unmittelbar nach Ankunft der Fachkraft.
+- **Dokumentierte HACCP-Schulung:** Der Betrieb muss die jährliche Belehrung über gute Hygienepraxis (GHP), Rückverfolgbarkeit von Chargen und die Einhaltung ununterbrochener Kühlketten dokumentieren.
+- **Schutzausrüstung nach DGUV Regel 110-008:** Zur Basisausstattung gehören Stechschutzschürzen, Kettenhandschuhe für die messerführende Hand, rutschfeste Sicherheitsstiefel nach SRC-Norm und isolierende Schutzkleidung für Arbeiten im Tiefkühl- und Kühlhausbereich.
+
+## 5. Praxis-Leitfaden: So gelingt der Ausbildungsstart in der Metzgerei
+
+Kleine Handwerksmetzgereien zeichnen sich durch ein persönliches, fast familiäres Arbeitsklima aus. Um neuen vietnamesischen Auszubildenden den optimalen Start zu ermöglichen, empfehlen wir folgende Maßnahmen:
+
+1. **Rezepturbücher mit Bildern:** Da viele traditionelle deutsche Gewürzmischungen (z. B. Majoran, Koriander, Muskatblüte) fremd sind, hilft ein bebildertes Rezepturhandbuch in der Wurstküche.
+2. **Frühschicht-Unterstützung:** Fahrgemeinschaften oder eine betriebsnahe Unterkunft stellen sicher, dass Auszubildende den frühen Schichtbeginn um 4:30 Uhr morgens stressfrei erreichen.
+3. **Anerkennende Feedbackkultur:** Regelmäßige kurze Vier-Augen-Gespräche am Ende der Arbeitswoche geben dem Nachwuchs Orientierung und stärken das Selbstvertrauen im Umgang mit Kunden an der Frischetheke.
+
+Retten Sie Ihr handwerkliches Erbe vor dem Fachkräftemangel. DMF Talents rekrutiert talentierte Fleischer und Fleischerei-Fachverkäufer aus Vietnam für Ihren Handwerksbetrieb.

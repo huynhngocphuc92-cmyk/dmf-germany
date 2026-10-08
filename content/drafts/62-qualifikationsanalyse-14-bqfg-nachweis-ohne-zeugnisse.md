@@ -53,4 +53,14 @@ Da für die Qualifikationsanalyse Sachverständige, Werkstatträume und Prüfmat
 
 Für deutsche Handwerks- und Industriebetriebe bietet § 14 BQFG einen unschätzbaren Vorteil: Sie erhalten einen transparenten, von deutschen Meistern geprüften Nachweis über die tatsächliche Handfertigkeit des Bewerbers. Das Risiko von Fehlbesetzungen durch unklare ausländische Urkunden wird vollständig eliminiert.
 
+## 5. Praxis-Checkliste: Die Qualifikationsanalyse im Betrieb begleiten
+
+Um das Verfahren zeitsparend und erfolgreich durchzuführen, empfiehlt sich folgender Ablauf für Arbeitgeber:
+
+1. **Erstberatung bei der zuständigen Kammer:** Kontaktaufnahme mit den Beratern der Handwerkskammer (HWK) oder IHK FOSA, um die Machbarkeit einer Qualifikationsanalyse im jeweiligen Gewerk abzustimmen.
+2. **Glaubhaftmachungs-Dossier erstellen:** Zusammenstellung von Arbeitszeugnissen, Werkstattfotos, Referenzschreiben vietnamesischer Arbeitgeber und einer eidesstattlichen Versicherung über verloren gegangene Ausbildungsurkunden.
+3. **IQ-Förderung beantragen:** Einbindung des regionalen IQ-Netzwerks („Integration durch Qualifizierung“), um Fördermittel für die Verfahrens- und Dolmetscherkosten abzurufen.
+4. **Prüfungsstandort abstimmen:** Nach Rücksprache mit der Kammer kann die praktische Arbeitsprobe häufig direkt an den Maschinen Ihres Betriebs stattfinden, was dem Kandidaten eine vertraute Arbeitsumgebung bietet.
+5. **Abschluss und Visumsumwandlung:** Mit dem positiven Gleichwertigkeitsbescheid wird der Visumantrag für eine qualifizierte Beschäftigung nach § 18a AufenthG bei der Ausländerbehörde finalisiert.
+
 DMF Talents begleitet die Antragstellung bei der zuständigen Handwerkskammer und stellt sicher, dass alle Unterlagen zur Glaubhaftmachung den strengen Maßstäben der Kammerjuristen genügen.

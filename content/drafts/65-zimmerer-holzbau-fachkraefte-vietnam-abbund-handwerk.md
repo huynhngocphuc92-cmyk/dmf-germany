@@ -48,3 +48,21 @@ Vietnam besitzt eine jahrhundertealte Tradition in der Holzbearbeitung und im tr
 - **Fachkräfte mit Vorerfahrung (§ 16d / § 19c AufenthG):** Absolventen vietnamesischer Technikkollegs für Holztechnik können im Rahmen der [Anerkennungspartnerschaft](/blog/anerkennungspartnerschaft-16d-aufenthg-arbeitgeber-voraussetzungen) direkt in der Vorfertigung und Elementmontage eingesetzt werden.
 
 DMF Talents begleitet Zimmereibetriebe bei der Bewerberauswahl, organisiert persönliche Video-Interviews und übernimmt alle behördlichen Genehmigungen bei HWK und Ausländerbehörde.
+
+## 4. Rechtliche Rahmenbedingungen & Abbund-Sicherheit im Holzbau
+
+Der moderne Holzbau unterliegt anspruchsvollen statischen und berufsgenossenschaftlichen Richtlinien. Für die erfolgreiche Beschäftigung internationaler Zimmerer gelten:
+
+- **Arbeitssicherheit nach DGUV Vorschrift 38 & BG BAU:** Zimmerer arbeiten regelmäßig auf Dachstühlen und Rüstungen. Die verpflichtende Unterweisung in Persönliche Schutzausrüstung gegen Absturz (PSAgA) und sicheres Gerüstverhalten ist vor dem ersten Baustelleneinsatz vorgeschrieben.
+- **Kran- und Anschlägerschein:** Das Einheben vorgefertigter Holzwände erfordert präzises Anschlagen von Lasten. DMF Talents unterstützt bei der Organisation von Zusatzzertifikaten nach DGUV Regel 109-017 (Anschlagen von Lasten).
+- **Kammeranmeldung & Tarifbindung:** Wie im gesamten Bauhauptgewerbe wacht die SOKA-BAU über die Einhaltung der tariflichen Mindestlöhne. Vietnamesische Zimmerer werden von Beginn an fair und transparent nach geltendem BRTV Bau vergütet.
+
+## 5. Praxis-Leitfaden für Zimmereien und Holzbauunternehmen
+
+So integrieren Sie vietnamesische Zimmerer nachhaltig in Ihre Montagekolonne:
+
+1. **CAD/CAM-Schulung vor Ort:** Vertrautmachen mit den betriebsspezifischen Abbundprogrammen (z. B. Dietrich's, Cadwork oder SEMA) für das digitale Lesen von Werkplänen.
+2. **Kolonnen-Patenschaft:** Bilden Sie feste Zweierteams aus einem erfahrenen Vorarbeiter und der neuen Fachkraft, um Routinegriffe beim Richten von Dachstühlen zu festigen.
+3. **Fahrpraxis im ländlichen Raum:** Da viele Zimmereien in ländlichen Regionen ansässig sind, unterstützen wir Ihre Fachkräfte bei der zügigen Umschreibung des Führerscheins der Klasse B.
+
+Bauen Sie die Zukunft des nachhaltigen Holzbaus auf ein solides Fundament. DMF Talents vermittelt Ihnen erfahrene Holzbau-Spezialisten und Zimmerer aus Vietnam.

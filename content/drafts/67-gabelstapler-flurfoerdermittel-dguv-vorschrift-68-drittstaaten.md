@@ -56,3 +56,21 @@ In der Beauftragung muss präzise festgehalten werden:
 - In welchen Betriebsbereichen und Lagerhallen gefahren werden darf.
 
 DMF Talents unterstützt Logistikunternehmen dabei, Schulungstermine für neue Mitarbeiter bereits für die erste Arbeitswoche nach Ankunft zu terminieren. So ist Ihre Fachkraft ab Woche zwei voll einsatzfähig.
+
+## 4. Haftung, Betriebsanweisung & jährliche Unterweisung
+
+Die DGUV Vorschrift 68 verpflichtet den Arbeitgeber zu strikten organisatorischen Maßnahmen im Lagerbetrieb:
+
+- **Schriftliche Beauftragung:** Der Unternehmer darf Flurförderzeuge nur Personen anvertrauen, die mindestens 18 Jahre alt sind, die theoretische und praktische Prüfung bestanden haben und ihre Eignung nachgewiesen haben. Diese Beauftragung muss schriftlich im Betrieb dokumentiert sein.
+- **Jährliche Sicherheitsunterweisung nach § 12 ArbSchG:** Alle Staplerfahrer müssen mindestens einmal pro Jahr über betriebliche Gefahren (z. B. Querverkehr, Fußgängerbereiche, Laderampen und Regalschäden nach DIN EN 15635) unterwiesen werden.
+- **Betriebsanweisung für Flurförderzeuge:** Eine gut sichtbare Betriebsanweisung in deutscher und bei Bedarf vereinfachter Sprache muss im Ladebereich und an den Ladestationen aushängen.
+
+## 5. Praxis-Leitfaden für Logistikleiter: Schnelle Einsatzbereitschaft
+
+Damit neue internationale Lagerfachkräfte zügig produktiv werden, empfiehlt sich folgender Fahrplan:
+
+1. **Parcours-Training im Betriebshof:** Vor dem Einsatz im Hochregallager absolvieren neue Fahrer einen betriebsinternen Fahrparcours mit Leer- und Vollpaletten.
+2. **Scanner- und WMS-Schulung:** Einführung in das betriebliche Warehouse-Management-System (SAP EWM, proLogistik, Jungheinrich WMS) und Barcode-Handscanner.
+3. **Akku-Ladestation & Batteriewartung:** Korrekte Handhabung von Ladegeräten, Vermeidung von Knallgasbildung und Pflege von Blei-Säure- sowie Li-Ionen-Batterien.
+
+Sichern Sie Ihre Logistikketten mit qualifizierten Staplerfahrern und Fachkräften für Lagerlogistik aus Vietnam. DMF Talents garantiert rechtssichere DGUV-Qualifikationen.

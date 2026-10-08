@@ -48,3 +48,19 @@ Bei der Einstellung ausländischer Fachkräfte im Bauhauptgewerbe wacht die **So
 - Auszubildende im Bauhauptgewerbe erhalten bundesweit eine der attraktivsten Vergütungen aller Branchen (oft über 1.000 € im 1. Lehrjahr und über 1.400 € im 3. Lehrjahr), was die Lebensunterhaltssicherung für die Visastelle absolut unproblematisch macht.
 
 DMF Talents kooperiert eng mit Bauindustrieverbänden und Bauinnungen, um reibungslose Kammeranmeldungen und Visaanträge zu garantieren.
+
+## 4. Praktischer Fahrplan zur Integration im Tiefbau
+
+Um Straßen- und Rohrleitungsbauer aus Vietnam sicher und effizient auf deutschen Baustellen einzusetzen, empfiehlt sich ein dreistufiger Integrationsplan:
+
+- **Arbeitssicherheit & Baustellenabsicherung nach RSA 21:** Tiefbauprojekte finden häufig im fließenden Straßenverkehr statt. Die Kenntnis über Warnleittechnik, Verkehrszeichenpläne und das Tragen von Warnschutzkleidung der Klasse 3 nach DIN EN ISO 20471 ist unabdingbar.
+- **Baustellen-Fachdeutsch:** Neben dem allgemeinen Sprachniveau B1 vermittelt DMF Talents bauartspezifische Fachbegriffe (z. B. Planum, Schottertragschicht, Rüttelplatte, Grabentiefe, Verbau, Schachtabdeckung).
+- **Führerschein-Umschreibung:** Da Tiefbaukolonnen täglich mit Mannschaftstransportern (Sprinter-Klasse bis 3,5 t) zur Baustelle fahren, unterstützen wir Ihre Fachkräfte direkt bei der [Führerschein-Umschreibung](/blog/fuehrerschein-umschreibung-drittstaaten-drittlaender-vietnam) für die Klasse B und BE.
+
+## 5. Checkliste für Bauleiter: Vorbereitung des ersten Einsatztages
+
+1. **PSA-Ausstattung:** Ausgabe von S3-Sicherheitsstiefeln mit durchtrittsicherer Sohle, Bauhelm mit 4-Punkt-Kinnriemen, Gehörschutz und knieverstärkten Arbeitshosen.
+2. **Patensystem in der Kolonne:** Zuweisung eines erfahrenen Vorarbeiters, der die täglichen Bautagesberichte und Arbeitsanweisungen verständlich durchspricht.
+3. **Wohnortnahe Baustellenlogistik:** Bereitstellung von betriebsnahem Wohnraum oder Organisation von Fahrgemeinschaften vom Betriebshof zur Außenbaustelle.
+
+Realisieren Sie Ihre Bauprojekte termingerecht und ohne Kapazitätsengpässe. DMF Talents bringt wetterfeste Straßenbauer und Tiefbaufacharbeiter aus Vietnam direkt in Ihr Unternehmen.

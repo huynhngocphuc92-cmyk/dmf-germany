@@ -53,3 +53,21 @@ Abhängig von der vorhandenen Vorbildung bieten sich zwei rechtssichere Wege an:
 - **Duale Ausbildung nach § 16a AufenthG:** Junge Talente absolvieren die 3,5-jährige reguläre Ausbildung im Betrieb und in der regionalen Landesfachklasse für Land- und Baumaschinentechnik.
 
 DMF Talents begleitet die komplette behördliche Gleichwertigkeitsprüfung bei der zuständigen Handwerkskammer und bereitet die Kandidaten intensiv auf das deutsche Werkstattvokabular vor.
+
+## 4. Rechtliche Voraussetzungen & Anerkennungsverfahren bei der HWK
+
+Bei der Beschäftigung internationaler Mechatroniker aus Drittstaaten greifen klare behördliche Verfahren nach dem Fachkräfteeinwanderungsgesetz (FEG):
+
+- **Teilanerkennung oder volle Gleichwertigkeit:** Bringt der Bewerber ein vietnamesisches Berufsdiplom mit, prüft die zuständige Handwerkskammer im Rahmen des Feststellungsverfahrens nach dem Berufsqualifikationsfeststellungsgesetz (BQFG) die Übereinstimmung mit dem deutschen Referenzberuf.
+- **Anpassungsqualifizierung im Betrieb (§ 16d AufenthG):** Liegt ein Defizitbescheid vor, kann der Mitarbeiter im Rahmen einer betrieblichen Qualifizierungsmaßnahme fehlende Kenntnisse (z. B. Hochvolt-Eigensicherung oder spezifische Diagnoseprotokolle) nachholen und parallel voll entlohnt mitarbeiten.
+- **Fahrberechtigungen & UVV-Nachweise:** Baumaschinenmechatroniker müssen auf dem Betriebsgelände Bagger und Radlader bewegen. Hierfür organisiert DMF Talents die Schulung für Fahrausweise nach DGUV Grundsatz 308-001 (Erdbaumaschinenführer).
+
+## 5. Leitfaden für Werkstattleiter: Die ersten 90 Tage
+
+Eine strukturierte Einarbeitung entscheidet über den langfristigen Verbleib der Mechatroniker im Unternehmen:
+
+1. **Sicherheitsunterweisung nach BetrSichV:** Gründliche Einweisung in Hebebühnen, Schweißarbeitsplätze, Druckluftanlagen und Gefahrstofflager.
+2. **Schaltplan- und Diagnose-Workshop:** Gemeinsames Durchgehen deutscher Herstellerunterlagen und herstellerspezifischer Wartungschecklisten im 4-Augen-Prinzip.
+3. **Integration in die Rufbereitschaft:** Nach 6 bis 9 Monaten solider Werkstatterfahrung können die Fachkräfte sukzessive in den Vor-Ort-Kundendienst mit eigenem Werkstattwagen eingebunden werden.
+
+Profitieren Sie von hochqualifizierten Land- und Baumaschinentechnikern aus Vietnam. DMF Talents übernimmt das komplette Visaverfahren und die Anerkennungsberatung für Ihren Betrieb.

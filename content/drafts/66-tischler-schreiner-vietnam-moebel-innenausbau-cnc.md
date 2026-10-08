@@ -51,3 +51,19 @@ Tischlereien sind fast immer mittelständische Familienbetriebe mit überschauba
 - Die Betriebe berichten von außergewöhnlich geringen Fehlzeiten und hoher Zuverlässigkeit.
 
 Investieren Sie in die Zukunft Ihrer Schreinerei. DMF Talents wählt talentierte Bewerber an Partnerschulen in Vietnam gezielt nach handwerklichem Geschick aus und begleitet Ihren Betrieb bis zum Gesellenbrief.
+
+## 4. TSO-Zertifikate, Holzstaub & UVV im Tischlerhandwerk
+
+In modernen Schreiner- und Tischlerwerkstätten steht der Schutz der Mitarbeiter an erster Stelle. Folgende Bestimmungen sind für internationale Fachkräfte maßgeblich:
+
+- **Maschinenlehrgänge TSO (Tischler-Schreiner-Oberstufe):** Für das Arbeiten an Standard-Holzbearbeitungsmaschinen (Formatkreissäge, Tischfräse, Abrichthobelmaschine) fordert die Berufsgenossenschaft Holz und Metall (BGHM) anerkannte Maschinenlehrgänge (TSM 1 bis 3).
+- **Gefahrstoffverordnung & Holzstaubgrenzwerte:** Kenntnisse über Absauganlagen und den zulässigen Arbeitsplatzgrenzwert (AGW) von 2 mg/m³ für Holzstaub nach TRGS 553 werden den Fachkräften vermittelt.
+- **Oberflächenbehandlung:** Sichere Handhabung von 2K-PUR-Lacken, Beizen, Ölen und Wachsen unter Einhaltung des Explosionsschutzes in der Lackierkabine.
+
+## 5. Checkliste für Schreinereien: Die ersten 100 Tage
+
+1. **Sicherheitsdrill an Maschinen:** Überprüfung des sicheren Umgangs mit Spaltkeil, Rückschlagsicherung und Schiebestock an der Formatkreissäge.
+2. **CAD/CAM-Einarbeitung:** Programmierung von Bohr- und Fräsmustern am werkstatteigenen 5-Achs-Bearbeitungszentrum (z. B. Homag WoodWOP, Biesse bSolid).
+3. **Kundenmontage mit Mentoring:** Gemeinsame Küchen- und Möbelmontagen beim Endkunden zur Festigung der kundenorientierten Fachsprache.
+
+Schließen Sie Ihre Fachkräftelücke in Werkstatt und Montage. DMF Talents rekrutiert hochqualifizierte Schreiner und Tischler mit CNC-Erfahrung aus Vietnam für Ihren Betrieb.

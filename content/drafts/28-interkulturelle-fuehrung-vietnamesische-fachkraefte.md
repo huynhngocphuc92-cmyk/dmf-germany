@@ -23,12 +23,12 @@ Um Arbeitsanweisungen und Kritik wirksam zu vermitteln, hilft der Vergleich typi
 ![Interkulturelles Feedback-Modell für Werkstatt und Station](/images/blog/feedback-matrix-interkulturell.svg)
 _Interkulturelles Vier-Stufen-Modell: Vom geschützten Vier-Augen-Gespräch über sachbezogene Kriterien bis zur motivierenden Ermutigung._
 
-| Dimension                       | Typisch deutsche Betriebskultur                           | Vietnamesische Arbeitskultur                                          | Praxistipp für Meister & Führungskräfte                                           |
-| ------------------------------- | --------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| **Kritik & Feedback**           | Direkt, offen, sachlich vor Kollegen                      | Indirekt, rücksichtsvoll, Vier-Augen-Prinzip                          | Fehler stets unter vier Augen besprechen, niemals vor versammelter Mannschaft     |
-| **Rückfragen bei Unklarheiten** | Proaktiv („Ich verstehe das nicht, erklären Sie nochmal“) | Zurückhaltend aus Respekt („Ja“ bedeutet oft nur „Ich höre Ihnen zu“) | Nicht fragen „Alles verstanden?“, sondern bitten „Zeig mir kurz, wie du anfängst“ |
-| **Hierarchieverständnis**       | Flache Hierarchien, Widerspruch erwünscht                 | Respekt vor Seniorität und Vorgesetzten                               | Aktiv dazu ermutigen, eigene Ideen und Verbesserungsvorschläge einzubringen       |
-| **Teamzusammenhalt**            | Trennung von Beruf und Privatem                           | Starke persönliche Bindung zum Arbeitgeber                            | Gemeinsame Kaffeepausen und kleine Gesten der Fürsorge stärken die Bindung enorm  |
+| Dimension                       | Typisch deutsche Betriebskultur                           | Vietnamesische Arbeitskultur                                          | Praxistipp für Meister & Führungskräfte                                                   |
+| ------------------------------- | --------------------------------------------------------- | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| **Kritik & Feedback**           | Direkt, offen, sachlich vor Kollegen                      | Indirekt, rücksichtsvoll, Vier-Augen-Prinzip                          | Fehler stets unter vier Augen besprechen, niemals vor versammelter Mannschaft             |
+| **Rückfragen bei Unklarheiten** | Proaktiv („Ich verstehe das nicht, erklären Sie nochmal“) | Zurückhaltend aus Respekt („Ja“ bedeutet oft nur „Ich höre Ihnen zu“) | Nicht fragen „Alles verstanden?“, sondern bitten: „Zeigen Sie mir kurz, wie Sie beginnen“ |
+| **Hierarchieverständnis**       | Flache Hierarchien, Widerspruch erwünscht                 | Respekt vor Seniorität und Vorgesetzten                               | Aktiv dazu ermutigen, eigene Ideen und Verbesserungsvorschläge einzubringen               |
+| **Teamzusammenhalt**            | Trennung von Beruf und Privatem                           | Starke persönliche Bindung zum Arbeitgeber                            | Gemeinsame Kaffeepausen und kleine Gesten der Fürsorge stärken die Bindung enorm          |
 
 Praktische Hinweise zur interkulturellen Personalentwicklung bietet das [RKW Kompetenzzentrum](https://www.rkw-kompetenzzentrum.de) für kleine und mittlere Unternehmen.
 
