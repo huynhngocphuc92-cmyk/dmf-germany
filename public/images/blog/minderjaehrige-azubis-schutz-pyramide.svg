@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="720" height="540" fill="#f8fafc" rx="16"/>
+  <rect x="24" y="24" width="672" height="64" rx="12" fill="#1e3a5f"/>
+  <text x="48" y="52" fill="#ffffff" font-family="system-ui, sans-serif" font-size="18" font-weight="700">Minderjährige Azubis (U18): Jugendarbeitsschutz (JArbSchG)</text>
+  <text x="48" y="72" fill="#93c5fd" font-family="system-ui, sans-serif" font-size="13">Rechtliche Vorgaben für Ausbildungsbetriebe und Vormundschaft</text>
+
+  <!-- 3 Blocks -->
+  <g filter="url(#shadow)">
+    <rect x="36" y="115" width="200" height="385" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="36" y="115" width="200" height="42" rx="12" fill="#0891b2"/>
+    <text x="50" y="141" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">1. Vertragsabschluss</text>
+    <text x="50" y="180" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Elterliche Zustimmung</text>
+    <text x="50" y="202" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Beide Eltern müssen</text>
+    <text x="50" y="222" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">  Vertrag unterzeichnen</text>
+    <text x="50" y="242" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Notariell beglaubigte</text>
+    <text x="50" y="262" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">  Vollmacht für Aufenthalt</text>
+
+    <line x1="50" y1="285" x2="220" y2="285" stroke="#e2e8f0" stroke-width="1"/>
+
+    <text x="50" y="310" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Bankkonto &amp; Ämter</text>
+    <text x="50" y="332" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Eröffnung Girokonto bedarf</text>
+    <text x="50" y="352" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Übertragung von Befugnissen</text>
+    <text x="50" y="372" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">auf lokale Betreuungsperson.</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="260" y="115" width="200" height="385" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="260" y="115" width="200" height="42" rx="12" fill="#1e3a5f"/>
+    <text x="274" y="141" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">2. Arbeitszeitgrenzen</text>
+    <text x="274" y="180" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">§ 8 JArbSchG</text>
+    <text x="274" y="202" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Max. 8 Std./Tag</text>
+    <text x="274" y="222" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Max. 40 Std./Woche</text>
+    <text x="274" y="242" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Strikte 5-Tage-Woche</text>
+    <text x="274" y="262" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Keine Wochenendarbeit</text>
+
+    <line x1="274" y1="285" x2="444" y2="285" stroke="#e2e8f0" stroke-width="1"/>
+
+    <text x="274" y="310" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Nachtruhe &amp; Pausen</text>
+    <text x="274" y="332" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Keine Arbeit vor 6:00 Uhr</text>
+    <text x="274" y="352" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Keine Arbeit nach 20:00 Uhr</text>
+    <text x="274" y="372" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Mind. 60 Min. Pause</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="484" y="115" width="200" height="385" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="484" y="115" width="200" height="42" rx="12" fill="#047857"/>
+    <text x="498" y="141" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">3. Gesundheitscheck</text>
+    <text x="498" y="180" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">§ 32 Erstuntersuchung</text>
+    <text x="498" y="202" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Pflicht vor Arbeitsantritt</text>
+    <text x="498" y="222" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Ärztliche Bescheinigung</text>
+    <text x="498" y="242" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">  muss im Betrieb vorliegen</text>
+    <text x="498" y="262" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Nachuntersuchung nach 1 J.</text>
+
+    <line x1="498" y1="285" x2="668" y2="285" stroke="#e2e8f0" stroke-width="1"/>
+
+    <text x="498" y="310" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Gefahrenverbot</text>
+    <text x="498" y="332" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Verbot gefährlicher Arbeiten</text>
+    <text x="498" y="352" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">  (Hitze, Kälte, Gefahrstoffe)</text>
+    <text x="498" y="372" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Keine Akkordarbeit</text>
+  </g>
+</svg>

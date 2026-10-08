@@ -81,6 +81,18 @@ POST_COVER_MAPPING = {
     "fleischer-metzger-lebensmitteltechnik-vietnam-drittstaaten": "/images/blog/dmf-fleischer-metzger-lebensmittelhandwerk.jpg",
     "hotelfachmann-restaurantfachkraft-vietnam-dehoga-gastronomie": "/images/blog/dmf-hotelfach-restaurant-service-training.jpg",
     "urkundenpruefung-legalisation-vietnam-deutsche-botschaft-hanoi": "/images/blog/dmf-urkundenpruefung-legalisation-botschaft.jpg",
+    "zav-vorabzustimmung-31-aufenthv-visum-beschleunigung": "/images/blog/dmf-zav-arbeitsagentur-beratung.jpg",
+    "defizitbescheid-qualifizierungsplan-16d-aufenthg-arbeitgeber": "/images/blog/dmf-defizitbescheid-weiterbildung-plan.jpg",
+    "qualifikationsanalyse-14-bqfg-nachweis-ohne-zeugnisse": "/images/blog/dmf-qualifikationsanalyse-werkstatt-test.jpg",
+    "minderjaehrige-azubis-drittstaaten-jugendarbeitsschutz-jarbschg": "/images/blog/dmf-minderjaehrige-azubis-betreuung.jpg",
+    "vermittlungskosten-steuerlich-absetzen-betriebsausgaben-vorsteuer": "/images/blog/dmf-finanzbuchhaltung-steuer-belege.jpg",
+    "zimmerer-holzbau-fachkraefte-vietnam-abbund-handwerk": "/images/blog/dmf-zimmerer-holzbau-montage.jpg",
+    "tischler-schreiner-vietnam-moebel-innenausbau-cnc": "/images/blog/dmf-schreiner-tischler-fertigung.jpg",
+    "gabelstapler-flurfoerdermittel-dguv-vorschrift-68-drittstaaten": "/images/blog/dmf-stapler-lagerlogistik-schulung.jpg",
+    "tiefbau-strassenbau-rohrleitungsbau-vietnam-infrastruktur": "/images/blog/dmf-tiefbau-strassenbau-baustelle.jpg",
+    "krankenpflegehelfer-weiterbildung-pflegefachkraft-1plus2-modell": "/images/blog/dmf-pflege-station-visite-team.jpg",
+    "familiennachzug-fachkraefte-29-aufenthg-wohnraumnachweis": "/images/blog/dmf-familiennachzug-wohnung-beratung.jpg",
+    "betriebliche-altersvorsorge-bav-fachkraefte-drittstaaten-betravg": "/images/blog/dmf-vorsorge-beratung-arbeitsplatz.jpg",
 }
 
 def sync_posts():

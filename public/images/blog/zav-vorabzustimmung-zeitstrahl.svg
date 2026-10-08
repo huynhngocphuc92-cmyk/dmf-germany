@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="720" height="540" fill="#f8fafc" rx="16"/>
+  <rect x="24" y="24" width="672" height="64" rx="12" fill="#1e3a5f"/>
+  <text x="48" y="52" fill="#ffffff" font-family="system-ui, sans-serif" font-size="18" font-weight="700">ZAV-Vorabzustimmung (§ 31 AufenthV): Der Beschleuniger</text>
+  <text x="48" y="72" fill="#93c5fd" font-family="system-ui, sans-serif" font-size="13">Verfahrensvergleich: Reguläres Visum vs. Proaktive Vorabzustimmung</text>
+
+  <!-- Left: Reguläres Verfahren (Langsam) -->
+  <g filter="url(#shadow)">
+    <rect x="36" y="115" width="310" height="240" rx="12" fill="#ffffff" stroke="#ef4444" stroke-width="1.5"/>
+    <rect x="36" y="115" width="310" height="40" rx="12" fill="#fee2e2"/>
+    <text x="52" y="141" fill="#991b1b" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Ablauf OHNE Vorabprüfung (Standard)</text>
+
+    <text x="52" y="180" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">1. Visumantrag bei Botschaft Hanoi eingereicht</text>
+    <text x="52" y="205" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">2. Botschaft leitet Akte per Post/Diplomatenpost</text>
+    <text x="52" y="230" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">3. ZAV prüft Arbeitsbedingungen (Wartezeit!)</text>
+    <text x="52" y="255" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">4. Rückmeldung nach Wochen an Auslandsvertretung</text>
+
+    <rect x="52" y="280" width="278" height="55" rx="8" fill="#fef2f2"/>
+    <text x="62" y="303" fill="#b91c1c" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Gesamtdauer: 16 bis 24 Wochen</text>
+    <text x="62" y="323" fill="#64748b" font-family="system-ui, sans-serif" font-size="11.5">Hohes Risiko für verpasste Ausbildungsstarts</text>
+  </g>
+
+  <!-- Right: Mit Vorabzustimmung (Schnell) -->
+  <g filter="url(#shadow)">
+    <rect x="374" y="115" width="310" height="240" rx="12" fill="#ffffff" stroke="#10b981" stroke-width="1.5"/>
+    <rect x="374" y="115" width="310" height="40" rx="12" fill="#dcfce7"/>
+    <text x="390" y="141" fill="#166534" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Ablauf MIT ZAV-Vorabzustimmung</text>
+
+    <text x="390" y="180" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">1. Arbeitgeber stellt ZAV-Antrag online (digital)</text>
+    <text x="390" y="205" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">2. BA-Zustimmung liegt VOR Botschaftstermin vor</text>
+    <text x="390" y="230" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">3. Vorlage der Genehmigung beim Schaltertermin</text>
+    <text x="390" y="255" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">4. Visum wird ohne interne Schleife direkt gedruckt</text>
+
+    <rect x="390" y="280" width="278" height="55" rx="8" fill="#f0fdf4"/>
+    <text x="400" y="303" fill="#15803d" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Gesamtdauer: 2 bis 4 Wochen</text>
+    <text x="400" y="323" fill="#64748b" font-family="system-ui, sans-serif" font-size="11.5">Planungssicherer Start zum 1. August / September</text>
+  </g>
+
+  <!-- Bottom: 3 Core Requirements -->
+  <g filter="url(#shadow)">
+    <rect x="36" y="380" width="648" height="135" rx="12" fill="#1e3a5f"/>
+    <text x="56" y="410" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="14" font-weight="700">3 zwingende Voraussetzungen für die ZAV-Zustimmung:</text>
+    <text x="56" y="438" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="12.5">✓ Vollständig ausgefüllte „Erklärung zum Beschäftigungsverhältnis“ (inkl. Arbeitszeit &amp; Vergütung)</text>
+    <text x="56" y="463" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="12.5">✓ Einhaltung der orts- und branchenüblichen Tariflöhne (Gleichwertigkeit der Arbeitsbedingungen)</text>
+    <text x="56" y="488" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="12.5">✓ Vorlage des anerkannten Berufsabschlusses oder Defizitbescheids der Kammer</text>
+  </g>
+</svg>

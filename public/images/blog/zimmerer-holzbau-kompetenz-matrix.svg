@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="720" height="540" fill="#f8fafc" rx="16"/>
+  <rect x="24" y="24" width="672" height="64" rx="12" fill="#1e3a5f"/>
+  <text x="48" y="52" fill="#ffffff" font-family="system-ui, sans-serif" font-size="18" font-weight="700">Zimmerer &amp; Holzbau-Fachkräfte: Qualifikationsprofil</text>
+  <text x="48" y="72" fill="#93c5fd" font-family="system-ui, sans-serif" font-size="13">Moderner Holzrahmenbau, Abbundtechnik &amp; energetische Sanierung</text>
+
+  <!-- 3 Pillars -->
+  <g filter="url(#shadow)">
+    <rect x="36" y="115" width="200" height="385" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="36" y="115" width="200" height="42" rx="12" fill="#0891b2"/>
+    <text x="50" y="141" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">1. CNC-Abbund &amp; Halle</text>
+    <text x="50" y="180" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Maschinelle Fertigung</text>
+    <text x="50" y="202" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Pläne &amp; CAD-Zeichnungen</text>
+    <text x="50" y="222" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• CNC-Abbundanlagen</text>
+    <text x="50" y="242" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">  (Hundegger, Schmidler)</text>
+    <text x="50" y="262" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Holzbauteile vorkonfektionieren</text>
+
+    <line x1="50" y1="285" x2="220" y2="285" stroke="#e2e8f0" stroke-width="1"/>
+
+    <text x="50" y="310" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Holzschutz</text>
+    <text x="50" y="332" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• DIN 68800 Holzschutz</text>
+    <text x="50" y="352" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Kerve, Zapfen &amp; Schwalben-</text>
+    <text x="50" y="372" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">  schwanzverbindungen</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="260" y="115" width="200" height="385" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="260" y="115" width="200" height="42" rx="12" fill="#1e3a5f"/>
+    <text x="274" y="141" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">2. Holzrahmenbau</text>
+    <text x="274" y="180" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Wand- &amp; Deckenelemente</text>
+    <text x="274" y="202" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Riegelwerk aufbauen</text>
+    <text x="274" y="222" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Dämmung (Holzfaser/Zellulose)</text>
+    <text x="274" y="242" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Dampfbremse &amp; Luftdichtheit</text>
+    <text x="274" y="262" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Beplankung mit OSB / Gips</text>
+
+    <line x1="274" y1="285" x2="444" y2="285" stroke="#e2e8f0" stroke-width="1"/>
+
+    <text x="274" y="310" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Klimaziele</text>
+    <text x="274" y="332" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Unterstützung der bundes-</text>
+    <text x="274" y="352" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">weiten Holzbau-Initiative</text>
+    <text x="274" y="372" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">für CO2-neutrales Bauen.</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="484" y="115" width="200" height="385" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="484" y="115" width="200" height="42" rx="12" fill="#047857"/>
+    <text x="498" y="141" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">3. Baustellenmontage</text>
+    <text x="498" y="180" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Dachstühle &amp; Aufrichten</text>
+    <text x="498" y="202" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Kranmontage von Elementen</text>
+    <text x="498" y="222" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Richten von Dachstühlen</text>
+    <text x="498" y="242" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Schalung &amp; Lattung</text>
+    <text x="498" y="262" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Gerüst- &amp; Absturzsicherung</text>
+
+    <line x1="498" y1="285" x2="668" y2="285" stroke="#e2e8f0" stroke-width="1"/>
+
+    <text x="498" y="310" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Teamgeist</text>
+    <text x="498" y="332" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Hohe Schwindelfreiheit,</text>
+    <text x="498" y="352" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Körperkraft und Verlässlichkeit</text>
+    <text x="498" y="372" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">beim Richtfest im Team.</text>
+  </g>
+</svg>

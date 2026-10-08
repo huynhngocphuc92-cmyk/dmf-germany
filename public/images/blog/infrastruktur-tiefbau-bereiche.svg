@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="720" height="540" fill="#f8fafc" rx="16"/>
+  <rect x="24" y="24" width="672" height="64" rx="12" fill="#1e3a5f"/>
+  <text x="48" y="52" fill="#ffffff" font-family="system-ui, sans-serif" font-size="18" font-weight="700">Tiefbau, Straßenbau &amp; Rohrleitungsbau: Einsatzbereiche</text>
+  <text x="48" y="72" fill="#93c5fd" font-family="system-ui, sans-serif" font-size="13">Infrastrukturmodernisierung: Fernwärme, Glasfaser &amp; Verkehrswege</text>
+
+  <!-- 3 Pillars -->
+  <g filter="url(#shadow)">
+    <rect x="36" y="115" width="200" height="385" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="36" y="115" width="200" height="42" rx="12" fill="#0891b2"/>
+    <text x="50" y="141" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">1. Rohrleitungsbau</text>
+    <text x="50" y="180" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Fernwärme &amp; Wasser</text>
+    <text x="50" y="202" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Fernwärmetrassen verlegen</text>
+    <text x="50" y="222" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• KMR-Rohre (Kunststoff-</text>
+    <text x="50" y="242" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">  mantelrohre) verschweißen</text>
+    <text x="50" y="262" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Druckprüfung nach DVGW</text>
+
+    <line x1="50" y1="285" x2="220" y2="285" stroke="#e2e8f0" stroke-width="1"/>
+
+    <text x="50" y="310" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Kanal- &amp; Abwasser</text>
+    <text x="50" y="332" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Beton- &amp; Steinzeugrohre</text>
+    <text x="50" y="352" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Schachtbauwerke setzen</text>
+    <text x="50" y="372" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Dichtigkeitskontrollen</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="260" y="115" width="200" height="385" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="260" y="115" width="200" height="42" rx="12" fill="#1e3a5f"/>
+    <text x="274" y="141" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">2. Straßenbau</text>
+    <text x="274" y="180" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Asphalt &amp; Pflaster</text>
+    <text x="274" y="202" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Unterbau &amp; Schottertragschicht</text>
+    <text x="274" y="222" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Verdichtung (Walzen, Rüttel-</text>
+    <text x="274" y="242" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">  platten) nach ZTV SoB-StB</text>
+    <text x="274" y="262" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Bordsteine &amp; Pflasterflächen</text>
+
+    <line x1="274" y1="285" x2="444" y2="285" stroke="#e2e8f0" stroke-width="1"/>
+
+    <text x="274" y="310" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Verkehrssicherung</text>
+    <text x="274" y="332" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• RSA-Verkehrsabsicherung</text>
+    <text x="274" y="352" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Baustellenbeschilderung</text>
+    <text x="274" y="372" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Asphalteinbau begleiten</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="484" y="115" width="200" height="385" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="484" y="115" width="200" height="42" rx="12" fill="#047857"/>
+    <text x="498" y="141" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">3. Breitband / FTTX</text>
+    <text x="498" y="180" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Glasfaserausbau</text>
+    <text x="498" y="202" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Kabelzug &amp; Rohreinzug</text>
+    <text x="498" y="222" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Grabenfräsen &amp; Mini-Trenching</text>
+    <text x="498" y="242" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Speedpipe-Verlegung</text>
+    <text x="498" y="262" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Hausanschlüsse bohren</text>
+
+    <line x1="498" y1="285" x2="668" y2="285" stroke="#e2e8f0" stroke-width="1"/>
+
+    <text x="498" y="310" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Tempo &amp; Ausdauer</text>
+    <text x="498" y="332" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Hohe Arbeitsleistung im</text>
+    <text x="498" y="352" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Meter-Fortschritt pro Tag;</text>
+    <text x="498" y="372" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">hohe Wetterbeständigkeit.</text>
+  </g>
+</svg>

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="720" height="540" fill="#f8fafc" rx="16"/>
+  <rect x="24" y="24" width="672" height="64" rx="12" fill="#1e3a5f"/>
+  <text x="48" y="52" fill="#ffffff" font-family="system-ui, sans-serif" font-size="18" font-weight="700">Das 1+2 Aufstiegsmodell: Vom Helfer zur Fachkraft</text>
+  <text x="48" y="72" fill="#93c5fd" font-family="system-ui, sans-serif" font-size="13">Sprachschonende Stufenkarriere für Kliniken &amp; Senioreneinrichtungen</text>
+
+  <!-- 2 Steps Timeline -->
+  <g filter="url(#shadow)">
+    <rect x="36" y="115" width="310" height="240" rx="12" fill="#ffffff" stroke="#0891b2" stroke-width="1.5"/>
+    <rect x="36" y="115" width="310" height="40" rx="12" fill="#eef5f9"/>
+    <text x="52" y="141" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Stufe 1: Pflegehelfer (1 Jahr)</text>
+
+    <text x="52" y="180" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Einreise mit solidem B1 Deutsch</text>
+    <text x="52" y="205" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Staatliche Helferausbildung (PflAPrV)</text>
+    <text x="52" y="230" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Grundpflege, Vitalzeichen, Dokumentation</text>
+    <text x="52" y="255" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Schnelle Stationsentlastung von Tag 1 an</text>
+
+    <rect x="52" y="280" width="278" height="55" rx="8" fill="#f0fdf4"/>
+    <text x="62" y="303" fill="#15803d" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Ergebnis nach 12 Monaten:</text>
+    <text x="62" y="323" fill="#15803d" font-family="system-ui, sans-serif" font-size="11.5">Staatliches Examen + B2-Niveau erreicht</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="374" y="115" width="310" height="240" rx="12" fill="#ffffff" stroke="#10b981" stroke-width="1.5"/>
+    <rect x="374" y="115" width="310" height="40" rx="12" fill="#dcfce7"/>
+    <text x="390" y="141" fill="#166534" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Stufe 2: Verkürzung Fachkraft (2 Jahre)</text>
+
+    <text x="390" y="180" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Einstieg direkt ins 2. Ausbildungsjahr</text>
+    <text x="390" y="205" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Behandlungspflege, Medikation, Wundmgt.</text>
+    <text x="390" y="230" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Akutstationen, Intensiv &amp; Pädiatrie</text>
+    <text x="390" y="255" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Staatsexamen zur Pflegefachfrau / -mann</text>
+
+    <rect x="390" y="280" width="278" height="55" rx="8" fill="#ecfdf5"/>
+    <text x="400" y="303" fill="#047857" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Vollwertige Pflegefachkraft:</text>
+    <text x="400" y="323" fill="#047857" font-family="system-ui, sans-serif" font-size="11.5">Volle Fachkraftquote &amp; Vorbehaltsaufgaben</text>
+  </g>
+
+  <!-- Bottom: Why 1+2 reduces dropouts -->
+  <g filter="url(#shadow)">
+    <rect x="36" y="380" width="648" height="135" rx="12" fill="#1e3a5f"/>
+    <text x="56" y="410" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Die 3 unschlagbaren Vorteile des 1+2 Modells für Träger:</text>
+    <text x="56" y="438" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="12.5">✓ Null Prüfungsangst: Leichterer Einstieg verhindert Frustration durch komplexe Fachtheorie im 1. Jahr</text>
+    <text x="56" y="463" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="12.5">✓ Rechtssicherheit: Selbst bei Abbruch nach Stufe 1 bleibt eine anerkannte Fachassistenz im Betrieb</text>
+    <text x="56" y="488" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="12.5">✓ Höchste Loyalität: Kandidaten bleiben durchschnittlich &gt;5 Jahre beim ausbildenden Träger</text>
+  </g>
+</svg>

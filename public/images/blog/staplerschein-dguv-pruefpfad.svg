@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="720" height="540" fill="#f8fafc" rx="16"/>
+  <rect x="24" y="24" width="672" height="64" rx="12" fill="#1e3a5f"/>
+  <text x="48" y="52" fill="#ffffff" font-family="system-ui, sans-serif" font-size="18" font-weight="700">Gabelstapler &amp; Flurförderzeuge (DGUV Vorschrift 68)</text>
+  <text x="48" y="72" fill="#93c5fd" font-family="system-ui, sans-serif" font-size="13">Rechtssicherer Prüfpfad für internationale Lager- und Logistikkräfte</text>
+
+  <!-- Left: Warum ausländische Scheine ungültig sind -->
+  <g filter="url(#shadow)">
+    <rect x="36" y="115" width="310" height="230" rx="12" fill="#ffffff" stroke="#ef4444" stroke-width="1.5"/>
+    <rect x="36" y="115" width="310" height="40" rx="12" fill="#fee2e2"/>
+    <text x="52" y="141" fill="#991b1b" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Keine automatische Anerkennung!</text>
+
+    <text x="52" y="180" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Drittstaaten-Staplerscheine gelten NICHT</text>
+    <text x="52" y="205" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Keine Anlage zur Umschreibung wie bei Kfz</text>
+    <text x="52" y="230" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Fahren ohne DGUV-Schein = Organisations-</text>
+    <text x="52" y="250" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">  verschulden des Arbeitgebers (§ 7 DGUV V68)</text>
+
+    <rect x="52" y="275" width="278" height="50" rx="6" fill="#fef2f2"/>
+    <text x="60" y="295" fill="#b91c1c" font-family="system-ui, sans-serif" font-size="11.5" font-weight="600">Haftungsfalle:</text>
+    <text x="60" y="312" fill="#b91c1c" font-family="system-ui, sans-serif" font-size="11.5">Regress der Berufsgenossenschaft bei Unfällen!</text>
+  </g>
+
+  <!-- Right: Die DGUV 308-001 Lösung -->
+  <g filter="url(#shadow)">
+    <rect x="374" y="115" width="310" height="230" rx="12" fill="#ffffff" stroke="#10b981" stroke-width="1.5"/>
+    <rect x="374" y="115" width="310" height="40" rx="12" fill="#dcfce7"/>
+    <text x="390" y="141" fill="#166534" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Der 1-Tages-Schulungspfad (DGUV)</text>
+
+    <text x="390" y="180" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Bei Vorerfahrung in Vietnam reicht ein</text>
+    <text x="390" y="200" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">  kompakter 1- bis 2-tägiger Nachschulungskurs</text>
+    <text x="390" y="225" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Theoretische Prüfung (multiple choice, DE/VN)</text>
+    <text x="390" y="250" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Praktische Fahrprüfung (Parcours &amp; Stapeln)</text>
+
+    <rect x="390" y="275" width="278" height="50" rx="6" fill="#f0fdf4"/>
+    <text x="400" y="295" fill="#15803d" font-family="system-ui, sans-serif" font-size="11.5" font-weight="600">Ergebnis:</text>
+    <text x="400" y="312" fill="#15803d" font-family="system-ui, sans-serif" font-size="11.5">Offizieller Bedienerausweis für Flurförderzeuge</text>
+  </g>
+
+  <!-- Bottom: 3 Stufen zur Beauftragung -->
+  <g filter="url(#shadow)">
+    <rect x="36" y="370" width="648" height="145" rx="12" fill="#1e3a5f"/>
+    <text x="56" y="400" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Die 3 gesetzlichen Schritte vor der ersten Fahrt im Lager:</text>
+    <text x="56" y="428" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="12.5">1. Ärztliche Eignungsuntersuchung nach Grundsatz G25 (Fahr- und Steuertätigkeit)</text>
+    <text x="56" y="453" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="12.5">2. Erfolgreiche Prüfung nach DGUV Grundsatz 308-001 (Theorie &amp; Praxis)</text>
+    <text x="56" y="478" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="12.5">3. Schriftliche innerbetriebliche Beauftragung durch den Arbeitgeber (§ 7 Abs. 1)</text>
+  </g>
+</svg>

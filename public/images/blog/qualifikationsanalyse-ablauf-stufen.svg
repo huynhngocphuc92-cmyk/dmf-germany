@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="720" height="540" fill="#f8fafc" rx="16"/>
+  <rect x="24" y="24" width="672" height="64" rx="12" fill="#1e3a5f"/>
+  <text x="48" y="52" fill="#ffffff" font-family="system-ui, sans-serif" font-size="18" font-weight="700">Qualifikationsanalyse (§ 14 BQFG): Praxis statt Papier</text>
+  <text x="48" y="72" fill="#93c5fd" font-family="system-ui, sans-serif" font-size="13">Verfahren bei unverschuldet fehlenden Ausbildungsnachweisen</text>
+
+  <!-- Process Steps -->
+  <g filter="url(#shadow)">
+    <rect x="36" y="115" width="648" height="85" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <circle cx="70" cy="157" r="18" fill="#0891b2"/>
+    <text x="65" y="163" fill="#ffffff" font-family="system-ui, sans-serif" font-size="15" font-weight="700">1</text>
+    <text x="105" y="147" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Glaubhaftmachung des Dokumentenverlusts</text>
+    <text x="105" y="172" fill="#64748b" font-family="system-ui, sans-serif" font-size="12.5">Schulschließung, Naturkatastrophe oder behördlicher Verlust in Vietnam</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="36" y="215" width="648" height="85" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <circle cx="70" cy="257" r="18" fill="#1e3a5f"/>
+    <text x="65" y="263" fill="#ffffff" font-family="system-ui, sans-serif" font-size="15" font-weight="700">2</text>
+    <text x="105" y="247" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Festlegung des Prüfverfahrens durch HWK / IHK</text>
+    <text x="105" y="272" fill="#64748b" font-family="system-ui, sans-serif" font-size="12.5">Fachgespräch mit Sachverständigen, Arbeitsprobe in Werkstatt oder Probearbeit</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="36" y="315" width="648" height="85" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <circle cx="70" cy="357" r="18" fill="#f59e0b"/>
+    <text x="65" y="363" fill="#ffffff" font-family="system-ui, sans-serif" font-size="15" font-weight="700">3</text>
+    <text x="105" y="347" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Finanzierungsprüfung (Anerkennungszuschuss)</text>
+    <text x="105" y="372" fill="#64748b" font-family="system-ui, sans-serif" font-size="12.5">Kosten (ca. 800–2.500 €) können staatlich über das BMBF gefördert werden</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="36" y="415" width="648" height="85" rx="10" fill="#ffffff" stroke="#10b981" stroke-width="1.5"/>
+    <circle cx="70" cy="457" r="18" fill="#10b981"/>
+    <text x="65" y="463" fill="#ffffff" font-family="system-ui, sans-serif" font-size="15" font-weight="700">4</text>
+    <text x="105" y="447" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Erteilung der vollen Gleichwertigkeit</text>
+    <text x="105" y="472" fill="#64748b" font-family="system-ui, sans-serif" font-size="12.5">Kammer stellt offizielle Urkunde aus; Erteilung des Fachkräftevisums gesichert</text>
+  </g>
+</svg>

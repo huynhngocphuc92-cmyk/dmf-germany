@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="720" height="540" fill="#f8fafc" rx="16"/>
+  <rect x="24" y="24" width="672" height="64" rx="12" fill="#1e3a5f"/>
+  <text x="48" y="52" fill="#ffffff" font-family="system-ui, sans-serif" font-size="18" font-weight="700">Steuerliche Behandlung von Vermittlungskosten</text>
+  <text x="48" y="72" fill="#93c5fd" font-family="system-ui, sans-serif" font-size="13">Betriebsausgabenabzug (§ 4 Abs. 4 EStG) &amp; Vorsteuerabzug (§ 15 UStG)</text>
+
+  <!-- 2 Cards -->
+  <g filter="url(#shadow)">
+    <rect x="36" y="115" width="310" height="385" rx="12" fill="#ffffff" stroke="#0891b2" stroke-width="1.5"/>
+    <rect x="36" y="115" width="310" height="42" rx="12" fill="#0891b2"/>
+    <text x="52" y="141" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">100% Betriebsausgaben (§ 4 EStG)</text>
+
+    <text x="52" y="180" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Sofort abzugsfähige Kosten:</text>
+    <text x="52" y="202" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Vermittlungshonorare der Agentur</text>
+    <text x="52" y="222" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Gebühren für beschleunigtes Verfahren (411 €)</text>
+    <text x="52" y="242" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Übersetzungskosten &amp; Urkundenbeglaubigung</text>
+    <text x="52" y="262" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Anerkennungsgebühren der Kammern</text>
+
+    <line x1="52" y1="285" x2="326" y2="285" stroke="#e2e8f0" stroke-width="1.5"/>
+
+    <text x="52" y="310" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Keine Aktivierungspflicht:</text>
+    <text x="52" y="332" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Rekrutierungskosten müssen NICHT</text>
+    <text x="52" y="352" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">  über mehrere Jahre abgeschrieben werden.</text>
+    <text x="52" y="372" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Minderung des steuerlichen Gewinns</text>
+    <text x="52" y="392" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">  im laufenden Wirtschaftsjahr!</text>
+
+    <rect x="52" y="420" width="278" height="60" rx="8" fill="#eef5f9"/>
+    <text x="62" y="445" fill="#0369a1" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Körperschaft- &amp; Gewerbesteuer:</text>
+    <text x="62" y="465" fill="#475569" font-family="system-ui, sans-serif" font-size="11.5">Effektive Kostenreduktion um ~30%</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="374" y="115" width="310" height="385" rx="12" fill="#ffffff" stroke="#1e3a5f" stroke-width="1.5"/>
+    <rect x="374" y="115" width="310" height="42" rx="12" fill="#1e3a5f"/>
+    <text x="390" y="141" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Vorsteuer &amp; Lohnsteuerfreibeträge</text>
+
+    <text x="390" y="180" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Vorsteuerabzug (§ 15 UStG):</text>
+    <text x="390" y="202" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• 19% Umsatzsteuer auf Vermittlungsrechnung</text>
+    <text x="390" y="222" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">  vom Finanzamt voll erstattungsfähig</text>
+
+    <line x1="390" y1="245" x2="664" y2="245" stroke="#e2e8f0" stroke-width="1.5"/>
+
+    <text x="390" y="270" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Sprachkurse &amp; Weiterbildung:</text>
+    <text x="390" y="292" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Steuerfreier Arbeitslohn nach § 3 Nr. 19 EStG,</text>
+    <text x="390" y="312" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">  wenn im ganz überwiegenden betrieblichen</text>
+    <text x="390" y="332" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">  Interesse (z. B. Fachsprachkurse B2/C1).</text>
+
+    <line x1="390" y1="355" x2="664" y2="355" stroke="#e2e8f0" stroke-width="1.5"/>
+
+    <text x="390" y="380" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Umzugskosten &amp; Flüge:</text>
+    <text x="390" y="402" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">• Steuerfreie Erstattung als Reisekosten</text>
+    <text x="390" y="422" fill="#475569" font-family="system-ui, sans-serif" font-size="12.5">  oder Umzugskostenvergütung möglich.</text>
+
+    <rect x="390" y="445" width="278" height="40" rx="6" fill="#f0fdf4"/>
+    <text x="400" y="470" fill="#15803d" font-family="system-ui, sans-serif" font-size="11.5" font-weight="600">Rechtssichere Belegführung durch DMF</text>
+  </g>
+</svg>

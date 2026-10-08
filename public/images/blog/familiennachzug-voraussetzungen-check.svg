@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="720" height="540" fill="#f8fafc" rx="16"/>
+  <rect x="24" y="24" width="672" height="64" rx="12" fill="#1e3a5f"/>
+  <text x="48" y="52" fill="#ffffff" font-family="system-ui, sans-serif" font-size="18" font-weight="700">Familiennachzug für Fachkräfte (§ 29 AufenthG)</text>
+  <text x="48" y="72" fill="#93c5fd" font-family="system-ui, sans-serif" font-size="13">Gesetzliche Voraussetzungen für Ehepartner- &amp; Kindernachzug</text>
+
+  <!-- 3 Check Columns -->
+  <g filter="url(#shadow)">
+    <rect x="36" y="115" width="200" height="385" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="36" y="115" width="200" height="42" rx="12" fill="#0891b2"/>
+    <text x="50" y="141" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">1. Wohnraumnachweis</text>
+    <text x="50" y="180" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">§ 29 Abs. 1 Nr. 2</text>
+    <text x="50" y="202" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Ausreichender Wohnraum</text>
+    <text x="50" y="222" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">  nach Landesgesetzen</text>
+    <text x="50" y="242" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Richtwert: 12 m² pro Person</text>
+    <text x="50" y="262" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">  ab 6 Jahren (10 m² U6)</text>
+
+    <line x1="50" y1="285" x2="220" y2="285" stroke="#e2e8f0" stroke-width="1"/>
+
+    <text x="50" y="310" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Mietvertrag &amp; Skizze</text>
+    <text x="50" y="332" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Wohnungsgeberbestätigung</text>
+    <text x="50" y="352" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">und Nachweis der Miet-</text>
+    <text x="50" y="372" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">und Heizkosten zwingend.</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="260" y="115" width="200" height="385" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="260" y="115" width="200" height="42" rx="12" fill="#1e3a5f"/>
+    <text x="274" y="141" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">2. Lebensunterhalt</text>
+    <text x="274" y="180" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">§ 5 Abs. 1 Nr. 1</text>
+    <text x="274" y="202" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Keine Inanspruchnahme</text>
+    <text x="274" y="222" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">  öffentlicher Mittel</text>
+    <text x="274" y="242" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Nettoeinkommen muss</text>
+    <text x="274" y="262" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">  Regelbedarf decken</text>
+
+    <line x1="274" y1="285" x2="444" y2="285" stroke="#e2e8f0" stroke-width="1"/>
+
+    <text x="274" y="310" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Berechnung</text>
+    <text x="274" y="332" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Ehepaar: ~1.000 € Regelbedarf</text>
+    <text x="274" y="352" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">+ Warmmiete. Bei Fachkräften</text>
+    <text x="274" y="372" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">problemlos erfüllt.</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="484" y="115" width="200" height="385" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <rect x="484" y="115" width="200" height="42" rx="12" fill="#047857"/>
+    <text x="498" y="141" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">3. Sprache &amp; Erleichterung</text>
+    <text x="498" y="180" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">§ 30 Abs. 1 Nr. 2</text>
+    <text x="498" y="202" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• Grundsatz: A1 Deutsch</text>
+    <text x="498" y="222" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">  für Ehegatten</text>
+    <text x="498" y="242" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">• <tspan font-weight="700">Ausnahme seit FEG:</tspan></text>
+    <text x="498" y="262" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">  Bei Blue Card &amp; Fachkräften</text>
+    <text x="498" y="280" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">  kein A1 vor Einreise nötig!</text>
+
+    <line x1="498" y1="295" x2="668" y2="295" stroke="#e2e8f0" stroke-width="1"/>
+
+    <text x="498" y="320" fill="#1e3a5f" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Arbeitserlaubnis</text>
+    <text x="498" y="342" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Nachziehende Ehepartner</text>
+    <text x="498" y="362" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">erhalten uneingeschränkten</text>
+    <text x="498" y="382" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Arbeitsmarktzugang (§ 27 Abs. 5).</text>
+  </g>
+</svg>
