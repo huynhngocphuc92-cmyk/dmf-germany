@@ -63,7 +63,7 @@ Wenn Kinder nachziehen, müssen Arbeitgeber und Fachkräfte die behördliche Int
 
 - **Rechtsanspruch auf Kita-Förderung (§ 24 SGB VIII):** Ab dem vollendeten ersten Lebensjahr hat jedes in Deutschland gemeldete Kind einen gesetzlichen Anspruch auf frühkindliche Bildung in einer Kindertageseinrichtung. Betriebe können den Kontakt zum örtlichen Jugendamt vermitteln.
 - **Schulpflicht und DaZ-Klassen:** Für Kinder ab sechs Jahren greift die gesetzliche Schulpflicht. Deutsche Bundesländer bieten spezielle Vorbereitungsklassen („Deutsch als Zweitsprache“ / DaZ) an, um Kindern den Einstieg ins reguläre Schulsystem zu erleichtern.
-- **Anspruch auf Kindergeld (§ 62 EStG):** Fachkräfte mit Aufenthaltserlaubnissen nach §§ 18a, 18b oder Blauer Karte EU haben vollen Anspruch auf deutsches Kindergeld (aktuell 250 Euro pro Kind und Monat). Der Antrag wird bei der zuständigen Familienkasse der Bundesagentur für Arbeit gestellt und entlastet das monatliche Familienbudget spürbar.
+- **Anspruch auf Kindergeld (§ 62 EStG):** Fachkräfte mit Aufenthaltserlaubnissen nach §§ 18a, 18b oder Blauer Karte EU haben vollen Anspruch auf deutsches Kindergeld (seit 2026: 259 Euro pro Kind und Monat). Der Antrag wird bei der zuständigen Familienkasse der Bundesagentur für Arbeit gestellt und entlastet das monatliche Familienbudget spürbar.
 - **Elternnachzug nach neuem Fachkräfteeinwanderungsgesetz (§ 36 AufenthG):** Seit März 2024 können Fachkräfte, die ihren Aufenthaltstitel neu erhalten haben, unter bestimmten Voraussetzungen auch ihre eigenen Eltern nachziehen lassen, wenn der Lebensunterhalt dauerhaft gesichert ist.
 
 ## Sichern Sie sich loyale Mitarbeiter für die Zukunft

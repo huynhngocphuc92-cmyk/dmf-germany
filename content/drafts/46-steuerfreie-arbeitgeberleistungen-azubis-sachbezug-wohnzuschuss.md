@@ -47,13 +47,13 @@ Stellt der Betrieb dem Auszubildenden ein Zimmer in einer Azubi-WG, ein Monteurs
 
 Maßnahmen zur beruflichen Weiterbildung – einschließlich berufsbezogener Deutschkurse (B2/C1), Fachliteratur oder Vorbereitungskurse auf Zwischen- und Abschlussprüfungen – stellen keinen steuerpflichtigen Arbeitslohn dar, wenn sie im ganz überwiegenden betrieblichen Interesse liegen.
 
-| Benefit-Baustein       | Rechtsgrundlage EStG    | Maximaler Betrag / Monat   | Steuer- &amp; Sozialabgaben                |
-| :--------------------- | :---------------------- | :------------------------- | :----------------------------------------- |
-| **Sachbezug**          | § 8 Abs. 2 Satz 11 EStG | **50,00 €**                | 100% steuer- und abgabenfrei               |
-| **ÖPNV-Fahrticket**    | § 3 Nr. 15 EStG         | Volle Ticketkosten (~49 €) | 100% steuer- und abgabenfrei               |
-| **Mietkostenzuschuss** | § 8 Abs. 2 Satz 12 EStG | Bewertungsabschlag 1/3     | Abgabenfrei bei Einhaltung der Mietgrenzen |
-| **Essenszuschuss**     | Sachbezugswerte BMF     | Bis zu ~108,00 €           | Steuerfrei / pauschal versteuert           |
-| **Sprachkurse**        | § 3 Nr. 19 EStG         | Reale Lehrgangskosten      | 100% steuerfrei als Betriebsausgabe        |
+| Benefit-Baustein       | Rechtsgrundlage EStG    | Maximaler Betrag / Monat              | Steuer- &amp; Sozialabgaben                |
+| :--------------------- | :---------------------- | :------------------------------------ | :----------------------------------------- |
+| **Sachbezug**          | § 8 Abs. 2 Satz 11 EStG | **50,00 €**                           | 100% steuer- und abgabenfrei               |
+| **ÖPNV-Fahrticket**    | § 3 Nr. 15 EStG         | Volle Ticketkosten (63 €, Stand 2026) | 100% steuer- und abgabenfrei               |
+| **Mietkostenzuschuss** | § 8 Abs. 2 Satz 12 EStG | Bewertungsabschlag 1/3                | Abgabenfrei bei Einhaltung der Mietgrenzen |
+| **Essenszuschuss**     | Sachbezugswerte BMF     | Bis zu ~108,00 €                      | Steuerfrei / pauschal versteuert           |
+| **Sprachkurse**        | § 3 Nr. 19 EStG         | Reale Lehrgangskosten                 | 100% steuerfrei als Betriebsausgabe        |
 
 Offizielle Auslegungshinweise zur steuerlichen Behandlung von Sachbezügen stellt das [Bundesfinanzministerium (BMF)](https://www.bundesfinanzministerium.de) in regelmäßigen BMF-Schreiben bereit.
 

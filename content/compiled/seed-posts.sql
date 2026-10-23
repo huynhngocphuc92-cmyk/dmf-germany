@@ -3988,7 +3988,7 @@ VALUES ('Familiennachzug für Fachkräfte nach §§ 29–32 AufenthG: Der Schlü
 <ul>
 <li><strong>Rechtsanspruch auf Kita-Förderung (§ 24 SGB VIII):</strong> Ab dem vollendeten ersten Lebensjahr hat jedes in Deutschland gemeldete Kind einen gesetzlichen Anspruch auf frühkindliche Bildung in einer Kindertageseinrichtung. Betriebe können den Kontakt zum örtlichen Jugendamt vermitteln.</li>
 <li><strong>Schulpflicht und DaZ-Klassen:</strong> Für Kinder ab sechs Jahren greift die gesetzliche Schulpflicht. Deutsche Bundesländer bieten spezielle Vorbereitungsklassen („Deutsch als Zweitsprache“ / DaZ) an, um Kindern den Einstieg ins reguläre Schulsystem zu erleichtern.</li>
-<li><strong>Anspruch auf Kindergeld (§ 62 EStG):</strong> Fachkräfte mit Aufenthaltserlaubnissen nach §§ 18a, 18b oder Blauer Karte EU haben vollen Anspruch auf deutsches Kindergeld (aktuell 250 Euro pro Kind und Monat). Der Antrag wird bei der zuständigen Familienkasse der Bundesagentur für Arbeit gestellt und entlastet das monatliche Familienbudget spürbar.</li>
+<li><strong>Anspruch auf Kindergeld (§ 62 EStG):</strong> Fachkräfte mit Aufenthaltserlaubnissen nach §§ 18a, 18b oder Blauer Karte EU haben vollen Anspruch auf deutsches Kindergeld (seit 2026: 259 Euro pro Kind und Monat). Der Antrag wird bei der zuständigen Familienkasse der Bundesagentur für Arbeit gestellt und entlastet das monatliche Familienbudget spürbar.</li>
 <li><strong>Elternnachzug nach neuem Fachkräfteeinwanderungsgesetz (§ 36 AufenthG):</strong> Seit März 2024 können Fachkräfte, die ihren Aufenthaltstitel neu erhalten haben, unter bestimmten Voraussetzungen auch ihre eigenen Eltern nachziehen lassen, wenn der Lebensunterhalt dauerhaft gesichert ist.</li>
 </ul>
 <h2>Sichern Sie sich loyale Mitarbeiter für die Zukunft</h2>
@@ -5295,7 +5295,7 @@ VALUES ('Steuerfreie Arbeitgeberleistungen für Azubis: Sachbezug, Wohn- und Fah
 <tr>
 <td><strong>ÖPNV-Fahrticket</strong></td>
 <td>§ 3 Nr. 15 EStG</td>
-<td>Volle Ticketkosten (~49 €)</td>
+<td>Volle Ticketkosten (63 €, Stand 2026)</td>
 <td>100% steuer- und abgabenfrei</td>
 </tr>
 <tr>
@@ -7760,7 +7760,7 @@ VALUES ('Vergleichsentgelt der ZAV: So gelingt die Arbeitsbedingungsprüfung ohn
 <tr>
 <td><strong>Anerkennungspartnerschaft</strong></td>
 <td>§ 16d Abs. 3 AufenthG</td>
-<td>Mindestgehalt nach § 2a BeschV (2026: mind. 45% der BBG = ca. 2.900 € brutto)</td>
+<td>Kein gesetzliches Mindestgehalt — die BA prüft das ortsübliche Vergleichsentgelt (§ 39 AufenthG)</td>
 </tr>
 <tr>
 <td><strong>Berufsausbildung</strong></td>

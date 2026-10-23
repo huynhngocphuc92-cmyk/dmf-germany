@@ -39,12 +39,12 @@ Die Prüfung erfolgt nach einer festen behördlichen Hierarchie:
 - **2. Priorität: Allgemeinverbindliche Tarifverträge:** In Branchen mit allgemeinverbindlichen Mindestentgelten nach dem Arbeitnehmer-Entsendegesetz (AEntG) – wie dem Bauhauptgewerbe, Dachdeckerhandwerk, Gerüstbau oder der Pflege – gelten zwingende Lohnuntergrenzen, die nicht unterschritten werden dürfen.
 - **3. Priorität: Der Entgeltatlas der Bundesagentur für Arbeit:** Ist der Betrieb nicht tarifgebunden, zieht die ZAV die statistischen Daten des **BA-Entgeltatlas** für die jeweilige Berufsgruppe (Klassifikation der Berufe KldB 2010), das Alter und die Region heran. In der Regel verlangt die ZAV ein Gehalt, das mindestens im Bereich des unteren Quartils (25%-Perzentil) oder des Medians für vergleichbare Tätigkeiten liegt.
 
-| Beschäftigungsform            | Rechtsgrundlage        | Lohnanforderung ZAV                                                           |
-| ----------------------------- | ---------------------- | ----------------------------------------------------------------------------- |
-| **Anerkannte Fachkraft**      | § 18a / § 18b AufenthG | Ortsübliches Vergleichsentgelt (mind. 25%-Perzentil Entgeltatlas)             |
-| **Anerkennungspartnerschaft** | § 16d Abs. 3 AufenthG  | Mindestgehalt nach § 2a BeschV (2026: mind. 45% der BBG = ca. 2.900 € brutto) |
-| **Berufsausbildung**          | § 16a AufenthG         | Tarifliche Ausbildungsvergütung bzw. Mindestausbildungsvergütung              |
-| **EU Blaue Karte**            | § 18g AufenthG         | Gesetzliche Mindestgehaltsschwelle (ZAV-Zustimmung entfällt meist!)           |
+| Beschäftigungsform            | Rechtsgrundlage        | Lohnanforderung ZAV                                                                              |
+| ----------------------------- | ---------------------- | ------------------------------------------------------------------------------------------------ |
+| **Anerkannte Fachkraft**      | § 18a / § 18b AufenthG | Ortsübliches Vergleichsentgelt (mind. 25%-Perzentil Entgeltatlas)                                |
+| **Anerkennungspartnerschaft** | § 16d Abs. 3 AufenthG  | Kein gesetzliches Mindestgehalt — die BA prüft das ortsübliche Vergleichsentgelt (§ 39 AufenthG) |
+| **Berufsausbildung**          | § 16a AufenthG         | Tarifliche Ausbildungsvergütung bzw. Mindestausbildungsvergütung                                 |
+| **EU Blaue Karte**            | § 18g AufenthG         | Gesetzliche Mindestgehaltsschwelle (ZAV-Zustimmung entfällt meist!)                              |
 
 ## 3. Typische Fehler, die zur Ablehnung durch die ZAV führen
 
