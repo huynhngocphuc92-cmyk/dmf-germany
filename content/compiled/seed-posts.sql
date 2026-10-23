@@ -9524,3 +9524,143 @@ ON CONFLICT (slug) DO UPDATE SET
   meta_title = EXCLUDED.meta_title,
   meta_description = EXCLUDED.meta_description,
   updated_at = NOW();
+INSERT INTO posts (title, slug, excerpt, content, cover_image, status, meta_title, meta_description, language)
+VALUES ('Deutschvorbereitung bei DMF: Einblicke für Arbeitgeber', 'qualitaetssicherung-durch-sprache-wie-dmf-vietnam-ihre-zukuenftigen-fachkraefte-vorbereitet', 'Wie DMF Deutschunterricht und Interviewvorbereitung verbindet – und wie Arbeitgeber Sprachverständnis, Rückfragen und berufliche Anforderungen im Gespräch einordnen können.', '<p>Wer Bewerberinnen und Bewerber aus Vietnam kennenlernen möchte, braucht ein klares Bild ihrer Deutschkenntnisse. Ein Sprachzertifikat liefert dafür einen Anhaltspunkt. Im Auswahlgespräch zeigt sich zusätzlich, wie jemand eine Frage versteht, eigene Gedanken erklärt und bei Unklarheiten nachfragt. Für Arbeitgeber gehören deshalb Sprachvorbereitung, Interview und Anforderungen des Arbeitsplatzes zusammen.</p>
+<h2>Wie DMF Sprache und Vorbereitung verbindet</h2>
+<p>DMF verbindet Deutschunterricht mit der Vorbereitung auf Ausbildung und Arbeit in Deutschland. Zu den beschriebenen Angeboten gehören Sprachkurse, Prüfungsvorbereitung sowie WorkSkill-Training mit Lebenslauf- und Interviewvorbereitung. Welche Bausteine für eine Person vorgesehen sind, hängt vom Programm und ihrem Lernstand ab.</p>
+<p>Für Ihren Betrieb ist entscheidend, wie diese Vorbereitung zum gesuchten Beruf passt. Im Gespräch mit DMF sollten Sie deshalb nicht nur ein gewünschtes Sprachniveau nennen. Beschreiben Sie auch, in welchen Situationen Ihre künftigen Mitarbeitenden oder Auszubildenden Deutsch benötigen: beim Verstehen einer Aufgabe, bei Rückfragen im Team, im Kundenkontakt oder beim Lernen in der Berufsschule.</p>
+<h2>Welche Fähigkeiten im Gespräch sichtbar werden sollten</h2>
+<p>Ein verständliches Auswahlgespräch muss keine zusätzliche Sprachprüfung sein. Es kann anhand einfacher, berufsnaher Situationen zeigen, wo eine Verständigung bereits gelingt und welche Unterstützung noch nötig ist. Drei Bereiche sind besonders hilfreich:</p>
+<ul>
+<li><strong>Verstehen:</strong> Erfasst die Person Ihre Frage oder eine kurze Beschreibung einer Aufgabe?</li>
+<li><strong>Erklären:</strong> Kann sie ihre Berufswahl, eine Erfahrung oder einen nächsten Arbeitsschritt mit eigenen Worten beschreiben?</li>
+<li><strong>Nachfragen:</strong> Spricht sie an, wenn ein Begriff oder eine Anweisung unklar bleibt?</li>
+</ul>
+<p>Geben Sie Raum zum Nachfragen. Ein auswendig gelernter Einstieg sagt wenig darüber aus, wie jemand auf eine neue Situation reagiert. Umgekehrt sollte eine kurze Sprechpause nicht das gesamte Urteil bestimmen. Halten Sie konkrete Beobachtungen fest und unterscheiden Sie Sprachverständnis, berufliche Kenntnisse und Vorbereitung auf Ihr Unternehmen.</p>
+<h2>Drei praktische Aufgaben für das Kennenlernen</h2>
+<h3>1. Den Beruf erklären</h3>
+<p>Fragen Sie: „Welche Aufgaben erwarten Sie in diesem Beruf?“ Lassen Sie anschließend eine Aufgabe genauer beschreiben. Sie erfahren dabei, ob die Person eine Vorstellung vom Alltag hat und welche Wörter sie dafür bereits nutzen kann.</p>
+<h3>2. Eine Anweisung wiedergeben</h3>
+<p>Beschreiben Sie eine einfache, für Ihren Betrieb typische Aufgabe in wenigen Sätzen. Bitten Sie die Person, die nächsten Schritte in eigenen Worten zu wiederholen. Verwenden Sie eine Gesprächssituation, keine gefährliche praktische Tätigkeit. Das Ziel ist, Verständnis und Rückfragen sichtbar zu machen.</p>
+<h3>3. Mit einer Unklarheit umgehen</h3>
+<p>Fragen Sie: „Was würden Sie tun, wenn Sie eine Arbeitsanweisung nicht verstanden haben?“ Besprechen Sie, wie und bei wem die Person nachfragen würde. So wird deutlich, welche Kommunikation Ihr Team im Alltag unterstützen sollte.</p>
+<p>Diese Aufgaben sind Vorschläge für Ihr Auswahlgespräch. Sie ersetzen weder einen anerkannten Sprachnachweis noch die Prüfung der Anforderungen des konkreten Berufs.</p>
+<h2>Welche Informationen Sie vor dem Interview klären sollten</h2>
+<ul>
+<li>Welcher Lernstand und welche vorhandenen Nachweise werden für diese Person angegeben?</li>
+<li>Wann wurden die Kenntnisse zuletzt eingeschätzt und welche Fähigkeiten wurden dabei betrachtet?</li>
+<li>Welche Lernschritte sind vor dem geplanten Beginn noch vorgesehen?</li>
+<li>Welche sprachlichen Anforderungen stellt Ihr Betrieb an den Einstieg?</li>
+<li>Wer stimmt weitere Vorbereitung und offene Fragen mit Ihnen ab?</li>
+</ul>
+<p>Eine gemeinsame Einordnung verhindert, dass ein allgemeines Niveau mit der Beherrschung jeder betrieblichen Situation gleichgesetzt wird. Auch nach dem Einstieg helfen verständliche Arbeitsanweisungen, feste Ansprechpersonen und regelmäßige Rückmeldungen.</p>
+<h2>Ausbildung und Fachkräftebedarf getrennt betrachten</h2>
+<p>Bei <a href="/services/azubi">Auszubildenden aus Vietnam</a> geht es um die Vorbereitung auf das Lernen im Betrieb und in der Berufsschule. Bei <a href="/services/skilled-workers">Fachkräften aus Vietnam</a> kommen die Anforderungen an die bereits vorhandene berufliche Qualifikation und den vorgesehenen Einsatz hinzu. Das Auswahlgespräch sollte diese unterschiedlichen Ausgangslagen berücksichtigen.</p>
+<h2>Den nächsten Schritt gemeinsam vorbereiten</h2>
+<p>Teilen Sie DMF mit, welchen Beruf Sie besetzen möchten, wo Ihr Betrieb liegt und in welchen Situationen Deutsch besonders wichtig ist. Auf dieser Grundlage lässt sich besprechen, welche Vorbereitung und welche Fragen für Ihr Kennenlernen sinnvoll sind.</p>
+<p><a href="/fuer-arbeitgeber/personalbedarf">Personalbedarf und sprachliche Anforderungen mitteilen</a></p>', '/images/blog/dmf-sprachkurs-praxis-unterricht.jpg', 'published', 'Deutschvorbereitung bei DMF: Einblicke für Arbeitgeber', 'Wie bereitet DMF Bewerber sprachlich vor? Einblicke in Deutschunterricht und Interviewvorbereitung sowie konkrete Fragen für Arbeitgeber.', 'de')
+ON CONFLICT (slug) DO UPDATE SET
+  title = EXCLUDED.title,
+  excerpt = EXCLUDED.excerpt,
+  content = EXCLUDED.content,
+  cover_image = EXCLUDED.cover_image,
+  meta_title = EXCLUDED.meta_title,
+  meta_description = EXCLUDED.meta_description,
+  updated_at = NOW();
+
+INSERT INTO posts (title, slug, excerpt, content, cover_image, status, meta_title, meta_description, language)
+VALUES ('Azubis aus Vietnam: Erwartungen und Zuständigkeiten klären', 'vietnamesische-fachkraefte-verlaesslich-statt-riskant-wie-dmf-ausbildungsabbrueche-und-ausbeutung-verhindert', 'Vom Ausbildungsprofil bis zum ersten Tag: Welche Erwartungen, Leistungen und Verantwortlichkeiten Betrieb, Bewerber und DMF gemeinsam klären sollten.', '<p>Eine Ausbildung beginnt mit Erwartungen auf beiden Seiten. Der Betrieb sucht jemanden, der lernen und mitarbeiten möchte. Bewerberinnen und Bewerber möchten wissen, was sie im Beruf, in der Berufsschule und im Alltag erwartet. Wer Azubis aus Vietnam gewinnen möchte, sollte diese Fragen früh besprechen und Aufgaben sowie Zuständigkeiten nachvollziehbar festhalten.</p>
+<h2>Mit einem konkreten Ausbildungsprofil starten</h2>
+<p>Eine Berufsbezeichnung allein reicht für die Vorbereitung des Kennenlernens nicht aus. Beschreiben Sie typische Tätigkeiten, Arbeitszeiten, den Ausbildungsort und die Begleitung im Betrieb. Erklären Sie auch, welche Aufgaben am Anfang anstehen und was im Laufe der Ausbildung gelernt wird.</p>
+<p>Hilfreich ist eine kurze Übersicht, die Betrieb, DMF und Bewerber für dieselben Fragen nutzen können:</p>
+<ul>
+<li>Welcher Ausbildungsberuf und welcher Starttermin sind vorgesehen?</li>
+<li>Welche Aufgaben prägen den Arbeitsalltag?</li>
+<li>Wer übernimmt die fachliche Anleitung und beantwortet organisatorische Fragen?</li>
+<li>Welche Anforderungen bestehen an die Kommunikation im Betrieb und in der Berufsschule?</li>
+<li>Welche Informationen zu Vergütung, Wohnen und Arbeitsweg müssen vor einer Entscheidung noch geklärt werden?</li>
+</ul>
+<p>Die Antworten schaffen eine Grundlage für die Auswahl. Sie sind kein Ersatz für die individuelle Prüfung der Voraussetzungen und die verbindlichen Vereinbarungen.</p>
+<h2>Berufswahl im Gespräch nachvollziehen</h2>
+<p>Fragen Sie nach den Gründen für die Berufswahl und nach der Vorstellung vom Alltag. „Warum möchten Sie diese Ausbildung machen?“ ist ein Anfang. Aussagekräftiger wird das Gespräch mit einer Anschlussfrage: „Welche Aufgabe würde Ihnen liegen, und was müssten Sie noch lernen?“</p>
+<p>Geben Sie zugleich ein realistisches Bild Ihres Betriebs. Beschreiben Sie einen gewöhnlichen Arbeitstag und auch anspruchsvolle Situationen. Die Person sollte Gelegenheit haben, eigene Fragen zu stellen. So können beide Seiten prüfen, ob ihre Vorstellungen zusammenpassen.</p>
+<h2>Vorbereitung bei DMF einordnen</h2>
+<p>DMF beschreibt die Zusammenarbeit als einen Prozess aus Bedarfsklärung, Auswahl, Vorbereitung, Interview und weiteren organisatorischen Schritten. Zur Vorbereitung gehören Deutschunterricht und Angebote rund um Bewerbung und Interview. Im konkreten Fall sollte klar sein, welche Bausteine bereits abgeschlossen sind und was noch aussteht.</p>
+<p>Für Arbeitgeber lohnt sich dabei ein genauer Blick auf die <a href="/blog/qualitaetssicherung-durch-sprache-wie-dmf-vietnam-ihre-zukuenftigen-fachkraefte-vorbereitet">Sprachvorbereitung und Fragen für das Auswahlgespräch</a>. Ein allgemeines Sprachniveau beantwortet noch nicht jede Frage zur Verständigung in Ihrem Arbeitsalltag. Stimmen Sie ab, welche Aufgaben und Gesprächssituationen für den Einstieg besonders wichtig sind.</p>
+<h2>Leistungen, Kosten und Verantwortlichkeiten klären</h2>
+<p>Vor einer Zusammenarbeit sollten alle Beteiligten verstehen, welche Leistungen vereinbart werden und wer welche Kosten trägt. Fragen Sie nach einer nachvollziehbaren Beschreibung von Vorbereitung, Vermittlung, organisatorischer Unterstützung und gegebenenfalls vereinbarter Begleitung nach der Ankunft. Auch mögliche zusätzliche Kosten und Bedingungen bei Änderungen gehören in diese Abstimmung.</p>
+<p>Das offizielle Portal <a href="https://www.make-it-in-germany.com/de/unternehmen/rekrutieren/vermittlungsagenturen-erkennen">Make it in Germany</a> nennt Transparenz und verständliche schriftliche Vereinbarungen als wichtige Orientierung bei der Auswahl von Vermittlungsagenturen. Für Ihren konkreten Auftrag zählt, was die Beteiligten tatsächlich vereinbaren. Eine allgemeine Leistungsbeschreibung ersetzt diese Klärung nicht.</p>
+<h2>Die Übergabe vor dem Ausbildungsstart vorbereiten</h2>
+<p>Spätestens vor dem geplanten Beginn sollten Betrieb und neue Auszubildende wissen, an wen sie sich wenden können. Dazu gehören die Ansprechperson am ersten Tag, der Treffpunkt, die vereinbarten organisatorischen Schritte und eine Möglichkeit, Fragen früh zu melden.</p>
+<ul>
+<li><strong>Der Betrieb</strong> klärt die Einführung in Aufgaben, Team und betriebliche Abläufe.</li>
+<li><strong>DMF und weitere beteiligte Stellen</strong> stimmen die jeweils vereinbarten Unterstützungsaufgaben mit dem Betrieb und den Auszubildenden ab.</li>
+<li><strong>Die Auszubildenden</strong> erhalten verständliche Informationen zu ihren nächsten Schritten und können offene Fragen ansprechen.</li>
+</ul>
+<p>Halten Sie fest, wer sich um Wohnen, Arbeitsweg, Termine und andere organisatorische Punkte kümmert. Welche Unterstützung DMF übernimmt, richtet sich nach der konkreten Vereinbarung.</p>
+<h2>Nach dem Einstieg im Gespräch bleiben</h2>
+<p>Planen Sie als Betrieb regelmäßige kurze Rückmeldungen ein: Was wurde verstanden? Welche Aufgabe ist noch unklar? Funktioniert die Abstimmung mit der Berufsschule? Eine feste Ansprechperson erleichtert es, Schwierigkeiten zu benennen und nächste Schritte zu vereinbaren.</p>
+<p>Eine sorgfältige Vorbereitung kann nicht garantieren, dass jede Ausbildung ohne Probleme verläuft. Sie schafft aber eine gemeinsame Grundlage, auf der Betrieb und Auszubildende Entscheidungen treffen und offene Punkte bearbeiten können.</p>
+<h2>Ihre Ausbildungsmöglichkeit mit DMF besprechen</h2>
+<p>Wenn Sie <a href="/services/azubi">Auszubildende aus Vietnam für Ihren Betrieb</a> kennenlernen möchten, nennen Sie uns Ausbildungsberuf, Standort, geplanten Beginn und Ihre Möglichkeiten zur Begleitung. Daraus lässt sich der nächste Schritt der Zusammenarbeit vorbereiten.</p>
+<p><a href="/fuer-arbeitgeber/personalbedarf">Ausbildungsbedarf mitteilen</a></p>', '/images/blog/dmf-achim-fuehrung-seminar.jpg', 'published', 'Azubis aus Vietnam: Erwartungen und Ablauf klären', 'Ausbildungsprofil, Berufswahl, Leistungen und Zuständigkeiten: So bereiten Arbeitgeber die Zusammenarbeit und den Ausbildungsstart mit DMF vor.', 'de')
+ON CONFLICT (slug) DO UPDATE SET
+  title = EXCLUDED.title,
+  excerpt = EXCLUDED.excerpt,
+  content = EXCLUDED.content,
+  cover_image = EXCLUDED.cover_image,
+  meta_title = EXCLUDED.meta_title,
+  meta_description = EXCLUDED.meta_description,
+  updated_at = NOW();
+
+INSERT INTO posts (title, slug, excerpt, content, cover_image, status, meta_title, meta_description, language)
+VALUES ('Vorstellungsgespräch mit Azubis aus Vietnam: Fragen für Arbeitgeber', 'vorstellungsgespraech-azubis-vietnam-fragen', 'Konkrete Fragen zu Berufswahl, Betriebsverständnis und Kommunikation helfen Ihnen, künftige Auszubildende kennenzulernen und offene Punkte gemeinsam zu klären.', '<p>Ein gutes Vorstellungsgespräch mit künftigen Azubis aus Vietnam klärt mehr als die Frage, ob jemand flüssig Deutsch spricht. Es hilft Ihnen, die Berufswahl, das Verständnis für Ihren Betrieb und den Umgang mit neuen Aufgaben kennenzulernen. Gleichzeitig braucht die Bewerberin oder der Bewerber ein realistisches Bild von der Ausbildung.</p>
+<p>Die folgenden Fragen und Gesprächsschritte sind praktische Vorschläge für Arbeitgeber und Ausbildungsverantwortliche. Passen Sie sie an den Beruf und die Anforderungen Ihres Betriebs an.</p>
+<h2>Vor dem Gespräch: den Rahmen verständlich machen</h2>
+<p>Schicken Sie vorab eine kurze Beschreibung Ihres Betriebs, des Ausbildungsberufs und des Gesprächsablaufs. Klären Sie bei einem Online-Interview Technik, Teilnehmende und Sprache. Wenn jemand bei der Verständigung unterstützt, sollte für alle klar sein, wann übersetzt wird und wann die Person selbst antwortet.</p>
+<p>Bereiten Sie im Team dieselben Kernfragen für vergleichbare Gespräche vor. Das erleichtert eine Beurteilung anhand der Anforderungen. Notieren Sie Beobachtungen zu Motivation, Berufsverständnis und Kommunikation getrennt voneinander.</p>
+<h2>1. Warum gerade dieser Ausbildungsberuf?</h2>
+<p><strong>Frage:</strong> „Was interessiert Sie an diesem Beruf, und wie haben Sie sich darüber informiert?“</p>
+<p>Bitten Sie um ein konkretes Beispiel: eine Tätigkeit, ein Gespräch mit jemandem aus dem Beruf oder eine Erfahrung beim Lernen. Ein persönlicher Bezug ist für Ihr Kennenlernen hilfreicher als eine perfekt formulierte allgemeine Antwort.</p>
+<p><strong>Anschlussfrage:</strong> „Welche Aufgabe würden Sie besonders gern lernen, und welche stellen Sie sich schwierig vor?“</p>
+<h2>2. Was weiß die Person über Ihren Betrieb?</h2>
+<p><strong>Frage:</strong> „Was haben Sie über unseren Betrieb herausgefunden?“</p>
+<p>Es geht nicht darum, Unternehmenszahlen abzufragen. Lassen Sie erklären, was Ihr Betrieb anbietet, welche Aufgaben vorkommen und warum die Person dort lernen möchte. Ergänzen oder korrigieren Sie Informationen, wenn etwas missverstanden wurde.</p>
+<p><strong>Anschlussfrage:</strong> „Was möchten Sie über die Ausbildung bei uns noch wissen?“</p>
+<h2>3. Wie stellt sie sich einen Arbeitstag vor?</h2>
+<p><strong>Frage:</strong> „Welche Aufgaben erwarten Sie an einem normalen Tag in diesem Beruf?“</p>
+<p>Vergleichen Sie die Antwort mit dem tatsächlichen Ablauf. Beschreiben Sie anschließend einen typischen Tag und fragen Sie, was daran neu oder überraschend ist. Besprechen Sie auch Arbeitszeiten und Anforderungen, die für die konkrete Stelle relevant sind. So entsteht ein gemeinsames Verständnis der Ausbildung.</p>
+<h2>4. Was passiert, wenn eine Anweisung unklar ist?</h2>
+<p><strong>Frage:</strong> „Sie haben eine Aufgabe nicht ganz verstanden. Was würden Sie tun?“</p>
+<p>Geben Sie danach ein kurzes, ungefährliches Beispiel aus Ihrem Arbeitsalltag. Lassen Sie die nächsten Schritte wiederholen oder eine Rückfrage formulieren. Beobachten Sie, ob die Person Unklarheiten anspricht und Informationen einordnet. Das Gespräch soll Verständigung ermöglichen; komplizierte Fangfragen helfen dabei wenig.</p>
+<p>Mehr zur Einordnung finden Sie in unserem Beitrag über <a href="/blog/qualitaetssicherung-durch-sprache-wie-dmf-vietnam-ihre-zukuenftigen-fachkraefte-vorbereitet">Deutschvorbereitung und Kommunikation im Auswahlgespräch</a>.</p>
+<h2>5. Wie geht die Person mit Rückmeldungen um?</h2>
+<p><strong>Frage:</strong> „Erzählen Sie von einer Situation, in der Sie etwas verbessern mussten. Welche Rückmeldung hat Ihnen geholfen?“</p>
+<p>Die Erfahrung kann aus Unterricht, Praktikum oder einer anderen passenden Lernsituation stammen. Fragen Sie nach dem konkreten nächsten Schritt. Eine Person am Anfang ihrer Ausbildung muss noch keine lange Berufsgeschichte vorweisen.</p>
+<h2>6. Welche Fragen hat die Person an Sie?</h2>
+<p>Reservieren Sie Zeit für die andere Seite. Erklären Sie, wer die Ausbildung begleitet, wie der Einstieg organisiert wird und welche Punkte noch abgestimmt werden müssen. Fragen zu Vergütung, Wohnen, Arbeitsweg oder Lernen in der Berufsschule gehören zu einer informierten Entscheidung.</p>
+<p>Wenn eine Antwort noch nicht feststeht, benennen Sie die zuständige Person und den nächsten Klärungsschritt. Eine offene Frage sollte nicht durch eine unverbindliche Zusage ersetzt werden.</p>
+<h2>Wie DMF die Vorbereitung unterstützt</h2>
+<p>Zur Vorbereitung bei DMF gehören Deutschunterricht und Angebote rund um Bewerbung und Interview. Die Interviewvorbereitung setzt unter anderem daran an, Fragen zu verstehen, Gedanken zu ordnen und Antworten auf die eigene Situation zu beziehen. Der Blick auf Beruf und Unternehmen ist dabei ebenso relevant wie die sprachliche Formulierung.</p>
+<p>Das Kennenlernen mit Ihrem Betrieb bleibt ein eigener Schritt. Besprechen Sie mit DMF, welche Informationen die Person vorab erhalten soll und welche Anforderungen Sie im Gespräch betrachten möchten. Welche Vorbereitung im Einzelfall vorgesehen ist, wird im Rahmen des jeweiligen Programms geklärt.</p>
+<h2>Nach dem Gespräch: Beobachtungen statt Bauchgefühl festhalten</h2>
+<ul>
+<li><strong>Berufswahl:</strong> Welche Gründe und konkreten Vorstellungen wurden genannt?</li>
+<li><strong>Betriebsverständnis:</strong> Was war bereits bekannt, was musste erklärt werden?</li>
+<li><strong>Kommunikation:</strong> Welche Fragen wurden verstanden, wann waren Rückfragen nötig?</li>
+<li><strong>Lernen:</strong> Welche Beispiele zeigen, wie die Person mit neuen Aufgaben umgeht?</li>
+<li><strong>Offene Punkte:</strong> Was muss vor einer Entscheidung noch geklärt werden, und durch wen?</li>
+</ul>
+<p>Bewerten Sie die Antworten im Zusammenhang mit dem Ausbildungsplatz und dem jeweiligen Lernstand. Eine vorbereitete Selbstvorstellung ist nur ein Teil des Gesprächs. Anschlussfragen, Beispiele und Fragen der Person liefern zusätzliche Informationen.</p>
+<h2>Ein Kennenlernen für Ihren Betrieb vorbereiten</h2>
+<p>Informieren Sie sich über die <a href="/services/azubi">Zusammenarbeit mit DMF für Auszubildende aus Vietnam</a>. Nennen Sie uns Ausbildungsberuf, Standort und geplanten Start, damit wir den Bedarf und die nächsten Schritte mit Ihnen besprechen können.</p>
+<p><a href="/fuer-arbeitgeber/personalbedarf">Ausbildungsbedarf und Anforderungen mitteilen</a></p>', '/images/blog/dmf-achim-interview-coaching.jpg', 'published', 'Azubis aus Vietnam: Fragen fürs Vorstellungsgespräch', 'Prüfen Sie Berufswahl, Betriebsverständnis und Kommunikation im Gespräch mit Azubis aus Vietnam. Konkrete Fragen und Hinweise für Arbeitgeber.', 'de')
+ON CONFLICT (slug) DO UPDATE SET
+  title = EXCLUDED.title,
+  excerpt = EXCLUDED.excerpt,
+  content = EXCLUDED.content,
+  cover_image = EXCLUDED.cover_image,
+  meta_title = EXCLUDED.meta_title,
+  meta_description = EXCLUDED.meta_description,
+  updated_at = NOW();
+
