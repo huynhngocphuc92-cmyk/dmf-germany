@@ -58,3 +58,7 @@ Um die Erziehungsberechtigten in Vietnam zu beruhigen und dem Betrieb die Sorge 
 - Wir organisieren betreute Azubi-Wohngemeinschaften mit festen Hausregeln, sodass eine altersgerechte Unterbringung gewährleistet ist.
 
 Sobald der Azubi das 18. Lebensjahr vollendet, entfallen die Sonderauflagen des JArbSchG automatisch, und es greifen die regulären Bestimmungen des Arbeitszeitgesetzes.
+
+Bei minderjährigen Auszubildenden kommen zum Jugendarbeitsschutz Fragen von Unterkunft, Betreuung und Einwilligung der Sorgeberechtigten hinzu. [DMF Talents zur Vermittlung vietnamesischer Auszubildender](/services/azubi) fasst zusammen, wie DMF Talents Betriebe und Auszubildende vorbereitet. Zur allgemeinen Vorbereitung des Ausbildungsbetriebs lesen Sie [Azubis aus Vietnam: So bereitet sich der Ausbildungsbetrieb optimal vor](/blog/azubis-aus-vietnam-vorbereitung-ausbildungsbetrieb).
+
+Wenn Sie einen Ausbildungsplatz mit einer minderjährigen Person besetzen möchten, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und geben Sie Ausbildungsberuf und Starttermin an.

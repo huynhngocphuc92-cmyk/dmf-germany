@@ -64,3 +64,7 @@ Um das Verfahren zeitsparend und erfolgreich durchzuführen, empfiehlt sich folg
 5. **Abschluss und Visumsumwandlung:** Mit dem positiven Gleichwertigkeitsbescheid wird der Visumantrag für eine qualifizierte Beschäftigung nach § 18a AufenthG bei der Ausländerbehörde finalisiert.
 
 DMF Talents begleitet die Antragstellung bei der zuständigen Handwerkskammer und stellt sicher, dass alle Unterlagen zur Glaubhaftmachung den strengen Maßstäben der Kammerjuristen genügen.
+
+Fehlen Zeugnisse, prüft die Kammer die berufliche Handlungsfähigkeit praktisch. Ein weiterer Weg, Abschlüsse einzuordnen, ist die Zeugnisbewertung; der Beitrag [ZAB Zeugnisbewertung & Statement of Comparability: anabin Leitfaden](/blog/zab-zeugnisbewertung-statement-of-comparability-anabin-leitfaden) erklärt das Verfahren. [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) zeigt, welche Unterlagen DMF Talents bereits in Vietnam zusammenstellt.
+
+Wenn Sie einen Kandidaten ohne vollständige Nachweise einsetzen möchten, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und beschreiben Sie die ausgeübte Tätigkeit möglichst konkret. Das erleichtert die Zuordnung zum Referenzberuf.

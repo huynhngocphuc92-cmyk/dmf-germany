@@ -74,3 +74,7 @@ Damit neue internationale Lagerfachkräfte zügig produktiv werden, empfiehlt si
 3. **Akku-Ladestation & Batteriewartung:** Korrekte Handhabung von Ladegeräten, Vermeidung von Knallgasbildung und Pflege von Blei-Säure- sowie Li-Ionen-Batterien.
 
 Sichern Sie Ihre Logistikketten mit qualifizierten Staplerfahrern und Fachkräften für Lagerlogistik aus Vietnam. DMF Talents garantiert rechtssichere DGUV-Qualifikationen.
+
+Die Fahreignung nach DGUV Vorschrift 68 ist Teil der Einsatzplanung im Lager. Zum Schutz bei Arbeitsunfällen und den Pflichten des Betriebs lesen Sie ergänzend [Arbeitsunfall bei ausländischen Fachkräften: BG & SGB VII](/blog/arbeitsunfall-berufsgenossenschaft-dguv-drittstaaten-sgb-vii). [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) zeigt, welche Nachweise DMF Talents vor der Einreise abfragt.
+
+Wenn Sie Staplerfahrer oder Lagerfachkräfte suchen, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und beschreiben Sie Geräte, Schichtmodell und Lagerumgebung.

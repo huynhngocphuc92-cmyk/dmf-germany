@@ -56,3 +56,7 @@ Die Ausländerbehörden unterstützen das 1+2 Modell ausdrücklich:
 - Nach bestandener Prüfung verlängert die Ausländerbehörde den Titel unbürokratisch für die verbleibenden 24 Monate der verkürzten Fachkraftausbildung.
 
 DMF Talents kooperiert bundesweit mit Pflegeschulen und Universitätskliniken, die dieses Modell als neuen Rekrutierungsstandard etabliert haben.
+
+Das 1+2-Modell verbindet die Helferausbildung mit dem späteren Aufstieg zur Pflegefachkraft. Welche Sprach- und Anerkennungsanforderungen in der Pflege sonst gelten, beschreibt der Beitrag [Pflegekräfte aus Vietnam: Anerkennung, Sprachpraxis und Stationsintegration](/blog/pflegekraefte-aus-vietnam-anerkennung-sprachpraxis-integration). [DMF Talents zur Vermittlung vietnamesischer Auszubildender](/services/azubi) fasst die Ausbildungswege zusammen, die DMF Talents mit Pflegeeinrichtungen abstimmt.
+
+Wenn Ihre Einrichtung Helferplätze mit Perspektive anbieten möchte, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und geben Sie Standort und geplante Schulkooperation an.

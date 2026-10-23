@@ -66,3 +66,7 @@ Viele ausländische Mitarbeiter senden regelmäßig Teile ihres Gehalts an ihre 
 3. **Musterantrag auf Basiskonto bereithalten:** Sollte eine Bankfiliale die Eröffnung blockieren, verweisen Sie höflich auf den gesetzlichen Anspruch nach § 31 ZKG und nutzen Sie das offizielle Antragsformular der Bundesanstalt für Finanzdienstleistungsaufsicht (BaFin).
 
 Reibungslose Abläufe von Tag eins an: DMF Talents unterstützt Partnerbetriebe bei allen behördlichen und organisatorischen Schritten des Onboardings.
+
+Konto, Anmeldung und Lohnabrechnung greifen in den ersten Wochen ineinander. Welche Schritte nach der Ankunft sonst anstehen, steht im Beitrag [Meldebestätigung (§ 17 BMG) & Rundfunkbeitrag: Leitfaden für Arbeitgeber-Unterkünfte](/blog/wohnung-anmeldung-bmg-rundfunkbeitrag-gez-unterkunft-arbeitgeber). [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) zeigt, wie DMF Talents den Start neuer Mitarbeiter begleitet.
+
+Wenn Sie eine Einstellung vorbereiten, [teilen Sie DMF Talents Ihren Personalbedarf mit](/fuer-arbeitgeber/personalbedarf) und geben Sie den geplanten ersten Arbeitstag an. Die Reihenfolge der Behördengänge richtet sich nach diesem Datum.

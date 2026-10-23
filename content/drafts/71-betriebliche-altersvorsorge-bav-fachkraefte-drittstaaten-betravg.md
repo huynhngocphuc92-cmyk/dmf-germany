@@ -68,3 +68,7 @@ Für mittelständische Betriebe ist ein überzeugendes bAV-Angebot ein starker W
 - Betriebe, die über den gesetzlichen 15%-Zuschuss hinausgehen (z. B. 20% oder 50 € Festzuschuss), heben sich im internationalen Wettbewerb deutlich von der Masse ab.
 
 Nutzen Sie moderne Benefit-Konzepte zur Mitarbeitergewinnung. DMF Talents unterstützt Sie bei der mehrsprachigen Aufklärung Ihrer neuen Fachkräfte.
+
+Die bAV wirkt nur als Bindungsinstrument, wenn sie bei Einstellung und Onboarding verständlich erklärt wird. [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) zeigt, an welchen Stellen DMF Talents Arbeitgeber im Einstellungsprozess unterstützt. Zu den Kosten eines Vermittlungsverfahrens insgesamt lesen Sie [Vermittlungskosten steuerlich absetzen: Betriebsausgabenabzug & Vorsteuer für Betriebe](/blog/vermittlungskosten-steuerlich-absetzen-betriebsausgaben-vorsteuer).
+
+Wenn Sie Benefits in Ihr Einstellungsangebot aufnehmen möchten, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und notieren Sie Ihre Fragen zur bAV. Sie lassen sich im Gespräch mit Blick auf Ihre bestehende Versorgungsordnung klären.

@@ -64,3 +64,7 @@ Viele Arbeitgeber und Mitarbeiter fürchten, dass eine unfallbedingte Arbeitsunf
 - Bei längeren Ausfallzeiten in der Ausbildung wird die Vertragslaufzeit nach **§ 8 Abs. 2 BBiG** in Abstimmung mit der Handwerkskammer oder IHK formal verlängert. Die Ausländerbehörde passt die Gültigkeitsdauer der Aufenthaltserlaubnis entsprechend an.
 
 DMF Talents unterstützt Betriebe bei der rechtssicheren Kommunikation mit Berufsgenossenschaften und Ausländerbehörden im Schadensfall.
+
+Nach einem Arbeitsunfall laufen Meldung an die Berufsgenossenschaft und Entgeltfragen parallel. Zur Anmeldung bei der Krankenkasse in den ersten Wochen lesen Sie [Gesetzliche Krankenversicherung (GKV) für internationale Fachkräfte: Der Anmeldeprozess](/blog/krankenkassen-anmeldung-fachkraefte-drittstaaten-gkv). [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) beschreibt, wie DMF Talents Betriebe bei Formalitäten nach der Einreise unterstützt.
+
+Wenn Sie einen Unfallfall betreuen oder Ihre Abläufe vor einer Einstellung ordnen möchten, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und schildern Sie den Sachverhalt. Daraus lässt sich ableiten, welche Meldungen noch ausstehen.

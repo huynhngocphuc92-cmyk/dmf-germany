@@ -65,3 +65,7 @@ Die lückenlose Dokumentation schützt den Arbeitgeber: Bei Verlängerungen von 
 3. **Monatlicher Abgleich des Arbeitszeitkontos:** Überstundensalden regelmäßig prüfen und bei mehr als 20 Plusstunden zeitnah Freizeitausgleich terminieren.
 
 Schützen Sie Ihr Unternehmen vor Compliance-Risiken. DMF Talents berät Sie zu fairen und rechtssicheren Arbeitszeitmodellen für Ihre internationalen Fachkräfte.
+
+Arbeitszeit und Vergütung von Mehrarbeit gehören in den Arbeitsvertrag, bevor die Fachkraft einreist. [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) beschreibt, welche Vertragsinhalte DMF Talents mit Betrieben abstimmt. Zu den Grenzen zusätzlicher Beschäftigung lesen Sie [Nebenjob und Minijob: Dürfen Azubis und Fachkräfte aus Drittstaaten hinzuverdienen?](/blog/nebenjob-minijob-auszubildende-fachkraefte-drittstaaten-erlaubnis).
+
+Wenn Sie Schichtpersonal aus Vietnam einstellen möchten, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und beschreiben Sie das Schichtmodell. Fragen zu Ruhezeiten und Zuschlägen lassen sich dann vor Vertragsschluss klären.

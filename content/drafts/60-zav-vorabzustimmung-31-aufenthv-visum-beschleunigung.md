@@ -58,3 +58,7 @@ Verzögerungen entstehen meist durch formale Mängel in der Erklärung zum Besch
 - **Unpräzise Stellenbeschreibung:** Wird ein Elektroniker für Betriebstechnik als allgemeiner „Helfer“ deklariert, verweigert die ZAV die Fachkräftezustimmung.
 
 DMF Talents übernimmt die vollständige Vorbereitung der Antragsunterlagen und die digitale Schnittstellenkommunikation mit der ZAV. So halten Betriebe die Vorabzustimmung oft schon innerhalb von zehn Werktagen in den Händen.
+
+Die Vorabzustimmung ist ein Schritt im Gesamtverfahren. Den vollständigen Ablauf mit Fristen zeigt die [Übersicht zum Zeitplan für Arbeitgeber](/fuer-arbeitgeber/zeitplan). Inhaltlich hängt die Zustimmung eng mit der Lohnprüfung zusammen; dazu lesen Sie [Vergleichsentgelt der ZAV: So gelingt die Arbeitsbedingungsprüfung ohne Verzug](/blog/vergleichsentgelt-lohnpruefung-zav-arbeitsbedingungen-entgeltatlas).
+
+Wenn Sie ein konkretes Verfahren vorbereiten, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und fügen Sie Stellenbeschreibung und Vergütung bei. Beides wird für die Prüfung durch die ZAV benötigt.

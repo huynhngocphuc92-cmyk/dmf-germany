@@ -67,3 +67,7 @@ In modernen Schreiner- und Tischlerwerkstätten steht der Schutz der Mitarbeiter
 3. **Kundenmontage mit Mentoring:** Gemeinsame Küchen- und Möbelmontagen beim Endkunden zur Festigung der kundenorientierten Fachsprache.
 
 Schließen Sie Ihre Fachkräftelücke in Werkstatt und Montage. DMF Talents rekrutiert hochqualifizierte Schreiner und Tischler mit CNC-Erfahrung aus Vietnam für Ihren Betrieb.
+
+Schreinereien brauchen neben Werkstattpraxis oft Erfahrung an CNC-Maschinen und in der Montage. [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) erläutert, wie DMF Talents Profile für das Holzhandwerk prüft. Ein verwandtes Berufsbild stellt der Beitrag [Dachdecker und Fassadenbauer aus Vietnam: Das Handwerk im Wandel zur Solarpflicht](/blog/dachdecker-fassadenbauer-solarmonteure-vietnam-handwerk) vor.
+
+Wenn Sie eine Stelle in Werkstatt oder Montage besetzen möchten, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und nennen Sie Maschinen, Materialien und Einsatzorte. Diese Angaben bestimmen, welche Profile infrage kommen.

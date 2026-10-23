@@ -66,3 +66,7 @@ Kleine Handwerksmetzgereien zeichnen sich durch ein persönliches, fast familiä
 3. **Anerkennende Feedbackkultur:** Regelmäßige kurze Vier-Augen-Gespräche am Ende der Arbeitswoche geben dem Nachwuchs Orientierung und stärken das Selbstvertrauen im Umgang mit Kunden an der Frischetheke.
 
 Retten Sie Ihr handwerkliches Erbe vor dem Fachkräftemangel. DMF Talents rekrutiert talentierte Fleischer und Fleischerei-Fachverkäufer aus Vietnam für Ihren Handwerksbetrieb.
+
+Ob gelernte Fachkraft oder Ausbildungsplatz in der Metzgerei: [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) erläutert, welche Profile DMF Talents in Vietnam vorbereitet und prüft. Wie Betriebe Abbrüche vermeiden und neue Mitarbeiter halten, zeigt der Beitrag [Ausbildungsabbrüche vermeiden: Frühwarnsignale und Betreuungskonzepte für internationale Azubis](/blog/ausbildungsabbrueche-verhindern-fruehwarnsignale-betreuung).
+
+Wenn Sie eine Stelle im Fleischerei- oder Lebensmittelhandwerk besetzen möchten, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und beschreiben Sie Arbeitsbereich, Standort und gewünschten Beginn.

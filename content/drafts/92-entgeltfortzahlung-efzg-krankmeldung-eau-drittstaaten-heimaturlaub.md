@@ -58,3 +58,7 @@ Bestehen begründete Zweifel an der Echtheit oder Richtigkeit des Attests (z. B.
 Wird der Mitarbeiter während des Urlaubs arbeitsunfähig, werden die durch ärztliches Zeugnis nachgewiesenen Tage der Arbeitsunfähigkeit gemäß **§ 9 Bundesurlaubsgesetz (BUrlG)** **nicht auf den Jahresurlaub angerechnet**. Der Mitarbeiter darf seinen Urlaub jedoch nicht eigenmächtig um die Krankheitstage verlängern, sondern muss zum genehmigten Urlaubsende zurückkehren oder eine Verlängerung mit dem Arbeitgeber ausdrücklich abstimmen.
 
 DMF Talents unterstützt Arbeitgeber bei der Überprüfung vietnamesischer Dokumente und klärt Zweifelsfragen direkt mit Partnerärzten vor Ort.
+
+Die Entgeltfortzahlung setzt eine korrekte Krankmeldung voraus; bei einem Arbeitsunfall gelten ergänzend die Regeln der Berufsgenossenschaft, siehe [Arbeitsunfall bei ausländischen Fachkräften: BG & SGB VII](/blog/arbeitsunfall-berufsgenossenschaft-dguv-drittstaaten-sgb-vii). [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) zeigt, welche Dokumente DMF Talents im Krankheitsfall mit Betrieben abstimmt.
+
+Wenn Sie Fragen zu einem laufenden Fall haben oder eine Einstellung vorbereiten, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und beschreiben Sie die Ausgangslage kurz. Die nächsten Schritte hängen von Status und Dauer der Arbeitsunfähigkeit ab.

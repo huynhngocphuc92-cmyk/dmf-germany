@@ -54,3 +54,7 @@ Ein weit verbreiteter Irrtum besagt, dass eine Unterbrechung der Erwerbstätigke
 | **Elternzeit (bis 3 Jahre)**          | Ruhendes Arbeitsverhältnis / Elterngeld | Elterngeldstelle (L-Bank / ZBFS etc.) | Verlängerung bei Kammer &amp; ABH |
 
 DMF Talents unterstützt Arbeitgeber und Mitarbeiterinnen bei der Kommunikation mit der Ausländerbehörde und den Kammern, um einen reibungslosen Übergang und die spätere Rückkehr an den Arbeitsplatz sicherzustellen.
+
+Mutterschutz und Elternzeit verändern den Arbeitsalltag, nicht den Aufenthaltstitel. Wie es nach der Elternzeit mit Familienzusammenführung weitergehen kann, beschreibt der Beitrag [Familiennachzug für Fachkräfte (§ 29 AufenthG): Wohnraumnachweis & Mindestunterhalt](/blog/familiennachzug-fachkraefte-29-aufenthg-wohnraumnachweis). [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) erläutert, welche Fragen Betriebe im Vorfeld mit DMF Talents klären.
+
+Wenn Sie eine Mitarbeiterin in dieser Phase begleiten oder eine Vertretung planen, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und schildern Sie den Zeitraum. Daraus ergibt sich, ob eine befristete Nachbesetzung sinnvoll ist.

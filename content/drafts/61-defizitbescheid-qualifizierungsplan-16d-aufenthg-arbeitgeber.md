@@ -59,3 +59,7 @@ Der aufenthaltsrechtliche Vorteil für den Betrieb:
 - Ihr Betrieb hat die Fachkraft über 12 bis 18 Monate exakt auf die firmeneigenen Qualitätsstandards eingeschworen.
 
 DMF Talents verfasst für Partnerbetriebe rechtssichere, behördlich erprobte Qualifizierungspläne und koordiniert die Nachschulungsanmeldungen bei den zuständigen Kammern.
+
+Der Qualifizierungsplan setzt eine Einordnung des Abschlusses voraus. Wie die Anerkennungspartnerschaft insgesamt aufgebaut ist, steht im Beitrag [Anerkennungspartnerschaft (§ 16d Abs. 3 AufenthG): Einreise vor Abschluss des Anerkennungsverfahrens](/blog/anerkennungspartnerschaft-16d-aufenthg-arbeitgeber-voraussetzungen). [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) beschreibt, wie DMF Talents Kandidaten auf dieses Verfahren vorbereitet.
+
+Wenn Sie einen Fall mit Defizitbescheid betreuen oder planen, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und halten Sie Bescheid und Stellenprofil bereit. Daraus ergibt sich, welche Qualifizierungsbausteine in den Plan gehören.

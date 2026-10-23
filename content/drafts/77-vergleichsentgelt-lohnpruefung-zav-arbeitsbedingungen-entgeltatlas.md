@@ -65,3 +65,7 @@ DMF Talents stimmt Gehaltsstrukturen und Tätigkeitsbeschreibungen bereits vor d
 3. **Arbeitszeit exakt beziffern:** Vermeiden Sie schwammige Formulierungen wie _„nach betrieblichem Bedarf“_; vereinbaren Sie eine feste Wochenstundenzahl (z. B. 40 Stunden).
 
 Vermeiden Sie Ablehnungen bei der ZAV-Prüfung. DMF Talents garantiert rechtssicher abgestimmte Arbeitsverträge für eine reibungslose Visumerteilung.
+
+Das Vergleichsentgelt wird im Verfahren der ZAV geprüft, bevor eine Zustimmung erteilt wird. Wie diese Vorabzustimmung abläuft, erklärt der Beitrag [ZAV-Vorabzustimmung nach § 31 AufenthV: Der Beschleuniger im Visumverfahren](/blog/zav-vorabzustimmung-31-aufenthv-visum-beschleunigung). Den zeitlichen Rahmen des Gesamtverfahrens zeigt die [Übersicht zum Zeitplan für Arbeitgeber](/fuer-arbeitgeber/zeitplan).
+
+Wenn Sie einen Arbeitsvertrag für eine Fachkraft aus einem Drittstaat vorbereiten, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und halten Sie die geplante Vergütung bereit. Sie ist die Grundlage für die Lohnprüfung.

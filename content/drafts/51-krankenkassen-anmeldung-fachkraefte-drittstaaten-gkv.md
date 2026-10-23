@@ -59,3 +59,7 @@ Damit die Fachkraft bei Krankheit zum Arzt gehen kann, benötigt sie die elektro
 | **eGK Lichtbild-Upload**             | Arbeitnehmer           | Woche 2 nach Einreise | Online-Portal der Krankenkasse         |
 
 DMF Talents übernimmt im Rahmen des Onboarding-Pakets die komplette Korrespondenz mit den gesetzlichen Kassen, sodass Ihre Personalabteilung zum Arbeitsstart lediglich die fertige Mitgliedsbescheinigung in die Lohnakte übernimmt.
+
+Die Anmeldung bei Krankenkasse, Rentenversicherung und Finanzamt gehört zu den ersten Schritten nach der Einreise. Wie DMF Talents Arbeitgeber beim Onboarding unterstützt, beschreibt der Bereich [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers). Welche Unterlagen in den ersten Tagen sonst noch anfallen, steht im Beitrag [Meldebestätigung (§ 17 BMG) & Rundfunkbeitrag: Leitfaden für Arbeitgeber-Unterkünfte](/blog/wohnung-anmeldung-bmg-rundfunkbeitrag-gez-unterkunft-arbeitgeber).
+
+Wenn Sie eine Einstellung vorbereiten, [teilen Sie DMF Talents Ihren Personalbedarf mit](/fuer-arbeitgeber/personalbedarf) und geben Sie den geplanten Starttermin an. Die administrativen Schritte lassen sich dann entlang des Einstellungsdatums planen.

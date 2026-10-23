@@ -61,3 +61,5 @@ Um Ausfallzeiten im Kundendienst zu verhindern, sollten Arbeitgeber folgende Pro
 - **Halbjährliche Führerscheinkontrolle:** Dokumentieren Sie die Sichtprüfung des Führerscheins im Fuhrparkmanagement gemäß Halterhaftung.
 
 DMF Talents unterstützt Partnerbetriebe bei der Zusammenstellung aller nötigen Übersetzungen und Behördendokumente für die Führerscheinstelle bereits vor der Einreise der Kandidaten.
+
+Planen Sie den Einsatz von Fahrpersonal oder Monteuren mit Führerscheinpflicht, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und nennen Sie die benötigten Führerscheinklassen. [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) zeigt, welche Angaben für die Prüfung eines Profils nötig sind. Zum Einsatz von Berufskraftfahrern im Linienverkehr lesen Sie ergänzend: [Busfahrer aus Drittstaaten einstellen: § 24a BeschV & BKrFQG](/blog/busfahrer-oepnv-linienverkehr-drittstaaten-vietnam-beschv).
