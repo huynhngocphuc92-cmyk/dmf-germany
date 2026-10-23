@@ -104,7 +104,7 @@ export const HeroSection = ({
               <m.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 pt-4">
                 {/* Primary Button - Brand Blue */}
                 <Link
-                  href="#contact"
+                  href="/fuer-arbeitgeber/personalbedarf"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white rounded-lg text-base md:text-lg font-semibold transition-all duration-300 hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30 group"
                 >
                   {t.hero.cta_primary}

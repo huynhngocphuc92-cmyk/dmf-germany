@@ -20,7 +20,21 @@ export const CostComparisonChart = memo(function CostComparisonChart({
   recruitmentFee,
   contractDuration,
 }: CostComparisonChartProps) {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+
+  const altLabel =
+    lang === "de"
+      ? "Alternative (Zeitarbeit / Vakanz)"
+      : lang === "en"
+        ? "Alternative (Temp Agency / Vacancy)"
+        : "Phương án thay thế (Thuê ngoài / Trống vị trí)";
+
+  const dmfLabel =
+    lang === "de"
+      ? "Direktvermittlung (DMF Talents)"
+      : lang === "en"
+        ? "Direct Placement (DMF Talents)"
+        : "Tuyển dụng trực tiếp (DMF Talents)";
 
   const formatCurrency = (value: number): string => {
     return new Intl.NumberFormat("de-DE", {
@@ -43,13 +57,13 @@ export const CostComparisonChart = memo(function CostComparisonChart({
 
       {/* Bar Chart */}
       <div className="space-y-8 mb-6">
-        {/* German Cost Bar */}
+        {/* Alternative Cost Bar */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-semibold text-gray-700">
-              {t.roi?.cost_german || "Deutscher Kandidat"}
+            <span className="text-sm font-semibold text-gray-700">{altLabel}</span>
+            <span className="text-sm font-bold text-gray-900">
+              {formatCurrency(germanTotalCost)}
             </span>
-            <span className="text-sm font-bold text-gray-900">{formatCurrency(germanTotalCost)}</span>
           </div>
           <div className="relative h-12 bg-gray-100 rounded-lg overflow-hidden">
             <div
@@ -62,9 +76,7 @@ export const CostComparisonChart = memo(function CostComparisonChart({
         {/* DMF Cost Bar */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-semibold text-gray-700">
-              {t.roi?.cost_dmf || "DMF Kandidat"}
-            </span>
+            <span className="text-sm font-semibold text-gray-700">{dmfLabel}</span>
             <span className="text-sm font-bold text-primary">{formatCurrency(dmfTotalCost)}</span>
           </div>
           <div className="relative h-12 bg-gray-100 rounded-lg overflow-hidden">
@@ -79,9 +91,7 @@ export const CostComparisonChart = memo(function CostComparisonChart({
       {/* Cost Breakdown */}
       <div className="grid grid-cols-2 gap-4 pt-4 border-t border-gray-200">
         <div className="text-center p-4 bg-gray-50 rounded-lg">
-          <p className="text-xs text-gray-600 mb-1">
-            {t.roi?.cost_german || "Deutscher Kandidat"}
-          </p>
+          <p className="text-xs text-gray-600 mb-1">{altLabel}</p>
           <p className="text-lg font-bold text-gray-900">{formatCurrency(germanTotalCost)}</p>
           <p className="text-xs text-gray-500 mt-1 leading-relaxed">
             {formatCurrency(germanSalary)}/{t.roi?.cost_breakdown_month || "Monat"}
@@ -93,7 +103,7 @@ export const CostComparisonChart = memo(function CostComparisonChart({
           </p>
         </div>
         <div className="text-center p-4 bg-primary/5 rounded-lg">
-          <p className="text-xs text-gray-600 mb-1">{t.roi?.cost_dmf || "DMF Kandidat"}</p>
+          <p className="text-xs text-gray-600 mb-1">{dmfLabel}</p>
           <p className="text-lg font-bold text-primary">{formatCurrency(dmfTotalCost)}</p>
           <p className="text-xs text-gray-500 mt-1 leading-relaxed">
             {formatCurrency(dmfSalary)}/{t.roi?.cost_breakdown_month || "Monat"}

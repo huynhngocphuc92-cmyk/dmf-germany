@@ -62,7 +62,7 @@ const DATA_DU_PHONG = {
     badge: "Warum Vietnam?",
     title: "Ihre Vorteile auf einen Blick",
     subtitle: "Belastbares Personal für harte Arbeit",
-    advantage_1_title: "Körperlich Belastbar",
+    advantage_1_title: "Körperlich belastbar",
     advantage_1_desc: "Gewohnt an harte Arbeit und Hitze. Ideal für Feldarbeit und Gewächshäuser.",
     advantage_1_highlight: "100%",
     advantage_1_highlight_desc: "Einsatzbereit",
@@ -140,9 +140,7 @@ const talentPoolContent = {
       {
         id: "AGR-01",
         role: "Erntehelfer",
-        roleVn: "Người thu hoạch",
         category: "Landwirtschaft",
-        categoryVn: "Nông nghiệp",
         avatar: "EH",
         skills: [
           { text: "Körperlich belastbar", icon: Dumbbell },
@@ -155,9 +153,7 @@ const talentPoolContent = {
       {
         id: "GAS-02",
         role: "Servicekraft",
-        roleVn: "Nhân viên phục vụ",
         category: "Gastronomie",
-        categoryVn: "Nhà hàng",
         avatar: "SK",
         skills: [
           { text: "Englischkenntnisse", icon: MessageCircle },
@@ -169,11 +165,9 @@ const talentPoolContent = {
       },
       {
         id: "HOU-03",
-        role: "Zimmermädchen",
-        roleVn: "Nhân viên buồng phòng",
+        role: "Housekeeping-Kraft",
         category: "Hotellerie",
-        categoryVn: "Khách sạn",
-        avatar: "ZM",
+        avatar: "HK",
         skills: [
           { text: "Detailorientiert", icon: CheckCircle2 },
           { text: "Zuverlässig", icon: BadgeCheck },
@@ -185,14 +179,73 @@ const talentPoolContent = {
       {
         id: "KIT-04",
         role: "Küchenhilfe",
-        roleVn: "Phụ bếp",
         category: "Gastronomie",
-        categoryVn: "Nhà hàng",
         avatar: "KH",
         skills: [
           { text: "Hygienebewusst", icon: Shield },
           { text: "Belastbar", icon: Dumbbell },
           { text: "Lernbereit", icon: TrendingUp },
+        ],
+        available: 35,
+        icon: ChefHat,
+      },
+    ],
+  },
+  en: {
+    badge: "Immediately Available",
+    title: "Resilient Workers",
+    subtitle: "ZAV-compliant • Physically Fit • Ready to Work in Weeks",
+    availableBadge: "50+ Available",
+    viewAll: "View All Candidates",
+    profiles: [
+      {
+        id: "AGR-01",
+        role: "Harvest Worker",
+        category: "Agriculture",
+        avatar: "HW",
+        skills: [
+          { text: "Physically resilient", icon: Dumbbell },
+          { text: "Harvest experience", icon: Wheat },
+          { text: "Team player", icon: Users },
+        ],
+        available: 25,
+        icon: Wheat,
+      },
+      {
+        id: "GAS-02",
+        role: "Service Staff",
+        category: "Gastronomy",
+        avatar: "SS",
+        skills: [
+          { text: "English skills", icon: MessageCircle },
+          { text: "Stress-resistant", icon: Shield },
+          { text: "Hospitable", icon: Hotel },
+        ],
+        available: 30,
+        icon: UtensilsCrossed,
+      },
+      {
+        id: "HOU-03",
+        role: "Housekeeping Staff",
+        category: "Hospitality",
+        avatar: "HK",
+        skills: [
+          { text: "Detail-oriented", icon: CheckCircle2 },
+          { text: "Reliable", icon: BadgeCheck },
+          { text: "Fast & thorough", icon: Zap },
+        ],
+        available: 20,
+        icon: Bed,
+      },
+      {
+        id: "KIT-04",
+        role: "Kitchen Assistant",
+        category: "Gastronomy",
+        avatar: "KA",
+        skills: [
+          { text: "Hygiene-conscious", icon: Shield },
+          { text: "Resilient", icon: Dumbbell },
+          { text: "Quick learner", icon: TrendingUp },
         ],
         available: 35,
         icon: ChefHat,
@@ -205,7 +258,60 @@ const talentPoolContent = {
     subtitle: "Khỏe mạnh, có động lực và sẵn sàng ngay",
     availableBadge: "50+ Sẵn sàng",
     viewAll: "Xem tất cả ứng viên",
-    profiles: [],
+    profiles: [
+      {
+        id: "AGR-01",
+        role: "Nhân sự thu hoạch",
+        category: "Nông nghiệp",
+        avatar: "EH",
+        skills: [
+          { text: "Thể lực tốt", icon: Dumbbell },
+          { text: "Kinh nghiệm mùa vụ", icon: Wheat },
+          { text: "Làm việc nhóm", icon: Users },
+        ],
+        available: 25,
+        icon: Wheat,
+      },
+      {
+        id: "GAS-02",
+        role: "Nhân viên phục vụ",
+        category: "Nhà hàng",
+        avatar: "SK",
+        skills: [
+          { text: "Giao tiếp tiếng Anh", icon: MessageCircle },
+          { text: "Chịu áp lực tốt", icon: Shield },
+          { text: "Hiếu khách", icon: Hotel },
+        ],
+        available: 30,
+        icon: UtensilsCrossed,
+      },
+      {
+        id: "HOU-03",
+        role: "Nhân viên buồng phòng",
+        category: "Khách sạn",
+        avatar: "HK",
+        skills: [
+          { text: "Tỉ mỉ, cẩn thận", icon: CheckCircle2 },
+          { text: "Đáng tin cậy", icon: BadgeCheck },
+          { text: "Nhanh nhẹn", icon: Zap },
+        ],
+        available: 20,
+        icon: Bed,
+      },
+      {
+        id: "KIT-04",
+        role: "Phụ bếp",
+        category: "Nhà hàng",
+        avatar: "KH",
+        skills: [
+          { text: "Đảm bảo vệ sinh", icon: Shield },
+          { text: "Chịu khó", icon: Dumbbell },
+          { text: "Ham học hỏi", icon: TrendingUp },
+        ],
+        available: 35,
+        icon: ChefHat,
+      },
+    ],
   },
 };
 
@@ -222,10 +328,8 @@ const sectorsContent = {
         secondaryIcon: Grape,
         color: "amber",
         jobs: ["Spargel", "Erdbeeren", "Weinbau", "Gemüseernte"],
-        jobsVn: ["Măng tây", "Dâu tây", "Nho", "Rau củ"],
         description: "Erntehelfer für Spargel, Erdbeeren, Weinbau & Gemüse.",
-        descriptionVn: "Nhân sự thu hoạch măng tây, dâu, nho và rau củ.",
-        stats: { workers: "150+", time: "4-6 Wo." },
+        stats: { workers: "50+", time: "4-6 Wo." },
       },
       {
         title: "Gastronomie & Hotellerie",
@@ -233,11 +337,37 @@ const sectorsContent = {
         icon: UtensilsCrossed,
         secondaryIcon: Hotel,
         color: "orange",
-        jobs: ["Spüler", "Küchenhilfen", "Zimmermädchen", "Servicekräfte"],
-        jobsVn: ["Rửa bát", "Phụ bếp", "Dọn phòng", "Phục vụ"],
-        description: "Spüler, Küchenhilfen & Zimmermädchen für Hotels & Restaurants.",
-        descriptionVn: "Rửa bát, phụ bếp và dọn phòng cho khách sạn & nhà hàng.",
-        stats: { workers: "100+", time: "6-8 Wo." },
+        jobs: ["Spüler", "Küchenhilfen", "Housekeeping-Kräfte", "Servicekräfte"],
+        description: "Spüler, Küchenhilfen & Housekeeping-Kräfte für Hotels & Restaurants.",
+        stats: { workers: "50+", time: "6-8 Wo." },
+      },
+    ],
+  },
+  en: {
+    badge: "Areas of Deployment",
+    title: "Industries We Serve",
+    subtitle: "Specialized in seasonal peak times",
+    sectors: [
+      {
+        title: "Agriculture",
+        subtitle: "Agricultural Sector",
+        icon: Tractor,
+        secondaryIcon: Grape,
+        color: "amber",
+        jobs: ["Asparagus", "Strawberries", "Viticulture", "Vegetable Harvest"],
+        description: "Harvest workers for asparagus, strawberries, viticulture & vegetables.",
+        stats: { workers: "50+", time: "4-6 Wks." },
+      },
+      {
+        title: "Gastronomy & Hospitality",
+        subtitle: "Hospitality",
+        icon: UtensilsCrossed,
+        secondaryIcon: Hotel,
+        color: "orange",
+        jobs: ["Dishwashers", "Kitchen Assistants", "Housekeeping Staff", "Service Staff"],
+        description:
+          "Dishwashers, kitchen assistants & housekeeping staff for hotels & restaurants.",
+        stats: { workers: "50+", time: "6-8 Wks." },
       },
     ],
   },
@@ -245,7 +375,28 @@ const sectorsContent = {
     badge: "Lĩnh vực",
     title: "Ngành nghề chúng tôi phục vụ",
     subtitle: "Chuyên về mùa cao điểm",
-    sectors: [],
+    sectors: [
+      {
+        title: "Nông nghiệp",
+        subtitle: "Lĩnh vực nông nghiệp",
+        icon: Tractor,
+        secondaryIcon: Grape,
+        color: "amber",
+        jobs: ["Măng tây", "Dâu tây", "Trồng nho", "Thu hoạch rau củ"],
+        description: "Nhân sự thu hoạch măng tây, dâu tây, nho và rau củ.",
+        stats: { workers: "50+", time: "4-6 tuần" },
+      },
+      {
+        title: "Nhà hàng & Khách sạn",
+        subtitle: "Dịch vụ lưu trú & ẩm thực",
+        icon: UtensilsCrossed,
+        secondaryIcon: Hotel,
+        color: "orange",
+        jobs: ["Rửa bát", "Phụ bếp", "Nhân viên buồng phòng", "Phục vụ"],
+        description: "Nhân sự bếp, buồng phòng và phục vụ cho khách sạn & nhà hàng.",
+        stats: { workers: "50+", time: "6-8 tuần" },
+      },
+    ],
   },
 };
 
@@ -407,7 +558,7 @@ function HeroSection({ content }: { content: SeasonalPageContent }) {
                 className="group relative px-8 py-6 text-base font-semibold bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white rounded-full shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 transition-all duration-300"
                 asChild
               >
-                <Link href="#contact">
+                <Link href="/fuer-arbeitgeber/personalbedarf?service=saison">
                   {heroContent.cta1 || "Verfügbarkeit jetzt prüfen"}
                   <Rocket className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -460,8 +611,12 @@ function HeroSection({ content }: { content: SeasonalPageContent }) {
                     <div className="text-6xl font-bold bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent mb-2">
                       4-8
                     </div>
-                    <div className="text-white font-medium text-lg">Wochen</div>
-                    <div className="text-amber-400 text-sm mt-1">bis Einsatz</div>
+                    <div className="text-white font-medium text-lg">
+                      {content?.timeline?.weeks_label || "Wochen"}
+                    </div>
+                    <div className="text-amber-400 text-sm mt-1">
+                      {content?.timeline?.until_work || "bis Einsatz"}
+                    </div>
                   </motion.div>
                 </div>
               </div>
@@ -485,7 +640,7 @@ function HeroSection({ content }: { content: SeasonalPageContent }) {
               >
                 <Badge className="bg-orange-500/20 text-orange-300 border-orange-500/30 px-3 py-1.5">
                   <Shield className="w-3 h-3 mr-1" />
-                  100% Legal
+                  BA / ZAV
                 </Badge>
               </motion.div>
 
@@ -496,7 +651,7 @@ function HeroSection({ content }: { content: SeasonalPageContent }) {
               >
                 <Badge className="bg-yellow-500/20 text-yellow-300 border-yellow-500/30 px-3 py-1.5">
                   <Users className="w-3 h-3 mr-1" />
-                  250+
+                  {content?.talent?.available_badge || "50+"}
                 </Badge>
               </motion.div>
             </div>
@@ -540,7 +695,7 @@ function AdvantagesSection({ content }: { content: SeasonalPageContent }) {
     advantages: [
       {
         icon: Dumbbell,
-        title: advantages.advantage_1_title || "Körperlich Belastbar",
+        title: advantages.advantage_1_title || "Körperlich belastbar",
         description:
           advantages.advantage_1_desc ||
           "Gewohnt an harte Arbeit und Hitze. Ideal für Feldarbeit und Gewächshäuser.",
@@ -744,7 +899,7 @@ function SpeedTimelineSection({ content }: { content: SeasonalPageContent }) {
                     </div>
                     {/* Week badge */}
                     <div className="absolute -top-2 -right-2 bg-slate-900 text-white text-xs font-bold px-2 py-1 rounded-full">
-                      Wo. {step.week}
+                      {timeline.week_label || "Wo."} {step.week}
                     </div>
                   </motion.div>
 
@@ -787,14 +942,17 @@ function TalentPoolSection({ content }: { content: SeasonalPageContent }) {
   const raw = content || {};
   const talent = raw.talent || {};
 
-  // Build section content from translations - keep profiles structure from original
+  // Build section content from translations and localized profile list
+  const localizedPool = talentPoolContent[lang] || talentPoolContent.de;
   const sectionContent = {
-    badge: talent.badge || "Sofort verfügbar",
-    title: talent.title || "Belastbare Arbeitskräfte",
-    subtitle: talent.subtitle || "ZAV-konform • Körperlich fit • Einsatzbereit in Wochen",
-    available_badge: talent.available_badge || "50+ Verfügbar",
-    view_all: talent.view_all || "Alle Kandidaten ansehen",
-    profiles: talentPoolContent.de.profiles, // Keep original profiles data
+    badge: talent.badge || localizedPool.badge,
+    title: talent.title || localizedPool.title,
+    subtitle: talent.subtitle || localizedPool.subtitle,
+    available_badge: talent.available_badge || localizedPool.availableBadge,
+    view_all: talent.view_all || localizedPool.viewAll,
+    available_label: talent.available_label || "verfügbar",
+    request_label: talent.request_label || "Anfragen",
+    profiles: localizedPool.profiles,
   };
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
@@ -853,15 +1011,11 @@ function TalentPoolSection({ content }: { content: SeasonalPageContent }) {
                         {profile.avatar}
                       </div>
                       <Badge className="bg-amber-100 text-amber-700 border-amber-200 text-xs">
-                        {profile.available}+ verfügbar
+                        {profile.available}+ {sectionContent.available_label}
                       </Badge>
                     </div>
-                    <h3 className="font-bold text-slate-900">
-                      {lang === "vn" ? profile.roleVn : profile.role}
-                    </h3>
-                    <p className="text-sm text-amber-600">
-                      {lang === "vn" ? profile.categoryVn : profile.category}
-                    </p>
+                    <h3 className="font-bold text-slate-900">{profile.role}</h3>
+                    <p className="text-sm text-amber-600">{profile.category}</p>
                   </div>
 
                   {/* Skills */}
@@ -890,9 +1044,9 @@ function TalentPoolSection({ content }: { content: SeasonalPageContent }) {
                       className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white shadow-md shadow-amber-500/20"
                       asChild
                     >
-                      <Link href="/#contact">
+                      <Link href="/fuer-arbeitgeber/kandidaten">
                         <Calendar className="w-4 h-4 mr-2" />
-                        Anfragen
+                        {sectionContent.request_label}
                       </Link>
                     </Button>
                   </div>
@@ -915,7 +1069,7 @@ function TalentPoolSection({ content }: { content: SeasonalPageContent }) {
             className="px-8 py-6 text-base font-semibold border-amber-300 text-amber-700 hover:bg-amber-50 rounded-full"
             asChild
           >
-            <Link href="/#contact">
+            <Link href="/fuer-arbeitgeber/kandidaten">
               {sectionContent.view_all}
               <ArrowRight className="w-5 h-5 ml-2" />
             </Link>
@@ -931,16 +1085,20 @@ function TalentPoolSection({ content }: { content: SeasonalPageContent }) {
 // ============================================
 
 function SectorsSection({ content }: { content: SeasonalPageContent }) {
+  const { lang } = useLanguage();
   // Use safe content from QA layer
   const raw = content || {};
   const sectors = raw.sectors || {};
+  const localizedSectors = sectorsContent[lang] || sectorsContent.de;
 
-  // Build section content from translations - keep sectors structure from original
+  // Build section content from translations
   const sectionContent = {
-    badge: sectors.badge || "Einsatzbereiche",
-    title: sectors.title || "Branchen, die wir bedienen",
-    subtitle: sectors.subtitle || "Spezialisiert auf saisonale Spitzenzeiten",
-    sectors: sectorsContent.de.sectors, // Keep original sectors data
+    badge: sectors.badge || localizedSectors.badge,
+    title: sectors.title || localizedSectors.title,
+    subtitle: sectors.subtitle || localizedSectors.subtitle,
+    workers_label: sectors.workers_label || "Arbeitskräfte",
+    lead_time_label: sectors.lead_time_label || "Vorlauf",
+    sectors: localizedSectors.sectors,
   };
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
@@ -1048,14 +1206,16 @@ function SectorsSection({ content }: { content: SeasonalPageContent }) {
                         className={`w-5 h-5 ${isAmber ? "text-amber-600" : "text-orange-600"}`}
                       />
                       <span className="font-bold text-slate-900">{sector.stats.workers}</span>
-                      <span className="text-sm text-slate-500">Arbeitskräfte</span>
+                      <span className="text-sm text-slate-500">{sectionContent.workers_label}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Timer
                         className={`w-5 h-5 ${isAmber ? "text-amber-600" : "text-orange-600"}`}
                       />
                       <span className="font-bold text-slate-900">{sector.stats.time}</span>
-                      <span className="text-sm text-slate-500">Vorlauf</span>
+                      <span className="text-sm text-slate-500">
+                        {sectionContent.lead_time_label}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -1073,23 +1233,34 @@ function SectorsSection({ content }: { content: SeasonalPageContent }) {
 // ============================================
 
 function StatsSection({ content }: { content: SeasonalPageContent }) {
+  const { lang } = useLanguage();
   // Use safe content from QA layer
   const raw = content || {};
   const statsData = raw.stats || {};
 
-  // Build section content from translations
+  // Build section content with compliant capability metrics
   const sectionContent = {
     stats: [
       {
-        value: "200+",
-        label: statsData.stat1_label || "Vermittelte Arbeitskräfte",
+        value: "50+",
+        label:
+          lang === "vn"
+            ? "Ứng viên sẵn sàng mỗi đợt"
+            : lang === "en"
+              ? "Candidates Available per Cohort"
+              : "Kandidaten pro Kohorte verfügbar",
         suffix: "",
         icon: Users,
       },
       {
-        value: "98",
-        label: statsData.stat2_label || "Visum-Erfolgsquote",
-        suffix: "%",
+        value: "3-6",
+        label:
+          lang === "vn"
+            ? "Tháng thời gian làm việc"
+            : lang === "en"
+              ? "Months Deployment Window"
+              : "Monate Einsatzdauer",
+        suffix: "",
         icon: Shield,
       },
       {
@@ -1122,7 +1293,7 @@ function StatsSection({ content }: { content: SeasonalPageContent }) {
       </div>
 
       <div className="container relative mx-auto px-4 max-w-7xl">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
           {sectionContent.stats.map((stat: StatCard, index) => {
             const Icon = stat.icon;
             return (
@@ -1207,7 +1378,7 @@ function CTASection({ content }: { content: SeasonalPageContent }) {
               className="group px-8 py-6 text-base font-semibold bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white rounded-full shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 transition-all duration-300"
               asChild
             >
-              <Link href="/#contact">
+              <Link href="/fuer-arbeitgeber/personalbedarf?service=saison">
                 {sectionContent.cta1}
                 <Rocket className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
@@ -1234,8 +1405,62 @@ function CTASection({ content }: { content: SeasonalPageContent }) {
 // MAIN PAGE COMPONENT
 // ============================================
 
+const seasonalFAQsByLang = {
+  de: [
+    {
+      question: "Unter welchen rechtlichen Voraussetzungen ist ein saisonaler Einsatz möglich?",
+      answer:
+        "Saisonale oder befristete Einsätze aus Drittstaaten setzen eine einzelfallbezogene Prüfung des Aufenthaltstitels sowie die vorherige Zustimmung bzw. Arbeitserlaubnis der Bundesagentur für Arbeit (BA/ZAV) voraus. Da für Vietnam derzeit kein pauschales Vermittlungsabkommen nach § 15a BeschV besteht, prüfen wir vorab verbindlich, welcher legale Zugangsweg (z. B. im Rahmen spezieller Kontingente, Ferienbeschäftigung oder regulärer Fachkräfte-/Ausbildungsprogramme) für Ihren konkreten Bedarf greift.",
+    },
+    {
+      question: "Können dieselben Kräfte in der Folgesaison wiederkommen?",
+      answer:
+        "Sofern die aufenthalts- und arbeitserlaubnisrechtlichen Voraussetzungen vorliegen, ist ein wiederholter Einsatz ausdrücklich sinnvoll. Viele Betriebe reduzieren so die Einarbeitungszeit in den Folgejahren erheblich.",
+    },
+    {
+      question: "Wie ist die Einsatzbereitschaft und Vorbereitung der Kandidaten?",
+      answer:
+        "Unsere Kandidaten werden vorab gezielt auf körperliche Belastbarkeit, Teamfähigkeit sowie grundlegende Arbeits- und Hygienevorschriften in der Landwirtschaft, Hotellerie und Gastronomie vorbereitet.",
+    },
+  ],
+  en: [
+    {
+      question: "Under what legal conditions is seasonal deployment possible?",
+      answer:
+        "Seasonal or temporary deployments from third countries require a case-by-case review of the residence permit pathway and prior approval or work permit clearance from the Federal Employment Agency (BA/ZAV). Since there is currently no blanket bilateral placement agreement for Vietnam under § 15a BeschV, we verify in advance which legal pathway (e.g., specific quotas, student vacation employment, or regular skilled worker/training programs) applies to your concrete staffing needs.",
+    },
+    {
+      question: "Can the same workers return in subsequent seasons?",
+      answer:
+        "Provided that the residence and work permit requirements are met, repeat deployment is expressly encouraged. Many businesses build a core team this way, significantly reducing onboarding time in subsequent years.",
+    },
+    {
+      question: "How are the candidates prepared and what is their work ethic?",
+      answer:
+        "Our candidates are specifically pre-screened and prepared for physical resilience, teamwork, and fundamental occupational safety and hygiene standards in agriculture, hospitality, and gastronomy.",
+    },
+  ],
+  vn: [
+    {
+      question: "Việc tuyển dụng lao động thời vụ dựa trên điều kiện pháp lý nào?",
+      answer:
+        "Các chương trình làm việc thời vụ hoặc ngắn hạn từ các quốc gia ngoài EU cần được thẩm định hồ sơ pháp lý theo từng trường hợp cụ thể và phải có sự chấp thuận trước hoặc giấy phép lao động của Cơ quan Lao động Liên bang Đức (BA/ZAV). Vì hiện tại Việt Nam chưa có hiệp định song phương đại trà theo § 15a BeschV, chúng tôi luôn kiểm tra trước lộ trình pháp lý phù hợp nhất (ví dụ: theo hạn ngạch đặc thù, lao động kỳ nghỉ cho sinh viên hoặc chuyển sang diện nhân sự chuyên môn/học nghề) cho doanh nghiệp của bạn.",
+    },
+    {
+      question: "Cùng một nhóm nhân sự có thể quay lại làm việc vào mùa vụ năm sau không?",
+      answer:
+        "Nếu đáp ứng đầy đủ các điều kiện về giấy phép cư trú và lao động, việc quay lại làm việc vào các mùa vụ tiếp theo rất được khuyến khích, giúp doanh nghiệp tiết kiệm tối đa thời gian hướng dẫn ban đầu.",
+    },
+    {
+      question: "Ứng viên được chuẩn bị như thế nào trước khi làm việc?",
+      answer:
+        "Ứng viên của chúng tôi được sàng lọc kỹ về thể lực, tinh thần kỷ luật cũng như được hướng dẫn trước về quy tắc an toàn lao động và vệ sinh trong ngành nông nghiệp, nhà hàng và khách sạn.",
+    },
+  ],
+};
+
 export default function SeasonalWorkersPage() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   // Pull the raw content block from the translation bundle.
   const rawData = t.service_pages?.seasonal;
@@ -1246,27 +1471,27 @@ export default function SeasonalWorkersPage() {
     DATA_DU_PHONG
   );
 
-  // FAQ Questions for Seasonal Workers (B2B-Focused)
-  const seasonalFAQs = [
-    {
-      question: "Ist der Einsatz rechtssicher?",
-      answer:
-        "Ja, wir vermitteln ausschließlich im Rahmen der gesetzlichen Regelungen für kurzzeitige Beschäftigung (z.B. §15a BeschV) und kümmern uns um alle Genehmigungen der Bundesagentur für Arbeit.",
-    },
-    {
-      question: "Können dieselben Saisonkräfte wiederkommen?",
-      answer:
-        "Ja, das ist ausdrücklich gewünscht. Viele Kunden bauen sich so einen 'Stamm-Pool' auf, was die Einarbeitungszeit in den Folgejahren drastisch reduziert.",
-    },
-    {
-      question: "Wie ist die Arbeitsmoral?",
-      answer:
-        "Vietnamesische Arbeitskräfte sind bekannt für Disziplin und Belastbarkeit, besonders in der Landwirtschaft oder Gastronomie. Fehlzeiten sind eine absolute Ausnahme.",
-    },
-  ];
+  const seasonalFAQs = seasonalFAQsByLang[lang] || seasonalFAQsByLang.de;
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: seasonalFAQs.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
 
   return (
     <main className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <HeroSection content={content} />
       <AdvantagesSection content={content} />
       <SpeedTimelineSection content={content} />

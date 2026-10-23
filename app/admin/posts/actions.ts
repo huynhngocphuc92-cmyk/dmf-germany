@@ -1,6 +1,7 @@
 "use server";
 
 import { postFormSchema } from "@/lib/validations/schemas";
+import { sanitizeRichHtml } from "@/lib/sanitize";
 import { revalidatePath } from "next/cache";
 import { createAdminClient as createClient } from "@/lib/auth/admin";
 import { createPublicClient } from "@/utils/supabase/public";
@@ -118,7 +119,7 @@ export async function createPost(
       title: formData.title,
       slug: formData.slug,
       excerpt: formData.excerpt || null,
-      content: formData.content,
+      content: sanitizeRichHtml(formData.content),
       cover_image: formData.cover_image || null,
       status: formData.status,
       published_at: formData.status === "published" ? new Date().toISOString() : null,
@@ -174,7 +175,7 @@ export async function updatePost(
       title: formData.title,
       slug: formData.slug,
       excerpt: formData.excerpt || null,
-      content: formData.content,
+      content: sanitizeRichHtml(formData.content),
       cover_image: formData.cover_image || null,
       status: formData.status,
       published_at,
@@ -328,7 +329,9 @@ export async function getRelatedPosts(
 
     const { data, error } = await supabase
       .from("posts")
-      .select("*")
+      .select(
+        "id, title, slug, excerpt, cover_image, status, published_at, created_at, updated_at, author_id"
+      )
       .eq("status", "published")
       .neq("slug", currentSlug)
       .order("published_at", { ascending: false })
@@ -339,7 +342,12 @@ export async function getRelatedPosts(
       return { data: null, error: error.message };
     }
 
-    return { data: data as Post[], error: null };
+    const normalized = (data || []).map((row) => ({
+      ...row,
+      content: "",
+    })) as Post[];
+
+    return { data: normalized, error: null };
   } catch (err) {
     console.error("Error in getRelatedPosts:", err);
     return { data: null, error: "Failed to fetch related posts" };

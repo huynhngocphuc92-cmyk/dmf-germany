@@ -3,20 +3,7 @@ import Link from "next/link";
 
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { Calculator } from "lucide-react";
-import dynamic from "next/dynamic";
-
-// Lazy load RoiCalculator - it's a heavy component (~847 lines)
-const RoiCalculator = dynamic(
-  () => import("@/components/tools/RoiCalculator").then((mod) => mod.RoiCalculator),
-  {
-    loading: () => (
-      <div className="flex items-center justify-center py-20">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-      </div>
-    ),
-    ssr: false, // Disable SSR for this client-heavy component
-  }
-);
+import { RoiCalculator } from "@/components/tools/RoiCalculator";
 
 export default function RoiRechnerPage() {
   const { t } = useLanguage();
@@ -63,7 +50,7 @@ export default function RoiRechnerPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/#contact"
+                href="/fuer-arbeitgeber/personalbedarf"
                 className="px-8 py-4 bg-white text-primary rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg"
               >
                 {t.roi?.cta_contact || "Kontakt aufnehmen"}

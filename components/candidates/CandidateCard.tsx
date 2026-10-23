@@ -103,7 +103,6 @@ export const CandidateCard = ({
                   fill
                   className="object-cover"
                   onError={() => setImageError(true)}
-                  unoptimized={candidate.avatar_url.startsWith("http")}
                   placeholder="blur"
                   blurDataURL={BLUR_SQUARE}
                 />
@@ -136,7 +135,12 @@ export const CandidateCard = ({
           {/* Profession */}
           {
             <h3 className="text-lg font-bold text-foreground mb-4 line-clamp-2">
-              {candidate.profession || "Beruf auf Anfrage"}
+              {candidate.profession ||
+                (lang === "en"
+                  ? "Profession on request"
+                  : lang === "vn"
+                    ? "Ngành nghề theo yêu cầu"
+                    : "Beruf auf Anfrage")}
             </h3>
           }
 
@@ -162,7 +166,8 @@ export const CandidateCard = ({
                 <Badge
                   className={`${getGermanLevelColor(candidate.german_level)} text-xs font-medium border`}
                 >
-                  Deutsch {candidate.german_level}
+                  {lang === "en" ? "German" : lang === "vn" ? "Tiếng Đức" : "Deutsch"}{" "}
+                  {candidate.german_level}
                 </Badge>
               </div>
             )}
@@ -192,11 +197,9 @@ export const CandidateCard = ({
                     allowFullScreen
                     title={`Video - ${candidateCode}`}
                     onLoad={() => {
-                      // Video loaded successfully
                       setVideoError(false);
                     }}
                     onError={() => {
-                      // Video failed to load
                       setVideoError(true);
                     }}
                   />
@@ -204,7 +207,17 @@ export const CandidateCard = ({
               ) : (
                 <div className="relative aspect-video rounded-lg overflow-hidden bg-gray-100 border border-gray-200 flex items-center justify-center">
                   <p className="text-sm text-gray-500 text-center px-4">
-                    {!embedUrl || videoError ? "Video-Link ungültig" : "Video wird geladen..."}
+                    {!embedUrl || videoError
+                      ? lang === "en"
+                        ? "Invalid video link"
+                        : lang === "vn"
+                          ? "Liên kết video không hợp lệ"
+                          : "Video-Link ungültig"
+                      : lang === "en"
+                        ? "Loading video..."
+                        : lang === "vn"
+                          ? "Đang tải video..."
+                          : "Video wird geladen..."}
                   </p>
                 </div>
               )}

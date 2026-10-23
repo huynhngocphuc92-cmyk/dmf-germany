@@ -110,9 +110,17 @@ export default async function RequestsPage({
                         {row.email}
                       </p>
                     </div>
-                    <span className="self-start rounded-full bg-slate-100 px-3 py-1 text-sm">
-                      {requestStatusLabels[row.status] ?? row.status}
-                    </span>
+                    <div className="flex flex-wrap items-center gap-2 self-start">
+                      <Link
+                        href={`/admin/requests/${row.source}/${row.id}#bewerbungsmappe`}
+                        className="rounded-lg border border-emerald-300 bg-emerald-50 hover:bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-900"
+                      >
+                        📄 1-Click Bewerbungsmappe
+                      </Link>
+                      <span className="rounded-full bg-slate-100 px-3 py-1 text-sm">
+                        {requestStatusLabels[row.status] ?? row.status}
+                      </span>
+                    </div>
                   </div>
                   <div className="flex flex-wrap gap-x-6 gap-y-2 mt-4 text-sm">
                     <span>

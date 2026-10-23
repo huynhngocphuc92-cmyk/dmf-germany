@@ -109,27 +109,13 @@ const TopBar = memo(function TopBar({ hotline, email, isHidden }: TopBarProps) {
 
 interface ContactButtonProps {
   label: string;
-  pathname: string;
+  pathname?: string;
 }
 
-const ContactButton = memo(function ContactButton({ label, pathname }: ContactButtonProps) {
-  const handleClick = useCallback(
-    (e: React.MouseEvent<HTMLAnchorElement>) => {
-      if (pathname === "/") {
-        e.preventDefault();
-        const contactSection = document.getElementById("contact");
-        if (contactSection) {
-          contactSection.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      }
-    },
-    [pathname]
-  );
-
+const ContactButton = memo(function ContactButton({ label }: ContactButtonProps) {
   return (
     <Link
-      href="/#contact"
-      onClick={handleClick}
+      href="/fuer-arbeitgeber/personalbedarf"
       className="bg-primary hover:bg-primary/90 text-white px-3.5 xl:px-5 py-2 xl:py-2.5 rounded-full text-xs xl:text-sm font-medium transition-all shadow-lg shadow-primary/20 flex items-center gap-1.5 xl:gap-2 whitespace-nowrap flex-shrink-0"
     >
       <Phone className="w-3.5 h-3.5 xl:w-4 xl:h-4 flex-shrink-0" />

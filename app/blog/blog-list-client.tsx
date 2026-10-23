@@ -1,11 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { format } from "date-fns";
 import { de, vi, enUS } from "date-fns/locale";
-import { Calendar, Clock, ArrowRight, FileText } from "lucide-react";
+import { Calendar, Clock, ArrowRight, FileText, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/components/providers/LanguageProvider";
@@ -20,26 +21,32 @@ const translations = {
   de: {
     title: "Blog & Aktuelles",
     subtitle: "Neuigkeiten, Einblicke und Fachwissen rund um Fachkräfte aus Vietnam",
+    searchPlaceholder: "Beiträge nach Thema oder Stichwort durchsuchen...",
     readMore: "Weiterlesen",
     readTime: "Min. Lesezeit",
     noPosts: "Noch keine Beiträge vorhanden",
     noPostsDesc: "Schauen Sie bald wieder vorbei für neue Inhalte.",
+    noSearchResults: "Keine passenden Beiträge gefunden",
   },
   en: {
     title: "Blog & News",
     subtitle: "News, insights and expertise about skilled workers from Vietnam",
+    searchPlaceholder: "Search articles by topic or keyword...",
     readMore: "Read More",
     readTime: "min read",
     noPosts: "No posts yet",
     noPostsDesc: "Please come back later for new content.",
+    noSearchResults: "No matching articles found",
   },
   vn: {
     title: "Blog & Tin Tức",
     subtitle: "Tin tức, góc nhìn và kiến thức chuyên môn về nhân sự Việt Nam",
+    searchPlaceholder: "Tìm kiếm bài viết theo chủ đề hoặc từ khóa...",
     readMore: "Đọc thêm",
     readTime: "phút đọc",
     noPosts: "Chưa có bài viết",
     noPostsDesc: "Vui lòng quay lại sau để xem nội dung mới.",
+    noSearchResults: "Không tìm thấy bài viết phù hợp",
   },
 };
 
@@ -95,6 +102,16 @@ export function BlogListClient({ posts }: BlogListClientProps) {
   const lang = (currentLang as "de" | "en" | "vn") || "de";
   const t = translations[lang] || translations.de;
   const dateLocale = lang === "vn" ? vi : lang === "en" ? enUS : de;
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const normalizedQuery = searchQuery.trim().toLowerCase();
+  const filteredPosts = normalizedQuery
+    ? posts.filter(
+        (post) =>
+          post.title.toLowerCase().includes(normalizedQuery) ||
+          (post.excerpt && post.excerpt.toLowerCase().includes(normalizedQuery))
+      )
+    : posts;
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white pt-[120px]">
@@ -118,10 +135,23 @@ export function BlogListClient({ posts }: BlogListClientProps) {
             className="text-center max-w-3xl mx-auto"
           >
             <Badge className="mb-4 bg-blue-100 text-blue-700 border-blue-200">
-              DMF Vietnam Blog
+              DMF Talents Blog
             </Badge>
             <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">{t.title}</h1>
-            <p className="text-lg text-slate-600 leading-relaxed">{t.subtitle}</p>
+            <p className="text-lg text-slate-600 leading-relaxed mb-8">{t.subtitle}</p>
+
+            {/* Search Filter */}
+            <div className="max-w-xl mx-auto relative">
+              <Search className="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <input
+                type="search"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder={t.searchPlaceholder}
+                aria-label={t.searchPlaceholder}
+                className="w-full pl-12 pr-4 py-3.5 rounded-xl border border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm sm:text-base"
+              />
+            </div>
           </motion.div>
         </div>
       </section>
@@ -129,14 +159,14 @@ export function BlogListClient({ posts }: BlogListClientProps) {
       {/* Blog Grid */}
       <section className="py-16 lg:py-24">
         <div className="container mx-auto px-4">
-          {posts.length > 0 ? (
+          {filteredPosts.length > 0 ? (
             <motion.div
               variants={containerVariants}
               initial="hidden"
               animate="visible"
               className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
             >
-              {posts.map((post) => (
+              {filteredPosts.map((post) => (
                 <motion.article key={post.id} variants={itemVariants} className="group">
                   <Link href={`/blog/${encodeURIComponent(post.slug)}`}>
                     <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 h-full flex flex-col">
@@ -147,6 +177,7 @@ export function BlogListClient({ posts }: BlogListClientProps) {
                             src={post.cover_image}
                             alt={post.title}
                             fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             className="object-cover group-hover:scale-105 transition-transform duration-500"
                             placeholder="blur"
                             blurDataURL={BLUR_LANDSCAPE}
@@ -177,6 +208,11 @@ export function BlogListClient({ posts }: BlogListClientProps) {
                             <Clock className="w-4 h-4" />
                             {calculateReadTime(post.content)} {t.readTime}
                           </span>
+                          {lang !== "de" && (
+                            <span className="ml-auto inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200">
+                              DE
+                            </span>
+                          )}
                         </div>
 
                         {/* Title */}
@@ -207,7 +243,9 @@ export function BlogListClient({ posts }: BlogListClientProps) {
               className="text-center py-20"
             >
               <FileText className="w-16 h-16 mx-auto mb-6 text-slate-300" />
-              <h2 className="text-2xl font-bold text-slate-900 mb-3">{t.noPosts}</h2>
+              <h2 className="text-2xl font-bold text-slate-900 mb-3">
+                {normalizedQuery ? t.noSearchResults : t.noPosts}
+              </h2>
               <p className="text-slate-600 mb-8">{t.noPostsDesc}</p>
               <Button asChild>
                 <Link href="/">

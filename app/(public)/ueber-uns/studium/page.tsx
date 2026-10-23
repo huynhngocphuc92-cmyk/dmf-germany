@@ -45,7 +45,7 @@ import {
 // ============================================
 
 function HeroSection() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const b2b = t.b2b_pages;
 
   return (
@@ -88,11 +88,19 @@ function HeroSection() {
             {/* Main Statement */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
               <span className="text-white">
-                {b2b?.common?.hero_title || "DMF – Ihre Akademie für"}
+                {lang === "vn"
+                  ? "Đào tạo Học thuật –"
+                  : lang === "en"
+                    ? "Academic Preparation –"
+                    : "Akademische Vorbereitung –"}
               </span>
               <br />
               <span className="bg-gradient-to-r from-indigo-400 via-blue-300 to-emerald-400 bg-clip-text text-transparent">
-                {b2b?.common?.hero_accent || "qualifizierte Talente"}
+                {lang === "vn"
+                  ? "Đại học & Sự nghiệp"
+                  : lang === "en"
+                    ? "University & Career"
+                    : "Studium & Karriere"}
               </span>
               <br />
               <span className="text-white">{b2b?.common?.hero_suffix || "aus Vietnam"}</span>
@@ -122,7 +130,9 @@ function HeroSection() {
                   <GraduationCap className="w-5 h-5 text-emerald-400" />
                 </div>
                 <div>
-                  <div className="text-white font-bold">1. Semester</div>
+                  <div className="text-white font-bold">
+                    {lang === "vn" ? "Học kỳ 1" : lang === "en" ? "1st Semester" : "1. Semester"}
+                  </div>
                   <div className="text-slate-500 text-xs">
                     {b2b?.studium?.stat2_label || "Mentoring"}
                   </div>
@@ -134,7 +144,7 @@ function HeroSection() {
                 </div>
                 <div>
                   <div className="text-white font-bold">
-                    {t.nav?.cooperation === "Cooperation & Programs" ? "Career" : "Karriere"}
+                    {lang === "vn" ? "Sự nghiệp" : lang === "en" ? "Career" : "Karriere"}
                   </div>
                   <div className="text-slate-500 text-xs">
                     {b2b?.studium?.stat3_label || "Coaching"}
@@ -150,7 +160,7 @@ function HeroSection() {
                 className="group px-8 py-6 text-base font-semibold bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white rounded-full shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 transition-all duration-300"
                 asChild
               >
-                <Link href="/#contact">
+                <Link href="/fuer-arbeitgeber/personalbedarf">
                   {b2b?.common?.cta_profiles || "Studentenprofile anfordern"}
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -866,15 +876,15 @@ function SettlementKitSection() {
         >
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div>
-              <div className="text-4xl font-bold text-emerald-600 mb-2">&lt;8%</div>
+              <div className="text-4xl font-bold text-emerald-600 mb-2">TestAS</div>
               <div className="text-slate-600">
-                {b2b?.studium?.dropout_studium || "Studienabbruchquote"}
+                {b2b?.studium?.testas_prep || "TestAS Vorbereitung"}
               </div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-indigo-600 mb-2">92%</div>
+              <div className="text-4xl font-bold text-indigo-600 mb-2">B2–C1</div>
               <div className="text-slate-600">
-                {b2b?.studium?.graduation_rate || "Regelstudienzeit"}
+                {b2b?.studium?.academic_german || "Akademisches Deutsch"}
               </div>
             </div>
             <div>
@@ -930,7 +940,7 @@ function CTASection() {
               className="group px-8 py-6 text-base font-semibold bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-400 hover:to-indigo-500 text-white rounded-full shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 transition-all duration-300"
               asChild
             >
-              <Link href="/#contact">
+              <Link href="/fuer-arbeitgeber/personalbedarf">
                 {b2b?.common?.cta_profiles || "Studentenprofile anfordern"}
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>

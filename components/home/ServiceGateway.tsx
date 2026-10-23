@@ -37,12 +37,16 @@ interface ServiceCard {
   icon: React.ElementType;
   secondaryIcon: React.ElementType;
   taglineDe: string;
+  taglineEn: string;
   taglineVn: string;
   titleDe: string;
+  titleEn: string;
   titleVn: string;
   descriptionDe: string;
+  descriptionEn: string;
   descriptionVn: string;
   featuresDe: ServiceFeature[];
+  featuresEn: ServiceFeature[];
   featuresVn: ServiceFeature[];
   href: string;
   accentColor: string;
@@ -59,17 +63,26 @@ const services: ServiceCard[] = [
     icon: GraduationCap,
     secondaryIcon: BookOpen,
     taglineDe: "Investition in die Zukunft",
+    taglineEn: "Investing in the Future",
     taglineVn: "Đầu tư cho tương lai",
     titleDe: "Auszubildende",
+    titleEn: "Vocational Trainees (Azubis)",
     titleVn: "Du học nghề",
     descriptionDe:
       "Auszubildende aus Vietnam für Ihren Betrieb. Ausbildungsberuf, Sprachanforderungen und Vorbereitung werden gemeinsam abgestimmt.",
+    descriptionEn:
+      "Motivated trainees from Vietnam for your company. Training occupation, language requirements, and preparation are coordinated together.",
     descriptionVn:
       "Kết nối học viên Việt Nam với doanh nghiệp đào tạo tại Đức. Nghề, yêu cầu ngôn ngữ và việc chuẩn bị được thống nhất theo từng hồ sơ.",
     featuresDe: [
       { text: "Sprachanforderungen abstimmen" },
       { text: "Interkulturelle Vorbereitung" },
       { text: "Begleitung nach Vereinbarung" },
+    ],
+    featuresEn: [
+      { text: "Aligned language requirements (B1/B2)" },
+      { text: "Intercultural preparation" },
+      { text: "Structured onboarding support" },
     ],
     featuresVn: [
       { text: "Thống nhất yêu cầu tiếng Đức" },
@@ -85,17 +98,26 @@ const services: ServiceCard[] = [
     icon: Briefcase,
     secondaryIcon: Award,
     taglineDe: "Passende Qualifikationen",
+    taglineEn: "Matched Qualifications",
     taglineVn: "Chuyên môn phù hợp",
     titleDe: "Fachkräfte",
+    titleEn: "Skilled Workers",
     titleVn: "Lao động tay nghề cao",
     descriptionDe:
       "Personalbedarf und berufliche Qualifikationen zusammenbringen. Anerkennung, Sprache und mögliche Einsatztermine werden individuell geprüft.",
+    descriptionEn:
+      "Matching your staffing needs with qualified professionals. Credential recognition, language skills, and deployment timelines are reviewed individually.",
     descriptionVn:
       "Nhân sự đã có bằng Cao đẳng/Đại học và kinh nghiệm tại VN. Quy trình công nhận bằng cấp (Anerkennung).",
     featuresDe: [
       { text: "Qualifikationen prüfen" },
       { text: "Verfahrensschritte abstimmen" },
       { text: "Einsatzbeginn gemeinsam planen" },
+    ],
+    featuresEn: [
+      { text: "Qualification & credential review" },
+      { text: "Coordinated visa & recognition steps" },
+      { text: "Joint deployment planning" },
     ],
     featuresVn: [
       { text: "Đối chiếu bằng cấp" },
@@ -111,17 +133,26 @@ const services: ServiceCard[] = [
     icon: Clock,
     secondaryIcon: Sun,
     taglineDe: "Saisonbedarf planen",
+    taglineEn: "Seasonal Staffing",
     taglineVn: "Lập kế hoạch mùa vụ",
     titleDe: "Saisonkräfte",
+    titleEn: "Seasonal Workers",
     titleVn: "Lao động thời vụ",
     descriptionDe:
       "Personalbedarf für saisonale Spitzen in Landwirtschaft, Gastronomie und Hotellerie besprechen. Einsatzdauer und Voraussetzungen werden vorab geprüft.",
+    descriptionEn:
+      "Cover seasonal peaks in agriculture, gastronomy, and hospitality. Assignment duration and legal prerequisites are verified in advance.",
     descriptionVn:
       "Trao đổi nhu cầu nhân lực mùa vụ trong nông nghiệp, nhà hàng và khách sạn. Thời gian làm việc và điều kiện được kiểm tra trước.",
     featuresDe: [
       { text: "Flexible Einsatzdauer" },
       { text: "Verfügbarkeit individuell klären" },
       { text: "Anforderungsprofil abstimmen" },
+    ],
+    featuresEn: [
+      { text: "Flexible deployment duration" },
+      { text: "Individual availability check" },
+      { text: "Tailored requirement profile" },
     ],
     featuresVn: [
       { text: "Thời gian làm việc linh hoạt" },
@@ -205,10 +236,22 @@ function ServiceCardItem({
   const SecondaryIcon = service.secondaryIcon;
   const colors = accentColors[service.accentColor];
 
-  const tagline = isVietnamese ? service.taglineVn : service.taglineDe;
-  const title = isVietnamese ? service.titleVn : service.titleDe;
-  const description = isVietnamese ? service.descriptionVn : service.descriptionDe;
-  const features = isVietnamese ? service.featuresVn : service.featuresDe;
+  const tagline = isVietnamese
+    ? service.taglineVn
+    : isEnglish
+      ? service.taglineEn
+      : service.taglineDe;
+  const title = isVietnamese ? service.titleVn : isEnglish ? service.titleEn : service.titleDe;
+  const description = isVietnamese
+    ? service.descriptionVn
+    : isEnglish
+      ? service.descriptionEn
+      : service.descriptionDe;
+  const features = isVietnamese
+    ? service.featuresVn
+    : isEnglish
+      ? service.featuresEn
+      : service.featuresDe;
   const ctaText = isVietnamese ? "Tìm hiểu thêm" : isEnglish ? "Learn More" : "Mehr erfahren";
 
   // FINAL SAFETY CHECK: Ensure serviceImage is valid before passing to AssetImageWithDebug

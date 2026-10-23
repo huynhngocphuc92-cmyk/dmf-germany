@@ -128,7 +128,7 @@ export function getCooperationLabel(labelKey: string, lang: string): string {
       vn: "Du học Nghề",
     },
     dual_training_desc: {
-      de: "Vocational program für Azubis",
+      de: "Duales Ausbildungsprogramm für Azubis",
       en: "Dual training for apprentices",
       vn: "Chương trình đào tạo nghề kép",
     },
@@ -148,7 +148,7 @@ export function getCooperationLabel(labelKey: string, lang: string): string {
       vn: "Lao động Chuyên môn",
     },
     skilled_program_desc: {
-      de: "§18a/b mit Anerkennung & Placement",
+      de: "§ 18a/b mit Anerkennung & Vermittlung",
       en: "§18a/b with recognition & placement",
       vn: "§18a/b với công nhận & tuyển dụng",
     },

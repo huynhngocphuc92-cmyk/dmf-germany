@@ -178,6 +178,7 @@ function AnimatedCounter({
 // ============================================
 
 function HeroSection({ content }: { content: SkilledWorkersContent }) {
+  const { lang } = useLanguage();
   // Use safe content from QA layer
   const heroContent = content?.hero || {};
 
@@ -245,7 +246,7 @@ function HeroSection({ content }: { content: SkilledWorkersContent }) {
                 className="group relative px-8 py-6 text-base font-semibold bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-400 hover:to-green-400 text-white rounded-full shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all duration-300"
                 asChild
               >
-                <Link href="#contact">
+                <Link href="/fuer-arbeitgeber/personalbedarf?service=fachkraefte">
                   {heroContent.cta1 || "Verfügbare Experten prüfen"}
                   <Rocket className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -256,7 +257,7 @@ function HeroSection({ content }: { content: SkilledWorkersContent }) {
                 className="px-8 py-6 text-base font-semibold border-slate-700 text-white hover:bg-slate-800/50 rounded-full transition-all duration-300"
                 asChild
               >
-                <Link href="/#contact">
+                <Link href="/fuer-arbeitgeber/kandidaten">
                   <PhoneCall className="w-5 h-5 mr-2" />
                   {heroContent.cta2 || "Kostenlose Beratung"}
                 </Link>
@@ -298,8 +299,16 @@ function HeroSection({ content }: { content: SkilledWorkersContent }) {
                     <div className="text-6xl font-bold bg-gradient-to-r from-emerald-400 to-green-400 bg-clip-text text-transparent mb-2">
                       6-9
                     </div>
-                    <div className="text-white font-medium text-lg">Monate</div>
-                    <div className="text-emerald-400 text-sm mt-1">bis Einsatz</div>
+                    <div className="text-white font-medium text-lg">
+                      {lang === "vn" ? "Tháng" : lang === "en" ? "Months" : "Monate"}
+                    </div>
+                    <div className="text-emerald-400 text-sm mt-1">
+                      {lang === "vn"
+                        ? "đến khi nhận việc"
+                        : lang === "en"
+                          ? "until deployment"
+                          : "bis Einsatz"}
+                    </div>
                   </motion.div>
                 </div>
               </div>
@@ -312,7 +321,11 @@ function HeroSection({ content }: { content: SkilledWorkersContent }) {
               >
                 <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30 px-3 py-1.5">
                   <Zap className="w-3 h-3 mr-1" />
-                  Rechtssicher
+                  {lang === "vn"
+                    ? "Đúng luật FEG"
+                    : lang === "en"
+                      ? "FEG Compliant"
+                      : "Rechtssicher"}
                 </Badge>
               </motion.div>
 
@@ -322,8 +335,7 @@ function HeroSection({ content }: { content: SkilledWorkersContent }) {
                 className="absolute -bottom-4 left-8"
               >
                 <Badge className="bg-green-500/20 text-green-300 border-green-500/30 px-3 py-1.5">
-                  <Shield className="w-3 h-3 mr-1" />
-                  100% Legal
+                  <Shield className="w-3 h-3 mr-1" />§ 81a AufenthG
                 </Badge>
               </motion.div>
 
@@ -333,8 +345,7 @@ function HeroSection({ content }: { content: SkilledWorkersContent }) {
                 className="absolute top-1/2 -right-12 -translate-y-1/2"
               >
                 <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30 px-3 py-1.5">
-                  <Users className="w-3 h-3 mr-1" />
-                  150+
+                  <Users className="w-3 h-3 mr-1" />§ 18a/b
                 </Badge>
               </motion.div>
             </div>
@@ -366,40 +377,97 @@ function HeroSection({ content }: { content: SkilledWorkersContent }) {
 // ============================================
 
 function AdvantagesSection({ content }: { content: SkilledWorkersContent }) {
+  const { lang } = useLanguage();
   // Use safe content from QA layer
   const raw = content || {};
+
+  const advantagesByLang: Record<string, AdvantageCard[]> = {
+    de: [
+      {
+        icon: Shield,
+        title: "Rechtssicher nach FEG",
+        description:
+          "Strukturierte Vorbereitung und Begleitung gemäß § 18a/b AufenthG sowie transparente Gleichwertigkeitsprüfung.",
+        highlight: "§ 18a/b",
+        highlightDesc: "AufenthG-konform",
+      },
+      {
+        icon: Zap,
+        title: "Beschleunigtes Verfahren",
+        description:
+          "Das Verfahren nach § 81a AufenthG über die zuständige Ausländerbehörde bündelt Fristen für Anerkennung und Visum.",
+        highlight: "§ 81a",
+        highlightDesc: "Fast-Track Prozess",
+      },
+      {
+        icon: Users,
+        title: "Geprüfte Qualifikation",
+        description:
+          "Vorab geprüfte Berufs- und Hochschulabschlüsse sowie zertifizierte Deutschkenntnisse (B1/B2).",
+        highlight: "B1–B2",
+        highlightDesc: "Sprachstandard",
+      },
+    ],
+    en: [
+      {
+        icon: Shield,
+        title: "FEG Legal Compliance",
+        description:
+          "Structured preparation and support in accordance with § 18a/b AufenthG and transparent credential recognition.",
+        highlight: "§ 18a/b",
+        highlightDesc: "AufenthG Compliant",
+      },
+      {
+        icon: Zap,
+        title: "Accelerated Procedure",
+        description:
+          "The § 81a AufenthG fast-track procedure via the Foreigners' Authority streamlines recognition and visa timelines.",
+        highlight: "§ 81a",
+        highlightDesc: "Fast-Track Process",
+      },
+      {
+        icon: Users,
+        title: "Verified Qualifications",
+        description:
+          "Pre-screened vocational and university degrees combined with certified German proficiency (B1/B2).",
+        highlight: "B1–B2",
+        highlightDesc: "Language Standard",
+      },
+    ],
+    vn: [
+      {
+        icon: Shield,
+        title: "Tuân thủ Luật Nhập cư FEG",
+        description:
+          "Chuẩn bị hồ sơ và đồng hành theo đúng quy định § 18a/b AufenthG cùng quy trình công nhận văn bằng minh bạch.",
+        highlight: "§ 18a/b",
+        highlightDesc: "Chuẩn AufenthG",
+      },
+      {
+        icon: Zap,
+        title: "Thủ tục Rút gọn § 81a",
+        description:
+          "Quy trình rút gọn § 81a AufenthG qua Sở Ngoại kiều giúp rút ngắn thời gian thẩm định bằng cấp và cấp thị thực.",
+        highlight: "§ 18a/b",
+        highlightDesc: "Luồng ưu tiên",
+      },
+      {
+        icon: Users,
+        title: "Năng lực Được Kiểm chứng",
+        description:
+          "Bằng cấp chuyên môn được rà soát trước kết hợp cùng chứng chỉ tiếng Đức B1/B2 đạt chuẩn.",
+        highlight: "B1–B2",
+        highlightDesc: "Chuẩn ngoại ngữ",
+      },
+    ],
+  };
 
   // Build section content from translations - use comparison as fallback
   const sectionContent = {
     badge: raw.comparison?.badge || "Warum DMF?",
     title: raw.comparison?.title || "Der Unterschied ist messbar.",
     subtitle: raw.comparison?.subtitle || "Vergleichen Sie selbst",
-    advantages: [
-      {
-        icon: Shield,
-        title: "Rechtssicher",
-        description:
-          "Wir garantieren die Einhaltung aller Vorgaben (§18a/b AufenthG). Kein Risiko für Sie.",
-        highlight: "100%",
-        highlightDesc: "Rechtssicher",
-      },
-      {
-        icon: Zap,
-        title: "Beschleunigtes Verfahren",
-        description:
-          "§81a Verfahren beschleunigt die Visumserteilung. Transparente Prozesse, keine Überraschungen.",
-        highlight: "< 3",
-        highlightDesc: "Monate",
-      },
-      {
-        icon: Users,
-        title: "Qualifizierte Experten",
-        description:
-          "Vorab geprüfte Qualifikationen und Deutschkenntnisse. B1/B2 Zertifikat inklusive.",
-        highlight: "100%",
-        highlightDesc: "Geprüft",
-      },
-    ],
+    advantages: advantagesByLang[lang] || advantagesByLang.de,
   };
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
@@ -626,9 +694,43 @@ function ProcessTimelineSection({ content }: { content: SkilledWorkersContent })
 // ============================================
 
 function ExpertiseSection({ content: contentProp }: { content: SkilledWorkersContent }) {
+  const { lang } = useLanguage();
   // Use safe content from QA layer
   const raw = contentProp || {};
   const expertise = raw.expertise || {};
+
+  const jobsByLang = {
+    de: {
+      health: ["Pflegefachkraft (PflBG)", "Gesundheits- & Krankenpflege", "Altenpflege", "Hebamme"],
+      tech: ["Ingenieurwesen", "Maschinenbau", "Elektrotechnik", "Bauingenieurwesen"],
+      it: ["Softwareentwickler", "DevOps Engineer", "Data Engineer", "Full-Stack Developer"],
+      time: "6-9 Mo.",
+      workersLabel: "Fokus",
+      leadTimeLabel: "Vorlauf",
+    },
+    en: {
+      health: ["Registered Nurse (PflBG)", "Healthcare & Nursing", "Elderly Care", "Midwifery"],
+      tech: [
+        "Engineering",
+        "Mechanical Engineering",
+        "Electrical Engineering",
+        "Civil Engineering",
+      ],
+      it: ["Software Developer", "DevOps Engineer", "Data Engineer", "Full-Stack Developer"],
+      time: "6-9 mo.",
+      workersLabel: "Focus",
+      leadTimeLabel: "Lead time",
+    },
+    vn: {
+      health: ["Điều dưỡng viên (PflBG)", "Chăm sóc sức khỏe", "Điều dưỡng lão khoa", "Hộ sinh"],
+      tech: ["Kỹ sư", "Cơ khí chế tạo", "Kỹ thuật điện", "Kỹ sư xây dựng"],
+      it: ["Kỹ sư phần mềm", "Kỹ sư DevOps", "Kỹ sư dữ liệu", "Lập trình viên Full-Stack"],
+      time: "6-9 tháng",
+      workersLabel: "Trọng tâm",
+      leadTimeLabel: "Thời gian",
+    },
+  };
+  const localizedJobs = jobsByLang[lang] || jobsByLang.de;
 
   // Create sectors array from expertise data
   const sectors: ExpertiseSector[] = [
@@ -638,9 +740,9 @@ function ExpertiseSection({ content: contentProp }: { content: SkilledWorkersCon
       icon: Stethoscope,
       secondaryIcon: Heart,
       color: "emerald",
-      jobs: ["Pflegefachkraft", "Altenpfleger", "Krankenpfleger", "Hebamme"],
+      jobs: localizedJobs.health,
       description: expertise.health_title || "Qualifizierte Pflegekräfte aus Vietnam",
-      stats: { workers: "80+", time: "6-9 Mo." },
+      stats: { workers: "B1/B2", time: localizedJobs.time },
     },
     {
       title: expertise.tech_title || "Technik",
@@ -648,9 +750,9 @@ function ExpertiseSection({ content: contentProp }: { content: SkilledWorkersCon
       icon: Wrench,
       secondaryIcon: Building2,
       color: "green",
-      jobs: ["Ingenieur", "Maschinenbau", "Elektrotechnik", "Bauingenieur"],
+      jobs: localizedJobs.tech,
       description: expertise.tech_title || "Erfahrene Ingenieure",
-      stats: { workers: "50+", time: "6-9 Mo." },
+      stats: { workers: "§ 18a/b", time: localizedJobs.time },
     },
     {
       title: expertise.it_title || "IT & Software",
@@ -658,9 +760,9 @@ function ExpertiseSection({ content: contentProp }: { content: SkilledWorkersCon
       icon: Code,
       secondaryIcon: Laptop,
       color: "emerald",
-      jobs: ["Softwareentwickler", "DevOps", "Data Engineer", "Full Stack"],
+      jobs: localizedJobs.it,
       description: expertise.it_title || "IT-Profis mit Expertise",
-      stats: { workers: "40+", time: "6-9 Mo." },
+      stats: { workers: "§ 18b", time: localizedJobs.time },
     },
   ];
 
@@ -776,14 +878,14 @@ function ExpertiseSection({ content: contentProp }: { content: SkilledWorkersCon
                         className={`w-5 h-5 ${isEmerald ? "text-emerald-600" : "text-green-600"}`}
                       />
                       <span className="font-bold text-slate-900">{sector.stats.workers}</span>
-                      <span className="text-sm text-slate-500">Fachkräfte</span>
+                      <span className="text-sm text-slate-500">{localizedJobs.workersLabel}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Timer
                         className={`w-5 h-5 ${isEmerald ? "text-emerald-600" : "text-green-600"}`}
                       />
                       <span className="font-bold text-slate-900">{sector.stats.time}</span>
-                      <span className="text-sm text-slate-500">Vorlauf</span>
+                      <span className="text-sm text-slate-500">{localizedJobs.leadTimeLabel}</span>
                     </div>
                   </div>
                 </div>
@@ -801,6 +903,7 @@ function ExpertiseSection({ content: contentProp }: { content: SkilledWorkersCon
 // ============================================
 
 function StatsSection({ content }: { content: SkilledWorkersContent }) {
+  const { lang } = useLanguage();
   // Use safe content from QA layer
   const raw = content || {};
   const statsData = raw.stats || {};
@@ -808,15 +911,25 @@ function StatsSection({ content }: { content: SkilledWorkersContent }) {
   const sectionContent = {
     stats: [
       {
-        value: "150+",
-        label: statsData.stat1_label || "Vermittelte Fachkräfte",
+        value: "B1-B2",
+        label:
+          lang === "vn"
+            ? "Chuẩn tiếng Đức trước xuất cảnh"
+            : lang === "en"
+              ? "Certified German Proficiency"
+              : "Geprüftes Sprachniveau",
         suffix: "",
         icon: Users,
       },
       {
-        value: "98",
-        label: statsData.stat2_label || "Visum-Erfolgsquote",
-        suffix: "%",
+        value: "§ 81a",
+        label:
+          lang === "vn"
+            ? "Hỗ trợ thủ tục rút gọn AufenthG"
+            : lang === "en"
+              ? "Accelerated Visa Procedure"
+              : "Beschleunigtes Verfahren",
+        suffix: "",
         icon: Shield,
       },
       {
@@ -826,9 +939,14 @@ function StatsSection({ content }: { content: SkilledWorkersContent }) {
         icon: Clock,
       },
       {
-        value: "95",
-        label: statsData.success_rate || "Erfolgsrate",
-        suffix: "%",
+        value: "12",
+        label:
+          lang === "vn"
+            ? "Tháng đồng hành hội nhập"
+            : lang === "en"
+              ? "Months Integration Support"
+              : "Monate Nachbetreuung",
+        suffix: "",
         icon: TrendingUp,
       },
     ],
@@ -926,7 +1044,7 @@ function CTASection({ content }: { content: SkilledWorkersContent }) {
               className="group px-8 py-6 text-base font-semibold bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-400 hover:to-green-400 text-white rounded-full shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all duration-300"
               asChild
             >
-              <Link href="/#contact">
+              <Link href="/fuer-arbeitgeber/personalbedarf?service=fachkraefte">
                 {sectionContent.cta1}
                 <Rocket className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
@@ -937,7 +1055,7 @@ function CTASection({ content }: { content: SkilledWorkersContent }) {
               className="px-8 py-6 text-base font-semibold border-emerald-300 text-emerald-700 hover:bg-emerald-50 rounded-full transition-all duration-300"
               asChild
             >
-              <Link href="/#contact">
+              <Link href="/fuer-arbeitgeber/kandidaten">
                 <PhoneCall className="w-5 h-5 mr-2" />
                 {sectionContent.cta2}
               </Link>
@@ -953,8 +1071,62 @@ function CTASection({ content }: { content: SkilledWorkersContent }) {
 // MAIN PAGE COMPONENT
 // ============================================
 
+const skilledFAQsByLang = {
+  de: [
+    {
+      question: "Wie funktioniert das Anerkennungsverfahren nach § 18a/b AufenthG?",
+      answer:
+        "Wir prüfen die vietnamesischen Berufs- und Hochschulabschlüsse bereits vor Vertragsschluss auf Gleichwertigkeit. Liegt ein Defizitbescheid vor, koordinieren wir gemeinsam mit Ihnen die erforderliche Anpassungsqualifizierung oder Kenntnisprüfung.",
+    },
+    {
+      question: "Wie schnell können die Fachkräfte in Deutschland starten?",
+      answer:
+        "Mit dem beschleunigten Fachkräfteverfahren (§ 81a AufenthG) über die zuständige Ausländerbehörde lässt sich die Verfahrensdauer deutlich verkürzen – bei bereits sprachlich qualifizierten Kandidaten häufig auf 4 bis 6 Monate.",
+    },
+    {
+      question: "Sind die Kandidaten an einer langfristigen Beschäftigung interessiert?",
+      answer:
+        "Ja. Unsere Fachkräfte streben eine langfristige berufliche Perspektive in Deutschland an. Durch interkulturelles Onboarding und unsere 12-monatige Nachbetreuung sichern wir eine hohe Bindung im Betrieb.",
+    },
+  ],
+  en: [
+    {
+      question: "How does the credential recognition process work under § 18a/b AufenthG?",
+      answer:
+        "We pre-screen Vietnamese vocational and university degrees for equivalence before contract signing. If a partial recognition notice (Defizitbescheid) is issued, we coordinate the required adaptation qualification or knowledge exam with you.",
+    },
+    {
+      question: "How quickly can skilled workers start in Germany?",
+      answer:
+        "Using the accelerated skilled worker procedure (§ 81a AufenthG) via the competent Foreigners' Authority, processing times are significantly reduced—often to 4–6 months for candidates who have already completed language training.",
+    },
+    {
+      question: "Are the candidates committed to long-term employment?",
+      answer:
+        "Yes. Our skilled professionals seek a long-term career path in Germany. Through intercultural onboarding and our 12-month aftercare program, we ensure strong retention within your company.",
+    },
+  ],
+  vn: [
+    {
+      question: "Quy trình công nhận bằng cấp theo § 18a/b AufenthG diễn ra như thế nào?",
+      answer:
+        "Chúng tôi thẩm định trước văn bằng đại học và cao đẳng nghề của ứng viên Việt Nam về tính tương đương trước khi ký hợp đồng. Nếu có quyết định bổ sung kiến thức (Defizitbescheid), DMF sẽ phối hợp cùng doanh nghiệp tổ chức khóa chuyển đổi phù hợp.",
+    },
+    {
+      question: "Nhân sự có tay nghề có thể sang Đức làm việc sau bao lâu?",
+      answer:
+        "Nhờ thủ tục rút gọn cho lao động có tay nghề (§ 81a AufenthG) thực hiện qua Sở Ngoại kiều, thời gian xét duyệt được rút ngắn đáng kể — thường từ 4 đến 6 tháng đối với ứng viên đã có sẵn chứng chỉ tiếng Đức.",
+    },
+    {
+      question: "Ứng viên có định hướng gắn bó lâu dài với doanh nghiệp không?",
+      answer:
+        "Hoàn toàn có. Ứng viên của chúng tôi đều hướng tới sự nghiệp ổn định lâu dài tại Đức. Chương trình định hướng văn hóa và đồng hành 12 tháng sau nhập cảnh giúp tối ưu tỷ lệ gắn bó.",
+    },
+  ],
+};
+
 export default function SkilledWorkersPage() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   // Pull the raw content block from the translation bundle.
   const rawData = t.service_pages?.skilled_workers;
@@ -965,27 +1137,27 @@ export default function SkilledWorkersPage() {
     DATA_DU_PHONG
   );
 
-  // FAQ Questions for Skilled Workers (B2B-Focused)
-  const skilledFAQs = [
-    {
-      question: "Wie funktioniert das Anerkennungsverfahren?",
-      answer:
-        "Wir prüfen die vietnamesischen Abschlüsse bereits vor Vertragsschluss auf Gleichwertigkeit (Defizitbescheid). Sollte eine Anpassungsqualifizierung nötig sein, organisieren wir diese gemeinsam mit Ihnen.",
-    },
-    {
-      question: "Wie schnell können die Fachkräfte starten?",
-      answer:
-        "Dank des Beschleunigten Fachkräfteverfahrens oft in 4-6 Monaten. Da wir über einen Pool an bereits sprachlich qualifizierten Kandidaten verfügen, entfallen lange Wartezeiten für den Spracherwerb.",
-    },
-    {
-      question: "Sind die Kandidaten an einer langfristigen Arbeit interessiert?",
-      answer:
-        "Absolut. Unsere Kandidaten suchen eine langfristige Perspektive für sich und ihre Familien. Die kulturelle Integration wird durch unsere Betreuung vor Ort erleichtert.",
-    },
-  ];
+  const skilledFAQs = skilledFAQsByLang[lang] || skilledFAQsByLang.de;
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: skilledFAQs.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
 
   return (
     <main className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <HeroSection content={content} />
       <AdvantagesSection content={content} />
       <ProcessTimelineSection content={content} />

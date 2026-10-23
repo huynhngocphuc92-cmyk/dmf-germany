@@ -70,9 +70,6 @@ export async function DynamicImage({
   // Use database value if available, otherwise fallback (site_assets uses 'value' column)
   const imageSrc = config?.value || fallbackSrc;
 
-  // Determine if image is external (Supabase storage)
-  const isExternal = imageSrc.startsWith("http");
-
   // Common image styles
   const imageStyles = cn(
     objectFit === "cover" && "object-cover",
@@ -94,7 +91,6 @@ export async function DynamicImage({
         sizes={sizes || "100vw"}
         placeholder={placeholder}
         blurDataURL={blurDataURL}
-        unoptimized={isExternal}
       />
     );
   }
@@ -112,7 +108,6 @@ export async function DynamicImage({
       sizes={sizes}
       placeholder={placeholder}
       blurDataURL={blurDataURL}
-      unoptimized={isExternal}
     />
   );
 }

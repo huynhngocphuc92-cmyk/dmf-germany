@@ -15,7 +15,7 @@ export const SavingsCard = memo(function SavingsCard({
   savingsPercentage,
   contractDuration,
 }: SavingsCardProps) {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   const formatCurrency = (value: number): string => {
     return new Intl.NumberFormat("de-DE", {
@@ -37,6 +37,13 @@ export const SavingsCard = memo(function SavingsCard({
           <p className="text-4xl md:text-5xl font-bold mb-3">{formatCurrency(savings)}</p>
           <p className="text-base opacity-90 mb-2">
             ({savingsPercentage}% {t.roi?.savings_percentage || "weniger Kosten"})
+          </p>
+          <p className="text-xs opacity-80 mb-2">
+            {lang === "de"
+              ? "Gegenüber Zeitarbeit & Vakanzkosten bei 100 % gleichem Tarifgehalt (§ 39 Abs. 2 AufenthG)"
+              : lang === "en"
+                ? "Compared to temp staffing & vacancy costs at 100% equal collective pay (§ 39 (2) AufenthG)"
+                : "So với chi phí thuê nhân sự thời vụ & trống vị trí khi trả 100% lương ngang bằng (§ 39 khoản 2 AufenthG)"}
           </p>
           <p className="text-lg font-semibold mt-4 pt-4 border-t border-white/20">
             {t.roi?.conclusion || "Sie sparen ca."} {formatCurrency(savings)}{" "}

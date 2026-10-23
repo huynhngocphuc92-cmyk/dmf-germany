@@ -69,6 +69,11 @@ export function blogStructuredData(post: BlogSeoPost) {
       datePublished: isoDate(post.published_at),
       dateModified: isoDate(post.updated_at),
       ...(image ? { image: [image] } : {}),
+      author: {
+        "@type": "Organization",
+        name: SITE_NAME,
+        url: SITE_URL,
+      },
       publisher: {
         "@type": "Organization",
         "@id": `${SITE_URL}/#organization`,

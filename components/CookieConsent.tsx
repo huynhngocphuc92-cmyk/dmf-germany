@@ -38,8 +38,14 @@ export function useConsent() {
   const raw = useSyncExternalStore(subscribe, read, () => null);
   return useMemo(() => decodeConsent(raw), [raw]);
 }
+export function useAllowExternalMedia() {
+  return useConsent().externalMedia;
+}
 export function hasAnalyticsConsent() {
   return typeof window !== "undefined" && decodeConsent(read()).analytics;
+}
+export function grantExternalMediaConsent() {
+  saveConsent(hasAnalyticsConsent(), true);
 }
 export function openConsentSettings() {
   window.dispatchEvent(new Event("dmf-open-consent"));
@@ -48,9 +54,9 @@ const copy = {
   de: {
     title: "Ihre Datenschutzeinstellungen",
     description:
-      "Notwendige Funktionen bleiben aktiv. Sie entscheiden getrennt über Statistik und externe Videos. Ihre Auswahl können Sie jederzeit im Seitenende ändern.",
+      "Notwendige Funktionen bleiben aktiv. Sie entscheiden getrennt über Statistik sowie externe Medien und Karten. Ihre Auswahl können Sie jederzeit im Seitenende ändern.",
     analytics: "Statistik (Google Analytics)",
-    media: "Externe Videos (YouTube)",
+    media: "Externe Medien & Karten (YouTube, OpenStreetMap)",
     accept: "Alle erlauben",
     reject: "Nur notwendige",
     save: "Auswahl speichern",
@@ -59,9 +65,9 @@ const copy = {
   en: {
     title: "Your privacy choices",
     description:
-      "Essential functions remain active. Choose separately for analytics and external videos. You can change your choice in the footer at any time.",
+      "Essential functions remain active. Choose separately for analytics and external media/maps. You can change your choice in the footer at any time.",
     analytics: "Analytics (Google Analytics)",
-    media: "External videos (YouTube)",
+    media: "External media & maps (YouTube, OpenStreetMap)",
     accept: "Allow all",
     reject: "Necessary only",
     save: "Save choices",
@@ -70,9 +76,9 @@ const copy = {
   vn: {
     title: "Lựa chọn quyền riêng tư",
     description:
-      "Chức năng cần thiết luôn hoạt động. Anh chị chọn riêng cho thống kê và video bên ngoài. Có thể thay đổi lựa chọn tại cuối trang bất cứ lúc nào.",
+      "Chức năng cần thiết luôn hoạt động. Anh chị chọn riêng cho thống kê và nội dung/bản đồ bên ngoài. Có thể thay đổi lựa chọn tại cuối trang bất cứ lúc nào.",
     analytics: "Thống kê (Google Analytics)",
-    media: "Video bên ngoài (YouTube)",
+    media: "Nội dung & bản đồ bên ngoài (YouTube, OpenStreetMap)",
     accept: "Cho phép tất cả",
     reject: "Chỉ cần thiết",
     save: "Lưu lựa chọn",
@@ -163,6 +169,9 @@ export function CookieConsent() {
       key={`${value.analytics}:${value.externalMedia}`}
       value={value}
       onClose={() => {
+        if (!value.decided) {
+          saveConsent(false, false);
+        }
         setOpened(false);
         setDismissed(true);
       }}

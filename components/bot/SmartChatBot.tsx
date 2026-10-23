@@ -23,6 +23,7 @@ import {
   X,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 // ============================================
@@ -165,6 +166,7 @@ export const SmartChatBot = () => {
   const [logoError, setLogoError] = useState(false);
   const [showLeadForm, setShowLeadForm] = useState(false);
   const [leadData, setLeadData] = useState<LeadData>({});
+  const [leadPrivacy, setLeadPrivacy] = useState(false);
   const { forPayload: submissionKey, reset: resetSubmissionKey } = useSubmissionKey();
   const [isLeadSaving, setIsLeadSaving] = useState(false);
   const [leadSubmitted, setLeadSubmitted] = useState(false);
@@ -324,7 +326,6 @@ export const SmartChatBot = () => {
     return leadKeywords.some((keyword) => lowerContent.includes(keyword));
   }, []);
 
-  // Send Telegram notification
   // Save chat to database
   const saveChatHistory = useCallback(
     async (newMessages: Message[]) => {
@@ -473,6 +474,17 @@ export const SmartChatBot = () => {
     e.preventDefault();
 
     if (!leadData.email || isLeadSaving) return;
+
+    if (!leadPrivacy) {
+      setLeadFormError(
+        lang === "de"
+          ? "Bitte stimmen Sie der Datenschutzerklärung zu."
+          : lang === "en"
+            ? "Please agree to the privacy policy."
+            : "Vui lòng đồng ý với chính sách bảo mật."
+      );
+      return;
+    }
 
     if (leadData.phone && !isValidBusinessPhone(leadData.phone)) {
       setLeadFormError(
@@ -652,7 +664,6 @@ export const SmartChatBot = () => {
                     }}
                     priority={true}
                     quality={90}
-                    unoptimized={logoUrl?.startsWith("http") || false}
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.style.display = "none";
@@ -723,7 +734,6 @@ export const SmartChatBot = () => {
                           width={24}
                           height={24}
                           className="rounded-full object-contain"
-                          unoptimized={logoUrl?.startsWith("http") || false}
                           onError={() => setLogoError(true)}
                         />
                       )}
@@ -771,7 +781,6 @@ export const SmartChatBot = () => {
                         width={24}
                         height={24}
                         className="rounded-full object-contain"
-                        unoptimized={logoUrl?.startsWith("http") || false}
                         onError={() => setLogoError(true)}
                       />
                     )}
@@ -945,6 +954,63 @@ export const SmartChatBot = () => {
                   />
                 </div>
 
+                <div className="rounded-lg border border-gray-200 bg-gray-50 p-3">
+                  <label className="flex items-start gap-2.5 text-xs text-gray-700 leading-relaxed cursor-pointer">
+                    <input
+                      type="checkbox"
+                      required
+                      checked={leadPrivacy}
+                      onChange={(e) => {
+                        setLeadFormError(null);
+                        setLeadPrivacy(e.target.checked);
+                      }}
+                      className="mt-0.5 h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary shrink-0"
+                    />
+                    <span>
+                      {lang === "de" ? (
+                        <>
+                          Ich stimme der Verarbeitung meiner Daten gemäß der{" "}
+                          <Link
+                            href="/datenschutz"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-semibold text-primary underline"
+                          >
+                            Datenschutzerklärung
+                          </Link>{" "}
+                          zu. *
+                        </>
+                      ) : lang === "en" ? (
+                        <>
+                          I agree to the processing of my data in accordance with the{" "}
+                          <Link
+                            href="/datenschutz"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-semibold text-primary underline"
+                          >
+                            Privacy Policy
+                          </Link>
+                          . *
+                        </>
+                      ) : (
+                        <>
+                          Tôi đồng ý với việc xử lý dữ liệu theo{" "}
+                          <Link
+                            href="/datenschutz"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-semibold text-primary underline"
+                          >
+                            Chính sách bảo mật
+                          </Link>
+                          . *
+                        </>
+                      )}
+                    </span>
+                  </label>
+                </div>
+
                 {leadFormError && (
                   <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
                     {leadFormError}
@@ -964,8 +1030,8 @@ export const SmartChatBot = () => {
                   </button>
                   <button
                     type="submit"
-                    disabled={isLeadSaving}
-                    className="flex-1 px-4 py-2.5 bg-primary hover:bg-primary/90 text-white rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2"
+                    disabled={isLeadSaving || !leadPrivacy}
+                    className="flex-1 px-4 py-2.5 bg-primary hover:bg-primary/90 disabled:opacity-60 text-white rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2"
                   >
                     <CheckCircle className="w-4 h-4" />
                     {t.leadForm.submit}

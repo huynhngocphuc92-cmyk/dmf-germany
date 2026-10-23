@@ -118,7 +118,7 @@ export const TRANSLATIONS = {
         title: "Datenschutzerklärung",
         subtitle: "Informationen zum Datenschutz",
         backToHome: "Zurück zur Startseite",
-        lastUpdated: "Stand: Januar 2024",
+        lastUpdated: "Stand: Oktober 2026",
         sections: {
           overview: {
             title: "1. Datenschutz auf einen Blick",
@@ -127,61 +127,63 @@ export const TRANSLATIONS = {
               "Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.",
             responsibleTitle: "Verantwortliche Stelle",
             responsibleText:
-              "Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist DMF Vietnam. Die verantwortliche Stelle entscheidet allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten.",
+              "Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist DMF Talents (CÔNG TY CỔ PHẦN TƯ VẤN DU HỌC DMF VIETNAM). Die verantwortliche Stelle entscheidet allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten.",
           },
           dataCollection: {
-            title: "2. Datenerfassung auf dieser Website",
+            title: "2. Hosting & Datenerfassung auf dieser Website",
             whoTitle: "Wer ist verantwortlich für die Datenerfassung?",
             whoText:
               "Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Impressum dieser Website entnehmen.",
             howTitle: "Wie erfassen wir Ihre Daten?",
             howText:
-              "Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z. B. um Daten handeln, die Sie in ein Kontaktformular eingeben. Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch der Website durch unsere IT-Systeme erfasst.",
+              "Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen (z. B. über Kontaktformulare, B2B-Bedarfsanfragen oder unseren KI-Chatbot). Andere technische Verbindungsdaten werden beim Besuch der Website durch unsere Hosting- und Datenbank-Infrastruktur (Vercel Inc. und Supabase Inc.) automatisch oder nach Ihrer Einwilligung für externe Medien und Analysen erfasst.",
             purposeTitle: "Wofür nutzen wir Ihre Daten?",
             purposeText:
-              "Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Andere Daten können zur Analyse Ihres Nutzerverhaltens verwendet werden.",
+              "Ein Teil der Daten wird erhoben, um eine technisch fehlerfreie und sichere Bereitstellung der Website sowie unserer Datenbank- und Authentifizierungsdienste (Supabase Inc.) und der technischen Fehleranalyse (Sentry) zu gewährleisten. Weitere Daten werden nach Ihrer ausdrücklichen Einwilligung zur Anzeige externer Medien (OpenStreetMap, YouTube) oder zur Nutzungsanalyse (Google Analytics 4) verwendet.",
           },
           cookies: {
-            title: "3. Cookies",
+            title: "3. Cookies & Einwilligungsverwaltung",
             whatTitle: "Was sind Cookies?",
             whatText:
-              "Cookies sind kleine Textdateien, die auf Ihrem Endgerät gespeichert werden. Einige Cookies sind unbedingt erforderlich, damit die Website ordnungsgemäß funktioniert. Andere Cookies dienen dazu, das Nutzerverhalten zu analysieren oder Werbung zu schalten.",
+              "Cookies und vergleichbare Speichertechnologien (Local Storage) sind kleine Informationseinheiten, die auf Ihrem Endgerät gespeichert werden. Einige sind technisch zwingend erforderlich (§ 25 Abs. 2 TDDDG), während andere für Statistik- oder Medienfunktionen Ihre vorherige Einwilligung erfordern (§ 25 Abs. 1 TDDDG, Art. 6 Abs. 1 lit. a DSGVO).",
             whichTitle: "Welche Cookies verwenden wir?",
             whichText:
-              "Diese Website verwendet technisch notwendige Cookies, die für den Betrieb der Website erforderlich sind. Darüber hinaus können Analyse-Cookies eingesetzt werden, um die Nutzung der Website zu verbessern.",
+              "Diese Website verwendet technisch notwendige Speichereinträge (insbesondere dmf_cookie_consent zur Speicherung Ihrer Datenschutzauswahl sowie Sitzungs- und Authentifizierungs-Cookies von Supabase Inc. für geschützte Bereiche). Darüber hinaus werden Analyse-Cookies (Google Analytics 4) und externe Medien (OpenStreetMap, YouTube) ausschließlich nach Ihrer aktiven Einwilligung geladen.",
             typesTitle: "Cookie-Arten",
             typesText:
-              "Wir verwenden verschiedene Arten von Cookies: Notwendige Cookies für die Grundfunktionen der Website sowie optionale Cookies für Analyse- und Marketingzwecke. Sie können jederzeit Ihre Cookie-Einstellungen anpassen.",
+              "Wir unterscheiden zwischen technisch notwendigen Cookies für die Grundfunktionen der Website, optionalen Statistik-Cookies (Google Analytics 4) sowie der Freigabe externer Medien (OpenStreetMap, YouTube). Sie können Ihre Einwilligung jederzeit über die Cookie-Einstellungen widerrufen oder anpassen.",
           },
           contactForm: {
-            title: "4. Kontaktformular und Chatbot",
-            processingTitle: "Datenverarbeitung bei Kontaktaufnahme",
+            title: "4. Kontaktformular, Lead-Erfassung und KI-Chatbot (SmartChatBot)",
+            processingTitle: "Datenverarbeitung bei Kontaktaufnahme, Lead-Intake & KI-Chatbot",
             processingText:
-              "Wenn Sie uns per Kontaktformular oder über unseren Chatbot (RecruitBot) Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten (Name, E-Mail, Nachricht) zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Die Daten werden sicher verarbeitet und nicht an Dritte weitergegeben.",
+              "Wenn Sie uns per Kontaktformular, über unsere B2B-Bedarfsabfrage oder über unseren KI-Chatbot (SmartChatBot) Anfragen zukommen lassen, werden Ihre Angaben inklusive der angegebenen Kontaktdaten (Name, Unternehmen, E-Mail, Telefonnummer, Nachricht bzw. Chatverlauf) zur Bearbeitung Ihrer Anfrage verarbeitet. Zur persistenten Speicherung und Verwaltung von Leads, Bewerberprofilen und Chat-Sitzungen nutzen wir die Datenbank-, Authentifizierungs- und Speicherinfrastruktur von Supabase Inc. Wenn Sie den SmartChatBot nutzen, werden Ihre Eingaben zur KI-gestützten Antwortgenerierung an die API-Dienste von xAI Corp. (Grok API) sowie Google LLC (Gemini API) als Auftragsverarbeiter übermittelt.",
             legalBasisTitle: "Rechtsgrundlage",
             legalBasisText:
-              "Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt. Die Daten werden gelöscht, sobald sie für die Erreichung des Zweckes ihrer Erhebung nicht mehr erforderlich sind.",
-            storageTitle: "Speicherdauer",
+              "Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO (Durchführung vorvertraglicher Maßnahmen und Vertragserfüllung im B2B-Geschäftsverkehr), auf Grundlage unseres berechtigten Interesses an einer effizienten Bearbeitung von Geschäftsanfragen (Art. 6 Abs. 1 lit. f DSGVO) sowie bei Nutzung des KI-Chatbots auf Grundlage Ihrer Einwilligung bzw. Anfrage (Art. 6 Abs. 1 lit. a und b DSGVO).",
+            storageTitle: "Speicherdauer & Persistenz (Supabase Inc.)",
             storageText:
-              "Die von Ihnen im Kontaktformular oder Chatbot eingegebenen Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt. Sie haben jederzeit das Recht, Auskunft über Ihre gespeicherten Daten zu erhalten oder deren Löschung zu verlangen.",
-            nodemailerTitle: "E-Mail-Versand über Nodemailer",
+              "Die von Ihnen im Kontaktformular oder Chatbot eingegebenen Daten werden in unserer Datenbank bei Supabase Inc. gespeichert, bis Sie uns zur Löschung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt (vorbehaltlich gesetzlicher Aufbewahrungspflichten).",
+            nodemailerTitle:
+              "E-Mail-Versand (SMTP) & Interne Lead-Benachrichtigungen (Telegram Bot API)",
             nodemailerText:
-              "Für den Versand der Formulardaten verwenden wir den SMTP-Dienst von Gmail über die Bibliothek Nodemailer. Die von Ihnen eingegebenen Daten werden verschlüsselt über TLS/SSL an unsere E-Mail-Adresse übertragen. Empfänger der E-Mail ist ausschließlich DMF Vietnam.",
+              "Für die Weiterleitung von Kontakt- und Lead-Anfragen an unser Team nutzen wir verschlüsselte SMTP-Dienste (TLS/SSL über Nodemailer) sowie die Telegram Bot API für interne Echtzeit-Benachrichtigungen. Die Verarbeitung dient der zeitnahen Bearbeitung Ihrer geschäftlichen Anfrage durch DMF Talents.",
           },
           thirdParty: {
-            title: "5. Drittanbieter-Tools und Datentransfer",
-            hostingTitle: "Hosting (Vercel Inc.)",
+            title: "5. Externe Medien, Karten, Analyse-Tools & Drittanbieter",
+            hostingTitle: "Hosting (Vercel Inc.) & Datenbank / Auth / Storage (Supabase Inc.)",
             hostingText:
-              "Diese Website wird auf Servern von Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA gehostet. Beim Aufruf unserer Website werden automatisch Verbindungsdaten an die Server von Vercel übermittelt. Die Rechtsgrundlage hierfür ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der technischen Bereitstellung der Website).",
-            telegramTitle: "Telegram API (Interne Benachrichtigungen)",
+              "Diese Website wird auf Servern von Vercel Inc. (440 N Barranca Ave #4133, Covina, CA 91723, USA) gehostet. Für Datenbank, Authentifizierung, Dateispeicher (Storage) sowie Lead- und Chat-Persistenz setzen wir Supabase Inc. ein. Die Rechtsgrundlage ist Art. 6 Abs. 1 lit. b und lit. f DSGVO (technisch sichere Bereitstellung und Vertragsanbahnung) auf Grundlage von EU-Standardvertragsklauseln (SCCs).",
+            telegramTitle: "SMTP / Telegram Bot API & KI-Prozessoren (xAI Corp. / Google LLC)",
             telegramText:
-              "Zur internen Benachrichtigung unserer Mitarbeiter über eingehende Anfragen (z.B. über Kontaktformular oder Chatbot) nutzen wir die Telegram API. Ihre Daten (Name, E-Mail, Nachricht) werden dabei ausschließlich für die Weiterleitung der Anfrage an unser Team verwendet und nicht für andere Zwecke genutzt. Die Datenübertragung erfolgt verschlüsselt über die Telegram-API. Telegram wird nicht als CRM-System genutzt, sondern ausschließlich für interne Benachrichtigungen.",
-            mapsTitle: "Leaflet/OpenStreetMap (Karten)",
+              "Zur internen Benachrichtigung unseres Teams über eingehende Leads nutzen wir SMTP sowie die Telegram Bot API (verschlüsselte Übertragung der Anfrage- und Kontaktdaten). Für die KI-gestützte Beantwortung von Fragen im SmartChatBot werden Chatinhalte an xAI Corp. (Grok API) und Google LLC (Gemini API) übermittelt.",
+            mapsTitle: "Externe Medien & Karten: OpenStreetMap & YouTube",
             mapsText:
-              "Auf unserer Website verwenden wir Leaflet in Kombination mit OpenStreetMap (OSM) zur Anzeige von interaktiven Karten. Diese Dienste werden lokal gehostet bzw. über OSM-Server bereitgestellt und erheben keine personenbezogenen Daten von Ihnen. Es werden keine Cookies gesetzt und keine Tracking-Daten an Dritte übertragen.",
-            calendlyTitle: "Calendly (Terminvereinbarung)",
+              "Wir binden auf unserer Website interaktive Karten von OpenStreetMap (tile.openstreetmap.org, OpenStreetMap Foundation) sowie Videos über YouTube im erweiterten Datenschutzmodus (youtube-nocookie.com, Google Ireland Limited / Google LLC) ein. Beim Abruf dieser Inhalte werden Ihre IP-Adresse und Browser-Metadaten an die jeweiligen Drittserver übermittelt. Beide Dienste werden erst nach Ihrer ausdrücklichen Einwilligung in externe Medien geladen (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG).",
+            calendlyTitle:
+              "Analyse (Google Analytics 4), Fehlerstabilität (Sentry) & Terminbuchung (Calendly)",
             calendlyText:
-              "Für die Terminvereinbarung nutzen wir den Dienst Calendly (Calendly LLC, 271 17th Street NW, 10th Floor, Atlanta, GA 30363, USA). Wenn Sie einen Termin buchen, werden Ihre Angaben (Name, E-Mail, gewählter Termin) an Calendly übermittelt. Die Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Durchführung vorvertraglicher Maßnahmen). Weitere Informationen finden Sie in der Datenschutzerklärung von Calendly: https://calendly.com/privacy",
+              "Nach Ihrer ausdrücklichen Analyse-Einwilligung (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG) wird Google Analytics 4 (region1.google-analytics.com, Google Ireland Limited) zur statistischen Auswertung der Websitenutzung geladen. Zur technischen Fehleranalyse und Systemstabilität setzen wir Sentry (Functional Software Inc.) auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO ein. Für die optionale Terminvereinbarung nutzen wir Calendly LLC (USA, Art. 6 Abs. 1 lit. b DSGVO; Datenschutzerklärung: https://calendly.com/privacy).",
           },
           rights: {
             title: "6. Ihre Rechte als betroffene Person",
@@ -202,7 +204,7 @@ export const TRANSLATIONS = {
               "Sie haben das Recht, die Sie betreffenden personenbezogenen Daten in einem strukturierten, gängigen und maschinenlesbaren Format zu erhalten und diese Daten einem anderen Verantwortlichen zu übermitteln.",
             objectionTitle: "Widerspruchsrecht (Art. 21 DSGVO)",
             objectionText:
-              "Sie haben das Recht, aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit gegen die Verarbeitung Sie betreffender personenbezogener Daten Widerspruch einzulegen.",
+              "Sie haben das Recht, aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit gegen die Verarbeitung Sie betreffender personenbezogenen Daten Widerspruch einzulegen.",
             complaintTitle: "Beschwerderecht bei einer Aufsichtsbehörde",
             complaintText:
               "Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde über die Verarbeitung Ihrer personenbezogenen Daten durch uns zu beschweren. In Deutschland können Sie sich an die für Ihren Wohnort zuständige Landesdatenschutzbehörde wenden.",
@@ -250,18 +252,18 @@ export const TRANSLATIONS = {
             number: "3603878495",
           },
           responsibleContent: {
-            title: "Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV",
+            title: "Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV",
             description:
               "NGUYỄN HUỲNH ĐĂNG KHOA, A11 KDC Quang Vinh, Khu phố 3, Phường Quang Vinh, Thành phố Biên Hoà, Tỉnh Đồng Nai, Vietnam",
           },
           disputeResolution: {
             title: "Streitschlichtung",
             description:
-              "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit. Unsere E-Mail-Adresse finden Sie oben im Impressum.",
-            platformLink: "https://ec.europa.eu/consumers/odr/",
-            platformText: "Online-Streitbeilegungsplattform der EU",
+              "Unser Angebot richtet sich ausschließlich an Unternehmer (§ 14 BGB). Zur Teilnahme an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle sind wir weder verpflichtet noch bereit.",
+            platformLink: "",
+            platformText: "",
             disclaimer:
-              "Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.",
+              "Hinweis gemäß § 36 VSBG: Wir nehmen nicht an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teil.",
           },
           liability: {
             title: "Haftungsausschluss",
@@ -278,7 +280,8 @@ export const TRANSLATIONS = {
           },
           businessActivity: {
             title: "Geschäftstätigkeit",
-            description: "Bildungsberatungsdienste (Du-học Tư vấn / Study Abroad Consulting)",
+            description:
+              "Personalvermittlung, Sprachausbildung & Bildungsberatung (Tư vấn nhân sự & Đào tạo quốc tế)",
           },
         },
       },
@@ -393,7 +396,7 @@ export const TRANSLATIONS = {
           id: 4,
           title: "Visum & Anerkennung",
           checklist: [
-            "Beschleunigtes Fachkräfteverfahren bei der Botschaft",
+            "Beschleunigtes Fachkräfteverfahren (§ 81a AufenthG) über die Ausländerbehörde & Visumerteilung",
             "Beglaubigte Übersetzungen aller Dokumente",
             "Unterstützung beim Anerkennungsverfahren",
             "Koordination mit deutschen Behörden",
@@ -430,7 +433,7 @@ export const TRANSLATIONS = {
       subtitle:
         "Qualifizierte und sprachlich vorbereitete Kandidaten aus Vietnam – bereit für den deutschen Arbeitsmarkt",
       disclaimer:
-        "Hinweis: Aus Datenschutzgründen (DSGVO) sind die hier gezeigten Profile anonymisiert. Vollständige Unterlagen erhalten Sie nach Kontaktaufnahme.",
+        "Hinweis: Aus Datenschutzgründen (DSGVO) sind die hier gezeigten Profile pseudonymisiert. Vollständige Unterlagen erhalten Sie nach Kontaktaufnahme.",
       skills_label: "Deutschkenntnisse",
       exp_label: "Erfahrung",
       availability_label: "Verfügbar ab",
@@ -482,20 +485,21 @@ export const TRANSLATIONS = {
       error_email_invalid: "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
     },
     stats_advanced: {
-      badge: "Unsere Erfolge",
-      title: "Zahlen & Fakten",
-      subtitle: "Ergebnisse, die für sich sprechen.",
-      visa_rate: "Visum-Erfolgsquote",
-      visa_desc: "Dank unseres geschlossenen Prozesses und erfahrenen Anwälten.",
-      students: "Kandidaten in DE",
-      students_sub: "Qualifizierte Fachkräfte",
-      retention: "Bleibequote",
+      badge: "Unsere Standards",
+      title: "Qualität & Prozesssicherheit",
+      subtitle: "Strukturierte Vorbereitung und rechtssichere Begleitung für deutsche Arbeitgeber.",
+      visa_rate: "Rechtssicherer Prozess",
+      visa_desc:
+        "Durchgängige Begleitung aus einer Hand – von der Sprachausbildung bis zur Einreise.",
+      students: "Sprach- & Fachqualifizierung",
+      students_sub: "Nach deutschem Standard",
+      retention: "Langfristige Integration",
       retention_sub: "Nach 3 Jahren",
       partners: "Partner in DE",
       partners_sub: "Krankenhäuser & Unternehmen",
-      iso: "ISO 9001 Zertifiziert",
-      gov: "Staatlich anerkannt",
-      exp: "10+ Jahre Erfahrung",
+      iso: "Strukturierte Vorbereitung",
+      gov: "Sprach- & Fachqualifizierung nach deutschem Standard",
+      exp: "Begleitung nach FEG & § 81a AufenthG",
     },
     service_pages: {
       overview: SERVICE_OVERVIEWS.de,
@@ -538,7 +542,7 @@ export const TRANSLATIONS = {
           subtitle: "Von der Sprachausbildung bis zur erfolgreichen Integration",
           prep_title: "Vorbereitung in Vietnam",
           prep_item1: "Intensiv-Sprachkurse (B1/B2)",
-          prep_item2: "Fachsprache-Training (Medizin/Technik)",
+          prep_item2: "Fachsprachentraining (Medizin/Technik)",
           prep_item3: "Interkulturelle Workshops",
           prep_item4: "Deutsche Arbeitskultur",
           support_title: "Begleitung in Deutschland",
@@ -638,7 +642,7 @@ export const TRANSLATIONS = {
         comparison: {
           badge: "Warum DMF?",
           title: "Der Unterschied ist messbar.",
-          subtitle: "Vergleichen Sie selbst: Eigenrekrutierung vs. DMF Vietnam",
+          subtitle: "Vergleichen Sie selbst: Eigenrekrutierung vs. DMF Talents",
           old_title: "Risiko & Bürokratie",
           old_subtitle: "Eigenrekrutierung",
           old_item1: "Unklare Anerkennung (9-12 Monate)",
@@ -647,10 +651,10 @@ export const TRANSLATIONS = {
           old_item4: "Sprachbarriere – oft nur A2 Niveau",
           old_item5: "Keine Nachbetreuung",
           new_title: "Sicherheit & Speed",
-          new_subtitle: "Mit DMF Vietnam",
+          new_subtitle: "Mit DMF Talents",
           new_badge: "Empfohlen",
           new_item1: "Vorab-Check der Gleichwertigkeit (Sofort)",
-          new_item2: "Visumsgarantie dank §81a Verfahren",
+          new_item2: "Planbare Visaverfahren durch § 81a AufenthG Begleitung",
           new_item3: "Transparente Pauschalgebühr – keine Extras",
           new_item4: "B1/B2 Zertifikat + Fachsprache inklusive",
           new_item5: "12 Monate Integrationsbegleitung",
@@ -680,7 +684,7 @@ export const TRANSLATIONS = {
           stat1_label: "Vermittelte Fachkräfte",
           stat2_label: "Visum-Erfolgsquote",
           stat3_label: "Monate bis Arbeitsantritt",
-          stat4_label: "Haftungsausschluss",
+          stat4_label: "Nachbesetzungsoption",
           success_rate: "Erfolgsrate",
         },
         cta: {
@@ -764,7 +768,7 @@ export const TRANSLATIONS = {
           badge: "Warum Vietnam?",
           title: "Ihre Vorteile auf einen Blick",
           subtitle: "Belastbares Personal für harte Arbeit",
-          advantage_1_title: "Körperlich Belastbar",
+          advantage_1_title: "Körperlich belastbar",
           advantage_1_desc:
             "Gewohnt an harte Arbeit und Hitze. Ideal für Feldarbeit und Gewächshäuser.",
           advantage_1_highlight: "100%",
@@ -808,11 +812,11 @@ export const TRANSLATIONS = {
       // Kooperation & Programme
       cooperation: "Kooperation & Programme",
       dual_training: "Duale Ausbildung",
-      dual_training_desc: "Vocational program für Azubis",
+      dual_training_desc: "Duales Ausbildungsprogramm für Azubis",
       study_germany: "Studium in Deutschland",
       study_germany_desc: "Universitätsprogramm mit TestAS Coaching",
       skilled_program: "Fachkräfte-Programm",
-      skilled_program_desc: "§18a/b mit Anerkennung & Placement",
+      skilled_program_desc: "§ 18a/b mit Anerkennung & Vermittlung",
     },
     // B2B Partner Pages
     b2b_pages: {
@@ -873,7 +877,7 @@ export const TRANSLATIONS = {
         badge: "Ausbildungsprogramm",
         subheadline:
           "Wir investieren in die Ausbildung Ihrer zukünftigen Fachkräfte. 156 Unterrichtseinheiten pro Jahr, Sprachniveau A1 bis B2, und vollständige Integration in Deutschland.",
-        stat1_label: "Sessions/Jahr",
+        stat1_label: "UE/Jahr",
         stat2_label: "Sprachniveau",
         stat3_label: "Begleitung",
         quality_title: "4 Quality Gates für produktive Azubis",
@@ -1042,7 +1046,7 @@ export const TRANSLATIONS = {
         for_ag_fk: "Für AG und Fachkraft",
         education_legal_support: "Bildung & Rechtliche Begleitung",
         // Quality Gates
-        gate1_title: "Anerkennung Support",
+        gate1_title: "Anerkennungsbegleitung",
         gate1_desc: "Begleitung beim gesamten Anerkennungsverfahren",
         gate1_items:
           "Defizitbescheid-Analyse|Anpassungsqualifizierung|Kenntnisprüfung-Vorbereitung",
@@ -1072,7 +1076,7 @@ export const TRANSLATIONS = {
         p1_1_desc: "Qualifizierte Fachkräfte nach Ihren Anforderungen",
         p1_2_service: "Deutschkurs A1-B1/B2",
         p1_2_desc: "Berufsbezogenes Deutsch, Fachvokabular",
-        p1_3_service: "Anerkennung Support",
+        p1_3_service: "Anerkennungsbegleitung",
         p1_3_desc: "Begleitung beim Anerkennungsverfahren ausländischer Abschlüsse",
         p1_4_service: "Anpassungsqualifizierung",
         p1_4_desc: "Vorbereitung auf Defizitausgleich und Kenntnisprüfung",
@@ -1102,7 +1106,8 @@ export const TRANSLATIONS = {
         sectors_subtitle:
           "Wir vermitteln qualifizierte Fachkräfte aus Vietnam in den Bereichen mit dem größten Bedarf.",
         sector_healthcare: "Pflege & Gesundheit",
-        sector_healthcare_desc: "Pflegefachkräfte, Altenpfleger, Krankenpfleger",
+        sector_healthcare_desc:
+          "Pflegefachkräfte (Pflegefachfrau / Pflegefachmann), Gesundheits- & Krankenpflege",
         sector_craft: "Handwerk & Bau",
         sector_craft_desc: "Elektriker, Installateure, Schreiner, Maurer",
         sector_industry: "Industrie & Technik",
@@ -1116,9 +1121,11 @@ export const TRANSLATIONS = {
       title: "Wirtschaftlichkeits-Rechner",
       subtitle:
         "Prüfen Sie sofort die Wirtschaftlichkeit bei der Rekrutierung vietnamesischer Fachkräfte.",
-      label_salary_de: "Monatsgehalt (Brutto) - Deutscher Kandidat",
+      label_salary_de: "Monatliche Kosten Alternative (z. B. Zeitarbeit / Vakanz)",
+      label_salary_de_hint: "Durchschnittliche Gesamtkosten bei Leiharbeit oder unbesetzter Stelle",
       label_salary_dmf: "Monatsgehalt (Brutto) - DMF Kandidat",
-      label_salary_dmf_hint: "Erwartetes Gehalt für vietnamesischen Fachkräfte",
+      label_salary_dmf_hint:
+        "Erwartetes Gehalt für vietnamesische Fachkräfte (gleiches Vergleichsentgelt nach § 39 Abs. 2 AufenthG)",
       label_fee: "Einmalige Vermittlungsgebühr",
       label_fee_hint: "Einmalige Servicegebühr bei erfolgreicher Vermittlung",
       label_duration: "Vertragslaufzeit",
@@ -1221,14 +1228,14 @@ export const TRANSLATIONS = {
     hero: {
       title: "Building Bridges between Vietnam and Germany",
       subtitle:
-        "DMF Vietnam connects qualified professionals and trainees from Vietnam with German companies.",
+        "DMF Talents connects qualified professionals and trainees from Vietnam with German companies.",
       cta_primary: "Contact Us",
       cta_secondary: "Company Profile (PDF)",
       stats_candidates: "Candidates",
       stats_visa: "Visa Success",
     },
     about: {
-      title: "About DMF Vietnam",
+      title: "About DMF Talents",
       subtitle: "Your reliable partner for skilled worker recruitment",
       description:
         "We combine German quality with Vietnamese diligence. Our mission is to counteract the skills shortage in Germany with qualified talents from Vietnam.",
@@ -1319,7 +1326,7 @@ export const TRANSLATIONS = {
         title: "Privacy Policy",
         subtitle: "Privacy Information",
         backToHome: "Back to Home",
-        lastUpdated: "Last Updated: January 2024",
+        lastUpdated: "Last Updated: October 2026",
         sections: {
           overview: {
             title: "1. Data Protection Overview",
@@ -1328,7 +1335,7 @@ export const TRANSLATIONS = {
               "The following information provides a simple overview of what happens to your personal data when you visit this website. Personal data is any data with which you can be personally identified.",
             responsibleTitle: "Responsible Party",
             responsibleText:
-              "The responsible party for data processing on this website is DMF Vietnam. The responsible party decides alone or jointly with others on the purposes and means of processing personal data.",
+              "The controller responsible for data processing on this website is CÔNG TY CỔ PHẦN TƯ VẤN DU HỌC DMF VIETNAM (DMF Talents), represented by Managing Director Nguyễn Huỳnh Đăng Khoa, A11 KDC Quang Vinh, Khu phố 3, Phường Quang Vinh, Biên Hoà City, Đồng Nai Province, Vietnam. For inquiries in Germany, our contact person Mr. Achim Betticher is available.",
           },
           dataCollection: {
             title: "2. Data Collection on This Website",
@@ -1337,52 +1344,53 @@ export const TRANSLATIONS = {
               "Data processing on this website is carried out by the website operator. You can find their contact details in the imprint of this website.",
             howTitle: "How do we collect your data?",
             howText:
-              "Your data is collected in part by you providing it to us. This can be data that you enter into a contact form, for example. Other data is collected automatically or after your consent when you visit the website by our IT systems.",
+              "Your data is collected in part by you providing it to us (e.g., via contact forms, candidate inquiry forms, or in the AI chatbot SmartChatBot). Technical connection data is collected automatically when you visit the website. Optional third-party media (YouTube, OpenStreetMap) and analytics tools (Google Analytics 4) are loaded exclusively after your explicit consent via our consent banner.",
             purposeTitle: "What do we use your data for?",
             purposeText:
-              "Some of the data is collected to ensure error-free provision of the website. Other data may be used to analyze your user behavior.",
+              "The data is processed for the error-free provision and technical stability of the website (including error analysis via Sentry), for processing your B2B recruitment or candidate inquiries, and – subject to your consent – for statistical reach measurement.",
           },
           cookies: {
             title: "3. Cookies",
             whatTitle: "What are cookies?",
             whatText:
-              "Cookies are small text files that are stored on your device. Some cookies are strictly necessary for the website to function properly. Other cookies are used to analyze user behavior or to display advertising.",
+              "Cookies and local storage entries (localStorage) are small data packages stored on your device. Technically necessary storage elements are required for basic functions (such as language selection and privacy settings). Optional cookies are only used after your explicit consent.",
             whichTitle: "Which cookies do we use?",
             whichText:
-              "This website uses technically necessary cookies that are required for the operation of the website. In addition, analysis cookies may be used to improve website usage.",
+              "This website uses technically necessary storage elements (e.g., for your language selection and consent status). Optional analytics cookies (Google Analytics 4) and external media (YouTube, OpenStreetMap) are only activated if you explicitly agree to the respective category in the privacy banner (Art. 6 para. 1 lit. a GDPR, § 25 para. 1 TDDDG).",
             typesTitle: "Types of Cookies",
             typesText:
-              "We use different types of cookies: Necessary cookies for the basic functions of the website as well as optional cookies for analysis and marketing purposes. You can adjust your cookie settings at any time.",
+              "We distinguish between: (1) Necessary functions (always active), (2) Analytics & Statistics (Google Analytics 4 – only with consent), and (3) External Media (YouTube videos & OpenStreetMap map tiles – only with consent). You can change or revoke your selection at any time via the 'Cookie Settings' link in the footer.",
           },
           contactForm: {
-            title: "4. Contact Form and Chatbot",
+            title: "4. Contact Form, Candidate Inquiries & AI Chatbot",
             processingTitle: "Data Processing When Contacting Us",
             processingText:
-              "If you contact us via contact form or through our chatbot (RecruitBot), your details from the contact form including the contact details you provided (name, email, message) will be stored by us for the purpose of processing the inquiry and in case of follow-up questions. The data is processed securely and not shared with third parties.",
+              "If you send us inquiries via the contact form, candidate inquiry form, or our AI assistant (SmartChatBot), your details (name, company, email, phone number, message, or chat history) will be stored in our database at Supabase Inc. to process the inquiry and for follow-up questions, and forwarded internally to our B2B consulting team via email (SMTP) and Telegram notification. When using the AI assistant SmartChatBot, your text inputs are transmitted for automated response generation to the AI interfaces of xAI Corp. (Grok API) or Google LLC (Gemini API). Please do not enter sensitive personal data in the chat.",
             legalBasisTitle: "Legal Basis",
             legalBasisText:
-              "The processing of this data is based on Art. 6 para. 1 lit. b GDPR, if your inquiry is related to the fulfillment of a contract. The data will be deleted as soon as it is no longer required for achieving the purpose of its collection.",
+              "The processing of your B2B inquiry is based on Art. 6 para. 1 lit. b GDPR (performance of pre-contractual measures or fulfillment of a contract) or Art. 6 para. 1 lit. f GDPR (legitimate interest in efficient processing of business inquiries). The use of the AI chatbot takes place at your active request.",
             storageTitle: "Storage Duration",
             storageText:
-              "The data you enter in the contact form or chatbot will remain with us until you ask us to delete it, revoke your consent to storage, or the purpose for data storage no longer applies. You have the right to request information about your stored data or request its deletion at any time.",
-            nodemailerTitle: "Email Sending via Nodemailer",
+              "The data you enter in the contact form or chatbot will remain with us until you ask us to delete it, revoke your consent to storage, or the purpose for data storage no longer applies (subject to statutory commercial and tax retention periods). You have the right to request information about your stored data or request its deletion at any time.",
+            nodemailerTitle: "Email Dispatch (SMTP) & Database Storage (Supabase)",
             nodemailerText:
-              "For sending the form data, we use Gmail's SMTP service via the Nodemailer library. The data you enter is transmitted encrypted via TLS/SSL to our email address. The recipient of the email is exclusively DMF Vietnam.",
+              "For sending form notifications, we use TLS/SSL-encrypted SMTP services (Nodemailer). In parallel, inquiries, content, and anonymized or pseudonymized candidate profiles are stored in a cloud database of Supabase Inc. (USA/EU region) on the basis of standard contractual clauses (Art. 46 GDPR).",
           },
           thirdParty: {
-            title: "5. Third-Party Tools and Data Transfer",
-            hostingTitle: "Hosting (Vercel Inc.)",
+            title: "5. Third-Party Tools, AI Services & Data Transfer",
+            hostingTitle: "Hosting & Content Delivery (Vercel Inc.)",
             hostingText:
-              "This website is hosted on servers of Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA. When accessing our website, connection data is automatically transmitted to Vercel's servers. The legal basis for this is Art. 6 para. 1 lit. f GDPR (legitimate interest in the technical provision of the website).",
-            telegramTitle: "Telegram API (Internal Notifications)",
+              "This website is hosted by Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA. When accessing our website, server log files (IP address, browser type, time of access) are processed to ensure technical delivery and security (Art. 6 para. 1 lit. f GDPR). Data transfer to the USA is based on the EU-US Data Privacy Framework and EU Standard Contractual Clauses.",
+            telegramTitle:
+              "Database (Supabase), Internal Notification (Telegram) & AI Chat (xAI / Google)",
             telegramText:
-              "For internal notification of our employees about incoming inquiries (e.g., via contact form or chatbot), we use the Telegram API. Your data (name, email, message) is used exclusively for forwarding the inquiry to our team and is not used for other purposes. Data transmission is encrypted via the Telegram API. Telegram is not used as a CRM system, but exclusively for internal notifications.",
-            mapsTitle: "Leaflet/OpenStreetMap (Maps)",
+              "To manage website content, candidate profiles, and contact or chat inquiries, we use Supabase Inc. For real-time internal notification of our B2B team about incoming inquiries, we use the Telegram Bot API (encrypted transmission to an internal team group). When you use our interactive AI assistant (SmartChatBot), chat messages are transmitted to xAI Corp. (Grok API) and – as a fallback – Google LLC (Gemini API) to generate answers.",
+            mapsTitle: "External Media: OpenStreetMap & YouTube (With Consent Only)",
             mapsText:
-              "On our website, we use Leaflet in combination with OpenStreetMap (OSM) to display interactive maps. These services are hosted locally or provided via OSM servers and do not collect personal data from you. No cookies are set and no tracking data is transmitted to third parties.",
-            calendlyTitle: "Calendly (Appointment Scheduling)",
+              "On our website, we integrate interactive maps from OpenStreetMap (OSMF, tile.openstreetmap.org) as well as video introductions via YouTube (Google Ireland Limited, youtube-nocookie.com). These external contents are blocked by default and are only loaded when you actively consent to the 'External Media' category in the consent banner or click on the unlock button (Art. 6 para. 1 lit. a GDPR). Upon loading, your IP address is transmitted to the respective servers.",
+            calendlyTitle: "Web Analytics (Google Analytics 4) & Error Monitoring (Sentry)",
             calendlyText:
-              "For appointment scheduling, we use the Calendly service (Calendly LLC, 271 17th Street NW, 10th Floor, Atlanta, GA 30363, USA). When you book an appointment, your information (name, email, selected appointment) is transmitted to Calendly. The legal basis is Art. 6 para. 1 lit. b GDPR (performance of pre-contractual measures). Further information can be found in Calendly's privacy policy: https://calendly.com/privacy",
+              "Provided you have consented to the 'Analytics & Statistics' category in the consent banner (Art. 6 para. 1 lit. a GDPR), we use Google Analytics 4 (Google Ireland Limited; server endpoint region1.google-analytics.com) for pseudonymous analysis of website usage. In addition, we use Sentry (Functional Software Inc.) on the basis of Art. 6 para. 1 lit. f GDPR to automatically detect and fix technical runtime errors and stability issues.",
           },
           rights: {
             title: "6. Your Rights as a Data Subject",
@@ -1451,18 +1459,18 @@ export const TRANSLATIONS = {
             number: "3603878495",
           },
           responsibleContent: {
-            title: "Responsible for Content according to § 55 Para. 2 RStV",
+            title: "Responsible for Content according to § 18 Para. 2 MStV",
             description:
               "NGUYỄN HUỲNH ĐĂNG KHOA, A11 KDC Quang Vinh, Khu phố 3, Phường Quang Vinh, Biên Hoà City, Đồng Nai Province, Vietnam",
           },
           disputeResolution: {
-            title: "Dispute Resolution",
+            title: "Dispute Resolution & B2B Notice",
             description:
-              "The European Commission provides a platform for online dispute resolution (OS). You can find our email address above in the imprint.",
-            platformLink: "https://ec.europa.eu/consumers/odr/",
-            platformText: "EU Online Dispute Resolution Platform",
+              "Our offer is aimed exclusively at commercial employers, clinics, care facilities, and businesses (B2B within the meaning of § 14 BGB). The former European Online Dispute Resolution platform (ODR platform) was discontinued under Regulation (EU) 2024/3228.",
+            platformLink: "",
+            platformText: "",
             disclaimer:
-              "We are not willing or obliged to participate in dispute resolution proceedings before a consumer arbitration board.",
+              "We are neither willing nor obliged to participate in dispute resolution proceedings before a consumer arbitration board (§ 36 VSBG).",
           },
           liability: {
             title: "Liability Disclaimer",
@@ -1479,7 +1487,8 @@ export const TRANSLATIONS = {
           },
           businessActivity: {
             title: "Business Activity",
-            description: "Educational Support Services (Study Abroad Consulting)",
+            description:
+              "Personnel Placement, Language Training & Educational Consulting (Tư vấn nhân sự & Đào tạo quốc tế)",
           },
         },
       },
@@ -1555,7 +1564,7 @@ export const TRANSLATIONS = {
       success_desc_mobile: "Integration completed",
       cta_title: "Download Process Guide as PDF",
       cta_subtext: "Detailed documentation for your internal review",
-      cta_footer: "PDF Document • 12 Pages • English",
+      cta_footer: "PDF Document • 12 Pages • German",
       steps: [
         {
           id: 1,
@@ -1591,7 +1600,7 @@ export const TRANSLATIONS = {
           id: 4,
           title: "Visa & Recognition",
           checklist: [
-            "Accelerated skilled worker procedure at the embassy",
+            "Accelerated skilled worker procedure (§ 81a AufenthG) via the Foreigners' Authority & visa issuance",
             "Certified translations of all documents",
             "Support in the recognition procedure",
             "Coordination with German authorities",
@@ -1628,7 +1637,7 @@ export const TRANSLATIONS = {
       subtitle:
         "Qualified and linguistically prepared candidates from Vietnam – ready for the German job market",
       disclaimer:
-        "Note: For data protection reasons (GDPR), the profiles shown here are anonymized. Full documents will be provided after contact.",
+        "Note: For data protection reasons (GDPR), the profiles shown here are pseudonymized. Full documents will be provided after contact.",
       skills_label: "German Skills",
       exp_label: "Experience",
       availability_label: "Available from",
@@ -1683,17 +1692,17 @@ export const TRANSLATIONS = {
       badge: "Our Achievements",
       title: "Facts & Figures",
       subtitle: "Results that speak for themselves.",
-      visa_rate: "Visa Success Rate",
-      visa_desc: "Thanks to our closed process and experienced lawyers.",
+      visa_rate: "Structured Preparation",
+      visa_desc: "End-to-end support from a single source – from language training to arrival.",
       students: "Candidates in Germany",
       students_sub: "Qualified professionals",
       retention: "Retention Rate",
       retention_sub: "After 3 years",
       partners: "Partners in Germany",
       partners_sub: "Hospitals & Companies",
-      iso: "ISO 9001 Certified",
-      gov: "Govt. Recognized",
-      exp: "10+ Years Experience",
+      iso: "Structured Preparation",
+      gov: "Language & Professional Qualification to German Standards",
+      exp: "Support under FEG & § 81a AufenthG",
     },
     service_pages: {
       overview: SERVICE_OVERVIEWS.en,
@@ -1837,7 +1846,7 @@ export const TRANSLATIONS = {
         comparison: {
           badge: "Why DMF?",
           title: "The Difference is Measurable.",
-          subtitle: "Compare yourself: Self-recruitment vs. DMF Vietnam",
+          subtitle: "Compare yourself: Self-recruitment vs. DMF Talents",
           old_title: "Risk & Bureaucracy",
           old_subtitle: "Self-Recruitment",
           old_item1: "Unclear Recognition (9-12 Months)",
@@ -1846,10 +1855,10 @@ export const TRANSLATIONS = {
           old_item4: "Language Barrier – Often Only A2 Level",
           old_item5: "No Aftercare",
           new_title: "Security & Speed",
-          new_subtitle: "With DMF Vietnam",
+          new_subtitle: "With DMF Talents",
           new_badge: "Recommended",
           new_item1: "Pre-check of Equivalence (Immediately)",
-          new_item2: "Visa Guarantee Thanks to §81a Procedure",
+          new_item2: "Plannable Visa Process via § 81a AufenthG Support",
           new_item3: "Transparent Package Fee – No Extras",
           new_item4: "B1/B2 Certificate + Specialized Language Included",
           new_item5: "12 Months Integration Support",
@@ -1879,7 +1888,7 @@ export const TRANSLATIONS = {
           stat1_label: "Placed Professionals",
           stat2_label: "Visa Success Rate",
           stat3_label: "Months Until Employment",
-          stat4_label: "Liability Disclaimer",
+          stat4_label: "Replacement Option",
           success_rate: "Success Rate",
         },
         cta: {
@@ -2292,7 +2301,8 @@ export const TRANSLATIONS = {
         sectors_subtitle:
           "We place qualified professionals from Vietnam in the areas with the greatest need.",
         sector_healthcare: "Healthcare & Nursing",
-        sector_healthcare_desc: "Nurses, elderly care, caregivers",
+        sector_healthcare_desc:
+          "Registered nurses (Pflegefachfrau / Pflegefachmann), healthcare & nursing staff",
         sector_craft: "Crafts & Construction",
         sector_craft_desc: "Electricians, installers, carpenters, masons",
         sector_industry: "Industry & Technology",
@@ -2305,9 +2315,11 @@ export const TRANSLATIONS = {
     roi: {
       title: "ROI Calculator",
       subtitle: "Check the economic efficiency of recruiting Vietnamese professionals immediately.",
-      label_salary_de: "Monthly Salary (Gross) - German Candidate",
+      label_salary_de: "Reference Gross Salary / Recruitment Channel A",
+      label_salary_de_hint: "Incl. vacancy & agency costs with conventional search",
       label_salary_dmf: "Monthly Salary (Gross) - DMF Candidate",
-      label_salary_dmf_hint: "Expected salary for Vietnamese professionals",
+      label_salary_dmf_hint:
+        "Collectively agreed / customary local gross remuneration (equal treatment)",
       label_fee: "One-time Recruitment Fee",
       label_fee_hint: "One-time service fee upon successful placement",
       label_duration: "Contract Duration",
@@ -2410,14 +2422,14 @@ export const TRANSLATIONS = {
     hero: {
       title: "Xây dựng cầu nối Việt Nam - Đức",
       subtitle:
-        "DMF Vietnam kết nối các chuyên gia và thực tập sinh chất lượng cao từ Việt Nam với doanh nghiệp Đức.",
+        "DMF Talents kết nối các chuyên gia và thực tập sinh chất lượng cao từ Việt Nam với doanh nghiệp Đức.",
       cta_primary: "Liên hệ ngay",
       cta_secondary: "Hồ sơ năng lực (PDF)",
       stats_candidates: "Ứng viên",
       stats_visa: "Đậu Visa",
     },
     about: {
-      title: "Về DMF Vietnam",
+      title: "Về DMF Talents",
       subtitle: "Đối tác tin cậy trong tuyển dụng nhân sự",
       description:
         "Chúng tôi kết hợp chất lượng Đức với sự cần cù của Việt Nam. Sứ mệnh của chúng tôi là giải quyết vấn đề thiếu hụt lao động tại Đức bằng nhân tài từ Việt Nam.",
@@ -2509,7 +2521,7 @@ export const TRANSLATIONS = {
         title: "Chính sách Bảo mật",
         subtitle: "Thông tin về Bảo mật",
         backToHome: "Về trang chủ",
-        lastUpdated: "Cập nhật: Tháng 1 năm 2024",
+        lastUpdated: "Cập nhật: Tháng 10 năm 2026",
         sections: {
           overview: {
             title: "1. Tổng quan về Bảo mật",
@@ -2518,7 +2530,7 @@ export const TRANSLATIONS = {
               "Thông tin sau đây cung cấp cái nhìn tổng quan đơn giản về những gì xảy ra với dữ liệu cá nhân của bạn khi bạn truy cập website này. Dữ liệu cá nhân là bất kỳ dữ liệu nào có thể được sử dụng để nhận dạng bạn.",
             responsibleTitle: "Bên chịu trách nhiệm",
             responsibleText:
-              "Bên chịu trách nhiệm xử lý dữ liệu trên website này là DMF Vietnam. Bên chịu trách nhiệm quyết định một mình hoặc cùng với các bên khác về mục đích và phương tiện xử lý dữ liệu cá nhân.",
+              "Đơn vị chịu trách nhiệm xử lý dữ liệu trên website này là CÔNG TY CỔ PHẦN TƯ VẤN DU HỌC DMF VIETNAM (DMF Talents), đại diện bởi Giám đốc điều hành Nguyễn Huỳnh Đăng Khoa, A11 KDC Quang Vinh, Khu phố 3, Phường Quang Vinh, Thành phố Biên Hoà, Tỉnh Đồng Nai, Việt Nam. Đối với các yêu cầu tại Đức, đại diện liên hệ của chúng tôi là ông Achim Betticher.",
           },
           dataCollection: {
             title: "2. Thu thập Dữ liệu trên Website này",
@@ -2527,52 +2539,53 @@ export const TRANSLATIONS = {
               "Việc xử lý dữ liệu trên website này được thực hiện bởi người vận hành website. Bạn có thể tìm thấy thông tin liên hệ của họ trong phần Impressum của website này.",
             howTitle: "Chúng tôi thu thập dữ liệu của bạn như thế nào?",
             howText:
-              "Dữ liệu của bạn được thu thập một phần do bạn cung cấp cho chúng tôi. Đây có thể là dữ liệu bạn nhập vào biểu mẫu liên hệ, chẳng hạn. Dữ liệu khác được tự động thu thập hoặc sau khi bạn đồng ý khi truy cập website bởi các hệ thống IT của chúng tôi.",
+              "Dữ liệu của bạn được thu thập một phần do bạn chủ động cung cấp (ví dụ: qua biểu mẫu liên hệ, biểu mẫu yêu cầu hồ sơ ứng viên hoặc trợ lý AI SmartChatBot). Dữ liệu kết nối kỹ thuật được thu thập tự động khi bạn truy cập website. Các nội dung bên thứ ba tùy chọn (YouTube, OpenStreetMap) và công cụ phân tích (Google Analytics 4) chỉ được tải sau khi có sự đồng ý rõ ràng của bạn qua biểu ngữ bảo mật.",
             purposeTitle: "Chúng tôi sử dụng dữ liệu của bạn để làm gì?",
             purposeText:
-              "Một phần dữ liệu được thu thập để đảm bảo website hoạt động không có lỗi. Dữ liệu khác có thể được sử dụng để phân tích hành vi người dùng của bạn.",
+              "Dữ liệu được xử lý nhằm đảm bảo cung cấp website không lỗi và ổn định kỹ thuật (bao gồm phân tích lỗi qua Sentry), để xử lý yêu cầu hợp tác B2B hoặc yêu cầu ứng viên của bạn, và – khi có sự đồng ý của bạn – để đo lường thống kê lượt truy cập.",
           },
           cookies: {
             title: "3. Cookies",
             whatTitle: "Cookies là gì?",
             whatText:
-              "Cookies là các tệp văn bản nhỏ được lưu trữ trên thiết bị của bạn. Một số cookies là bắt buộc để website hoạt động đúng. Cookies khác được sử dụng để phân tích hành vi người dùng hoặc hiển thị quảng cáo.",
+              "Cookies và bộ nhớ cục bộ (localStorage) là các gói dữ liệu nhỏ được lưu trữ trên thiết bị của bạn. Các phần tử lưu trữ cần thiết về mặt kỹ thuật giúp vận hành chức năng cơ bản (như lựa chọn ngôn ngữ và trạng thái đồng ý). Cookies tùy chọn chỉ được sử dụng sau khi bạn đồng ý rõ ràng.",
             whichTitle: "Chúng tôi sử dụng cookies nào?",
             whichText:
-              "Website này sử dụng cookies kỹ thuật cần thiết để website hoạt động. Ngoài ra, cookies phân tích có thể được sử dụng để cải thiện việc sử dụng website.",
+              "Website này sử dụng các phần tử lưu trữ cần thiết về mặt kỹ thuật (ví dụ: cho lựa chọn ngôn ngữ và trạng thái đồng ý của bạn). Cookies phân tích tùy chọn (Google Analytics 4) và phương tiện bên ngoài (YouTube, OpenStreetMap) chỉ được kích hoạt nếu bạn đồng ý rõ ràng với từng danh mục trong biểu ngữ bảo mật (Điều 6 Khoản 1 Mục a GDPR, § 25 Khoản 1 TDDDG).",
             typesTitle: "Các loại Cookies",
             typesText:
-              "Chúng tôi sử dụng các loại cookies khác nhau: Cookies cần thiết cho các chức năng cơ bản của website cũng như cookies tùy chọn cho mục đích phân tích và marketing. Bạn có thể điều chỉnh cài đặt cookies của mình bất cứ lúc nào.",
+              "Chúng tôi phân biệt giữa: (1) Chức năng cần thiết (luôn hoạt động), (2) Phân tích & Thống kê (Google Analytics 4 – chỉ khi có sự đồng ý) và (3) Phương tiện bên ngoài (Video YouTube & bản đồ OpenStreetMap – chỉ khi có sự đồng ý). Bạn có thể thay đổi hoặc thu hồi lựa chọn bất cứ lúc nào qua mục 'Cài đặt Cookie' ở chân trang.",
           },
           contactForm: {
-            title: "4. Biểu mẫu Liên hệ và Chatbot",
+            title: "4. Biểu mẫu Liên hệ, Yêu cầu Ứng viên & Trợ lý AI Chatbot",
             processingTitle: "Xử lý Dữ liệu khi Liên hệ",
             processingText:
-              "Khi bạn gửi yêu cầu cho chúng tôi qua biểu mẫu liên hệ hoặc chatbot (RecruitBot), thông tin của bạn từ biểu mẫu yêu cầu bao gồm thông tin liên hệ bạn đã cung cấp (tên, email, tin nhắn) sẽ được chúng tôi lưu trữ để xử lý yêu cầu và trong trường hợp có câu hỏi tiếp theo. Dữ liệu được xử lý bảo mật và không chia sẻ với bên thứ ba.",
+              "Khi bạn gửi yêu cầu qua biểu mẫu liên hệ, biểu mẫu yêu cầu ứng viên hoặc trợ lý AI (SmartChatBot), thông tin của bạn (họ tên, công ty, email, số điện thoại, nội dung tin nhắn hoặc lịch sử trò chuyện) sẽ được lưu trữ trong cơ sở dữ liệu của chúng tôi tại Supabase Inc. để xử lý yêu cầu và chuyển tiếp nội bộ đến đội ngũ tư vấn B2B qua email (SMTP) và thông báo Telegram. Khi sử dụng trợ lý AI SmartChatBot, nội dung văn bản bạn nhập sẽ được chuyển đến giao diện AI của xAI Corp. (Grok API) hoặc Google LLC (Gemini API) để tạo câu trả lời tự động. Vui lòng không nhập dữ liệu cá nhân nhạy cảm vào khung chat.",
             legalBasisTitle: "Cơ sở Pháp lý",
             legalBasisText:
-              "Việc xử lý dữ liệu này được thực hiện dựa trên Điều 6 Khoản 1 Mục b GDPR, nếu yêu cầu của bạn liên quan đến việc thực hiện hợp đồng. Dữ liệu sẽ được xóa ngay khi không còn cần thiết để đạt được mục đích thu thập.",
+              "Việc xử lý yêu cầu B2B của bạn dựa trên Điều 6 Khoản 1 Mục b GDPR (thực hiện các biện pháp tiền hợp đồng hoặc hợp đồng) hoặc Điều 6 Khoản 1 Mục f GDPR (lợi ích hợp pháp trong việc xử lý hiệu quả các yêu cầu kinh doanh). Việc sử dụng chatbot AI diễn ra theo yêu cầu chủ động của bạn.",
             storageTitle: "Thời gian Lưu trữ",
             storageText:
-              "Dữ liệu bạn nhập vào biểu mẫu liên hệ hoặc chatbot sẽ được lưu trữ với chúng tôi cho đến khi bạn yêu cầu chúng tôi xóa, thu hồi sự đồng ý của bạn về lưu trữ, hoặc mục đích lưu trữ dữ liệu không còn nữa. Bạn có quyền yêu cầu thông tin về dữ liệu đã lưu trữ hoặc yêu cầu xóa bất cứ lúc nào.",
-            nodemailerTitle: "Gửi Email qua Nodemailer",
+              "Dữ liệu bạn nhập vào biểu mẫu liên hệ hoặc chatbot sẽ được lưu trữ cho đến khi bạn yêu cầu xóa, thu hồi sự đồng ý lưu trữ hoặc mục đích lưu trữ dữ liệu không còn nữa (tuân thủ thời hạn lưu trữ thương mại và thuế theo luật định). Bạn có quyền yêu cầu thông tin về dữ liệu đã lưu trữ hoặc yêu cầu xóa bất cứ lúc nào.",
+            nodemailerTitle: "Gửi Email (SMTP) & Lưu trữ Cơ sở dữ liệu (Supabase)",
             nodemailerText:
-              "Để gửi dữ liệu biểu mẫu, chúng tôi sử dụng dịch vụ SMTP của Gmail thông qua thư viện Nodemailer. Dữ liệu bạn nhập được truyền mã hóa qua TLS/SSL đến địa chỉ email của chúng tôi. Người nhận email chỉ là DMF Vietnam.",
+              "Để gửi thông báo biểu mẫu, chúng tôi sử dụng dịch vụ SMTP được mã hóa TLS/SSL (Nodemailer). Đồng thời, các yêu cầu, nội dung và hồ sơ ứng viên đã được ẩn danh/bút danh hóa được lưu trữ trên cơ sở dữ liệu đám mây của Supabase Inc. (khu vực Hoa Kỳ/EU) dựa trên các điều khoản hợp đồng tiêu chuẩn (Điều 46 GDPR).",
           },
           thirdParty: {
-            title: "5. Công cụ Bên thứ ba và Chuyển Dữ liệu",
-            hostingTitle: "Hosting (Vercel Inc.)",
+            title: "5. Công cụ Bên thứ ba, Dịch vụ AI & Chuyển giao Dữ liệu",
+            hostingTitle: "Lưu trữ & Phân phối Nội dung (Vercel Inc.)",
             hostingText:
-              "Website này được lưu trữ trên máy chủ của Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA. Khi truy cập website của chúng tôi, dữ liệu kết nối được tự động truyền đến máy chủ của Vercel. Cơ sở pháp lý cho việc này là Điều 6 Khoản 1 Mục f GDPR (lợi ích hợp pháp trong việc cung cấp kỹ thuật website).",
-            telegramTitle: "Telegram API (Thông báo Nội bộ)",
+              "Website này được lưu trữ bởi Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA. Khi truy cập website, các tệp nhật ký máy chủ (địa chỉ IP, loại trình duyệt, thời gian truy cập) được xử lý để đảm bảo cung cấp kỹ thuật và bảo mật (Điều 6 Khoản 1 Mục f GDPR). Việc chuyển dữ liệu sang Hoa Kỳ dựa trên Khung bảo mật dữ liệu EU-US và Các điều khoản hợp đồng tiêu chuẩn của EU.",
+            telegramTitle:
+              "Cơ sở dữ liệu (Supabase), Thông báo Nội bộ (Telegram) & AI Chat (xAI / Google)",
             telegramText:
-              "Để thông báo nội bộ cho nhân viên của chúng tôi về các yêu cầu đến (ví dụ: qua biểu mẫu liên hệ hoặc chatbot), chúng tôi sử dụng Telegram API. Dữ liệu của bạn (tên, email, tin nhắn) chỉ được sử dụng để chuyển tiếp yêu cầu đến nhóm của chúng tôi và không được sử dụng cho mục đích khác. Việc truyền dữ liệu được mã hóa qua Telegram API. Telegram không được sử dụng như hệ thống CRM, mà chỉ cho thông báo nội bộ.",
-            mapsTitle: "Leaflet/OpenStreetMap (Bản đồ)",
+              "Để quản lý nội dung website, hồ sơ ứng viên và các yêu cầu liên hệ hoặc trò chuyện, chúng tôi sử dụng Supabase Inc. Để thông báo nội bộ theo thời gian thực cho đội ngũ B2B về các yêu cầu mới, chúng tôi sử dụng Telegram Bot API (truyền mã hóa đến nhóm nội bộ). Khi bạn sử dụng trợ lý AI tương tác (SmartChatBot), tin nhắn trò chuyện được chuyển đến xAI Corp. (Grok API) và – dưới dạng dự phòng – Google LLC (Gemini API) để tạo câu trả lời.",
+            mapsTitle: "Phương tiện Bên ngoài: OpenStreetMap & YouTube (Chỉ khi có sự đồng ý)",
             mapsText:
-              "Trên website của chúng tôi, chúng tôi sử dụng Leaflet kết hợp với OpenStreetMap (OSM) để hiển thị bản đồ tương tác. Các dịch vụ này được lưu trữ cục bộ hoặc được cung cấp qua máy chủ OSM và không thu thập dữ liệu cá nhân từ bạn. Không có cookie nào được đặt và không có dữ liệu theo dõi nào được truyền cho bên thứ ba.",
-            calendlyTitle: "Calendly (Đặt lịch hẹn)",
+              "Trên website của chúng tôi, chúng tôi tích hợp bản đồ tương tác của OpenStreetMap (OSMF, tile.openstreetmap.org) cũng như video giới thiệu qua YouTube (Google Ireland Limited, youtube-nocookie.com). Các nội dung bên ngoài này bị chặn theo mặc định và chỉ được tải khi bạn chủ động đồng ý với danh mục 'Phương tiện bên ngoài' trong biểu ngữ bảo mật hoặc nhấp vào nút mở khóa (Điều 6 Khoản 1 Mục a GDPR). Khi tải, địa chỉ IP của bạn sẽ được truyền đến các máy chủ tương ứng.",
+            calendlyTitle: "Phân tích Web (Google Analytics 4) & Giám sát Lỗi (Sentry)",
             calendlyText:
-              "Để đặt lịch hẹn, chúng tôi sử dụng dịch vụ Calendly (Calendly LLC, 271 17th Street NW, 10th Floor, Atlanta, GA 30363, USA). Khi bạn đặt lịch hẹn, thông tin của bạn (tên, email, lịch hẹn đã chọn) được truyền đến Calendly. Cơ sở pháp lý là Điều 6 Khoản 1 Mục b GDPR (thực hiện các biện pháp trước hợp đồng). Thông tin thêm có thể được tìm thấy trong chính sách bảo mật của Calendly: https://calendly.com/privacy",
+              "Nếu bạn đã đồng ý với danh mục 'Phân tích & Thống kê' trong biểu ngữ bảo mật (Điều 6 Khoản 1 Mục a GDPR), chúng tôi sử dụng Google Analytics 4 (Google Ireland Limited; máy chủ region1.google-analytics.com) để phân tích việc sử dụng website dưới dạng bút danh. Ngoài ra, chúng tôi sử dụng Sentry (Functional Software Inc.) dựa trên Điều 6 Khoản 1 Mục f GDPR để tự động phát hiện và khắc phục các lỗi kỹ thuật và sự cố ổn định.",
           },
           rights: {
             title: "6. Quyền của Bạn với tư cách là Người bị ảnh hưởng",
@@ -2641,18 +2654,18 @@ export const TRANSLATIONS = {
             number: "3603878495",
           },
           responsibleContent: {
-            title: "Chịu trách nhiệm nội dung theo § 55 Khoản 2 RStV",
+            title: "Chịu trách nhiệm nội dung theo § 18 Khoản 2 MStV",
             description:
               "NGUYỄN HUỲNH ĐĂNG KHOA, A11 KDC Quang Vinh, Khu phố 3, Phường Quang Vinh, Thành phố Biên Hoà, Tỉnh Đồng Nai, Việt Nam",
           },
           disputeResolution: {
-            title: "Giải quyết tranh chấp",
+            title: "Giải quyết tranh chấp & Lưu ý B2B",
             description:
-              "Ủy ban Châu Âu cung cấp nền tảng giải quyết tranh chấp trực tuyến (OS). Bạn có thể tìm địa chỉ email của chúng tôi ở phần trên của trang thông tin pháp lý.",
-            platformLink: "https://ec.europa.eu/consumers/odr/",
-            platformText: "Nền tảng Giải quyết Tranh chấp Trực tuyến EU",
+              "Dịch vụ của chúng tôi chỉ hướng tới các doanh nghiệp, bệnh viện, cơ sở chăm sóc và người sử dụng lao động thương mại (B2B theo § 14 BGB). Nền tảng giải quyết tranh chấp trực tuyến của Châu Âu (nền tảng OS) đã chấm dứt hoạt động theo Quy định (EU) 2024/3228.",
+            platformLink: "",
+            platformText: "",
             disclaimer:
-              "Chúng tôi không sẵn sàng hoặc không có nghĩa vụ tham gia các thủ tục giải quyết tranh chấp trước hội đồng trọng tài người tiêu dùng.",
+              "Chúng tôi không sẵn sàng và không có nghĩa vụ tham gia các thủ tục giải quyết tranh chấp trước hội đồng trọng tài người tiêu dùng (§ 36 VSBG).",
           },
           liability: {
             title: "Miễn trừ trách nhiệm",
@@ -2669,7 +2682,8 @@ export const TRANSLATIONS = {
           },
           businessActivity: {
             title: "Hoạt động kinh doanh",
-            description: "Dịch vụ Hỗ trợ Giáo dục (Tư vấn Du học)",
+            description:
+              "Cung ứng nhân sự, Đào tạo ngôn ngữ & Tư vấn giáo dục quốc tế (Personalvermittlung, Sprachausbildung & Bildungsberatung)",
           },
         },
       },
@@ -2795,7 +2809,7 @@ export const TRANSLATIONS = {
           id: 4,
           title: "Visa & Công nhận bằng cấp",
           checklist: [
-            "Thủ tục visa nhanh tại Đại sứ quán",
+            "Thủ tục chuyên gia rút gọn (§ 81a AufenthG) qua Sở Ngoại kiều & cấp Visa",
             "Dịch thuật công chứng tất cả hồ sơ",
             "Hỗ trợ quy trình công nhận bằng cấp",
             "Phối hợp với cơ quan Đức",
@@ -2818,7 +2832,7 @@ export const TRANSLATIONS = {
       title: "Nhân sự sẵn sàng",
       subtitle: "Ứng viên chất lượng cao đã được đào tạo tiếng Đức – sẵn sàng cho thị trường Đức",
       disclaimer:
-        "Lưu ý: Theo quy định bảo vệ dữ liệu (DSGVO), hồ sơ được hiển thị ẩn danh. Hồ sơ đầy đủ sẽ được cung cấp sau khi liên hệ.",
+        "Lưu ý: Theo quy định bảo vệ dữ liệu (DSGVO), hồ sơ được hiển thị dưới dạng bút danh (pseudonymisiert). Hồ sơ đầy đủ sẽ được cung cấp sau khi liên hệ.",
       skills_label: "Trình độ tiếng Đức",
       exp_label: "Kinh nghiệm",
       availability_label: "Sẵn sàng từ",
@@ -2873,17 +2887,17 @@ export const TRANSLATIONS = {
       badge: "Thành tích của chúng tôi",
       title: "Số liệu & Sự thật",
       subtitle: "Kết quả đo lường được, tự nói lên tất cả",
-      visa_rate: "Tỷ lệ đậu Visa",
-      visa_desc: "Nhờ quy trình xử lý hồ sơ khép kín và đội ngũ luật sư di trú giàu kinh nghiệm",
+      visa_rate: "Chuẩn bị bài bản",
+      visa_desc: "Đồng hành trọn gói từ đào tạo ngôn ngữ đến khi nhập cảnh tại Đức.",
       students: "Học viên đã sang Đức",
       students_sub: "Nhân lực chất lượng cao sang Đức",
       retention: "Tỷ lệ duy trì",
       retention_sub: "Học viên tiếp tục làm việc sau 3 năm",
       partners: "Đối tác tại Đức",
       partners_sub: "Bệnh viện, Viện dưỡng lão và Doanh nghiệp",
-      iso: "Chứng nhận ISO 9001",
-      gov: "Được nhà nước công nhận",
-      exp: "10+ năm kinh nghiệm",
+      iso: "Quy trình chuẩn hóa",
+      gov: "Đào tạo ngôn ngữ & chuyên môn chuẩn Đức",
+      exp: "Đồng hành theo FEG & § 81a AufenthG",
     },
     service_pages: {
       overview: SERVICE_OVERVIEWS.vn,
@@ -3026,7 +3040,7 @@ export const TRANSLATIONS = {
         comparison: {
           badge: "Tại sao chọn DMF?",
           title: "Sự khác biệt có thể đo lường.",
-          subtitle: "Tự so sánh: Tự tuyển dụng vs. DMF Vietnam",
+          subtitle: "Tự so sánh: Tự tuyển dụng vs. DMF Talents",
           old_title: "Rủi ro & Thủ tục",
           old_subtitle: "Tự tuyển dụng",
           old_item1: "Công nhận bằng không rõ ràng (9-12 tháng)",
@@ -3035,10 +3049,10 @@ export const TRANSLATIONS = {
           old_item4: "Rào cản ngôn ngữ – thường chỉ A2",
           old_item5: "Không có hỗ trợ sau đó",
           new_title: "An toàn & Nhanh chóng",
-          new_subtitle: "Với DMF Vietnam",
+          new_subtitle: "Với DMF Talents",
           new_badge: "Khuyên dùng",
           new_item1: "Kiểm tra tương đương trước (Ngay lập tức)",
-          new_item2: "Đảm bảo Visa nhờ quy trình §81a",
+          new_item2: "Quy trình Visa minh bạch nhờ đồng hành § 81a AufenthG",
           new_item3: "Phí trọn gói minh bạch – không phụ phí",
           new_item4: "Chứng chỉ B1/B2 + Ngôn ngữ chuyên ngành",
           new_item5: "Đồng hành hội nhập 12 tháng",
@@ -3068,7 +3082,7 @@ export const TRANSLATIONS = {
           stat1_label: "Nhân sự đã giới thiệu",
           stat2_label: "Tỷ lệ đậu Visa",
           stat3_label: "Tháng đến khi làm việc",
-          stat4_label: "Miễn trừ rủi ro",
+          stat4_label: "Tùy chọn thay thế ứng viên",
           success_rate: "Tỷ lệ thành công",
         },
         cta: {
@@ -3481,7 +3495,8 @@ export const TRANSLATIONS = {
         sectors_subtitle:
           "Chúng tôi giới thiệu nhân sự chuyên môn từ Việt Nam cho các ngành có nhu cầu cao nhất.",
         sector_healthcare: "Y tế & Chăm sóc",
-        sector_healthcare_desc: "Điều dưỡng, chăm sóc người già, y tá",
+        sector_healthcare_desc:
+          "Điều dưỡng viên (Pflegefachfrau / Pflegefachmann), chăm sóc sức khỏe & y tế",
         sector_craft: "Thủ công & Xây dựng",
         sector_craft_desc: "Thợ điện, thợ lắp đặt, thợ mộc, thợ xây",
         sector_industry: "Công nghiệp & Kỹ thuật",
@@ -3494,9 +3509,12 @@ export const TRANSLATIONS = {
     roi: {
       title: "Máy tính hiệu quả kinh tế",
       subtitle: "Kiểm tra ngay lợi nhuận khi tuyển dụng nhân sự Việt Nam.",
-      label_salary_de: "Lương tháng (Gộp) - Ứng viên Đức",
+      label_salary_de: "Mức lương gộp tham chiếu / Kênh tuyển dụng A",
+      label_salary_de_hint:
+        "Bao gồm chi phí trống vị trí & phí dịch vụ khi tuyển dụng thông thường",
       label_salary_dmf: "Lương tháng (Gộp) - Ứng viên DMF",
-      label_salary_dmf_hint: "Mức lương dự kiến cho nhân sự Việt Nam",
+      label_salary_dmf_hint:
+        "Mức lương gộp theo thỏa ước / mặt bằng chung tại Đức (bình đẳng lương)",
       label_fee: "Phí tuyển dụng một lần",
       label_fee_hint: "Phí dịch vụ một lần khi tuyển dụng thành công",
       label_duration: "Thời hạn hợp đồng",

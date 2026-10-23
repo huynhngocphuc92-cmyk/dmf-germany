@@ -46,9 +46,6 @@ export const Logo = ({ logoUrl, fallbackText = "DMF", className = "", height = 4
   // Most logos are wider than tall, so we use 2.5x height as default
   const width = Math.round(height * 2.5);
 
-  // Check if logoUrl is external URL
-  const isExternalUrl = normalizedSource.startsWith("http");
-
   return (
     <div
       className={`relative flex items-center ${className}`}
@@ -67,7 +64,6 @@ export const Logo = ({ logoUrl, fallbackText = "DMF", className = "", height = 4
         }}
         priority={true}
         quality={90}
-        unoptimized={isExternalUrl}
         onError={() => {
           // If image fails to load, show fallback text
           setImageError(true);

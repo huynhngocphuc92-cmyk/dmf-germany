@@ -37,23 +37,22 @@ Bạn có thể liên hệ trực tiếp để được tư vấn lộ trình:
       return `DMF Talents provides a structured **Dual Vocational Training (Ausbildung)** program for Vietnamese talents:
 • **Key sectors:** Nursing & Healthcare, Hospitality, Skilled Crafts & Technical, IT.
 • **Preparation in Vietnam:** Intensive German language training (A1 to B2), cultural orientation, and professional skills.
-• **Full support in Germany:** Fast-track visa processing (§81a), airport pickup, 7-day settling-in kit, and continuous mentoring.
+• **Support in Germany:** Fast-track visa processing (§81a), administrative onboarding, and continuous mentoring.
 
 Next steps to connect with our team:
 • **Book a consultation:** [Schedule via Calendly](${CALENDLY_URL})
 • **Email:** [${PRIMARY_CONTACT.email}](mailto:${PRIMARY_CONTACT.email})
-• Or simply leave your contact details in this chat!`;
+• **Online inquiry:** [Submit hiring inquiry](${SITE_URL}/fuer-arbeitgeber/personalbedarf)`;
     }
     return `DMF Talents bietet ein strukturiertes **Duales Ausbildungsprogramm** für vietnamesische Talente:
 • **Schwerpunktbranchen:** Pflege & Gesundheit, Handwerk, Gastronomie & Hotellerie, IT.
 • **Vorbereitung in Vietnam:** Intensives Deutschtraining (A1 bis B2), fachliche Vorbereitung und interkulturelle Schulung.
-• **Begleitung in Deutschland:** Beschleunigtes Fachkräfteverfahren (§81a), Behördenservice und persönliche 3-Jahres-Begleitung.
+• **Begleitung in Deutschland:** Beschleunigtes Fachkräfteverfahren (§81a), Behördenservice und individuelle Begleitung.
 
 So erreichen Sie unsere Berater:
 • **Beratungstermin buchen:** [Termin via Calendly vereinbaren](${CALENDLY_URL})
 • **E-Mail:** [${PRIMARY_CONTACT.email}](mailto:${PRIMARY_CONTACT.email})
-• **Anfrage online:** [Kontaktformular öffnen](${SITE_URL}/#contact)
-• Oder hinterlassen Sie einfach Ihre Kontaktdaten direkt hier im Chat!`;
+• **Anfrage online:** [Personalbedarf melden](${SITE_URL}/fuer-arbeitgeber/personalbedarf)`;
   }
 
   // 2. Fachkräfte / Skilled Workers / Pflege
@@ -82,7 +81,7 @@ So erreichen Sie unsere Berater:
 Hãy kết nối với chúng tôi để nhận hồ sơ ứng viên:
 • **Đặt lịch tư vấn:** [Đặt lịch qua Calendly](${CALENDLY_URL})
 • **Email:** [${PRIMARY_CONTACT.email}](mailto:${PRIMARY_CONTACT.email})
-• Hoặc để lại thông tin liên hệ ngay trong chat!`;
+• **Gửi yêu cầu trực tuyến:** [Đăng ký nhu cầu nhân sự](${SITE_URL}/fuer-arbeitgeber/personalbedarf)`;
     }
     if (language === "en") {
       return `DMF Talents specializes in recruiting **Qualified Skilled Workers (§18a/b AufenthG)** from Vietnam:
@@ -93,18 +92,17 @@ Hãy kết nối với chúng tôi để nhận hồ sơ ứng viên:
 How to get in touch:
 • **Book a meeting:** [Schedule via Calendly](${CALENDLY_URL})
 • **Email:** [${PRIMARY_CONTACT.email}](mailto:${PRIMARY_CONTACT.email})
-• Or submit your inquiry via [our contact form](${SITE_URL}/#contact).`;
+• Or submit your inquiry via [our employer form](${SITE_URL}/fuer-arbeitgeber/personalbedarf).`;
     }
     return `DMF Talents vermittelt **qualifizierte Fachkräfte (§18a/b AufenthG)** aus Vietnam für deutsche Unternehmen:
 • **Geprüfte Qualifikation:** Fachkräfte mit beruflicher Vorbildung und praktischer Erfahrung (insb. Pflege, Handwerk, Technik).
 • **Anerkennungsverfahren:** Vollständige Unterstützung bei Defizitbescheid und Anpassungsqualifizierung.
-• **Rechtliche Sicherheit:** Beschleunigtes Verfahren nach §81a AufenthG und umfassende Integrationsbegleitung vor Ort.
+• **Rechtliche Begleitung:** Beschleunigtes Verfahren nach §81a AufenthG und abgestimmte Integrationsbegleitung vor Ort.
 
 Kontaktieren Sie unser Beratungsteam für ein konkretes Kandidatenprofil:
 • **Beratungstermin:** [Termin via Calendly buchen](${CALENDLY_URL})
 • **E-Mail:** [${PRIMARY_CONTACT.email}](mailto:${PRIMARY_CONTACT.email})
-• **Online-Anfrage:** [Unverbindliche Personalanfrage stellen](${SITE_URL}/#contact)
-• Oder hinterlassen Sie Ihre Kontaktdaten direkt im Chat!`;
+• **Online-Anfrage:** [Unverbindliche Personalanfrage stellen](${SITE_URL}/fuer-arbeitgeber/personalbedarf)`;
   }
 
   // 3. Studium / University
@@ -120,16 +118,16 @@ Kontaktieren Sie unser Beratungsteam für ein konkretes Kandidatenprofil:
       return `DMF Talents đồng hành cùng sinh viên Việt Nam trong **Chương trình Du học Đại học tại Đức**:
 • Luyện thi TestAS, đào tạo tiếng Đức học thuật DSH/TestDaF.
 • Hướng dẫn nộp hồ sơ xin thư mời nhập học tại các trường đại học uy tín.
-• Mentoring học kỳ đầu tiên và hỗ trợ kết nối việc làm thêm (Werkstudent).
+• Định hướng học kỳ đầu tiên và hỗ trợ thông tin học tập tại Đức.
 
 Liên hệ ngay để được đánh giá hồ sơ:
 • **Đặt lịch tư vấn:** [Đặt lịch qua Calendly](${CALENDLY_URL})
 • **Email:** [${PRIMARY_CONTACT.email}](mailto:${PRIMARY_CONTACT.email})`;
     }
     if (language === "en") {
-      return `DMF Talents supports international students entering **German Universities**:
-• TestAS coaching, academic German preparation (DSH/TestDaF), and university admissions support.
-• First-semester mentoring and working student (Werkstudent) job placement.
+      return `DMF Talents supports international students preparing for **German Universities**:
+• TestAS coaching, academic German preparation (DSH/TestDaF), and university admissions guidance.
+• First-semester orientation and academic mentoring.
 
 Connect with our education team:
 • **Book a session:** [Schedule via Calendly](${CALENDLY_URL})
@@ -137,13 +135,11 @@ Connect with our education team:
     }
     return `DMF Talents bereitet Studierende auf ein erfolgreiches **Hochschulstudium in Deutschland** vor:
 • TestAS Coaching, akademisches Deutsch (DSH/TestDaF) und Zulassungsbegleitung.
-• Mentoring für das 1. Semester und Vermittlung von Werkstudentenstellen.
-• Langfristige Karrierebegleitung bis zum Berufseinstieg.
+• Orientierung für das 1. Semester und Studienbegleitung.
 
 Sprechen Sie mit unserem Bildungsteam:
 • **Beratungstermin:** [Termin via Calendly buchen](${CALENDLY_URL})
-• **E-Mail:** [${PRIMARY_CONTACT.email}](mailto:${PRIMARY_CONTACT.email})
-• Oder hinterlassen Sie Ihre Kontaktdaten im Chat!`;
+• **E-Mail:** [${PRIMARY_CONTACT.email}](mailto:${PRIMARY_CONTACT.email})`;
   }
 
   // 4. Termine / Beratung / Booking
@@ -162,19 +158,18 @@ Sprechen Sie mit unserem Bildungsteam:
       return `Bạn có thể dễ dàng đặt lịch trao đổi hoặc liên hệ trực tiếp với đội ngũ DMF Talents:
 • **Đặt lịch hẹn trực tuyến:** [Chọn khung giờ trên Calendly](${CALENDLY_URL})
 • **Email:** [${PRIMARY_CONTACT.email}](mailto:${PRIMARY_CONTACT.email})
-• Hoặc bạn có thể để lại số điện thoại/email trong khung chat, chúng tôi sẽ liên hệ lại trong vòng 24 giờ làm việc.`;
+• **Biểu mẫu trực tuyến:** [Gửi yêu cầu nhân sự](${SITE_URL}/fuer-arbeitgeber/personalbedarf)`;
     }
     if (language === "en") {
       return `You can easily book a meeting or contact the DMF Talents advisory team directly:
 • **Schedule an online meeting:** [Pick a slot on Calendly](${CALENDLY_URL})
 • **Email:** [${PRIMARY_CONTACT.email}](mailto:${PRIMARY_CONTACT.email})
-• Or leave your contact details in this chat window, and we will get back to you within 24 hours.`;
+• **Employer inquiry:** [Submit online form](${SITE_URL}/fuer-arbeitgeber/personalbedarf)`;
     }
     return `Gerne können Sie direkt einen persönlichen Beratungstermin vereinbaren oder uns kontaktieren:
 • **Online-Terminbuchung:** [Termin auf Calendly wählen](${CALENDLY_URL})
 • **E-Mail:** [${PRIMARY_CONTACT.email}](mailto:${PRIMARY_CONTACT.email})
-• **Kontaktformular:** [Formular aufrufen](${SITE_URL}/#contact)
-• Oder hinterlassen Sie einfach Ihre Kontaktdaten direkt hier im Chat – wir melden uns innerhalb von 24 Stunden bei Ihnen!`;
+• **Kontaktformular:** [Personalbedarf online melden](${SITE_URL}/fuer-arbeitgeber/personalbedarf)`;
   }
 
   // 5. Kosten / Preise
@@ -189,33 +184,33 @@ Sprechen Sie mit unserem Bildungsteam:
     lower.includes("chi phí")
   ) {
     if (language === "vi") {
-      return `Tại DMF Talents, mọi chi phí đều **minh bạch và rõ ràng**:
-• Chỉ tính phí đào tạo và thủ tục hỗ trợ pháp lý, cam kết không có phí ẩn.
-• Chi phí cho doanh nghiệp được tùy chỉnh theo từng dự án tuyển dụng và đào tạo.
+      return `Tại DMF Talents, mọi chi phí và phạm vi dịch vụ đều được **thỏa thuận minh bạch theo hợp đồng**:
+• Phạm vi đào tạo, chuẩn bị ngôn ngữ và hỗ trợ thủ tục được xây dựng theo nhu cầu cụ thể.
+• Chi phí cho doanh nghiệp được tùy chỉnh theo từng dự án tuyển dụng và số lượng nhân sự.
 
 Để nhận bảng dự toán chi tiết:
 • **Đặt lịch tư vấn:** [Đặt lịch qua Calendly](${CALENDLY_URL})
 • **Email:** [${PRIMARY_CONTACT.email}](mailto:${PRIMARY_CONTACT.email})
-• Hoặc để lại thông tin để chúng tôi gửi báo giá riêng!`;
+• **Trực tuyến:** [Gửi yêu cầu báo giá](${SITE_URL}/fuer-arbeitgeber/personalbedarf)`;
     }
     if (language === "en") {
-      return `At DMF Talents, we maintain **complete pricing transparency**:
-• Fees cover language training, professional qualification, and legal support — no hidden placement commissions.
-• Tailored project quotes depend on the sector and group size.
+      return `At DMF Talents, we maintain **transparent, contractually agreed pricing**:
+• Service scope, language preparation, and administrative support are tailored to your specific project requirements.
+• Custom proposals depend on the sector, qualification profile, and hiring volume.
 
 To request a detailed proposal:
 • **Book a call:** [Schedule via Calendly](${CALENDLY_URL})
 • **Email:** [${PRIMARY_CONTACT.email}](mailto:${PRIMARY_CONTACT.email})
-• Or submit your details via our [contact form](${SITE_URL}/#contact).`;
+• Or submit your details via our [employer inquiry form](${SITE_URL}/fuer-arbeitgeber/personalbedarf).`;
     }
-    return `Bei DMF Talents steht **Kostentransparenz** an erster Stelle:
-• Gebühren fallen nur für Ausbildung, Sprachvorbereitung und rechtliche Begleitung an – keine versteckten Vermittlungsgebühren.
-• Angebote für Arbeitgeber richten sich nach Branche, Gruppengröße und gewünschtem Leistungsumfang (P1.1 bis P3.7).
+    return `Bei DMF Talents setzen wir auf **100% Kostentransparenz** – Leistungsumfang und Konditionen werden individuell vereinbart:
+• Unsere Angebote umfassen je nach Bedarf Kandidatenauswahl, Sprachvorbereitung sowie Begleitung im Anerkennungs- und Visaverfahren.
+• Die konkreten Konditionen für Arbeitgeber richten sich nach Branche, Anforderungsprofil und gewünschtem Betreuungsumfang.
 
 Fordern Sie gerne ein individuelles Angebot an:
 • **Beratungsgespräch buchen:** [Termin via Calendly vereinbaren](${CALENDLY_URL})
 • **E-Mail:** [${PRIMARY_CONTACT.email}](mailto:${PRIMARY_CONTACT.email})
-• **Online:** [Unverbindliches Angebot anfragen](${SITE_URL}/#contact)`;
+• **Online:** [Unverbindliches Angebot anfragen](${SITE_URL}/fuer-arbeitgeber/personalbedarf)`;
   }
 
   // 6. Default / General Greeting
@@ -223,41 +218,39 @@ Fordern Sie gerne ein individuelles Angebot an:
     return `Xin chào! Tôi là trợ lý ảo của **DMF Talents** - Học viện đào tạo và kết nối nhân tài Việt Nam với thị trường Đức.
 
 Chúng tôi cung cấp 3 chương trình chính:
-1. **Du học nghề (Ausbildung):** Điều dưỡng, Nhà hàng - Khách sạn, Kỹ thuật, IT (Đào tạo tiếng Đức A1-B2 & hỗ trợ trọn gói).
-2. **Lao động chuyên môn (§18a/b):** Hỗ trợ công nhận văn bằng và visa cho người đã có tay nghề.
-3. **Du học Đại học (Studium):** TestAS, DSH/TestDaF và đồng hành hòa nhập.
+1. **Du học nghề (Ausbildung):** Điều dưỡng, Nhà hàng - Khách sạn, Kỹ thuật, IT (Đào tạo tiếng Đức A1-B2 & đồng hành).
+2. **Lao động chuyên môn (§18a/b):** Hỗ trợ công nhận văn bằng và thủ tục visa cho nhân sự có tay nghề.
+3. **Du học Đại học (Studium):** Định hướng hồ sơ và chuẩn bị tiếng Đức học thuật.
 
 Bạn đang quan tâm đến chương trình nào?
 • **Đặt lịch tư vấn:** [Đặt lịch qua Calendly](${CALENDLY_URL})
 • **Email:** [${PRIMARY_CONTACT.email}](mailto:${PRIMARY_CONTACT.email})
-• Hoặc để lại lời nhắn kèm thông tin liên hệ ngay tại đây!`;
+• **Gửi yêu cầu:** [Biểu mẫu dành cho doanh nghiệp](${SITE_URL}/fuer-arbeitgeber/personalbedarf)`;
   }
 
   if (language === "en") {
-    return `Hello! I am the virtual assistant for **DMF Talents** — bridging qualified Vietnamese talent with the German labor market.
+    return `Hello! I am the virtual assistant for **DMF Talents** — connecting qualified Vietnamese talent with employers in Germany.
 
 We offer three primary programs:
-1. **Vocational Training (Ausbildung):** Nursing, Skilled Crafts, Hospitality, IT (A1-B2 language school & 3-year support).
-2. **Skilled Workers (§18a/b):** Foreign credential recognition and fast-track immigration.
-3. **University Program (Studium):** TestAS, academic German, and university placement.
+1. **Vocational Training (Ausbildung):** Nursing, Skilled Crafts, Hospitality, IT (A1-B2 language preparation & onboarding support).
+2. **Skilled Workers (§18a/b):** Foreign credential recognition and fast-track visa support.
+3. **University Program (Studium):** TestAS, academic German, and admissions guidance.
 
 How can we assist you today?
 • **Book a consultation:** [Schedule via Calendly](${CALENDLY_URL})
 • **Email:** [${PRIMARY_CONTACT.email}](mailto:${PRIMARY_CONTACT.email})
-• **Website:** [Visit dmf-talents.de](${SITE_URL})
-• Or leave your contact details here so our team can follow up!`;
+• **Employer Inquiry:** [Submit hiring needs](${SITE_URL}/fuer-arbeitgeber/personalbedarf)`;
   }
 
   return `Guten Tag! Ich bin der virtuelle Assistent von **DMF Talents** — Ihrer Akademie für qualifizierte Fachkräfte und Auszubildende aus Vietnam.
 
 Unsere drei Kernprogramme:
-1. **Duale Ausbildung:** Pflege, Handwerk, Gastronomie, IT mit intensiver Sprachvorbereitung (A1-B2) und 3-Jahres-Begleitung.
+1. **Duale Ausbildung:** Pflege, Handwerk, Gastronomie, IT mit intensiver Sprachvorbereitung (A1-B2) und strukturierter Begleitung.
 2. **Fachkräfte (§18a/b AufenthG):** Qualifizierte Kräfte mit Anerkennungsbegleitung und beschleunigtem Visumsverfahren (§81a).
 3. **Studienprogramm:** Gezielte Vorbereitung auf ein Hochschulstudium in Deutschland.
 
 Wie kann ich Ihnen weiterhelfen?
 • **Persönliche Beratung:** [Termin via Calendly vereinbaren](${CALENDLY_URL})
 • **E-Mail:** [${PRIMARY_CONTACT.email}](mailto:${PRIMARY_CONTACT.email})
-• **Kontakt:** [Anfrage über Website senden](${SITE_URL}/#contact)
-• Oder hinterlassen Sie uns gerne Ihre Kontaktdaten direkt hier im Chat!`;
+• **Kontakt:** [Personalbedarf online melden](${SITE_URL}/fuer-arbeitgeber/personalbedarf)`;
 }

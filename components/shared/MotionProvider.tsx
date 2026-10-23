@@ -3,8 +3,7 @@
 import type { ReactNode } from "react";
 import { LazyMotion } from "framer-motion";
 
-const loadMotionFeatures = () =>
-  import("@/lib/framer-motion-features").then((mod) => mod.default);
+const loadMotionFeatures = () => import("@/lib/framer-motion-features").then((mod) => mod.default);
 
 interface MotionProviderProps {
   children: ReactNode;

@@ -14,9 +14,14 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 COMPILED_FILE = BASE_DIR / "content" / "compiled" / "all-posts.json"
 
-SUPABASE_URL = "https://iihprcuhmilmymlbktpy.supabase.co"
-SERVICE_ROLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlpaHByY3VobWlsbXltbGJrdHB5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2NzYwNTk4MiwiZXhwIjoyMDgzMTgxOTgyfQ.JbraSUKjSW4iN1FV-bvBfL1CO943dk29ThQcD3ya0vQ"
-AUTHOR_ID = "f198e552-d96b-48d6-a537-86f8eec86c8a"
+SUPABASE_URL = os.environ.get("NEXT_PUBLIC_SUPABASE_URL") or os.environ.get("SUPABASE_URL")
+SERVICE_ROLE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY")
+AUTHOR_ID = os.environ.get("SUPABASE_AUTHOR_ID", "43e9efbe-3b88-401f-bc54-d2bfcabd8f34")
+
+if not SERVICE_ROLE_KEY:
+    raise RuntimeError("Missing required environment variable: SUPABASE_SERVICE_ROLE_KEY")
+if not SUPABASE_URL:
+    raise RuntimeError("Missing required environment variable: NEXT_PUBLIC_SUPABASE_URL or SUPABASE_URL")
 
 POST_COVER_MAPPING = {
     "lagerlogistik-berufskraftfahrer-vietnam-beschv": "/images/blog/dmf-logistik-arbeitsplatz-training.jpg",

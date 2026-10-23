@@ -21,16 +21,19 @@ export const ServicesSection = () => {
       icon: "recruitment" as const,
       title: t.services.recruitment,
       description: t.services.recruitment_desc,
+      href: "/services/skilled-workers",
     },
     {
       icon: "training" as const,
       title: t.services.training,
       description: t.services.training_desc,
+      href: "/services/azubi",
     },
     {
       icon: "consulting" as const,
       title: t.services.consulting,
       description: t.services.consulting_desc,
+      href: "/services/seasonal",
     },
   ];
 
@@ -93,7 +96,7 @@ export const ServicesSection = () => {
 
                       {/* Learn More Link */}
                       <Link
-                        href="#contact"
+                        href={service.href}
                         className="inline-flex items-center text-sm font-medium text-accent hover:text-accent/80 transition-colors group/link relative"
                       >
                         {t.services.learnMore}

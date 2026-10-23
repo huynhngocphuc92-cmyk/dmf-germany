@@ -97,14 +97,36 @@ const industryConfig: Record<Industry, IndustryConfig> = {
   },
 };
 
-const germanLevelConfig: Record<GermanLevel, { label: string; description: string }> = {
-  unknown: { label: "—", description: "" },
-  A1: { label: "A1", description: "Anfänger" },
-  C2: { label: "C2", description: "Annähernd muttersprachlich" },
-  A2: { label: "A2", description: "Grundkenntnisse" },
-  B1: { label: "B1", description: "Fortgeschritten" },
-  B2: { label: "B2", description: "Selbständig" },
-  C1: { label: "C1", description: "Fachkundig" },
+const germanLevelConfig: Record<
+  GermanLevel,
+  { label: string; description: Record<"de" | "en" | "vn", string> }
+> = {
+  unknown: { label: "—", description: { de: "", en: "", vn: "" } },
+  A1: { label: "A1", description: { de: "Anfänger", en: "Beginner", vn: "Sơ cấp" } },
+  C2: {
+    label: "C2",
+    description: {
+      de: "Annähernd muttersprachlich",
+      en: "Near-native proficiency",
+      vn: "Thành thạo như bản xứ",
+    },
+  },
+  A2: {
+    label: "A2",
+    description: { de: "Grundkenntnisse", en: "Elementary", vn: "Căn bản" },
+  },
+  B1: {
+    label: "B1",
+    description: { de: "Fortgeschritten", en: "Intermediate", vn: "Trung cấp" },
+  },
+  B2: {
+    label: "B2",
+    description: { de: "Selbständig", en: "Upper Intermediate", vn: "Trung cao cấp" },
+  },
+  C1: {
+    label: "C1",
+    description: { de: "Fachkundig", en: "Advanced", vn: "Cao cấp" },
+  },
 };
 
 // ============================================
@@ -120,6 +142,7 @@ interface CandidateCardProps {
 
 function CandidateCard({ candidate, index, onViewVideo, onRequestProfile }: CandidateCardProps) {
   const { lang, t } = useLanguage();
+  const locale = lang === "en" ? "en" : lang === "vn" ? "vn" : "de";
   const industry = industryConfig[candidate.industry];
   const germanLevel = germanLevelConfig[candidate.germanLevel];
 
@@ -184,7 +207,7 @@ function CandidateCard({ candidate, index, onViewVideo, onRequestProfile }: Cand
                   <p className="text-3xl font-bold text-foreground tracking-tight">
                     {germanLevel.label}
                   </p>
-                  <p className="text-sm text-muted-foreground">{germanLevel.description}</p>
+                  <p className="text-sm text-muted-foreground">{germanLevel.description[locale]}</p>
                 </div>
               </div>
 
@@ -259,10 +282,12 @@ interface VideoModalProps {
   candidate: Candidate | null;
   isOpen: boolean;
   onClose: () => void;
+  onRequestProfile: (candidate: Candidate) => void;
 }
 
-function VideoModal({ candidate, isOpen, onClose }: VideoModalProps) {
+function VideoModal({ candidate, isOpen, onClose, onRequestProfile }: VideoModalProps) {
   const { lang, t } = useLanguage();
+  const locale = lang === "en" ? "en" : lang === "vn" ? "vn" : "de";
   const { externalMedia: media } = useConsent();
   if (!candidate) return null;
 
@@ -314,12 +339,23 @@ function VideoModal({ candidate, isOpen, onClose }: VideoModalProps) {
               const embedUrl = getEmbedUrl(candidate.videoUrl);
 
               if (!embedUrl) {
-                // Invalid YouTube URL - show error
                 return (
                   <div className="absolute inset-0 flex flex-col items-center justify-center bg-red-900/20 rounded-lg">
                     <AlertCircle className="h-12 w-12 text-red-500 mb-2" />
-                    <p className="text-red-500 text-sm font-medium">Ungültiger YouTube-Link</p>
-                    <p className="text-red-400 text-xs mt-1">Bitte überprüfen Sie die URL</p>
+                    <p className="text-red-500 text-sm font-medium">
+                      {lang === "en"
+                        ? "Invalid YouTube link"
+                        : lang === "vn"
+                          ? "Liên kết YouTube không hợp lệ"
+                          : "Ungültiger YouTube-Link"}
+                    </p>
+                    <p className="text-red-400 text-xs mt-1">
+                      {lang === "en"
+                        ? "Please check the URL"
+                        : lang === "vn"
+                          ? "Vui lòng kiểm tra lại đường dẫn"
+                          : "Bitte überprüfen Sie die URL"}
+                    </p>
                   </div>
                 );
               }
@@ -330,7 +366,7 @@ function VideoModal({ candidate, isOpen, onClose }: VideoModalProps) {
                   className="w-full h-full rounded-lg"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
-                  title={`Video giới thiệu - ${candidate.code}`}
+                  title={`${t.talentShowcase.video_title} - ${candidate.code}`}
                 />
               );
             })()}
@@ -340,7 +376,13 @@ function VideoModal({ candidate, isOpen, onClose }: VideoModalProps) {
           <div className="relative aspect-video bg-gradient-to-br from-slate-900 to-slate-800 rounded-lg">
             <div className="absolute inset-0 flex flex-col items-center justify-center">
               <PlayCircle className="h-16 w-16 text-white/30 mb-4" />
-              <p className="text-white/60 text-sm">Kein Video verfügbar</p>
+              <p className="text-white/60 text-sm">
+                {lang === "en"
+                  ? "No video available"
+                  : lang === "vn"
+                    ? "Chưa có video giới thiệu"
+                    : "Kein Video verfügbar"}
+              </p>
             </div>
           </div>
         )}
@@ -353,7 +395,7 @@ function VideoModal({ candidate, isOpen, onClose }: VideoModalProps) {
                 {t.talentShowcase.skills_label}
               </p>
               <p className="text-2xl font-bold text-foreground">{germanLevel.label}</p>
-              <p className="text-xs text-muted-foreground">{germanLevel.description}</p>
+              <p className="text-xs text-muted-foreground">{germanLevel.description[locale]}</p>
             </div>
             <div>
               <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">
@@ -380,10 +422,7 @@ function VideoModal({ candidate, isOpen, onClose }: VideoModalProps) {
             className="flex-1"
             onClick={() => {
               onClose();
-              // Scroll to contact after modal closes
-              setTimeout(() => {
-                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-              }, 300);
+              onRequestProfile(candidate);
             }}
           >
             <FileText className="h-4 w-4 mr-2" />
@@ -472,7 +511,10 @@ export function TalentShowcase({ candidates }: { candidates: PublicCandidate[] }
                     ? "No public profiles at present. Contact us to discuss suitable candidates."
                     : "Hiện chưa có hồ sơ công khai. Hãy liên hệ để trao đổi về ứng viên phù hợp."}
               </p>
-              <a href="#contact" className="inline-block mt-4 text-primary underline">
+              <a
+                href="/fuer-arbeitgeber/personalbedarf"
+                className="inline-block mt-4 text-primary underline"
+              >
                 {t.header.contact}
               </a>
             </div>
@@ -516,6 +558,7 @@ export function TalentShowcase({ candidates }: { candidates: PublicCandidate[] }
           candidate={selectedCandidate}
           isOpen={isVideoModalOpen}
           onClose={() => setIsVideoModalOpen(false)}
+          onRequestProfile={handleRequestProfile}
         />
       </section>
     </MotionProvider>

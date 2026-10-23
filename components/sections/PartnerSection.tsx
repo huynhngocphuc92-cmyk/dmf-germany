@@ -10,9 +10,54 @@ interface PartnerSectionProps {
 }
 
 export const PartnerSection = ({ partnerBanner }: PartnerSectionProps = {}) => {
-  const { t } = useLanguage();
-  // Fall back to a gradient placeholder when no banner is configured.
+  const { t, lang } = useLanguage();
   const hasBanner = partnerBanner && partnerBanner.trim() !== "";
+
+  const sectors =
+    lang === "en"
+      ? [
+          {
+            title: "Healthcare & Nursing",
+            desc: "Hospitals, inpatient care facilities, and outpatient services",
+          },
+          {
+            title: "Skilled Trades & Industry",
+            desc: "Electrical, HVAC, metalworking, and manufacturing enterprises",
+          },
+          {
+            title: "Hospitality & Gastronomy",
+            desc: "Hotels, system catering, and seasonal operations across Germany",
+          },
+        ]
+      : lang === "vn"
+        ? [
+            {
+              title: "Y tế & Điều dưỡng",
+              desc: "Bệnh viện, viện dưỡng lão và các cơ sở chăm sóc sức khỏe",
+            },
+            {
+              title: "Thủ công nghiệp & Công nghiệp",
+              desc: "Cơ khí, điện - điện tử, xây dựng và sản xuất công nghiệp",
+            },
+            {
+              title: "Nhà hàng & Khách sạn",
+              desc: "Hệ thống khách sạn, ẩm thực và dịch vụ lưu trú trên toàn nước Đức",
+            },
+          ]
+        : [
+            {
+              title: "Gesundheits- & Pflegeeinrichtungen",
+              desc: "Kliniken, stationäre Pflegeheime und ambulante Pflegedienste",
+            },
+            {
+              title: "Handwerk & Industrie",
+              desc: "Elektrotechnik, SHK, Metallbau und produzierender Mittelstand",
+            },
+            {
+              title: "Hotellerie & Gastronomie",
+              desc: "Hotels, Systemgastronomie und Saisonbetriebe in ganz Deutschland",
+            },
+          ];
 
   return (
     <MotionProvider>
@@ -44,16 +89,26 @@ export const PartnerSection = ({ partnerBanner }: PartnerSectionProps = {}) => {
                   alt={t.partner.banner_alt}
                   fill
                   className="object-cover"
-                  unoptimized={partnerBanner.startsWith("http")}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1280px"
                 />
               </div>
             ) : (
-              // Fallback placeholder
-              <div className="w-full h-[300px] md:h-[400px] lg:h-[500px] rounded-2xl bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 flex items-center justify-center border border-border/50 shadow-2xl">
-                <p className="text-muted-foreground text-sm md:text-base">
-                  {t.partner.logos_placeholder}
-                </p>
+              <div className="w-full rounded-2xl bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5 p-6 md:p-10 border border-border/60 shadow-lg">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {sectors.map((sector) => (
+                    <div
+                      key={sector.title}
+                      className="rounded-xl bg-card/80 backdrop-blur-sm p-5 border border-border/50 text-center space-y-2"
+                    >
+                      <h3 className="text-base md:text-lg font-bold text-foreground">
+                        {sector.title}
+                      </h3>
+                      <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
+                        {sector.desc}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
           </m.div>

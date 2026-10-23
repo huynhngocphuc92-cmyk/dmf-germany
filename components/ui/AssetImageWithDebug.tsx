@@ -97,8 +97,6 @@ export const AssetImageWithDebug = ({
           className={className}
           priority={priority}
           quality={quality}
-          // For Supabase Storage URLs, use unoptimized to avoid 400 errors
-          unoptimized={src.includes("supabase.co") || src.startsWith("http")}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         {showDebug && (
@@ -120,7 +118,6 @@ export const AssetImageWithDebug = ({
         className={className}
         priority={priority}
         quality={quality}
-        unoptimized={src.startsWith("http")}
       />
       {showDebug && (
         <span className="absolute top-0 left-0 bg-red-600 text-white text-xs px-2 py-1 z-50 opacity-80 rounded-br">

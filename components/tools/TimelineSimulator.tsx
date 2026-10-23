@@ -67,9 +67,12 @@ export const TimelineSimulator = () => {
     return getAvailableIndustries(productType);
   }, [productType]);
 
-  // Reset industry when product type changes
+  // Reset industry when product type changes, and disable § 81a for seasonal
   React.useEffect(() => {
     setSelectedIndustry(null);
+    if (productType === "saisonkraefte") {
+      setIsAccelerated(false);
+    }
   }, [productType]);
 
   // Handle industry selection change
@@ -197,7 +200,7 @@ export const TimelineSimulator = () => {
                 </option>
                 {Object.entries(availableIndustries).map(([key, data]) => (
                   <option key={key} value={key}>
-                    {data.label}
+                    {lang === "en" ? data.labelEn : lang === "vn" ? data.labelVn : data.label}
                   </option>
                 ))}
               </select>
@@ -230,8 +233,8 @@ export const TimelineSimulator = () => {
             </p>
           </div>
 
-          {/* Accelerated Process Toggle - Only for Fachkräfte */}
-          {productType === "fachkraefte" && (
+          {/* Accelerated Process Toggle (§ 81a AufenthG applies to Fachkräfte & Azubi, not Saisonkräfte) */}
+          {productType !== "saisonkraefte" && (
             <div className="flex items-center justify-between p-4 rounded-lg border border-gray-200 bg-gray-50 transition-all duration-300">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
@@ -242,12 +245,14 @@ export const TimelineSimulator = () => {
                     )}
                   />
                   <label className="text-sm font-semibold text-gray-700 cursor-pointer">
-                    {t.timeline?.accelerated_label || "Beschleunigtes Fachkräfteverfahren"}
+                    {t.timeline?.accelerated_label ||
+                      "Beschleunigtes Fachkräfteverfahren (§ 81a AufenthG)"}
                   </label>
                 </div>
                 <p className="text-xs text-gray-600">
                   {isAccelerated
-                    ? t.timeline?.accelerated_active || "Anerkennungs-Prozess verkürzt sich um 50%"
+                    ? t.timeline?.accelerated_active ||
+                      "Beschleunigtes Verfahren nach § 81a AufenthG aktiv"
                     : t.timeline?.accelerated_inactive ||
                       "Standard-Prozess für Anerkennung & Visum"}
                 </p>
@@ -463,7 +468,7 @@ export const TimelineSimulator = () => {
                 : productType === "saisonkraefte"
                   ? "seasonal"
                   : "skilled"
-            }`}
+            }&notes=${encodeURIComponent(`Zeitplan-Simulator: Start ${startDate}, §81a: ${isAccelerated ? "Ja" : "Nein"}`)}`}
             className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl text-sm sm:text-base transition-all shadow-md hover:shadow-lg whitespace-nowrap flex-shrink-0 group"
           >
             <span>

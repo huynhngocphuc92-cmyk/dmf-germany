@@ -4,6 +4,7 @@ import type { Post } from "@/app/admin/posts/types";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { Button } from "@/components/ui/button";
 import { BLUR_LANDSCAPE } from "@/lib/image-placeholder";
+import { sanitizeRichHtml } from "@/lib/sanitize";
 import { format } from "date-fns";
 import { de, vi, enUS } from "date-fns/locale";
 import { motion } from "framer-motion";
@@ -20,6 +21,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { toast } from "sonner";
 import styles from "./article.module.css";
 
 // ============================================
@@ -31,15 +33,17 @@ const translations = {
     backToBlog: "Zurück zum Blog",
     readTime: "Min. Lesezeit",
     share: "Teilen",
+    shareCopied: "Link kopiert!",
+    byline: "DMF Talents Redaktion",
     relatedPosts: "Verwandte Beiträge",
     readMore: "Weiterlesen",
     cta: {
       badge: "B2B-Fachkräfte-Service für Arbeitgeber",
       title: "Suchen Sie qualifizierte Fachkräfte oder Auszubildende?",
       desc: "DMF Talents begleitet deutsche Unternehmen bei der passgenauen Auswahl, rechtssicheren FEG-Visabeschleunigung und nachhaltigen betrieblichen Integration von Talenten aus Vietnam.",
-      trust_feg: "Rechtssicher nach FEG & § 296a SGB III",
+      trust_feg: "Rechtssicher nach §§ 296, 297 SGB III & FEG",
       trust_success: "Erfolgsbasiertes Honorarmodell",
-      trust_guarantee: "Kostenlose Ersatzgarantie bei Abbruch",
+      trust_guarantee: "Vertraglich geregelte Nachbesetzung",
       btn_primary: "Personalbedarf unverbindlich melden",
       btn_secondary: "Einsparpotenzial kalkulieren",
       btn_profiles: "Kandidaten-Pool einsehen",
@@ -49,15 +53,17 @@ const translations = {
     backToBlog: "Back to Blog",
     readTime: "min read",
     share: "Share",
+    shareCopied: "Link copied!",
+    byline: "DMF Talents Editorial",
     relatedPosts: "Related Posts",
     readMore: "Read More",
     cta: {
       badge: "B2B Talent Service for Employers",
       title: "Looking for qualified professionals or apprentices?",
       desc: "DMF Talents supports German enterprises with tailored candidate selection, accelerated FEG visa procedures, and sustainable integration of talents from Vietnam.",
-      trust_feg: "Fully compliant with FEG & § 296a SGB III",
+      trust_feg: "Fully compliant with §§ 296, 297 SGB III & FEG",
       trust_success: "Success-based recruitment fee",
-      trust_guarantee: "Free replacement guarantee upon dropout",
+      trust_guarantee: "Contractually Agreed Replacement Option",
       btn_primary: "Submit hiring inquiry without obligation",
       btn_secondary: "Calculate ROI savings",
       btn_profiles: "Browse candidate pool",
@@ -67,15 +73,17 @@ const translations = {
     backToBlog: "Quay lại Blog",
     readTime: "phút đọc",
     share: "Chia sẻ",
+    shareCopied: "Đã sao chép link!",
+    byline: "Ban biên tập DMF Talents",
     relatedPosts: "Bài viết liên quan",
     readMore: "Đọc thêm",
     cta: {
       badge: "Dịch vụ Nhân sự B2B cho Doanh nghiệp",
       title: "Doanh nghiệp bạn đang tìm kiếm nhân sự hoặc học nghề?",
       desc: "DMF Talents đồng hành cùng các doanh nghiệp tại Đức từ khâu tuyển chọn, thủ tục visa FEG nhanh chóng đến việc hội nhập bền vững cho nhân tài từ Việt Nam.",
-      trust_feg: "Tuân thủ pháp luật FEG & § 296a SGB III",
+      trust_feg: "Tuân thủ pháp luật §§ 296, 297 SGB III & FEG",
       trust_success: "Phí môi giới theo kết quả",
-      trust_guarantee: "Bảo hành đổi ứng viên miễn phí",
+      trust_guarantee: "Chính sách thay thế theo hợp đồng",
       btn_primary: "Gửi nhu cầu nhân sự ngay",
       btn_secondary: "Tính toán chi phí ROI",
       btn_profiles: "Xem danh sách ứng viên",
@@ -127,7 +135,7 @@ export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) 
     } else {
       // Fallback: copy to clipboard
       navigator.clipboard.writeText(window.location.href);
-      alert(lang === "vn" ? "Đã sao chép link!" : lang === "en" ? "Link copied!" : "Link kopiert!");
+      toast.success(t.shareCopied);
     }
   };
 
@@ -143,6 +151,7 @@ export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) 
               alt={post.title}
               fill
               priority
+              sizes="(max-width: 1024px) 100vw, 896px"
               className="object-cover"
               placeholder="blur"
               blurDataURL={BLUR_LANDSCAPE}
@@ -183,6 +192,9 @@ export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) 
             <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 lg:p-12 mb-8">
               {/* Meta Info */}
               <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500 mb-6">
+                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700 border border-blue-200">
+                  {t.byline}
+                </span>
                 <time
                   dateTime={post.published_at || post.created_at}
                   className="flex items-center gap-1"
@@ -217,7 +229,7 @@ export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) 
 
             {/* Article Body */}
             <div className="bg-white rounded-2xl shadow-sm p-6 sm:p-8 lg:p-12">
-              <div className={styles.content}>{parse(post.content)}</div>
+              <div className={styles.content}>{parse(sanitizeRichHtml(post.content))}</div>
             </div>
 
             {/* B2B Conversion CTA Card */}
@@ -242,7 +254,7 @@ export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 pb-2 border-y border-white/10 text-xs sm:text-sm text-slate-200">
                   <div className="flex items-center gap-2">
                     <span className="text-emerald-400 font-bold">✓</span>
-                    <span>{t.cta?.trust_feg || "Rechtssicher nach FEG & § 296a SGB III"}</span>
+                    <span>{t.cta?.trust_feg || "Rechtssicher nach §§ 296, 297 SGB III & FEG"}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-emerald-400 font-bold">✓</span>
@@ -250,7 +262,7 @@ export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) 
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-emerald-400 font-bold">✓</span>
-                    <span>{t.cta?.trust_guarantee || "Kostenlose Ersatzgarantie bei Abbruch"}</span>
+                    <span>{t.cta?.trust_guarantee || "Vertraglich geregelte Nachbesetzung"}</span>
                   </div>
                 </div>
 
@@ -311,6 +323,7 @@ export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) 
                               src={relatedPost.cover_image}
                               alt={relatedPost.title}
                               fill
+                              sizes="(max-width: 768px) 100vw, 33vw"
                               className="object-cover group-hover:scale-105 transition-transform duration-500"
                               placeholder="blur"
                               blurDataURL={BLUR_LANDSCAPE}

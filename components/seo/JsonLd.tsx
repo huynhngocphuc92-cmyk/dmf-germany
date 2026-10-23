@@ -1,15 +1,27 @@
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, siteUrl } from "@/lib/site";
+import { PRIMARY_CONTACT } from "@/lib/company/contact";
 
 export default function JsonLd() {
   const schemas = [
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
+      "@type": ["Organization", "EmploymentAgency"],
       "@id": `${SITE_URL}/#organization`,
       name: SITE_NAME,
       url: SITE_URL,
       logo: siteUrl("/icon.png"),
       description: SITE_DESCRIPTION,
+      areaServed: {
+        "@type": "Country",
+        name: "Germany",
+      },
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "customer service",
+        email: PRIMARY_CONTACT.email,
+        telephone: PRIMARY_CONTACT.phone,
+        availableLanguage: ["de", "en", "vi"],
+      },
     },
     {
       "@context": "https://schema.org",

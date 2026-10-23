@@ -85,7 +85,7 @@ function AnimatedCounter({
 // ============================================
 
 function HeroSection() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   // Build hero content from translations
   const content = {
@@ -158,7 +158,7 @@ function HeroSection() {
                 className="group relative px-8 py-6 text-base font-semibold bg-gradient-to-r from-blue-500 to-blue-500 hover:from-blue-400 hover:to-blue-400 text-white rounded-full shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300"
                 asChild
               >
-                <Link href="#contact">
+                <Link href="/fuer-arbeitgeber/personalbedarf?service=azubi">
                   {content.cta1}
                   <Rocket className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -169,7 +169,7 @@ function HeroSection() {
                 className="px-8 py-6 text-base font-semibold border-slate-700 text-white hover:bg-slate-800/50 rounded-full transition-all duration-300"
                 asChild
               >
-                <Link href="/#contact">
+                <Link href="/fuer-arbeitgeber/kandidaten">
                   <PhoneCall className="w-5 h-5 mr-2" />
                   {content.cta2}
                 </Link>
@@ -211,8 +211,16 @@ function HeroSection() {
                     <div className="text-6xl font-bold bg-gradient-to-r from-blue-400 to-blue-400 bg-clip-text text-transparent mb-2">
                       3
                     </div>
-                    <div className="text-white font-medium text-lg">Jahre</div>
-                    <div className="text-blue-400 text-sm mt-1">Ausbildung</div>
+                    <div className="text-white font-medium text-lg">
+                      {lang === "vn" ? "Năm" : lang === "en" ? "Years" : "Jahre"}
+                    </div>
+                    <div className="text-blue-400 text-sm mt-1">
+                      {lang === "vn"
+                        ? "Đào tạo kép"
+                        : lang === "en"
+                          ? "Vocational Training"
+                          : "Ausbildung"}
+                    </div>
                   </motion.div>
                 </div>
               </div>
@@ -225,7 +233,7 @@ function HeroSection() {
               >
                 <Badge className="bg-blue-500/20 text-blue-300 border-blue-500/30 px-3 py-1.5">
                   <Zap className="w-3 h-3 mr-1" />
-                  Langfristig
+                  {lang === "vn" ? "Gắn bó lâu dài" : lang === "en" ? "Long-Term" : "Langfristig"}
                 </Badge>
               </motion.div>
 
@@ -235,8 +243,7 @@ function HeroSection() {
                 className="absolute -bottom-4 left-8"
               >
                 <Badge className="bg-blue-500/20 text-blue-300 border-blue-500/30 px-3 py-1.5">
-                  <Shield className="w-3 h-3 mr-1" />
-                  100% Legal
+                  <Shield className="w-3 h-3 mr-1" />§ 16a / § 81a
                 </Badge>
               </motion.div>
 
@@ -247,7 +254,7 @@ function HeroSection() {
               >
                 <Badge className="bg-blue-500/20 text-blue-300 border-blue-500/30 px-3 py-1.5">
                   <Users className="w-3 h-3 mr-1" />
-                  90%
+                  B1–B2
                 </Badge>
               </motion.div>
             </div>
@@ -301,8 +308,8 @@ function AdvantagesSection() {
         icon: TrendingUp,
         title: advantages.advantage_2_title || "Langfristige Bindung",
         description: advantages.advantage_2_desc || "Hohe Bleibequote nach der Ausbildung",
-        highlight: advantages.advantage_2_highlight || "90%",
-        highlightDesc: advantages.advantage_2_highlight_desc || "Bleibequote",
+        highlight: advantages.advantage_2_highlight || "B1–B2",
+        highlightDesc: advantages.advantage_2_highlight_desc || "Sprachbasis",
       },
       {
         icon: Shield,
@@ -387,7 +394,7 @@ function AdvantagesSection() {
 // ============================================
 
 function ProcessTimelineSection() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const ref = useRef(null);
 
   // Build content from translations - map process to timeline structure
@@ -424,7 +431,12 @@ function ProcessTimelineSection() {
         icon: GraduationCap,
       },
     ],
-    key_message: "Schnell und unkompliziert",
+    key_message:
+      lang === "vn"
+        ? "Quy trình minh bạch và đồng hành trọn gói"
+        : lang === "en"
+          ? "Transparent and streamlined process"
+          : "Schnell und unkompliziert",
   };
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
@@ -527,7 +539,7 @@ function ProcessTimelineSection() {
 // ============================================
 
 function QualitySection() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   // Build content from translations - map quality to sectors structure
   const raw = t.service_pages.azubi;
@@ -537,13 +549,18 @@ function QualitySection() {
   const sectors = [
     {
       title: quality.prep_title || "Vorbereitung in Vietnam",
-      subtitle: "Sprache & Kultur",
+      subtitle:
+        lang === "vn"
+          ? "Ngôn ngữ & Văn hóa"
+          : lang === "en"
+            ? "Language & Culture"
+            : "Sprache & Kultur",
       icon: BookOpen,
       secondaryIcon: GraduationCap,
       color: "blue",
       items: [
         quality.prep_item1 || "Intensiv-Sprachkurse",
-        quality.prep_item2 || "Fachsprache-Training",
+        quality.prep_item2 || "Fachsprachentraining",
         quality.prep_item3 || "Interkulturelle Workshops",
         quality.prep_item4 || "Deutsche Arbeitskultur",
       ],
@@ -551,7 +568,12 @@ function QualitySection() {
     },
     {
       title: quality.support_title || "Begleitung in Deutschland",
-      subtitle: "3 Jahre Support",
+      subtitle:
+        lang === "vn"
+          ? "3 Năm Đồng hành"
+          : lang === "en"
+            ? "3 Years Support"
+            : "3 Jahre Begleitung",
       icon: Home,
       secondaryIcon: Heart,
       color: "blue",
@@ -610,7 +632,7 @@ function QualitySection() {
               <motion.div
                 key={index}
                 initial={{ opacity: 0, x: index === 0 ? -40 : 40 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.2 + index * 0.2 }}
                 whileHover={{ scale: 1.02 }}
                 className="group"
@@ -657,7 +679,7 @@ function QualitySection() {
 // ============================================
 
 function StatsSection() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   // Build content from translations
   const raw = t.service_pages.azubi;
@@ -666,21 +688,36 @@ function StatsSection() {
   const content = {
     stats: [
       {
-        value: "120+",
-        label: statsData.stat1_label || "Azubis vermittelt",
+        value: "B1-B2",
+        label:
+          lang === "vn"
+            ? "Trình độ tiếng Đức đầu ra"
+            : lang === "en"
+              ? "Target German Proficiency"
+              : "Sprachniveau vor Einreise",
         suffix: "",
         icon: Users,
       },
       {
-        value: "95",
-        label: statsData.stat2_label || "Ausbildung abgeschlossen",
-        suffix: "%",
+        value: "§ 81a",
+        label:
+          lang === "vn"
+            ? "Hỗ trợ thủ tục rút gọn AufenthG"
+            : lang === "en"
+              ? "Accelerated Visa Procedure"
+              : "Beschleunigtes Verfahren",
+        suffix: "",
         icon: Award,
       },
       {
-        value: "90",
-        label: statsData.stat3_label || "Bleiben nach Abschluss",
-        suffix: "%",
+        value: "A-Z",
+        label:
+          lang === "vn"
+            ? "Chuẩn bị ngôn ngữ & văn hóa"
+            : lang === "en"
+              ? "Holistic Preparation & Onboarding"
+              : "Vorbereitung & Onboarding",
+        suffix: "",
         icon: TrendingUp,
       },
       { value: "3", label: statsData.stat4_label || "Jahre Begleitung", suffix: "", icon: Clock },
@@ -793,7 +830,7 @@ function CTASection() {
               className="group px-8 py-6 text-base font-semibold bg-gradient-to-r from-blue-500 to-blue-500 hover:from-blue-400 hover:to-blue-400 text-white rounded-full shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300"
               asChild
             >
-              <Link href="/#contact">
+              <Link href="/fuer-arbeitgeber/personalbedarf?service=azubi">
                 {content.cta1}
                 <Rocket className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
@@ -804,7 +841,7 @@ function CTASection() {
               className="px-8 py-6 text-base font-semibold border-blue-300 text-blue-700 hover:bg-blue-50 rounded-full transition-all duration-300"
               asChild
             >
-              <Link href="/#contact">
+              <Link href="/fuer-arbeitgeber/kandidaten">
                 <PhoneCall className="w-5 h-5 mr-2" />
                 {content.cta2}
               </Link>
@@ -820,33 +857,98 @@ function CTASection() {
 // MAIN PAGE COMPONENT
 // ============================================
 
+const azubiFAQsByLang = {
+  de: [
+    {
+      question: "Wie stellen Sie das Sprachniveau B1/B2 vor der Einreise sicher?",
+      answer:
+        "Unsere Kandidaten durchlaufen in Vietnam ein strukturiertes Vorbereitungsprogramm mit Fokus auf anerkannte Sprachprüfungen (z. B. Goethe oder telc) sowie berufsbezogene Fachbegriffe und deutsche Arbeitskultur.",
+    },
+    {
+      question: "Wie unterstützen Sie die langfristige Bindung der Auszubildenden?",
+      answer:
+        "Durch sorgfältige Vorauswahl, interkulturelles Onboarding in Vietnam und unser Begleitprogramm in Deutschland erleichtern wir das Ankommen im Betrieb und in der Berufsschule deutlich.",
+    },
+    {
+      question: "Unterstützen Sie bei der bürokratischen Abwicklung (§ 81a AufenthG)?",
+      answer:
+        "Ja. Wir begleiten den gesamten administrativen Prozess: von der Dokumentenprüfung über die IHK/HWK-Eintragung und das beschleunigte Fachkräfteverfahren (§ 81a AufenthG) bis zur Einreiseorganisation.",
+    },
+    {
+      question: "Wie sind die Konditionen für Ausbildungsbetriebe gestaltet?",
+      answer:
+        "Wir arbeiten mit einer transparenten, vertraglich klar gegliederten Leistungsstruktur für Vorbereitung, Verfahrensbegleitung und Integrationssupport. Für Bewerberinnen und Bewerber ist die Vermittlung gesetzeskonform kostenfrei.",
+    },
+  ],
+  en: [
+    {
+      question: "How do you ensure B1/B2 German proficiency before arrival?",
+      answer:
+        "Our candidates complete a structured preparation program in Vietnam focused on recognized language certificates (e.g., Goethe or telc) as well as sector-specific vocabulary and German workplace culture.",
+    },
+    {
+      question: "How do you support the long-term retention of apprentices?",
+      answer:
+        "Through careful pre-selection, intercultural onboarding in Vietnam, and our mentoring program in Germany, we ensure a smooth transition into both the training company and vocational school.",
+    },
+    {
+      question: "Do you assist with the administrative and visa process (§ 81a AufenthG)?",
+      answer:
+        "Yes. We support the entire administrative process: from document verification and IHK/HWK registration to the accelerated procedure (§ 81a AufenthG) and arrival coordination.",
+    },
+    {
+      question: "How is the fee structure organized for training companies?",
+      answer:
+        "We operate with a transparent, milestone-based service structure covering preparation, procedural support, and integration mentoring. In accordance with German law, placement is free of charge for applicants.",
+    },
+  ],
+  vn: [
+    {
+      question: "Làm thế nào để đảm bảo trình độ tiếng Đức B1/B2 trước khi sang Đức?",
+      answer:
+        "Học viên của chúng tôi tham gia chương trình đào tạo bài bản tại Việt Nam hướng tới các chứng chỉ quốc tế (Goethe/telc), kết hợp tiếng Đức chuyên ngành và văn hóa làm việc tại doanh nghiệp Đức.",
+    },
+    {
+      question: "DMF hỗ trợ duy trì tỷ lệ gắn bó của học viên như thế nào?",
+      answer:
+        "Thông qua khâu tuyển chọn kỹ lưỡng, định hướng văn hóa trước xuất cảnh và chương trình đồng hành tại Đức, chúng tôi giúp học viên hòa nhập nhanh với môi trường doanh nghiệp và trường nghề.",
+    },
+    {
+      question: "DMF có hỗ trợ thủ tục hành chính và thị thực (§ 81a AufenthG) không?",
+      answer:
+        "Có. Chúng tôi đồng hành toàn bộ quy trình: từ rà soát hồ sơ, đăng ký hợp đồng học nghề tại IHK/HWK, thủ tục rút gọn (§ 81a AufenthG) cho đến khi học viên nhập cảnh.",
+    },
+    {
+      question: "Cấu trúc chi phí dành cho doanh nghiệp đào tạo được tính như thế nào?",
+      answer:
+        "Chúng tôi áp dụng biểu phí dịch vụ minh bạch theo từng giai đoạn đào tạo, hoàn thiện hồ sơ pháp lý và hỗ trợ hội nhập. Quy trình tuyển chọn hoàn toàn tuân thủ quy định pháp luật Đức.",
+    },
+  ],
+};
+
 export default function AzubiPage() {
-  // FAQ Questions for Azubi (B2B-Focused)
-  const azubiFAQs = [
-    {
-      question: "Wie stellen Sie das Sprachniveau B2 vor der Einreise sicher?",
-      answer:
-        "Wir kooperieren mit zertifizierten Sprachschulen (Goethe/TELC) in Vietnam. Unsere Kandidaten durchlaufen ein intensives 12-monatiges Vorbereitungsprogramm, das nicht nur Sprache, sondern auch deutsche Fachbegriffe und Kultur vermittelt.",
-    },
-    {
-      question: "Wie hoch ist die Bleibeperspektive der vietnamesischen Azubis?",
-      answer:
-        "Vietnamesische Azubis gelten als äußerst loyal. Unsere Statistiken zeigen eine Übernahmequote von über 90% nach der Ausbildung. Wir fördern dies durch kulturelles Onboarding, um Heimweh und Abbrüche zu minimieren.",
-    },
-    {
-      question: "Unterstützen Sie bei der bürokratischen Abwicklung?",
-      answer:
-        "Ja. Wir übernehmen den kompletten Verwaltungsprozess: Vorprüfung der Unterlagen, Beschleunigtes Fachkräfteverfahren (§ 81a AufenthG) bis hin zur Wohnungssuche und Behördengängen.",
-    },
-    {
-      question: "Welche Kosten kommen auf uns zu?",
-      answer:
-        "Wir arbeiten mit einem transparenten erfolgsbasierten Modell ohne versteckte Gebühren. Die Investition amortisiert sich in der Regel bereits im ersten Jahr. Gerne erstellen wir Ihnen ein individuelles Angebot.",
-    },
-  ];
+  const { lang } = useLanguage();
+  const azubiFAQs = azubiFAQsByLang[lang] || azubiFAQsByLang.de;
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: azubiFAQs.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
 
   return (
     <main className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <HeroSection />
       <AdvantagesSection />
       <ProcessTimelineSection />

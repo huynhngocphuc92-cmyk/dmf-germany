@@ -1,5 +1,6 @@
 "use client";
 import { useSubmissionKey } from "@/lib/intake/client";
+import { currentRequestContext } from "@/lib/intake/context";
 
 import { trackEvent } from "@/components/analytics/GoogleAnalytics";
 import { useLanguage } from "@/components/providers/LanguageProvider";
@@ -15,10 +16,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import type { PublicCandidate } from "@/lib/candidates/public-profile";
-import { inquiryFormSchema, type InquiryFormData } from "@/lib/validations/schemas";
+import { inquiryFormSchema } from "@/lib/validations/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   AlertCircle,
+  Building2,
   CheckCircle2,
   Loader2,
   Mail,
@@ -30,6 +32,13 @@ import {
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { z } from "zod";
+
+const modalInquirySchema = inquiryFormSchema.extend({
+  company: z.string().max(500).optional(),
+  bot_check: z.string().max(0).optional(),
+});
+type ModalInquiryFormData = z.infer<typeof modalInquirySchema>;
 
 interface InquiryModalProps {
   candidate: PublicCandidate | null;
@@ -42,6 +51,8 @@ const INQUIRY_MODAL_COPY = {
     title: "Anfrage senden",
     nameLabel: "Name *",
     namePlaceholder: "Ihr Name",
+    companyLabel: "Unternehmen",
+    companyPlaceholder: "Ihr Unternehmen GmbH",
     emailLabel: "E-Mail *",
     emailPlaceholder: "ihre@email.de",
     phoneLabel: "Telefon",
@@ -62,6 +73,8 @@ const INQUIRY_MODAL_COPY = {
     title: "Send Inquiry",
     nameLabel: "Name *",
     namePlaceholder: "Your name",
+    companyLabel: "Company",
+    companyPlaceholder: "Your Company GmbH",
     emailLabel: "Email *",
     emailPlaceholder: "your@email.com",
     phoneLabel: "Phone",
@@ -82,6 +95,8 @@ const INQUIRY_MODAL_COPY = {
     title: "Gửi yêu cầu",
     nameLabel: "Tên *",
     namePlaceholder: "Tên của bạn",
+    companyLabel: "Doanh nghiệp",
+    companyPlaceholder: "Tên doanh nghiệp GmbH",
     emailLabel: "Email *",
     emailPlaceholder: "email@example.com",
     phoneLabel: "Số điện thoại",
@@ -109,7 +124,7 @@ const getCandidateCode = (id: string): string => {
 
 export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) => {
   const { forPayload: submissionKey, reset: resetSubmissionKey } = useSubmissionKey();
-  const { lang } = useLanguage();
+  const { lang, t } = useLanguage();
   const locale = lang === "en" ? "en" : lang === "vn" ? "vn" : "de";
   const copy = INQUIRY_MODAL_COPY[locale];
   const [status, setStatus] = useState<"success" | "error" | null>(null);
@@ -121,14 +136,16 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
     reset,
     setValue,
     formState: { errors, isSubmitting },
-  } = useForm<InquiryFormData>({
-    resolver: zodResolver(inquiryFormSchema),
+  } = useForm<ModalInquiryFormData>({
+    resolver: zodResolver(modalInquirySchema),
     defaultValues: {
       name: "",
+      company: "",
       email: "",
       phone: "",
       message: "",
       privacy: false,
+      bot_check: "",
     },
   });
 
@@ -141,7 +158,8 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
 
   const candidateCode = candidate ? getCandidateCode(candidate.id) : "";
 
-  const onSubmit = async (data: InquiryFormData) => {
+  const onSubmit = async (data: ModalInquiryFormData) => {
+    if (data.bot_check) return;
     if (status === "success") return;
     // Early validation - if no candidate, don't submit
     if (!candidate) {
@@ -154,32 +172,35 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
     setStatusMessage("");
 
     try {
+      const payload = {
+        name: data.name,
+        company: data.company || undefined,
+        email: data.email,
+        phone: data.phone || "",
+        message: data.message,
+        privacy: data.privacy,
+        bot_check: data.bot_check || "",
+        type: "profile" as const,
+        candidateId: candidate.id,
+        candidateCode: candidateCode,
+        ...currentRequestContext(window.location.href),
+      };
+
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Idempotency-Key": submissionKey({ ...data, candidateId: candidate.id }),
+          "Idempotency-Key": submissionKey(payload),
         },
-        body: JSON.stringify({
-          name: data.name,
-          email: data.email,
-          phone: data.phone || "",
-          message: data.message,
-          privacy: data.privacy,
-          type: "profile",
-          candidateId: candidate.id,
-          candidateCode: candidateCode,
-        }),
+        body: JSON.stringify(payload),
       });
 
       const result = await response.json();
 
       if (response.ok && result.success && result.saved) {
         setStatus("success");
-        // Conversion tracking (GA4) — lead từ yêu cầu hồ sơ ứng viên
         if (!result.duplicate) trackEvent("generate_lead", { form: "profile" });
         setStatusMessage(copy.success);
-        // Keep the saved confirmation visible until the user closes the dialog.
       } else {
         setStatus("error");
         setStatusMessage(result.error || copy.submitError);
@@ -225,6 +246,14 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
         </DialogHeader>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <input
+            type="text"
+            {...register("bot_check")}
+            className="hidden"
+            tabIndex={-1}
+            autoComplete="off"
+          />
+
           {/* Status Messages */}
           {status === "success" && (
             <div className="flex items-center gap-3 p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-700">
@@ -254,6 +283,22 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
               className={errors.name ? "border-red-500" : ""}
             />
             {errors.name && <p className="text-sm text-red-500">{errors.name.message}</p>}
+          </div>
+
+          {/* Company Field */}
+          <div className="space-y-2">
+            <Label htmlFor="company" className="flex items-center gap-2">
+              <Building2 className="w-4 h-4" />
+              {t.candidates?.form_company || copy.companyLabel}
+            </Label>
+            <Input
+              id="company"
+              {...register("company")}
+              placeholder={copy.companyPlaceholder}
+              disabled={isSubmitting || status === "success"}
+              className={errors.company ? "border-red-500" : ""}
+            />
+            {errors.company && <p className="text-sm text-red-500">{errors.company.message}</p>}
           </div>
 
           {/* Email Field */}

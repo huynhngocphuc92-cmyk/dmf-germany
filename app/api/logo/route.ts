@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getSiteConfigByKey } from "@/actions/theme-actions";
+import { loadAssets } from "@/lib/theme-helpers";
 
 /**
  * API Route to get logo URL from database
@@ -7,17 +7,9 @@ import { getSiteConfigByKey } from "@/actions/theme-actions";
  */
 export async function GET() {
   try {
-    // Try to get logo from database (same priority order as HeaderWrapper)
-    const logoKeys = ["site_logo", "header_logo", "logo_url"];
-    let logoUrl: string | null = null;
-
-    for (const key of logoKeys) {
-      const { data: config } = await getSiteConfigByKey(key);
-      if (config?.value) {
-        logoUrl = config.value;
-        break;
-      }
-    }
+    // Fetch logo keys in a single batched query (same priority order as HeaderWrapper)
+    const assets = await loadAssets(["site_logo", "header_logo", "logo_url"]);
+    const logoUrl = assets.site_logo || assets.header_logo || assets.logo_url || null;
 
     return NextResponse.json({ logoUrl }, { status: 200 });
   } catch (error) {

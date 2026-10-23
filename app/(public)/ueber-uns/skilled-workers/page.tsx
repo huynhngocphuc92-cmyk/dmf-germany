@@ -49,7 +49,7 @@ import {
 // ============================================
 
 function HeroSection() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const b2b = t.b2b_pages;
 
   return (
@@ -92,11 +92,19 @@ function HeroSection() {
             {/* Main Statement */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
               <span className="text-white">
-                {b2b?.common?.hero_title || "DMF – Ihre Akademie für"}
+                {lang === "vn"
+                  ? "Công nhận Bằng cấp &"
+                  : lang === "en"
+                    ? "Qualification & Recognition –"
+                    : "Qualifizierung & Anerkennung –"}
               </span>
               <br />
               <span className="bg-gradient-to-r from-emerald-400 via-green-300 to-blue-400 bg-clip-text text-transparent">
-                {b2b?.common?.hero_accent || "qualifizierte Talente"}
+                {lang === "vn"
+                  ? "Lao động Lành nghề (§ 18a/b)"
+                  : lang === "en"
+                    ? "Skilled Workers (§ 18a/b)"
+                    : "Fachkräfte (§ 18a/b AufenthG)"}
               </span>
               <br />
               <span className="text-white">{b2b?.common?.hero_suffix || "aus Vietnam"}</span>
@@ -105,7 +113,7 @@ function HeroSection() {
             {/* Subheadline */}
             <p className="text-lg md:text-xl text-slate-400 leading-relaxed mb-8 max-w-lg">
               {b2b?.skilled_workers?.subheadline ||
-                "Wir begleiten qualifizierte Fachkräfte bei der Anerkennung ihrer Abschlüsse und dem erfolgreichen Einstieg in den deutschen Arbeitsmarkt. Placement Service und 12 Monate Nachbetreuung inklusive."}
+                "Wir begleiten qualifizierte Fachkräfte bei der Anerkennung ihrer Abschlüsse und dem erfolgreichen Einstieg in den deutschen Arbeitsmarkt. Vermittlungsservice und 12 Monate Nachbetreuung inklusive."}
             </p>
 
             {/* Key Stats */}
@@ -119,7 +127,7 @@ function HeroSection() {
                     {b2b?.skilled_workers?.recognition || "Anerkennung"}
                   </div>
                   <div className="text-slate-500 text-xs">
-                    {b2b?.skilled_workers?.stat1_label || "Support"}
+                    {b2b?.skilled_workers?.stat1_label || "Begleitung"}
                   </div>
                 </div>
               </div>
@@ -128,7 +136,9 @@ function HeroSection() {
                   <Handshake className="w-5 h-5 text-blue-400" />
                 </div>
                 <div>
-                  <div className="text-white font-bold">Placement</div>
+                  <div className="text-white font-bold">
+                    {lang === "vn" ? "Tuyển dụng" : lang === "en" ? "Placement" : "Vermittlung"}
+                  </div>
                   <div className="text-slate-500 text-xs">
                     {b2b?.skilled_workers?.stat2_label || "Service"}
                   </div>
@@ -140,7 +150,7 @@ function HeroSection() {
                 </div>
                 <div>
                   <div className="text-white font-bold">
-                    12 {t.nav?.cooperation === "Cooperation & Programs" ? "Months" : "Monate"}
+                    12 {lang === "vn" ? "Tháng" : lang === "en" ? "Months" : "Monate"}
                   </div>
                   <div className="text-slate-500 text-xs">
                     {b2b?.skilled_workers?.stat3_label || "Nachbetreuung"}
@@ -156,7 +166,7 @@ function HeroSection() {
                 className="group px-8 py-6 text-base font-semibold bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white rounded-full shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all duration-300"
                 asChild
               >
-                <Link href="/#contact">
+                <Link href="/fuer-arbeitgeber/kandidaten">
                   {b2b?.common?.cta_profiles || "Fachkräfteprofile anfordern"}
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -167,7 +177,7 @@ function HeroSection() {
                 className="px-8 py-6 text-base font-semibold border-slate-600 bg-transparent text-white hover:text-white hover:bg-slate-800/50 rounded-full transition-all duration-300"
                 asChild
               >
-                <Link href="/#contact">
+                <Link href="/fuer-arbeitgeber/personalbedarf?service=fachkraefte">
                   <PhoneCall className="w-5 h-5 mr-2" />
                   {b2b?.common?.cta_consultation || "Beratung vereinbaren"}
                 </Link>
@@ -891,13 +901,13 @@ function SettlementKitSection() {
         >
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div>
-              <div className="text-4xl font-bold text-blue-600 mb-2">&lt;10%</div>
+              <div className="text-4xl font-bold text-blue-600 mb-2">§ 81a</div>
               <div className="text-slate-600">
-                {b2b?.skilled_workers?.turnover_rate || "Fluktuation im 1. Jahr"}
+                {b2b?.skilled_workers?.recognition || "Anerkennung"}
               </div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-emerald-600 mb-2">98%</div>
+              <div className="text-4xl font-bold text-emerald-600 mb-2">B1–B2</div>
               <div className="text-slate-600">
                 {b2b?.skilled_workers?.onboarding_success || "Erfolgreiche Einarbeitung"}
               </div>
@@ -930,10 +940,10 @@ function SectorsSection() {
       title: b2b?.skilled_workers?.sector_healthcare || "Pflege & Gesundheit",
       description:
         b2b?.skilled_workers?.sector_healthcare_desc ||
-        "Pflegefachkräfte, Altenpfleger, Krankenpfleger",
+        "Pflegefachkräfte (Pflegefachfrau / Pflegefachmann), Gesundheits- & Krankenpflege",
       icon: Stethoscope,
       color: "emerald",
-      stats: `60+ ${b2b?.skilled_workers?.workers_label || "Fachkräfte"}`,
+      stats: `B2 · ${b2b?.skilled_workers?.workers_label || "Fachkräfte"}`,
     },
     {
       title: b2b?.skilled_workers?.sector_craft || "Handwerk & Bau",
@@ -941,7 +951,7 @@ function SectorsSection() {
         b2b?.skilled_workers?.sector_craft_desc || "Elektriker, Installateure, Schreiner, Maurer",
       icon: Hammer,
       color: "blue",
-      stats: `40+ ${b2b?.skilled_workers?.workers_label || "Fachkräfte"}`,
+      stats: `§ 18a · ${b2b?.skilled_workers?.workers_label || "Fachkräfte"}`,
     },
     {
       title: b2b?.skilled_workers?.sector_industry || "Industrie & Technik",
@@ -949,7 +959,7 @@ function SectorsSection() {
         b2b?.skilled_workers?.sector_industry_desc || "Maschinenbau, Elektrotechnik, Mechatronik",
       icon: Wrench,
       color: "emerald",
-      stats: `50+ ${b2b?.skilled_workers?.workers_label || "Fachkräfte"}`,
+      stats: `§ 18a/b · ${b2b?.skilled_workers?.workers_label || "Fachkräfte"}`,
     },
     {
       title: b2b?.skilled_workers?.sector_gastro || "Gastronomie & Hotel",
@@ -957,7 +967,7 @@ function SectorsSection() {
         b2b?.skilled_workers?.sector_gastro_desc || "Köche, Restaurantfachleute, Hotelfachleute",
       icon: Building,
       color: "blue",
-      stats: `30+ ${b2b?.skilled_workers?.workers_label || "Fachkräfte"}`,
+      stats: `B1/B2 · ${b2b?.skilled_workers?.workers_label || "Fachkräfte"}`,
     },
   ];
 
@@ -1067,7 +1077,7 @@ function CTASection() {
 
           <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10">
             {b2b?.skilled_workers?.cta_subtitle ||
-              "Wir begleiten den gesamten Prozess - von der Anerkennung bis zur erfolgreichen Integration. Placement Service und 12 Monate Nachbetreuung inklusive."}
+              "Wir begleiten den gesamten Prozess - von der Anerkennung bis zur erfolgreichen Integration. Vermittlungsservice und 12 Monate Nachbetreuung inklusive."}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -1076,7 +1086,7 @@ function CTASection() {
               className="group px-8 py-6 text-base font-semibold bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white rounded-full shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all duration-300"
               asChild
             >
-              <Link href="/#contact">
+              <Link href="/fuer-arbeitgeber/kandidaten">
                 {b2b?.common?.cta_profiles || "Fachkräfteprofile anfordern"}
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
@@ -1087,7 +1097,7 @@ function CTASection() {
               className="px-8 py-6 text-base font-semibold border-slate-600 bg-transparent text-white hover:text-white hover:bg-slate-800/50 rounded-full transition-all duration-300"
               asChild
             >
-              <Link href="/#contact">
+              <Link href="/fuer-arbeitgeber/personalbedarf?service=fachkraefte">
                 <PhoneCall className="w-5 h-5 mr-2" />
                 {b2b?.common?.cta_consultation || "Beratung vereinbaren"}
               </Link>

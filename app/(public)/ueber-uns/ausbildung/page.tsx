@@ -39,7 +39,7 @@ import {
 // ============================================
 
 function HeroSection() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const b2b = t.b2b_pages;
 
   return (
@@ -82,11 +82,19 @@ function HeroSection() {
             {/* Main Statement */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
               <span className="text-white">
-                {b2b?.common?.hero_title || "DMF – Ihre Akademie für"}
+                {lang === "vn"
+                  ? "Đào tạo Nghề kép –"
+                  : lang === "en"
+                    ? "Dual Vocational Prep –"
+                    : "Duale Ausbildung –"}
               </span>
               <br />
               <span className="bg-gradient-to-r from-blue-400 via-blue-300 to-emerald-400 bg-clip-text text-transparent">
-                {b2b?.common?.hero_accent || "qualifizierte Talente"}
+                {lang === "vn"
+                  ? "Học viên Azubi chuẩn B1–B2"
+                  : lang === "en"
+                    ? "Qualified Azubis (B1–B2)"
+                    : "Qualifizierte Azubis (B1–B2)"}
               </span>
               <br />
               <span className="text-white">{b2b?.common?.hero_suffix || "aus Vietnam"}</span>
@@ -107,7 +115,7 @@ function HeroSection() {
                 <div>
                   <div className="text-white font-bold">156</div>
                   <div className="text-slate-500 text-xs">
-                    {b2b?.ausbildung?.stat1_label || "Sessions/Jahr"}
+                    {b2b?.ausbildung?.stat1_label || "UE/Jahr"}
                   </div>
                 </div>
               </div>
@@ -127,7 +135,9 @@ function HeroSection() {
                   <Calendar className="w-5 h-5 text-blue-400" />
                 </div>
                 <div>
-                  <div className="text-white font-bold">3 Jahre</div>
+                  <div className="text-white font-bold">
+                    {lang === "vn" ? "3 Năm" : lang === "en" ? "3 Years" : "3 Jahre"}
+                  </div>
                   <div className="text-slate-500 text-xs">
                     {b2b?.ausbildung?.stat3_label || "Begleitung"}
                   </div>
@@ -142,7 +152,7 @@ function HeroSection() {
                 className="group px-8 py-6 text-base font-semibold bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white rounded-full shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300"
                 asChild
               >
-                <Link href="/#contact">
+                <Link href="/fuer-arbeitgeber/kandidaten">
                   {b2b?.common?.cta_profiles || "Kandidatenprofile anfordern"}
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -153,7 +163,7 @@ function HeroSection() {
                 className="px-8 py-6 text-base font-semibold border-slate-600 bg-transparent text-white hover:text-white hover:bg-slate-800/50 rounded-full transition-all duration-300"
                 asChild
               >
-                <Link href="/#contact">
+                <Link href="/fuer-arbeitgeber/personalbedarf?service=azubi">
                   <PhoneCall className="w-5 h-5 mr-2" />
                   {b2b?.common?.cta_consultation || "Beratung vereinbaren"}
                 </Link>
@@ -847,15 +857,13 @@ function SettlementKitSection() {
         >
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div>
-              <div className="text-4xl font-bold text-emerald-600 mb-2">&lt;5%</div>
-              <div className="text-slate-600">
-                {b2b?.common?.dropout_rate || "Abbruchquote im 1. Jahr"}
-              </div>
+              <div className="text-4xl font-bold text-emerald-600 mb-2">B1–B2</div>
+              <div className="text-slate-600">{b2b?.ausbildung?.stat2_label || "Sprachniveau"}</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-blue-600 mb-2">95%</div>
+              <div className="text-4xl font-bold text-blue-600 mb-2">7 Tage</div>
               <div className="text-slate-600">
-                {b2b?.common?.retention_rate || "Übernahmequote nach Ausbildung"}
+                {b2b?.common?.settlement_badge || "Settling-in Kit"}
               </div>
             </div>
             <div>
@@ -911,7 +919,7 @@ function CTASection() {
               className="group px-8 py-6 text-base font-semibold bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white rounded-full shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300"
               asChild
             >
-              <Link href="/#contact">
+              <Link href="/fuer-arbeitgeber/kandidaten">
                 {b2b?.common?.cta_profiles || "Kandidatenprofile anfordern"}
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
@@ -922,7 +930,7 @@ function CTASection() {
               className="px-8 py-6 text-base font-semibold border-slate-600 bg-transparent text-white hover:text-white hover:bg-slate-800/50 rounded-full transition-all duration-300"
               asChild
             >
-              <Link href="/#contact">
+              <Link href="/fuer-arbeitgeber/personalbedarf?service=azubi">
                 <PhoneCall className="w-5 h-5 mr-2" />
                 {b2b?.common?.cta_consultation || "Beratung vereinbaren"}
               </Link>

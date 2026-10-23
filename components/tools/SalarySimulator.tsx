@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -249,8 +250,10 @@ export function SalarySimulator() {
   // This will be gradually migrated to translations.ts
   const fallbackContent: Record<"de" | "en" | "vn", Partial<SimulatorContent>> = {
     de: {
-      subtitle: "Entdecken Sie Ihr Verdienstpotenzial während der dualen Ausbildung in Deutschland",
-      badge: "Interaktives Tool",
+      title: "Ausbildungsvergütung & Kalkulationsbasis für Ausbildungsbetriebe",
+      subtitle:
+        "Transparente Orientierung zu den monatlichen Ausbildungsvergütungen (1.–3. Lehrjahr) und Einstiegsgehältern nach Branche",
+      badge: "Kalkulationshilfe für Arbeitgeber",
       regionLabel: "Region",
       regions: { west: "Westdeutschland", east: "Ostdeutschland" },
       industries: {
@@ -259,17 +262,19 @@ export function SalarySimulator() {
         mechatronik: "Mechatronik",
         bau: "Bau",
       },
-      livingCost: "Ø Lebenshaltungskosten",
+      livingCost: "Ø Lebenshaltungskosten Azubi",
       disclaimer:
-        "Historische Brutto-Beispielwerte (2024/2025), keine aktuelle Vergütungszusage. Steuern und Sozialabgaben werden nicht berechnet; die Differenz zu Lebenshaltungskosten ist kein verfügbares Nettoeinkommen.",
+        "Brutto-Orientierungswerte (2024/2025) zur Kalkulation der Ausbildungsvergütung. Die tatsächliche Vergütung richtet sich nach dem jeweiligen Tarifvertrag bzw. der gesetzlichen Mindestausbildungsvergütung (§ 17 BBiG).",
       perMonth: "pro Monat",
       surplus: "Differenz vor Steuern / Abgaben",
-      callToAction: "Starten Sie Ihre Karriere in Deutschland",
+      callToAction: "Auszubildende für Ihren Betrieb anfragen",
       unitEuro: "€",
     },
     en: {
-      subtitle: "Discover your earning potential during dual training in Germany",
-      badge: "Interactive Tool",
+      title: "Training Allowance & Cost Basis for Employers",
+      subtitle:
+        "Transparent orientation on monthly training allowances (1st–3rd year) and entry-level salaries by industry",
+      badge: "Calculation Guide for Employers",
       regionLabel: "Region",
       regions: { west: "West Germany", east: "East Germany" },
       industries: {
@@ -278,17 +283,19 @@ export function SalarySimulator() {
         mechatronik: "Mechatronics",
         bau: "Construction",
       },
-      livingCost: "Avg. Living Costs",
+      livingCost: "Avg. Trainee Living Costs",
       disclaimer:
-        "Historical gross examples (2024/2025), not a current pay offer. Tax and social contributions are not calculated; the difference from living costs is not disposable net income.",
+        "Gross reference values (2024/2025) for calculating training allowances. Actual remuneration depends on applicable collective agreements or statutory minimum training allowances (§ 17 BBiG).",
       perMonth: "per month",
       surplus: "Difference before tax / deductions",
-      callToAction: "Start your career in Germany",
+      callToAction: "Request Apprentices for Your Company",
       unitEuro: "€",
     },
     vn: {
-      subtitle: "Khám phá tiềm năng thu nhập trong chương trình đào tạo nghề tại Đức",
-      badge: "Công cụ tương tác",
+      title: "Mức phụ cấp đào tạo nghề & Cơ sở dự toán cho doanh nghiệp",
+      subtitle:
+        "Định hướng minh bạch về mức phụ cấp học nghề hàng tháng (năm 1–3) và lương khởi điểm theo ngành",
+      badge: "Công cụ dự toán cho doanh nghiệp",
       regionLabel: "Khu vực",
       regions: { west: "Tây Đức", east: "Đông Đức" },
       industries: {
@@ -297,19 +304,19 @@ export function SalarySimulator() {
         mechatronik: "Cơ điện tử",
         bau: "Xây dựng",
       },
-      livingCost: "Chi phí sinh hoạt TB",
+      livingCost: "Chi phí sinh hoạt TB học viên",
       disclaimer:
-        "Số liệu lương gộp minh họa cũ (2024/2025), không phải cam kết lương hiện tại. Chưa trừ thuế và bảo hiểm; chênh lệch với sinh hoạt phí không phải thu nhập ròng khả dụng.",
+        "Số liệu lương gộp tham khảo (2024/2025) để dự toán phụ cấp đào tạo nghề. Mức thực tế phụ thuộc vào thỏa ước lao động hoặc mức tối thiểu theo luật (§ 17 BBiG).",
       perMonth: "mỗi tháng",
       surplus: "Chênh lệch trước thuế / bảo hiểm",
-      callToAction: "Bắt đầu sự nghiệp tại Đức",
+      callToAction: "Gửi yêu cầu tuyển dụng học viên nghề",
       unitEuro: "€",
     },
   };
 
-  // Merge translations with fallback content
+  // Merge translations with B2B employer framing
   const fullContent: SimulatorContent = {
-    title: t.simulator.title,
+    title: fallbackContent[lang]?.title || t.simulator.title,
     subtitle: fallbackContent[lang]?.subtitle || "",
     badge: fallbackContent[lang]?.badge || "",
     regionLabel: fallbackContent[lang]?.regionLabel || "",
@@ -567,13 +574,13 @@ export function SalarySimulator() {
           transition={{ delay: 0.4 }}
           className="text-center mt-10"
         >
-          <a
-            href="#contact"
+          <Link
+            href="/fuer-arbeitgeber/personalbedarf?service=azubi"
             className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-medium rounded-xl shadow-lg hover:bg-primary/90 transition-all hover:shadow-xl hover:scale-105"
           >
             <GraduationCap className="h-5 w-5" />
             {t_full.callToAction}
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>

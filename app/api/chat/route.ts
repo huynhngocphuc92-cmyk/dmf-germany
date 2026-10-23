@@ -1,6 +1,8 @@
 import { SITE_URL } from "@/lib/site";
 import { GrokMessage, runWithGrokModelFallback } from "@/lib/ai/grok";
 import { runWithGeminiFallback } from "@/lib/ai/gemini";
+import { requireAdmin } from "@/lib/auth/admin";
+import { adminAuthorizationResponse } from "@/lib/auth/admin-http";
 import { getFallbackChatResponse, SupportedChatLanguage } from "@/lib/chatbot/fallback";
 import { buildKnowledgeContext } from "@/lib/chatbot/knowledge-base";
 import { PRIMARY_CONTACT } from "@/lib/company/contact";
@@ -77,7 +79,7 @@ Wechsle die Sprache nur dann, wenn der Nutzer ausdrücklich darum bittet.
 1. Sei höflich und professionell.
 2. Antworte präzise, hilfreich und strukturiert.
 3. Bei Preisfragen: Verweise auf ein individuelles Angebot. Nenne keine nicht bestätigten Preise, Gebührenmodelle oder Garantien.
-4. Bei konkreten Anfragen: Verweise auf das Anfrageformular im Chat oder das Kontaktformular unter ${SITE_URL}/#contact. Für eine gespeicherte Anfrage ist eine gültige E-Mail-Adresse erforderlich; die Telefonnummer ist optional.
+4. Bei konkreten Anfragen: Verweise auf das Anfrageformular im Chat oder das Kontaktformular unter ${SITE_URL}/fuer-arbeitgeber/personalbedarf. Für eine gespeicherte Anfrage ist eine gültige E-Mail-Adresse erforderlich; die Telefonnummer ist optional.
 5. Eine normale Chatnachricht ist noch keine bestätigte Kontaktanfrage. Versprich keinen Rückruf, keine E-Mail und keine Weiterleitung allein aufgrund von Kontaktdaten im Chat. Die Anfrage gilt erst nach der Erfolgsbestätigung des Formulars als gespeichert.
 6. Wenn du etwas nicht weißt, sage es ehrlich und verweise für eine verbindliche Antwort auf das Kontaktformular oder die Kontakt-E-Mail (${PRIMARY_CONTACT.email}).
 7. Halte Antworten prägnant (max. 3-4 Sätze pro Absatz).
@@ -85,7 +87,7 @@ Wechsle die Sprache nur dann, wenn der Nutzer ausdrücklich darum bittet.
 9. Nenne bei allgemeinen Antworten nur die Marke DMF Talents; nenne den rechtlichen Betreiber nur bei ausdrücklichen Fragen zu Impressum, Unternehmen oder Rechtlichem.
 
 ## WICHTIGE LINKS
-- Kontaktanfrage: ${SITE_URL}/#contact
+- Kontaktanfrage: ${SITE_URL}/fuer-arbeitgeber/personalbedarf
 - Beratungstermin vereinbaren: https://calendly.com/contact-dmf/30min
 - E-Mail: ${PRIMARY_CONTACT.email}
 - Website: ${SITE_URL}
@@ -237,14 +239,24 @@ export async function GET(request: NextRequest) {
   const runDiagnostics = searchParams.get("diagnostics") === "1";
 
   let xaiDiagnostic: string | null = null;
-  if (runDiagnostics && hasXai) {
+  if (runDiagnostics) {
     try {
-      const res = await runWithGrokModelFallback(process.env.XAI_API_KEY!, [
-        { role: "user", content: "Test ping" },
-      ]);
-      xaiDiagnostic = `OK (${res.modelName})`;
-    } catch (err) {
-      xaiDiagnostic = err instanceof Error ? err.message : String(err);
+      await requireAdmin();
+    } catch (error) {
+      const denied = adminAuthorizationResponse(error);
+      if (denied) return denied;
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    if (hasXai) {
+      try {
+        const res = await runWithGrokModelFallback(process.env.XAI_API_KEY!, [
+          { role: "user", content: "Test ping" },
+        ]);
+        xaiDiagnostic = `OK (${res.modelName})`;
+      } catch (err) {
+        xaiDiagnostic = err instanceof Error ? err.message : String(err);
+      }
     }
   }
 

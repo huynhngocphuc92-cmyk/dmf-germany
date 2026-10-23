@@ -1,34 +1,30 @@
-import { getSiteConfigByKey } from "@/actions/theme-actions";
+import { loadAssets } from "@/lib/theme-helpers";
 import { Header } from "@/components/Header";
 
 /**
  * Server Component wrapper for Header
- * Fetches logo URL from database and passes it to Header component
+ * Fetches logo URL and contact info from database in a single batched query
  */
 export async function HeaderWrapper() {
+  let logoUrl: string | null = null;
+  let hotline: string | null = null;
+  let email: string | null = null;
+
   try {
-    // Try to get logo from database (priority order)
-    const logoKeys = ["site_logo", "header_logo", "logo_url"];
-    let logoUrl: string | null = null;
+    const assets = await loadAssets([
+      "site_logo",
+      "header_logo",
+      "logo_url",
+      "header_hotline",
+      "contact_email",
+    ]);
 
-    for (const key of logoKeys) {
-      const { data: config } = await getSiteConfigByKey(key);
-      if (config?.value) {
-        logoUrl = config.value;
-        break;
-      }
-    }
-
-    // Also try to get hotline and email from database
-    const { data: hotlineConfig } = await getSiteConfigByKey("header_hotline");
-    const { data: emailConfig } = await getSiteConfigByKey("contact_email");
-
-    const hotline = hotlineConfig?.value || null;
-    const email = emailConfig?.value || null;
-
-    return <Header logoUrl={logoUrl} hotline={hotline} email={email} />;
+    logoUrl = assets.site_logo || assets.header_logo || assets.logo_url || null;
+    hotline = assets.header_hotline || null;
+    email = assets.contact_email || null;
   } catch (error) {
     console.error("HeaderWrapper fetch error:", error);
-    return <Header />;
   }
+
+  return <Header logoUrl={logoUrl} hotline={hotline} email={email} />;
 }

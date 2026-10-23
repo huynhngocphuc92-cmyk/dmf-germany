@@ -1,7 +1,9 @@
 "use server";
 import { revalidatePath } from "next/cache";
+import { headers } from "next/headers";
 
 import { createAdminClient as createClient } from "@/lib/auth/admin";
+import { sanitizeRichHtml } from "@/lib/sanitize";
 import {
   BlogGenerationRequest,
   GeneratedBlog,
@@ -77,16 +79,17 @@ export async function generateBlogPost(
       }
 
       const parsed = JSON.parse(jsonText);
+      const sanitizedContent = sanitizeRichHtml(parsed.content);
 
       // Calculate read time (avg 200 words per minute)
-      const wordCount = parsed.content.split(/\s+/).length;
+      const wordCount = sanitizedContent.split(/\s+/).length;
       const estimatedReadTime = Math.ceil(wordCount / 200);
 
       generatedBlog = {
         title: parsed.title,
         slug: parsed.slug,
         excerpt: parsed.excerpt,
-        content: parsed.content,
+        content: sanitizedContent,
         metaTitle: parsed.metaTitle,
         metaDescription: parsed.metaDescription,
         keywords: parsed.keywords || [],
@@ -132,7 +135,10 @@ export async function getTopicSuggestions(
     const params = new URLSearchParams({ language });
     if (category) params.append("category", category);
 
-    const response = await fetch(`${getBaseUrl()}/api/admin/blog-writer/topics?${params}`);
+    const cookie = (await headers()).get("cookie") ?? "";
+    const response = await fetch(`${getBaseUrl()}/api/admin/blog-writer/topics?${params}`, {
+      headers: { cookie },
+    });
     const result = await response.json();
 
     if (!response.ok) {
@@ -152,8 +158,12 @@ export async function searchImages(
   query: string
 ): Promise<{ success: boolean; data?: ImageSuggestion[]; error?: string }> {
   try {
+    const cookie = (await headers()).get("cookie") ?? "";
     const response = await fetch(
-      `${getBaseUrl()}/api/admin/blog-writer/images?query=${encodeURIComponent(query)}`
+      `${getBaseUrl()}/api/admin/blog-writer/images?query=${encodeURIComponent(query)}`,
+      {
+        headers: { cookie },
+      }
     );
     const result = await response.json();
 
@@ -190,7 +200,7 @@ export async function saveBlogAsDraft(
         title: blog.title,
         slug: blog.slug,
         excerpt: blog.excerpt,
-        content: blog.content,
+        content: sanitizeRichHtml(blog.content),
         meta_title: blog.metaTitle,
         meta_description: blog.metaDescription,
         status: "draft",
@@ -234,7 +244,7 @@ export async function publishBlog(
         title: blog.title,
         slug: blog.slug,
         excerpt: blog.excerpt,
-        content: blog.content,
+        content: sanitizeRichHtml(blog.content),
         meta_title: blog.metaTitle,
         meta_description: blog.metaDescription,
         status: "published",

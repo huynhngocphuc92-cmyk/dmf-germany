@@ -51,6 +51,40 @@ export function CandidatesClient({ initialCandidates, error }: CandidatesClientP
     setSelectedCandidate(null);
   };
 
+  const copy =
+    lang === "en"
+      ? {
+          title: t.candidates?.page_title || "Candidate Pool",
+          subtitle: t.candidates?.page_subtitle || "Qualified Talents for Your Organization",
+          filterLabel: "Filter:",
+          allLabel: t.candidates?.filter_all_categories || "All",
+          emptyTitle: "No matching public profiles currently listed",
+          emptyDesc:
+            "Send us your staffing requirements. We will coordinate suitable profiles and availability directly with you.",
+          emptyCta: "Discuss Staffing Needs",
+        }
+      : lang === "vn"
+        ? {
+            title: t.candidates?.page_title || "Hồ sơ Ứng viên",
+            subtitle: t.candidates?.page_subtitle || "Ứng viên Tiêu biểu dành cho Doanh nghiệp",
+            filterLabel: "Lọc:",
+            allLabel: t.candidates?.filter_all_categories || "Tất cả",
+            emptyTitle: "Hiện chưa có hồ sơ công khai phù hợp",
+            emptyDesc:
+              "Hãy gửi yêu cầu nhân sự của Quý vị. Chúng tôi sẽ đối chiếu và giới thiệu các hồ sơ phù hợp.",
+            emptyCta: "Trao đổi nhu cầu nhân sự",
+          }
+        : {
+            title: t.candidates?.page_title || "Kandidaten-Pool",
+            subtitle: t.candidates?.page_subtitle || "Unsere Top-Talente für Ihr Unternehmen",
+            filterLabel: "Filter:",
+            allLabel: t.candidates?.filter_all_categories || "Alle",
+            emptyTitle: "Aktuell keine passenden öffentlichen Profile",
+            emptyDesc:
+              "Senden Sie uns Ihren Personalbedarf. Wir klären passende Profile und Verfügbarkeit mit Ihnen.",
+            emptyCta: "Personalbedarf besprechen",
+          };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Section */}
@@ -62,9 +96,9 @@ export function CandidatesClient({ initialCandidates, error }: CandidatesClientP
                 <Users className="w-8 h-8" />
               </div>
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">Kandidaten-Pool</h1>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">{copy.title}</h1>
             <p className="text-lg md:text-xl opacity-90 max-w-2xl mx-auto leading-relaxed">
-              Unsere Top-Talente für Ihr Unternehmen
+              {copy.subtitle}
             </p>
           </div>
         </div>
@@ -75,14 +109,14 @@ export function CandidatesClient({ initialCandidates, error }: CandidatesClientP
         <section className="py-6 bg-white border-b border-gray-200">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap items-center gap-3">
-              <span className="text-sm font-medium text-gray-700 mr-2">Filter:</span>
+              <span className="text-sm font-medium text-gray-700 mr-2">{copy.filterLabel}</span>
               <Button
                 variant={selectedCategory === "all" ? "default" : "outline"}
                 size="sm"
                 onClick={() => setSelectedCategory("all")}
                 className="text-sm"
               >
-                Alle
+                {copy.allLabel}
               </Button>
               {availableCategories.map((cat) => (
                 <Button
@@ -118,15 +152,13 @@ export function CandidatesClient({ initialCandidates, error }: CandidatesClientP
           ) : filteredCandidates.length === 0 ? (
             <div className="text-center py-16">
               <Users className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                Aktuell keine passenden öffentlichen Profile
-              </h3>
-              <p className="text-gray-600">
-                Senden Sie uns Ihren Personalbedarf. Wir klären passende Profile und Verfügbarkeit
-                mit Ihnen.
-              </p>
-              <Link href="/#contact" className="inline-block mt-5 text-primary underline">
-                Personalbedarf besprechen
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">{copy.emptyTitle}</h3>
+              <p className="text-gray-600">{copy.emptyDesc}</p>
+              <Link
+                href="/fuer-arbeitgeber/personalbedarf"
+                className="inline-block mt-5 text-primary underline font-medium"
+              >
+                {copy.emptyCta}
               </Link>
             </div>
           ) : (

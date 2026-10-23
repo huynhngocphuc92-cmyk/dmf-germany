@@ -31,14 +31,11 @@ import {
 } from "./nav-data";
 
 interface MobileMenuProps {
-  onContactClick: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+  onContactClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
   isScrolled?: boolean;
 }
 
-export const MobileMenu = memo(function MobileMenu({
-  onContactClick,
-  isScrolled = false,
-}: MobileMenuProps) {
+export const MobileMenu = memo(function MobileMenu({ isScrolled = false }: MobileMenuProps) {
   const { t, lang } = useLanguage();
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
@@ -287,11 +284,8 @@ export const MobileMenu = memo(function MobileMenu({
               </Link>
 
               <Link
-                href="/#contact"
-                onClick={(e) => {
-                  closeMenu();
-                  onContactClick(e);
-                }}
+                href="/fuer-arbeitgeber/personalbedarf"
+                onClick={closeMenu}
                 className="text-lg font-medium py-2 text-primary font-semibold"
               >
                 {t.header.contact}

@@ -23,8 +23,10 @@ export interface TimelineConfig {
 
 export interface IndustryTimelineConfig {
   label: string;
+  labelEn: string;
+  labelVn: string;
   recognition?: number; // Override recognition/visa duration for this industry (in weeks)
-  schoolSearch?: number; // For Azubi: school search duration override
+  schoolSearch?: number; // For Azubi: chamber registration & school enrollment duration override
   zav?: number; // For Seasonal: ZAV approval duration override
 }
 
@@ -56,18 +58,26 @@ export const TIMELINE_DATA: TimelineDataConfig = {
     industries: {
       pflege: {
         label: "Pflege & Medizin",
+        labelEn: "Nursing & Healthcare",
+        labelVn: "Điều dưỡng & Y tế",
         recognition: 16, // Medical recognition usually takes longer
       },
       handwerk: {
         label: "Handwerk & Bau",
+        labelEn: "Crafts & Construction",
+        labelVn: "Thủ công & Xây dựng",
         recognition: 10,
       },
       it: {
         label: "IT & Technik",
+        labelEn: "IT & Engineering",
+        labelVn: "CNTT & Kỹ thuật",
         recognition: 4, // IT is often faster via Blue Card paths
       },
       gastro: {
         label: "Hotel & Gastro",
+        labelEn: "Hotel & Gastronomy",
+        labelVn: "Khách sạn & Nhà hàng",
         recognition: 8,
       },
     },
@@ -77,19 +87,25 @@ export const TIMELINE_DATA: TimelineDataConfig = {
     defaultDuration: {
       recruit: 4, // Recruitment
       docs: 4, // Document preparation
-      schoolSearch: 8, // School placement search
+      schoolSearch: 4, // IHK/HWK registration & vocational school enrollment
       visa: 6, // Visa processing
       einreise: 1, // Arrival and work start
     },
     industries: {
       pflege: {
         label: "Pflege (Azubi)",
+        labelEn: "Nursing (Apprentice)",
+        labelVn: "Điều dưỡng (Học nghề)",
       },
       gastro: {
         label: "Hotel/Küche (Azubi)",
+        labelEn: "Hotel/Kitchen (Apprentice)",
+        labelVn: "Khách sạn/Bếp (Học nghề)",
       },
       handwerk: {
         label: "Handwerk (Azubi)",
+        labelEn: "Crafts (Apprentice)",
+        labelVn: "Thủ công (Học nghề)",
       },
     },
   },
@@ -105,12 +121,18 @@ export const TIMELINE_DATA: TimelineDataConfig = {
     industries: {
       agriculture: {
         label: "Landwirtschaft",
+        labelEn: "Agriculture",
+        labelVn: "Nông nghiệp",
       },
       logistics: {
         label: "Lager & Logistik",
+        labelEn: "Warehousing & Logistics",
+        labelVn: "Kho bãi & Logistics",
       },
       service: {
         label: "Service & Gastro",
+        labelEn: "Service & Gastronomy",
+        labelVn: "Dịch vụ & Nhà hàng",
       },
     },
   },
@@ -176,8 +198,10 @@ export const getTimelineSteps = (
           labelKey: "timeline_step_visum",
           durationWeeks: recognitionDuration,
           durationWeeksAccelerated: Math.max(6, Math.floor(recognitionWeeks * 0.5)),
-          description: "Visaantrag und Qualifikationsanerkennung",
-          descriptionKey: "timeline_step_visum_desc",
+          description: isAccelerated
+            ? "Beschleunigtes Verfahren (§ 81a AufenthG)"
+            : "Visaantrag und Qualifikationsanerkennung",
+          descriptionKey: isAccelerated ? undefined : "timeline_step_visum_desc",
           icon: "IdCard",
         },
         {
@@ -193,6 +217,10 @@ export const getTimelineSteps = (
     }
 
     case "azubi": {
+      const baseVisa = productData.defaultDuration.visa;
+      const acceleratedVisa = Math.max(4, baseVisa - 2);
+      const visaDuration = isAccelerated ? acceleratedVisa : baseVisa;
+
       return [
         {
           id: "auftrag",
@@ -214,10 +242,10 @@ export const getTimelineSteps = (
         },
         {
           id: "schoolSearch",
-          label: "Schulplatzsuche",
+          label: "IHK/HWK & Berufsschule",
           labelKey: "timeline_step_school",
-          durationWeeks: productData.defaultDuration.schoolSearch || 8,
-          description: "Suche nach Ausbildungsplatz",
+          durationWeeks: productData.defaultDuration.schoolSearch || 4,
+          description: "Eintragung Ausbildungsvertrag & Berufsschulanmeldung",
           descriptionKey: "timeline_step_school_desc",
           icon: "School",
         },
@@ -225,9 +253,12 @@ export const getTimelineSteps = (
           id: "visum",
           label: "Visum & Genehmigung",
           labelKey: "timeline_step_visum",
-          durationWeeks: productData.defaultDuration.visa,
-          description: "Visaantrag für Auszubildende",
-          descriptionKey: "timeline_step_visum_desc",
+          durationWeeks: visaDuration,
+          durationWeeksAccelerated: acceleratedVisa,
+          description: isAccelerated
+            ? "Beschleunigtes Verfahren (§ 81a AufenthG)"
+            : "Visaantrag für Auszubildende (§ 16a AufenthG)",
+          descriptionKey: isAccelerated ? undefined : "timeline_step_visum_desc",
           icon: "IdCard",
         },
         {

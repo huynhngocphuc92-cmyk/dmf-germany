@@ -30,14 +30,18 @@ export function AdminLayoutClient({ user, children }: AdminLayoutClientProps) {
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-slate-50 print:bg-white">
       {/* Sidebar - Desktop (AdminSidebar already has fixed positioning) */}
-      {isDesktop && <AdminSidebar />}
+      {isDesktop && (
+        <div className="print:hidden">
+          <AdminSidebar />
+        </div>
+      )}
 
       {/* Mobile Sidebar Overlay */}
       {isMobileMenuOpen && !isDesktop && (
         <div
-          className="fixed inset-0 z-[45] bg-black/50"
+          className="fixed inset-0 z-[45] bg-black/50 print:hidden"
           onClick={() => setIsMobileMenuOpen(false)}
         />
       )}
@@ -53,7 +57,7 @@ export function AdminLayoutClient({ user, children }: AdminLayoutClientProps) {
             }
           }}
           className={cn(
-            "fixed inset-y-0 left-0 z-[50] w-[260px] transition-transform duration-300",
+            "fixed inset-y-0 left-0 z-[50] w-[260px] transition-transform duration-300 print:hidden",
             isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
           )}
         >
@@ -61,13 +65,17 @@ export function AdminLayoutClient({ user, children }: AdminLayoutClientProps) {
         </div>
       )}
 
-      {/* Main Content - pushed right on desktop */}
+      {/* Main Content - pushed right on desktop, full width on print */}
       <div
-        className="min-h-screen transition-all duration-300"
-        style={{ marginLeft: isDesktop ? "260px" : "0" }}
+        className={cn(
+          "min-h-screen transition-all duration-300 print:ml-0",
+          isDesktop ? "ml-[260px]" : "ml-0"
+        )}
       >
-        <AdminHeader user={user} onMenuClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} />
-        <main className="p-4 lg:p-6 mt-10">{children}</main>
+        <div className="print:hidden">
+          <AdminHeader user={user} onMenuClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} />
+        </div>
+        <main className="p-4 lg:p-6 mt-10 print:p-0 print:mt-0">{children}</main>
       </div>
     </div>
   );

@@ -12,17 +12,37 @@ interface AboutSectionProps {
 }
 
 export const AboutSection = ({ introImg, videoThumb }: AboutSectionProps = {}) => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   // Use video thumbnail if available, otherwise use intro image
   const displayImage = videoThumb || introImg;
   const icons = [BookOpen, Globe2, UserCheck];
 
-  // Dynamic stats from translations
+  // Consistent process & program pillars across the homepage
   const stats = [
-    { value: "500+", label: t.about.stat_candidates },
-    { value: "50+", label: t.about.stat_partners },
-    { value: "98%", label: t.about.stat_success },
+    {
+      value: "B1–B2",
+      label:
+        lang === "en" ? "Language Standard" : lang === "vn" ? "Chuẩn ngoại ngữ" : "Sprachstandard",
+    },
+    {
+      value: "§ 81a",
+      label:
+        lang === "en"
+          ? "Fast-Track Process"
+          : lang === "vn"
+            ? "Quy trình nhanh"
+            : "Fast-Track Verfahren",
+    },
+    {
+      value: "A–Z",
+      label:
+        lang === "en"
+          ? "End-to-End Support"
+          : lang === "vn"
+            ? "Đồng hành trọn gói"
+            : "Komplettbegleitung",
+    },
   ];
 
   // Features from translations

@@ -26,6 +26,18 @@ export type { Post, PostFormData, PostStatus } from "@/app/admin/posts/types";
 
 export type { Inquiry, InquiryStatus, InquiryType } from "@/app/admin/requests/types";
 
+export type {
+  ProgramTrack,
+  PortalSyncStatus,
+  DocumentVariant,
+  DocumentVerificationStatus,
+  DocumentTypeKey,
+  StudentProfile,
+  StudentDocument,
+  StudentMotivationLetter,
+  StudentInviteCode,
+} from "@/lib/portal/types";
+
 // ============================================
 // DATABASE TABLE TYPES (Manual definitions)
 // ============================================
@@ -66,13 +78,21 @@ export interface SiteAsset {
  * - inquiries: Contact form submissions
  * - site_config: Site configuration
  * - site_assets: Uploaded assets
+ * - student_invite_codes: Invite codes for student AI features
+ * - student_profiles: Student portal profiles & staged CV data
+ * - student_documents: Student uploaded documents & OCR results
+ * - student_motivation_letters: Multi-version DIN 5008 letters
  */
 export type DatabaseTables =
   | "candidates"
   | "posts"
   | "inquiries"
   | "site_config"
-  | "site_assets";
+  | "site_assets"
+  | "student_invite_codes"
+  | "student_profiles"
+  | "student_documents"
+  | "student_motivation_letters";
 
 // ============================================
 // SUPABASE CLIENT TYPES

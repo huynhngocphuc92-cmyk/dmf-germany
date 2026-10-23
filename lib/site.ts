@@ -26,7 +26,12 @@ export function pageMetadata(path: string, title: string, description: string): 
       url: siteUrl(path),
       images: [{ url: siteUrl("/opengraph-image"), width: 1200, height: 630 }],
     },
-    twitter: { card: "summary_large_image", title: socialTitle, description },
+    twitter: {
+      card: "summary_large_image",
+      title: socialTitle,
+      description,
+      images: [siteUrl("/opengraph-image")],
+    },
   };
 }
 
@@ -47,7 +52,6 @@ export const PUBLIC_ROUTES = [
   "/fuer-arbeitgeber/kandidaten",
   "/fuer-arbeitgeber/personalbedarf",
   "/roi-rechner",
-  "/fuer-arbeitgeber/roi-rechner",
   "/fuer-arbeitgeber/zeitplan",
   "/referenzen",
   "/blog",

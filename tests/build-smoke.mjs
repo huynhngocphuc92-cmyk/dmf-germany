@@ -323,7 +323,6 @@ try {
     "/ueber-uns/skilled-workers",
     "/fuer-arbeitgeber/kandidaten",
     "/fuer-arbeitgeber/personalbedarf",
-    "/fuer-arbeitgeber/roi-rechner",
     "/fuer-arbeitgeber/zeitplan",
     "/roi-rechner",
     "/referenzen",
@@ -332,6 +331,12 @@ try {
     "/datenschutz",
     "/blog/fixture-current",
   ];
+  const roiRedirect = await fetch(`${base}/fuer-arbeitgeber/roi-rechner`, { redirect: "manual" });
+  assert.equal(roiRedirect.status, 308, "/fuer-arbeitgeber/roi-rechner must 308 redirect");
+  assert.ok(
+    roiRedirect.headers.get("location")?.endsWith("/roi-rechner"),
+    "/fuer-arbeitgeber/roi-rechner redirect target"
+  );
   for (const path of publicPaths) {
     const response = await fetch(`${base}${path}`, { headers: { "User-Agent": "Googlebot" } });
     assert.equal(response.status, 200, path);
@@ -392,7 +397,7 @@ try {
   assert.equal((await fetch(`${base}/blog/fixture-current`)).status, 404);
   assert.ok(!(await (await fetch(`${base}/sitemap.xml`)).text()).includes("/blog/fixture-current"));
   process.stdout.write(
-    "PASS M2/M3: 17 canonical/OG/title pages, no sample profiles/videos, robots/login, sitemap, 308 alias and unpublished 404s\n"
+    "PASS M2/M3: 16 canonical/OG/title pages + 308 ROI redirect, no sample profiles/videos, robots/login, sitemap, 308 alias and unpublished 404s\n"
   );
   for (const path of ["/api/chat/history", "/api/leads"]) {
     const response = await fetch(`${base}${path}`);

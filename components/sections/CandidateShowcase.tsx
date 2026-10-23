@@ -53,7 +53,7 @@ export const CandidateShowcase = ({ candidates = [] }: CandidateShowcaseProps) =
     if (candidate.german_level) {
       badges.push({
         icon: "🇩🇪",
-        text: `Deutsch ${candidate.german_level}`,
+        text: `${lang === "en" ? "German" : lang === "vn" ? "Tiếng Đức" : "Deutsch"} ${candidate.german_level}`,
       });
     }
 
@@ -108,7 +108,6 @@ export const CandidateShowcase = ({ candidates = [] }: CandidateShowcaseProps) =
                     fill
                     sizes="128px"
                     className="object-cover"
-                    unoptimized={currentCandidate.avatar_url.startsWith("http")}
                   />
                 </div>
               ) : (

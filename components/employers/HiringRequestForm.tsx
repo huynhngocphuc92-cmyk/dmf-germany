@@ -1,5 +1,5 @@
 "use client";
-import { useId, useState, type ReactNode } from "react";
+import { useEffect, useId, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -64,6 +64,7 @@ export function HiringRequestForm({
     handleSubmit,
     reset,
     setValue,
+    getValues,
     formState: { errors, isSubmitting },
   } = useForm<HiringFormValues>({
     resolver: zodResolver(hiringFormSchema),
@@ -81,6 +82,15 @@ export function HiringRequestForm({
       bot_check: "",
     },
   });
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    const notes = params.get("notes");
+    if (notes && !getValues("message")) {
+      setValue("message", notes, { shouldValidate: true });
+    }
+  }, [getValues, setValue]);
   const id = (name: string) => `${prefix}-${name}`;
   const input =
     "w-full min-h-12 rounded-lg border border-input bg-background px-3 py-3 text-base focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary aria-invalid:border-red-600";
@@ -365,19 +375,43 @@ export function HiringRequestForm({
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-border/80 text-xs text-muted-foreground">
           <div className="flex items-center gap-1.5">
             <CheckCircle2 className="h-4 w-4 text-emerald-600 flex-shrink-0" />
-            <span>100% FEG & § 296a SGB III konform</span>
+            <span>
+              {lang === "en"
+                ? "FEG & §§ 296, 297 SGB III compliant"
+                : lang === "vn"
+                  ? "Tuân thủ FEG & §§ 296, 297 SGB III"
+                  : "FEG & §§ 296, 297 SGB III konform"}
+            </span>
           </div>
           <div className="flex items-center gap-1.5">
             <CheckCircle2 className="h-4 w-4 text-emerald-600 flex-shrink-0" />
-            <span>Erfolgsbasiertes Honorar</span>
+            <span>
+              {lang === "en"
+                ? "Success-based fee structure"
+                : lang === "vn"
+                  ? "Chi phí gắn với kết quả"
+                  : "Erfolgsbasiertes Honorar"}
+            </span>
           </div>
           <div className="flex items-center gap-1.5">
             <CheckCircle2 className="h-4 w-4 text-emerald-600 flex-shrink-0" />
-            <span>Kostenlose Ersatzgarantie</span>
+            <span>
+              {lang === "en"
+                ? "Contractually regulated replacement"
+                : lang === "vn"
+                  ? "Cam kết thay thế theo hợp đồng"
+                  : "Vertraglich geregelte Nachbesetzung"}
+            </span>
           </div>
           <div className="flex items-center gap-1.5">
             <CheckCircle2 className="h-4 w-4 text-emerald-600 flex-shrink-0" />
-            <span>DSGVO-Datenschutz</span>
+            <span>
+              {lang === "en"
+                ? "GDPR Data Protection"
+                : lang === "vn"
+                  ? "Bảo mật dữ liệu DSGVO"
+                  : "DSGVO-Datenschutz"}
+            </span>
           </div>
         </div>
       </form>

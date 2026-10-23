@@ -107,14 +107,14 @@ export default function ZeitplanPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/#contact"
+                href="/fuer-arbeitgeber/personalbedarf"
                 className="px-8 py-4 bg-white text-primary rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg flex items-center justify-center gap-2"
               >
                 {t.timeline?.cta_contact || "Jetzt kontaktieren"}
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <Link
-                href="/fuer-arbeitgeber/roi-rechner"
+                href="/roi-rechner"
                 className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-lg font-semibold hover:bg-white/10 transition-colors flex items-center justify-center gap-2"
               >
                 {t.timeline?.cta_costs || "Kosten berechnen"}

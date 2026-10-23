@@ -130,7 +130,7 @@ export default function Footer() {
             <p className="text-xs md:text-sm mb-1.5 md:mb-2">
               <span className="text-slate-400">{t.footer.hotline_label}</span>{" "}
               <a
-                href={`tel:${t.footer.phone.replace(/\\s/g, "")}`}
+                href={`tel:${t.footer.phone.replace(/\s+/g, "")}`}
                 className="hover:text-white transition underline"
               >
                 {t.footer.phone}

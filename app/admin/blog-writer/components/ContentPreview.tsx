@@ -1,5 +1,6 @@
 "use client";
 import { SITE_URL } from "@/lib/site";
+import { sanitizeRichHtml } from "@/lib/sanitize";
 
 import { useState } from "react";
 import { FileText, Copy, Check, Edit3, Save, ExternalLink, Clock, Hash } from "lucide-react";
@@ -151,7 +152,7 @@ export function ContentPreview({ blog, onEdit }: ContentPreviewProps) {
         ) : (
           <div
             className="prose prose-slate max-w-none"
-            dangerouslySetInnerHTML={{ __html: blog.content }}
+            dangerouslySetInnerHTML={{ __html: sanitizeRichHtml(blog.content) }}
           />
         )}
       </div>

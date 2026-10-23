@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { promises as fs } from "fs";
+import { escapeHtml } from "@/lib/sanitize";
 
 /**
  * GET /api/unsubscribe?email=xxx&pid=123
@@ -13,6 +14,7 @@ import { promises as fs } from "fs";
 
 const UNSUB_LOG = "/tmp/unsubscribes.json";
 const WEBHOOK_URL = process.env.UNSUB_WEBHOOK_URL; // Optional: forward to local server
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 interface UnsubEntry {
   email: string;
@@ -58,14 +60,17 @@ async function forwardToWebhook(entry: UnsubEntry) {
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
-  const email = searchParams.get("email");
+  const email = searchParams.get("email")?.trim();
   const partnerId = searchParams.get("pid") || searchParams.get("id");
 
-  if (!email) {
-    return new NextResponse(generateHTML("Fehler", "Keine E-Mail-Adresse angegeben.", "#ef4444"), {
-      status: 400,
-      headers: { "Content-Type": "text/html; charset=utf-8" },
-    });
+  if (!email || !EMAIL_REGEX.test(email)) {
+    return new NextResponse(
+      generateHTML("Fehler", "Keine gültige E-Mail-Adresse angegeben.", "#ef4444"),
+      {
+        status: 400,
+        headers: { "Content-Type": "text/html; charset=utf-8" },
+      }
+    );
   }
 
   const entry: UnsubEntry = {
@@ -78,10 +83,12 @@ export async function GET(request: NextRequest) {
   // Log and forward in parallel
   await Promise.all([logUnsubscribe(entry), forwardToWebhook(entry)]);
 
+  const safeEmail = escapeHtml(email);
+
   return new NextResponse(
     generateHTML(
       "✅ Erfolgreich abgemeldet",
-      `Sie erhalten keine weiteren E-Mails von uns an <strong>${email}</strong>.`,
+      `Sie erhalten keine weiteren E-Mails von uns an <strong>${safeEmail}</strong>.`,
       "#10b981"
     ),
     { status: 200, headers: { "Content-Type": "text/html; charset=utf-8" } }
@@ -92,15 +99,16 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
+    const rawEmail = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
     const entry: UnsubEntry = {
-      email: (body.email || "").toLowerCase(),
+      email: rawEmail,
       partnerId: body.partnerId || body.pid || null,
       timestamp: new Date().toISOString(),
       ip: request.headers.get("x-forwarded-for"),
     };
 
-    if (!entry.email) {
-      return NextResponse.json({ error: "Missing email" }, { status: 400 });
+    if (!entry.email || !EMAIL_REGEX.test(entry.email)) {
+      return NextResponse.json({ error: "Missing or invalid email" }, { status: 400 });
     }
 
     await logUnsubscribe(entry);
@@ -114,8 +122,8 @@ export async function POST(request: NextRequest) {
 export async function PUT(request: NextRequest) {
   // Simple auth check
   const auth = request.headers.get("authorization");
-  const expectedKey = process.env.UNSUB_API_KEY || "dmf-unsub-key";
-  if (auth !== `Bearer ${expectedKey}`) {
+  const expectedKey = process.env.UNSUB_API_KEY?.trim();
+  if (!expectedKey || auth !== `Bearer ${expectedKey}`) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
