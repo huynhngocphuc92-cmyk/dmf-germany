@@ -64,4 +64,7 @@ export const RATE_LIMITS = {
   CHAT: { limit: 20, windowSeconds: 60 },
   API: { limit: 30, windowSeconds: 60 },
   BLOG_GENERATION: { limit: 10, windowSeconds: 3600 },
+  // Portal học viên: chống dò mã mời (theo tài khoản) và đốt chi phí AI.
+  PORTAL_INVITE: { limit: 10, windowSeconds: 3600 },
+  PORTAL_AI: { limit: 20, windowSeconds: 3600 },
 } as const;

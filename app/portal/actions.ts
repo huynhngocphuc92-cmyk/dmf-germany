@@ -25,6 +25,33 @@ import type {
   StudentMotivationLetter,
   StudentProfile,
 } from "@/lib/portal/types";
+import { checkRateLimit, RATE_LIMITS } from "@/lib/rate-limit";
+import {
+  signStudentDocumentUrls,
+  signStudentFilePath,
+  signStudentVideoUrl,
+} from "@/lib/portal/storage";
+
+const AI_RATE_LIMIT_MESSAGE = "Bạn đã dùng hết lượt AI trong 1 giờ. Vui lòng thử lại sau.";
+
+/**
+ * Giới hạn lượt theo tài khoản cho các thao tác nhạy cảm của Portal.
+ * Backend rate-limit gặp sự cố thì chặn luôn (fail-closed), giống intake.
+ */
+async function portalRateLimitBlocked(
+  scope: "portal-ai" | "portal-invite",
+  userId: string
+): Promise<boolean> {
+  try {
+    const result = await checkRateLimit(
+      `${scope}:${userId}`,
+      scope === "portal-ai" ? RATE_LIMITS.PORTAL_AI : RATE_LIMITS.PORTAL_INVITE
+    );
+    return !result.success;
+  } catch {
+    return true;
+  }
+}
 
 function buildDefaultProfile(user: {
   id: string;
@@ -341,9 +368,16 @@ export async function getOrCreateStudentPortalBundle(): Promise<{
         .order("created_at", { ascending: false }),
     ]);
 
+    // Bucket student-documents là private: ký lại URL ngắn hạn cho mọi file.
+    const documents = await signStudentDocumentUrls(
+      supabase,
+      (docsRes.data as StudentDocument[]) || []
+    );
+    profile.video_url = await signStudentVideoUrl(supabase, profile.video_url);
+
     return {
       profile,
-      documents: (docsRes.data as StudentDocument[]) || [],
+      documents,
       letters: (lettersRes.data as StudentMotivationLetter[]) || [],
       isAdmin,
     };
@@ -370,6 +404,14 @@ export async function redeemStudentInviteCode(
       data: { user },
     } = await supabase.auth.getUser();
     if (!user) return { success: false, error: "Vui lòng đăng nhập lại." };
+
+    // Chống dò mã mời: tối đa 10 lần thử / tài khoản / giờ.
+    if (await portalRateLimitBlocked("portal-invite", user.id)) {
+      return {
+        success: false,
+        error: "Bạn đã thử quá nhiều lần. Vui lòng đợi 1 giờ rồi thử lại.",
+      };
+    }
 
     const { data, error } = await supabase.rpc("dmf_redeem_student_code", {
       p_code: code.trim(),
@@ -480,6 +522,9 @@ export async function runAiCvStandardization(): Promise<{
       error: "Vui lòng nhập Mã Học Viên DMF hoặc chờ Admin mở khoá tính năng AI.",
     };
   }
+  if (await portalRateLimitBlocked("portal-ai", profile.user_id)) {
+    return { success: false, error: AI_RATE_LIMIT_MESSAGE };
+  }
 
   const standardized = await translateAndStandardizeCVEntries({
     targetProfession: profile.target_profession,
@@ -520,6 +565,9 @@ export async function generateAndSaveMotivationLetter(input: unknown): Promise<{
       error:
         "Tính năng AI viết Motivationsschreiben chuẩn DIN 5008 yêu cầu mở khoá Mã Học Viên DMF.",
     };
+  }
+  if (await portalRateLimitBlocked("portal-ai", profile.user_id)) {
+    return { success: false, error: AI_RATE_LIMIT_MESSAGE };
   }
 
   const parsed = studentMotivationLetterSchema.safeParse(input);
@@ -669,6 +717,9 @@ export async function generateAiInterviewKitAction(): Promise<{
         "Vui lòng mở khoá Mã Học Viên DMF để tạo Kịch bản Teleprompter & Bộ câu hỏi phỏng vấn AI.",
     };
   }
+  if (await portalRateLimitBlocked("portal-ai", profile.user_id)) {
+    return { success: false, error: AI_RATE_LIMIT_MESSAGE };
+  }
 
   const kit = await generateInterviewPrepKit(profile);
   const supabase = await createClient();
@@ -729,30 +780,30 @@ export async function uploadStudentDocumentAction(formData: FormData): Promise<{
     const ext = file.name.split(".").pop() || "pdf";
     const storagePath = `portal/${profile.user_id}/${docType}-${variant}-${Date.now()}.${ext}`;
 
-    // Try uploading to student-documents bucket (fallback to candidates bucket or metadata path)
-    let publicUrl: string | null = null;
+    // Bucket student-documents là private: lưu signed URL (app sẽ ký lại khi đọc).
+    let storedUrl: string | null = null;
     const { error: uploadErr } = await supabase.storage
       .from("student-documents")
       .upload(storagePath, file, { upsert: true });
 
     if (!uploadErr) {
-      const { data: urlData } = supabase.storage
-        .from("student-documents")
-        .getPublicUrl(storagePath);
-      publicUrl = urlData.publicUrl;
+      storedUrl = await signStudentFilePath(supabase, storagePath);
     }
 
-    const ocrResult =
-      profile.ai_enabled || isAdmin
-        ? await inspectStudentDocument({
-            profile,
-            docType,
-            variant,
-            fileName: file.name,
-            fileSize: file.size,
-            mimeType: file.type,
-          })
-        : null;
+    // OCR cũng là lượt gọi AI: tính chung vào hạn mức AI của tài khoản.
+    const aiAllowed =
+      (profile.ai_enabled || isAdmin) &&
+      !(await portalRateLimitBlocked("portal-ai", profile.user_id));
+    const ocrResult = aiAllowed
+      ? await inspectStudentDocument({
+          profile,
+          docType,
+          variant,
+          fileName: file.name,
+          fileSize: file.size,
+          mimeType: file.type,
+        })
+      : null;
 
     const { data: savedDoc, error: dbErr } = await supabase
       .from("student_documents")
@@ -764,7 +815,7 @@ export async function uploadStudentDocumentAction(formData: FormData): Promise<{
           variant,
           file_name: file.name,
           file_path: storagePath,
-          file_url: publicUrl,
+          file_url: storedUrl,
           file_size: file.size,
           mime_type: file.type,
           ocr_data: ocrResult,
@@ -864,6 +915,10 @@ export async function uploadRecordedIntroVideoAction(formData: FormData): Promis
       };
     }
 
+    if (file.type && !["video/webm", "video/mp4"].includes(file.type)) {
+      return { success: false, error: "Chỉ chấp nhận video định dạng WebM hoặc MP4." };
+    }
+
     const supabase = await createClient();
     const ext = file.type.includes("mp4") ? "mp4" : "webm";
     const storagePath = `portal/${profile.user_id}/selbstvorstellung-${Date.now()}.${ext}`;
@@ -880,12 +935,14 @@ export async function uploadRecordedIntroVideoAction(formData: FormData): Promis
       return {
         success: false,
         error:
-          "Chưa thể tải trực tiếp lên Storage (hãy tải file video về máy và dán link YouTube Unlisted, hoặc tạo bucket 'student-documents').",
+          "Chưa thể tải trực tiếp lên Storage. Hãy tải file video về máy và dán link YouTube Unlisted thay thế.",
       };
     }
 
-    const { data: urlData } = supabase.storage.from("student-documents").getPublicUrl(storagePath);
-    const videoUrl = urlData.publicUrl;
+    const videoUrl = await signStudentFilePath(supabase, storagePath);
+    if (!videoUrl) {
+      return { success: false, error: "Đã tải file nhưng không thể tạo link xem video." };
+    }
 
     const { data: updatedProfile, error: dbErr } = await supabase
       .from("student_profiles")
@@ -930,6 +987,9 @@ export async function evaluateInterviewAnswerAction(input: {
         success: false,
         error: "Vui lòng mở khoá Mã Học Viên DMF để sử dụng AI chấm điểm phỏng vấn tiếng Đức.",
       };
+    }
+    if (await portalRateLimitBlocked("portal-ai", profile.user_id)) {
+      return { success: false, error: AI_RATE_LIMIT_MESSAGE };
     }
 
     const cleanAnswer = (input.studentAnswerDe || "").trim();

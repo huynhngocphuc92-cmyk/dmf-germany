@@ -9,13 +9,21 @@ Scans all 74 published blog posts in Supabase to detect:
 4. Generic corporate fluff lacking specific numbers, § paragraphs, or concrete procedures.
 """
 
+import os
+import sys
 import re
 import json
 import urllib.request
 from collections import defaultdict
 
-SUPABASE_URL = "https://iihprcuhmilmymlbktpy.supabase.co"
-SERVICE_ROLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlpaHByY3VobWlsbXltbGJrdHB5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2NzYwNTk4MiwiZXhwIjoyMDgzMTgxOTgyfQ.JbraSUKjSW4iN1FV-bvBfL1CO943dk29ThQcD3ya0vQ"
+SUPABASE_URL = os.environ.get("SUPABASE_URL", "")
+SERVICE_ROLE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
+if not SUPABASE_URL or not SERVICE_ROLE_KEY:
+    sys.exit(
+        "Missing environment variables: set SUPABASE_URL and "
+        "SUPABASE_SERVICE_ROLE_KEY before running this audit script. "
+        "Keys must never be hardcoded in the repository."
+    )
 
 # List of typical German AI clichés and buzzwords with regex patterns
 AI_PATTERNS = [

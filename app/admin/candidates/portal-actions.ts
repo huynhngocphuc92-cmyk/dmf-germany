@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { requireAdmin } from "@/lib/auth/admin";
+import { signStudentDocumentUrls, signStudentVideoUrl } from "@/lib/portal/storage";
 import { PROGRAM_TRACK_CONFIG } from "@/lib/portal/types";
 import type {
   DocumentVerificationStatus,
@@ -31,9 +32,21 @@ export async function getAdminPortalOverview(): Promise<{
       supabase.from("student_invite_codes").select("*").order("created_at", { ascending: false }),
     ]);
 
+    // Bucket student-documents là private: ký lại URL ngắn hạn trước khi trả về.
+    const documents = await signStudentDocumentUrls(
+      supabase,
+      (docsRes.data as StudentDocument[]) || []
+    );
+    const profiles = await Promise.all(
+      ((profilesRes.data as StudentProfile[]) || []).map(async (profile) => ({
+        ...profile,
+        video_url: await signStudentVideoUrl(supabase, profile.video_url),
+      }))
+    );
+
     return {
-      profiles: (profilesRes.data as StudentProfile[]) || [],
-      documents: (docsRes.data as StudentDocument[]) || [],
+      profiles,
+      documents,
       letters: (lettersRes.data as StudentMotivationLetter[]) || [],
       inviteCodes: (codesRes.data as StudentInviteCode[]) || [],
     };
@@ -56,8 +69,8 @@ export async function createStudentInviteCodeAction(input: {
   try {
     const { supabase, user } = await requireAdmin();
     const cleanCode = input.code.trim().toUpperCase();
-    if (cleanCode.length < 4 || cleanCode.length > 40) {
-      return { success: false, error: "Mã học viên phải từ 4 đến 40 ký tự." };
+    if (cleanCode.length < 8 || cleanCode.length > 40) {
+      return { success: false, error: "Mã học viên phải từ 8 đến 40 ký tự." };
     }
 
     const { data, error } = await supabase
