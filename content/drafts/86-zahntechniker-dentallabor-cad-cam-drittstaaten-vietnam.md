@@ -73,3 +73,5 @@ Neben digitaler Kompetenz steht der Gesundheitsschutz im Dentallabor an oberster
 DMF Talents prüft vorab alle Zeugnisse und Curricula, führt handwerkliche Praxistests vor Ort in Vietnam durch und organisiert den vollständigen Visumsantrag.
 
 Erfahren Sie mehr über unsere Betreuungsstandards auf der Seite [Für Arbeitgeber: Handwerk & Industrie](/services/skilled-workers).
+
+Dentallabore brauchen Zahntechniker mit CAD/CAM-Erfahrung. Wenn Ihr Labor eine Stelle besetzen möchte, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und beschreiben Sie Technik und Materialien. Zum zahnärztlichen Assistenzbereich passt [ZFA aus Vietnam für Zahnarztpraxen: Anerkennung & ZHKG](/blog/zahnmedizinische-fachangestellte-zfa-praxen-vietnam-anerkennung).

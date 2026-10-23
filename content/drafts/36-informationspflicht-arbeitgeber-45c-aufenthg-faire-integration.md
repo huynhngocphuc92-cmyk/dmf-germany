@@ -63,3 +63,5 @@ Um das Haftungsrisiko vollständig auszuschließen, sollten Personalverantwortli
 4. **Rechtssichere Ablage:** Heften Sie den Nachweis dauerhaft in der Personalakte ab, um bei Betriebsprüfungen der Rentenversicherung oder der Zollverwaltung (Finanzkontrolle Schwarzarbeit) lückenlose Nachweise vorzulegen.
 
 Möchten Sie Ihren Rekrutierungsprozess von Beginn an rechtssicher und transparent aufsetzen? Nutzen Sie das strukturierte Formular zur [Bedarfserfassung für Arbeitgeber](/fuer-arbeitgeber/personalbedarf), um gemeinsam mit DMF Talents planbare Fachkräftegewinnung zu realisieren.
+
+Die Informationspflicht nach § 45c AufenthG ist Teil eines ordnungsgemäßen Einstellungsverfahrens. [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) zeigt, welche Schritte DMF Talents für Betriebe übernimmt. Zu den finanziellen Pflichten des Arbeitgebers im Verfahren lesen Sie [Verpflichtungserklärung nach §§ 66–68 AufenthG: Haftungsrisiken für Arbeitgeber im Klartext](/blog/verpflichtungserklaerung-arbeitgeber-66-68-aufenthg-haftung).

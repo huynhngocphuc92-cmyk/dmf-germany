@@ -64,3 +64,5 @@ Um Straßen- und Rohrleitungsbauer aus Vietnam sicher und effizient auf deutsche
 3. **Wohnortnahe Baustellenlogistik:** Bereitstellung von betriebsnahem Wohnraum oder Organisation von Fahrgemeinschaften vom Betriebshof zur Außenbaustelle.
 
 Realisieren Sie Ihre Bauprojekte termingerecht und ohne Kapazitätsengpässe. DMF Talents bringt wetterfeste Straßenbauer und Tiefbaufacharbeiter aus Vietnam direkt in Ihr Unternehmen.
+
+Infrastrukturprojekte brauchen eingearbeitete Teams für Tief- und Rohrleitungsbau. [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) zeigt, welche Profile für Baustellen infrage kommen. Wenn Sie Personal für ein Projekt suchen, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und nennen Sie Bauabschnitt und Zeitraum.

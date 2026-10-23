@@ -57,3 +57,5 @@ Die Direktvermittlung – wie sie von DMF Talents praktiziert wird – ist nicht
 3. **Mitarbeiteridentifikation:** Fachkräfte, die mit ihrer Familie nach Deutschland kommen, suchen Sicherheit, Verlässlichkeit und ein festes betriebliches Zuhause. Ein direkter Arbeitsplatz schafft Vertrauen und Loyalität.
 
 Schützen Sie Ihr Unternehmen vor illegalen Vermittlungsmodellen. Erfahren Sie in unserem Ratgeber zur [transparenten Personalvermittlung](/blog/personalvermittlung-vietnam-angebote-vergleichen), wie Sie seriöse Partnerangebote erkennen.
+
+Wer Personal aus Drittstaaten braucht, ist auf die Direktvermittlung angewiesen. [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) beschreibt Ablauf und Auswahlverfahren. Wenn Sie eine Stelle direkt besetzen möchten, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und nennen Sie Anforderungsprofil und Einsatzort.

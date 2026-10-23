@@ -77,3 +77,5 @@ Mit der Beendigung des Arbeitsverhältnisses erlischt nicht sofort die Aufenthal
 4. **Arbeitsbescheinigung nach § 312 SGB III:** Elektronische Übermittlung (BEA) an die Bundesagentur für Arbeit vornehmen, damit der Mitarbeiter nahtlos Leistungen beantragen kann.
 
 Haben Sie Fragen zur rechtssicheren Vertragsgestaltung oder Beendigung? DMF Talents berät Partnerbetriebe professionell in allen arbeits- und aufenthaltsrechtlichen Übergangsprozessen.
+
+Nach einer Kündigung laufen Meldepflicht und mögliche Nachbesetzung parallel. [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) beschreibt, wie DMF Talents Betriebe bei Personalwechseln unterstützt. Wenn Sie die Stelle neu besetzen möchten, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und schildern Sie kurz den Stand des Verfahrens.

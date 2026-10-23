@@ -62,3 +62,5 @@ Bei der Rekrutierung ausländischer Karosseriebauer greifen bewährte Instrument
 3. **HWK-Registrierung vornehmen:** Einreichung der Ausbildungs- oder Arbeitsverträge bei der Handwerkskammer.
 
 Finden Sie motivierte Karosserie- und Fahrzeugbaumechaniker für Ihre Werkstatt. [Erfassen Sie jetzt Ihren Personalbedarf bei DMF Talents](/fuer-arbeitgeber/personalbedarf).
+
+Unfallinstandsetzung braucht Karosseriebauer und Lackierer mit Werkstattpraxis. [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) zeigt die Profilauswahl für Kfz-Betriebe. Zum Hochvolt-Bereich passt der Beitrag [Kfz-Mechatroniker aus Vietnam: Fachkräfte für Hochvoltsysteme und moderne Diagnosetechnik](/blog/kfz-mechatroniker-hochvolt-e-mobilitaet-vietnam).

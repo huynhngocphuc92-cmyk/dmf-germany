@@ -65,3 +65,5 @@ Um Verzögerungen und Visarisiken für deutsche Arbeitgeber von vornherein auszu
 - Die Bestehensquote unserer Talente liegt beim Erstversuch bei über 95%.
 
 Betriebe können sich darauf verlassen: Jedes DMF-Dossier enthält ein 100% rechtskonformes, verifiziertes Sprachzertifikat mit sofortiger Visumsgarantie.
+
+Das Zertifikat ist nur ein Teil der Sprachprüfung; entscheidend ist die Verständigung im Betrieb. [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) erläutert, wie DMF Talents das Sprachniveau vor der Einreise einordnet. Wenn Sie eine Stelle besetzen möchten, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und geben Sie das benötigte Niveau an.

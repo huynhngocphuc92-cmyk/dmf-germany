@@ -56,3 +56,5 @@ Für Unternehmen bedeutet dies:
 Das Modell des dualen Studiums stellt eines der wirksamsten Instrumente zur langfristigen Spitzenkräftegewinnung dar: Unternehmen qualifizieren angehende Ingenieure und IT-Spezialisten von Beginn an passgenau auf ihren betriebsspezifischen Fertigungslinien, Steuerungssystemen und Software-Stacks. Nach dem Bachelor-Abschluss wechseln die Absolventen unmittelbar in die reguläre Festanstellung mit EU Blauer Karte – ohne operative Einarbeitungsverluste.
 
 Sprechen Sie mit den Studien- und Ausbildungsexperten von DMF Talents, um passende Partnerschaften mit regionalen Fachhochschulen aufzubauen.
+
+Ein duales Studium verbindet Hochschulzugang mit betrieblicher Praxis. [Angebote von DMF Talents rund um Studium und Ausbildung](/ueber-uns/studium) gibt einen Überblick über die Wege nach Deutschland. Wenn Ihr Unternehmen einen dualen Studienplatz anbieten möchte, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und nennen Sie Studiengang und Hochschule.

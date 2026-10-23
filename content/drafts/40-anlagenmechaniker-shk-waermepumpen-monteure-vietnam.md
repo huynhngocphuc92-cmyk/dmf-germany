@@ -60,3 +60,5 @@ Auf der Baustelle und im Kundenkontakt zählt nicht nur handwerkliches Können, 
 - **Kundenkommunikation:** Höflicher, respektvoller Umgang bei Montagearbeiten im bewohnten Bestand.
 
 Möchten Sie Ihren Betrieb mit motivierten SHK-Monteuren verstärken? [Erfassen Sie Ihren Personalbedarf bei DMF Talents](/fuer-arbeitgeber/personalbedarf), um geprüfte Profile aus Vietnam kennenzulernen.
+
+SHK-Betriebe brauchen Monteure, die Wärmepumpen und Heizungsanlagen sicher installieren. [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) zeigt, welche Profile für das Handwerk infrage kommen. Ein verwandtes Berufsbild stellt [Elektroniker für Betriebstechnik & Automatisierungssysteme aus Vietnam](/blog/elektroniker-betriebstechnik-automatisierung-vietnam) vor.

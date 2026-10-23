@@ -67,3 +67,5 @@ DMF Talents legt deshalb höchsten Wert auf praxisnahes Sprachtraining:
 3. **Behandlungsbank und Einarbeitungszeit:** Planen Sie in den ersten Wochen verlängerte Taktzeiten (z. B. 30 Minuten statt 20 Minuten pro Patient) ein, um sprachliche Sicherheit aufzubauen.
 
 Schaffen Sie freie Therapieplätze für Ihre Patienten. [Melden Sie Ihren Physiotherapeutenbedarf bei DMF Talents](/fuer-arbeitgeber/personalbedarf).
+
+Praxen brauchen Therapeuten, deren Anerkennung und Fachsprache vor dem Start geklärt sind. [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) erläutert das Verfahren für Heilberufe. Ein benachbartes Berufsbild stellt [MFA aus Vietnam für Arztpraxen & MVZ: Anerkennung & BBiG](/blog/medizinische-fachangestellte-mfa-arztpraxen-mvz-vietnam) vor.

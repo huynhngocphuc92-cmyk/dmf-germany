@@ -72,3 +72,5 @@ Damit der Übergang von der Akademie in Hanoi auf das deutsche Dach reibungslos 
 3. **Patenmodell im Kollegium:** Ein erfahrener Geselle übernimmt die persönliche Mentorenschaft auf den ersten Gerüstbauten und gibt tägliches Feedback.
 
 Sichern Sie sich jetzt motivierte Dachdecker-Azubis für das kommende Ausbildungsjahr. DMF Talents unterstützt Sie von der Bewerberauswahl über das Visumverfahren bis zur erfolgreichen Gesellenprüfung.
+
+Dach- und Fassadenbetriebe brauchen eingespielte Teams für Baustellen in ganz Deutschland. [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) beschreibt die Auswahl für das Bauhandwerk. Wenn Sie eine Kolonne verstärken möchten, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und nennen Sie Einsatzregion und Baustellentypen.

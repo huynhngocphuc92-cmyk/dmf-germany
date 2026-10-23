@@ -58,3 +58,5 @@ Zur reibungslosen steuerlichen Integration empfiehlt DMF Talents Betrieben:
 - **Mitarbeiter über Steuererklärung aufklären:** Viele internationale Fachkräfte wissen nicht, dass sie berufsbedingte Kosten (wie Sprachkurse oder Reisekosten) über die jährliche Einkommensteuererklärung steuerlich geltend machen können.
 
 Lesen Sie ergänzend unseren Beitrag zu [steuerfreien Arbeitgeberleistungen für Azubis](/blog/steuerfreie-arbeitgeberleistungen-azubis-sachbezug-wohnzuschuss), um Lohnnebenkosten legal zu optimieren.
+
+Steuerfragen klären Betriebe am besten vor der ersten Lohnabrechnung. [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) zeigt, an welchen Stellen DMF Talents im Einstellungsprozess unterstützt. Wenn Sie eine Einstellung vorbereiten, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und halten Sie Ihre Fragen zu DBA und Lohnsteuer bereit.

@@ -63,3 +63,5 @@ Für mittelständische Betriebe und Industrieunternehmen bietet die Erfahrungss�
 3. **Vorabzustimmung nach § 81a AufenthG:** Nutzen Sie das beschleunigte Fachkräfteverfahren bei der Ausländerbehörde, um die Zustimmung der Bundesagentur für Arbeit gebündelt einzuholen.
 
 DMF Talents begleitet deutsche Arbeitgeber bei der Prüfung vietnamesischer Arbeitsnachweise und koordiniert die rechtssichere Beantragung über § 6 BeschV. [Erfassen Sie Ihre offene Stelle im Anfrageportal](/fuer-arbeitgeber/personalbedarf), um passende Kandidatenprofile zu prüfen.
+
+Berufserfahrung kann eine fehlende formale Anerkennung in vielen Berufen ausgleichen. [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) erläutert, welche Nachweise DMF Talents bereits in Vietnam prüft. Ein weiterer Weg in die Festanstellung ist die Chancenkarte; dazu lesen Sie [Von der Chancenkarte in die Festanstellung: Der nahtlose Übergang für Arbeitgeber](/blog/chancenkarte-in-festanstellung-wechsel-arbeitgeber-leitfaden).

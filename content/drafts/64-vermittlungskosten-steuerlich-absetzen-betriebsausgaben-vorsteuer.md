@@ -65,3 +65,5 @@ Um Beanstandungen bei späteren Betriebsprüfungen auszuschließen, sollte die B
 3. **Quittungen über Gebühren aufbewahren:** Zahlungsnachweise über Kammer- und Behördengebühren müssen digital archiviert werden.
 
 Lesen Sie ergänzend unseren Beitrag zur [ROI-Kalkulation für internationale Auszubildende](/blog/roi-kalkulation-auszubildende-amortisation-betrieb).
+
+Vermittlungskosten gehören in die Kalkulation der Personalbeschaffung, nicht in eine spätere Korrektur. [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) stellt das Honorarmodell vor. Wenn Sie ein Verfahren planen, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und fragen Sie die steuerliche Behandlung für Ihren Fall gleich mit ab.

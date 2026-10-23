@@ -67,3 +67,5 @@ Pauschalverbote führen häufig dazu, dass Azubis Nebenjobs heimlich oder im inf
 3. **Schriftliche Genehmigung mit Widerrufsvorbehalt:** Bestätigung ausstellen mit dem Hinweis, dass die Erlaubnis bei Gefährdung des Ausbildungserfolgs widerrufen werden kann.
 
 DMF Talents unterstützt Ausbildungsbetriebe mit praxiserprobten Formularen und Richtlinien für den Umgang mit Nebentätigkeiten.
+
+Ob ein Nebenjob erlaubt ist, steht im Aufenthaltstitel und im Ausbildungs- oder Arbeitsvertrag. [DMF Talents zur Vermittlung vietnamesischer Auszubildender](/services/azubi) fasst zusammen, was Betriebe bei Auszubildenden beachten. Wenn Sie Fragen zu einem konkreten Fall haben, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und beschreiben Sie Beschäftigungsart und Umfang.

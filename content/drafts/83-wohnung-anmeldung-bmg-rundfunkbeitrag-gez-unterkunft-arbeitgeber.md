@@ -72,3 +72,5 @@ Wenige Wochen nach der Anmeldung erhält jeder gemeldete Bewohner automatisch ei
 4. **Beitragsservice-Brief beantworten:** Direkt nach Erhalt des ersten GEZ-Schreibens das Beitragsnummer-Formular online ausfüllen.
 
 DMF Talents begleitet Ihre internationalen Fachkräfte von der Landung am Flughafen bis zur erfolgreichen Anmeldung beim Bürgeramt.
+
+Anmeldung und Konto gehören zu den ersten Terminen nach der Ankunft. [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) zeigt, wie DMF Talents den Start neuer Mitarbeiter organisiert. Wenn Sie eine Einstellung vorbereiten, [teilen Sie DMF Talents Ihren Personalbedarf mit](/fuer-arbeitgeber/personalbedarf) und geben Sie den geplanten ersten Arbeitstag an.

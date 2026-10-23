@@ -78,3 +78,5 @@ Für eine erfolgreiche Integration im Service- und Rezeptionsbereich hat sich ei
 3. **Ab Woche 4 (Selbstständiger Gästekontakt):** Eigene Station im Abendservice mit direktem, herzlichem Gästebetreuungsfokus.
 
 Beleben Sie Ihr Hotel und Restaurant mit erstklassig geschultem Personal aus Vietnam. DMF Talents garantiert rechtssichere DEHOGA-Verträge und lückenlose Behördenbegleitung.
+
+Hotels und Restaurants planen Personal nach Saison und Auslastung. [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) zeigt, welche Profile für Service und Empfang infrage kommen. Wenn Sie Stellen in Ihrem Haus besetzen möchten, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und geben Sie Einsatzbereich und Arbeitszeiten an.

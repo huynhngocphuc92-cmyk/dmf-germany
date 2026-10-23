@@ -61,3 +61,5 @@ In solchen Fällen empfiehlt sich folgende rechtliche Argumentation durch Ihren 
 DMF Talents strukturiert alle Rekrutierungs- und Einreiseverfahren so, dass deutsche Arbeitgeber zu keinem Zeitpunkt mit unkalkulierbaren Bürgschaften nach § 68 AufenthG belastet werden. Unsere Fachkräfte und Auszubildenden reisen auf Basis rechtssicherer Arbeitsverträge und vollständig gedeckter Lebensunterhaltsprofile ein.
 
 Erfahren Sie mehr über unsere Compliance-Standards im Beitrag zum [Employer-Pays-Prinzip nach § 296a SGB III](/blog/employer-pays-prinzip-296a-sgb-iii-transparenz).
+
+Die Verpflichtungserklärung gehört zu den Dokumenten, die Betriebe vor der Visumserteilung bereithalten. [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) zeigt, wie DMF Talents das Verfahren vorbereitet. Wenn Sie einen Fall planen, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und beschreiben Sie Stelle und Zeitraum der Beschäftigung.

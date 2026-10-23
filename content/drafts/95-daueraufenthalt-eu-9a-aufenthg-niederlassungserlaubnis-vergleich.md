@@ -61,3 +61,5 @@ Beide Titel schließen sich nicht gegenseitig aus. Ein Mitarbeiter kann zunächs
 DMF Talents begleitet Arbeitgeber und langjährige Fachkräfte bei der Vorbereitung aller behördlichen Nachweise für das Verwaltungsverfahren vor der Ausländerbehörde.
 
 Erfahren Sie mehr über unsere langfristigen Betreuungskonzepte unter [Für Arbeitgeber: Dauerhafte Integration](/services/skilled-workers).
+
+Langfristige Perspektiven erhöhen die Bindung von Fachkräften an den Betrieb. Wenn Sie Mitarbeiter beim Übergang in den Daueraufenthalt unterstützen, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und schildern Sie den aktuellen Titel. Zur Familienzusammenführung nach der Niederlassung lesen Sie [Familiennachzug für Fachkräfte (§ 29 AufenthG): Wohnraumnachweis & Mindestunterhalt](/blog/familiennachzug-fachkraefte-29-aufenthg-wohnraumnachweis).

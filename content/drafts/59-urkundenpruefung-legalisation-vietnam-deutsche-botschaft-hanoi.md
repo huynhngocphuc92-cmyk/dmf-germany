@@ -66,3 +66,5 @@ DMF Talents schließt dieses Risiko zu 100% aus:
 - Seit Bestehen von DMF Talents wurde **nicht ein einziges von uns eingereichtes Dokument von der Deutschen Botschaft beanstandet**.
 
 Verlassen Sie sich auf maximale Rechtssicherheit bei der internationalen Personalgewinnung.
+
+Die Legalisation ist ein fester Schritt vor der Visumserteilung und braucht Vorlauf. [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) beschreibt, wie DMF Talents Unterlagen aus Vietnam zusammenstellt. Wenn Sie ein Verfahren vorbereiten, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und halten Sie die vorhandenen Dokumente bereit.

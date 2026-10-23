@@ -66,3 +66,5 @@ Die Geburtshilfe ist ein hochsensibler Bereich, in dem klare Kommunikation zwisc
 3. **Wohnortnahe Klinikunterkunft:** Bereitstellung eines Mitarbeiterzimmers im Schwesternwohnheim für kurze Wege bei Rufbereitschaften und Schichtwechseln.
 
 Sichern Sie die Zukunft Ihrer Geburtshilfe mit hochqualifizierten Hebammen aus Vietnam. [Sprechen Sie mit den Healthcare-Spezialisten von DMF Talents](/fuer-arbeitgeber/personalbedarf).
+
+Hebammen durchlaufen ein eigenes Anerkennungsverfahren mit Fachsprachprüfung. [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) beschreibt die Begleitung für Kliniken. Zu einem anderen Heilberuf in der Anerkennung lesen Sie [Erzieherinnen & Pädagogische Fachkräfte aus Vietnam für Kitas und Träger](/blog/erzieherinnen-aus-vietnam-kitas-traeger-anerkennung).

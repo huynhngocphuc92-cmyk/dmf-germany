@@ -70,3 +70,5 @@ Arbeitgeber können den Nachzugsprozess mit geringem Aufwand massiv beschleunige
 - **Terminkoordination:** Nutzung des beschleunigten Verfahrens nach § 81a AufenthG, das den Familiennachzug ausdrücklich miteinschließt!
 
 DMF Talents begleitet auch den Familiennachzug als festen Bestandteil unserer nachhaltigen Integrationsbetreuung.
+
+Familiennachzug wird leichter, wenn Wohnung und Unterlagen früh geklärt sind. [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) beschreibt, wie DMF Talents Mitarbeiter nach der Einreise begleitet. Wenn Sie eine Fachkraft unterstützen möchten, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und schildern Sie die Wohnsituation vor Ort.

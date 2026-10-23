@@ -66,3 +66,5 @@ So integrieren Sie vietnamesische Zimmerer nachhaltig in Ihre Montagekolonne:
 3. **Fahrpraxis im ländlichen Raum:** Da viele Zimmereien in ländlichen Regionen ansässig sind, unterstützen wir Ihre Fachkräfte bei der zügigen Umschreibung des Führerscheins der Klasse B.
 
 Bauen Sie die Zukunft des nachhaltigen Holzbaus auf ein solides Fundament. DMF Talents vermittelt Ihnen erfahrene Holzbau-Spezialisten und Zimmerer aus Vietnam.
+
+Zimmerer für Abbund und Montage sind im Holzbau schwer zu finden. [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) erläutert die Auswahl für Handwerksbetriebe. Wenn Sie Ihr Team verstärken möchten, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und beschreiben Sie Projekte und Einsatzorte.

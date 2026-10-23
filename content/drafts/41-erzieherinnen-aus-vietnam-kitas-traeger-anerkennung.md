@@ -60,3 +60,5 @@ DMF Talents legt im Sprachentraining größten Wert auf rollenbasierte Simulatio
 Vietnamesische Erzieherinnen bringen Eigenschaften mit, die im Kita-Alltag hochgeschätzt werden: außergewöhnliche Herzlichkeit, Geduld, Respekt gegenüber Kindern und Teamfähigkeit. Angesichts zunehmend mehrsprachiger Kindergruppen bereichert ihre ausgeprägte interkulturelle Sensibilität den Alltag von Kindern, Team und Eltern nachhaltig.
 
 Suchen Sie als Kita-Träger nach verlässlichen Lösungen gegen Gruppenschließungen? Informieren Sie sich über unsere Betreuungsangebote auf der Seite [Für Arbeitgeber: Lösungen](/services/skilled-workers) oder vereinbaren Sie ein Beratungsgespräch.
+
+Wenn Ihre Kita oder Ihr Träger eine Stelle besetzen möchte, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und beschreiben Sie Einrichtung, Gruppe und gewünschten Start. Zur Anerkennung eines anderen Heilberufs lesen Sie ergänzend [Hebammen aus Vietnam: Qualifizierte Geburtshilfe für deutsche Kreißsäle](/blog/hebammen-entbindungspfleger-vietnam-anerkennung-hebg-klinik).

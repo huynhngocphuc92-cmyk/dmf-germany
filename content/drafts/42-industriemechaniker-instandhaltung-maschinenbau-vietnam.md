@@ -72,3 +72,5 @@ Für Arbeitgeber stehen zwei hocheffiziente Einwanderungswege zur Verfügung:
 2. **Rekrutierung über Berufserfahrung (§ 19c Abs. 2 AufenthG i. V. m. § 6 BeschV):** Wer mindestens zwei Jahre nachweisbare Berufspraxis im Maschinenbau mitbringt, kann bei Einhaltung der Gehaltsschwelle ganz ohne langwierige deutsche Anerkennungsprüfung einreisen.
 
 DMF Talents prüft vorab die fachliche Eignung vietnamesischer Mechaniker durch praktische Werkstatttests an der Akademie. [Registrieren Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf), um fachlich geprüfte Bewerberdossiers zu erhalten.
+
+Instandhaltung braucht Mechaniker mit Erfahrung an Maschinen und Anlagen. [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) erläutert die Profilauswahl für Industrie und Maschinenbau. Zum Stahl- und Metallbau passt der Beitrag [Konstruktionsmechaniker Stahl- & Metallbau: DIN EN 1090 Fachkräfte](/blog/konstruktionsmechaniker-stahlbau-schweissen-din-en-1090).

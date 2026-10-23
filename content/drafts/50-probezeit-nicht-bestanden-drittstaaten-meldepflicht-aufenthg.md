@@ -64,3 +64,5 @@ Um das unternehmerische Risiko für Arbeitgeber auf ein absolutes Minimum zu red
 - Gleichzeitig stellt DMF dem ursprünglichen Betrieb prioritär und ohne erneute Vermittlungsgrundgebühr ein neues, passgenaues Kandidatenprofil zur Verfügung.
 
 Erfahren Sie in unserem Ratgeber zu [Frühwarnsignalen bei Ausbildungsabbrüchen](/blog/ausbildungsabbrueche-verhindern-fruehwarnsignale-betreuung), wie Sie Konflikte frühzeitig moderieren, bevor es zur Kündigung kommt.
+
+Endet das Arbeitsverhältnis in der Probezeit, laufen Meldung und Nachbesetzung parallel. [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) beschreibt, wie DMF Talents Betriebe in dieser Phase begleitet. Wenn Sie die Stelle neu besetzen möchten, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und schildern Sie kurz den Verlauf.

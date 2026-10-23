@@ -63,3 +63,5 @@ Betriebe, die nach DIN EN 1090 zertifiziert sind, müssen Schweißarbeiten lück
 3. **Perspektive bieten:** Langfristige Bleibeperspektive durch faire Tarifentlohnung, Weiterbildungsmöglichkeiten und Unterstützung bei der Familienzusammenführung.
 
 Bringen Sie Ihre Stahlbaufertigung auf volle Kapazität. [Kontaktieren Sie DMF Talents für ein unverbindliches Beratungsgespräch](/fuer-arbeitgeber/personalbedarf).
+
+Stahlbau nach DIN EN 1090 setzt Schweißnachweise voraus, die vor der Einreise geprüft werden. [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) erläutert, welche Zertifikate DMF Talents abfragt. Ein angrenzendes Profil stellt [Industriemechaniker & Instandhalter für den deutschen Maschinenbau](/blog/industriemechaniker-instandhaltung-maschinenbau-vietnam) vor.

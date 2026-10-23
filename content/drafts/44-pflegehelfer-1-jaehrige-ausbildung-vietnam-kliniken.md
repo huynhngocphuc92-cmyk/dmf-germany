@@ -60,3 +60,5 @@ Für Träger rechnet sich das Modell doppelt:
 2. **Nachhaltig:** Wer als Assistenzkraft einsteigt und vom Arbeitgeber bei der Weiterbildung gefördert wird, entwickelt eine tiefe Bindung an das Haus und wechselt selten den Arbeitgeber.
 
 Möchten Sie den Bettenstillstand in Ihrer Einrichtung beenden? Erfahren Sie in unserem Leitfaden zu [Pflegekräften aus Vietnam](/blog/pflegekraefte-aus-vietnam-anerkennung-sprachpraxis-integration) mehr über Anerkennungswege und Kooperationsmodelle.
+
+Die einjährige Helferausbildung ist für viele Kliniken der Einstieg in die eigene Pflegeausbildung. [DMF Talents zur Vermittlung vietnamesischer Auszubildender](/services/azubi) fasst zusammen, wie DMF Talents Einrichtungen und Auszubildende vorbereitet. Wenn Sie Helferplätze anbieten möchten, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und geben Sie Standort und Schulpartner an.

@@ -63,3 +63,5 @@ Für Elektroniker für Betriebstechnik empfiehlt sich in der Regel das beschleun
 - **Visum:** Nach § 18a AufenthG (mit voller Gleichwertigkeit) oder über die Anerkennungspartnerschaft nach § 16d Abs. 3.
 
 Suchen Sie hochqualifizierte Elektrotechniker für Ihre Schaltanlagen oder Instandhaltung? Entdecken Sie unsere [Angebote für Arbeitgeber](/services/skilled-workers) und fordern Sie detaillierte Kandidatenprofile an.
+
+Wenn Sie Elektroniker für Betriebstechnik oder Automatisierung suchen, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und nennen Sie Anlagen, Steuerungen und Schichtmodell. Ein angrenzendes Profil beschreibt [Anlagenmechaniker SHK & Wärmepumpen-Installateure aus Vietnam gewinnen](/blog/anlagenmechaniker-shk-waermepumpen-monteure-vietnam).

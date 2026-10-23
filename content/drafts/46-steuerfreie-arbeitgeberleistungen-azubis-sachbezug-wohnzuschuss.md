@@ -69,3 +69,5 @@ Ein Praxisvergleich verdeutlicht den enormen Hebel:
 Internationale Nachwuchskräfte, die fernab ihrer Heimatfamilie einen Neustart wagen, schätzen Fürsorge und praktische Hilfe enorm. Ein Arbeitgeber, der für Mobilität, gute Verpflegung und bezahlbaren Wohnraum sorgt, schafft eine emotionale Bindung, die durch kein reines Gehaltsangebot übertroffen werden kann.
 
 Erfahren Sie in unserem Praxisbericht zu [Wohnraumlösungen für Auszubildende](/blog/wohnraum-fuer-azubis-praxisloesungen-arbeitgeber), wie Kooperationen mit Wohnungsbaugesellschaften gelingen.
+
+Sachbezüge und Wohnzuschüsse machen Ausbildungsplätze für Bewerber aus Vietnam planbar. [DMF Talents zur Vermittlung vietnamesischer Auszubildender](/services/azubi) beschreibt, wie Betriebe ihre Ausbildungskapazität vorbereiten. Wenn Sie Ausbildungsplätze anbieten, [teilen Sie DMF Talents Ihren Personalbedarf mit](/fuer-arbeitgeber/personalbedarf) und notieren Sie, welche Leistungen Sie übernehmen können.

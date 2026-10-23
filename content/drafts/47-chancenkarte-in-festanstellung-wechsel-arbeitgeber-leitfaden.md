@@ -71,3 +71,5 @@ Rechtliche Grundlagen und Details zur Chancenkarte bietet das Informationsportal
 DMF Talents begleitet Arbeitgeber bei der Prüfung von Chancenkarte-Inhabern: Wir bewerten die vietnamesischen Bildungsnachweise, formulieren die behördengerechte Stellenbeschreibung und begleiten den Kontakt zur örtlichen Ausländerbehörde, bis der elektronische Aufenthaltstitel vorliegt.
 
 Haben Sie einen vielversprechenden Kandidaten kennengelernt und möchten den Statuswechsel einleiten? Nutzen Sie unser [Portal zur Arbeitgeberberatung](/fuer-arbeitgeber/personalbedarf), um offene Fragen direkt zu klären.
+
+Der Wechsel von der Chancenkarte in eine Festanstellung setzt ein konkretes Arbeitsplatzangebot voraus. [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) erläutert, wie DMF Talents Arbeitgeber und Kandidaten zusammenführt. Zur Alternative über Berufserfahrung ohne Anerkennung lesen Sie [Fachkräfte mit Berufserfahrung (§ 19c Abs. 2 AufenthG i. V. m. § 6 BeschV): Rekrutierung ohne deutsche Anerkennung](/blog/berufserfahrung-fachkraefte-drittstaaten-beschv-ohne-anerkennung).

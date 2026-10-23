@@ -71,3 +71,5 @@ Eine strukturierte Einarbeitung entscheidet über den langfristigen Verbleib der
 3. **Integration in die Rufbereitschaft:** Nach 6 bis 9 Monaten solider Werkstatterfahrung können die Fachkräfte sukzessive in den Vor-Ort-Kundendienst mit eigenem Werkstattwagen eingebunden werden.
 
 Profitieren Sie von hochqualifizierten Land- und Baumaschinentechnikern aus Vietnam. DMF Talents übernimmt das komplette Visaverfahren und die Anerkennungsberatung für Ihren Betrieb.
+
+Werkstätten für Land- und Baumaschinen brauchen Mechatroniker mit Diagnosepraxis. [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) erläutert, wie Profile für diese Berufe geprüft werden. Wenn Sie eine Werkstattstelle besetzen möchten, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und beschreiben Sie Maschinenpark und Marken.

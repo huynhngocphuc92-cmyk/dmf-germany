@@ -63,3 +63,5 @@ Gleisbauprojekte sind Wanderbaustellen, die oft im gesamten Bundesgebiet abgewic
 3. **Schulung der Fachsprache:** Vertiefung von Begriffen wie Schotterbett, Weichenzunge, Schienenfuß, Schwellenschraube und Warnsignal im Arbeitsalltag.
 
 DMF Talents begleitet Gleisbaubetriebe von der Auswahl schwindelfreier Kandidaten bis zur Kammeranmeldung. [Nehmen Sie Kontakt mit unserem Team auf](/fuer-arbeitgeber/personalbedarf).
+
+Gleisbau braucht Personal, das unter Sicherheitsauflagen im Schicht- und Nachtbetrieb arbeitet. [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) erläutert die Auswahl für Infrastrukturberufe. Ein verwandtes Verkehrsfeld beschreibt [Busfahrer aus Drittstaaten einstellen: § 24a BeschV & BKrFQG](/blog/busfahrer-oepnv-linienverkehr-drittstaaten-vietnam-beschv).

@@ -71,3 +71,5 @@ Rechtlich unzulässige Klauseln vermitteln trügerische Sicherheit. Der nachhalt
 DMF Talents berät Betriebe bei der rechtssicheren Vertragsgestaltung und minimiert Ausfallrisiken durch sorgfältige Kandidatenauswahl im Heimatland.
 
 Informieren Sie sich über unsere Qualitätsstandards auf der Seite [Für Arbeitgeber: Transparenz & Qualität](/services/skilled-workers).
+
+Rückzahlungsklauseln gehören in den Arbeitsvertrag, bevor das Verfahren startet. Wenn Sie einen Vertrag vorbereiten, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) und halten Sie Ihre Klauseln bereit. Zu den Preismodellen der Vermittlung insgesamt lesen Sie [Personalvermittlung Vietnam Kosten & Preise: Transparenter Vergleich](/blog/personalvermittlung-vietnam-kosten-preise-honorarmodelle-vergleich).

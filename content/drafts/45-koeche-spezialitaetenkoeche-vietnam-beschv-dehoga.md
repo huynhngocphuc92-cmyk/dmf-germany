@@ -72,3 +72,5 @@ Auch wenn ein Meisterkoch seine Töpfe blind beherrscht, müssen deutsche Standa
 - **Küchenfachsprache:** Arbeitsanweisungen im Küchenpass („Mise en place“, Garstufen, Schnittformen, Mengenangaben).
 
 Suchen Sie Küchenprofis für Ihr Restaurant oder Hotel? Nutzen Sie unser [Portal zur Bedarfserfassung](/fuer-arbeitgeber/personalbedarf), um geprüfte Spezialitätenköche kennenzulernen.
+
+Küchen mit asiatischem Schwerpunkt finden geeignete Köche oft nur über internationale Suche. [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers) zeigt, wie DMF Talents Profile für Gastronomie und Hotellerie prüft. Zum Servicebereich passt [Hotelfachleute und Restaurantfachkräfte aus Vietnam: Gastfreundschaft und Verlässlichkeit](/blog/hotelfachmann-restaurantfachkraft-vietnam-dehoga-gastronomie).
