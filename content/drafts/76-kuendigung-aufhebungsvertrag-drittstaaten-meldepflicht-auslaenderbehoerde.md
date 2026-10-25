@@ -3,7 +3,7 @@ title: "Kündigung und Aufhebungsvertrag: Meldepflichten nach § 4a Abs. 5 Aufen
 slug: "kuendigung-aufhebungsvertrag-drittstaaten-meldepflicht-auslaenderbehoerde"
 excerpt: "Arbeitsverhältnis mit Drittstaatsangehörigen beendet? Gesetzliche 4-Wochen-Meldepflicht nach § 4a Abs. 5 AufenthG, Fristen und Bußgeldrisiken für Betriebe."
 meta_title: "Kündigung Drittstaaten Mitarbeiter: Meldepflicht § 4a AufenthG"
-meta_description: "Kündigung und Aufhebungsvertrag bei Drittstaatsangehörigen: 4-Wochen-Meldepflicht nach § 4a Abs. 5 AufenthG, Bußgelder bis 30.000 €, KSchG und Praxis-Leitfaden."
+meta_description: "Kündigung und Aufhebungsvertrag bei Drittstaatsangehörigen: 4-Wochen-Meldepflicht nach § 4a Abs. 5 AufenthG, Bußgeld bis 30.000 € nach § 98 AufenthG, KSchG und Praxis-Leitfaden."
 cover_image: "/images/blog/dmf-personalbuero-kuendigung-beratung.jpg"
 language: "de"
 status: "published"
@@ -13,15 +13,13 @@ status: "published"
 
 Nicht jedes Arbeitsverhältnis verläuft auf Dauer harmonisch: Sei es durch mangelnde fachliche Entwicklung, unerwartete betriebliche Auftragseinbrüche, persönliche Umorientierung der Fachkraft oder einvernehmliche Trennungen über einen Aufhebungsvertrag – auch bei internationalen Mitarbeitern aus Drittstaaten wie Vietnam kann es zur vorzeitigen Beendigung des Arbeitsverhältnisses kommen.
 
-Für Arbeitgeber birgt die Beendigung eines Arbeitsvertrags mit Drittstaatsangehörigen jedoch gravierende aufenthaltsrechtliche Sonderpflichten, die vielen Personalabteilungen unbekannt sind: **Nach § 4a Abs. 5 Aufenthaltsgesetz (AufenthG) sind Arbeitgeber gesetzlich verpflichtet, die vorzeitige Beendigung der Beschäftigung innerhalb von vier Wochen der zuständigen Ausländerbehörde mitzuteilen.** Ein Verstoß gegen diese Meldepflicht stellt eine Ordnungswidrigkeit dar, die nach **§ 404 Abs. 2 Nr. 4 SGB III mit empfindlichen Bußgeldern von bis zu 30.000 Euro geahndet werden kann**.
+Für Arbeitgeber birgt die Beendigung eines Arbeitsvertrags mit Drittstaatsangehörigen jedoch gravierende aufenthaltsrechtliche Sonderpflichten, die vielen Personalabteilungen unbekannt sind: **Nach § 4a Abs. 5 Satz 3 Nr. 3 Aufenthaltsgesetz (AufenthG) sind Arbeitgeber gesetzlich verpflichtet, die vorzeitige Beendigung der Beschäftigung innerhalb von vier Wochen ab Kenntnis der zuständigen Ausländerbehörde mitzuteilen.** Ein vorsätzlicher oder leichtfertiger Verstoß gegen diese Meldepflicht stellt eine Ordnungswidrigkeit dar, die nach **§ 98 Abs. 2a Nr. 2 AufenthG mit Bußgeldern von bis zu 30.000 Euro** geahndet werden kann.
 
 ![Meldepflicht bei Beendigung des Arbeitsverhältnisses](/images/blog/kuendigung-meldepflicht-zeitstrahl.svg)
 
 ## 1. Die gesetzliche Meldepflicht nach § 4a Abs. 5 AufenthG im Detail
 
-Der Gesetzgeber regelt in § 4a Abs. 5 Satz 1 AufenthG unmissverständlich:
-
-> _„Der Arbeitgeber ist verpflichtet, der zuständigen Ausländerbehörde innerhalb von vier Wochen ab Kenntnis mitzuteilen, dass die Beschäftigung, für die ein Aufenthaltstitel erteilt wurde, vorzeitig beendet worden ist.“_
+Der Gesetzgeber regelt dies in **§ 4a Abs. 5 Satz 3 Nr. 3 AufenthG**: Wer einen Ausländer beschäftigt, muss der zuständigen Ausländerbehörde **innerhalb von vier Wochen ab Kenntnis** mitteilen, dass die Beschäftigung – für die ein Aufenthaltstitel nach Kapitel 2 Abschnitt 4 (Aufenthalt zum Zweck der Erwerbstätigkeit) erteilt wurde – **vorzeitig beendet** wurde.
 
 Diese Pflicht gilt in folgenden Konstellationen:
 
@@ -54,12 +52,12 @@ Neben dem Aufenthaltsrecht gelten die allgemeinen Vorschriften des deutschen Arb
 - **Kündigungsschutzgesetz (KSchG):** In Betrieben mit mehr als zehn Beschäftigten greift nach sechs Monaten der allgemeine Kündigungsschutz. Kündigungen bedürfen dann verhaltensbedingter, personenbedingter oder betriebsbedingter Gründe.
 - **Resturlaub und Überstunden:** Offene Urlaubsansprüche und Überstunden aus dem Arbeitszeitkonto müssen bis zum Vertragsende in Freizeit ausgeglichen oder ordnungsgemäß mit dem letzten Entgelt abgegolten werden.
 
-| Aspekt                         | Bei Inländern / EU-Bürgern              | Bei Drittstaatsangehörigen                        |
-| ------------------------------ | --------------------------------------- | ------------------------------------------------- |
-| **Meldung Agentur für Arbeit** | Arbeitnehmer meldet sich arbeitssuchend | Arbeitnehmer meldet sich arbeitssuchend           |
-| **Meldung Ausländerbehörde**   | Entfällt                                | **Zwingende Pflicht nach § 4a Abs. 5 (4 Wochen)** |
-| **Bußgeld bei Unterlassen**    | Keines für Arbeitgeber                  | **Bis zu 30.000 € nach § 404 Abs. 2 SGB III**     |
-| **Aufenthaltsstatus**          | Bleibt unberührt                        | Zweckbindung entfällt; ABH setzt Suchfrist        |
+| Aspekt                         | Bei Inländern / EU-Bürgern              | Bei Drittstaatsangehörigen                                                               |
+| ------------------------------ | --------------------------------------- | ---------------------------------------------------------------------------------------- |
+| **Meldung Agentur für Arbeit** | Arbeitnehmer meldet sich arbeitssuchend | Arbeitnehmer meldet sich arbeitssuchend                                                  |
+| **Meldung Ausländerbehörde**   | Entfällt                                | **Zwingende Pflicht nach § 4a Abs. 5 (4 Wochen)**                                        |
+| **Bußgeld bei Unterlassen**    | Keines für Arbeitgeber                  | **Bis zu 30.000 € nach § 98 Abs. 2a Nr. 2 AufenthG** (bei Vorsatz oder Leichtfertigkeit) |
+| **Aufenthaltsstatus**          | Bleibt unberührt                        | Zweckbindung entfällt; ABH setzt Suchfrist                                               |
 
 ## 4. Was geschieht mit dem Mitarbeiter nach der Kündigung?
 

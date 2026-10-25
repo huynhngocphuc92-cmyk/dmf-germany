@@ -1320,17 +1320,19 @@ INSERT INTO posts (title, slug, excerpt, content, cover_image, status, meta_titl
 VALUES ('Sprachkurs Förderung nach § 82 SGB III: Qualifizierungschancengesetz', 'sprachfoerderung-betrieb-qualifizierungschancengesetz-82-sgb-iii', 'Bis zu 100 % Lehrgangskosten und 75 % Lohnfortzahlung: Wie Unternehmen Sprachkurse für ausländische Mitarbeiter über die Bundesagentur für Arbeit finanzieren.', '<p>Internationale Fachkräfte und Auszubildende aus Drittstaaten bringen fundierte fachliche Qualifikationen mit. Für den langfristigen Erfolg im Unternehmen entscheidet jedoch die sprachliche Handlungssicherheit: Das Verstehen komplexer Sicherheitsvorschriften, die kollegiale Übergabe am Schichtende und die souveräne Kommunikation mit Kunden und Patienten verlangen solide Deutschkenntnisse auf dem Niveau B2 GER.</p>
 <p>Viele Arbeitgeber scheuen die hohen Kosten für berufsbegleitenden Sprachunterricht und die Freistellung von der Arbeitszeit. Was viele Geschäftsführer und HR-Manager nicht wissen: Die Bundesagentur für Arbeit fördert betriebliche Weiterbildungen und arbeitsplatzbezogene Sprachkurse über das <strong>Qualifizierungschancengesetz (§ 82 Drittes Buch Sozialgesetzbuch – SGB III)</strong> mit <strong>massiven finanziellen Zuschüssen</strong> – bei Kleinstbetrieben werden bis zu 100 Prozent der Kurskosten übernommen.</p>
 <p><img src="/images/blog/qualifizierungschancengesetz-foerderstaffel-schema.svg" alt="Betriebliche Weiterbildungsförderung nach § 82 SGB III Förderstaffel" /></p>
-<p><em>Die Förderstaffel nach Betriebsgröße gemäß § 82 SGB III: Bis zu 100 % Zuschuss zu den Lehrgangskosten und bis zu 75 % Arbeitsentgeltzuschuss (AEZ) für freigestellte Mitarbeiter.</em></p>
+<p><em>Die Förderstaffel nach Betriebsgröße gemäß § 82 SGB III (Stand 2026): Kleinbetriebe unter 50 Beschäftigten erhalten bis zu 100 % Zuschuss zu den Lehrgangskosten und bis zu 75 % Arbeitsentgeltzuschuss (AEZ) für freigestellte Mitarbeiter.</em></p>
 <h2>1. Gesetzliche Förderkriterien nach § 82 SGB III</h2>
 <p>Damit eine betriebliche Sprach- oder Weiterbildungsmaßnahme förderfähig ist, müssen folgende gesetzliche Voraussetzungen erfüllt sein:</p>
 <ol>
-<li><strong>Umfang der Maßnahme:</strong> Die Weiterbildung muss <strong>mehr als 120 Unterrichtsstunden</strong> umfassen (§ 82 Abs. 1 Nr. 1 SGB III).</li>
+<li><strong>Umfang der Maßnahme:</strong> Die Weiterbildung muss <strong>mehr als 120 Stunden</strong> umfassen (§ 82 Abs. 1 Nr. 4 SGB III).</li>
 <li><strong>Akkreditierung nach AZAV:</strong> Maßnahmenträger und Lehrgang müssen nach der <strong>Akkreditierungs- und Zulassungsverordnung Arbeitsförderung (AZAV)</strong> von einer fachkundigen Stelle zertifiziert sein. Reine interne Firmenschulungen sind nicht förderfähig.</li>
 <li><strong>Vermittlung zukunftsorientierter Kompetenzen:</strong> Die Maßnahme muss über eine rein arbeitsplatzbezogene Kurzunterweisung hinausgehen und Fertigkeiten vermitteln, die auf dem allgemeinen Arbeitsmarkt verwertbar sind (berufsbezogenes Deutsch, Fachwortschatz Handwerk, Pflege oder Industrie).</li>
 <li><strong>Bestehendes Arbeitsverhältnis:</strong> Der Mitarbeiter muss sozialversicherungspflichtig beschäftigt sein.</li>
+<li><strong>Berufsabschluss liegt zurück:</strong> Für den Berufsabschluss, für den eine mindestens zweijährige Ausbildungsdauer festgelegt ist, müssen in der Regel mindestens zwei Jahre vergangen sein (§ 82 Abs. 1 Nr. 2 SGB III).</li>
+<li><strong>Keine Doppelförderung:</strong> In den zwei Jahren vor Antragstellung darf keine bereits nach § 82 SGB III geförderte Weiterbildung besucht worden sein (§ 82 Abs. 1 Nr. 3 SGB III).</li>
 </ol>
-<h2>2. Die Förderstaffel nach Unternehmensgröße</h2>
-<p>Die Höhe der staatlichen Zuschüsse richtet sich gestaffelt nach der Mitarbeiterzahl des Unternehmens:</p>
+<h2>2. Die Förderstaffel nach Unternehmensgröße (Stand 2026)</h2>
+<p>Die Höhe der staatlichen Zuschüsse richtet sich gestaffelt nach der Mitarbeiterzahl des Unternehmens. <strong>Achtung:</strong> Die Schwellen wurden mit dem Weiterbildungsgesetz neu gefasst – ältere Übersichten im Netz zeigen noch die früheren Grenzen (10 / 249 / 2.500 Beschäftigte), die nicht mehr gelten:</p>
 <div class="table-responsive"><table>
 <thead><tr>
 <th>Unternehmensgröße</th>
@@ -1340,34 +1342,29 @@ VALUES ('Sprachkurs Förderung nach § 82 SGB III: Qualifizierungschancengesetz'
 </tr></thead>
 <tbody>
 <tr>
-<td><strong>Kleinstbetriebe (&lt; 10 Beschäftigte)</strong></td>
+<td><strong>Kleinbetriebe (< 50 Beschäftigte)</strong></td>
 <td><strong>bis zu 100 %</strong></td>
 <td><strong>bis zu 75 %</strong></td>
 <td>0 % Kurskosten / 25 % Lohn</td>
 </tr>
 <tr>
-<td><strong>Kleine &amp; mittlere Betriebe (10–249 MA)</strong></td>
+<td><strong>Mittlere Betriebe (50–499 MA)</strong></td>
 <td><strong>bis zu 50 %</strong></td>
 <td><strong>bis zu 50 %</strong></td>
 <td>50 % Kurskosten / 50 % Lohn</td>
 </tr>
 <tr>
-<td><strong>Größere Betriebe (250–2.499 MA)</strong></td>
+<td><strong>Größere Betriebe (ab 500 MA)</strong></td>
 <td><strong>bis zu 25 %</strong></td>
 <td><strong>bis zu 25 %</strong></td>
 <td>75 % Kurskosten / 75 % Lohn</td>
 </tr>
-<tr>
-<td><strong>Großkonzerne (ab 2.500 MA)</strong></td>
-<td><strong>bis zu 15 %</strong></td>
-<td><strong>bis zu 20 %</strong></td>
-<td>85 % Kurskosten / 80 % Lohn</td>
-</tr>
 </tbody>
 </table></div>
-<p><strong>Besonderer Bonus:</strong> Liegt eine Betriebsvereinbarung zur betrieblichen Weiterbildung vor oder gilt ein tarifvertraglicher Weiterbildungsanspruch, können sich die Fördersätze um weitere 5 bis 15 Prozentpunkte erhöhen (§ 82 Abs. 2 SGB III).</p>
+<p><strong>Sonderfall:</strong> Ist die Mitarbeiterin oder der Mitarbeiter mindestens 45 Jahre alt oder schwerbehindert, entfällt die Kostenbeteiligung des Arbeitgebers auch in Betrieben mit weniger als 500 Beschäftigten (§ 82 Abs. 2 Satz 3 SGB III). Für die Betriebsgröße zählen alle Beschäftigten des Unternehmens – bei Konzernzugehörigkeit die des gesamten Konzerns (§ 82 Abs. 6 Nr. 2 SGB III).</p>
+<p><strong>Besonderer Bonus:</strong> Liegt eine Betriebsvereinbarung über die berufliche Weiterbildung vor oder sieht ein Tarifvertrag betriebsbezogene Weiterbildung vor, sinkt die Beteiligung des Arbeitgebers an den Lehrgangskosten um 5 Prozentpunkte – und der Arbeitsentgeltzuschuss kann um 5 Prozentpunkte steigen (§ 82 Abs. 4 SGB III).</p>
 <h2>3. Der Arbeitsentgeltzuschuss (AEZ): Lohnkosten während der Schulung abfedern</h2>
-<p>Neben den reinen Unterrichtskosten stellt der Arbeitsausfall für Betriebe das größte Hindernis dar. Hier greift der <strong>Arbeitsentgeltzuschuss (AEZ nach § 82 Abs. 5 SGB III)</strong>:</p>
+<p>Neben den reinen Unterrichtskosten stellt der Arbeitsausfall für Betriebe das größte Hindernis dar. Hier greift der <strong>Arbeitsentgeltzuschuss (AEZ nach § 82 Abs. 3 SGB III)</strong>:</p>
 <ul>
 <li>Stellt der Arbeitgeber die Fachkraft für den Besuch eines Intensivsprachkurses bezahlt von der Arbeit frei, erstattet die Bundesagentur für Arbeit einen prozentualen Anteil des Bruttoarbeitsentgelts inklusive der pauschalierten Sozialversicherungsbeiträge.</li>
 <li>Bei einem Handwerksbetrieb mit 8 Mitarbeitern übernimmt die Arbeitsagentur beispielsweise 100 Prozent der Sprachkursgebühren und erstattet <strong>75 Prozent des Gehalts</strong> für die Stunden, in denen der Mitarbeiter die Schulbank drückt.</li>
@@ -4163,8 +4160,9 @@ VALUES ('DeuFöV-Förderung nach § 45a AufenthG: Bis zu 100 % staatliche Zusch�
 <p>Findet die Sprachweiterbildung ganz oder teilweise während der bezahlten regulären Arbeitszeit statt, können Unternehmen die DeuFöV-Förderung mit den Instrumenten des <strong>Qualifizierungschancengesetzes (§ 82 SGB III)</strong> kombinieren.</p>
 <p>Der Arbeitgeber-Service der Bundesagentur für Arbeit (AG-S) gewährt abhängig von der Unternehmensgröße signifikante Zuschüsse zum Arbeitsentgelt:</p>
 <ul>
-<li><strong>Kleinstbetriebe (unter 10 Mitarbeiter):</strong> Bis zu 75 % Arbeitsentgeltzuschuss für die freigestellte Weiterbildungszeit.</li>
-<li><strong>Kleinere und mittlere Betriebe (10 bis 249 Mitarbeiter):</strong> Bis zu 50 % Zuschuss zum fortgezahlten Gehalt.</li>
+<li><strong>Betriebe mit weniger als 50 Mitarbeitern:</strong> Bis zu 75 % Arbeitsentgeltzuschuss für die freigestellte Weiterbildungszeit.</li>
+<li><strong>Betriebe mit 50 bis 499 Mitarbeitern:</strong> Bis zu 50 % Zuschuss zum fortgezahlten Gehalt.</li>
+<li><strong>Betriebe ab 500 Mitarbeitern:</strong> Bis zu 25 % Zuschuss zum fortgezahlten Gehalt.</li>
 <li><strong>Steuerfreiheit nach § 3 Nr. 19 EStG:</strong> Sämtliche vom Arbeitgeber übernommenen Bildungsaufwendungen oder Nebenleistungen (wie Fahrkosten oder Lehrbücher) gelten als steuer- und sozialversicherungsfreie Leistungen, da sie die berufliche Beschäftigungsfähigkeit sichern.</li>
 </ul>
 <p>Die Beantragung erfolgt unbürokratisch über das digitale eServices-Portal der Bundesagentur für Arbeit, sodass Betriebe ohne zeitaufwendigen Papierkrieg von den Fördermitteln profitieren.</p>
@@ -7639,11 +7637,10 @@ ON CONFLICT (slug) DO UPDATE SET
 
 INSERT INTO posts (title, slug, excerpt, content, cover_image, status, meta_title, meta_description, language)
 VALUES ('Kündigung und Aufhebungsvertrag: Meldepflichten nach § 4a Abs. 5 AufenthG', 'kuendigung-aufhebungsvertrag-drittstaaten-meldepflicht-auslaenderbehoerde', 'Arbeitsverhältnis mit Drittstaatsangehörigen beendet? Gesetzliche 4-Wochen-Meldepflicht nach § 4a Abs. 5 AufenthG, Fristen und Bußgeldrisiken für Betriebe.', '<p>Nicht jedes Arbeitsverhältnis verläuft auf Dauer harmonisch: Sei es durch mangelnde fachliche Entwicklung, unerwartete betriebliche Auftragseinbrüche, persönliche Umorientierung der Fachkraft oder einvernehmliche Trennungen über einen Aufhebungsvertrag – auch bei internationalen Mitarbeitern aus Drittstaaten wie Vietnam kann es zur vorzeitigen Beendigung des Arbeitsverhältnisses kommen.</p>
-<p>Für Arbeitgeber birgt die Beendigung eines Arbeitsvertrags mit Drittstaatsangehörigen jedoch gravierende aufenthaltsrechtliche Sonderpflichten, die vielen Personalabteilungen unbekannt sind: <strong>Nach § 4a Abs. 5 Aufenthaltsgesetz (AufenthG) sind Arbeitgeber gesetzlich verpflichtet, die vorzeitige Beendigung der Beschäftigung innerhalb von vier Wochen der zuständigen Ausländerbehörde mitzuteilen.</strong> Ein Verstoß gegen diese Meldepflicht stellt eine Ordnungswidrigkeit dar, die nach <strong>§ 404 Abs. 2 Nr. 4 SGB III mit empfindlichen Bußgeldern von bis zu 30.000 Euro geahndet werden kann</strong>.</p>
+<p>Für Arbeitgeber birgt die Beendigung eines Arbeitsvertrags mit Drittstaatsangehörigen jedoch gravierende aufenthaltsrechtliche Sonderpflichten, die vielen Personalabteilungen unbekannt sind: <strong>Nach § 4a Abs. 5 Satz 3 Nr. 3 Aufenthaltsgesetz (AufenthG) sind Arbeitgeber gesetzlich verpflichtet, die vorzeitige Beendigung der Beschäftigung innerhalb von vier Wochen ab Kenntnis der zuständigen Ausländerbehörde mitzuteilen.</strong> Ein vorsätzlicher oder leichtfertiger Verstoß gegen diese Meldepflicht stellt eine Ordnungswidrigkeit dar, die nach <strong>§ 98 Abs. 2a Nr. 2 AufenthG mit Bußgeldern von bis zu 30.000 Euro</strong> geahndet werden kann.</p>
 <p><img src="/images/blog/kuendigung-meldepflicht-zeitstrahl.svg" alt="Meldepflicht bei Beendigung des Arbeitsverhältnisses" /></p>
 <h2>1. Die gesetzliche Meldepflicht nach § 4a Abs. 5 AufenthG im Detail</h2>
-<p>Der Gesetzgeber regelt in § 4a Abs. 5 Satz 1 AufenthG unmissverständlich:</p>
-<blockquote><p><em>„Der Arbeitgeber ist verpflichtet, der zuständigen Ausländerbehörde innerhalb von vier Wochen ab Kenntnis mitzuteilen, dass die Beschäftigung, für die ein Aufenthaltstitel erteilt wurde, vorzeitig beendet worden ist.“</em></p></blockquote>
+<p>Der Gesetzgeber regelt dies in <strong>§ 4a Abs. 5 Satz 3 Nr. 3 AufenthG</strong>: Wer einen Ausländer beschäftigt, muss der zuständigen Ausländerbehörde <strong>innerhalb von vier Wochen ab Kenntnis</strong> mitteilen, dass die Beschäftigung – für die ein Aufenthaltstitel nach Kapitel 2 Abschnitt 4 (Aufenthalt zum Zweck der Erwerbstätigkeit) erteilt wurde – <strong>vorzeitig beendet</strong> wurde.</p>
 <p>Diese Pflicht gilt in folgenden Konstellationen:</p>
 <ul>
 <li><strong>Ordentliche oder außerordentliche Kündigung durch den Arbeitgeber</strong> (auch während der <a href="/blog/probezeit-nicht-bestanden-drittstaaten-meldepflicht-aufenthg">Probezeit</a>).</li>
@@ -7690,7 +7687,7 @@ VALUES ('Kündigung und Aufhebungsvertrag: Meldepflichten nach § 4a Abs. 5 Aufe
 <tr>
 <td><strong>Bußgeld bei Unterlassen</strong></td>
 <td>Keines für Arbeitgeber</td>
-<td><strong>Bis zu 30.000 € nach § 404 Abs. 2 SGB III</strong></td>
+<td><strong>Bis zu 30.000 € nach § 98 Abs. 2a Nr. 2 AufenthG</strong> (bei Vorsatz oder Leichtfertigkeit)</td>
 </tr>
 <tr>
 <td><strong>Aufenthaltsstatus</strong></td>
@@ -7714,7 +7711,7 @@ VALUES ('Kündigung und Aufhebungsvertrag: Meldepflichten nach § 4a Abs. 5 Aufe
 <li><strong>Arbeitsbescheinigung nach § 312 SGB III:</strong> Elektronische Übermittlung (BEA) an die Bundesagentur für Arbeit vornehmen, damit der Mitarbeiter nahtlos Leistungen beantragen kann.</li>
 </ol>
 <p>Haben Sie Fragen zur rechtssicheren Vertragsgestaltung oder Beendigung? DMF Talents berät Partnerbetriebe professionell in allen arbeits- und aufenthaltsrechtlichen Übergangsprozessen.</p>
-<p>Nach einer Kündigung laufen Meldepflicht und mögliche Nachbesetzung parallel. <a href="/services/skilled-workers">DMF Talents zur Vermittlung von Fachkräften aus Vietnam</a> beschreibt, wie DMF Talents Betriebe bei Personalwechseln unterstützt. Wenn Sie die Stelle neu besetzen möchten, <a href="/fuer-arbeitgeber/personalbedarf">beschreiben Sie Ihren Personalbedarf</a> und schildern Sie kurz den Stand des Verfahrens.</p>', '/images/blog/dmf-personalbuero-kuendigung-beratung.jpg', 'published', 'Kündigung Drittstaaten Mitarbeiter: Meldepflicht § 4a AufenthG', 'Kündigung und Aufhebungsvertrag bei Drittstaatsangehörigen: 4-Wochen-Meldepflicht nach § 4a Abs. 5 AufenthG, Bußgelder bis 30.000 €, KSchG und Praxis-Leitfaden.', 'de')
+<p>Nach einer Kündigung laufen Meldepflicht und mögliche Nachbesetzung parallel. <a href="/services/skilled-workers">DMF Talents zur Vermittlung von Fachkräften aus Vietnam</a> beschreibt, wie DMF Talents Betriebe bei Personalwechseln unterstützt. Wenn Sie die Stelle neu besetzen möchten, <a href="/fuer-arbeitgeber/personalbedarf">beschreiben Sie Ihren Personalbedarf</a> und schildern Sie kurz den Stand des Verfahrens.</p>', '/images/blog/dmf-personalbuero-kuendigung-beratung.jpg', 'published', 'Kündigung Drittstaaten Mitarbeiter: Meldepflicht § 4a AufenthG', 'Kündigung und Aufhebungsvertrag bei Drittstaatsangehörigen: 4-Wochen-Meldepflicht nach § 4a Abs. 5 AufenthG, Bußgeld bis 30.000 € nach § 98 AufenthG, KSchG und Praxis-Leitfaden.', 'de')
 ON CONFLICT (slug) DO UPDATE SET
   title = EXCLUDED.title,
   excerpt = EXCLUDED.excerpt,

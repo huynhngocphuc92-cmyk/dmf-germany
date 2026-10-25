@@ -20,33 +20,36 @@ Internationale Fachkräfte und Auszubildende aus Drittstaaten bringen fundierte 
 Viele Arbeitgeber scheuen die hohen Kosten für berufsbegleitenden Sprachunterricht und die Freistellung von der Arbeitszeit. Was viele Geschäftsführer und HR-Manager nicht wissen: Die Bundesagentur für Arbeit fördert betriebliche Weiterbildungen und arbeitsplatzbezogene Sprachkurse über das **Qualifizierungschancengesetz (§ 82 Drittes Buch Sozialgesetzbuch – SGB III)** mit **massiven finanziellen Zuschüssen** – bei Kleinstbetrieben werden bis zu 100 Prozent der Kurskosten übernommen.
 
 ![Betriebliche Weiterbildungsförderung nach § 82 SGB III Förderstaffel](/images/blog/qualifizierungschancengesetz-foerderstaffel-schema.svg)
-_Die Förderstaffel nach Betriebsgröße gemäß § 82 SGB III: Bis zu 100 % Zuschuss zu den Lehrgangskosten und bis zu 75 % Arbeitsentgeltzuschuss (AEZ) für freigestellte Mitarbeiter._
+_Die Förderstaffel nach Betriebsgröße gemäß § 82 SGB III (Stand 2026): Kleinbetriebe unter 50 Beschäftigten erhalten bis zu 100 % Zuschuss zu den Lehrgangskosten und bis zu 75 % Arbeitsentgeltzuschuss (AEZ) für freigestellte Mitarbeiter._
 
 ## 1. Gesetzliche Förderkriterien nach § 82 SGB III
 
 Damit eine betriebliche Sprach- oder Weiterbildungsmaßnahme förderfähig ist, müssen folgende gesetzliche Voraussetzungen erfüllt sein:
 
-1. **Umfang der Maßnahme:** Die Weiterbildung muss **mehr als 120 Unterrichtsstunden** umfassen (§ 82 Abs. 1 Nr. 1 SGB III).
+1. **Umfang der Maßnahme:** Die Weiterbildung muss **mehr als 120 Stunden** umfassen (§ 82 Abs. 1 Nr. 4 SGB III).
 2. **Akkreditierung nach AZAV:** Maßnahmenträger und Lehrgang müssen nach der **Akkreditierungs- und Zulassungsverordnung Arbeitsförderung (AZAV)** von einer fachkundigen Stelle zertifiziert sein. Reine interne Firmenschulungen sind nicht förderfähig.
 3. **Vermittlung zukunftsorientierter Kompetenzen:** Die Maßnahme muss über eine rein arbeitsplatzbezogene Kurzunterweisung hinausgehen und Fertigkeiten vermitteln, die auf dem allgemeinen Arbeitsmarkt verwertbar sind (berufsbezogenes Deutsch, Fachwortschatz Handwerk, Pflege oder Industrie).
 4. **Bestehendes Arbeitsverhältnis:** Der Mitarbeiter muss sozialversicherungspflichtig beschäftigt sein.
+5. **Berufsabschluss liegt zurück:** Für den Berufsabschluss, für den eine mindestens zweijährige Ausbildungsdauer festgelegt ist, müssen in der Regel mindestens zwei Jahre vergangen sein (§ 82 Abs. 1 Nr. 2 SGB III).
+6. **Keine Doppelförderung:** In den zwei Jahren vor Antragstellung darf keine bereits nach § 82 SGB III geförderte Weiterbildung besucht worden sein (§ 82 Abs. 1 Nr. 3 SGB III).
 
-## 2. Die Förderstaffel nach Unternehmensgröße
+## 2. Die Förderstaffel nach Unternehmensgröße (Stand 2026)
 
-Die Höhe der staatlichen Zuschüsse richtet sich gestaffelt nach der Mitarbeiterzahl des Unternehmens:
+Die Höhe der staatlichen Zuschüsse richtet sich gestaffelt nach der Mitarbeiterzahl des Unternehmens. **Achtung:** Die Schwellen wurden mit dem Weiterbildungsgesetz neu gefasst – ältere Übersichten im Netz zeigen noch die früheren Grenzen (10 / 249 / 2.500 Beschäftigte), die nicht mehr gelten:
 
-| Unternehmensgröße                              | Zuschuss zu den Lehrgangskosten | Arbeitsentgeltzuschuss (AEZ) | Eigenanteil des Arbeitgebers |
-| ---------------------------------------------- | ------------------------------- | ---------------------------- | ---------------------------- |
-| **Kleinstbetriebe (&lt; 10 Beschäftigte)**     | **bis zu 100 %**                | **bis zu 75 %**              | 0 % Kurskosten / 25 % Lohn   |
-| **Kleine &amp; mittlere Betriebe (10–249 MA)** | **bis zu 50 %**                 | **bis zu 50 %**              | 50 % Kurskosten / 50 % Lohn  |
-| **Größere Betriebe (250–2.499 MA)**            | **bis zu 25 %**                 | **bis zu 25 %**              | 75 % Kurskosten / 75 % Lohn  |
-| **Großkonzerne (ab 2.500 MA)**                 | **bis zu 15 %**                 | **bis zu 20 %**              | 85 % Kurskosten / 80 % Lohn  |
+| Unternehmensgröße                     | Zuschuss zu den Lehrgangskosten | Arbeitsentgeltzuschuss (AEZ) | Eigenanteil des Arbeitgebers |
+| ------------------------------------- | ------------------------------- | ---------------------------- | ---------------------------- |
+| **Kleinbetriebe (< 50 Beschäftigte)** | **bis zu 100 %**                | **bis zu 75 %**              | 0 % Kurskosten / 25 % Lohn   |
+| **Mittlere Betriebe (50–499 MA)**     | **bis zu 50 %**                 | **bis zu 50 %**              | 50 % Kurskosten / 50 % Lohn  |
+| **Größere Betriebe (ab 500 MA)**      | **bis zu 25 %**                 | **bis zu 25 %**              | 75 % Kurskosten / 75 % Lohn  |
 
-**Besonderer Bonus:** Liegt eine Betriebsvereinbarung zur betrieblichen Weiterbildung vor oder gilt ein tarifvertraglicher Weiterbildungsanspruch, können sich die Fördersätze um weitere 5 bis 15 Prozentpunkte erhöhen (§ 82 Abs. 2 SGB III).
+**Sonderfall:** Ist die Mitarbeiterin oder der Mitarbeiter mindestens 45 Jahre alt oder schwerbehindert, entfällt die Kostenbeteiligung des Arbeitgebers auch in Betrieben mit weniger als 500 Beschäftigten (§ 82 Abs. 2 Satz 3 SGB III). Für die Betriebsgröße zählen alle Beschäftigten des Unternehmens – bei Konzernzugehörigkeit die des gesamten Konzerns (§ 82 Abs. 6 Nr. 2 SGB III).
+
+**Besonderer Bonus:** Liegt eine Betriebsvereinbarung über die berufliche Weiterbildung vor oder sieht ein Tarifvertrag betriebsbezogene Weiterbildung vor, sinkt die Beteiligung des Arbeitgebers an den Lehrgangskosten um 5 Prozentpunkte – und der Arbeitsentgeltzuschuss kann um 5 Prozentpunkte steigen (§ 82 Abs. 4 SGB III).
 
 ## 3. Der Arbeitsentgeltzuschuss (AEZ): Lohnkosten während der Schulung abfedern
 
-Neben den reinen Unterrichtskosten stellt der Arbeitsausfall für Betriebe das größte Hindernis dar. Hier greift der **Arbeitsentgeltzuschuss (AEZ nach § 82 Abs. 5 SGB III)**:
+Neben den reinen Unterrichtskosten stellt der Arbeitsausfall für Betriebe das größte Hindernis dar. Hier greift der **Arbeitsentgeltzuschuss (AEZ nach § 82 Abs. 3 SGB III)**:
 
 - Stellt der Arbeitgeber die Fachkraft für den Besuch eines Intensivsprachkurses bezahlt von der Arbeit frei, erstattet die Bundesagentur für Arbeit einen prozentualen Anteil des Bruttoarbeitsentgelts inklusive der pauschalierten Sozialversicherungsbeiträge.
 - Bei einem Handwerksbetrieb mit 8 Mitarbeitern übernimmt die Arbeitsagentur beispielsweise 100 Prozent der Sprachkursgebühren und erstattet **75 Prozent des Gehalts** für die Stunden, in denen der Mitarbeiter die Schulbank drückt.

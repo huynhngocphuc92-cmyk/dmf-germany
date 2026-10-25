@@ -64,8 +64,9 @@ Findet die Sprachweiterbildung ganz oder teilweise während der bezahlten regul�
 
 Der Arbeitgeber-Service der Bundesagentur für Arbeit (AG-S) gewährt abhängig von der Unternehmensgröße signifikante Zuschüsse zum Arbeitsentgelt:
 
-- **Kleinstbetriebe (unter 10 Mitarbeiter):** Bis zu 75 % Arbeitsentgeltzuschuss für die freigestellte Weiterbildungszeit.
-- **Kleinere und mittlere Betriebe (10 bis 249 Mitarbeiter):** Bis zu 50 % Zuschuss zum fortgezahlten Gehalt.
+- **Betriebe mit weniger als 50 Mitarbeitern:** Bis zu 75 % Arbeitsentgeltzuschuss für die freigestellte Weiterbildungszeit.
+- **Betriebe mit 50 bis 499 Mitarbeitern:** Bis zu 50 % Zuschuss zum fortgezahlten Gehalt.
+- **Betriebe ab 500 Mitarbeitern:** Bis zu 25 % Zuschuss zum fortgezahlten Gehalt.
 - **Steuerfreiheit nach § 3 Nr. 19 EStG:** Sämtliche vom Arbeitgeber übernommenen Bildungsaufwendungen oder Nebenleistungen (wie Fahrkosten oder Lehrbücher) gelten als steuer- und sozialversicherungsfreie Leistungen, da sie die berufliche Beschäftigungsfähigkeit sichern.
 
 Die Beantragung erfolgt unbürokratisch über das digitale eServices-Portal der Bundesagentur für Arbeit, sodass Betriebe ohne zeitaufwendigen Papierkrieg von den Fördermitteln profitieren.
