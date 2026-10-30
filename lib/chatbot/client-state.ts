@@ -1,8 +1,47 @@
 import { withDeadline } from "@/lib/requests/deadline";
+import { getGuidedChatResponse, type SupportedChatLanguage } from "@/lib/chatbot/fallback";
 
-export const CHAT_DEADLINE_MS = 15000;
 export const HISTORY_DEADLINE_MS = 8000;
 export const LEAD_DEADLINE_MS = 20000;
+
+type LocalFaqResult =
+  | { status: "empty" }
+  | { status: "duplicate" }
+  | { status: "throttled"; cooldownUntil: number }
+  | { status: "answered"; message: string; answer: string; cooldownUntil: number };
+
+/** Synchronous FAQ admission and answers: no transport, timer or backend dependency. */
+export class LocalFaq {
+  private acceptedAt: number[] = [];
+  private lastAction: { key: string; at: number } | null = null;
+
+  resetDuplicate() {
+    // Visibility/language changes may start a fresh action, but never reset the quota.
+    this.lastAction = null;
+  }
+
+  answer(language: SupportedChatLanguage | "vn", input: string, now = Date.now()): LocalFaqResult {
+    const message = input.trim().slice(0, 2000);
+    if (!message) return { status: "empty" };
+    const normalizedLanguage = language === "vn" ? "vi" : language;
+    const key = JSON.stringify([normalizedLanguage, message]);
+    // Retain admission across React renders: a synchronous answer has no in-flight lane.
+    // Different questions are immediately usable; duplicates don't extend this window.
+    if (this.lastAction?.key === key && now - this.lastAction.at < 600)
+      return { status: "duplicate" };
+    this.acceptedAt = this.acceptedAt.filter((at) => now - at < 60000);
+    if (this.acceptedAt.length >= 20)
+      return { status: "throttled", cooldownUntil: this.acceptedAt[0] + 60000 };
+    this.acceptedAt.push(now);
+    this.lastAction = { key, at: now };
+    return {
+      status: "answered",
+      message,
+      answer: getGuidedChatResponse(normalizedLanguage, message),
+      cooldownUntil: this.acceptedAt.length === 20 ? this.acceptedAt[0] + 60000 : 0,
+    };
+  }
+}
 
 /** Admission is synchronous; React state alone cannot exclude same-tick events. */
 export class RequestLane {

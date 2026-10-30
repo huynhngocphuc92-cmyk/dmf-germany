@@ -16,6 +16,7 @@ import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "@/lib/site";
 
 const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans", display: "swap" });
 const geistMono = Geist_Mono({
+  preload: false,
   subsets: ["latin"],
   variable: "--font-geist-mono",
   display: "swap",

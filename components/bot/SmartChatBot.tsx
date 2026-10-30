@@ -6,7 +6,7 @@ import {
   HistoryWriter,
   postJson,
   isSavedLead,
-  CHAT_DEADLINE_MS,
+  LocalFaq,
   LEAD_DEADLINE_MS,
 } from "@/lib/chatbot/client-state";
 import { currentRequestContext } from "@/lib/intake/context";
@@ -15,7 +15,7 @@ import { useSubmissionKey } from "@/lib/intake/client";
 
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { cn } from "@/lib/utils";
-import { BUSINESS_PHONE_ERROR_MESSAGE, isValidBusinessPhone } from "@/lib/validations/phone";
+import { BUSINESS_PHONE_ERROR_MESSAGE, isValidBusinessPhone } from "@/lib/validations/phone-rules";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   Bot,
@@ -24,7 +24,6 @@ import {
   Calendar,
   CheckCircle,
   GraduationCap,
-  Loader2,
   Mail,
   MessageCircle,
   Phone,
@@ -45,16 +44,6 @@ interface Message {
   role: "user" | "assistant";
   content: string;
   timestamp: Date;
-}
-
-interface ChatResponse {
-  message: string;
-  mode?: "guided";
-  usage?: {
-    inputTokens: number;
-    outputTokens: number;
-  };
-  error?: string;
 }
 
 interface QuickAction {
@@ -79,7 +68,6 @@ const chatTranslations = {
   de: {
     title: "Automatischer Chatbot",
     guided: "Vorbereitete FAQ-Antworten",
-    unavailable: "Antwort derzeit nicht verfügbar · bitte erneut versuchen",
     placeholder: "Stellen Sie Ihre Frage...",
     send: "Senden",
     close: "Schließen",
@@ -107,7 +95,6 @@ const chatTranslations = {
   en: {
     title: "Automated chatbot",
     guided: "Prepared FAQ answers",
-    unavailable: "Response unavailable · please retry",
     placeholder: "Ask your question...",
     send: "Send",
     close: "Close",
@@ -135,7 +122,6 @@ const chatTranslations = {
   vn: {
     title: "Chatbot tự động",
     guided: "Trả lời theo chủ đề",
-    unavailable: "Chưa thể trả lời · vui lòng thử lại",
     placeholder: "Đặt câu hỏi của bạn...",
     send: "Gửi",
     close: "Đóng",
@@ -184,8 +170,6 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const messagesRef = useRef<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [responseMode, setResponseMode] = useState<"guided" | "unavailable">("guided");
   const [logoUrl, setLogoUrl] = useState<string | null>(null);
   const [logoError, setLogoError] = useState(false);
   const [showLeadForm, setShowLeadForm] = useState(false);
@@ -198,10 +182,9 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
   const [leadFormError, setLeadFormError] = useState<string | null>(null);
   const [sessionId] = useState(() => `chat-${Date.now()}-${Math.random().toString(36).slice(2)}`);
 
-  const [chatError, setChatError] = useState<string | null>(null);
   const [cooldownUntil, setCooldownUntil] = useState(0);
   const [leadCooldownUntil, setLeadCooldownUntil] = useState(0);
-  const chatLane = useRef(new RequestLane());
+  const localFaq = useRef(new LocalFaq());
   const leadLane = useRef(new RequestLane());
   const historyRef = useRef<HistoryWriter<Message[]> | null>(null);
   const languageRef = useRef(lang);
@@ -315,7 +298,7 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, isLoading]);
+  }, [messages]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -335,20 +318,18 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
   useLayoutEffect(() => {
     languageRef.current = lang;
     openRef.current = isOpen;
-    const chatRequests = chatLane.current;
+    const faq = localFaq.current;
     const leadRequests = leadLane.current;
-    chatRequests.cancel();
+    faq.resetDuplicate();
     leadRequests.cancel();
-    setIsLoading(false);
     setIsLeadSaving(false);
-    setChatError(null);
     setLeadFormError(null);
     if (!isOpen) setShowLeadForm(false);
     return () => {
-      chatRequests.cancel();
+      faq.resetDuplicate();
       leadRequests.cancel();
     };
-  }, [isOpen, lang, chatLane, leadLane]);
+  }, [isOpen, lang]);
   /* eslint-enable react-hooks/set-state-in-effect */
 
   useEffect(() => {
@@ -368,7 +349,7 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
   }, [sessionId]);
 
   useEffect(() => {
-    const deadlines = [cooldownUntil, leadCooldownUntil].filter((until) => until > Date.now());
+    const deadlines = [cooldownUntil, leadCooldownUntil].filter((until) => until > 0);
     const until = deadlines.length ? Math.min(...deadlines) : 0;
     if (!until) return;
     const timer = setTimeout(
@@ -382,77 +363,34 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
   }, [cooldownUntil, leadCooldownUntil]);
 
   const sendMessage = useCallback(
-    async (messageText?: string) => {
-      const message = (messageText || inputValue).trim().slice(0, 2000);
-      if (!message || !openRef.current) return;
-      const controller = chatLane.current.begin();
-      if (!controller) return;
-      const language = lang;
-      const current = () =>
-        chatLane.current.isCurrent(controller) &&
-        openRef.current &&
-        languageRef.current === language;
-      // Keep both typed and quick-action questions available for a manual retry.
-      setInputValue(message);
-      setChatError(null);
-      setIsLoading(true);
-      try {
-        const { response, data } = await withDeadline(
-          (signal) => postJson<ChatResponse>("/api/chat", { message, language }, signal),
-          CHAT_DEADLINE_MS,
-          controller
-        );
-        if (!current()) return;
-        if (response.status === 429) {
-          setCooldownUntil(chatLane.current.coolDown(response.headers.get("Retry-After")));
-          setChatError(t.rateLimit);
-          setResponseMode("unavailable");
-          return;
-        }
-        if (
-          !response.ok ||
-          data?.mode !== "guided" ||
-          typeof data.message !== "string" ||
-          !data.message.trim()
-        )
-          throw new Error("Invalid FAQ response");
-        const finalMessages = boundMessages([
-          ...messagesRef.current,
-          {
-            id: `user-${crypto.randomUUID()}`,
-            role: "user" as const,
-            content: message,
-            timestamp: new Date(),
-          },
-          {
-            id: `assistant-${crypto.randomUUID()}`,
-            role: "assistant" as const,
-            content: data.message,
-            timestamp: new Date(),
-          },
-        ]);
-        messagesRef.current = finalMessages;
-        setMessages(finalMessages);
-        setInputValue("");
-        setResponseMode("guided");
-        historyRef.current?.enqueue(finalMessages);
-      } catch {
-        if (
-          chatLane.current.owns(controller) &&
-          openRef.current &&
-          languageRef.current === language
-        ) {
-          setResponseMode("unavailable");
-          setChatError(t.error);
-        }
-      } finally {
-        if (chatLane.current.owns(controller)) {
-          chatLane.current.finish(controller);
-          setIsLoading(false);
-        }
-      }
+    (messageText?: string) => {
+      if (!openRef.current) return;
+      const result = localFaq.current.answer(lang, messageText ?? inputValue);
+      if (result.status === "empty" || result.status === "duplicate") return;
+      setCooldownUntil(result.cooldownUntil);
+      if (result.status === "throttled") return;
+      const finalMessages = boundMessages([
+        ...messagesRef.current,
+        {
+          id: `user-${crypto.randomUUID()}`,
+          role: "user" as const,
+          content: result.message,
+          timestamp: new Date(),
+        },
+        {
+          id: `assistant-${crypto.randomUUID()}`,
+          role: "assistant" as const,
+          content: result.answer,
+          timestamp: new Date(),
+        },
+      ]);
+      messagesRef.current = finalMessages;
+      setMessages(finalMessages);
+      // A topic button should not discard an unrelated typed draft.
+      if (messageText === undefined) setInputValue("");
+      historyRef.current?.enqueue(finalMessages);
     },
-    [inputValue, lang, t.error, t.rateLimit, chatLane]
+    [inputValue, lang]
   );
 
   const openLeadForm = () => {
@@ -579,10 +517,9 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
 
   const handleClose = () => {
     openRef.current = false;
-    chatLane.current.cancel();
+    localFaq.current.resetDuplicate();
     leadLane.current.cancel();
-    // Let the serialized history write settle on close; unmount still cancels it.
-    setIsLoading(false);
+    // Normal close lets serialized history settle; the writer effect stops on unmount.
     setIsLeadSaving(false);
     setShowLeadForm(false);
     setIsOpen(false);
@@ -688,14 +625,9 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
                 <div>
                   <h3 className="font-semibold text-sm text-white">{t.title}</h3>
                   <div className="flex items-center gap-1.5">
-                    <div
-                      className={cn(
-                        "w-2 h-2 shrink-0 rounded-full",
-                        responseMode === "unavailable" ? "bg-amber-300" : "bg-green-400"
-                      )}
-                    />
+                    <div className="w-2 h-2 shrink-0 rounded-full bg-green-400" />
                     <span role="status" className="text-xs opacity-90 text-white">
-                      {t[responseMode]}
+                      {t.guided}
                     </span>
                   </div>
                 </div>
@@ -776,92 +708,39 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
                 </motion.div>
               ))}
 
-              {/* Typing Indicator */}
-              {isLoading && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="flex justify-start"
-                >
-                  <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center flex-shrink-0 mr-2 shadow-sm border border-gray-200 overflow-hidden">
-                    {logoError ? (
-                      <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                        <Bot className="w-4 h-4 text-primary" />
-                      </div>
-                    ) : (
-                      <Image
-                        src={logoUrl || "/logo.png"}
-                        alt="Bot"
-                        width={24}
-                        height={24}
-                        className="rounded-full object-contain"
-                        unoptimized={logoUrl?.startsWith("http") || false}
-                        onError={() => setLogoError(true)}
-                      />
-                    )}
-                  </div>
-                  <div className="bg-white rounded-2xl px-4 py-3 shadow-sm border border-gray-200">
-                    <div className="flex gap-1.5">
-                      <div
-                        className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
-                        style={{ animationDelay: "0ms" }}
-                      />
-                      <div
-                        className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
-                        style={{ animationDelay: "150ms" }}
-                      />
-                      <div
-                        className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
-                        style={{ animationDelay: "300ms" }}
-                      />
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-
               <div ref={messagesEndRef} />
             </div>
 
             {/* Quick Actions */}
-            {!isLoading && (
-              <div className="px-4 py-2 bg-gray-50 border-t border-gray-100 flex-shrink-0">
-                <div className="flex flex-wrap gap-2">
-                  {quickActions.map((action) => (
-                    <button
-                      key={action.id}
-                      onClick={() => handleQuickAction(action)}
-                      className={cn(
-                        "inline-flex items-center gap-1.5 px-3 py-1.5",
-                        "bg-white border border-gray-200 rounded-full",
-                        "text-xs font-medium text-gray-700",
-                        "hover:bg-primary/5 hover:border-primary/30 hover:text-primary",
-                        "transition-colors"
-                      )}
-                    >
-                      {action.icon}
-                      {action.label}
-                    </button>
-                  ))}
-                </div>
+            <div className="px-4 py-2 bg-gray-50 border-t border-gray-100 flex-shrink-0">
+              <div className="flex flex-wrap gap-2">
+                {quickActions.map((action) => (
+                  <button
+                    key={action.id}
+                    onClick={() => handleQuickAction(action)}
+                    className={cn(
+                      "inline-flex items-center gap-1.5 px-3 py-1.5",
+                      "bg-white border border-gray-200 rounded-full",
+                      "text-xs font-medium text-gray-700",
+                      "hover:bg-primary/5 hover:border-primary/30 hover:text-primary",
+                      "transition-colors"
+                    )}
+                  >
+                    {action.icon}
+                    {action.label}
+                  </button>
+                ))}
               </div>
-            )}
+            </div>
 
             {/* Input Area */}
             <form
               onSubmit={handleSubmit}
               className="border-t border-gray-200 px-4 py-3 bg-white flex-shrink-0"
             >
-              {chatError && (
-                <div role="alert" className="mb-2 text-sm text-amber-800">
-                  {chatError}{" "}
-                  <button
-                    type="button"
-                    className="underline"
-                    disabled={isLoading || cooldownUntil !== 0}
-                    onClick={() => void sendMessage()}
-                  >
-                    {lang === "de" ? "Erneut versuchen" : lang === "vn" ? "Thử lại" : "Retry"}
-                  </button>
+              {cooldownUntil !== 0 && (
+                <div role="status" className="mb-2 text-sm text-amber-800">
+                  {t.rateLimit}
                 </div>
               )}
               <div className="flex items-center gap-2">
@@ -873,7 +752,6 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder={t.placeholder}
-                  disabled={isLoading}
                   className={cn(
                     "flex-1 px-4 py-2 bg-gray-100 border border-gray-200 rounded-lg text-sm",
                     "focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent",
@@ -883,20 +761,16 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
                 />
                 <button
                   type="submit"
-                  disabled={isLoading || cooldownUntil !== 0 || !inputValue.trim()}
+                  disabled={cooldownUntil !== 0 || !inputValue.trim()}
                   className={cn(
                     "w-10 h-10 rounded-lg flex items-center justify-center transition-colors",
-                    isLoading || !inputValue.trim()
+                    cooldownUntil !== 0 || !inputValue.trim()
                       ? "bg-gray-100 text-gray-400 cursor-not-allowed"
                       : "bg-primary text-primary-foreground hover:bg-primary/90"
                   )}
                   aria-label={t.send}
                 >
-                  {isLoading ? (
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                  ) : (
-                    <Send className="w-4 h-4" />
-                  )}
+                  <Send className="w-4 h-4" />
                 </button>
               </div>
             </form>
