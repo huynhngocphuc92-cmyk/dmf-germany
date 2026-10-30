@@ -11,7 +11,7 @@ vi.mock("@/app/home-client", () => ({ HomeClient: () => null }));
 import Home, { dynamic } from "@/app/page";
 
 describe("homepage critical path", () => {
-  it("renders the hero heading visibly and preloads its full-width background", () => {
+  it("renders the hero visibly and prioritizes its full-width background without lazy loading", () => {
     const html = renderToStaticMarkup(
       <LanguageProvider>
         <HeroSection heroBg="/hero-fixture.webp" />
@@ -20,9 +20,10 @@ describe("homepage critical path", () => {
     const heading = html.match(/<h1\b[^>]*>.*?<\/h1>/)?.[0];
     expect(heading).toBeDefined();
     expect(heading).not.toContain("opacity:0");
-    expect(html).toContain('rel="preload"');
-    expect(html).toContain('as="image"');
-    expect(html).toContain('imageSizes="100vw"');
+    const image = html.match(/<img\b[^>]*>/)?.[0];
+    expect(image).toContain('fetchPriority="high"');
+    expect(image).toContain('loading="eager"');
+    expect(image).toContain('sizes="100vw"');
   });
 
   it("starts candidates while assets are still pending and retains request-time rendering", async () => {
