@@ -247,6 +247,69 @@ test("transition alerts are deduplicated, outage backs off, recovery resets and 
   assert.equal(summary.stopped, "deadline");
   assert.ok(summary.maxSampleGapMs >= 55);
 });
+test("observation-limited requests never emit outage alerts, including clipped recovery", async () => {
+  const healthy = {
+    status: "ok",
+    checks: {
+      database: { status: "ok" },
+      notifications: {
+        status: "ok",
+        pending: 0,
+        failed: 0,
+        staleSending: 0,
+        exhausted: 0,
+        oldestPendingSeconds: 0,
+      },
+      configuration: {
+        status: "ok",
+        databaseConfigured: true,
+        smtpConfigured: true,
+        telegramConfigured: false,
+        deliveryEnabled: true,
+      },
+    },
+  };
+  for (const recover of [false, true]) {
+    const events = [];
+    const summary = await runMonitor({
+      origin: "https://example.invalid",
+      durationMs: 40,
+      intervalMs: 5,
+      timeoutMs: 1000,
+      health: recover,
+      recover,
+      token: recover ? "local-fixture-only" : undefined,
+      fetchImpl: async (url, { signal }) => {
+        // For recovery, first return healthy public/protected checks immediately.
+        if (recover && url.pathname !== "/api/ops/notifications") {
+          if (url.pathname === "/")
+            return new Response("fixture", { headers: { "Content-Type": "text/html" } });
+          return new Response(JSON.stringify(url.pathname === "/api/chat" ? chat : healthy), {
+            headers: { "Content-Type": "application/json", "Cache-Control": "no-store" },
+          });
+        }
+        await new Promise((_, reject) => {
+          const timer = setTimeout(() => reject(new Error("test safety deadline")), 500);
+          const abort = () => {
+            clearTimeout(timer);
+            reject(signal.reason);
+          };
+          if (signal.aborted) abort();
+          else signal.addEventListener("abort", abort, { once: true });
+        });
+      },
+      emit: (event) => events.push(event),
+    });
+    assert.ok(events.some((e) => e.outcome === "aborted"));
+    assert.equal(
+      events.some((e) => e.event === "alert" && e.state === "outage"),
+      false
+    );
+    const count = summary.counts[recover ? "recovery" : "site"];
+    assert.ok(count.aborted >= 1);
+    assert.equal(count.failed, 0);
+  }
+});
 test("abort interrupts in-flight requests and final summary reports actual short coverage", async (t) => {
   const origin = await fixture(t, () => {});
   const controller = new AbortController();
