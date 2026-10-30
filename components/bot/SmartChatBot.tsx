@@ -172,7 +172,9 @@ export const SmartChatBot = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [responseMode, setResponseMode] = useState<"ready" | "ai" | "fallback" | "unavailable">("ready");
+  const [responseMode, setResponseMode] = useState<"ready" | "ai" | "fallback" | "unavailable">(
+    "ready"
+  );
   const [logoUrl, setLogoUrl] = useState<string | null>(null);
   const [logoError, setLogoError] = useState(false);
   const [showLeadForm, setShowLeadForm] = useState(false);
@@ -265,30 +267,10 @@ export const SmartChatBot = () => {
     fetchLogo();
   }, []);
 
-  // Reset logo error when logoUrl changes
-  useEffect(() => {
-    setLogoError(false);
-  }, [logoUrl]);
-
   // Auto scroll to bottom when new messages arrive
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isLoading]);
-
-  // Initialize with welcome message when chat opens
-  useEffect(() => {
-    if (isOpen && messages.length === 0) {
-      const welcomeMessage: Message = {
-        id: "welcome",
-        role: "assistant",
-        content: t.welcome,
-        timestamp: new Date(),
-      };
-      setMessages([welcomeMessage]);
-
-      // Send notification that chat opened
-    }
-  }, [isOpen, messages.length, t.welcome, sessionId]);
 
   // Focus input when chat opens
   useEffect(() => {
@@ -565,7 +547,13 @@ export const SmartChatBot = () => {
             exit={{ scale: 0, opacity: 0 }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => setIsOpen(true)}
+            onClick={() => {
+              if (messages.length === 0)
+                setMessages([
+                  { id: "welcome", role: "assistant", content: t.welcome, timestamp: new Date() },
+                ]);
+              setIsOpen(true);
+            }}
             className={cn(
               "fixed z-[100] group",
               "bottom-18 right-4 md:bottom-8 md:right-8",
@@ -647,8 +635,17 @@ export const SmartChatBot = () => {
                 <div>
                   <h3 className="font-semibold text-sm text-white">{t.title}</h3>
                   <div className="flex items-center gap-1.5">
-                    <div className={cn("w-2 h-2 shrink-0 rounded-full", responseMode === "fallback" || responseMode === "unavailable" ? "bg-amber-300" : "bg-green-400")} />
-                    <span role="status" className="text-xs opacity-90 text-white">{t[responseMode]}</span>
+                    <div
+                      className={cn(
+                        "w-2 h-2 shrink-0 rounded-full",
+                        responseMode === "fallback" || responseMode === "unavailable"
+                          ? "bg-amber-300"
+                          : "bg-green-400"
+                      )}
+                    />
+                    <span role="status" className="text-xs opacity-90 text-white">
+                      {t[responseMode]}
+                    </span>
                   </div>
                 </div>
               </div>
