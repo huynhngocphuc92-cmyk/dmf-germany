@@ -5,6 +5,7 @@ import { escapeHtml, escapeHtmlWithBreaks } from "@/lib/sanitize";
 import { createIntakeClient } from "@/lib/supabase/intake";
 import "server-only";
 import { z } from "zod";
+import { notificationLog } from "./notification-log";
 
 const jobSchema = z.object({
   id: z.uuid(),
@@ -86,7 +87,12 @@ export async function deliverNotification(job: Job): Promise<DeliveryResult> {
       messageId: `<${job.id}@dmf-talents.de>`,
       html,
     });
-    return result.accepted?.length
+    // Acceptance of some other address is not acceptance of the intended recipient.
+    return result.accepted?.some(
+      (address: string | { address: string }) =>
+        (typeof address === "string" ? address : address.address).toLowerCase() ===
+        recipient.toLowerCase()
+    )
       ? { status: "sent", error: null }
       : { status: "failed", error: "smtp_rejected" };
   } catch {
@@ -94,11 +100,19 @@ export async function deliverNotification(job: Job): Promise<DeliveryResult> {
   }
 }
 
-export async function dispatchNotification(id: string) {
+export async function dispatchNotification(id: string, manual = false) {
   const db = createIntakeClient();
-  const { data, error } = await db.rpc("dmf_claim_notification", { p_id: id });
+  const { data, error } = await db.rpc("dmf_claim_notification_retry", {
+    p_id: id,
+    p_manual: manual,
+  });
   if (error) throw new Error("Notification claim failed");
   if (!data) return null;
+  return finishClaimedNotification(data);
+}
+
+async function finishClaimedNotification(data: unknown) {
+  const db = createIntakeClient();
   const job = jobSchema.parse(data);
   const result = await deliverNotification(job);
   const { data: recorded, error: saveError } = await db.rpc("dmf_finish_notification", {
@@ -108,7 +122,30 @@ export async function dispatchNotification(id: string) {
     p_error: result.error,
   });
   if (saveError || !recorded) throw new Error("Delivery result could not be recorded");
+  if (result.status === "failed") notificationLog("delivery_failed", job.id, result.error);
   return result;
+}
+
+export async function dispatchNotificationBatch() {
+  if (
+    process.env.VERCEL_ENV === "preview" ||
+    (process.env.VERCEL_ENV !== "production" && process.env.NOTIFICATION_DELIVERY !== "enabled")
+  )
+    throw new Error("Notification worker disabled");
+  const db = createIntakeClient();
+  const { data, error } = await db.rpc("dmf_claim_notification_batch");
+  if (error) throw new Error("Notification batch claim failed");
+  const jobs = z.array(jobSchema).max(3).parse(data);
+  const results = await Promise.allSettled(jobs.map(finishClaimedNotification));
+  const summary = { processed: jobs.length, sent: 0, failed: 0, skipped: 0, errors: 0 };
+  results.forEach((result, index) => {
+    if (result.status === "fulfilled") summary[result.value.status]++;
+    else {
+      summary.errors++;
+      notificationLog("delivery_record_failed", jobs[index].id);
+    }
+  });
+  return summary;
 }
 
 export async function dispatchSubmission(id: string) {

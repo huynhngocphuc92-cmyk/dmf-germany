@@ -59,7 +59,9 @@ export default async function NotificationsPage({
       <h1 className="text-2xl font-bold">Benachrichtigungen</h1>
       <p className="max-w-3xl text-slate-600">
         Anfragen bleiben gespeichert, auch wenn eine Benachrichtigung nicht zugestellt wird. Prüfen
-        Sie ausstehende Meldungen und senden Sie sie bei Bedarf erneut.
+        Sie ausstehende Meldungen und senden Sie sie bei Bedarf erneut. Maximal fünf Versuche; eine
+        manuelle Wiederholung kann die Wartezeit überspringen. Bereits gesendete Meldungen und
+        aktive Zustellungen bleiben gesperrt.
       </p>
       <nav aria-label="Benachrichtigungen filtern" className="flex gap-4">
         <Link
@@ -124,7 +126,9 @@ export default async function NotificationsPage({
                       timeZone: "Europe/Berlin",
                     })}
                   </td>
-                  <td className="p-4">{row.status !== "sent" && <RetryButton id={row.id} />}</td>
+                  <td className="p-4">
+                    {row.status !== "sent" && row.attempts < 5 && <RetryButton id={row.id} />}
+                  </td>
                 </tr>
               ))}
             </tbody>

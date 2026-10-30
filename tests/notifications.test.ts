@@ -1,4 +1,8 @@
-import { deliverNotification, dispatchNotification } from "@/lib/intake/notifications";
+import {
+  deliverNotification,
+  dispatchNotification,
+  dispatchNotificationBatch,
+} from "@/lib/intake/notifications";
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
 const mocks = vi.hoisted(() => ({ send: vi.fn(), rpc: vi.fn() }));
 vi.mock("server-only", () => ({}));
@@ -77,4 +81,59 @@ it("stores the channel result against the matching lease token", async () => {
     p_status: "sent",
     p_error: null,
   });
+});
+
+it("does not confuse acceptance of another address with delivery to the intended recipient", async () => {
+  mocks.send.mockResolvedValue({
+    accepted: ["someone-else@example.invalid"],
+    rejected: ["admin@example.invalid"],
+  });
+  expect(await deliverNotification(job)).toEqual({ status: "failed", error: "smtp_rejected" });
+  mocks.send.mockResolvedValue({ accepted: [{ address: "ADMIN@example.invalid" }] });
+  expect((await deliverNotification(job)).status).toBe("sent");
+});
+it("treats timeout after possible acceptance as ambiguous failure, preserving a stable message id", async () => {
+  mocks.send.mockRejectedValueOnce(
+    Object.assign(new Error("connection lost after DATA"), { code: "ETIMEDOUT" })
+  );
+  expect((await deliverNotification(job)).status).toBe("failed");
+  mocks.send.mockResolvedValueOnce({ accepted: ["admin@example.invalid"] });
+  await deliverNotification({ ...job, attemptToken: "30000000-0000-4000-8000-000000000001" });
+  expect(mocks.send.mock.calls[0][0].messageId).toBe(mocks.send.mock.calls[1][0].messageId);
+});
+it("reports an expired or superseded completion as an error instead of success", async () => {
+  mocks.rpc
+    .mockResolvedValueOnce({ data: job, error: null })
+    .mockResolvedValueOnce({ data: false, error: null });
+  mocks.send.mockResolvedValue({ accepted: ["admin@example.invalid"] });
+  await expect(dispatchNotification(job.id)).rejects.toThrow("could not be recorded");
+});
+
+it("blocks preview batch processing before accessing the database", async () => {
+  vi.stubEnv("VERCEL_ENV", "preview");
+  await expect(dispatchNotificationBatch()).rejects.toThrow("Notification worker disabled");
+  expect(mocks.rpc).not.toHaveBeenCalled();
+});
+it("finishes independent jobs even if another completion cannot be recorded", async () => {
+  const other = { ...job, id: "30000000-0000-4000-8000-000000000001" };
+  mocks.rpc.mockImplementation(async (name, args) => {
+    if (name === "dmf_claim_notification_batch") return { data: [job, other], error: null };
+    return { data: args.p_id !== job.id, error: null };
+  });
+  mocks.send.mockResolvedValue({ accepted: ["admin@example.invalid"] });
+  expect(await dispatchNotificationBatch()).toEqual({
+    processed: 2,
+    sent: 1,
+    failed: 0,
+    skipped: 0,
+    errors: 1,
+  });
+  expect(mocks.send).toHaveBeenCalledTimes(2);
+});
+
+it("does not consume queued jobs when a local delivery runner is disabled", async () => {
+  vi.stubEnv("VERCEL_ENV", "development");
+  vi.stubEnv("NOTIFICATION_DELIVERY", "");
+  await expect(dispatchNotificationBatch()).rejects.toThrow("Notification worker disabled");
+  expect(mocks.rpc).not.toHaveBeenCalled();
 });

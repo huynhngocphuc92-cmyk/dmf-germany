@@ -1,0 +1,124 @@
+DMF local operational observation
+
+Purpose and boundaries
+Run scripts/ops/monitor.mjs from a trusted local machine with Node 24. It creates
+no cron job, cloud scheduler, deployment, paid service or external alert route.
+No secrets go in arguments. Default requests are GET https://www.dmf-talents.de/
+and GET /api/chat only. It never submits leads or POSTs to public chat. A ready
+scripted FAQ response is not proof that intake, database or notifications work.
+
+One-shot (creates a new private JSONL file; refuses existing paths):
+  node scripts/ops/monitor.mjs --evidence /tmp/dmf-check.jsonl
+
+Bounded observation, ten-minute normal cadence, at most 72 hours:
+  node scripts/ops/monitor.mjs --observe-hours 48 --evidence /tmp/dmf-48h.jsonl
+  node scripts/ops/monitor.mjs --observe-hours 72 --interval-minutes 5 --evidence /tmp/dmf-72h.jsonl
+Use distinct new evidence paths per run. Normal cadence is 5–15 minutes, default
+10 minutes. A cycle starts after the previous cycle and its delay finish. On
+outage the delay doubles (2x, 4x, then 8x), capped at one hour, resetting on a
+healthy cycle. Each request has a ten-second timeout (configurable 0.1–60 seconds)
+and the observation's final deadline also bounds requests. SIGINT/SIGTERM abort
+in-flight requests and write a final summary when the process can still run.
+A forced kill, crash, power loss or closed laptop can prevent that summary.
+
+Default exit status is zero if no observed failure, one on observed failure,
+invalid options or evidence failure. Request timeouts count as failures. Operator
+or observation-deadline aborts are recorded separately and do not assert outage.
+No zero exit status constitutes an availability or delivery guarantee.
+
+Transport and privacy
+HTTPS is mandatory. Loopback targets require --allow-local, including HTTPS
+loopback. Local fixture example:
+  node scripts/ops/monitor.mjs --allow-local --origin http://127.0.0.1:4198 --evidence /tmp/dmf-local.jsonl
+Origin must have no credentials, path beyond '/', query or fragment. Redirects
+are manual, bounded to three hops and same origin, without credentials, queries
+or fragments. Recovery POST redirects are never followed. The bearer is only
+attached to the protected ops requests, never the public probes. Bodies are
+bounded to 64 KiB for JSON probes. Evidence contains timestamps, fixed check
+names, outcome/latency/HTTP status and operational counters; no bodies, response
+headers, URL/query data, auth, request IDs, email addresses or exception messages.
+stdout contains the same local events. Do not redirect stdout to an external
+collector without a separately approved routing/privacy decision.
+
+Evidence is mode 0600, atomic replacement, at most 2,000,000 bytes (oldest events
+removed). The summary reports discarded events. stdout retention is controlled
+by the local shell/operator. Delete local evidence when the observation/review is
+finished; there is no offsite upload. Storage errors stop observation. Keep the
+evidence directory private and writable, with enough room for temporary rewrite.
+
+Protected health (optional)
+When the separately owned ops routes are available, set DMF_OPS_TOKEN in the
+local process environment through your approved secret handling method, then:
+  node scripts/ops/monitor.mjs --health --observe-hours 48 --evidence /tmp/dmf-health.jsonl
+Never paste the token into a command argument, evidence, issue or result file.
+The expected health contract is exactly {status,checks:{database,notifications,
+configuration}}. Each check is an object with status ok/degraded. Notification checks include
+non-negative aggregate counts (null when unknown); configuration includes booleans.
+Status ok requires all three check statuses ok and required email/backend config present.
+Telegram is optional and may remain unconfigured. HTTP 503 with status degraded
+and valid checks is recorded as degraded. Healthy status is HTTP 200, status ok.
+Unknown schema, auth failures, unexpected status or invalid JSON fail closed.
+The reader and protected endpoint use the same nested health contract.
+The public chat contract is exact: status ready, mode guided, aiEnabled false,
+the existing scripted-FAQ message, UUID requestId, finite nonnegative durationMs,
+and Cache-Control no-store. Extra fields or AI enabled are failures.
+
+Local alerts and recovery
+An alert JSONL event is emitted on initial state discovery and every ok/outage
+transition. Repeated identical outage states do not emit repeated alerts. Local
+stdout and the evidence file are the only alert destinations. A responsible
+operator must actually watch/review them; this tool does not page anyone. A
+separately approved human-owned alert route must specify the recipient, coverage
+hours, escalation owner, acknowledgment and a verified test receipt. No routing
+or recipient confirmation has been performed by this implementation.
+
+After an alert, inspect local evidence and the existing admin request/delivery
+queue through authorized access. Resolve the root cause and verify a later ok
+transition. Optional recovery can cause real notification delivery and is NEVER
+default. Only an explicitly authorized worker/operator should run:
+  node scripts/ops/monitor.mjs --health --recover-notifications --evidence /tmp/dmf-recovery.jsonl
+It POSTs /api/ops/notifications at most once per observation cycle after a valid
+protected health response. A later cycle can process the next due batch; the DB
+enforces backoff and attempt limits. HTTP 200 means the batch handler completed,
+not that a message reached an inbox. Inspect
+retry safety and queue details through the separately owned ops/admin tooling.
+SMTP accepted is not the same as an email arriving in the real inbox: the actual
+intended recipient must confirm receipt (including spam/quarantine checks).
+No external delivery, email or recovery call was performed for these tests.
+
+48–72-hour reporting
+Use the final summary's actual elapsedMs, requestedDurationMs, counts per check,
+maxSampleGapMs and tailGapMs. Counts distinguish successful, failed and aborted
+observations. Report start/end timestamps, actual elapsed time, cadence/backoff,
+all gaps/process stoppages and retained/discarded evidence. These are point
+samples; time between samples and laptop/process downtime are unobserved. Do not
+convert successful samples into a time-based uptime SLA or claim continuous
+48/72-hour coverage from a shorter run. Separate runs have separate coverage;
+review timestamps for inter-run gaps. Missing summary means incomplete evidence.
+No 48–72-hour observation has been performed as part of implementation.
+
+Local verification
+  node --test tests/ops-monitor.test.mjs
+All monitor tests use disposable loopback HTTP fixtures; no external network.
+  node tests/build-smoke.mjs --intake-only
+This focused mode starts local Next dev against an in-memory Supabase HTTP
+fixture, verifying contact, hiring and guided-chat lead submissions, authenticated
+admin receipts, duplicate handling, invalid input, rate denial/limiter outage and
+persistence outage. It does not run a production build. The parent owns the final
+full production build and node tests/build-smoke.mjs run.
+These fixture receipts are neither real PostgreSQL persistence nor actual inbox
+delivery. API failure checks verify the saved/accepted flags consumed by forms;
+this mode does not click through browser UI or claim browser interaction coverage.
+
+Recovery mode (--health --recover-notifications) makes one bounded batch POST per
+cycle after a valid health response. The server selects at most three due jobs,
+allows five attempts maximum and applies database backoff/fenced leases. Skipped
+channels are excluded. No body, job IDs or arbitrary recipient can be supplied.
+This is a local runner: retries and observation pause when this machine sleeps,
+loses network or stops the process. It does not provide an independent hosted SLA.
+
+Same-user desktop alerts (macOS only, opt-in): add --notify-local. Incident and
+recovery transitions are sent to macOS Notification Center using fixed messages;
+initial healthy checks stay quiet. No email or external recipient is involved.
+OS notification permissions/Focus mode may suppress display; evidence records
+failed notification commands but cannot prove the user saw a desktop alert.

@@ -12,6 +12,7 @@ import { randomUUID } from "node:crypto";
 import "server-only";
 import { z } from "zod";
 import { InvalidBody, readJsonBody } from "./body";
+import { notificationLog } from "./notification-log";
 import { dispatchSubmission } from "./notifications";
 import { hiringIntakeSchema } from "@/lib/validations/hiring";
 
@@ -89,7 +90,7 @@ export async function acceptIntake(
         try {
           await dispatchSubmission(id);
         } catch {
-          console.error("[Intake] Notification processing deferred; see admin delivery queue.");
+          notificationLog("submission_dispatch_deferred", id);
         }
       });
     return NextResponse.json(
