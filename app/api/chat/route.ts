@@ -1,6 +1,10 @@
+import { randomUUID } from "node:crypto";
+import { providerFailure } from "@/lib/ai/provider-runtime";
 import { SITE_URL } from "@/lib/site";
 import { GrokMessage, runWithGrokModelFallback } from "@/lib/ai/grok";
 import { runWithGeminiFallback } from "@/lib/ai/gemini";
+import { requireAdmin } from "@/lib/auth/admin";
+import { adminAuthorizationResponse } from "@/lib/auth/admin-http";
 import { getFallbackChatResponse, SupportedChatLanguage } from "@/lib/chatbot/fallback";
 import { buildKnowledgeContext } from "@/lib/chatbot/knowledge-base";
 import { PRIMARY_CONTACT } from "@/lib/company/contact";
@@ -8,10 +12,6 @@ import { InvalidBody, readJsonBody } from "@/lib/intake/body";
 import { checkRateLimit, getClientIp, RATE_LIMITS } from "@/lib/rate-limit";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-
-// ============================================
-// TYPES
-// ============================================
 
 const chatSchema = z.object({
   message: z.string().trim().min(1).max(2000),
@@ -106,6 +106,8 @@ ${knowledgeContext}
 // ============================================
 
 export async function POST(request: NextRequest) {
+  const requestId = randomUUID();
+  const startedAt = Date.now();
   try {
     // Parse request
     const parsed = chatSchema.safeParse(await readJsonBody(request, 100000));
@@ -130,6 +132,7 @@ export async function POST(request: NextRequest) {
     let assistantMessage = "";
     let usage = { inputTokens: 0, outputTokens: 0 };
     let provider = "none";
+    const providerDeadline = AbortSignal.timeout(15000);
 
     // 1. Try Grok (xAI) first if key is present
     const xaiApiKey = process.env.XAI_API_KEY;
@@ -144,39 +147,45 @@ export async function POST(request: NextRequest) {
           { role: "user", content: message },
         ];
 
-        const grokResult = await runWithGrokModelFallback(xaiApiKey, grokMessages);
+        const grokResult = await runWithGrokModelFallback(xaiApiKey, grokMessages, {
+          signal: providerDeadline,
+          timeoutMs: 8000,
+        });
         if (grokResult.text) {
           assistantMessage = grokResult.text;
           usage = grokResult.usage;
           provider = `grok (${grokResult.modelName})`;
         }
       } catch (grokError) {
-        console.warn(
-          "[Chat] Grok provider failed, checking fallback:",
-          grokError instanceof Error ? grokError.message : grokError
-        );
+        console.warn("[Chat] Provider failed", {
+          requestId,
+          provider: "xai",
+          code: providerFailure(grokError),
+        });
       }
     }
 
     // 2. Try Gemini if Grok didn't succeed and GEMINI_API_KEY is present
     const geminiApiKey = process.env.GEMINI_API_KEY;
-    if (!assistantMessage && geminiApiKey) {
+    if (!assistantMessage && geminiApiKey && !providerDeadline.aborted) {
       try {
         const geminiResult = await runWithGeminiFallback(
           geminiApiKey,
           systemPrompt,
           limitedHistory,
-          message
+          message,
+          { signal: providerDeadline, timeoutMs: 8000 }
         );
         if (geminiResult.text) {
           assistantMessage = geminiResult.text;
           provider = `gemini (${geminiResult.modelName})`;
         }
       } catch (geminiError) {
-        console.warn(
-          "[Chat] Gemini provider failed, switching to deterministic fallback:",
-          geminiError instanceof Error ? geminiError.message : geminiError
-        );
+        console.warn("[Chat] Provider failed", {
+          requestId,
+          provider: "gemini",
+          code: providerFailure(geminiError),
+        });
       }
     }
 
@@ -186,41 +195,28 @@ export async function POST(request: NextRequest) {
       provider = "fallback_engine";
     }
 
-    return NextResponse.json({
-      message: assistantMessage,
-      usage,
-      provider,
-    });
+    const mode = provider === "fallback_engine" ? "fallback" : "ai";
+
+    return NextResponse.json(
+      {
+        message: assistantMessage,
+        usage,
+        provider,
+        mode,
+        requestId,
+        durationMs: Date.now() - startedAt,
+      },
+      { headers: { "Cache-Control": "no-store" } }
+    );
   } catch (error) {
     if (error instanceof InvalidBody)
       return NextResponse.json({ error: "Invalid chat request" }, { status: error.status });
 
-    console.error(
-      "[Chat] Unhandled POST exception:",
-      error instanceof Error ? error.stack || error.message : error
+    console.error("[Chat] Request failed", { requestId, code: providerFailure(error) });
+    return NextResponse.json(
+      { error: "Chat service temporarily unavailable. Please try again.", requestId },
+      { status: 503, headers: { "Cache-Control": "no-store" } }
     );
-
-    const errMsg = error instanceof Error ? error.message : "";
-    if (errMsg.includes("429") || errMsg.toLowerCase().includes("quota")) {
-      return NextResponse.json(
-        { error: "Service temporarily unavailable. Please try again." },
-        { status: 503 }
-      );
-    }
-    if (
-      errMsg.includes("401") ||
-      errMsg.toLowerCase().includes("api key") ||
-      errMsg.includes("403")
-    ) {
-      return NextResponse.json({ error: "Chat service configuration error" }, { status: 500 });
-    }
-
-    // Even on unhandled error, provide a safe fallback response so user is never stranded
-    const safeFallback = getFallbackChatResponse("de", "");
-    return NextResponse.json({
-      message: safeFallback,
-      provider: "safe_error_fallback",
-    });
   }
 }
 
@@ -231,30 +227,81 @@ export async function POST(request: NextRequest) {
 export async function GET(request: NextRequest) {
   const hasXai = !!process.env.XAI_API_KEY;
   const hasGemini = !!process.env.GEMINI_API_KEY;
-  const isReady = hasXai || hasGemini;
+  const configured = hasXai || hasGemini;
+  const responseHeaders = { "Cache-Control": "no-store" };
+  const runDiagnostics = request.nextUrl.searchParams.get("diagnostics") === "1";
+  const diagnostics: Record<
+    string,
+    { status: "operational" | "degraded"; code?: string; model?: string }
+  > = {};
 
-  const { searchParams } = new URL(request.url);
-  const runDiagnostics = searchParams.get("diagnostics") === "1";
-
-  let xaiDiagnostic: string | null = null;
-  if (runDiagnostics && hasXai) {
+  if (runDiagnostics) {
     try {
-      const res = await runWithGrokModelFallback(process.env.XAI_API_KEY!, [
-        { role: "user", content: "Test ping" },
-      ]);
-      xaiDiagnostic = `OK (${res.modelName})`;
-    } catch (err) {
-      xaiDiagnostic = err instanceof Error ? err.message : String(err);
+      const { user } = await requireAdmin();
+      const rate = await checkRateLimit(`chat-diagnostics:${user.id}`, RATE_LIMITS.API);
+      if (!rate.success)
+        return NextResponse.json(
+          { error: "Too many diagnostic requests" },
+          { status: 429, headers: { ...responseHeaders, "Retry-After": String(rate.resetIn) } }
+        );
+    } catch (error) {
+      const denied = adminAuthorizationResponse(error);
+      if (denied) return denied;
+      return NextResponse.json(
+        { error: "Diagnostics unavailable" },
+        { status: 503, headers: responseHeaders }
+      );
+    }
+
+    const signal = AbortSignal.timeout(15000);
+    if (hasXai) {
+      try {
+        const result = await runWithGrokModelFallback(
+          process.env.XAI_API_KEY!,
+          [{ role: "user", content: "Reply with OK." }],
+          { signal, timeoutMs: 8000 }
+        );
+        diagnostics.xai = { status: "operational", model: result.modelName };
+      } catch (error) {
+        diagnostics.xai = { status: "degraded", code: providerFailure(error) };
+      }
+    }
+    if (hasGemini) {
+      try {
+        const result = await runWithGeminiFallback(
+          process.env.GEMINI_API_KEY!,
+          "Reply briefly.",
+          [],
+          "Reply with OK.",
+          { signal, timeoutMs: 8000 }
+        );
+        diagnostics.gemini = { status: "operational", model: result.modelName };
+      } catch (error) {
+        diagnostics.gemini = { status: "degraded", code: providerFailure(error) };
+      }
     }
   }
 
-  return NextResponse.json({
-    status: isReady ? "ready" : "fallback_mode",
-    providers: {
-      xai: hasXai,
-      gemini: hasGemini,
+  // Key presence means configured, never proof of a successful provider request.
+  const status = !configured
+    ? "fallback_mode"
+    : !runDiagnostics
+      ? "configured"
+      : Object.values(diagnostics).some((value) => value.status === "operational")
+        ? "ready"
+        : "degraded";
+  return NextResponse.json(
+    {
+      status,
+      providers: { xai: hasXai, gemini: hasGemini },
+      ...(runDiagnostics ? { diagnostics } : {}),
+      message:
+        status === "configured"
+          ? "AI configured; operational status has not been verified."
+          : status === "ready"
+            ? "At least one AI provider passed diagnostics."
+            : "Chat can use the fallback responder.",
     },
-    xaiDiagnostic: runDiagnostics ? xaiDiagnostic : undefined,
-    message: isReady ? "Chat API is ready" : "Chat running in fallback mode",
-  });
+    { headers: responseHeaders }
+  );
 }

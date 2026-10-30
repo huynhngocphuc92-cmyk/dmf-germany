@@ -6,6 +6,7 @@ import { Header } from "@/components/Header";
  * Fetches logo URL from database and passes it to Header component
  */
 export async function HeaderWrapper() {
+  let props = {};
   try {
     // Try to get logo from database (priority order)
     const logoKeys = ["site_logo", "header_logo", "logo_url"];
@@ -26,9 +27,9 @@ export async function HeaderWrapper() {
     const hotline = hotlineConfig?.value || null;
     const email = emailConfig?.value || null;
 
-    return <Header logoUrl={logoUrl} hotline={hotline} email={email} />;
+    props = { logoUrl, hotline, email };
   } catch (error) {
     console.error("HeaderWrapper fetch error:", error);
-    return <Header />;
   }
+  return <Header {...props} />;
 }

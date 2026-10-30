@@ -67,11 +67,6 @@ export const TimelineSimulator = () => {
     return getAvailableIndustries(productType);
   }, [productType]);
 
-  // Reset industry when product type changes
-  React.useEffect(() => {
-    setSelectedIndustry(null);
-  }, [productType]);
-
   // Handle industry selection change
   const handleIndustryChange = (value: string) => {
     if (value === "") {
@@ -140,7 +135,10 @@ export const TimelineSimulator = () => {
       <div className="mb-8">
         <div className="flex flex-wrap gap-2 p-1 bg-gray-100 rounded-xl border border-gray-200">
           <button
-            onClick={() => setProductType("fachkraefte")}
+            onClick={() => {
+              setProductType("fachkraefte");
+              setSelectedIndustry(null);
+            }}
             className={cn(
               "flex-1 min-w-[140px] px-4 py-3 rounded-lg font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2",
               productType === "fachkraefte"
@@ -152,7 +150,10 @@ export const TimelineSimulator = () => {
             {t.roi?.tab_fachkraefte || "Fachkräfte"}
           </button>
           <button
-            onClick={() => setProductType("azubi")}
+            onClick={() => {
+              setProductType("azubi");
+              setSelectedIndustry(null);
+            }}
             className={cn(
               "flex-1 min-w-[140px] px-4 py-3 rounded-lg font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2",
               productType === "azubi"
@@ -164,7 +165,10 @@ export const TimelineSimulator = () => {
             {t.roi?.tab_azubi || "Auszubildende"}
           </button>
           <button
-            onClick={() => setProductType("saisonkraefte")}
+            onClick={() => {
+              setProductType("saisonkraefte");
+              setSelectedIndustry(null);
+            }}
             className={cn(
               "flex-1 min-w-[140px] px-4 py-3 rounded-lg font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2",
               productType === "saisonkraefte"

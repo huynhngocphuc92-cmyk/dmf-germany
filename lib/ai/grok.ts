@@ -1,15 +1,11 @@
-export const DEFAULT_GROK_MODEL = process.env.XAI_MODEL || "grok-2-latest";
+import {
+  ProviderError,
+  providerHttpError,
+  providerSignal,
+  type ProviderRequestOptions,
+} from "./provider-runtime";
 
-const GROK_MODEL_FALLBACKS = [
-  process.env.XAI_MODEL,
-  "grok-2-latest",
-  "grok-2",
-  "grok-2-1212",
-  "grok-beta",
-  "grok-3",
-  "grok-3-mini",
-  "grok-4-fast-non-reasoning",
-].filter(Boolean) as string[];
+export const DEFAULT_GROK_MODEL = process.env.XAI_MODEL || "grok-2-latest";
 
 export interface GrokMessage {
   role: "system" | "user" | "assistant";
@@ -25,12 +21,17 @@ export interface GrokResponseData {
   modelName: string;
 }
 
-let cachedWorkingModel: string | null = null;
-
 function getCandidateModels(): string[] {
+  // A configured model is always first. At most one explicitly configured fallback.
   return Array.from(
-    new Set([cachedWorkingModel, ...GROK_MODEL_FALLBACKS].filter(Boolean))
-  ) as string[];
+    new Set([
+      process.env.XAI_MODEL || DEFAULT_GROK_MODEL,
+      ...(process.env.XAI_FALLBACK_MODELS || "")
+        .split(",")
+        .map((model) => model.trim())
+        .filter(Boolean),
+    ])
+  ).slice(0, 2);
 }
 
 export function isGrokModelUnavailableError(error: unknown): boolean {
@@ -56,14 +57,17 @@ export function isGrokModelUnavailableError(error: unknown): boolean {
 
 export async function runWithGrokModelFallback(
   apiKey: string,
-  messages: GrokMessage[]
+  messages: GrokMessage[],
+  options: ProviderRequestOptions = {}
 ): Promise<GrokResponseData> {
   let lastError: unknown;
+  const signal = providerSignal(options);
 
   for (const modelName of getCandidateModels()) {
     try {
       const response = await fetch("https://api.x.ai/v1/chat/completions", {
         method: "POST",
+        signal,
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${apiKey}`,
@@ -75,35 +79,29 @@ export async function runWithGrokModelFallback(
         }),
       });
 
-      const data = await response.json();
+      if (!response.ok) throw providerHttpError(response.status);
+      const data = await response.json().catch(() => {
+        throw new ProviderError("invalid_response");
+      });
 
-      if (!response.ok) {
-        const errorMsg =
-          typeof data.error === "string"
-            ? data.error
-            : data.error?.message || `API Error: ${response.status} ${response.statusText}`;
-        const err = new Error(errorMsg);
-        (err as unknown as { status: number }).status = response.status;
-        throw err;
-      }
-
-      const text = data.choices[0]?.message?.content || "";
+      const text = data.choices?.[0]?.message?.content || "";
       const usage = {
         inputTokens: data.usage?.prompt_tokens ?? 0,
         outputTokens: data.usage?.completion_tokens ?? 0,
       };
 
-      cachedWorkingModel = modelName;
+      if (typeof text !== "string" || !text.trim()) throw new ProviderError("invalid_response");
 
       return { text, usage, modelName };
     } catch (error) {
       lastError = error;
 
-      if (isGrokModelUnavailableError(error)) {
-        console.warn(
-          `[Grok] Model "${modelName}" unavailable, trying fallback:`,
-          error instanceof Error ? error.message : error
-        );
+      if (
+        !signal.aborted &&
+        (error instanceof ProviderError
+          ? error.code === "model_unavailable"
+          : isGrokModelUnavailableError(error))
+      ) {
         continue;
       }
 

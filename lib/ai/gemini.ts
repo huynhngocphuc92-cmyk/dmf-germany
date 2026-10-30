@@ -1,19 +1,17 @@
+import { ProviderError, providerSignal, type ProviderRequestOptions } from "./provider-runtime";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export const DEFAULT_GEMINI_MODEL = "gemini-2.0-flash";
-const GEMINI_MODEL_FALLBACKS = [
-  process.env.GEMINI_MODEL,
-  "gemini-2.0-flash",
-  "gemini-1.5-flash",
-  "gemini-1.5-pro",
-].filter(Boolean) as string[];
-
-let cachedWorkingGeminiModel: string | null = null;
-
 function getCandidateModels(): string[] {
   return Array.from(
-    new Set([cachedWorkingGeminiModel, ...GEMINI_MODEL_FALLBACKS].filter(Boolean))
-  ) as string[];
+    new Set([
+      process.env.GEMINI_MODEL || DEFAULT_GEMINI_MODEL,
+      ...(process.env.GEMINI_FALLBACK_MODELS || "")
+        .split(",")
+        .map((model) => model.trim())
+        .filter(Boolean),
+    ])
+  ).slice(0, 2);
 }
 
 export function isGeminiModelUnavailableError(error: unknown): boolean {
@@ -33,10 +31,12 @@ export async function runWithGeminiFallback(
   apiKey: string,
   systemPrompt: string,
   history: { role: "user" | "assistant"; content: string }[],
-  userMessage: string
+  userMessage: string,
+  options: ProviderRequestOptions = {}
 ): Promise<{ text: string; modelName: string }> {
   const genAI = new GoogleGenerativeAI(apiKey);
   let lastError: unknown;
+  const signal = providerSignal(options);
 
   for (const modelName of getCandidateModels()) {
     try {
@@ -56,16 +56,18 @@ export async function runWithGeminiFallback(
         },
       ];
 
-      const result = await model.generateContent({ contents });
+      const result = await model.generateContent(
+        { contents },
+        { signal, timeout: options.timeoutMs ?? 12000 }
+      );
       const response = await result.response;
       const text = response.text() || "";
 
-      cachedWorkingGeminiModel = modelName;
+      if (!text.trim()) throw new ProviderError("invalid_response");
       return { text, modelName };
     } catch (error) {
       lastError = error;
-      if (isGeminiModelUnavailableError(error)) {
-        console.warn(`[Gemini] Model "${modelName}" unavailable, trying fallback.`);
+      if (!signal.aborted && isGeminiModelUnavailableError(error)) {
         continue;
       }
       throw error;

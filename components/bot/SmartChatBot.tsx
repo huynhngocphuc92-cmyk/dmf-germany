@@ -1,5 +1,6 @@
 "use client";
 import { currentRequestContext } from "@/lib/intake/context";
+import { renderMessageContent } from "@/lib/chatbot/message-content";
 import { useSubmissionKey } from "@/lib/intake/client";
 
 import { useLanguage } from "@/components/providers/LanguageProvider";
@@ -38,6 +39,7 @@ interface Message {
 
 interface ChatResponse {
   message: string;
+  mode?: "ai" | "fallback";
   usage?: {
     inputTokens: number;
     outputTokens: number;
@@ -66,7 +68,10 @@ interface LeadData {
 const chatTranslations = {
   de: {
     title: "DMF Talents Assistent",
-    online: "Online",
+    ready: "Bereit",
+    ai: "KI-Antworten",
+    fallback: "Allgemeine Informationen · KI derzeit nicht verfügbar",
+    unavailable: "Verbindung unterbrochen · bitte erneut versuchen",
     placeholder: "Stellen Sie Ihre Frage...",
     send: "Senden",
     close: "Schließen",
@@ -93,7 +98,10 @@ const chatTranslations = {
   },
   en: {
     title: "DMF Talents Assistant",
-    online: "Online",
+    ready: "Ready",
+    ai: "AI responses",
+    fallback: "General information · AI currently unavailable",
+    unavailable: "Connection interrupted · please retry",
     placeholder: "Ask your question...",
     send: "Send",
     close: "Close",
@@ -119,7 +127,10 @@ const chatTranslations = {
   },
   vn: {
     title: "Trợ lý DMF Talents",
-    online: "Trực tuyến",
+    ready: "Sẵn sàng",
+    ai: "Trả lời bằng AI",
+    fallback: "Thông tin hướng dẫn · AI hiện chưa khả dụng",
+    unavailable: "Mất kết nối · vui lòng thử lại",
     placeholder: "Đặt câu hỏi của bạn...",
     send: "Gửi",
     close: "Đóng",
@@ -161,6 +172,9 @@ export const SmartChatBot = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [responseMode, setResponseMode] = useState<"ready" | "ai" | "fallback" | "unavailable">(
+    "ready"
+  );
   const [logoUrl, setLogoUrl] = useState<string | null>(null);
   const [logoError, setLogoError] = useState(false);
   const [showLeadForm, setShowLeadForm] = useState(false);
@@ -253,30 +267,10 @@ export const SmartChatBot = () => {
     fetchLogo();
   }, []);
 
-  // Reset logo error when logoUrl changes
-  useEffect(() => {
-    setLogoError(false);
-  }, [logoUrl]);
-
   // Auto scroll to bottom when new messages arrive
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isLoading]);
-
-  // Initialize with welcome message when chat opens
-  useEffect(() => {
-    if (isOpen && messages.length === 0) {
-      const welcomeMessage: Message = {
-        id: "welcome",
-        role: "assistant",
-        content: t.welcome,
-        timestamp: new Date(),
-      };
-      setMessages([welcomeMessage]);
-
-      // Send notification that chat opened
-    }
-  }, [isOpen, messages.length, t.welcome, sessionId]);
 
   // Focus input when chat opens
   useEffect(() => {
@@ -383,6 +377,7 @@ export const SmartChatBot = () => {
 
         const response = await fetch("/api/chat", {
           method: "POST",
+          signal: AbortSignal.timeout(25000),
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             message,
@@ -396,6 +391,8 @@ export const SmartChatBot = () => {
         if (!response.ok) {
           throw new Error(data.error || t.error);
         }
+
+        setResponseMode(data.mode === "ai" ? "ai" : "fallback");
 
         // Add assistant message
         const assistantMessage: Message = {
@@ -418,6 +415,7 @@ export const SmartChatBot = () => {
           }, 1200);
         }
       } catch (error) {
+        setResponseMode("unavailable");
         console.error("[SmartChatBot] Error:", error);
         const errorMessage: Message = {
           id: `error-${Date.now()}`,
@@ -538,45 +536,6 @@ export const SmartChatBot = () => {
     setIsOpen(false);
   };
 
-  // Format message content with markdown-like styling
-  const formatContent = (content: string) => {
-    // 1. Escape HTML
-    let formatted = content.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-
-    // 2. Bold: **text** -> <strong>text</strong>
-    formatted = formatted.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
-
-    // 3. Markdown links: [label](url) -> <a>
-    formatted = formatted.replace(
-      /\[(.*?)\]\((https?:\/\/[^\s)]+)\)/g,
-      '<a href="$2" target="_blank" rel="noopener noreferrer" class="underline text-blue-600 hover:text-blue-800 font-medium inline-flex items-center gap-0.5">$1</a>'
-    );
-
-    // 4. Standalone URLs (not preceded by href=")
-    formatted = formatted.replace(
-      /(?<!href=")(https?:\/\/[^\s<]+)/g,
-      '<a href="$1" target="_blank" rel="noopener noreferrer" class="underline text-blue-600 hover:text-blue-800 font-medium">$1</a>'
-    );
-
-    // 5. Standalone emails: [label](mailto:...) or raw email
-    formatted = formatted.replace(
-      /\[(.*?)\]\(mailto:([^\s)]+)\)/g,
-      '<a href="mailto:$2" class="underline text-blue-600 hover:text-blue-800 font-medium">$1</a>'
-    );
-    formatted = formatted.replace(
-      /(?<!mailto:|">)([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/g,
-      '<a href="mailto:$1" class="underline text-blue-600 hover:text-blue-800 font-medium">$1</a>'
-    );
-
-    // 6. Bullet points
-    formatted = formatted.replace(/^- /gm, "• ");
-
-    // 7. Line breaks
-    formatted = formatted.replace(/\n/g, "<br />");
-
-    return formatted;
-  };
-
   return (
     <>
       {/* Floating Action Button */}
@@ -588,7 +547,13 @@ export const SmartChatBot = () => {
             exit={{ scale: 0, opacity: 0 }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => setIsOpen(true)}
+            onClick={() => {
+              if (messages.length === 0)
+                setMessages([
+                  { id: "welcome", role: "assistant", content: t.welcome, timestamp: new Date() },
+                ]);
+              setIsOpen(true);
+            }}
             className={cn(
               "fixed z-[100] group",
               "bottom-18 right-4 md:bottom-8 md:right-8",
@@ -670,8 +635,17 @@ export const SmartChatBot = () => {
                 <div>
                   <h3 className="font-semibold text-sm text-white">{t.title}</h3>
                   <div className="flex items-center gap-1.5">
-                    <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                    <span className="text-xs opacity-90 text-white">{t.online}</span>
+                    <div
+                      className={cn(
+                        "w-2 h-2 shrink-0 rounded-full",
+                        responseMode === "fallback" || responseMode === "unavailable"
+                          ? "bg-amber-300"
+                          : "bg-green-400"
+                      )}
+                    />
+                    <span role="status" className="text-xs opacity-90 text-white">
+                      {t[responseMode]}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -738,10 +712,9 @@ export const SmartChatBot = () => {
                         : "bg-white text-gray-800 shadow-sm border border-gray-200"
                     )}
                   >
-                    <p
-                      className="text-sm whitespace-pre-wrap"
-                      dangerouslySetInnerHTML={{ __html: formatContent(message.content) }}
-                    />
+                    <p className="text-sm whitespace-pre-wrap">
+                      {renderMessageContent(message.content)}
+                    </p>
                   </div>
 
                   {message.role === "user" && (

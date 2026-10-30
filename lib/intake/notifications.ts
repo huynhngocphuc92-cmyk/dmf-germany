@@ -98,7 +98,7 @@ export async function dispatchNotification(id: string) {
   const db = createIntakeClient();
   const { data, error } = await db.rpc("dmf_claim_notification", { p_id: id });
   if (error) throw new Error("Notification claim failed");
-  if (!data) return;
+  if (!data) return null;
   const job = jobSchema.parse(data);
   const result = await deliverNotification(job);
   const { data: recorded, error: saveError } = await db.rpc("dmf_finish_notification", {
@@ -108,6 +108,7 @@ export async function dispatchNotification(id: string) {
     p_error: result.error,
   });
   if (saveError || !recorded) throw new Error("Delivery result could not be recorded");
+  return result;
 }
 
 export async function dispatchSubmission(id: string) {
