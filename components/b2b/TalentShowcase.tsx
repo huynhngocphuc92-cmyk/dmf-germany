@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import { useConsent, openConsentSettings } from "@/components/CookieConsent";
-import { InquiryModal } from "@/components/candidates/InquiryModal";
+import { DeferredInquiryModal } from "@/components/b2b/DeferredInquiryModal";
 import type { PublicCandidate } from "@/lib/candidates/public-profile";
 import { categoryLabelsI18n } from "@/app/admin/candidates/types";
 import { m } from "framer-motion";
@@ -115,7 +115,7 @@ interface CandidateCardProps {
   candidate: Candidate;
   index: number;
   onViewVideo: (candidate: Candidate) => void;
-  onRequestProfile: (candidate: Candidate) => void;
+  onRequestProfile: (candidate: Candidate, trigger: HTMLButtonElement) => void;
 }
 
 function CandidateCard({ candidate, index, onViewVideo, onRequestProfile }: CandidateCardProps) {
@@ -243,7 +243,7 @@ function CandidateCard({ candidate, index, onViewVideo, onRequestProfile }: Cand
             className={`gap-2 bg-primary hover:bg-primary/90 shadow-md ${
               candidate.videoUrl && getEmbedUrl(candidate.videoUrl) ? "flex-1" : "w-full"
             }`}
-            onClick={() => onRequestProfile(candidate)}
+            onClick={(event) => onRequestProfile(candidate, event.currentTarget)}
           >
             <FileText className="h-4 w-4" />
             {t.talentShowcase.btn_profile}
@@ -409,6 +409,7 @@ export function TalentShowcase({ candidates }: { candidates: PublicCandidate[] }
     setIsVideoModalOpen(true);
   }, []);
 
+  const profileTrigger = useRef<HTMLElement | null>(null);
   const [requestedProfile, setRequestedProfile] = useState<PublicCandidate | null>(null);
   const displayCandidates: Candidate[] = candidates.map((profile) => ({
     id: profile.id,
@@ -424,7 +425,8 @@ export function TalentShowcase({ candidates }: { candidates: PublicCandidate[] }
     videoAvailable: Boolean(profile.video_url),
     videoUrl: profile.video_url ?? undefined,
   }));
-  const handleRequestProfile = (candidate: Candidate) => {
+  const handleRequestProfile = (candidate: Candidate, trigger: HTMLButtonElement) => {
+    profileTrigger.current = trigger;
     setRequestedProfile(candidates.find((profile) => profile.id === candidate.id) ?? null);
   };
 
@@ -505,12 +507,16 @@ export function TalentShowcase({ candidates }: { candidates: PublicCandidate[] }
           </m.div>
         </div>
 
-        <InquiryModal
-          key={requestedProfile?.id ?? "none"}
-          candidate={requestedProfile}
-          isOpen={Boolean(requestedProfile)}
-          onClose={() => setRequestedProfile(null)}
-        />
+        {requestedProfile && (
+          <DeferredInquiryModal
+            key={requestedProfile.id}
+            candidate={requestedProfile}
+            onClose={() => {
+              setRequestedProfile(null);
+              requestAnimationFrame(() => profileTrigger.current?.focus());
+            }}
+          />
+        )}
         {/* Video Modal */}
         <VideoModal
           candidate={selectedCandidate}

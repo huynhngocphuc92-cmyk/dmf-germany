@@ -3,72 +3,54 @@
 import { trackEvent } from "@/components/analytics/GoogleAnalytics";
 import { GERMANY_CONTACT, VIETNAM_OFFICE_CONTACT } from "@/lib/company/contact";
 import { useSubmissionKey } from "@/lib/intake/client";
-import { contactFormSchema, type ContactFormData } from "@/lib/validations/schemas";
-import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  readContactForm,
+  submitContactForm,
+  validateContactPhone,
+} from "@/lib/contact/native-form";
 import { Globe, Loader2, Mail, MapPin, Phone, Send, User } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useRef, useState, type FormEvent } from "react";
 
 export default function ContactSection() {
   const { forPayload: submissionKey, reset: resetSubmissionKey } = useSubmissionKey();
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors, isSubmitting },
-  } = useForm<ContactFormData>({
-    resolver: zodResolver(contactFormSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      phone: "",
-      company: "",
-      message: "",
-      privacy: false,
-      bot_check: "",
-    },
-  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const submitting = useRef(false);
 
-  const onSubmit = async (data: ContactFormData) => {
-    // 1. Honeypot check (Spam protection)
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    if (submitting.current || !form.reportValidity()) return;
+    const data = readContactForm(new FormData(form));
     if (data.bot_check) return;
 
+    submitting.current = true;
+    setIsSubmitting(true);
     setSubmitError(null);
-
     try {
-      // 2. REAL API CALL (Restoring email functionality)
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Idempotency-Key": submissionKey(data),
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
+      const phoneError = await validateContactPhone(data.phone);
+      if (phoneError) {
+        const phone = form.elements.namedItem("phone") as HTMLInputElement;
+        phone.setCustomValidity(phoneError);
+        phone.reportValidity();
+        return;
       }
-
-      const result = await response.json();
-
-      if (!result.success || !result.saved) {
-        throw new Error(result.message || "Fehler beim Senden");
-      }
-
-      // 3. Success State
+      const result = await submitContactForm(data, submissionKey(data));
       setIsSuccess(true);
-      reset(); // Clear form
-
-      // Conversion tracking (GA4) — chỉ bắn khi user đã đồng ý cookie
+      form.reset();
       if (!result.duplicate) trackEvent("generate_lead", { form: "contact" });
     } catch (err) {
-      console.error("Contact form error:", err);
-      setSubmitError("Fehler beim Senden. Bitte versuchen Sie es später noch einmal.");
+      setSubmitError(
+        err instanceof Error
+          ? err.message
+          : "Fehler beim Senden. Bitte versuchen Sie es später noch einmal."
+      );
+    } finally {
+      submitting.current = false;
+      setIsSubmitting(false);
     }
   };
 
@@ -95,92 +77,99 @@ export default function ContactSection() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                <input
-                  type="text"
-                  {...register("bot_check")}
-                  className="hidden"
-                  autoComplete="off"
-                />
+              <form onSubmit={onSubmit} className="space-y-6">
+                <input type="text" name="bot_check" className="hidden" autoComplete="off" />
 
                 {/* Name & Email */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-slate-700">Name *</label>
+                    <label htmlFor="contact-name" className="text-sm font-bold text-slate-700">
+                      Name *
+                    </label>
                     <input
-                      {...register("name")}
-                      className={`w-full p-4 rounded-xl border ${errors.name ? "border-red-500" : "border-slate-200"} bg-slate-50 focus:bg-white transition-all outline-none focus:ring-2 focus:ring-blue-500`}
+                      id="contact-name"
+                      name="name"
+                      maxLength={200}
+                      required
+                      minLength={2}
+                      className="w-full p-4 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white transition-all outline-none focus:ring-2 focus:ring-blue-500"
                       placeholder="Ihr Name"
                     />
-                    {errors.name && <p className="text-red-500 text-xs">{errors.name.message}</p>}
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-slate-700">E-Mail *</label>
+                    <label htmlFor="contact-email" className="text-sm font-bold text-slate-700">
+                      E-Mail *
+                    </label>
                     <input
-                      {...register("email")}
+                      id="contact-email"
+                      name="email"
+                      maxLength={320}
+                      required
                       type="email"
-                      className={`w-full p-4 rounded-xl border ${errors.email ? "border-red-500" : "border-slate-200"} bg-slate-50 focus:bg-white transition-all outline-none focus:ring-2 focus:ring-blue-500`}
+                      className="w-full p-4 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white transition-all outline-none focus:ring-2 focus:ring-blue-500"
                       placeholder="ihre.email@unternehmen.de"
                     />
-                    {errors.email && <p className="text-red-500 text-xs">{errors.email.message}</p>}
                   </div>
                 </div>
 
                 {/* Phone & Company (RESTORED) */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-slate-700">Telefon / Mobil</label>
+                    <label htmlFor="contact-phone" className="text-sm font-bold text-slate-700">
+                      Telefon / Mobil
+                    </label>
                     <input
-                      {...register("phone")}
+                      id="contact-phone"
+                      name="phone"
+                      maxLength={50}
+                      onInput={(event) => event.currentTarget.setCustomValidity("")}
                       type="tel"
                       className="w-full p-4 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white transition-all outline-none focus:ring-2 focus:ring-blue-500"
                       placeholder="+49 123 45678"
                     />
-                    {errors.phone && <p className="text-red-500 text-xs">{errors.phone.message}</p>}
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-slate-700">Unternehmen</label>
+                    <label htmlFor="contact-company" className="text-sm font-bold text-slate-700">
+                      Unternehmen
+                    </label>
                     <input
-                      {...register("company")}
+                      id="contact-company"
+                      name="company"
+                      maxLength={500}
                       className="w-full p-4 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white transition-all outline-none focus:ring-2 focus:ring-blue-500"
                       placeholder="Ihr Unternehmen GmbH"
                     />
-                    {errors.company && (
-                      <p className="text-red-500 text-xs">{errors.company.message}</p>
-                    )}
                   </div>
                 </div>
 
                 {/* Message */}
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-slate-700">Nachricht *</label>
+                  <label htmlFor="contact-message" className="text-sm font-bold text-slate-700">
+                    Nachricht *
+                  </label>
                   <textarea
-                    {...register("message")}
+                    id="contact-message"
+                    name="message"
+                    maxLength={10000}
+                    required
+                    minLength={10}
                     rows={5}
-                    className={`w-full p-4 rounded-xl border ${errors.message ? "border-red-500" : "border-slate-200"} bg-slate-50 focus:bg-white transition-all outline-none focus:ring-2 focus:ring-blue-500`}
+                    className="w-full p-4 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white transition-all outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Wie können wir Ihnen helfen?"
                   />
-                  {errors.message && (
-                    <p className="text-red-500 text-xs">{errors.message.message}</p>
-                  )}
                 </div>
 
                 <div className="space-y-2">
-                  <div
-                    className={`rounded-xl border p-4 ${
-                      errors.privacy
-                        ? "border-red-500 bg-red-50/40"
-                        : "border-slate-200 bg-slate-50"
-                    }`}
-                  >
+                  <div className="rounded-xl border p-4 border-slate-200 bg-slate-50">
                     <div className="flex items-start gap-3">
                       <input
-                        id="privacy"
+                        id="contact-privacy"
                         type="checkbox"
-                        {...register("privacy")}
+                        name="privacy"
+                        required
                         className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
                       />
-                      <label htmlFor="privacy" className="text-sm leading-6 text-slate-700">
+                      <label htmlFor="contact-privacy" className="text-sm leading-6 text-slate-700">
                         Ich stimme der Verarbeitung meiner Daten gemäß der{" "}
                         <Link
                           href="/datenschutz"
@@ -194,13 +183,12 @@ export default function ContactSection() {
                       </label>
                     </div>
                   </div>
-                  {errors.privacy && (
-                    <p className="text-red-500 text-xs">{errors.privacy.message}</p>
-                  )}
                 </div>
 
                 {submitError && (
-                  <div className="p-3 bg-red-50 text-red-600 text-sm rounded-lg">{submitError}</div>
+                  <div role="alert" className="p-3 bg-red-50 text-red-600 text-sm rounded-lg">
+                    {submitError}
+                  </div>
                 )}
 
                 <button
