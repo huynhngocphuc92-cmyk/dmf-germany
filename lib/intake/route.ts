@@ -1,3 +1,4 @@
+import { withDeadline } from "@/lib/requests/deadline";
 import { checkRateLimit, getClientIp, RATE_LIMITS } from "@/lib/rate-limit";
 import { createIntakeClient } from "@/lib/supabase/intake";
 import {
@@ -15,6 +16,8 @@ import { InvalidBody, readJsonBody } from "./body";
 import { notificationLog } from "./notification-log";
 import { dispatchSubmission } from "./notifications";
 import { hiringIntakeSchema } from "@/lib/validations/hiring";
+
+const INTAKE_WRITE_DEADLINE_MS = 10000;
 
 const responseHeaders = { "Cache-Control": "no-store" };
 export async function acceptIntake(
@@ -64,11 +67,17 @@ export async function acceptIntake(
           : route;
     const id = key || randomUUID(); // Compatibility with already-open pre-release forms.
     const db = createIntakeClient();
-    const { data, error } = await db.rpc("dmf_receive_intake", {
-      p_id: id,
-      p_kind: kind,
-      p_payload: payload,
-    });
+    const { data, error } = await withDeadline(
+      (signal) =>
+        db
+          .rpc("dmf_receive_intake", {
+            p_id: id,
+            p_kind: kind,
+            p_payload: payload,
+          })
+          .abortSignal(signal),
+      INTAKE_WRITE_DEADLINE_MS
+    );
     if (error) {
       const status = error.code === "23505" ? 409 : error.code === "P0002" ? 400 : 503;
       return NextResponse.json(

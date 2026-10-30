@@ -7,6 +7,7 @@ import { createServerClient } from "@supabase/ssr";
 import { once } from "node:events";
 import { setTimeout as delay } from "node:timers/promises";
 
+const p1Backend = process.argv.includes("--p1-backend");
 const intakeOnly = process.argv.includes("--intake-only");
 const webpackBuild = process.argv.includes("--webpack");
 const sentinel = "DMF_PRIVATE_SENTINEL";
@@ -49,6 +50,10 @@ const receipts = new Map();
 const inbox = new Map();
 // Controllable backend faults exercise the real HTTP/API boundary, not a live database.
 let rateMode = "allow";
+let writeMode = "allow";
+const heldWrites = [];
+const historyRows = new Map();
+const rpcCalls = new Map();
 const fixtureAdmin = {
   id: "00000000-0000-4000-8000-000000000001",
   aud: "authenticated",
@@ -152,6 +157,28 @@ const fixture = createServer(async (request, response) => {
     let raw = "";
     for await (const chunk of request) raw += chunk;
     const input = JSON.parse(raw);
+    const rpcName = url.pathname.split("/").at(-1);
+    rpcCalls.set(rpcName, (rpcCalls.get(rpcName) || 0) + 1);
+    if (rpcName === "dmf_check_rate_limit" && rateMode === "network") {
+      request.socket.destroy();
+      return;
+    }
+    if (rpcName === "dmf_check_rate_limit" && rateMode === "hang") return;
+    if (["dmf_receive_intake", "dmf_save_chat"].includes(rpcName)) {
+      if (writeMode === "network") {
+        request.socket.destroy();
+        return;
+      }
+      if (writeMode === "error") {
+        response.writeHead(503);
+        response.end('{"message":"synthetic write unavailable"}');
+        return;
+      }
+      if (writeMode === "hold") {
+        heldWrites.push({ response, input });
+        return;
+      }
+    }
     if (url.pathname.endsWith("/dmf_check_rate_limit")) {
       if (rateMode === "unavailable") {
         response.writeHead(503);
@@ -167,6 +194,11 @@ const fixture = createServer(async (request, response) => {
         );
       } else {
         const duplicate = receipts.has(input.p_id);
+        if (duplicate && JSON.stringify(receipts.get(input.p_id)) !== JSON.stringify(input)) {
+          response.writeHead(409);
+          response.end(JSON.stringify({ code: "23505", message: "synthetic conflicting key" }));
+          return;
+        }
         receipts.set(input.p_id, input);
         if (!duplicate) {
           const p = input.p_payload;
@@ -201,10 +233,18 @@ const fixture = createServer(async (request, response) => {
             search_text: [p.company, p.name, p.email].filter(Boolean).join(" "),
           });
         }
+        if (writeMode === "commit-network") {
+          request.socket.destroy();
+          return;
+        }
         response.end(JSON.stringify({ duplicate }));
       }
-    } else if (url.pathname.endsWith("/dmf_save_chat")) response.end("true");
-    else {
+    } else if (url.pathname.endsWith("/dmf_save_chat")) {
+      const previous = historyRows.get(input.p_session_id);
+      const allowed = !previous || previous.p_owner_token === input.p_owner_token;
+      if (allowed) historyRows.set(input.p_session_id, input);
+      response.end(JSON.stringify(allowed));
+    } else {
       response.writeHead(404);
       response.end("{}");
     }
@@ -273,6 +313,10 @@ const env = {
   GEMINI_API_KEY: "",
   GOOGLE_GENERATIVE_AI_API_KEY: "",
   SUPABASE_SECRET_KEY: "",
+  SMTP_HOST: "",
+  SMTP_PORT: "",
+  OPENAI_API_KEY: "",
+  ANTHROPIC_API_KEY: "",
   SMTP_USER: "",
   SMTP_PASSWORD: "",
   CONTACT_EMAIL: "",
@@ -320,7 +364,7 @@ try {
       break;
     await delay(200);
   }
-  if (!intakeOnly) {
+  if (!intakeOnly && !p1Backend) {
     for (const path of ["/", "/fuer-arbeitgeber/kandidaten"]) {
       const response = await fetch(`${base}${path}`);
       assert.equal(response.status, 200);
@@ -459,6 +503,7 @@ try {
     assert.equal(response.status, 200);
     assert.equal(response.headers.get("cache-control"), "no-store");
     const body = await response.json();
+    assert.deepEqual(body.usage, { inputTokens: 0, outputTokens: 0 });
     assert.equal(body.mode, "guided");
     assert.equal(body.provider, "guided_engine");
     assert.ok(body.message.startsWith(expected));
@@ -558,49 +603,70 @@ try {
     }
     rateMode = "allow";
   }
-  const authCookies = [];
-  const authClient = createServerClient(`http://127.0.0.1:${fixturePort}`, "fixture-anon-key", {
-    cookies: { getAll: () => authCookies, setAll: (values) => authCookies.push(...values) },
-  });
-  const signedIn = await authClient.auth.signInWithPassword({
-    email: fixtureAdmin.email,
-    password: "local-fixture-only",
-  });
-  assert.equal(signedIn.error, null);
-  const headers = { Cookie: authCookies.map((c) => `${c.name}=${c.value}`).join("; ") };
-  // Each public path must produce an authenticated admin receipt with the same reference.
-  for (const [source, reference, expected] of [
-    ["inquiry", key, contact.email],
-    ["inquiry", hiringKey, hiring.company],
-    ["lead", leadKey, lead.email],
-  ]) {
-    const receipt = await fetch(`${base}/admin/requests/${source}/${reference}`, { headers });
-    assert.equal(receipt.status, 200);
-    const receiptHtml = await receipt.text();
-    assert.ok(receiptHtml.includes(expected), `${source}: submitted data missing in admin receipt`);
-    assert.ok(receiptHtml.includes(reference), `${source}: receipt reference missing`);
+  if (!p1Backend) {
+    const authCookies = [];
+    const authClient = createServerClient(`http://127.0.0.1:${fixturePort}`, "fixture-anon-key", {
+      cookies: { getAll: () => authCookies, setAll: (values) => authCookies.push(...values) },
+    });
+    const signedIn = await authClient.auth.signInWithPassword({
+      email: fixtureAdmin.email,
+      password: "local-fixture-only",
+    });
+    assert.equal(signedIn.error, null);
+    const headers = { Cookie: authCookies.map((c) => `${c.name}=${c.value}`).join("; ") };
+    // Each public path must produce an authenticated admin receipt with the same reference.
+    for (const [source, reference, expected] of [
+      ["inquiry", key, contact.email],
+      ["inquiry", hiringKey, hiring.company],
+      ["lead", leadKey, lead.email],
+    ]) {
+      const receipt = await fetch(`${base}/admin/requests/${source}/${reference}`, { headers });
+      assert.equal(receipt.status, 200);
+      const receiptHtml = await receipt.text();
+      assert.ok(
+        receiptHtml.includes(expected),
+        `${source}: submitted data missing in admin receipt`
+      );
+      assert.ok(receiptHtml.includes(reference), `${source}: receipt reference missing`);
+    }
+    process.stdout.write(
+      "PASS fixture intake HTTP -> persistence -> authenticated admin: contact/hiring/chat lead; retries, validation, limiter denial/outage and database failure never claim saved\n"
+    );
+    const adminInbox = await fetch(`${base}/admin/requests?kind=hiring`, { headers });
+    assert.equal(adminInbox.status, 200);
+    assert.ok((await adminInbox.text()).includes("Fixture Hiring Works"));
+    const detail = await fetch(`${base}/admin/requests/inquiry/${hiringKey}`, { headers });
+    assert.equal(detail.status, 200);
+    const detailHtml = await detail.text();
+    for (const value of ["Hamburg", "2027", "Bearbeitung speichern", "admin@example.invalid"])
+      assert.ok(detailHtml.includes(value), value);
+    const legacyLeads = await fetch(`${base}/admin/leads`, { headers, redirect: "manual" });
+    // Admin has a loading boundary; a navigation redirect may use the framework stream.
+    assert.ok([200, 307].includes(legacyLeads.status));
+    process.stdout.write(
+      "PASS M3: employer and profile hiring intake, consent validation, retry, source/campaign, signed-in unified inbox and request detail\n"
+    );
+    const redirect = await fetch(`${base}/admin`, { redirect: "manual" });
+    assert.equal(redirect.status, 307);
+    assert.ok(redirect.headers.get("location").endsWith("/login"));
+    process.stdout.write("PASS /admin: anonymous user redirected to login\n");
   }
-  process.stdout.write(
-    "PASS fixture intake HTTP -> persistence -> authenticated admin: contact/hiring/chat lead; retries, validation, limiter denial/outage and database failure never claim saved\n"
-  );
-  const adminInbox = await fetch(`${base}/admin/requests?kind=hiring`, { headers });
-  assert.equal(adminInbox.status, 200);
-  assert.ok((await adminInbox.text()).includes("Fixture Hiring Works"));
-  const detail = await fetch(`${base}/admin/requests/inquiry/${hiringKey}`, { headers });
-  assert.equal(detail.status, 200);
-  const detailHtml = await detail.text();
-  for (const value of ["Hamburg", "2027", "Bearbeitung speichern", "admin@example.invalid"])
-    assert.ok(detailHtml.includes(value), value);
-  const legacyLeads = await fetch(`${base}/admin/leads`, { headers, redirect: "manual" });
-  // Admin has a loading boundary; a navigation redirect may use the framework stream.
-  assert.ok([200, 307].includes(legacyLeads.status));
-  process.stdout.write(
-    "PASS M3: employer and profile hiring intake, consent validation, retry, source/campaign, signed-in unified inbox and request detail\n"
-  );
-  const redirect = await fetch(`${base}/admin`, { redirect: "manual" });
-  assert.equal(redirect.status, 307);
-  assert.ok(redirect.headers.get("location").endsWith("/login"));
-  process.stdout.write("PASS /admin: anonymous user redirected to login\n");
+  // The default CI smoke also gates the backend failure/timeout regressions.
+  const { verifyP1Http } = await import("./p1-backend-http.mjs");
+  await verifyP1Http({
+    base,
+    post,
+    receipts,
+    historyRows,
+    rpcCalls,
+    setRate: (mode) => {
+      rateMode = mode;
+    },
+    setWrite: (mode) => {
+      writeMode = mode;
+    },
+    heldWrites,
+  });
   if (process.env.SMOKE_KEEP_SERVER === "1") {
     process.stdout.write(
       `LOCAL BROWSER FIXTURE READY ${base} (synthetic admin: admin@example.invalid / local-fixture-only)\n`

@@ -11,7 +11,11 @@ const mocks = vi.hoisted(() => ({
   mail: vi.fn(),
 }));
 vi.mock("server-only", () => ({}));
-vi.mock("@/lib/supabase/intake", () => ({ createIntakeClient: () => ({ rpc: mocks.rpc }) }));
+vi.mock("@/lib/supabase/intake", () => ({
+  createIntakeClient: () => ({
+    rpc: (...args: unknown[]) => ({ abortSignal: () => mocks.rpc(...args) }),
+  }),
+}));
 vi.mock("@/lib/rate-limit", () => ({
   checkRateLimit: mocks.rate,
   getClientIp: () => "fixture",
