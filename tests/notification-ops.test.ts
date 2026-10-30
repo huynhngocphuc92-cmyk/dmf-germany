@@ -106,3 +106,17 @@ it("keeps an intentionally unconfigured optional Telegram channel informational"
   expect(body.checks.configuration.telegramConfigured).toBe(false);
   expect(body.checks.configuration.status).toBe("ok");
 });
+
+it("accepts a zero-byte POST stream from the deployment adapter and rejects any payload", async () => {
+  mocks.batch.mockResolvedValue({ processed: 0, sent: 0, failed: 0, skipped: 0, errors: 0 });
+  const empty = new Request("https://www.dmf-talents.de/api/ops/notifications", {
+    method: "POST",
+    headers: { authorization: "Bearer fixture-token" },
+    body: "",
+  });
+  expect(empty.body).not.toBeNull();
+  expect((await POST(empty)).status).toBe(200);
+  mocks.batch.mockClear();
+  expect((await POST(request("fixture-token", " "))).status).toBe(400);
+  expect(mocks.batch).not.toHaveBeenCalled();
+});
