@@ -281,7 +281,10 @@ export async function runMonitor(options) {
         signal,
         fetchImpl,
       });
-      if (result.outcome === "timeout" && performance.now() >= end) result.outcome = "aborted";
+      // A request capped by the observation window is incomplete evidence, even
+      // if rounding makes its timer fire just before the global deadline.
+      if (result.outcome === "timeout" && (remaining < timeoutMs || performance.now() >= end))
+        result.outcome = "aborted";
       counts[item.name] ??= { observed: 0, ok: 0, failed: 0, aborted: 0 };
       counts[item.name].observed++;
       counts[item.name][
@@ -290,7 +293,7 @@ export async function runMonitor(options) {
       await write({ event: "check", check: item.name, ...result });
       // An observation ending is not evidence of a service outage. Request timeouts
       // within the observation still alert; global deadline/operator aborts do not.
-      if (result.outcome === "aborted" && (signal.aborted || performance.now() >= end)) continue;
+      if (result.outcome === "aborted") continue;
       const state = result.outcome === "ok" ? "ok" : "outage";
       outage ||= state === "outage";
       if (states.get(item.name) !== state) {
@@ -309,15 +312,22 @@ export async function runMonitor(options) {
         !signal.aborted &&
         performance.now() < end
       ) {
+        const recoveryRemaining = Math.floor(end - performance.now());
+        if (recoveryRemaining <= 0) continue;
         const recovery = await probe({
           origin,
           path: "/api/ops/notifications",
           kind: "recovery",
           token,
-          timeoutMs: Math.max(1, Math.min(timeoutMs, Math.floor(end - performance.now()))),
+          timeoutMs: Math.min(timeoutMs, recoveryRemaining),
           signal,
           fetchImpl,
         });
+        if (
+          recovery.outcome === "timeout" &&
+          (recoveryRemaining < timeoutMs || performance.now() >= end)
+        )
+          recovery.outcome = "aborted";
         await write({ event: "recovery", ...recovery });
         counts.recovery ??= { observed: 0, ok: 0, failed: 0, aborted: 0 };
         counts.recovery.observed++;
