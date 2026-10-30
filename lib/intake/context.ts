@@ -1,17 +1,23 @@
-import { requestContextSchema } from "@/lib/validations/hiring";
+import type { requestContextSchema } from "@/lib/validations/hiring";
 
 // Read only an internal path and three bounded identifiers. Never persist a raw URL/referrer.
-export function requestContext(url: string) {
+export function requestContext(url: string): ReturnType<typeof requestContextSchema.parse> {
   const parsed = new URL(url);
   const campaign: Record<string, string> = {};
   for (const key of ["source", "medium", "campaign"] as const) {
     const value = parsed.searchParams.get(`utm_${key}`);
-    if (value && /^[\w .-]{1,100}$/.test(value)) campaign[key] = value;
+    // Reject every disallowed character, including trailing newlines that `$` can skip.
+    if (value && value.length <= 100 && !/[^\w .-]/.test(value)) campaign[key] = value;
   }
-  return requestContextSchema.parse({
-    sourcePath: /^\/[a-zA-Z0-9/_-]{0,299}$/.test(parsed.pathname) ? parsed.pathname : "/",
+  return {
+    sourcePath:
+      parsed.pathname.startsWith("/") &&
+      parsed.pathname.length <= 300 &&
+      !/[^a-zA-Z0-9/_-]/.test(parsed.pathname)
+        ? parsed.pathname
+        : "/",
     campaign,
-  });
+  };
 }
 
 // Keep only the latest allowlisted campaign in this tab's memory across client navigation.
