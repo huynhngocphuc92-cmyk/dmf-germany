@@ -51,7 +51,7 @@ export const HeroSection = ({
             src={heroBg}
             alt=""
             fill
-            priority
+            preload
             sizes="100vw"
             quality={90}
             className="object-cover object-center"
@@ -72,7 +72,7 @@ export const HeroSection = ({
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Column - Typography */}
             <m.div
-              initial="hidden"
+              initial={false}
               animate="visible"
               variants={{
                 visible: {
@@ -128,7 +128,7 @@ export const HeroSection = ({
 
             {/* Right Column - Candidate Showcase */}
             <m.div
-              initial="hidden"
+              initial={false}
               animate="visible"
               variants={fadeInRight}
               transition={{ duration: 0.8, delay: 0.4 }}

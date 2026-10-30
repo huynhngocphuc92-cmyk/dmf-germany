@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { salarySimulatorContent, type SimulatorContent } from "./salary-content";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -15,22 +16,6 @@ import {
   Euro,
   GraduationCap,
 } from "lucide-react";
-
-interface SimulatorContent {
-  title: string;
-  subtitle: string;
-  badge: string;
-  regionLabel: string;
-  regions: { west: string; east: string };
-  industries: Record<string, string>;
-  yearLabels: { year1: string; year2: string; year3: string; afterGrad: string };
-  livingCost: string;
-  disclaimer: string;
-  perMonth: string;
-  surplus: string;
-  callToAction: string;
-  unitEuro: string;
-}
 
 // ============================================
 // DATA LAYER - Salary Data 2024/2025
@@ -245,83 +230,21 @@ function BarChartColumn({
 export function SalarySimulator() {
   const { t, lang } = useLanguage();
 
-  // Fallback content for complex translations not yet in translations.ts
-  // This will be gradually migrated to translations.ts
-  const fallbackContent: Record<"de" | "en" | "vn", Partial<SimulatorContent>> = {
-    de: {
-      subtitle: "Entdecken Sie Ihr Verdienstpotenzial während der dualen Ausbildung in Deutschland",
-      badge: "Interaktives Tool",
-      regionLabel: "Region",
-      regions: { west: "Westdeutschland", east: "Ostdeutschland" },
-      industries: {
-        pflege: "Pflege",
-        gastronomie: "Gastronomie",
-        mechatronik: "Mechatronik",
-        bau: "Bau",
-      },
-      livingCost: "Ø Lebenshaltungskosten",
-      disclaimer:
-        "Historische Brutto-Beispielwerte (2024/2025), keine aktuelle Vergütungszusage. Steuern und Sozialabgaben werden nicht berechnet; die Differenz zu Lebenshaltungskosten ist kein verfügbares Nettoeinkommen.",
-      perMonth: "pro Monat",
-      surplus: "Differenz vor Steuern / Abgaben",
-      callToAction: "Starten Sie Ihre Karriere in Deutschland",
-      unitEuro: "€",
-    },
-    en: {
-      subtitle: "Discover your earning potential during dual training in Germany",
-      badge: "Interactive Tool",
-      regionLabel: "Region",
-      regions: { west: "West Germany", east: "East Germany" },
-      industries: {
-        pflege: "Nursing",
-        gastronomie: "Hospitality",
-        mechatronik: "Mechatronics",
-        bau: "Construction",
-      },
-      livingCost: "Avg. Living Costs",
-      disclaimer:
-        "Historical gross examples (2024/2025), not a current pay offer. Tax and social contributions are not calculated; the difference from living costs is not disposable net income.",
-      perMonth: "per month",
-      surplus: "Difference before tax / deductions",
-      callToAction: "Start your career in Germany",
-      unitEuro: "€",
-    },
-    vn: {
-      subtitle: "Khám phá tiềm năng thu nhập trong chương trình đào tạo nghề tại Đức",
-      badge: "Công cụ tương tác",
-      regionLabel: "Khu vực",
-      regions: { west: "Tây Đức", east: "Đông Đức" },
-      industries: {
-        pflege: "Điều dưỡng",
-        gastronomie: "Nhà hàng/KS",
-        mechatronik: "Cơ điện tử",
-        bau: "Xây dựng",
-      },
-      livingCost: "Chi phí sinh hoạt TB",
-      disclaimer:
-        "Số liệu lương gộp minh họa cũ (2024/2025), không phải cam kết lương hiện tại. Chưa trừ thuế và bảo hiểm; chênh lệch với sinh hoạt phí không phải thu nhập ròng khả dụng.",
-      perMonth: "mỗi tháng",
-      surplus: "Chênh lệch trước thuế / bảo hiểm",
-      callToAction: "Bắt đầu sự nghiệp tại Đức",
-      unitEuro: "€",
-    },
-  };
-
-  // Merge translations with fallback content
+  // Share existing fallback translations with the server-rendered preview.
   const fullContent: SimulatorContent = {
     title: t.simulator.title,
-    subtitle: fallbackContent[lang]?.subtitle || "",
-    badge: fallbackContent[lang]?.badge || "",
-    regionLabel: fallbackContent[lang]?.regionLabel || "",
-    regions: fallbackContent[lang]?.regions || { west: "", east: "" },
-    industries: t.industries || fallbackContent[lang]?.industries || {},
+    subtitle: salarySimulatorContent[lang]?.subtitle || "",
+    badge: salarySimulatorContent[lang]?.badge || "",
+    regionLabel: salarySimulatorContent[lang]?.regionLabel || "",
+    regions: salarySimulatorContent[lang]?.regions || { west: "", east: "" },
+    industries: t.industries || salarySimulatorContent[lang]?.industries || {},
     yearLabels: t.yearLabels,
-    livingCost: fallbackContent[lang]?.livingCost || "",
-    disclaimer: fallbackContent[lang]?.disclaimer || "",
-    perMonth: fallbackContent[lang]?.perMonth || "",
-    surplus: fallbackContent[lang]?.surplus || "",
-    callToAction: fallbackContent[lang]?.callToAction || "",
-    unitEuro: fallbackContent[lang]?.unitEuro || "€",
+    livingCost: salarySimulatorContent[lang]?.livingCost || "",
+    disclaimer: salarySimulatorContent[lang]?.disclaimer || "",
+    perMonth: salarySimulatorContent[lang]?.perMonth || "",
+    surplus: salarySimulatorContent[lang]?.surplus || "",
+    callToAction: salarySimulatorContent[lang]?.callToAction || "",
+    unitEuro: salarySimulatorContent[lang]?.unitEuro || "€",
   };
 
   const t_full = fullContent;

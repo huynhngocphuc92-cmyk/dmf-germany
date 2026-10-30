@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { isOptimizablePublicImage } from "@/lib/images/optimization";
 import { m } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { MotionProvider } from "@/components/shared/MotionProvider";
@@ -44,7 +45,7 @@ export const PartnerSection = ({ partnerBanner }: PartnerSectionProps = {}) => {
                   alt={t.partner.banner_alt}
                   fill
                   className="object-cover"
-                  unoptimized={partnerBanner.startsWith("http")}
+                  unoptimized={!isOptimizablePublicImage(partnerBanner)}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1280px"
                 />
               </div>

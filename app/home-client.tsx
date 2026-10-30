@@ -7,7 +7,7 @@ import { StatsDashboard } from "@/components/b2b/StatsDashboard";
 import { ValuesSection } from "@/components/sections/ValuesSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { ProcessRoadmap } from "@/components/b2b/ProcessRoadmap";
-import { SalarySimulator } from "@/components/tools/SalarySimulator";
+import { DeferredSalarySimulator } from "@/components/performance/DeferredSalarySimulator";
 import { TalentShowcase } from "@/components/b2b/TalentShowcase";
 import ContactSection from "@/components/sections/ContactSection";
 import { PartnerSection } from "@/components/sections/PartnerSection";
@@ -40,7 +40,7 @@ export function HomeClient({ assets, featuredCandidates }: HomeClientProps) {
       <ValuesSection />
       <ServicesSection />
       <ProcessRoadmap />
-      <SalarySimulator />
+      <DeferredSalarySimulator />
       <TalentShowcase candidates={featuredCandidates} />
       <ContactSection />
     </div>

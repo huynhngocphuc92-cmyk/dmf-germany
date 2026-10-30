@@ -29,10 +29,11 @@ export default async function Home() {
     "home_cta_bg",
   ];
 
-  const assets = await loadAssets(assetKeys);
-
-  // Fetch featured candidates for Hero Section showcase
-  const { data: featuredCandidates } = await getHomepageFeaturedCandidates();
+  // Independent public reads run together. Publication state remains fresh per request.
+  const [assets, { data: featuredCandidates }] = await Promise.all([
+    loadAssets(assetKeys),
+    getHomepageFeaturedCandidates(),
+  ]);
 
   return <HomeClient assets={assets} featuredCandidates={featuredCandidates || []} />;
 }

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { isOptimizablePublicImage } from "@/lib/images/optimization";
 import { getSiteConfigByKey } from "@/actions/theme-actions";
 import { cn } from "@/lib/utils";
 
@@ -71,7 +72,7 @@ export async function DynamicImage({
   const imageSrc = config?.value || fallbackSrc;
 
   // Determine if image is external (Supabase storage)
-  const isExternal = imageSrc.startsWith("http");
+  const bypassOptimization = !isOptimizablePublicImage(imageSrc);
 
   // Common image styles
   const imageStyles = cn(
@@ -89,12 +90,12 @@ export async function DynamicImage({
         alt={alt}
         fill
         className={imageStyles}
-        priority={priority}
+        preload={priority}
         quality={quality}
         sizes={sizes || "100vw"}
         placeholder={placeholder}
         blurDataURL={blurDataURL}
-        unoptimized={isExternal}
+        unoptimized={bypassOptimization}
       />
     );
   }
@@ -107,12 +108,12 @@ export async function DynamicImage({
       width={width || 800}
       height={height || 600}
       className={imageStyles}
-      priority={priority}
+      preload={priority}
       quality={quality}
       sizes={sizes}
       placeholder={placeholder}
       blurDataURL={blurDataURL}
-      unoptimized={isExternal}
+      unoptimized={bypassOptimization}
     />
   );
 }

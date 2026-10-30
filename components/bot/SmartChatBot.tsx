@@ -1,4 +1,14 @@
 "use client";
+import { withDeadline } from "@/lib/requests/deadline";
+import {
+  boundMessages,
+  RequestLane,
+  HistoryWriter,
+  postJson,
+  isSavedLead,
+  CHAT_DEADLINE_MS,
+  LEAD_DEADLINE_MS,
+} from "@/lib/chatbot/client-state";
 import { currentRequestContext } from "@/lib/intake/context";
 import { renderMessageContent } from "@/lib/chatbot/message-content";
 import { useSubmissionKey } from "@/lib/intake/client";
@@ -24,7 +34,7 @@ import {
   X,
 } from "lucide-react";
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 
 // ============================================
 // TYPES & INTERFACES
@@ -160,12 +170,19 @@ const CALENDLY_URL =
 // COMPONENT
 // ============================================
 
-export const SmartChatBot = () => {
+export interface SmartChatBotProps {
+  open?: boolean;
+  onClose?: () => void;
+}
+
+export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
   const { lang } = useLanguage();
   const t = chatTranslations[lang] || chatTranslations.de;
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [internalOpen, setIsOpen] = useState(false);
+  const isOpen = open ?? internalOpen;
   const [messages, setMessages] = useState<Message[]>([]);
+  const messagesRef = useRef<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [responseMode, setResponseMode] = useState<"guided" | "unavailable">("guided");
@@ -174,11 +191,21 @@ export const SmartChatBot = () => {
   const [showLeadForm, setShowLeadForm] = useState(false);
   const [leadData, setLeadData] = useState<LeadData>({});
   const { forPayload: submissionKey, reset: resetSubmissionKey } = useSubmissionKey();
+  const leadAttemptRef = useRef<{ signature: string; payload: Record<string, unknown> } | null>(
+    null
+  );
   const [isLeadSaving, setIsLeadSaving] = useState(false);
   const [leadFormError, setLeadFormError] = useState<string | null>(null);
-  const [sessionId, setSessionId] = useState(
-    () => `chat-${Date.now()}-${Math.random().toString(36).slice(2)}`
-  );
+  const [sessionId] = useState(() => `chat-${Date.now()}-${Math.random().toString(36).slice(2)}`);
+
+  const [chatError, setChatError] = useState<string | null>(null);
+  const [cooldownUntil, setCooldownUntil] = useState(0);
+  const [leadCooldownUntil, setLeadCooldownUntil] = useState(0);
+  const chatLane = useRef(new RequestLane());
+  const leadLane = useRef(new RequestLane());
+  const historyRef = useRef<HistoryWriter<Message[]> | null>(null);
+  const languageRef = useRef(lang);
+  const openRef = useRef(isOpen);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -269,135 +296,167 @@ export const SmartChatBot = () => {
     },
   ];
 
-  // Fetch logo URL from database
+  // Auxiliary data is requested only after the user opens the widget.
   useEffect(() => {
-    const fetchLogo = async () => {
-      try {
-        const response = await fetch("/api/logo");
-        if (response.ok) {
-          const data = await response.json();
-          setLogoUrl(data.logoUrl);
-          setLogoError(false);
-        }
-      } catch (error) {
-        console.error("[SmartChatBot] Error fetching logo:", error);
-      }
-    };
-    fetchLogo();
-  }, []);
+    if (!isOpen || logoUrl) return;
+    const controller = new AbortController();
+    void withDeadline(
+      async (signal) => {
+        const response = await fetch("/api/logo", { signal });
+        if (!response.ok) return;
+        const data = await response.json();
+        if (!signal.aborted && typeof data.logoUrl === "string") setLogoUrl(data.logoUrl);
+      },
+      8000,
+      controller
+    ).catch(() => {});
+    return () => controller.abort();
+  }, [isOpen, logoUrl]);
 
-  // Auto scroll to bottom when new messages arrive
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isLoading]);
 
-  // Focus input when chat opens
   useEffect(() => {
-    if (isOpen) {
-      setTimeout(() => {
-        inputRef.current?.focus();
-      }, 300);
+    if (!isOpen) return;
+    if (!messagesRef.current.length) {
+      messagesRef.current = [
+        { id: "welcome", role: "assistant", content: t.welcome, timestamp: new Date() },
+      ];
+      setMessages(messagesRef.current);
     }
-  }, [isOpen]);
+    const timer = setTimeout(() => inputRef.current?.focus(), 300);
+    return () => clearTimeout(timer);
+  }, [isOpen, t.welcome]);
 
-  // Keep contact submission explicit; FAQ questions never open a lead form.
-  const saveChatHistory = useCallback(
-    async (newMessages: Message[]) => {
-      try {
-        const save = (id: string) =>
-          fetch("/api/chat/history", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              sessionId: id,
-              messages: newMessages,
-              leadData,
-            }),
-          });
-        let response = await save(sessionId);
-        if (response.status === 403) {
-          // A legacy/unowned session stays read-only; continue in a new owned session.
-          const freshId = `chat-${crypto.randomUUID()}`;
-          setSessionId(freshId);
-          response = await save(freshId);
-        }
-        if (!response.ok) throw new Error("Chat history could not be saved");
-      } catch (error) {
-        console.error("[SmartChatBot] Save history error:", error);
-      }
-    },
-    [sessionId, leadData]
-  );
+  // Host visibility/language changes invalidate in-flight work before paint.
+  // Resetting the corresponding UI here reflects that external lifecycle boundary.
+  /* eslint-disable react-hooks/set-state-in-effect */
+  useLayoutEffect(() => {
+    languageRef.current = lang;
+    openRef.current = isOpen;
+    const chatRequests = chatLane.current;
+    const leadRequests = leadLane.current;
+    chatRequests.cancel();
+    leadRequests.cancel();
+    setIsLoading(false);
+    setIsLeadSaving(false);
+    setChatError(null);
+    setLeadFormError(null);
+    if (!isOpen) setShowLeadForm(false);
+    return () => {
+      chatRequests.cancel();
+      leadRequests.cancel();
+    };
+  }, [isOpen, lang, chatLane, leadLane]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
-  // Send message to API
+  useEffect(() => {
+    const writer = new HistoryWriter<Message[]>(async (snapshot, signal) => {
+      const { response } = await postJson(
+        "/api/chat/history",
+        {
+          sessionId,
+          messages: boundMessages(snapshot),
+        },
+        signal
+      );
+      if (!response.ok) throw new Error("History unavailable");
+    });
+    historyRef.current = writer;
+    return () => writer.stop();
+  }, [sessionId]);
+
+  useEffect(() => {
+    const deadlines = [cooldownUntil, leadCooldownUntil].filter((until) => until > Date.now());
+    const until = deadlines.length ? Math.min(...deadlines) : 0;
+    if (!until) return;
+    const timer = setTimeout(
+      () => {
+        if (Date.now() >= cooldownUntil) setCooldownUntil(0);
+        if (Date.now() >= leadCooldownUntil) setLeadCooldownUntil(0);
+      },
+      Math.min(Math.max(0, until - Date.now()), 2147483647)
+    );
+    return () => clearTimeout(timer);
+  }, [cooldownUntil, leadCooldownUntil]);
+
   const sendMessage = useCallback(
     async (messageText?: string) => {
-      const message = (messageText || inputValue).trim();
-      if (!message || isLoading) return;
-
-      // Add user message
-      const userMessage: Message = {
-        id: `user-${Date.now()}`,
-        role: "user",
-        content: message,
-        timestamp: new Date(),
-      };
-      const newMessages = [...messages, userMessage];
-      setMessages(newMessages);
-      setInputValue("");
+      const message = (messageText || inputValue).trim().slice(0, 2000);
+      if (!message || !openRef.current) return;
+      const controller = chatLane.current.begin();
+      if (!controller) return;
+      const language = lang;
+      const current = () =>
+        chatLane.current.isCurrent(controller) &&
+        openRef.current &&
+        languageRef.current === language;
+      // Keep both typed and quick-action questions available for a manual retry.
+      setInputValue(message);
+      setChatError(null);
       setIsLoading(true);
-
       try {
-        const response = await fetch("/api/chat", {
-          method: "POST",
-          signal: AbortSignal.timeout(25000),
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            message,
-            language: lang,
-          }),
-        });
-
-        const data: ChatResponse = await response.json();
-
-        if (!response.ok) {
-          throw new Error(response.status === 429 ? t.rateLimit : t.error);
+        const { response, data } = await withDeadline(
+          (signal) => postJson<ChatResponse>("/api/chat", { message, language }, signal),
+          CHAT_DEADLINE_MS,
+          controller
+        );
+        if (!current()) return;
+        if (response.status === 429) {
+          setCooldownUntil(chatLane.current.coolDown(response.headers.get("Retry-After")));
+          setChatError(t.rateLimit);
+          setResponseMode("unavailable");
+          return;
         }
-
-        if (data.mode !== "guided" || typeof data.message !== "string" || !data.message.trim())
-          throw new Error(t.error);
-        setResponseMode("guided");
-
-        // Add assistant message
-        const assistantMessage: Message = {
-          id: `assistant-${Date.now()}`,
-          role: "assistant",
-          content: data.message,
-          timestamp: new Date(),
-        };
-        const finalMessages = [...newMessages, assistantMessage];
+        if (
+          !response.ok ||
+          data?.mode !== "guided" ||
+          typeof data.message !== "string" ||
+          !data.message.trim()
+        )
+          throw new Error("Invalid FAQ response");
+        const finalMessages = boundMessages([
+          ...messagesRef.current,
+          {
+            id: `user-${crypto.randomUUID()}`,
+            role: "user" as const,
+            content: message,
+            timestamp: new Date(),
+          },
+          {
+            id: `assistant-${crypto.randomUUID()}`,
+            role: "assistant" as const,
+            content: data.message,
+            timestamp: new Date(),
+          },
+        ]);
+        messagesRef.current = finalMessages;
         setMessages(finalMessages);
-
-        // Save chat history
-        saveChatHistory(finalMessages);
-      } catch (error) {
-        setResponseMode("unavailable");
-        console.error("[SmartChatBot] Error:", error);
-        const errorMessage: Message = {
-          id: `error-${Date.now()}`,
-          role: "assistant",
-          content: error instanceof Error && error.message === t.rateLimit ? t.rateLimit : t.error,
-          timestamp: new Date(),
-        };
-        setMessages((prev) => [...prev, errorMessage]);
+        setInputValue("");
+        setResponseMode("guided");
+        historyRef.current?.enqueue(finalMessages);
+      } catch {
+        if (
+          chatLane.current.owns(controller) &&
+          openRef.current &&
+          languageRef.current === language
+        ) {
+          setResponseMode("unavailable");
+          setChatError(t.error);
+        }
       } finally {
-        setIsLoading(false);
+        if (chatLane.current.owns(controller)) {
+          chatLane.current.finish(controller);
+          setIsLoading(false);
+        }
       }
     },
-    [inputValue, isLoading, messages, lang, t.error, t.rateLimit, saveChatHistory]
+    [inputValue, lang, t.error, t.rateLimit, chatLane]
   );
 
   const openLeadForm = () => {
+    if (!openRef.current) return;
     const latestQuestion = messages.filter((item) => item.role === "user").slice(-1)[0]?.content;
     setLeadData((previous) => ({ ...previous, interest: latestQuestion || previous.interest }));
     setShowLeadForm(true);
@@ -433,7 +492,7 @@ export const SmartChatBot = () => {
   const handleLeadSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!leadData.email || isLeadSaving) return;
+    if (!leadData.email || !openRef.current) return;
 
     if (leadData.phone && !isValidBusinessPhone(leadData.phone)) {
       setLeadFormError(
@@ -446,35 +505,49 @@ export const SmartChatBot = () => {
       return;
     }
 
+    const controller = leadLane.current.begin();
+    if (!controller) return;
+    const language = lang;
+    const current = () =>
+      leadLane.current.isCurrent(controller) && openRef.current && languageRef.current === language;
     setLeadFormError(null);
     setIsLeadSaving(true);
 
     try {
-      const intakePayload = {
-        ...leadData,
-        sessionId,
-        source: "chatbot",
-        ...currentRequestContext(window.location.href),
-      };
-      const leadsResponse = await fetch("/api/leads", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Idempotency-Key": submissionKey(intakePayload),
-        },
-        body: JSON.stringify(intakePayload),
-      });
-
-      const result = (await leadsResponse.json().catch(() => null)) as {
-        error?: string;
-        success?: boolean;
-        saved?: boolean;
-      } | null;
-      if (!leadsResponse.ok || !result?.success || !result?.saved) {
-        throw new Error(result?.error || t.error);
+      const signature = JSON.stringify(leadData);
+      if (leadAttemptRef.current?.signature !== signature) {
+        leadAttemptRef.current = {
+          signature,
+          payload: {
+            ...leadData,
+            sessionId,
+            source: "chatbot",
+            ...currentRequestContext(window.location.href),
+          },
+        };
       }
+      const intakePayload = leadAttemptRef.current.payload;
+      const { response: leadsResponse, data: result } = await withDeadline(
+        (signal) =>
+          postJson<{
+            success?: boolean;
+            saved?: boolean;
+          }>("/api/leads", intakePayload, signal, {
+            "Idempotency-Key": submissionKey(intakePayload),
+          }),
+        LEAD_DEADLINE_MS,
+        controller
+      );
+      if (!current()) return;
+      if (leadsResponse.status === 429) {
+        setLeadCooldownUntil(leadLane.current.coolDown(leadsResponse.headers.get("Retry-After")));
+        setLeadFormError(t.rateLimit);
+        return;
+      }
+      if (!isSavedLead(leadsResponse, result)) throw new Error("Lead not saved");
 
       resetSubmissionKey();
+      leadAttemptRef.current = null;
       setShowLeadForm(false);
 
       // Add success message
@@ -484,25 +557,43 @@ export const SmartChatBot = () => {
         content: t.leadForm.success,
         timestamp: new Date(),
       };
-      setMessages((prev) => [...prev, successMessage]);
-    } catch (error) {
-      console.error("[SmartChatBot] Lead submit error:", error);
-      setLeadFormError(error instanceof Error ? error.message : t.error);
+      messagesRef.current = boundMessages([...messagesRef.current, successMessage]);
+      setMessages(messagesRef.current);
+    } catch {
+      if (leadLane.current.owns(controller) && openRef.current && languageRef.current === language)
+        setLeadFormError(t.error);
     } finally {
-      setIsLeadSaving(false);
+      if (leadLane.current.owns(controller)) {
+        leadLane.current.finish(controller);
+        setIsLeadSaving(false);
+      }
     }
   };
 
-  // Close chat
+  const closeLeadForm = () => {
+    leadLane.current.cancel();
+    setIsLeadSaving(false);
+    setLeadFormError(null);
+    setShowLeadForm(false);
+  };
+
   const handleClose = () => {
+    openRef.current = false;
+    chatLane.current.cancel();
+    leadLane.current.cancel();
+    // Let the serialized history write settle on close; unmount still cancels it.
+    setIsLoading(false);
+    setIsLeadSaving(false);
+    setShowLeadForm(false);
     setIsOpen(false);
+    onClose?.();
   };
 
   return (
     <>
       {/* Floating Action Button */}
       <AnimatePresence>
-        {!isOpen && (
+        {open === undefined && !isOpen && (
           <motion.button
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -510,10 +601,6 @@ export const SmartChatBot = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => {
-              if (messages.length === 0)
-                setMessages([
-                  { id: "welcome", role: "assistant", content: t.welcome, timestamp: new Date() },
-                ]);
               setIsOpen(true);
             }}
             className={cn(
@@ -527,7 +614,7 @@ export const SmartChatBot = () => {
               "transition-all duration-300 ease-out border border-white/20",
               "flex items-center justify-center"
             )}
-            aria-label="Chat öffnen"
+            aria-label={lang === "de" ? "Chat öffnen" : lang === "vn" ? "Mở chat" : "Open chat"}
           >
             {/* Glowing inner rings */}
             <div
@@ -561,6 +648,11 @@ export const SmartChatBot = () => {
               "md:rounded-xl"
             )}
             ref={chatContainerRef}
+            role="dialog"
+            aria-label={t.title}
+            onKeyDown={(event) => {
+              if (event.key === "Escape") handleClose();
+            }}
           >
             {/* Header */}
             <div className="bg-primary text-primary-foreground px-4 py-3 flex items-center justify-between flex-shrink-0">
@@ -577,7 +669,6 @@ export const SmartChatBot = () => {
                       maxHeight: "40px",
                       objectFit: "contain",
                     }}
-                    priority={true}
                     quality={90}
                     unoptimized={logoUrl?.startsWith("http") || false}
                     onError={(e) => {
@@ -760,10 +851,24 @@ export const SmartChatBot = () => {
               onSubmit={handleSubmit}
               className="border-t border-gray-200 px-4 py-3 bg-white flex-shrink-0"
             >
+              {chatError && (
+                <div role="alert" className="mb-2 text-sm text-amber-800">
+                  {chatError}{" "}
+                  <button
+                    type="button"
+                    className="underline"
+                    disabled={isLoading || cooldownUntil !== 0}
+                    onClick={() => void sendMessage()}
+                  >
+                    {lang === "de" ? "Erneut versuchen" : lang === "vn" ? "Thử lại" : "Retry"}
+                  </button>
+                </div>
+              )}
               <div className="flex items-center gap-2">
                 <input
                   ref={inputRef}
                   type="text"
+                  maxLength={2000}
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyDown={handleKeyDown}
@@ -778,7 +883,7 @@ export const SmartChatBot = () => {
                 />
                 <button
                   type="submit"
-                  disabled={isLoading || !inputValue.trim()}
+                  disabled={isLoading || cooldownUntil !== 0 || !inputValue.trim()}
                   className={cn(
                     "w-10 h-10 rounded-lg flex items-center justify-center transition-colors",
                     isLoading || !inputValue.trim()
@@ -807,10 +912,7 @@ export const SmartChatBot = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 bg-black/50 z-[60] flex items-center justify-center p-4"
-            onClick={() => {
-              setLeadFormError(null);
-              setShowLeadForm(false);
-            }}
+            onClick={closeLeadForm}
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
@@ -835,6 +937,7 @@ export const SmartChatBot = () => {
                   </label>
                   <input
                     type="text"
+                    maxLength={500}
                     value={leadData.company || ""}
                     onChange={(e) => {
                       setLeadFormError(null);
@@ -851,6 +954,7 @@ export const SmartChatBot = () => {
                   </label>
                   <input
                     type="email"
+                    maxLength={320}
                     required
                     value={leadData.email || ""}
                     onChange={(e) => {
@@ -868,6 +972,7 @@ export const SmartChatBot = () => {
                   </label>
                   <input
                     type="tel"
+                    maxLength={50}
                     value={leadData.phone || ""}
                     placeholder="+49 30 1234567"
                     onChange={(e) => {
@@ -879,7 +984,10 @@ export const SmartChatBot = () => {
                 </div>
 
                 {leadFormError && (
-                  <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                  <div
+                    role="alert"
+                    className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+                  >
                     {leadFormError}
                   </div>
                 )}
@@ -887,17 +995,14 @@ export const SmartChatBot = () => {
                 <div className="flex gap-3 pt-2">
                   <button
                     type="button"
-                    onClick={() => {
-                      setLeadFormError(null);
-                      setShowLeadForm(false);
-                    }}
+                    onClick={closeLeadForm}
                     className="flex-1 px-4 py-2.5 border border-gray-300 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors"
                   >
                     {t.close}
                   </button>
                   <button
                     type="submit"
-                    disabled={isLeadSaving}
+                    disabled={isLeadSaving || leadCooldownUntil !== 0}
                     className="flex-1 px-4 py-2.5 bg-primary hover:bg-primary/90 text-white rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2"
                   >
                     <CheckCircle className="w-4 h-4" />

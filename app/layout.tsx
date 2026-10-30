@@ -7,7 +7,7 @@ import { RequestContextCapture } from "@/components/providers/RequestContextCapt
 import { HeaderWrapper } from "@/components/HeaderWrapper";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/seo/JsonLd";
-import { SmartChatBot } from "@/components/bot/SmartChatBot";
+import { ChatBotLauncher } from "@/components/bot/ChatBotLauncher";
 import { CookieConsent } from "@/components/CookieConsent";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { MobileStickyBar } from "@/components/layout/MobileStickyBar";
@@ -101,7 +101,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
           <MobileStickyBar />
 
-          <SmartChatBot />
+          <ChatBotLauncher />
         </LanguageProvider>
       </body>
     </html>
