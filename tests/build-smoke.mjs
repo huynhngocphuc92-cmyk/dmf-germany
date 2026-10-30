@@ -415,6 +415,41 @@ try {
       headers: { "Content-Type": "application/json", "Idempotency-Key": key },
       body: JSON.stringify(body),
     });
+  // Public chat is a built-in scripted FAQ, independent of provider readiness.
+  const chatHealth = await fetch(`${base}/api/chat`);
+  assert.equal(chatHealth.headers.get("cache-control"), "no-store");
+  assert.equal(chatHealth.status, 200);
+  const health = await chatHealth.json();
+  assert.equal(health.mode, "guided");
+  assert.equal(health.status, "ready");
+  assert.equal(health.aiEnabled, false);
+  assert.ok(!("providers" in health));
+  for (const [language, message, expected] of [
+    ["de", "Ausbildung Kosten", "**Kosten:**"],
+    ["en", "nursing visa", "**Visa and recognition:**"],
+    ["vn", "giay to lao dong thoi vu", "**Hồ sơ:**"],
+    ["en", "xyzzy", "I have no prepared answer"],
+  ]) {
+    const response = await post("/api/chat", {
+      language,
+      message,
+      mode: "ai",
+      bypassRateLimit: true,
+    });
+    assert.equal(response.status, 200);
+    assert.equal(response.headers.get("cache-control"), "no-store");
+    const body = await response.json();
+    assert.equal(body.mode, "guided");
+    assert.equal(body.provider, "guided_engine");
+    assert.ok(body.message.startsWith(expected));
+    assert.ok(body.message.includes("mailto:contact@dmf.edu.vn"));
+    assert.ok(body.requestId && Number.isFinite(body.durationMs));
+  }
+  assert.equal((await post("/api/chat", { message: "" })).status, 400);
+  assert.equal((await fetch(`${base}/api/chat?diagnostics=1`)).status, 401);
+  process.stdout.write(
+    "PASS public chat: guided FAQ, mixed intents, vn alias, unknown handoff, guarded diagnostics\n"
+  );
   const key = crypto.randomUUID();
   assert.equal((await post("/api/contact", contact, key)).status, 200);
   const duplicate = await post("/api/contact", contact, key);

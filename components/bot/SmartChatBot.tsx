@@ -39,7 +39,7 @@ interface Message {
 
 interface ChatResponse {
   message: string;
-  mode?: "ai" | "fallback";
+  mode?: "guided";
   usage?: {
     inputTokens: number;
     outputTokens: number;
@@ -67,16 +67,14 @@ interface LeadData {
 
 const chatTranslations = {
   de: {
-    title: "DMF Talents Assistent",
-    ready: "Bereit",
-    ai: "KI-Antworten",
-    fallback: "Allgemeine Informationen · KI derzeit nicht verfügbar",
-    unavailable: "Verbindung unterbrochen · bitte erneut versuchen",
+    title: "Automatischer Chatbot",
+    guided: "Vorbereitete FAQ-Antworten",
+    unavailable: "Antwort derzeit nicht verfügbar · bitte erneut versuchen",
     placeholder: "Stellen Sie Ihre Frage...",
     send: "Senden",
     close: "Schließen",
     welcome:
-      "Guten Tag! Ich bin der virtuelle Assistent von DMF Talents. Wie kann ich Ihnen helfen?",
+      "Guten Tag! Dies ist der automatische FAQ-Chatbot von DMF Talents mit vorbereiteten Antworten zu unseren Programmen, Kosten, Ablauf und Unterlagen. Eine Nachricht hier ist noch keine Kontaktanfrage. Nutzen Sie dafür das Anfrageformular.",
     error: "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
     rateLimit: "Zu viele Anfragen. Bitte warten Sie einen Moment.",
     quickActions: {
@@ -87,25 +85,24 @@ const chatTranslations = {
     },
     leadForm: {
       title: "Kontakt hinterlassen",
-      subtitle: "Wir melden uns bei Ihnen!",
+      subtitle: "Anfrage über das Formular senden",
       company: "Unternehmen",
       email: "E-Mail",
       phone: "Telefon (optional)",
       submit: "Absenden",
-      success: "Vielen Dank! Wir melden uns in Kürze bei Ihnen.",
+      success: "Vielen Dank! Ihre Anfrage wurde gespeichert.",
       interest: "Interesse an",
     },
   },
   en: {
-    title: "DMF Talents Assistant",
-    ready: "Ready",
-    ai: "AI responses",
-    fallback: "General information · AI currently unavailable",
-    unavailable: "Connection interrupted · please retry",
+    title: "Automated chatbot",
+    guided: "Prepared FAQ answers",
+    unavailable: "Response unavailable · please retry",
     placeholder: "Ask your question...",
     send: "Send",
     close: "Close",
-    welcome: "Hello! I'm the virtual assistant of DMF Talents. How can I help you?",
+    welcome:
+      "Hello! This is the automated DMF Talents FAQ chatbot with prepared answers about our programmes, pricing, process and documents. A chat message is not a contact inquiry. Please use the inquiry form to submit one.",
     error: "An error occurred. Please try again.",
     rateLimit: "Too many requests. Please wait a moment.",
     quickActions: {
@@ -116,25 +113,24 @@ const chatTranslations = {
     },
     leadForm: {
       title: "Leave your contact",
-      subtitle: "We'll get back to you!",
+      subtitle: "Submit your inquiry using this form",
       company: "Company",
       email: "Email",
       phone: "Phone (optional)",
       submit: "Submit",
-      success: "Thank you! We'll contact you soon.",
+      success: "Thank you! Your inquiry has been saved.",
       interest: "Interested in",
     },
   },
   vn: {
-    title: "Trợ lý DMF Talents",
-    ready: "Sẵn sàng",
-    ai: "Trả lời bằng AI",
-    fallback: "Thông tin hướng dẫn · AI hiện chưa khả dụng",
-    unavailable: "Mất kết nối · vui lòng thử lại",
+    title: "Chatbot tự động",
+    guided: "Trả lời theo chủ đề",
+    unavailable: "Chưa thể trả lời · vui lòng thử lại",
     placeholder: "Đặt câu hỏi của bạn...",
     send: "Gửi",
     close: "Đóng",
-    welcome: "Xin chào! Tôi là trợ lý ảo của DMF Talents. Tôi có thể giúp gì cho bạn?",
+    welcome:
+      "Xin chào! Đây là chatbot tự động của DMF Talents với câu trả lời soạn sẵn về chương trình, chi phí, quy trình và hồ sơ. Tin nhắn chat chưa phải yêu cầu liên hệ. Hãy dùng biểu mẫu để gửi yêu cầu.",
     error: "Đã xảy ra lỗi. Vui lòng thử lại.",
     rateLimit: "Quá nhiều yêu cầu. Vui lòng đợi một chút.",
     quickActions: {
@@ -145,12 +141,12 @@ const chatTranslations = {
     },
     leadForm: {
       title: "Để lại thông tin",
-      subtitle: "Chúng tôi sẽ liên hệ bạn!",
+      subtitle: "Gửi yêu cầu qua biểu mẫu này",
       company: "Công ty",
       email: "Email",
       phone: "Điện thoại (tùy chọn)",
       submit: "Gửi",
-      success: "Cảm ơn! Chúng tôi sẽ liên hệ bạn sớm.",
+      success: "Cảm ơn! Yêu cầu của bạn đã được lưu.",
       interest: "Quan tâm đến",
     },
   },
@@ -172,16 +168,13 @@ export const SmartChatBot = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [responseMode, setResponseMode] = useState<"ready" | "ai" | "fallback" | "unavailable">(
-    "ready"
-  );
+  const [responseMode, setResponseMode] = useState<"guided" | "unavailable">("guided");
   const [logoUrl, setLogoUrl] = useState<string | null>(null);
   const [logoError, setLogoError] = useState(false);
   const [showLeadForm, setShowLeadForm] = useState(false);
   const [leadData, setLeadData] = useState<LeadData>({});
   const { forPayload: submissionKey, reset: resetSubmissionKey } = useSubmissionKey();
   const [isLeadSaving, setIsLeadSaving] = useState(false);
-  const [leadSubmitted, setLeadSubmitted] = useState(false);
   const [leadFormError, setLeadFormError] = useState<string | null>(null);
   const [sessionId, setSessionId] = useState(
     () => `chat-${Date.now()}-${Math.random().toString(36).slice(2)}`
@@ -237,6 +230,32 @@ export const SmartChatBot = () => {
             ? "Tôi đang tìm kiếm lao động có tay nghề cho công ty."
             : "I'm looking for skilled workers for my company.",
     },
+    ...[
+      {
+        id: "pricing",
+        labels: ["Kosten", "Pricing", "Chi phí"],
+        messages: ["Welche Kosten entstehen?", "What are the costs?", "Chi phí bao nhiêu?"],
+      },
+      {
+        id: "process",
+        labels: ["Ablauf", "Process", "Quy trình"],
+        messages: ["Wie ist der Ablauf?", "What is the process?", "Quy trình thế nào?"],
+      },
+      {
+        id: "documents",
+        labels: ["Unterlagen", "Documents", "Hồ sơ"],
+        messages: [
+          "Welche Unterlagen brauche ich?",
+          "Which documents do I need?",
+          "Cần giấy tờ gì?",
+        ],
+      },
+    ].map((action) => ({
+      id: action.id,
+      label: action.labels[lang === "de" ? 0 : lang === "vn" ? 2 : 1],
+      message: action.messages[lang === "de" ? 0 : lang === "vn" ? 2 : 1],
+      icon: <MessageCircle className="w-3.5 h-3.5" />,
+    })),
     {
       id: "contact",
       label: lang === "de" ? "Kontakt aufnehmen" : lang === "vn" ? "Để lại liên hệ" : "Contact us",
@@ -281,45 +300,7 @@ export const SmartChatBot = () => {
     }
   }, [isOpen]);
 
-  // Detect lead capture intent
-  const detectLeadIntent = useCallback((content: string): boolean => {
-    const leadKeywords = [
-      // German
-      "termin",
-      "beratung",
-      "kontakt",
-      "angebot",
-      "preis",
-      "kosten",
-      "interessiert",
-      "unternehmen",
-      "firma",
-      "mitarbeiter",
-      // English
-      "appointment",
-      "consultation",
-      "contact",
-      "quote",
-      "price",
-      "cost",
-      "interested",
-      "company",
-      "employee",
-      "hire",
-      // Vietnamese
-      "tư vấn",
-      "liên hệ",
-      "báo giá",
-      "chi phí",
-      "quan tâm",
-      "công ty",
-    ];
-    const lowerContent = content.toLowerCase();
-    return leadKeywords.some((keyword) => lowerContent.includes(keyword));
-  }, []);
-
-  // Send Telegram notification
-  // Save chat to database
+  // Keep contact submission explicit; FAQ questions never open a lead form.
   const saveChatHistory = useCallback(
     async (newMessages: Message[]) => {
       try {
@@ -367,21 +348,12 @@ export const SmartChatBot = () => {
       setIsLoading(true);
 
       try {
-        // Prepare history (exclude welcome message)
-        const history = messages
-          .filter((m) => m.id !== "welcome")
-          .map((m) => ({
-            role: m.role,
-            content: m.content,
-          }));
-
         const response = await fetch("/api/chat", {
           method: "POST",
           signal: AbortSignal.timeout(25000),
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             message,
-            history,
             language: lang,
           }),
         });
@@ -389,10 +361,12 @@ export const SmartChatBot = () => {
         const data: ChatResponse = await response.json();
 
         if (!response.ok) {
-          throw new Error(data.error || t.error);
+          throw new Error(response.status === 429 ? t.rateLimit : t.error);
         }
 
-        setResponseMode(data.mode === "ai" ? "ai" : "fallback");
+        if (data.mode !== "guided" || typeof data.message !== "string" || !data.message.trim())
+          throw new Error(t.error);
+        setResponseMode("guided");
 
         // Add assistant message
         const assistantMessage: Message = {
@@ -406,21 +380,13 @@ export const SmartChatBot = () => {
 
         // Save chat history
         saveChatHistory(finalMessages);
-
-        // Check for lead intent and show form when user expresses interest
-        if (!leadSubmitted && detectLeadIntent(message)) {
-          setTimeout(() => {
-            setLeadData((prev) => ({ ...prev, interest: prev.interest || message }));
-            setShowLeadForm(true);
-          }, 1200);
-        }
       } catch (error) {
         setResponseMode("unavailable");
         console.error("[SmartChatBot] Error:", error);
         const errorMessage: Message = {
           id: `error-${Date.now()}`,
           role: "assistant",
-          content: error instanceof Error ? error.message : t.error,
+          content: error instanceof Error && error.message === t.rateLimit ? t.rateLimit : t.error,
           timestamp: new Date(),
         };
         setMessages((prev) => [...prev, errorMessage]);
@@ -428,17 +394,14 @@ export const SmartChatBot = () => {
         setIsLoading(false);
       }
     },
-    [
-      inputValue,
-      isLoading,
-      messages,
-      lang,
-      t.error,
-      leadSubmitted,
-      detectLeadIntent,
-      saveChatHistory,
-    ]
+    [inputValue, isLoading, messages, lang, t.error, t.rateLimit, saveChatHistory]
   );
+
+  const openLeadForm = () => {
+    const latestQuestion = messages.filter((item) => item.role === "user").slice(-1)[0]?.content;
+    setLeadData((previous) => ({ ...previous, interest: latestQuestion || previous.interest }));
+    setShowLeadForm(true);
+  };
 
   // Handle quick action click
   const handleQuickAction = (action: QuickAction) => {
@@ -446,7 +409,7 @@ export const SmartChatBot = () => {
       // Open Calendly directly
       window.open(CALENDLY_URL, "_blank", "noopener,noreferrer");
     } else if (action.id === "contact") {
-      setShowLeadForm(true);
+      openLeadForm();
     } else {
       sendMessage(action.message);
     }
@@ -512,7 +475,6 @@ export const SmartChatBot = () => {
       }
 
       resetSubmissionKey();
-      setLeadSubmitted(true);
       setShowLeadForm(false);
 
       // Add success message
@@ -638,9 +600,7 @@ export const SmartChatBot = () => {
                     <div
                       className={cn(
                         "w-2 h-2 shrink-0 rounded-full",
-                        responseMode === "fallback" || responseMode === "unavailable"
-                          ? "bg-amber-300"
-                          : "bg-green-400"
+                        responseMode === "unavailable" ? "bg-amber-300" : "bg-green-400"
                       )}
                     />
                     <span role="status" className="text-xs opacity-90 text-white">
@@ -652,7 +612,7 @@ export const SmartChatBot = () => {
               <div className="flex items-center gap-1.5">
                 <button
                   type="button"
-                  onClick={() => setShowLeadForm(true)}
+                  onClick={openLeadForm}
                   title={t.leadForm.title}
                   className="text-xs bg-white/20 hover:bg-white/30 text-white px-2.5 py-1 rounded-full flex items-center gap-1 transition-colors"
                 >
@@ -772,7 +732,7 @@ export const SmartChatBot = () => {
             </div>
 
             {/* Quick Actions */}
-            {messages.length <= 4 && !isLoading && (
+            {!isLoading && (
               <div className="px-4 py-2 bg-gray-50 border-t border-gray-100 flex-shrink-0">
                 <div className="flex flex-wrap gap-2">
                   {quickActions.map((action) => (
