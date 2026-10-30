@@ -1,10 +1,22 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
+import { getGuidedChatResponse } from "../lib/chatbot/fallback";
+import { PRIMARY_CONTACT } from "../lib/company/contact";
 import { renderMessageContent } from "../lib/chatbot/message-content";
 
 const render = (content: string) => renderToStaticMarkup(<p>{renderMessageContent(content)}</p>);
 
 describe("chatbot message rendering", () => {
+  it.each(["de", "en", "vi"] as const)(
+    "renders curated FAQ links and email safely in %s",
+    (language) => {
+      const html = render(getGuidedChatResponse(language, "seasonal documents"));
+      expect(html.match(new RegExp(`href="mailto:${PRIMARY_CONTACT.email}"`, "g"))).toHaveLength(1);
+      expect(html).toContain('href="https://www.dmf-talents.de/#contact"');
+      expect(html).not.toMatch(/<a\b[^>]*>[^<]*<a\b/);
+      expect(html).toContain("<strong>");
+    }
+  );
   it("renders plain and markdown emails once with exact destinations", () => {
     const html = render("contact@dmf.edu.vn, [Email](mailto:contact@dmf.edu.vn)");
     expect(html.match(/href="mailto:contact@dmf\.edu\.vn"/g)).toHaveLength(2);
