@@ -1,3 +1,4 @@
+import { withDeadline } from "@/lib/requests/deadline";
 import { createIntakeClient, getIntakeKey } from "@/lib/supabase/intake";
 import { createHmac } from "node:crypto";
 import "server-only";
@@ -31,11 +32,17 @@ export async function checkRateLimit(
   ) {
     const db = createIntakeClient();
     const key = createHmac("sha256", getIntakeKey()).update(identifier).digest("hex");
-    const { data, error } = await db.rpc("dmf_check_rate_limit", {
-      p_key: key,
-      p_limit: config.limit,
-      p_window_seconds: config.windowSeconds,
-    });
+    const { data, error } = await withDeadline(
+      (signal) =>
+        db
+          .rpc("dmf_check_rate_limit", {
+            p_key: key,
+            p_limit: config.limit,
+            p_window_seconds: config.windowSeconds,
+          })
+          .abortSignal(signal),
+      3000
+    );
     if (error) throw new Error("Rate limit backend unavailable");
     return resultSchema.parse(data);
   }

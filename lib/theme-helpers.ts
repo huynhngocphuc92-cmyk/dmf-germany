@@ -1,4 +1,4 @@
-import { getSiteConfigByKey } from "@/actions/theme-actions";
+import { getSiteConfigByKey, getSiteConfigsByKeys } from "@/actions/theme-actions";
 
 /**
  * Helper function to validate if a string is a valid image URL/path
@@ -30,50 +30,52 @@ function isValidImagePath(value: string | null | undefined): boolean {
 export async function loadAssets(keys: string[]): Promise<Record<string, string | null>> {
   const assets: Record<string, string | null> = {};
 
-  await Promise.all(
-    keys.map(async (key) => {
-      const { data: asset } = await getSiteConfigByKey(key);
-      // site_assets table uses 'value' column
-      const value = asset?.value || null;
+  const { data, error } = await getSiteConfigsByKeys(keys);
+  // Only optional CMS assets fall back to null. Candidate publication reads are separate.
+  const byKey = new Map((error ? [] : (data ?? [])).map((asset) => [asset.key, asset]));
 
-      // CRITICAL: If value is the key itself (invalid), return null instead
-      // This prevents passing key strings like "home_prog_nursing_img" to Image components
-      if (value === key) {
+  for (const key of keys) {
+    const asset = byKey.get(key);
+    // site_assets table uses 'value' column
+    const value = asset?.value || null;
+
+    // CRITICAL: If value is the key itself (invalid), return null instead
+    // This prevents passing key strings like "home_prog_nursing_img" to Image components
+    if (value === key) {
+      console.warn(
+        `[loadAssets] ⚠️ Asset key "${key}" has value equal to key itself. This is invalid. Returning null.`
+      );
+      assets[key] = null;
+      continue;
+    }
+
+    // For keys that end with "_img", they are definitely image assets
+    // Validate that the value is a valid URL/path, regardless of asset_type in database
+    const isImageKey = key.toLowerCase().endsWith("_img") || key.toLowerCase().includes("image");
+
+    if (isImageKey && value) {
+      if (!isValidImagePath(value)) {
         console.warn(
-          `[loadAssets] ⚠️ Asset key "${key}" has value equal to key itself. This is invalid. Returning null.`
+          `[loadAssets] ⚠️ Image asset "${key}" has invalid path: "${value}". Expected URL starting with /, http://, or https://. Returning null.`
         );
         assets[key] = null;
-        return;
+        continue;
       }
+    }
 
-      // For keys that end with "_img", they are definitely image assets
-      // Validate that the value is a valid URL/path, regardless of asset_type in database
-      const isImageKey = key.toLowerCase().endsWith("_img") || key.toLowerCase().includes("image");
-
-      if (isImageKey && value) {
-        if (!isValidImagePath(value)) {
-          console.warn(
-            `[loadAssets] ⚠️ Image asset "${key}" has invalid path: "${value}". Expected URL starting with /, http://, or https://. Returning null.`
-          );
-          assets[key] = null;
-          return;
-        }
+    // Also validate if asset_type is explicitly IMAGE
+    if (asset?.asset_type?.toUpperCase() === "IMAGE" && value) {
+      if (!isValidImagePath(value)) {
+        console.warn(
+          `[loadAssets] ⚠️ Asset "${key}" (type: IMAGE) has invalid image path: "${value}". Expected URL starting with /, http://, or https://. Returning null.`
+        );
+        assets[key] = null;
+        continue;
       }
+    }
 
-      // Also validate if asset_type is explicitly IMAGE
-      if (asset?.asset_type?.toUpperCase() === "IMAGE" && value) {
-        if (!isValidImagePath(value)) {
-          console.warn(
-            `[loadAssets] ⚠️ Asset "${key}" (type: IMAGE) has invalid image path: "${value}". Expected URL starting with /, http://, or https://. Returning null.`
-          );
-          assets[key] = null;
-          return;
-        }
-      }
-
-      assets[key] = value;
-    })
-  );
+    assets[key] = value;
+  }
 
   return assets;
 }

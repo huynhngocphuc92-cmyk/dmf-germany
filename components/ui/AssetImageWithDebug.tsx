@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { isOptimizablePublicImage } from "@/lib/images/optimization";
 import { ImageIcon } from "lucide-react";
 
 /**
@@ -53,7 +54,7 @@ export const AssetImageWithDebug = ({
   height,
   fill = false,
   priority = false,
-  quality = 90,
+  quality = 75,
   fallbackClassName = "",
 }: AssetImageWithDebugProps) => {
   // Check if debug mode is enabled
@@ -95,10 +96,10 @@ export const AssetImageWithDebug = ({
           alt={alt}
           fill
           className={className}
-          priority={priority}
+          preload={priority}
           quality={quality}
-          // For Supabase Storage URLs, use unoptimized to avoid 400 errors
-          unoptimized={src.includes("supabase.co") || src.startsWith("http")}
+          // Private/signed or unknown images bypass the shared image cache.
+          unoptimized={!isOptimizablePublicImage(src)}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         {showDebug && (
@@ -118,9 +119,9 @@ export const AssetImageWithDebug = ({
         width={width || 800}
         height={height || 600}
         className={className}
-        priority={priority}
+        preload={priority}
         quality={quality}
-        unoptimized={src.startsWith("http")}
+        unoptimized={!isOptimizablePublicImage(src)}
       />
       {showDebug && (
         <span className="absolute top-0 left-0 bg-red-600 text-white text-xs px-2 py-1 z-50 opacity-80 rounded-br">

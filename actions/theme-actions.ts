@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { cache } from "react";
 import { createAdminClient as createClient } from "@/lib/auth/admin";
 import { createPublicClient } from "@/utils/supabase/public";
 import type { SiteConfigItem, SiteConfigGrouped } from "@/types/theme";
@@ -155,6 +156,40 @@ export async function getSiteConfigByKey(key: string): Promise<{
     console.error("Error in getSiteConfigByKey:", err);
     return { data: null, error: "Failed to fetch site config" };
   }
+}
+
+/** Request-local deduplication only; each new render reads current CMS assets. */
+const fetchSiteConfigsByKeys = cache(
+  async (
+    serializedKeys: string
+  ): Promise<{
+    data: Pick<SiteConfigItem, "key" | "value" | "asset_type">[] | null;
+    error: string | null;
+  }> => {
+    try {
+      const supabase = createPublicClient();
+      const { data, error } = await supabase
+        .from("site_assets")
+        .select("key,value,asset_type")
+        .in("key", JSON.parse(serializedKeys) as string[]);
+
+      if (error) {
+        console.error("Error fetching site assets by keys:", error);
+        return { data: null, error: error.message || "Failed to fetch site assets" };
+      }
+      return { data: data ?? [], error: null };
+    } catch (error) {
+      console.error("Error fetching site assets by keys:", error);
+      return { data: null, error: "Failed to fetch site assets" };
+    }
+  }
+);
+
+/** Fetch optional public assets in one query, including when some keys are absent. */
+export async function getSiteConfigsByKeys(keys: string[]) {
+  if (keys.length === 0) return { data: [], error: null };
+  // A primitive, canonical key lets React deduplicate equivalent sets per request.
+  return fetchSiteConfigsByKeys(JSON.stringify([...new Set(keys)].sort()));
 }
 
 // ============================================
