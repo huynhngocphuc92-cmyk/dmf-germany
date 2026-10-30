@@ -7,6 +7,8 @@ import { createServerClient } from "@supabase/ssr";
 import { once } from "node:events";
 import { setTimeout as delay } from "node:timers/promises";
 
+const intakeOnly = process.argv.includes("--intake-only");
+const webpackBuild = process.argv.includes("--webpack");
 const sentinel = "DMF_PRIVATE_SENTINEL";
 const candidate = {
   id: "12345678-1111-4111-8111-111111111111",
@@ -45,6 +47,8 @@ const blogPost = {
 let blogPublished = true;
 const receipts = new Map();
 const inbox = new Map();
+// Controllable backend faults exercise the real HTTP/API boundary, not a live database.
+let rateMode = "allow";
 const fixtureAdmin = {
   id: "00000000-0000-4000-8000-000000000001",
   aud: "authenticated",
@@ -149,7 +153,12 @@ const fixture = createServer(async (request, response) => {
     for await (const chunk of request) raw += chunk;
     const input = JSON.parse(raw);
     if (url.pathname.endsWith("/dmf_check_rate_limit")) {
-      response.end(JSON.stringify({ success: true, remaining: 4, resetIn: 60 }));
+      if (rateMode === "unavailable") {
+        response.writeHead(503);
+        response.end(JSON.stringify({ code: "08006", message: "fixture limiter unavailable" }));
+      } else {
+        response.end(JSON.stringify({ success: rateMode !== "deny", remaining: 0, resetIn: 25 }));
+      }
     } else if (url.pathname.endsWith("/dmf_receive_intake")) {
       if (input.p_payload.email === "failure@example.invalid") {
         response.writeHead(503);
@@ -275,17 +284,24 @@ const env = {
 };
 let app;
 try {
-  const build = spawn(process.execPath, ["node_modules/next/dist/bin/next", "build"], {
-    env,
-    stdio: "inherit",
-  });
-  const [code] = await once(build, "exit");
-  assert.equal(code, 0, "production build failed");
+  if (!intakeOnly) {
+    const build = spawn(
+      process.execPath,
+      ["node_modules/next/dist/bin/next", "build", ...(webpackBuild ? ["--webpack"] : [])],
+      {
+        env,
+        stdio: "inherit",
+      }
+    );
+    const [code] = await once(build, "exit");
+    assert.equal(code, 0, "production build failed");
+  }
   app = spawn(
     process.execPath,
     [
       "node_modules/next/dist/bin/next",
-      "start",
+      intakeOnly ? "dev" : "start",
+      ...(intakeOnly ? ["--webpack"] : []),
       "--hostname",
       "127.0.0.1",
       "--port",
@@ -304,99 +320,103 @@ try {
       break;
     await delay(200);
   }
-  for (const path of ["/", "/fuer-arbeitgeber/kandidaten"]) {
-    const response = await fetch(`${base}${path}`);
-    assert.equal(response.status, 200);
-    const html = await response.text();
-    assert.ok(html.includes(candidate.profession), `${path}: fixture was not rendered`);
-    assert.ok(!html.includes(sentinel), `${path}: private data leaked in HTML/RSC`);
-    assert.ok(!html.includes("example@example.com"), `${path}: mock profile fallback rendered`);
-    process.stdout.write(
-      `PASS ${path}: published fixture rendered; HTML/RSC has no private fields\n`
-    );
-  }
-
-  const publicPaths = [
-    "/",
-    "/services/azubi",
-    "/services/skilled-workers",
-    "/services/seasonal",
-    "/ueber-uns/ausbildung",
-    "/ueber-uns/studium",
-    "/ueber-uns/skilled-workers",
-    "/fuer-arbeitgeber/kandidaten",
-    "/fuer-arbeitgeber/personalbedarf",
-    "/fuer-arbeitgeber/roi-rechner",
-    "/fuer-arbeitgeber/zeitplan",
-    "/roi-rechner",
-    "/referenzen",
-    "/blog",
-    "/impressum",
-    "/datenschutz",
-    "/blog/fixture-current",
-  ];
-  for (const path of publicPaths) {
-    const response = await fetch(`${base}${path}`, { headers: { "User-Agent": "Googlebot" } });
-    assert.equal(response.status, 200, path);
-    const html = await response.text();
-    const canonical = [...html.matchAll(/<link rel="canonical" href="([^"]+)"/g)].map(
-      (m) => new URL(m[1]).href
-    );
-    assert.deepEqual(canonical, [`https://www.dmf-talents.de${path}`], `${path}: canonical`);
-    const title = html.match(/<title>(.*?)<\/title>/)?.[1] ?? "";
-    assert.equal(
-      (title.match(/DMF Talents/g) ?? []).length,
-      1,
-      `${path}: duplicated/missing brand: ${title}`
-    );
-    assert.equal(
-      new URL(html.match(/property="og:url" content="([^"]+)"/)?.[1]).href,
-      `https://www.dmf-talents.de${path}`,
-      `${path}: OG URL`
-    );
-    // Restoring owner-authored layout/copy supersedes M2 editorial exclusions.
-    // Privacy boundaries and the ban on fictional candidate/video fallbacks remain.
-    for (const sample of ["dQw4w9WgXcQ", "DMF-2401"])
-      assert.ok(!html.includes(sample), `${path}: unverified content ${sample}`);
-    if (path === "/blog/fixture-current") {
-      const schemas = [
-        ...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g),
-      ].flatMap((match) => JSON.parse(match[1]));
-      const article = schemas.find((schema) => schema["@type"] === "BlogPosting");
-      assert.equal(article?.headline, blogPost.title, "server-rendered article schema");
-      assert.equal(article?.url, canonical[0]);
-      assert.equal(article?.datePublished, "2026-09-01T00:00:00.000Z");
-      assert.ok(!article?.image, "no invented cover image in article schema");
-      const breadcrumbs = schemas.find((schema) => schema["@type"] === "BreadcrumbList");
-      assert.equal(breadcrumbs?.itemListElement.at(-1)?.item, canonical[0]);
-      assert.ok(html.includes('<time dateTime="2026-09-01T00:00:00Z"'), "semantic visible date");
-      assert.ok(
-        html.includes('name="twitter:image" content="https://www.dmf-talents.de/opengraph-image"')
+  if (!intakeOnly) {
+    for (const path of ["/", "/fuer-arbeitgeber/kandidaten"]) {
+      const response = await fetch(`${base}${path}`);
+      assert.equal(response.status, 200);
+      const html = await response.text();
+      assert.ok(html.includes(candidate.profession), `${path}: fixture was not rendered`);
+      assert.ok(!html.includes(sentinel), `${path}: private data leaked in HTML/RSC`);
+      assert.ok(!html.includes("example@example.com"), `${path}: mock profile fallback rendered`);
+      process.stdout.write(
+        `PASS ${path}: published fixture rendered; HTML/RSC has no private fields\n`
       );
     }
+
+    const publicPaths = [
+      "/",
+      "/services/azubi",
+      "/services/skilled-workers",
+      "/services/seasonal",
+      "/ueber-uns/ausbildung",
+      "/ueber-uns/studium",
+      "/ueber-uns/skilled-workers",
+      "/fuer-arbeitgeber/kandidaten",
+      "/fuer-arbeitgeber/personalbedarf",
+      "/fuer-arbeitgeber/roi-rechner",
+      "/fuer-arbeitgeber/zeitplan",
+      "/roi-rechner",
+      "/referenzen",
+      "/blog",
+      "/impressum",
+      "/datenschutz",
+      "/blog/fixture-current",
+    ];
+    for (const path of publicPaths) {
+      const response = await fetch(`${base}${path}`, { headers: { "User-Agent": "Googlebot" } });
+      assert.equal(response.status, 200, path);
+      const html = await response.text();
+      const canonical = [...html.matchAll(/<link rel="canonical" href="([^"]+)"/g)].map(
+        (m) => new URL(m[1]).href
+      );
+      assert.deepEqual(canonical, [`https://www.dmf-talents.de${path}`], `${path}: canonical`);
+      const title = html.match(/<title>(.*?)<\/title>/)?.[1] ?? "";
+      assert.equal(
+        (title.match(/DMF Talents/g) ?? []).length,
+        1,
+        `${path}: duplicated/missing brand: ${title}`
+      );
+      assert.equal(
+        new URL(html.match(/property="og:url" content="([^"]+)"/)?.[1]).href,
+        `https://www.dmf-talents.de${path}`,
+        `${path}: OG URL`
+      );
+      // Restoring owner-authored layout/copy supersedes M2 editorial exclusions.
+      // Privacy boundaries and the ban on fictional candidate/video fallbacks remain.
+      for (const sample of ["dQw4w9WgXcQ", "DMF-2401"])
+        assert.ok(!html.includes(sample), `${path}: unverified content ${sample}`);
+      if (path === "/blog/fixture-current") {
+        const schemas = [
+          ...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g),
+        ].flatMap((match) => JSON.parse(match[1]));
+        const article = schemas.find((schema) => schema["@type"] === "BlogPosting");
+        assert.equal(article?.headline, blogPost.title, "server-rendered article schema");
+        assert.equal(article?.url, canonical[0]);
+        assert.equal(article?.datePublished, "2026-09-01T00:00:00.000Z");
+        assert.ok(!article?.image, "no invented cover image in article schema");
+        const breadcrumbs = schemas.find((schema) => schema["@type"] === "BreadcrumbList");
+        assert.equal(breadcrumbs?.itemListElement.at(-1)?.item, canonical[0]);
+        assert.ok(html.includes('<time dateTime="2026-09-01T00:00:00Z"'), "semantic visible date");
+        assert.ok(
+          html.includes('name="twitter:image" content="https://www.dmf-talents.de/opengraph-image"')
+        );
+      }
+    }
+    const robotText = await (await fetch(`${base}/robots.txt`)).text();
+    assert.ok(robotText.includes("https://www.dmf-talents.de/sitemap.xml"));
+    assert.ok(!robotText.includes("/_next/"));
+    const loginHtml = await (await fetch(`${base}/login`)).text();
+    assert.ok(loginHtml.includes('name="robots" content="noindex, nofollow"'));
+    const sitemap = await (await fetch(`${base}/sitemap.xml`)).text();
+    assert.ok(sitemap.includes("https://www.dmf-talents.de/fuer-arbeitgeber/kandidaten"));
+    assert.ok(
+      sitemap.includes("/blog/fixture-current") &&
+        !sitemap.includes("/admin") &&
+        !sitemap.includes("/login")
+    );
+    const oldPost = await fetch(`${base}/blog/fixture-old`, { redirect: "manual" });
+    assert.equal(oldPost.status, 308);
+    assert.ok(oldPost.headers.get("location").endsWith("/blog/fixture-current"));
+    blogPublished = false;
+    assert.equal((await fetch(`${base}/blog/fixture-old`, { redirect: "manual" })).status, 404);
+    assert.equal((await fetch(`${base}/blog/fixture-current`)).status, 404);
+    assert.ok(
+      !(await (await fetch(`${base}/sitemap.xml`)).text()).includes("/blog/fixture-current")
+    );
+    process.stdout.write(
+      "PASS M2/M3: 17 canonical/OG/title pages, no sample profiles/videos, robots/login, sitemap, 308 alias and unpublished 404s\n"
+    );
   }
-  const robotText = await (await fetch(`${base}/robots.txt`)).text();
-  assert.ok(robotText.includes("https://www.dmf-talents.de/sitemap.xml"));
-  assert.ok(!robotText.includes("/_next/"));
-  const loginHtml = await (await fetch(`${base}/login`)).text();
-  assert.ok(loginHtml.includes('name="robots" content="noindex, nofollow"'));
-  const sitemap = await (await fetch(`${base}/sitemap.xml`)).text();
-  assert.ok(sitemap.includes("https://www.dmf-talents.de/fuer-arbeitgeber/kandidaten"));
-  assert.ok(
-    sitemap.includes("/blog/fixture-current") &&
-      !sitemap.includes("/admin") &&
-      !sitemap.includes("/login")
-  );
-  const oldPost = await fetch(`${base}/blog/fixture-old`, { redirect: "manual" });
-  assert.equal(oldPost.status, 308);
-  assert.ok(oldPost.headers.get("location").endsWith("/blog/fixture-current"));
-  blogPublished = false;
-  assert.equal((await fetch(`${base}/blog/fixture-old`, { redirect: "manual" })).status, 404);
-  assert.equal((await fetch(`${base}/blog/fixture-current`)).status, 404);
-  assert.ok(!(await (await fetch(`${base}/sitemap.xml`)).text()).includes("/blog/fixture-current"));
-  process.stdout.write(
-    "PASS M2/M3: 17 canonical/OG/title pages, no sample profiles/videos, robots/login, sitemap, 308 alias and unpublished 404s\n"
-  );
   for (const path of ["/api/chat/history", "/api/leads"]) {
     const response = await fetch(`${base}${path}`);
     assert.equal(response.status, 401, `${path}: anonymous read must fail`);
@@ -460,10 +480,24 @@ try {
   assert.equal((await failure.json()).success, false);
   assert.equal((await post("/api/contact", { ...contact, privacy: false })).status, 400);
   assert.equal((await post("/api/inquiry", { ...contact, candidateId: candidate.id })).status, 200);
-  assert.equal(
-    (await post("/api/leads", { email: contact.email, company: "Fixture Company" })).status,
-    200
+  const leadKey = crypto.randomUUID();
+  const lead = {
+    email: "chat-lead@example.invalid",
+    company: "Fixture Chat Lead",
+    interest: "Synthetic guided chat callback request",
+    sessionId: "fixture-smoke-chat",
+  };
+  const leadReceipt = await post("/api/leads", lead, leadKey);
+  assert.equal(leadReceipt.status, 200);
+  assert.deepEqual(
+    Object.fromEntries(
+      Object.entries(await leadReceipt.json()).filter(([field]) =>
+        ["success", "saved", "accepted", "requestId"].includes(field)
+      )
+    ),
+    { success: true, saved: true, accepted: true, requestId: leadKey }
   );
+  assert.equal((await (await post("/api/leads", lead, leadKey)).json()).duplicate, true);
   assert.equal(receipts.size, 3);
   const chat = await post("/api/chat/history", { sessionId: "fixture-smoke-chat", messages: [] });
   assert.equal(chat.status, 200);
@@ -495,6 +529,35 @@ try {
   assert.equal(receipts.get(profileKey).p_payload.candidateId, candidate.id);
   assert.equal(inbox.get(`inquiry:${hiringKey}`).headcount, 3);
   assert.equal(receipts.size, 5);
+  // These responses are what the forms use to decide whether to show a saved state.
+  // Faults must never produce a saved receipt or an admin row.
+  for (const [path, payload, invalid] of [
+    ["/api/contact", contact, { ...contact, privacy: false }],
+    ["/api/hiring", hiring, { ...hiring, privacy: false }],
+    ["/api/leads", lead, { ...lead, email: "not-an-email" }],
+  ]) {
+    const before = receipts.size;
+    const beforeInbox = inbox.size;
+    for (const [input, expected, mode] of [
+      [invalid, 400, "allow"],
+      [{ ...payload, email: "failure@example.invalid" }, 503, "allow"],
+      [payload, 429, "deny"],
+      [payload, 503, "unavailable"],
+    ]) {
+      rateMode = mode;
+      const rejected = await post(path, input);
+      assert.equal(rejected.status, expected, `${path}: ${mode}`);
+      assert.equal(rejected.headers.get("cache-control"), "no-store");
+      if (expected === 429) assert.equal(rejected.headers.get("retry-after"), "25");
+      const rejection = await rejected.json();
+      assert.equal(rejection.success, false);
+      assert.notEqual(rejection.saved, true);
+      assert.notEqual(rejection.accepted, true);
+      assert.equal(receipts.size, before, `${path}: failure persisted a receipt`);
+      assert.equal(inbox.size, beforeInbox, `${path}: failure appeared in admin inbox`);
+    }
+    rateMode = "allow";
+  }
   const authCookies = [];
   const authClient = createServerClient(`http://127.0.0.1:${fixturePort}`, "fixture-anon-key", {
     cookies: { getAll: () => authCookies, setAll: (values) => authCookies.push(...values) },
@@ -505,6 +568,21 @@ try {
   });
   assert.equal(signedIn.error, null);
   const headers = { Cookie: authCookies.map((c) => `${c.name}=${c.value}`).join("; ") };
+  // Each public path must produce an authenticated admin receipt with the same reference.
+  for (const [source, reference, expected] of [
+    ["inquiry", key, contact.email],
+    ["inquiry", hiringKey, hiring.company],
+    ["lead", leadKey, lead.email],
+  ]) {
+    const receipt = await fetch(`${base}/admin/requests/${source}/${reference}`, { headers });
+    assert.equal(receipt.status, 200);
+    const receiptHtml = await receipt.text();
+    assert.ok(receiptHtml.includes(expected), `${source}: submitted data missing in admin receipt`);
+    assert.ok(receiptHtml.includes(reference), `${source}: receipt reference missing`);
+  }
+  process.stdout.write(
+    "PASS fixture intake HTTP -> persistence -> authenticated admin: contact/hiring/chat lead; retries, validation, limiter denial/outage and database failure never claim saved\n"
+  );
   const adminInbox = await fetch(`${base}/admin/requests?kind=hiring`, { headers });
   assert.equal(adminInbox.status, 200);
   assert.ok((await adminInbox.text()).includes("Fixture Hiring Works"));

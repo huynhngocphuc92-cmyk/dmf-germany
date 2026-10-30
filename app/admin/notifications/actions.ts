@@ -16,9 +16,12 @@ export async function retryNotification(
     if (!parsed.success) return { error: "Ungültige Benachrichtigung." };
     const rate = await checkRateLimit(`notification-retry:${user.id}`, RATE_LIMITS.API);
     if (!rate.success) return { error: "Bitte warten Sie kurz und versuchen Sie es erneut." };
-    const result = await dispatchNotification(parsed.data);
+    const result = await dispatchNotification(parsed.data, true);
     revalidatePath("/admin/notifications");
-    if (!result) return { info: "Bereits erledigt oder in Bearbeitung. Siehe Zustellstatus." };
+    if (!result)
+      return {
+        info: "Bereits erledigt, in Bearbeitung oder fünf Versuche erreicht. Siehe Zustellstatus.",
+      };
     if (result.status !== "sent")
       return { error: "Nicht versendet. Bitte Zustellstatus und Konfiguration prüfen." };
     return { success: true };

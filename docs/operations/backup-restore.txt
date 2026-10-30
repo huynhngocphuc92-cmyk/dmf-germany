@@ -1,0 +1,200 @@
+DMF logical backup and local recovery drill
+=========================================
+
+Scope and commands
+------------------
+Run from the repository root with Node 24 and native PostgreSQL 17 tools.
+Default binary directory: /opt/homebrew/opt/postgresql@17/bin
+DMF_PG_BIN can name another trusted PostgreSQL 17 binary directory.
+No dependency installation, package changes, scheduler, deployment, network
+listener, live write, message sender, or Supabase project creation is needed.
+
+Focused checks (includes an actual native PostgreSQL recovery):
+  node --test tests/backup-tools.mjs
+
+Run a synthetic drill and retain its private logical backup:
+  node scripts/backup/drill.mjs --ack=LOCAL_SYNTHETIC_DRILL
+
+The drill prints JSON evidence with the backup directory, PG/tool versions,
+timestamps, table counts, per-table content hashes, permission catalog hash,
+object hashes, assertions and limitations. The default retained destination is
+~/.local/share/dmf-backups/<time>-<random-id>/, outside the repository. The
+socket-only temporary cluster is stopped and removed in finally on normal
+success/failure. Abrupt process termination can leave a private temporary
+cluster: inspect only the printed/known dmf-recovery-* directory for this run;
+use its PG17 pg_ctl -D <exact-data-directory> -m immediate -w stop before
+removing that exact directory. Never discover or stop other database instances.
+The server has listen_addresses='', a private Unix socket, no host access,
+and only synthetic data. Existing PostgreSQL instances are never used.
+
+Verify a retained backup (substitute the exact directory printed by the drill):
+  node scripts/backup/verify.mjs /private/exact-backup-directory
+
+Verification streams SHA-256 and byte counts, checks the exact file inventory,
+rejects symlinks, extra/missing files, the INCOMPLETE marker, unsafe permissions,
+and changed content. Directories must be owned by this user with no group/other
+access (0700); regular files must have no group/other access (0600).
+Checksums detect accidental corruption; they do not authenticate an attacker-
+modified manifest or establish that a backup is complete. Store a manifest hash
+in a separate trusted recovery record. Do not execute untrusted dump archives.
+
+Actual drill coverage
+---------------------
+The schema fixture was ported from the supplied 2026-10-30 metadata-only
+production-schema-baseline.json and production-schema-restore.mjs. It contains
+schema metadata, function bodies, constraints, triggers, RLS and grants, never
+customer rows. The drill renders public tables/views and the intake/notification
+functions from that metadata. Auth/Storage are explicitly minimal local SQL
+stubs, three platform role stubs are created, and schema objects are owned by the
+local drill role. The fixture renderer omits 39 unavailable platform table grants
+and approximates the missing update_modified_column trigger function body.
+This is representative application logical recovery, NOT Supabase recovery.
+
+The seed uses reserved example.invalid identities and synthetic contact, lead,
+and candidate-profile submissions through the actual dmf_receive_intake
+function. It creates 3 submissions, 2 inquiries, 1 lead, 8 notification deliveries
+(including pending/sent/failed and a leased sending state), a rate-limit entry,
+an admin stub, a reviewed published candidate, and a private bucket with two
+object metadata stubs. No notification transport runs. Two private local object files
+include binary/empty content. All 15 base-table counts and canonical row hashes
+are compared after restore into a NEW database. The drill also compares owner,
+ACL/column grants, RLS, policies, functions, constraints and triggers; checks
+anonymous intake denial, authenticated notification row hiding, notification
+foreign keys, idempotency, and new intake/notification creation after restore;
+compares object bytes and private permissions; proves post-capture source writes
+do not appear in restored data; and refuses a second restore over the target.
+The temporary databases and object directories are removed; the retained backup
+has the original snapshot and separate object bytes.
+
+Restore safeguards
+------------------
+There is deliberately no arbitrary SQL, database URL, host, target database,
+archive, or remote restore input in the drill CLI. The restore function accepts
+only a same-process approved synthetic capture, the explicit acknowledgement
+RESTORE_SYNTHETIC_EPHEMERAL_ONLY, and the private no-TCP cluster initialized by
+that process. A forged marker/config, localhost/127.0.0.1/remote connection,
+missing acknowledgement, modified approved manifest, or existing target is
+rejected. The target name is fixed to dmf_drill_restore. pg_restore uses
+--exit-on-error --single-transaction, preserves ACL/owner references, and never
+uses --clean. SQL helpers reject connections outside approved drill targets.
+No production restore mode is implemented or implicitly unlocked by a flag.
+
+Read-only capture of an existing backend (parent/operator opt-in)
+---------------------------------------------------------------
+THIS WORKER DID NOT READ CREDENTIALS OR CAPTURE THE REMOTE BACKEND.
+The runnable capture utility is provided for the authorized parent/operator.
+Its opt-in does not grant this worker permission to access production.
+
+  node scripts/backup/capture.mjs --help
+
+Prepare three existing owned private files outside the repository, on an
+encrypted volume; never paste their contents into terminal output or a report:
+  /private/connection.json (0600)
+  /private/pgpass           (0600, standard libpq host:port:db:user:password)
+  /private/root.crt         (0600, trusted server CA)
+
+connection.json contains ONLY these fields (port is a string):
+  {"host":"db.example","port":"5432","database":"postgres",
+   "user":"backup_reader","passfile":"/private/pgpass",
+   "sslRootCert":"/private/root.crt"}
+Use a direct database endpoint or a provider-supported session connection that
+supports exported snapshots; a transaction pooler is unsuitable. Choose an
+already authorized role able to SELECT and pg_dump every intended table with
+row_security=off. Do not create/alter roles or reset passwords for this tool.
+The server and client tools must be major version 17; other versions fail closed.
+TLS verify-full and an explicit CA are required for capture. The tool ignores
+ambient libpq password, connection, service and option variables, disables
+psql startup files, passes discrete connection arguments and PGPASSFILE, forbids
+URI/options injection, and suppresses PostgreSQL/parse diagnostics to avoid
+leaking credentials or customer values. No password appears in argv or output.
+
+  node scripts/backup/capture.mjs --config /private/connection.json --ack READ_ONLY_BACKUP --destination /encrypted/dmf-backups/new-unique-directory --retention-days 30
+
+The explicit destination must be new; overwrites fail. Paths inside the
+repository are rejected except its gitignored .local-backups/ directory (prefer
+outside the repo). A canonical-parent check prevents a symlink from bypassing
+that repository restriction. New directories/files are private. A failed run
+leaves INCOMPLETE and must never be treated as a usable backup. No failed
+capture is silently downgraded to schema-only or a partial subset. No database
+credentials, source URL, or customer rows are printed. The backup itself DOES
+contain private database contents and must be protected accordingly.
+
+The snapshot holder begins a repeatable-read READ ONLY transaction, exports
+one snapshot, and counts each application/platform base table using that
+snapshot. pg_dump imports it into a single custom-format archive. PostgreSQL
+read-only defaults and row_security=off are enforced for both connections;
+missing privileges/RLS visibility fail rather than silently hiding rows.
+snapshotAt records the recovery point; createdAt records completion.
+Schema changes during capture can make a dump fail; coordinate a schema-change
+freeze. Long snapshots and exact counts can create read load, retain dead tuples,
+and delay DDL; choose an authorized low-load window. Object bytes are outside
+this SQL snapshot. The capture CLI does not fetch any object bytes.
+
+Artifact meaning
+----------------
+  database.dump: schema AND data in one consistent logical archive, including
+    emitted functions/triggers/RLS/ACLs/owner references; extension membership
+    and managed-service exclusions still require inventory review.
+  roles-inventory.json: non-secret role attributes and memberships only. No
+    passwords, executable role creation, database/role GUC settings, or platform
+    configuration. It is not a cluster-global backup and is never auto-restored.
+  manifest.json: format, UTC start/snapshot/completion times, expiry/retention days,
+    server and tool
+    versions, exact table counts and artifact hashes/sizes, coverage caveats.
+  objects/: present only in synthetic/local API use, separately copied files
+    with paths, byte counts and hashes. Symlinks/special files/unsafe source
+    permissions fail. This copy is not transactionally coordinated with SQL.
+
+Auth database records are not Auth platform recovery: service configuration,
+SMTP/OAuth providers, JWT/API keys, session behavior, service versions and
+external identity dependencies require separate authorized recovery planning.
+Storage buckets/objects SQL rows are METADATA, NOT OBJECT BYTES. A real object
+backup must separately enumerate/version and retrieve every object with an
+explicitly authorized read-only export, reconcile missing/extra objects, sizes,
+checksums, ACLs and bucket settings, and rehearse retrieval in an isolated
+compatible platform. This worker implements no Storage API export/delete.
+Project configuration, secrets, billing and infrastructure are not captured.
+
+Retention and encryption
+------------------------
+Default retention is 30 days; explicit --retention-days accepts 1..365 and
+records expiresAt. Verification reports expiry. There is no scheduled job and
+no automatic deletion of any backup/object. Parent/operator must apply the
+retention policy to both local and offline copies and record disposal of expired
+copies; keep a separately protected last verified recovery point until a newer
+one is validated. Failed INCOMPLETE captures need explicit operator cleanup.
+The scripts do not implement encryption. Use an encrypted volume before any
+real capture (including temporary/failure artifacts), encrypted offline copies,
+separate key custody and a tested key-recovery path. chmod is access control,
+not encryption. Do not put a real backup in Git, CI artifacts, chat, or reports.
+
+Production recovery gate and logical restore caveats
+---------------------------------------------------
+UNMET: no current production logical archive, current source row-count inventory,
+separately verified production object bytes, platform/configuration inventory,
+encryption/key-recovery evidence, or actual compatible Supabase recovery drill
+was obtained by this worker. No claim of production backup, RPO/RTO or disaster
+recovery readiness follows from the local PASS. Parent owns credential access,
+real capture, final full checks, integration, deployment rollback and releases.
+
+Before an authorized real restore, independently verify artifact authenticity,
+checksums, scope, tool/server/extension compatibility, object completeness and
+key availability. Recreate only reviewed required roles/ownership in an
+isolated compatible platform; inventory is not executable role SQL. Restoring
+auth/storage schemas wholesale into an initialized managed Supabase project
+can conflict with provider-owned objects/roles/extensions. Do not use blanket
+--clean, --create, --no-owner or --no-acl as a recovery shortcut. A logical dump
+is not PITR/WAL history and does not supply project/service configuration.
+Untrusted SQL/functions in dumps can execute privileged code during restore.
+The automated drill restores only its own synthetic archive to its own cluster.
+
+An actual isolated restore must compare source snapshot table counts and content
+checksums (privacy-safe), constraints/indexes/sequences/defaults, owners, grants,
+RLS/policies, functions/triggers, extension versions and platform migrations.
+Validate real Auth sign-in/authorization and Storage retrieval with approved
+synthetic accounts/objects, not customer identities. Reconcile all object bytes
+with SQL metadata. Keep outbound notification jobs/workers/triggers/webhooks
+blocked: pending/failed deliveries and expired leases can replay on recovery.
+Only after review should the parent decide how to resume them, reconcile any
+post-backup writes and accept a recovery point. Never point an application at
+a restored database or change DNS/deployment as part of these local tools.
