@@ -6,7 +6,11 @@ vi.mock("next/server", async (original) => ({
   after: mocks.after,
 }));
 vi.mock("@/lib/intake/notifications", () => ({ dispatchSubmission: mocks.dispatch }));
-vi.mock("@/lib/supabase/intake", () => ({ createIntakeClient: () => ({ rpc: mocks.rpc }) }));
+vi.mock("@/lib/supabase/intake", () => ({
+  createIntakeClient: () => ({
+    rpc: (...args: unknown[]) => ({ abortSignal: () => mocks.rpc(...args) }),
+  }),
+}));
 vi.mock("@/lib/rate-limit", () => ({
   checkRateLimit: async () => ({ success: true }),
   getClientIp: () => "fixture",

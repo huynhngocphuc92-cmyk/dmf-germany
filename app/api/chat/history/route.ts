@@ -1,3 +1,4 @@
+import { withDeadline } from "@/lib/requests/deadline";
 import { createPrivilegedAdminClient } from "@/lib/auth/admin";
 import {
   adminAuthorizationResponse,
@@ -10,6 +11,8 @@ import { createIntakeClient } from "@/lib/supabase/intake";
 import { chatHistorySchema } from "@/lib/validations/public-intake";
 import { NextRequest, NextResponse } from "next/server";
 import { randomBytes } from "node:crypto";
+
+const HISTORY_WRITE_DEADLINE_MS = 3000;
 
 const OWNER_COOKIE = "dmf_chat_owner";
 
@@ -39,12 +42,18 @@ export async function POST(request: NextRequest) {
         { status: 429, headers: { "Retry-After": String(rate.resetIn) } }
       );
     const supabase = createIntakeClient();
-    const { data: saved, error } = await supabase.rpc("dmf_save_chat", {
-      p_session_id: sessionId,
-      p_owner_token: ownerToken,
-      p_messages: messages,
-      p_lead_data: leadData ?? {},
-    });
+    const { data: saved, error } = await withDeadline(
+      (signal) =>
+        supabase
+          .rpc("dmf_save_chat", {
+            p_session_id: sessionId,
+            p_owner_token: ownerToken,
+            p_messages: messages,
+            p_lead_data: leadData ?? {},
+          })
+          .abortSignal(signal),
+      HISTORY_WRITE_DEADLINE_MS
+    );
     if (error) return NextResponse.json({ error: "Chat could not be saved" }, { status: 503 });
     if (!saved)
       return NextResponse.json({ error: "Chat session ownership required" }, { status: 403 });

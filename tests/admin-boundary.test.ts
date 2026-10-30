@@ -75,7 +75,9 @@ beforeEach(() => {
     then: (resolve: (value: typeof result) => unknown) => Promise.resolve(result).then(resolve),
   };
   mocks.from.mockReturnValue(query);
-  mocks.intakeClient.mockReturnValue({ rpc: mocks.rpc });
+  mocks.intakeClient.mockReturnValue({
+    rpc: (...args: unknown[]) => ({ abortSignal: () => mocks.rpc(...args) }),
+  });
   mocks.rpc.mockResolvedValue({ data: true, error: null });
   mocks.createServiceClient.mockReturnValue({ from: mocks.from });
 });
