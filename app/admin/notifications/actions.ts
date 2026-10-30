@@ -5,7 +5,7 @@ import { checkRateLimit, RATE_LIMITS } from "@/lib/rate-limit";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
-export type RetryState = { error?: string; success?: boolean };
+export type RetryState = { error?: string; info?: string; success?: boolean };
 export async function retryNotification(
   _previous: RetryState,
   formData: FormData
@@ -16,8 +16,11 @@ export async function retryNotification(
     if (!parsed.success) return { error: "Ungültige Benachrichtigung." };
     const rate = await checkRateLimit(`notification-retry:${user.id}`, RATE_LIMITS.API);
     if (!rate.success) return { error: "Bitte warten Sie kurz und versuchen Sie es erneut." };
-    await dispatchNotification(parsed.data);
+    const result = await dispatchNotification(parsed.data);
     revalidatePath("/admin/notifications");
+    if (!result) return { info: "Bereits erledigt oder in Bearbeitung. Siehe Zustellstatus." };
+    if (result.status !== "sent")
+      return { error: "Nicht versendet. Bitte Zustellstatus und Konfiguration prüfen." };
     return { success: true };
   } catch {
     return {

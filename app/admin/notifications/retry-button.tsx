@@ -18,6 +18,11 @@ export function RetryButton({ id }: { id: string }) {
           {state.error}
         </p>
       )}
+      {state.info && (
+        <p role="status" className="mt-2 text-sm text-slate-600">
+          {state.info}
+        </p>
+      )}
       {state.success && (
         <p role="status" className="mt-2 text-sm text-slate-600">
           Versand geprüft. Siehe Status.
