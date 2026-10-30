@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports -- This synchronous Node --require preload runs before ESM application code. */
 // Local regression safety boundary; loaded by NODE_OPTIONS in parent and child Node processes.
 const net = require("node:net");
 const tls = require("node:tls");

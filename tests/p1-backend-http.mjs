@@ -14,7 +14,7 @@ export async function verifyP1Http(ctx) {
     } catch (error) {
       cases.push({ id, status: "fail", durationMs: Date.now() - start, evidence: error.message });
     }
-    console.log("P1_CASE " + JSON.stringify(cases.at(-1)));
+    process.stdout.write("P1_CASE " + JSON.stringify(cases.at(-1)) + "\n");
   }
   async function rejected(response, status) {
     assert.equal(response.status, status);
@@ -178,8 +178,10 @@ export async function verifyP1Http(ctx) {
         "HTTP history still pending after 9000ms, beyond client 8000ms deadline; write RPC has no server deadline"
       );
       assert.ok(historyDurationMs < 8000, `history response took ${historyDurationMs}ms`);
-      console.log(
-        "P1_WRITE_DEADLINE " + JSON.stringify({ route: "history", durationMs: historyDurationMs })
+      process.stdout.write(
+        "P1_WRITE_DEADLINE " +
+          JSON.stringify({ route: "history", durationMs: historyDurationMs }) +
+          "\n"
       );
     });
     await delay(12000);
@@ -189,8 +191,8 @@ export async function verifyP1Http(ctx) {
         "HTTP lead still pending after 21000ms, beyond client 20000ms deadline; write RPC has no server deadline"
       );
       assert.ok(leadDurationMs < 20000, `lead response took ${leadDurationMs}ms`);
-      console.log(
-        "P1_WRITE_DEADLINE " + JSON.stringify({ route: "lead", durationMs: leadDurationMs })
+      process.stdout.write(
+        "P1_WRITE_DEADLINE " + JSON.stringify({ route: "lead", durationMs: leadDurationMs }) + "\n"
       );
     });
   } finally {
@@ -212,13 +214,14 @@ export async function verifyP1Http(ctx) {
     assert.equal((await retry.json()).duplicate, true);
     assert.equal(receipts.size, before + 1);
   });
-  console.log(
+  process.stdout.write(
     "P1_HTTP_SUMMARY " +
       JSON.stringify({
         cases,
         pass: cases.filter((x) => x.status === "pass").length,
         fail: cases.filter((x) => x.status === "fail").length,
-      })
+      }) +
+      "\n"
   );
   if (cases.some((x) => x.status === "fail")) process.exitCode = 1;
 }
