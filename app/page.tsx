@@ -3,12 +3,36 @@ export const metadata = {
   ...pageMetadata("/", "Fachkräfte aus Vietnam für Deutschland", SITE_DESCRIPTION),
   title: { absolute: "Fachkräfte aus Vietnam für Deutschland | DMF Talents" },
 };
+import { Suspense } from "react";
+import { CandidateShowcase } from "@/components/sections/CandidateShowcase";
+import { TalentShowcase } from "@/components/b2b/TalentShowcase";
+import { CandidateRegionState } from "@/components/home/CandidateRegionState";
 import { HomeClient } from "./home-client";
 import { loadAssets } from "@/lib/theme-helpers";
 import { getHomepageFeaturedCandidates } from "@/lib/supabase/candidates";
 
 // Read publication state at request time, including withdrawals and expiry.
 export const dynamic = "force-dynamic";
+
+type CandidatesPromise = ReturnType<typeof getHomepageFeaturedCandidates>;
+
+async function HeroCandidates({ candidates }: { candidates: CandidatesPromise }) {
+  const { data, error } = await candidates;
+  return error ? (
+    <CandidateRegionState error region="hero" />
+  ) : (
+    <CandidateShowcase candidates={data ?? []} />
+  );
+}
+
+async function TalentCandidates({ candidates }: { candidates: CandidatesPromise }) {
+  const { data, error } = await candidates;
+  return error ? (
+    <CandidateRegionState error region="talent" />
+  ) : (
+    <TalentShowcase candidates={data ?? []} />
+  );
+}
 
 export default async function Home() {
   // Load all dynamic assets from database
@@ -29,11 +53,24 @@ export default async function Home() {
     "home_cta_bg",
   ];
 
-  // Independent public reads run together. Publication state remains fresh per request.
-  const [assets, { data: featuredCandidates }] = await Promise.all([
-    loadAssets(assetKeys),
-    getHomepageFeaturedCandidates(),
-  ]);
+  // One request-local read shared by both streamed regions. The loader settles
+  // errors as a result, so an early failure cannot become an unhandled rejection.
+  const candidates = getHomepageFeaturedCandidates();
+  const assets = await loadAssets(assetKeys);
 
-  return <HomeClient assets={assets} featuredCandidates={featuredCandidates || []} />;
+  return (
+    <HomeClient
+      assets={assets}
+      heroCandidates={
+        <Suspense fallback={<CandidateRegionState region="hero" />}>
+          <HeroCandidates candidates={candidates} />
+        </Suspense>
+      }
+      talentCandidates={
+        <Suspense fallback={<CandidateRegionState region="talent" />}>
+          <TalentCandidates candidates={candidates} />
+        </Suspense>
+      }
+    />
+  );
 }

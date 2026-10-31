@@ -6,8 +6,7 @@ import { useLanguage } from "@/components/providers/LanguageProvider";
 import { ArrowRight, Download } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import type { PublicCandidate } from "@/lib/candidates/public-profile";
-import { CandidateShowcase } from "./CandidateShowcase";
+import type { ReactNode } from "react";
 
 // Animation variants - Modern & Smooth
 const fadeInUp = {
@@ -25,13 +24,13 @@ const loadMotionFeatures = () => import("@/lib/framer-motion-features").then((mo
 interface HeroSectionProps {
   heroBg?: string | null;
   heroOverlayOpacity?: string | null;
-  featuredCandidates?: PublicCandidate[];
+  candidateSlot?: ReactNode;
 }
 
 export const HeroSection = ({
   heroBg,
   heroOverlayOpacity,
-  featuredCandidates = [],
+  candidateSlot,
 }: HeroSectionProps = {}) => {
   const { t } = useLanguage();
   const parsedOverlayOpacity = Number.parseFloat(heroOverlayOpacity ?? "");
@@ -135,7 +134,7 @@ export const HeroSection = ({
               transition={{ duration: 0.8, delay: 0.4 }}
               className="hidden lg:block"
             >
-              <CandidateShowcase candidates={featuredCandidates} />
+              {candidateSlot}
             </m.div>
           </div>
         </div>
