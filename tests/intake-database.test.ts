@@ -1,10 +1,11 @@
 import { PGlite } from "@electric-sql/pglite";
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
 import { afterAll, beforeAll, expect, it } from "vitest";
 let db: PGlite;
 const admin = "00000000-0000-4000-8000-000000000001";
 const person = "00000000-0000-4000-8000-000000000002";
 const profile = "00000000-0000-4000-8000-000000000003";
+const anonymousAdmin = "00000000-0000-4000-8000-000000000004";
 const payload = {
   name: "Fixture Employer",
   email: "fixture@example.invalid",
@@ -13,9 +14,16 @@ const payload = {
 };
 let sequence = 10;
 const nextId = () => `10000000-0000-4000-8000-${String(++sequence).padStart(12, "0")}`;
-async function role(name: "anon" | "authenticated" | "service_role" | "postgres", id = "") {
+async function role(
+  name: "anon" | "authenticated" | "service_role" | "postgres",
+  id = "",
+  claims: Record<string, unknown> = {}
+) {
   await db.exec("reset role");
   await db.query("select set_config('request.jwt.claim.sub',$1,false)", [id]);
+  await db.query("select set_config('request.jwt.claims',$1,false)", [
+    JSON.stringify({ sub: id, ...claims }),
+  ]);
   if (name !== "postgres") await db.exec(`set role ${name}`);
 }
 async function receive(id: string, kind = "contact", data: unknown = payload) {
@@ -30,10 +38,15 @@ beforeAll(async () => {
   db = new PGlite();
   await db.exec(`
     create role anon;create role authenticated;create role service_role bypassrls;
+    -- Supabase defaults grant named roles EXECUTE independently of PUBLIC.
+    alter default privileges for role postgres in schema public
+      grant execute on functions to anon,authenticated,service_role;
     create schema auth;create schema storage;
-    create table auth.users(id uuid primary key,raw_app_meta_data jsonb,is_anonymous boolean default false,email varchar(255));
+    create table auth.users(id uuid primary key,raw_app_meta_data jsonb,is_anonymous boolean default false,email varchar(255),raw_user_meta_data jsonb default '{}');
     create function auth.uid() returns uuid language sql as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;
     insert into auth.users(id,raw_app_meta_data,is_anonymous) values('${admin}','{"role":"admin"}',false),('${person}','{}',false);
+    insert into auth.users(id,raw_app_meta_data,is_anonymous) values('${anonymousAdmin}','{"role":"admin"}',true);
+    update auth.users set raw_user_meta_data='{"role":"admin"}' where id='${person}';
     create table candidates(id uuid primary key default gen_random_uuid(),full_name text,category text,profession text,experience_years integer,german_level text,visa_status boolean,avatar_url text,video_url text,is_featured boolean,created_at timestamptz default now(),updated_at timestamptz default now());
     create table inquiries(id uuid primary key default gen_random_uuid(),created_at timestamptz default now(),email text,phone text,message text,status text,type text,client_name text);
     create table posts(id uuid primary key default gen_random_uuid(),status text,slug text unique,published_at timestamptz);
@@ -53,6 +66,19 @@ beforeAll(async () => {
     create policy legacy_config_read on site_config for select using(true);
     create policy legacy_asset_read on site_assets for select using(true);
     insert into storage.objects(bucket_id) values('images'),('candidates');
+    insert into site_assets default values;
+    -- Live legacy function and attachment, absent from checked-in schema migrations.
+    create function public.update_modified_column() returns trigger
+      language plpgsql security invoker as $$
+      BEGIN NEW.updated_at = now(); RETURN NEW; END;
+    $$;
+    create trigger zz_fixture_updated_at before update on public.candidates
+      for each row execute function public.update_modified_column();
+    create schema hostile;
+    grant usage on schema hostile to authenticated;
+    create function hostile.now() returns timestamptz language sql as $$
+      select '2000-01-01'::timestamptz
+    $$;
   `);
   for (const name of [
     "20240201_chatbot_tables.sql",
@@ -65,6 +91,44 @@ beforeAll(async () => {
     "20260929115942_employer_request_workflow.sql",
   ])
     await db.exec(await readFile(`supabase/migrations/${name}`, "utf8"));
+  // PUBLIC's earlier revoke leaves Supabase's explicit anon grant intact.
+  await role("anon");
+  expect((await db.query("select public.dmf_is_admin() admin")).rows).toEqual([{ admin: false }]);
+  await role("postgres");
+  expect(
+    (
+      await db.query(`select exists (
+      select 1 from pg_proc p, lateral aclexplode(p.proacl) a
+      where p.oid='public.dmf_is_admin()'::regprocedure and a.grantee=0
+        and a.privilege_type='EXECUTE'
+    ) public_execute`)
+    ).rows
+  ).toEqual([{ public_execute: false }]);
+  const definitions = async () =>
+    (
+      await db.query(`select p.oid::regprocedure::text signature,p.prosrc,p.proowner,
+      p.prosecdef,p.provolatile,p.prolang
+      from pg_proc p where p.oid in ('public.dmf_is_admin()'::regprocedure,
+        'public.update_modified_column()'::regprocedure) order by signature`)
+    ).rows;
+  const originalDefinitions = await definitions();
+  const hardeningMigrations = (await readdir("supabase/migrations")).filter((name) =>
+    name.endsWith("_advisory_function_hardening.sql")
+  );
+  expect(hardeningMigrations).toHaveLength(1);
+  const migration = await readFile(`supabase/migrations/${hardeningMigrations[0]}`, "utf8");
+  await db.exec(migration);
+  expect(await definitions()).toEqual(originalDefinitions);
+  const configuration = async () =>
+    (
+      await db.query(`select p.oid::regprocedure::text signature,p.proconfig,p.proacl::text
+      from pg_proc p where p.oid in ('public.dmf_is_admin()'::regprocedure,
+        'public.update_modified_column()'::regprocedure) order by signature`)
+    ).rows;
+  const hardenedConfiguration = await configuration();
+  await db.exec(migration);
+  expect(await configuration()).toEqual(hardenedConfiguration);
+  expect(await definitions()).toEqual(originalDefinitions);
   await role("authenticated", admin);
   await db.query(
     "update candidates set publication_status='published',publication_valid_until=current_date+30,publication_consent_note='Fixture consent documented' where id=$1",
@@ -73,6 +137,149 @@ beforeAll(async () => {
 }, 30000);
 afterAll(async () => {
   await db?.close();
+});
+
+it("removes only anonymous helper execution and preserves public reads and trusted callers", async () => {
+  await role("anon");
+  await expect(db.query("select public.dmf_is_admin()")).rejects.toMatchObject({ code: "42501" });
+  expect((await db.query("select id from candidates")).rows).toEqual([{ id: profile }]);
+  expect((await db.query("select status from posts")).rows).toEqual([{ status: "published" }]);
+  expect((await db.query("select id from site_assets")).rows).toHaveLength(1);
+  await role("postgres");
+  expect(
+    (
+      await db.query(`select
+      has_function_privilege('anon','public.dmf_is_admin()','EXECUTE') anon,
+      has_function_privilege('authenticated','public.dmf_is_admin()','EXECUTE') authenticated,
+      has_function_privilege('service_role','public.dmf_is_admin()','EXECUTE') service_role,
+      has_function_privilege('anon','public.update_modified_column()','EXECUTE') trigger_execute,
+      has_function_privilege('anon','dmf_private.request_assignees()','EXECUTE') anon_directory,
+      has_function_privilege('authenticated','dmf_private.request_assignees()','EXECUTE') authenticated_directory,
+      has_function_privilege('authenticated','public.dmf_review_candidate()','EXECUTE') review_execute`)
+    ).rows
+  ).toEqual([
+    {
+      anon: false,
+      authenticated: true,
+      service_role: true,
+      trigger_execute: true,
+      anon_directory: false,
+      authenticated_directory: true,
+      review_execute: false,
+    },
+  ]);
+  // A role with no named grant proves the timestamp trigger retains PUBLIC EXECUTE.
+  await role("postgres");
+  await db.exec("create role fixture_ungranted");
+  expect(
+    (
+      await db.query(`select
+      has_function_privilege('fixture_ungranted','public.update_modified_column()','EXECUTE') trigger_execute,
+      has_function_privilege('fixture_ungranted','public.dmf_is_admin()','EXECUTE') helper_execute`)
+    ).rows
+  ).toEqual([{ trigger_execute: true, helper_execute: false }]);
+  await role("service_role", admin);
+  expect((await db.query("select public.dmf_is_admin() admin")).rows).toEqual([{ admin: true }]);
+  await role("authenticated", admin, { app_metadata: {}, user_metadata: {} });
+  await expect(db.query("select * from auth.users")).rejects.toMatchObject({ code: "42501" });
+  expect((await db.query("select public.dmf_is_admin() admin")).rows).toEqual([{ admin: true }]);
+  expect((await db.query("select id from public.dmf_request_assignees()")).rows).toEqual([
+    { id: admin },
+  ]);
+});
+
+it("enforces private RLS for ordinary, metadata-spoofing and anonymous authenticated users", async () => {
+  await role("service_role");
+  await receive(nextId());
+  await receive(nextId(), "lead", { email: "boundary@example.invalid" });
+  await role("postgres");
+  await db.query("insert into chat_sessions(session_id,messages) values('boundary','[]')");
+  const privateTables = ["candidates", "inquiries", "leads", "chat_sessions"];
+  // Nonempty fixtures ensure empty results below prove filtering, rather than missing data.
+  for (const table of privateTables)
+    expect((await db.query(`select id from ${table}`)).rows.length).toBeGreaterThan(0);
+  for (const [id, claims] of [
+    [person, {}],
+    [person, { user_metadata: { role: "admin" }, app_metadata: { role: "admin" } }],
+    [anonymousAdmin, { is_anonymous: true, app_metadata: { role: "admin" } }],
+  ] as const) {
+    await role("authenticated", id, claims);
+    expect((await db.query("select public.dmf_is_admin() admin")).rows).toEqual([{ admin: false }]);
+    for (const table of [...privateTables, "intake_submissions", "notification_deliveries"])
+      expect((await db.query(`select * from ${table}`)).rows).toHaveLength(0);
+    for (const table of privateTables) {
+      expect((await db.query(`update ${table} set id=id returning id`)).rows).toHaveLength(0);
+      expect((await db.query(`delete from ${table} returning id`)).rows).toHaveLength(0);
+    }
+    for (const sql of [
+      "insert into candidates(full_name,profession) values('Fixture person','Pflege')",
+      "insert into inquiries(email) values('denied@example.invalid')",
+      "insert into leads(email) values('denied@example.invalid')",
+      "insert into chat_sessions(session_id,messages) values('denied','[]')",
+      "insert into site_assets default values",
+    ])
+      await expect(db.query(sql)).rejects.toMatchObject({ code: "42501" });
+  }
+  await role("authenticated", admin, { app_metadata: {} });
+  for (const table of privateTables)
+    expect((await db.query(`select id from ${table}`)).rows.length).toBeGreaterThan(0);
+  expect(
+    (await db.query("update leads set notes='Trusted database admin' returning id")).rows.length
+  ).toBeGreaterThan(0);
+});
+
+it("honors current database admin revocation despite a stale admin JWT", async () => {
+  const staleClaims = { app_metadata: { role: "admin" } };
+  await role("authenticated", admin, staleClaims);
+  expect((await db.query("select public.dmf_is_admin() admin")).rows).toEqual([{ admin: true }]);
+  await role("postgres");
+  await db.query("update auth.users set raw_app_meta_data='{}' where id=$1", [admin]);
+  try {
+    await role("authenticated", admin, staleClaims);
+    expect((await db.query("select public.dmf_is_admin() admin")).rows).toEqual([{ admin: false }]);
+    for (const table of ["candidates", "inquiries", "leads", "chat_sessions"]) {
+      expect((await db.query(`select * from ${table}`)).rows).toHaveLength(0);
+      expect((await db.query(`update ${table} set id=id returning id`)).rows).toHaveLength(0);
+    }
+    await expect(
+      db.query("insert into leads(email) values('revoked@example.invalid')")
+    ).rejects.toMatchObject({ code: "42501" });
+    await expect(db.query("select * from public.dmf_request_assignees()")).rejects.toMatchObject({
+      code: "42501",
+    });
+  } finally {
+    await role("postgres");
+    await db.query(`update auth.users set raw_app_meta_data='{"role":"admin"}' where id=$1`, [
+      admin,
+    ]);
+  }
+});
+
+it("keeps the legacy timestamp trigger working with an empty path under a hostile caller path", async () => {
+  await role("authenticated", admin);
+  await db.exec("set search_path=hostile,public,pg_catalog");
+  try {
+    expect((await db.query("select now()= '2000-01-01'::timestamptz hijacked")).rows).toEqual([
+      { hijacked: true },
+    ]);
+    expect(
+      (
+        await db.query(
+          `update public.candidates set updated_at='1999-01-01'
+      where id=$1 returning updated_at=pg_catalog.now() as timestamp_updated`,
+          [profile]
+        )
+      ).rows
+    ).toEqual([{ timestamp_updated: true }]);
+    expect(
+      (
+        await db.query(`select proconfig from pg_proc
+      where oid='public.update_modified_column()'::regprocedure`)
+      ).rows
+    ).toEqual([{ proconfig: ['search_path=""'] }]);
+  } finally {
+    await db.exec("reset search_path");
+  }
 });
 
 it("atomically stores one inquiry and one set of notifications across retries", async () => {
