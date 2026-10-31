@@ -37,6 +37,8 @@ const nextConfig: NextConfig = {
   // 2. Server Actions: Increase body size limit for file uploads (5MB)
   // Configure experimental.serverActions.bodySizeLimit for Next.js 16
   experimental: {
+    // Trial: remove the render-blocking CSS request on first load.
+    inlineCss: true,
     serverActions: {
       bodySizeLimit: "5mb",
     },
