@@ -26,4 +26,5 @@ export function handleContactAnchorClick(event: MouseEvent<HTMLAnchorElement>) {
 
   // Smooth scrolling activates the lazy calculator en route and shifts the target.
   contact.scrollIntoView({ behavior: "instant", block: "start" });
+  contact.focus({ preventScroll: true });
 }
