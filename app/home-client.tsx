@@ -8,23 +8,23 @@ import { ValuesSection } from "@/components/sections/ValuesSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { ProcessRoadmap } from "@/components/b2b/ProcessRoadmap";
 import { DeferredSalarySimulator } from "@/components/performance/DeferredSalarySimulator";
-import { TalentShowcase } from "@/components/b2b/TalentShowcase";
 import ContactSection from "@/components/sections/ContactSection";
 import { PartnerSection } from "@/components/sections/PartnerSection";
-import type { PublicCandidate } from "@/lib/candidates/public-profile";
+import type { ReactNode } from "react";
 
 interface HomeClientProps {
   assets: Record<string, string | null>;
-  featuredCandidates: PublicCandidate[];
+  heroCandidates: ReactNode;
+  talentCandidates: ReactNode;
 }
 
-export function HomeClient({ assets, featuredCandidates }: HomeClientProps) {
+export function HomeClient({ assets, heroCandidates, talentCandidates }: HomeClientProps) {
   return (
     <div className="min-h-screen">
       <HeroSection
         heroBg={assets["home_hero_bg"]}
         heroOverlayOpacity={assets["home_hero_overlay_opacity"]}
-        featuredCandidates={featuredCandidates}
+        candidateSlot={heroCandidates}
       />
       <PartnerSection partnerBanner={assets["home_partner_banner"]} />
       <ServiceGateway
@@ -41,7 +41,7 @@ export function HomeClient({ assets, featuredCandidates }: HomeClientProps) {
       <ServicesSection />
       <ProcessRoadmap />
       <DeferredSalarySimulator />
-      <TalentShowcase candidates={featuredCandidates} />
+      {talentCandidates}
       <ContactSection />
     </div>
   );

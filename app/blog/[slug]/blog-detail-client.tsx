@@ -4,8 +4,7 @@ import type { Post } from "@/app/admin/posts/types";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { Button } from "@/components/ui/button";
 import { BLUR_LANDSCAPE } from "@/lib/image-placeholder";
-import { format } from "date-fns";
-import { de, vi, enUS } from "date-fns/locale";
+import { formatBlogDate } from "@/lib/blog-date";
 import { motion } from "framer-motion";
 import parse from "html-react-parser";
 import {
@@ -110,7 +109,6 @@ export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) 
   const { lang: currentLang } = useLanguage();
   const lang = (currentLang as "de" | "en" | "vn") || "de";
   const t = translations[lang] || translations.de;
-  const dateLocale = lang === "vn" ? vi : lang === "en" ? enUS : de;
 
   // Share handler
   const handleShare = async () => {
@@ -188,9 +186,7 @@ export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) 
                   className="flex items-center gap-1"
                 >
                   <Calendar className="w-4 h-4" />
-                  {format(new Date(post.published_at || post.created_at), "dd MMMM yyyy", {
-                    locale: dateLocale,
-                  })}
+                  {formatBlogDate(post.published_at || post.created_at, lang, "long")}
                 </time>
                 <span className="flex items-center gap-1">
                   <Clock className="w-4 h-4" />
@@ -324,13 +320,15 @@ export function BlogDetailClient({ post, relatedPosts }: BlogDetailClientProps) 
 
                         {/* Content */}
                         <div className="p-5">
-                          <p className="text-xs text-slate-500 mb-2">
-                            {format(
-                              new Date(relatedPost.published_at || relatedPost.created_at),
-                              "dd MMM yyyy",
-                              { locale: dateLocale }
+                          <time
+                            dateTime={relatedPost.published_at || relatedPost.created_at}
+                            className="block text-xs text-slate-500 mb-2"
+                          >
+                            {formatBlogDate(
+                              relatedPost.published_at || relatedPost.created_at,
+                              lang
                             )}
-                          </p>
+                          </time>
                           <h3 className="font-bold text-slate-900 line-clamp-2 group-hover:text-blue-600 transition-colors">
                             {relatedPost.title}
                           </h3>
