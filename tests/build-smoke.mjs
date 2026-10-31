@@ -417,7 +417,13 @@ try {
     const assertBothRegions = (html) => {
       const ssr = markup(html);
       assert.match(ssr, new RegExp(`<h3[^>]*>DMF-${code}</h3>`), "desktop SSR profile");
-      const lower = ssr.match(/<section\b[^>]*id="talent-showcase"[\s\S]*?<\/section>/)?.[0] ?? "";
+      // Streaming HTML retains the fallback followed by the resolved section;
+      // React swaps them in the browser. Assert the resolved SSR region, not
+      // the first matching placeholder, while still excluding Flight scripts.
+      const lower =
+        [...ssr.matchAll(/<section\b[^>]*id="talent-showcase"[\s\S]*?<\/section>/g)]
+          .map(([section]) => section)
+          .find((section) => section.includes(freshProfession)) ?? "";
       assert.match(lower, new RegExp(`#${code}</p>`), "lower SSR profile");
       assert.ok(lower.includes(freshProfession), "lower SSR fresh profession");
       assert.equal(
