@@ -3,8 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { format } from "date-fns";
-import { de, vi, enUS } from "date-fns/locale";
+import { formatBlogDate } from "@/lib/blog-date";
 import { Calendar, Clock, ArrowRight, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -94,7 +93,6 @@ export function BlogListClient({ posts }: BlogListClientProps) {
   const { lang: currentLang } = useLanguage();
   const lang = (currentLang as "de" | "en" | "vn") || "de";
   const t = translations[lang] || translations.de;
-  const dateLocale = lang === "vn" ? vi : lang === "en" ? enUS : de;
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white pt-[120px]">
@@ -169,9 +167,7 @@ export function BlogListClient({ posts }: BlogListClientProps) {
                             className="flex items-center gap-1"
                           >
                             <Calendar className="w-4 h-4" />
-                            {format(new Date(post.published_at || post.created_at), "dd MMM yyyy", {
-                              locale: dateLocale,
-                            })}
+                            {formatBlogDate(post.published_at || post.created_at, lang)}
                           </time>
                           <span className="flex items-center gap-1">
                             <Clock className="w-4 h-4" />

@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Phone, Mail, Home, Users, Newspaper, Handshake } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { GERMANY_CONTACT, PRIMARY_CONTACT } from "@/lib/company/contact";
+import { handleContactAnchorClick } from "@/lib/navigation/contact-anchor";
 import { Logo } from "@/components/Logo";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { LanguageSwitcher } from "@/components/header/LanguageSwitcher";
@@ -116,11 +117,7 @@ const ContactButton = memo(function ContactButton({ label, pathname }: ContactBu
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
       if (pathname === "/") {
-        e.preventDefault();
-        const contactSection = document.getElementById("contact");
-        if (contactSection) {
-          contactSection.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
+        handleContactAnchorClick(e);
       }
     },
     [pathname]
@@ -175,11 +172,7 @@ export const Header = memo(function Header({ logoUrl, hotline, email }: HeaderPr
   const handleContactClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
       if (pathname === "/") {
-        e.preventDefault();
-        const contactSection = document.getElementById("contact");
-        if (contactSection) {
-          contactSection.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
+        handleContactAnchorClick(e);
       }
     },
     [pathname]
