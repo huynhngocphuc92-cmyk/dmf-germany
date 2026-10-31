@@ -53,6 +53,7 @@ beforeEach(() => {
     gte: vi.fn().mockReturnThis(),
     order: vi.fn().mockReturnThis(),
     limit: vi.fn().mockReturnThis(),
+    abortSignal: vi.fn().mockReturnThis(),
     then: (resolve: (result: unknown) => unknown) =>
       Promise.resolve({
         // Deliberately return extra columns to exercise the runtime DTO, even if select is safe.

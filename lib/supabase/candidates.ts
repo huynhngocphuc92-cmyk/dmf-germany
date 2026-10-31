@@ -1,6 +1,7 @@
 "use server";
 
 import { createPublicClient } from "@/utils/supabase/public";
+import { withDeadline } from "@/lib/requests/deadline";
 import type { CandidateCategory, GermanLevel } from "@/app/admin/candidates/types";
 import {
   PUBLIC_CANDIDATE_FIELDS,
@@ -16,6 +17,7 @@ async function queryPublishedCandidates(
     featuredOnly?: boolean;
     category?: CandidateCategory;
     germanLevel?: GermanLevel;
+    timeoutMs?: number;
   } = {}
 ): Promise<CandidateResult> {
   try {
@@ -31,7 +33,9 @@ async function queryPublishedCandidates(
     if (options.category) query = query.eq("category", options.category);
     if (options.germanLevel) query = query.eq("german_level", options.germanLevel);
 
-    const { data, error } = await query;
+    const { data, error } = await (options.timeoutMs === undefined
+      ? query
+      : withDeadline((signal) => query.abortSignal(signal), options.timeoutMs));
     if (error) return { data: null, error: "Profile konnten nicht geladen werden." };
     return { data: toPublicCandidates(data ?? []), error: null };
   } catch {
@@ -45,7 +49,8 @@ export async function getFeaturedCandidates(): Promise<CandidateResult> {
 }
 
 export async function getHomepageFeaturedCandidates(): Promise<CandidateResult> {
-  return queryPublishedCandidates({ limit: 20, featuredOnly: true });
+  // Keep SDK GET retries within the homepage's secondary-data budget.
+  return queryPublishedCandidates({ limit: 20, featuredOnly: true, timeoutMs: 5000 });
 }
 
 export async function getPublicCandidates(filters?: {

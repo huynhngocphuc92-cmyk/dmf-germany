@@ -50,6 +50,7 @@ let candidateMode = "allow";
 let candidateGate = null;
 let candidateQueries = 0;
 const candidateRequests = [];
+const candidateHangs = [];
 const heroFixture = "/streaming-hero-fixture.webp";
 const receipts = new Map();
 const inbox = new Map();
@@ -278,8 +279,18 @@ const fixture = createServer(async (request, response) => {
     candidateQueries++;
     candidateRequests.push(url);
     if (candidateGate) await candidateGate;
+    if (candidateMode === "hang") {
+      const hanging = { closedAt: null };
+      candidateHangs.push(hanging);
+      response.once("close", () => {
+        if (!response.writableEnded) hanging.closedAt = performance.now();
+      });
+      // Never send headers or a body; the real SDK must cancel the request.
+      return;
+    }
     if (candidateMode === "fail") {
-      response.writeHead(503);
+      // Nonretryable: wire-attempt counts here describe one fresh query.
+      response.writeHead(400);
       response.end(JSON.stringify({ message: "synthetic candidate query failure" }));
       return;
     }
@@ -400,8 +411,8 @@ try {
     // satisfy an assertion about actual server-rendered elements.
     const markup = (html) =>
       html.replace(/<script\b[^>]*>[\s\S]*?(?:<\/script>|$)/gi, "").replace(/<!--[\s\S]*?-->/g, "");
-    const waitFor = async (predicate, label) => {
-      const deadline = Date.now() + 15000;
+    const waitFor = async (predicate, label, timeoutMs = 15000) => {
+      const deadline = Date.now() + timeoutMs;
       while (!predicate()) {
         assert.ok(Date.now() < deadline, label);
         await delay(20);
@@ -410,24 +421,33 @@ try {
     const originalCandidate = { ...candidate };
     const code = "87654321";
     const freshProfession = "Fresh streaming fixture profession";
+    const hasHero = (html) => {
+      const hero = markup(html).match(/<section\b[^>]*id="home"[\s\S]*?<\/section>/)?.[0] ?? "";
+      return (
+        /<h1\b[^>]*>[^<]+<\/h1>/.test(hero) &&
+        /<a\b[^>]*href="#contact"/.test(hero) &&
+        /<img\b[^>]*>/.test(hero) &&
+        hero.includes("streaming-hero-fixture")
+      );
+    };
     Object.assign(candidate, {
       id: `${code}-1111-4111-8111-111111111111`,
       profession: freshProfession,
     });
-    const assertBothRegions = (html) => {
+    const assertBothRegions = (html, expectedCode = code, expectedProfession = freshProfession) => {
       const ssr = markup(html);
-      assert.match(ssr, new RegExp(`<h3[^>]*>DMF-${code}</h3>`), "desktop SSR profile");
+      assert.match(ssr, new RegExp(`<h3[^>]*>DMF-${expectedCode}</h3>`), "desktop SSR profile");
       // Streaming HTML retains the fallback followed by the resolved section;
       // React swaps them in the browser. Assert the resolved SSR region, not
       // the first matching placeholder, while still excluding Flight scripts.
       const lower =
         [...ssr.matchAll(/<section\b[^>]*id="talent-showcase"[\s\S]*?<\/section>/g)]
           .map(([section]) => section)
-          .find((section) => section.includes(freshProfession)) ?? "";
-      assert.match(lower, new RegExp(`#${code}</p>`), "lower SSR profile");
-      assert.ok(lower.includes(freshProfession), "lower SSR fresh profession");
+          .find((section) => section.includes(expectedProfession)) ?? "";
+      assert.match(lower, new RegExp(`#${expectedCode}</p>`), "lower SSR profile");
+      assert.ok(lower.includes(expectedProfession), "lower SSR fresh profession");
       assert.equal(
-        ssr.split(freshProfession).length - 1,
+        ssr.split(expectedProfession).length - 1,
         2,
         "same fresh profile in both SSR regions"
       );
@@ -458,16 +478,10 @@ try {
     );
     try {
       await waitFor(() => candidateQueries > before, "candidate query never reached held backend");
-      await waitFor(() => {
-        const hero =
-          markup(streamed).match(/<section\b[^>]*id="home"[\s\S]*?<\/section>/)?.[0] ?? "";
-        return (
-          /<h1\b[^>]*>[^<]+<\/h1>/.test(hero) &&
-          /<a\b[^>]*href="#contact"/.test(hero) &&
-          /<img\b[^>]*>/.test(hero) &&
-          hero.includes("streaming-hero-fixture")
-        );
-      }, "actual SSR hero image/heading/CTA did not stream before candidate release");
+      await waitFor(
+        () => hasHero(streamed),
+        "actual SSR hero image/heading/CTA did not stream before candidate release"
+      );
       assert.equal(finished, false, "response finished while candidate response held");
       assert.ok(
         !streamed.includes(code) && !streamed.includes(freshProfession),
@@ -525,19 +539,71 @@ try {
     assertBothRegions(await requestHome());
     candidateMode = "fail";
     const failed = await requestHome();
-    assert.ok(
-      !failed.includes(code) && !failed.includes(freshProfession),
-      "failure reused previous success"
+    const assertUnavailable = (html) => {
+      assert.ok(
+        !html.includes(code) && !html.includes(freshProfession) && !html.includes(originalCandidate.id),
+        "failure reused a previous profile"
+      );
+      assert.ok(!html.includes(sentinel), "failure leaked private fields");
+      assert.equal(
+        markup(html).split("Fehler beim Laden der Kandidaten").length - 1,
+        2,
+        "both regions show unavailable state"
+      );
+    };
+    assertUnavailable(failed);
+
+    candidateMode = "hang";
+    const hangCount = candidateHangs.length;
+    const hangStartedAt = performance.now();
+    let hangingHtml = "";
+    let hangFinished = false;
+    const hangingRead = (async () => {
+      const response = await fetch(base, {
+        headers: browserHeaders,
+        signal: AbortSignal.timeout(7500),
+      });
+      assert.equal(response.status, 200);
+      const decoder = new TextDecoder();
+      for await (const chunk of response.body)
+        hangingHtml += decoder.decode(chunk, { stream: true });
+      hangingHtml += decoder.decode();
+      hangFinished = true;
+    })().then(
+      () => null,
+      (error) => error
     );
-    assert.equal(
-      markup(failed).split("Fehler beim Laden der Kandidaten").length - 1,
-      2,
-      "both regions show unavailable state"
+    await waitFor(
+      () => candidateHangs.length > hangCount && hasHero(hangingHtml),
+      "SSR hero did not stream while candidate request hung",
+      7500
+    );
+    assert.equal(hangFinished, false, "hung candidates must still be pending when hero streams");
+    const hangError = await hangingRead;
+    if (hangError) throw hangError;
+    assert.ok(performance.now() - hangStartedAt < 7500, "homepage exceeded deadline allowance");
+    assertUnavailable(hangingHtml);
+    await waitFor(
+      () => candidateHangs.slice(hangCount).every((hang) => hang.closedAt !== null),
+      "SDK candidate HTTP request was not aborted",
+      1000
     );
     candidateMode = "allow";
+    const recoveredCode = "76543210";
+    const recoveredProfession = "Fresh recovered fixture profession";
+    Object.assign(candidate, {
+      id: `${recoveredCode}-1111-4111-8111-111111111111`,
+      profession: recoveredProfession,
+    });
+    const recovered = await requestHome();
+    assertBothRegions(recovered, recoveredCode, recoveredProfession);
+    assert.ok(
+      !recovered.includes(code) && !recovered.includes(freshProfession),
+      "recovery reused the pre-failure profile"
+    );
     Object.assign(candidate, originalCandidate);
     process.stdout.write(
-      "PASS homepage streaming: SSR hero before candidate release, one shared query, fresh withdrawal/expiry/featured/error states\n"
+      "PASS homepage streaming: SSR hero before candidate release/deadline, one shared query, fresh withdrawal/expiry/featured/error states, hung SDK request aborted within budget and fresh recovery\n"
     );
   }
   if (!intakeOnly && !p1Backend) {

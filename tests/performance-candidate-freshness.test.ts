@@ -40,6 +40,7 @@ it("rechecks withdrawals and the current expiry cutoff on each homepage read", a
       }),
       order: vi.fn().mockReturnThis(),
       limit: vi.fn().mockReturnThis(),
+      abortSignal: vi.fn().mockReturnThis(),
       then: (resolve: (value: unknown) => unknown) =>
         Promise.resolve({
           data: mock.rows.filter((row) => predicates.every((test) => test(row))),
