@@ -1,15 +1,26 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { openConsentSettings } from "@/components/CookieConsent";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export default function Footer() {
   const { t, lang } = useLanguage();
+  const pathname = usePathname();
+
+  if (
+    pathname === "/admin" ||
+    pathname?.startsWith("/admin/") ||
+    pathname === "/portal" ||
+    pathname?.startsWith("/portal/")
+  ) {
+    return null;
+  }
 
   return (
     <footer
-      className="bg-slate-900 text-slate-300 py-8 md:py-12 mt-12 md:mt-20"
+      className="bg-slate-900 text-slate-300 py-8 md:py-12 mt-12 md:mt-20 print:hidden"
       role="contentinfo"
       aria-label="Seitenende"
     >

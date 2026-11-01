@@ -86,7 +86,7 @@ export function ChatBotLauncher() {
   return (
     <>
       {!open && (
-        <div className="fixed z-[100] bottom-18 right-4 md:bottom-8 md:right-8 flex flex-col items-end gap-2">
+        <div className="fixed z-[100] bottom-18 right-4 md:bottom-8 md:right-8 flex flex-col items-end gap-2 print:hidden">
           {(loading || failed) && (
             <div
               role="status"

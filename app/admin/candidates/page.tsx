@@ -1,4 +1,5 @@
 import { getCandidates } from "./actions";
+import { getAdminPortalOverview } from "./portal-actions";
 import { CandidatesClient } from "./candidates-client";
 
 // Force dynamic rendering (uses cookies for auth)
@@ -9,7 +10,19 @@ export const dynamic = "force-dynamic";
 // ============================================
 
 export default async function CandidatesPage() {
-  const { data: candidates, error } = await getCandidates();
+  const [{ data: candidates, error }, portalData] = await Promise.all([
+    getCandidates(),
+    getAdminPortalOverview(),
+  ]);
 
-  return <CandidatesClient initialCandidates={candidates} error={error} />;
+  return (
+    <CandidatesClient
+      initialCandidates={candidates}
+      error={error}
+      initialStudentProfiles={portalData.profiles}
+      initialStudentDocuments={portalData.documents}
+      initialStudentLetters={portalData.letters}
+      initialInviteCodes={portalData.inviteCodes}
+    />
+  );
 }

@@ -60,6 +60,7 @@ let writeMode = "allow";
 const heldWrites = [];
 const historyRows = new Map();
 const rpcCalls = new Map();
+const studentProfiles = new Map();
 const fixtureAdmin = {
   id: "00000000-0000-4000-8000-000000000001",
   aud: "authenticated",
@@ -326,6 +327,48 @@ const fixture = createServer(async (request, response) => {
           : []
       )
     );
+  } else if (url.pathname === "/rest/v1/student_profiles") {
+    if (request.headers.authorization !== `Bearer ${fixtureToken}`) {
+      response.writeHead(403);
+      response.end("[]");
+      return;
+    }
+    if (request.method === "POST") {
+      let raw = "";
+      for await (const chunk of request) raw += chunk;
+      const body = JSON.parse(raw);
+      const now = new Date().toISOString();
+      const created = {
+        id: "34567890-1111-4111-8111-111111111111",
+        ai_enabled: false,
+        invite_code_used: null,
+        sync_status: "draft",
+        created_at: now,
+        updated_at: now,
+        ...body,
+      };
+      studentProfiles.set(created.user_id, created);
+      response.writeHead(201);
+      response.end(
+        JSON.stringify(request.headers.accept?.includes("vnd.pgrst.object") ? created : [created])
+      );
+      return;
+    }
+    const userFilter = url.searchParams.get("user_id");
+    let rows = [...studentProfiles.values()];
+    if (userFilter?.startsWith("eq.")) {
+      rows = rows.filter((row) => row.user_id === userFilter.slice(3));
+    }
+    if (request.headers.accept?.includes("vnd.pgrst.object")) {
+      if (!rows.length) {
+        response.writeHead(406);
+        response.end(JSON.stringify({ code: "PGRST116", message: "No rows" }));
+      } else {
+        response.end(JSON.stringify(rows[0]));
+      }
+    } else {
+      response.end(JSON.stringify(rows));
+    }
   } else {
     response.end("[]");
   }
@@ -541,7 +584,9 @@ try {
     const failed = await requestHome();
     const assertUnavailable = (html) => {
       assert.ok(
-        !html.includes(code) && !html.includes(freshProfession) && !html.includes(originalCandidate.id),
+        !html.includes(code) &&
+          !html.includes(freshProfession) &&
+          !html.includes(originalCandidate.id),
         "failure reused a previous profile"
       );
       assert.ok(!html.includes(sentinel), "failure leaked private fields");
@@ -880,8 +925,19 @@ try {
     const detail = await fetch(`${base}/admin/requests/inquiry/${hiringKey}`, { headers });
     assert.equal(detail.status, 200);
     const detailHtml = await detail.text();
-    for (const value of ["Hamburg", "2027", "Bearbeitung speichern", "admin@example.invalid"])
+    for (const value of [
+      "Hamburg",
+      "2027",
+      "Bearbeitung speichern",
+      "admin@example.invalid",
+      "1-Click Bewerbungsmappe Generator",
+    ])
       assert.ok(detailHtml.includes(value), value);
+    const adminCandidates = await fetch(`${base}/admin/candidates`, { headers });
+    assert.equal(adminCandidates.status, 200);
+    const adminCandidatesHtml = await adminCandidates.text();
+    assert.ok(adminCandidatesHtml.includes("Bewerber-Portal"));
+    assert.ok(adminCandidatesHtml.includes("Cổng Học Viên"));
     const legacyLeads = await fetch(`${base}/admin/leads`, { headers, redirect: "manual" });
     // Admin has a loading boundary; a navigation redirect may use the framework stream.
     assert.ok([200, 307].includes(legacyLeads.status));
@@ -892,6 +948,49 @@ try {
     assert.equal(redirect.status, 307);
     assert.ok(redirect.headers.get("location").endsWith("/login"));
     process.stdout.write("PASS /admin: anonymous user redirected to login\n");
+
+    // Student & Candidate Portal (/portal): auth guard, header overrides, CSP media-src, and chrome isolation
+    const homeHeadersRes = await fetch(`${base}/`);
+    assert.ok(
+      homeHeadersRes.headers.get("permissions-policy")?.includes("camera=(), microphone=()"),
+      "public home must keep camera/microphone disabled"
+    );
+    const portalAnon = await fetch(`${base}/portal`, { redirect: "manual" });
+    assert.equal(portalAnon.status, 307);
+    assert.ok(portalAnon.headers.get("location")?.endsWith("/portal/login"));
+    assert.ok(portalAnon.headers.get("x-robots-tag")?.includes("noindex"));
+    for (const portalPublicPath of ["/portal/login", "/portal/register"]) {
+      const res = await fetch(`${base}${portalPublicPath}`);
+      assert.equal(res.status, 200);
+      assert.ok(res.headers.get("x-robots-tag")?.includes("noindex"));
+      assert.ok(
+        res.headers.get("permissions-policy")?.includes("camera=(self), microphone=(self)"),
+        `${portalPublicPath} must unlock self camera/microphone for WebRTC teleprompter`
+      );
+      assert.ok(
+        res.headers
+          .get("content-security-policy")
+          ?.includes("media-src 'self' blob: https://*.supabase.co"),
+        `${portalPublicPath} CSP must permit blob: and Supabase media playback`
+      );
+      const html = await res.text();
+      assert.ok(!html.includes("<footer"), `${portalPublicPath} must hide public B2B footer`);
+    }
+    const portalAuthed = await fetch(`${base}/portal`, { headers });
+    assert.equal(portalAuthed.status, 200);
+    assert.ok(
+      portalAuthed.headers.get("permissions-policy")?.includes("camera=(self), microphone=(self)")
+    );
+    const portalAuthedHtml = await portalAuthed.text();
+    assert.ok(
+      portalAuthedHtml.includes("DMF Student &amp; Candidate Portal") ||
+        portalAuthedHtml.includes("DMF Talent Portal") ||
+        portalAuthedHtml.includes("Lebenslauf")
+    );
+    assert.ok(!portalAuthedHtml.includes("Không thể đồng bộ hồ sơ từ cơ sở dữ liệu"));
+    process.stdout.write(
+      "PASS /portal: anonymous redirect, noindex, scoped camera/mic Permissions-Policy, CSP media-src, chrome isolation, and authenticated workspace bootstrap\n"
+    );
   }
   // The default CI smoke also gates the backend failure/timeout regressions.
   const { verifyP1Http } = await import("./p1-backend-http.mjs");
