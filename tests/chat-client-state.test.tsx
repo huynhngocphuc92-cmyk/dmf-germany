@@ -193,11 +193,21 @@ describe("explicit lead retry", () => {
   it("retains the same idempotency key after timeout and accepts success only after saved", async () => {
     vi.useFakeTimers();
     let keys!: ReturnType<typeof useSubmissionKey>;
-    function Harness() {
-      keys = useSubmissionKey();
+    function Harness({
+      onReady,
+    }: {
+      onReady: (value: ReturnType<typeof useSubmissionKey>) => void;
+    }) {
+      onReady(useSubmissionKey());
       return null;
     }
-    renderToStaticMarkup(createElement(Harness));
+    renderToStaticMarkup(
+      createElement(Harness, {
+        onReady: (value) => {
+          keys = value;
+        },
+      })
+    );
     const payload = { email: "person@example.invalid", sessionId: "same-session" };
     const late = deferred<Response>();
     const fetch = vi

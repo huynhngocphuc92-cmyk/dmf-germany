@@ -85,12 +85,23 @@ const nextConfig: NextConfig = {
               "style-src 'self' 'unsafe-inline'",
               "font-src 'self'",
               "img-src 'self' data: blob: https://*.supabase.co https://images.unsplash.com https://dmf.edu.vn https://www.google-analytics.com https://cdnjs.cloudflare.com https://*.tile.openstreetmap.org",
+              "media-src 'self' blob: https://*.supabase.co",
               "connect-src 'self' https://*.supabase.co https://api.telegram.org https://www.google-analytics.com https://*.tile.openstreetmap.org https://api.x.ai",
               "frame-src https://www.youtube-nocookie.com",
               "frame-ancestors 'self'",
               "form-action 'self'",
               "base-uri 'self'",
             ].join("; "),
+          },
+        ],
+      },
+      {
+        source: "/portal/:path*",
+        headers: [
+          { key: "X-Robots-Tag", value: "noindex, nofollow" },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(self), microphone=(self), geolocation=(), interest-cohort=()",
           },
         ],
       },

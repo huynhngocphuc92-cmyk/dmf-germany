@@ -42,9 +42,16 @@ import {
   RefreshCw,
 } from "lucide-react";
 import { CandidateForm } from "@/components/admin/CandidateForm";
+import { StudentDossierReviewPanel } from "@/components/admin/StudentDossierReviewPanel";
 import { deleteCandidate, getCandidates } from "./actions";
 import type { Candidate, CandidateCategory } from "./types";
 import { categoryLabels, categoryColors } from "./types";
+import type {
+  StudentDocument,
+  StudentInviteCode,
+  StudentMotivationLetter,
+  StudentProfile,
+} from "@/lib/portal/types";
 
 // ============================================
 // COMPONENT PROPS
@@ -53,6 +60,10 @@ import { categoryLabels, categoryColors } from "./types";
 interface CandidatesClientProps {
   initialCandidates: Candidate[] | null;
   error: string | null;
+  initialStudentProfiles?: StudentProfile[];
+  initialStudentDocuments?: StudentDocument[];
+  initialStudentLetters?: StudentMotivationLetter[];
+  initialInviteCodes?: StudentInviteCode[];
 }
 
 // ============================================
@@ -62,7 +73,14 @@ interface CandidatesClientProps {
 export function CandidatesClient({
   initialCandidates,
   error: initialError,
+  initialStudentProfiles = [],
+  initialStudentDocuments = [],
+  initialStudentLetters = [],
+  initialInviteCodes = [],
 }: CandidatesClientProps) {
+  // View mode state: B2B Candidates vs. Student Portal Dossier Review
+  const [activeView, setActiveView] = useState<"b2b" | "portal">("b2b");
+
   // Data state
   const [candidates, setCandidates] = useState<Candidate[]>(initialCandidates || []);
   const [error, setError] = useState<string | null>(initialError);
@@ -146,9 +164,9 @@ export function CandidatesClient({
   };
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-slate-50 print:bg-white">
       {/* Header */}
-      <header className="bg-white border-b border-slate-200 sticky top-0 z-40">
+      <header className="bg-white border-b border-slate-200 sticky top-0 z-40 print:hidden">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -158,12 +176,42 @@ export function CandidatesClient({
                 </Link>
               </Button>
               <div>
-                <h1 className="text-lg font-bold text-slate-900">Kandidaten</h1>
-                <p className="text-xs text-slate-500">{candidates.length} Kandidaten insgesamt</p>
+                <h1 className="text-lg font-bold text-slate-900">
+                  Kandidaten &amp; Bewerber-Portal
+                </h1>
+                <p className="text-xs text-slate-500">
+                  {candidates.length} B2B-Kandidaten • {initialStudentProfiles.length} Hồ sơ Học
+                  viên (/portal)
+                </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="inline-flex rounded-lg border border-slate-200 bg-slate-100 p-1">
+                <button
+                  type="button"
+                  onClick={() => setActiveView("b2b")}
+                  className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all ${
+                    activeView === "b2b"
+                      ? "bg-white text-slate-900 shadow-sm"
+                      : "text-slate-600 hover:text-slate-900"
+                  }`}
+                >
+                  1. B2B Kandidaten ({candidates.length})
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveView("portal")}
+                  className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all ${
+                    activeView === "portal"
+                      ? "bg-emerald-600 text-white shadow-sm"
+                      : "text-slate-600 hover:text-slate-900"
+                  }`}
+                >
+                  2. Cổng Học Viên &amp; Chuẩn hoá Đức ({initialStudentProfiles.length})
+                </button>
+              </div>
+
               <Button variant="outline" size="sm" onClick={handleRefresh} disabled={isLoading}>
                 <RefreshCw className={`w-4 h-4 mr-2 ${isLoading ? "animate-spin" : ""}`} />
                 Aktualisieren
@@ -185,207 +233,224 @@ export function CandidatesClient({
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-6">
-        {/* Filters */}
-        <div className="bg-white rounded-xl border border-slate-200 p-4 mb-6">
-          <div className="flex flex-col sm:flex-row gap-4">
-            {/* Search */}
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-              <Input
-                placeholder="Nach Name, E-Mail oder Beruf suchen..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10"
-              />
-            </div>
-
-            {/* Category Filter */}
-            <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-              <SelectTrigger className="w-full sm:w-[180px]">
-                <SelectValue placeholder="Kategorie" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">Alle Kategorien</SelectItem>
-                {(Object.keys(categoryLabels) as CandidateCategory[]).map((key) => (
-                  <SelectItem key={key} value={key}>
-                    {categoryLabels[key]}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
-
-        {/* Error Message */}
-        {error && (
-          <div className="flex items-center gap-3 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 mb-6">
-            <AlertCircle className="w-5 h-5 flex-shrink-0" />
-            <p className="text-sm font-medium">{error}</p>
-          </div>
-        )}
-
-        {/* Table */}
-        <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
-          {isLoading ? (
-            // Loading State
-            <div className="p-6 space-y-4">
-              {[...Array(5)].map((_, i) => (
-                <div key={i} className="flex items-center gap-4">
-                  <Skeleton className="w-10 h-10 rounded-full" />
-                  <div className="flex-1 space-y-2">
-                    <Skeleton className="h-4 w-1/3" />
-                    <Skeleton className="h-3 w-1/4" />
-                  </div>
-                  <Skeleton className="h-6 w-20" />
-                  <Skeleton className="h-6 w-16" />
+      <main className="container mx-auto px-4 py-8 print:p-0">
+        {activeView === "portal" ? (
+          <StudentDossierReviewPanel
+            initialProfiles={initialStudentProfiles}
+            initialDocuments={initialStudentDocuments}
+            initialLetters={initialStudentLetters}
+            initialInviteCodes={initialInviteCodes}
+            onSyncedToCandidates={handleRefresh}
+          />
+        ) : (
+          <>
+            {/* Filters */}
+            <div className="bg-white rounded-xl border border-slate-200 p-4 mb-6">
+              <div className="flex flex-col sm:flex-row gap-4">
+                {/* Search */}
+                <div className="relative flex-1">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                  <Input
+                    placeholder="Nach Name, E-Mail oder Beruf suchen..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="pl-10"
+                  />
                 </div>
-              ))}
+
+                {/* Category Filter */}
+                <Select value={categoryFilter} onValueChange={setCategoryFilter}>
+                  <SelectTrigger className="w-full sm:w-[180px]">
+                    <SelectValue placeholder="Kategorie" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">Alle Kategorien</SelectItem>
+                    {(Object.keys(categoryLabels) as CandidateCategory[]).map((key) => (
+                      <SelectItem key={key} value={key}>
+                        {categoryLabels[key]}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
-          ) : filteredCandidates.length === 0 ? (
-            // Empty State
-            <div className="p-12 text-center">
-              <Users className="w-12 h-12 mx-auto text-slate-300 mb-4" />
-              <h3 className="text-lg font-medium text-slate-700 mb-2">
-                {candidates.length === 0 ? "Keine Kandidaten vorhanden" : "Keine Treffer"}
-              </h3>
-              <p className="text-sm text-slate-500 mb-4">
-                {candidates.length === 0
-                  ? "Fügen Sie Ihren ersten Kandidaten hinzu."
-                  : "Versuchen Sie andere Suchbegriffe oder Filter."}
-              </p>
-              {candidates.length === 0 && (
-                <Button
-                  className="bg-emerald-500 hover:bg-emerald-600"
-                  onClick={() => {
-                    setSelectedCandidate(null);
-                    setIsFormOpen(true);
-                  }}
-                >
-                  <Plus className="w-4 h-4 mr-2" />
-                  Kandidat hinzufügen
-                </Button>
+
+            {/* Error Message */}
+            {error && (
+              <div className="flex items-center gap-3 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 mb-6">
+                <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                <p className="text-sm font-medium">{error}</p>
+              </div>
+            )}
+
+            {/* Table */}
+            <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
+              {isLoading ? (
+                // Loading State
+                <div className="p-6 space-y-4">
+                  {[...Array(5)].map((_, i) => (
+                    <div key={i} className="flex items-center gap-4">
+                      <Skeleton className="w-10 h-10 rounded-full" />
+                      <div className="flex-1 space-y-2">
+                        <Skeleton className="h-4 w-1/3" />
+                        <Skeleton className="h-3 w-1/4" />
+                      </div>
+                      <Skeleton className="h-6 w-20" />
+                      <Skeleton className="h-6 w-16" />
+                    </div>
+                  ))}
+                </div>
+              ) : filteredCandidates.length === 0 ? (
+                // Empty State
+                <div className="p-12 text-center">
+                  <Users className="w-12 h-12 mx-auto text-slate-300 mb-4" />
+                  <h3 className="text-lg font-medium text-slate-700 mb-2">
+                    {candidates.length === 0 ? "Keine Kandidaten vorhanden" : "Keine Treffer"}
+                  </h3>
+                  <p className="text-sm text-slate-500 mb-4">
+                    {candidates.length === 0
+                      ? "Fügen Sie Ihren ersten Kandidaten hinzu."
+                      : "Versuchen Sie andere Suchbegriffe oder Filter."}
+                  </p>
+                  {candidates.length === 0 && (
+                    <Button
+                      className="bg-emerald-500 hover:bg-emerald-600"
+                      onClick={() => {
+                        setSelectedCandidate(null);
+                        setIsFormOpen(true);
+                      }}
+                    >
+                      <Plus className="w-4 h-4 mr-2" />
+                      Kandidat hinzufügen
+                    </Button>
+                  )}
+                </div>
+              ) : (
+                // Table Content
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead className="w-[300px]">Kandidat</TableHead>
+                      <TableHead>Kategorie</TableHead>
+                      <TableHead>Beruf</TableHead>
+                      <TableHead>Deutsch</TableHead>
+                      <TableHead>Visa Status</TableHead>
+                      <TableHead>Veröffentlichung</TableHead>
+                      <TableHead className="text-right">Aktionen</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {filteredCandidates.map((candidate) => (
+                      <TableRow key={candidate.id}>
+                        {/* Candidate Info */}
+                        <TableCell>
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center overflow-hidden">
+                              {candidate.avatar_url ? (
+                                // eslint-disable-next-line @next/next/no-img-element -- Admin preview displays original uploads, including local data/blob URLs.
+                                <img
+                                  src={candidate.avatar_url}
+                                  alt={candidate.full_name}
+                                  className="w-full h-full object-cover"
+                                />
+                              ) : (
+                                <User className="w-5 h-5 text-slate-400" />
+                              )}
+                            </div>
+                            <div>
+                              <p className="font-medium text-slate-900">{candidate.full_name}</p>
+                              <p className="text-sm text-slate-500">{candidate.email}</p>
+                            </div>
+                          </div>
+                        </TableCell>
+
+                        {/* Category */}
+                        <TableCell>
+                          <Badge variant="outline" className={categoryColors[candidate.category]}>
+                            {categoryLabels[candidate.category]}
+                          </Badge>
+                        </TableCell>
+
+                        {/* Profession */}
+                        <TableCell>
+                          <span className="text-slate-700">{candidate.profession || "-"}</span>
+                          {candidate.experience_years > 0 && (
+                            <span className="text-slate-400 text-sm ml-1">
+                              ({candidate.experience_years} J.)
+                            </span>
+                          )}
+                        </TableCell>
+
+                        {/* German Level */}
+                        <TableCell>
+                          <Badge variant="outline" className="bg-slate-50">
+                            {candidate.german_level}
+                          </Badge>
+                        </TableCell>
+
+                        {/* Visa Status */}
+                        <TableCell>
+                          <Badge
+                            variant="outline"
+                            className={
+                              candidate.visa_status
+                                ? "bg-emerald-100 text-emerald-700 border-emerald-200"
+                                : "bg-amber-100 text-amber-700 border-amber-200"
+                            }
+                          >
+                            {candidate.visa_status ? "Visa Vorhanden" : "In Bearbeitung"}
+                          </Badge>
+                        </TableCell>
+
+                        <TableCell>
+                          <p className="text-sm">
+                            {candidate.publication_status === "published" &&
+                            candidate.publication_valid_until &&
+                            candidate.publication_valid_until >=
+                              new Date().toISOString().slice(0, 10)
+                              ? "Veröffentlicht"
+                              : "Nicht öffentlich"}
+                          </p>
+                          <Link
+                            className="text-sm text-emerald-700 underline"
+                            href={`/admin/candidates/${candidate.id}/preview`}
+                          >
+                            Vorschau &amp; Freigabe
+                          </Link>
+                        </TableCell>
+                        {/* Actions */}
+                        <TableCell className="text-right">
+                          <div className="flex items-center justify-end gap-2">
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              onClick={() => handleEdit(candidate)}
+                            >
+                              <Edit2 className="w-4 h-4 text-slate-500" />
+                            </Button>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              onClick={() => handleDeleteClick(candidate)}
+                            >
+                              <Trash2 className="w-4 h-4 text-red-500" />
+                            </Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
               )}
             </div>
-          ) : (
-            // Table Content
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-[300px]">Kandidat</TableHead>
-                  <TableHead>Kategorie</TableHead>
-                  <TableHead>Beruf</TableHead>
-                  <TableHead>Deutsch</TableHead>
-                  <TableHead>Visa Status</TableHead>
-                  <TableHead>Veröffentlichung</TableHead>
-                  <TableHead className="text-right">Aktionen</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {filteredCandidates.map((candidate) => (
-                  <TableRow key={candidate.id}>
-                    {/* Candidate Info */}
-                    <TableCell>
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center overflow-hidden">
-                          {candidate.avatar_url ? (
-                            // eslint-disable-next-line @next/next/no-img-element -- Admin preview displays original uploads, including local data/blob URLs.
-                            <img
-                              src={candidate.avatar_url}
-                              alt={candidate.full_name}
-                              className="w-full h-full object-cover"
-                            />
-                          ) : (
-                            <User className="w-5 h-5 text-slate-400" />
-                          )}
-                        </div>
-                        <div>
-                          <p className="font-medium text-slate-900">{candidate.full_name}</p>
-                          <p className="text-sm text-slate-500">{candidate.email}</p>
-                        </div>
-                      </div>
-                    </TableCell>
 
-                    {/* Category */}
-                    <TableCell>
-                      <Badge variant="outline" className={categoryColors[candidate.category]}>
-                        {categoryLabels[candidate.category]}
-                      </Badge>
-                    </TableCell>
-
-                    {/* Profession */}
-                    <TableCell>
-                      <span className="text-slate-700">{candidate.profession || "-"}</span>
-                      {candidate.experience_years > 0 && (
-                        <span className="text-slate-400 text-sm ml-1">
-                          ({candidate.experience_years} J.)
-                        </span>
-                      )}
-                    </TableCell>
-
-                    {/* German Level */}
-                    <TableCell>
-                      <Badge variant="outline" className="bg-slate-50">
-                        {candidate.german_level}
-                      </Badge>
-                    </TableCell>
-
-                    {/* Visa Status */}
-                    <TableCell>
-                      <Badge
-                        variant="outline"
-                        className={
-                          candidate.visa_status
-                            ? "bg-emerald-100 text-emerald-700 border-emerald-200"
-                            : "bg-amber-100 text-amber-700 border-amber-200"
-                        }
-                      >
-                        {candidate.visa_status ? "Visa Vorhanden" : "In Bearbeitung"}
-                      </Badge>
-                    </TableCell>
-
-                    <TableCell>
-                      <p className="text-sm">
-                        {candidate.publication_status === "published" &&
-                        candidate.publication_valid_until &&
-                        candidate.publication_valid_until >= new Date().toISOString().slice(0, 10)
-                          ? "Veröffentlicht"
-                          : "Nicht öffentlich"}
-                      </p>
-                      <Link
-                        className="text-sm text-emerald-700 underline"
-                        href={`/admin/candidates/${candidate.id}/preview`}
-                      >
-                        Vorschau &amp; Freigabe
-                      </Link>
-                    </TableCell>
-                    {/* Actions */}
-                    <TableCell className="text-right">
-                      <div className="flex items-center justify-end gap-2">
-                        <Button variant="ghost" size="icon" onClick={() => handleEdit(candidate)}>
-                          <Edit2 className="w-4 h-4 text-slate-500" />
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          onClick={() => handleDeleteClick(candidate)}
-                        >
-                          <Trash2 className="w-4 h-4 text-red-500" />
-                        </Button>
-                      </div>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          )}
-        </div>
-
-        {/* Results Count */}
-        {!isLoading && filteredCandidates.length > 0 && (
-          <p className="text-sm text-slate-500 mt-4 text-center">
-            {filteredCandidates.length} von {candidates.length} Kandidaten angezeigt
-          </p>
+            {/* Results Count */}
+            {!isLoading && filteredCandidates.length > 0 && (
+              <p className="text-sm text-slate-500 mt-4 text-center">
+                {filteredCandidates.length} von {candidates.length} Kandidaten angezeigt
+              </p>
+            )}
+          </>
         )}
       </main>
 

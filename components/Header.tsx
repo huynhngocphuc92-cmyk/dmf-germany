@@ -178,8 +178,15 @@ export const Header = memo(function Header({ logoUrl, hotline, email }: HeaderPr
     [pathname]
   );
 
-  // Admin pages have their own header and navigation controls.
-  if (pathname === "/admin" || pathname.startsWith("/admin/")) return null;
+  // Admin and Student Portal pages have their own header and navigation controls.
+  if (
+    pathname === "/admin" ||
+    pathname.startsWith("/admin/") ||
+    pathname === "/portal" ||
+    pathname.startsWith("/portal/")
+  ) {
+    return null;
+  }
 
   // Prepare dropdown items with translations
   const solutionsItems = SOLUTIONS_ITEMS.map((item) => ({

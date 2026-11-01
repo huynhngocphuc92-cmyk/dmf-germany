@@ -3,6 +3,18 @@ import { NextResponse, type NextRequest } from "next/server";
 import { isAdminUser } from "@/lib/auth/admin-policy";
 
 export async function updateSession(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+  const requiresAuthCheck =
+    pathname.startsWith("/admin") ||
+    pathname.startsWith("/login") ||
+    pathname.startsWith("/portal") ||
+    pathname.startsWith("/auth") ||
+    pathname.startsWith("/api/admin");
+
+  if (!requiresAuthCheck && !request.cookies.getAll().some((c) => c.name.startsWith("sb-"))) {
+    return NextResponse.next({ request });
+  }
+
   let supabaseResponse = NextResponse.next({
     request,
   });
@@ -37,7 +49,34 @@ export async function updateSession(request: NextRequest) {
     error,
   } = await supabase.auth.getUser();
 
-  const isAdmin = !error && isAdminUser(user);
+  const isAuthenticated = !error && !!user && !user.is_anonymous;
+  const isAdmin = isAuthenticated && isAdminUser(user);
+  const isPortalPublicAuthRoute =
+    pathname === "/portal/login" ||
+    pathname === "/portal/register" ||
+    pathname.startsWith("/portal/login/") ||
+    pathname.startsWith("/portal/register/");
+
+  if (
+    !isAuthenticated &&
+    (pathname === "/portal" || pathname.startsWith("/portal/")) &&
+    !isPortalPublicAuthRoute
+  ) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/portal/login";
+    const response = NextResponse.redirect(url);
+    supabaseResponse.cookies.getAll().forEach((cookie) => response.cookies.set(cookie));
+    return response;
+  }
+
+  if (isAuthenticated && isPortalPublicAuthRoute) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/portal";
+    const response = NextResponse.redirect(url);
+    supabaseResponse.cookies.getAll().forEach((cookie) => response.cookies.set(cookie));
+    return response;
+  }
+
   // Page redirects are a UX guard; each private action/API verifies access independently.
   if (!isAdmin && request.nextUrl.pathname.startsWith("/admin")) {
     const url = request.nextUrl.clone();

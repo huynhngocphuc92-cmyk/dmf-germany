@@ -8,6 +8,7 @@ import {
   BarChart3,
   ChevronLeft,
   ChevronRight,
+  GraduationCap,
   LayoutDashboard,
   MessageSquare,
   MessagesSquare,
@@ -44,9 +45,15 @@ const getNavItems = (newInquiriesCount: number | null): NavItem[] => [
   },
   {
     labelDe: "Kandidaten",
-    labelVn: "Ứng viên",
+    labelVn: "Ứng viên & Hồ sơ",
     href: "/admin/candidates",
     icon: Users,
+  },
+  {
+    labelDe: "Bewerber-Portal",
+    labelVn: "Cổng Học Viên (/portal)",
+    href: "/portal",
+    icon: GraduationCap,
   },
   {
     labelDe: "Chat-Verlauf",

@@ -10,9 +10,10 @@ export function MobileStickyBar() {
   const pathname = usePathname();
   const { lang } = useLanguage();
 
-  // Hide on admin routes, login or if already on the intake page
+  // Hide on admin routes, portal, login or if already on the intake page
   if (
     pathname.startsWith("/admin") ||
+    pathname.startsWith("/portal") ||
     pathname === "/fuer-arbeitgeber/personalbedarf" ||
     pathname.startsWith("/login")
   ) {
@@ -23,7 +24,7 @@ export function MobileStickyBar() {
   const ctaText = lang === "de" ? "Bedarf melden" : lang === "en" ? "Inquire now" : "Gửi nhu cầu";
 
   return (
-    <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200/80 px-3 py-2.5 shadow-[0_-4px_16px_rgba(0,0,0,0.08)]">
+    <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200/80 px-3 py-2.5 shadow-[0_-4px_16px_rgba(0,0,0,0.08)] print:hidden">
       <div className="flex items-center gap-2 max-w-md mx-auto">
         <a
           href={GERMANY_CONTACT.phoneHref}
