@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <rect width="720" height="540" rx="16" fill="#F8FAFC"/>
+  <rect x="20" y="20" width="680" height="500" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="20" y="20" width="680" height="72" rx="12" fill="#003366"/>
+  <text x="44" y="52" fill="#FFFFFF" font-size="18" font-weight="700">Norddeutschland-Achse: Hamburg &amp; Schleswig-Holstein</text>
+  <text x="44" y="75" fill="#CBD5E1" font-size="12">Fachkräfte &amp; Auszubildende für Hafenlogistik, Luftfahrt, Erneuerbare Energien, Pflege &amp; Küste</text>
+
+  <!-- Hamburg Card -->
+  <g transform="translate(44, 114)">
+    <rect width="304" height="260" rx="10" fill="#F8FAFC" stroke="#003366" stroke-width="2"/>
+    <rect width="304" height="40" rx="10" fill="#003366"/>
+    <text x="152" y="25" text-anchor="middle" fill="#FFFFFF" font-size="14" font-weight="700">Freie und Hansestadt Hamburg</text>
+    <text x="18" y="68" fill="#003366" font-size="13" font-weight="700">Schlüsselbranchen:</text>
+    <text x="18" y="92" fill="#334155" font-size="12">• Hafenlogistik, Spedition &amp; Schiffbau-Zulieferer</text>
+    <text x="18" y="114" fill="#334155" font-size="12">• Luftfahrtindustrie &amp; CNC-Präzisionstechnik</text>
+    <text x="18" y="136" fill="#334155" font-size="12">• Kliniken, Pflegeheime &amp; Stadt-Hotellerie</text>
+    <text x="18" y="168" fill="#003366" font-size="13" font-weight="700">Institutionelle Abwicklung:</text>
+    <text x="18" y="192" fill="#334155" font-size="11">• Hamburg Welcome Center (HWC) für § 81a</text>
+    <text x="18" y="212" fill="#334155" font-size="11">• Handelskammer &amp; Handwerkskammer Hamburg</text>
+    <text x="18" y="232" fill="#334155" font-size="11">• Direktflüge &amp; schnelle Anbindung ab Airport HAM</text>
+  </g>
+
+  <!-- Schleswig-Holstein Card -->
+  <g transform="translate(372, 114)">
+    <rect width="304" height="260" rx="10" fill="#FFF7ED" stroke="#FF6600" stroke-width="2"/>
+    <rect width="304" height="40" rx="10" fill="#FF6600"/>
+    <text x="152" y="25" text-anchor="middle" fill="#FFFFFF" font-size="14" font-weight="700">Schleswig-Holstein (Zwischen den Meeren)</text>
+    <text x="18" y="68" fill="#9A3412" font-size="13" font-weight="700">Schlüsselbranchen:</text>
+    <text x="18" y="92" fill="#7C2D12" font-size="12">• Nord- &amp; Ostsee-Hotellerie (Sylt, Lübecker Bucht)</text>
+    <text x="18" y="114" fill="#7C2D12" font-size="12">• Windenergie, Netztechnik &amp; Elektrotechnik</text>
+    <text x="18" y="136" fill="#7C2D12" font-size="12">• Medizintechnik (Lübeck/Kiel) &amp; Ernährung</text>
+    <text x="18" y="168" fill="#9A3412" font-size="13" font-weight="700">Institutionelle Abwicklung:</text>
+    <text x="18" y="192" fill="#7C2D12" font-size="11">• Landesamt für Zuwanderung und Flüchtlinge</text>
+    <text x="18" y="212" fill="#7C2D12" font-size="11">  (LaZuF SH) in Neumünster – § 81a Zentrale</text>
+    <text x="18" y="232" fill="#7C2D12" font-size="11">• IHK-Verbund Schleswig-Holstein &amp; HWK Lübeck</text>
+  </g>
+
+  <!-- Bottom Box -->
+  <rect x="44" y="394" width="632" height="106" rx="10" fill="#003366"/>
+  <text x="64" y="424" fill="#FF6600" font-size="14" font-weight="700">Praxislösung für Saison- und Küstenbetriebe im Norden:</text>
+  <text x="64" y="448" fill="#FFFFFF" font-size="12">• Ganzjahresverträge statt kurzfristiger Saisonlücken sichern die Visumfähigkeit nach § 16a / § 18a AufenthG</text>
+  <text x="64" y="470" fill="#CBD5E1" font-size="12">• Kombination aus Personalunterkunft vor Ort und Tandem-Recruiting sorgt für hohe Bindung auf Inseln &amp; an der Küste</text>
+</svg>

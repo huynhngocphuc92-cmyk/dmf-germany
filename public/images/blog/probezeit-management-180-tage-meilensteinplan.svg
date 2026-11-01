@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <rect width="720" height="540" rx="16" fill="#F8FAFC"/>
+  <rect x="20" y="20" width="680" height="500" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="20" y="20" width="680" height="72" rx="12" fill="#003366"/>
+  <text x="44" y="52" fill="#FFFFFF" font-size="18" font-weight="700">Der 180-Tage-Fahrplan für die Probezeit (§ 20 BBiG / § 622 BGB)</text>
+  <text x="44" y="75" fill="#CBD5E1" font-size="12">Strukturierte Führung internationaler Auszubildender und Fachkräfte durch Ausbilder &amp; Meister</text>
+
+  <!-- 4 Phases Grid -->
+  <g transform="translate(44, 112)">
+    <rect width="304" height="165" rx="10" fill="#F8FAFC" stroke="#003366" stroke-width="2"/>
+    <rect width="304" height="36" rx="10" fill="#003366"/>
+    <text x="16" y="24" fill="#FFFFFF" font-size="13" font-weight="700">Tag 1 bis 30: Ankommen &amp; Sicherheit</text>
+    <text x="16" y="62" fill="#0F172A" font-size="12" font-weight="700">Operative Schwerpunkte:</text>
+    <text x="16" y="84" fill="#334155" font-size="11">• Behördengänge, Bürgeramt, Girokonto, eAT</text>
+    <text x="16" y="104" fill="#334155" font-size="11">• Arbeitsschutz-Unterweisung mit Bildkarten</text>
+    <text x="16" y="124" fill="#334155" font-size="11">• Festes Paten-Tandem in der Schicht/Abteilung</text>
+    <text x="16" y="148" fill="#FF6600" font-size="11" font-weight="700">Meilenstein: 1. Feedbackgespräch am Tag 30</text>
+  </g>
+
+  <g transform="translate(372, 112)">
+    <rect width="304" height="165" rx="10" fill="#F8FAFC" stroke="#003366" stroke-width="2"/>
+    <rect width="304" height="36" rx="10" fill="#003366"/>
+    <text x="16" y="24" fill="#FFFFFF" font-size="13" font-weight="700">Tag 31 bis 60: Fachwortschatz &amp; Routine</text>
+    <text x="16" y="62" fill="#0F172A" font-size="12" font-weight="700">Operative Schwerpunkte:</text>
+    <text x="16" y="84" fill="#334155" font-size="11">• Checklisten für wiederkehrende Arbeitsgänge</text>
+    <text x="16" y="104" fill="#334155" font-size="11">• Prinzip „Vormachen – Nachmachen – Erklären“</text>
+    <text x="16" y="124" fill="#334155" font-size="11">• Überwindung des 6-Wochen-Kulturschocks</text>
+    <text x="16" y="148" fill="#FF6600" font-size="11" font-weight="700">Meilenstein: Lernziel-Abgleich am Tag 60</text>
+  </g>
+
+  <g transform="translate(44, 294)">
+    <rect width="304" height="165" rx="10" fill="#FFF7ED" stroke="#FF6600" stroke-width="2"/>
+    <rect width="304" height="36" rx="10" fill="#FF6600"/>
+    <text x="16" y="24" fill="#FFFFFF" font-size="13" font-weight="700">Tag 61 bis 120: Eigenständigkeit &amp; Schule</text>
+    <text x="16" y="62" fill="#7C2D12" font-size="12" font-weight="700">Operative Schwerpunkte:</text>
+    <text x="16" y="84" fill="#7C2D12" font-size="11">• Erste Teilaufgaben in Eigenverantwortung</text>
+    <text x="16" y="104" fill="#7C2D12" font-size="11">• Kontrolle Berichtsheft &amp; Berufsschulnoten</text>
+    <text x="16" y="124" fill="#7C2D12" font-size="11">• Offene Fehlerkultur statt Gesichtsverlust</text>
+    <text x="16" y="148" fill="#9A3412" font-size="11" font-weight="700">Meilenstein: Halbzeit-Bilanz am Tag 90/120</text>
+  </g>
+
+  <g transform="translate(372, 294)">
+    <rect width="304" height="165" rx="10" fill="#F0FDF4" stroke="#15803D" stroke-width="2"/>
+    <rect width="304" height="36" rx="10" fill="#15803D"/>
+    <text x="16" y="24" fill="#FFFFFF" font-size="13" font-weight="700">Tag 121 bis 180: Übernahme &amp; Perspektive</text>
+    <text x="16" y="62" fill="#14532D" font-size="12" font-weight="700">Operative Schwerpunkte:</text>
+    <text x="16" y="84" fill="#166534" font-size="11">• Volle Integration in Schicht- und Dienstpläne</text>
+    <text x="16" y="104" fill="#166534" font-size="11">• Offizielle Bestätigung der bestandenen Probezeit</text>
+    <text x="16" y="124" fill="#166534" font-size="11">• Entwicklungsplan für Lehrjahr 2 / Anerkennung</text>
+    <text x="16" y="148" fill="#15803D" font-size="11" font-weight="700">Meilenstein: Langfristige Bindung gesichert</text>
+  </g>
+
+  <rect x="44" y="472" width="632" height="34" rx="6" fill="#003366"/>
+  <text x="360" y="494" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="600">Wichtig: In der südostasiatischen Kultur bedeutet „Ja“ oft „Ich habe Sie gehört“ – nutzen Sie Rückfragen!</text>
+</svg>

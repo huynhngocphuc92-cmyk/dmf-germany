@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <rect width="720" height="540" rx="16" fill="#F8FAFC"/>
+  <rect x="20" y="20" width="680" height="500" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="20" y="20" width="680" height="72" rx="12" fill="#003366"/>
+  <text x="44" y="52" fill="#FFFFFF" font-size="18" font-weight="700">Hauptstadtregion Berlin &amp; Brandenburg: Branchen &amp; Behördenwege</text>
+  <text x="44" y="75" fill="#CBD5E1" font-size="12">Standortvorteile durch die größte vietnamesische Community Deutschlands (&gt; 40.000 Menschen)</text>
+
+  <!-- Left: Berlin -->
+  <g transform="translate(44, 114)">
+    <rect width="304" height="260" rx="10" fill="#F8FAFC" stroke="#003366" stroke-width="2"/>
+    <rect width="304" height="40" rx="10" fill="#003366"/>
+    <text x="152" y="25" text-anchor="middle" fill="#FFFFFF" font-size="14" font-weight="700">Metropole Berlin</text>
+    <text x="18" y="68" fill="#003366" font-size="13" font-weight="700">Kernbranchen mit Höchstbedarf:</text>
+    <text x="18" y="92" fill="#334155" font-size="12">• Kliniken, Seniorenpflege &amp; Medizintechnik</text>
+    <text x="18" y="114" fill="#334155" font-size="12">• Hauptstadt-Hotellerie, Kongresse &amp; Gastro</text>
+    <text x="18" y="136" fill="#334155" font-size="12">• SHK, Elektrohandwerk &amp; Gebäudetechnik</text>
+    <text x="18" y="168" fill="#003366" font-size="13" font-weight="700">Behörden-Infrastruktur:</text>
+    <text x="18" y="192" fill="#334155" font-size="11">• Landesamt für Einwanderung (LEA Berlin)</text>
+    <text x="18" y="212" fill="#334155" font-size="11">  Business Immigration Service (BIS) &amp; § 81a</text>
+    <text x="18" y="232" fill="#334155" font-size="11">• LaGeSo Berlin (Gesundheitsfachberufe)</text>
+  </g>
+
+  <!-- Right: Brandenburg -->
+  <g transform="translate(372, 114)">
+    <rect width="304" height="260" rx="10" fill="#FFF7ED" stroke="#FF6600" stroke-width="2"/>
+    <rect width="304" height="40" rx="10" fill="#FF6600"/>
+    <text x="152" y="25" text-anchor="middle" fill="#FFFFFF" font-size="14" font-weight="700">Wachstumsland Brandenburg</text>
+    <text x="18" y="68" fill="#9A3412" font-size="13" font-weight="700">Industrie- &amp; Wirtschaftscluster:</text>
+    <text x="18" y="92" fill="#7C2D12" font-size="12">• E-Mobilität, Batteriezellfertigung &amp; Zulieferer</text>
+    <text x="18" y="114" fill="#7C2D12" font-size="12">  (Grünheide, Lausitz, Oberhavel)</text>
+    <text x="18" y="136" fill="#7C2D12" font-size="12">• Logistik-Drehkreuz BER &amp; Ernährungswirtschaft</text>
+    <text x="18" y="158" fill="#7C2D12" font-size="12">• Tourismus (Spreewald, Potsdam, Seenland)</text>
+    <text x="18" y="186" fill="#9A3412" font-size="13" font-weight="700">Behörden-Infrastruktur:</text>
+    <text x="18" y="210" fill="#7C2D12" font-size="11">• ZABH Frankfurt (Oder) – Fachkräfteeinwanderung</text>
+    <text x="18" y="230" fill="#7C2D12" font-size="11">• LAVG Brandenburg (Anerkennung Pflege)</text>
+  </g>
+
+  <!-- Bottom Synergy Banner -->
+  <rect x="44" y="394" width="632" height="106" rx="10" fill="#F0FDF4" stroke="#15803D" stroke-width="1.5"/>
+  <text x="64" y="422" fill="#14532D" font-size="14" font-weight="700">Der entscheidende Standortvorteil für Arbeitgeber in Berlin &amp; Brandenburg:</text>
+  <text x="64" y="446" fill="#166534" font-size="12">• Hervorragende soziale Infrastruktur (vietnamesische Vereine, Märkte wie das Dong Xuan Center, Kulturangebote)</text>
+  <text x="64" y="468" fill="#166534" font-size="12">• S-Bahn-/Regionalbahn-Pendelachsen ermöglichen günstiges Wohnen im Umland bei schneller Erreichbarkeit</text>
+  <text x="64" y="488" fill="#15803D" font-size="12" font-weight="700">• Überdurchschnittlich hohe Bleibequote durch familiäre und kulturelle Anbindung in der Region</text>
+</svg>

@@ -206,15 +206,18 @@ def compile_all():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     all_posts = []
 
-    files = sorted([f for f in DRAFTS_DIR.glob("*.md") if f.name != "README.md"])
+    files = sorted(
+        [f for f in DRAFTS_DIR.glob("*.md") if f.name != "README.md"],
+        key=lambda f: int(f.name.split("-")[0]) if f.name.split("-")[0].isdigit() else 9999,
+    )
 
     for file_path in files:
         raw_text = file_path.read_text(encoding="utf-8")
         meta, body = parse_frontmatter(raw_text)
 
-        # Extract H1 title
+        # Extract H1 title or frontmatter title
         title_match = re.search(r'^#\s+(.+)$', body, re.MULTILINE)
-        title = title_match.group(1).strip() if title_match else meta.get("meta_title", file_path.stem)
+        title = title_match.group(1).strip() if title_match else (meta.get("title") or meta.get("meta_title", file_path.stem))
 
         # Convert markdown body to HTML
         html_content = markdown_to_html(body)

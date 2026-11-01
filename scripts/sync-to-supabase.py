@@ -14,9 +14,14 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 COMPILED_FILE = BASE_DIR / "content" / "compiled" / "all-posts.json"
 
-SUPABASE_URL = "https://iihprcuhmilmymlbktpy.supabase.co"
-SERVICE_ROLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlpaHByY3VobWlsbXltbGJrdHB5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2NzYwNTk4MiwiZXhwIjoyMDgzMTgxOTgyfQ.JbraSUKjSW4iN1FV-bvBfL1CO943dk29ThQcD3ya0vQ"
-AUTHOR_ID = "f198e552-d96b-48d6-a537-86f8eec86c8a"
+SUPABASE_URL = os.environ.get("NEXT_PUBLIC_SUPABASE_URL") or os.environ.get("SUPABASE_URL")
+SERVICE_ROLE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY")
+AUTHOR_ID = os.environ.get("SUPABASE_AUTHOR_ID", "f198e552-d96b-48d6-a537-86f8eec86c8a")
+
+if not SERVICE_ROLE_KEY:
+    raise RuntimeError("Missing required environment variable: SUPABASE_SERVICE_ROLE_KEY")
+if not SUPABASE_URL:
+    raise RuntimeError("Missing required environment variable: NEXT_PUBLIC_SUPABASE_URL or SUPABASE_URL")
 
 POST_COVER_MAPPING = {
     "lagerlogistik-berufskraftfahrer-vietnam-beschv": "/images/blog/dmf-logistik-arbeitsplatz-training.jpg",
@@ -141,6 +146,18 @@ POST_COVER_MAPPING = {
     "eigenrekrutierung-vs-agentur-drittstaaten-aufwand-vergleich": "/images/blog/dmf-eigenrekrutierung-vs-agentur-analyse-vergleich.jpg",
     "anerkennungspartnerschaft-erfahrungsberichte-arbeitgeber-praxis": "/images/blog/dmf-anerkennungspartnerschaft-praxis-erfahrungen.jpg",
     "fachkraefte-vietnam-deutschland-leitfaden-geschaeftsfuehrer-2026": "/images/blog/dmf-leitfaden-geschaeftsfuehrer-executive-strategie.jpg",
+    "mindestausbildungsverguetung-2027-sperrkonto-grenzen-bbig": "/images/blog/dmf-mindestausbildungsverguetung-2027-sperrkonto-kalkulation.jpg",
+    "blaue-karte-eu-2027-mindestlohn-gehaltsgrenzen-drittstaaten": "/images/blog/dmf-blaue-karte-eu-2027-gehaltsgrenzen-akademiker.jpg",
+    "ausbildungsstart-herbst-2027-rueckwaerts-zeitplan-arbeitgeber": "/images/blog/dmf-ausbildungsstart-2027-rueckwaerts-zeitplan-planung.jpg",
+    "auslandsportal-digital-diplo-work-and-stay-agentur-visum": "/images/blog/dmf-auslandsportal-work-and-stay-agentur-digitalisierung.jpg",
+    "fachkraefte-vietnam-vs-indien-philippinen-laendervergleich": "/images/blog/dmf-laendervergleich-vietnam-indien-philippinen-rekrutierung.jpg",
+    "tandem-kohorten-recruiting-mehrere-azubis-fachkraefte-einstellen": "/images/blog/dmf-tandem-kohorten-recruiting-team-einstellung.jpg",
+    "babyboomer-rentenwelle-2027-wissenstransfer-nachfolge-vietnam": "/images/blog/dmf-babyboomer-rentenwelle-wissenstransfer-handwerk.jpg",
+    "probezeit-management-internationale-talente-leitfaden-ausbilder": "/images/blog/dmf-probezeit-management-ausbilder-meister-leitfaden.jpg",
+    "fachkraefte-auszubildende-vietnam-berlin-brandenburg-wirtschaft": "/images/blog/dmf-berlin-brandenburg-gesundheit-industrie-fachkraefte.jpg",
+    "personalgewinnung-vietnam-hamburg-schleswig-holstein-maritim": "/images/blog/dmf-hamburg-schleswig-holstein-hafen-pflege-gastronomie.jpg",
+    "fachkraefte-vietnam-rheinland-pfalz-saarland-zfe-kaiserslautern": "/images/blog/dmf-rheinland-pfalz-saarland-zfe-kaiserslautern-industrie.jpg",
+    "fachkraefte-vietnam-mecklenburg-vorpommern-sachsen-anhalt-ostsee": "/images/blog/dmf-mecklenburg-vorpommern-sachsen-anhalt-ostsee-industrie.jpg",
 }
 
 def sync_posts():
@@ -152,7 +169,7 @@ def sync_posts():
     print(f"Loaded {len(posts)} posts from {COMPILED_FILE}")
 
     # Generate published dates spaced across recent days/weeks
-    base_time = datetime(2026, 10, 1, 10, 0, 0, tzinfo=timezone.utc)
+    base_time = datetime(2026, 10, 31, 10, 0, 0, tzinfo=timezone.utc)
 
     payload = []
     for i, p in enumerate(posts):

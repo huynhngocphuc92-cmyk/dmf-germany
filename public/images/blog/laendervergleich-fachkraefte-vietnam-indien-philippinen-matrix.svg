@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <rect width="720" height="540" rx="16" fill="#F8FAFC"/>
+  <rect x="20" y="20" width="680" height="500" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="20" y="20" width="680" height="72" rx="12" fill="#003366"/>
+  <text x="44" y="52" fill="#FFFFFF" font-size="18" font-weight="700">Entscheidungsmatrix: Drittstaaten-Herkunftsländer im Vergleich</text>
+  <text x="44" y="75" fill="#CBD5E1" font-size="12">Objektive Kriterien für Mittelstand, Handwerk, Industrie, Pflege und Hotellerie</text>
+
+  <!-- Table Header -->
+  <rect x="40" y="110" width="640" height="38" rx="6" fill="#1E293B"/>
+  <text x="54" y="134" fill="#FFFFFF" font-size="12" font-weight="700">Kriterium</text>
+  <text x="230" y="134" fill="#FF6600" font-size="12" font-weight="700">Vietnam (DMF)</text>
+  <text x="375" y="134" fill="#CBD5E1" font-size="12" font-weight="700">Indien</text>
+  <text x="485" y="134" fill="#CBD5E1" font-size="12" font-weight="700">Philippinen</text>
+  <text x="595" y="134" fill="#CBD5E1" font-size="12" font-weight="700">Lateinamerika</text>
+
+  <!-- Rows -->
+  <g transform="translate(40, 154)">
+    <rect width="640" height="56" rx="4" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <text x="14" y="24" fill="#0F172A" font-size="12" font-weight="700">Fokus Duale</text>
+    <text x="14" y="42" fill="#0F172A" font-size="12" font-weight="700">Ausbildung (Azubi)</text>
+    <text x="190" y="34" fill="#15803D" font-size="12" font-weight="700">Sehr hoch (Kernmarkt)</text>
+    <text x="335" y="34" fill="#475569" font-size="11">Mittel (Fokus IT/Studium)</text>
+    <text x="445" y="34" fill="#475569" font-size="11">Gering (Fokus Pflege-FK)</text>
+    <text x="555" y="34" fill="#475569" font-size="11">Mittel</text>
+  </g>
+
+  <g transform="translate(40, 216)">
+    <rect width="640" height="56" rx="4" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="14" y="24" fill="#0F172A" font-size="12" font-weight="700">MINT- &amp; Handwerks-</text>
+    <text x="14" y="42" fill="#0F172A" font-size="12" font-weight="700">Affinität</text>
+    <text x="190" y="34" fill="#15803D" font-size="12" font-weight="700">Exzellent (PISA/Technik)</text>
+    <text x="335" y="34" fill="#475569" font-size="11">Hoch im IT-/Ing.-Sektor</text>
+    <text x="445" y="34" fill="#475569" font-size="11">Schwerpunkt Klinik/Care</text>
+    <text x="555" y="34" fill="#475569" font-size="11">Gut in Industrie/Bau</text>
+  </g>
+
+  <g transform="translate(40, 278)">
+    <rect width="640" height="56" rx="4" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <text x="14" y="24" fill="#0F172A" font-size="12" font-weight="700">Abwerberisiko in</text>
+    <text x="14" y="42" fill="#0F172A" font-size="12" font-weight="700">angelsächs. Länder</text>
+    <text x="190" y="34" fill="#15803D" font-size="12" font-weight="700">Gering (Fokus Deutsch)</text>
+    <text x="335" y="34" fill="#DC2626" font-size="11">Hoch (UK/USA/Kanada)</text>
+    <text x="445" y="34" fill="#DC2626" font-size="11">Hoch (USA/Golf/UK)</text>
+    <text x="555" y="34" fill="#D97706" font-size="11">Mittel (Spanien/USA)</text>
+  </g>
+
+  <g transform="translate(40, 340)">
+    <rect width="640" height="56" rx="4" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="14" y="24" fill="#0F172A" font-size="12" font-weight="700">Diaspora-Netzwerk</text>
+    <text x="14" y="42" fill="#0F172A" font-size="12" font-weight="700">in Deutschland</text>
+    <text x="190" y="34" fill="#15803D" font-size="12" font-weight="700">&gt; 200.000 (seit Jahrzehnten)</text>
+    <text x="335" y="34" fill="#475569" font-size="11">Stark in Metropolen</text>
+    <text x="445" y="34" fill="#475569" font-size="11">Mittel (Klinikstandorte)</text>
+    <text x="555" y="34" fill="#475569" font-size="11">Wachsend in Großstädten</text>
+  </g>
+
+  <g transform="translate(40, 402)">
+    <rect width="640" height="56" rx="4" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <text x="14" y="24" fill="#0F172A" font-size="12" font-weight="700">Verbleibquote im</text>
+    <text x="14" y="42" fill="#0F172A" font-size="12" font-weight="700">ländlichen Raum</text>
+    <text x="190" y="34" fill="#15803D" font-size="12" font-weight="700">Sehr hoch (Familienkultur)</text>
+    <text x="335" y="34" fill="#475569" font-size="11">Eher Großstadt-orientiert</text>
+    <text x="445" y="34" fill="#475569" font-size="11">Gut bei Klinik-Teams</text>
+    <text x="555" y="34" fill="#475569" font-size="11">Stark standortabhängig</text>
+  </g>
+
+  <rect x="40" y="472" width="640" height="32" rx="6" fill="#003366"/>
+  <text x="360" y="493" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="600">Vietnam überzeugt insbesondere im gewerblich-technischen Mittelstand, in der Pflege und Gastronomie</text>
+</svg>
