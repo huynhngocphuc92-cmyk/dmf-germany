@@ -97,6 +97,7 @@ export function TeleprompterStudio({
   const [recordingSeconds, setRecordingSeconds] = useState(0);
   const [recordedBlob, setRecordedBlob] = useState<Blob | null>(null);
   const [recordedPreviewUrl, setRecordedPreviewUrl] = useState<string | null>(null);
+  const [recordedFileName, setRecordedFileName] = useState<string>("DMF-Selbstvorstellung.webm");
   const [isUploadingVideo, setIsUploadingVideo] = useState(false);
 
   // Voice Interview Q&A states
@@ -106,19 +107,6 @@ export function TeleprompterStudio({
   const [listeningQuestionId, setListeningQuestionId] = useState<string | null>(null);
   const [evaluatingQuestionId, setEvaluatingQuestionId] = useState<string | null>(null);
   const [speechError, setSpeechError] = useState<string | null>(null);
-
-  // Sync draftAnswers when qaList updates
-  useEffect(() => {
-    setDraftAnswers((prev) => {
-      const next = { ...prev };
-      for (const q of qaList) {
-        if (next[q.id] === undefined && q.studentAnswerDe) {
-          next[q.id] = q.studentAnswerDe;
-        }
-      }
-      return next;
-    });
-  }, [qaList]);
 
   // Teleprompter auto-scroll loop
   useEffect(() => {
@@ -244,6 +232,7 @@ export function TeleprompterStudio({
           type: recorder.mimeType || "video/webm",
         });
         setRecordedBlob(blob);
+        setRecordedFileName(`DMF-Selbstvorstellung-${Date.now()}.webm`);
         setRecordedPreviewUrl(URL.createObjectURL(blob));
       };
 
@@ -327,7 +316,9 @@ export function TeleprompterStudio({
     recognition.continuous = true;
     recognition.interimResults = true;
 
-    const initialText = draftAnswers[questionId] ? draftAnswers[questionId] + " " : "";
+    const currentAnswer =
+      draftAnswers[questionId] ?? qaList.find((q) => q.id === questionId)?.studentAnswerDe ?? "";
+    const initialText = currentAnswer ? currentAnswer + " " : "";
 
     recognition.onresult = (event) => {
       let transcript = "";
@@ -357,7 +348,9 @@ export function TeleprompterStudio({
     if (!onEvaluateAnswer) return;
     setEvaluatingQuestionId(questionId);
     try {
-      await onEvaluateAnswer(questionId, draftAnswers[questionId] || "");
+      const currentAnswer =
+        draftAnswers[questionId] ?? qaList.find((q) => q.id === questionId)?.studentAnswerDe ?? "";
+      await onEvaluateAnswer(questionId, currentAnswer);
     } finally {
       setEvaluatingQuestionId(null);
     }
@@ -647,7 +640,7 @@ export function TeleprompterStudio({
               <div className="grid sm:grid-cols-2 gap-2">
                 <a
                   href={recordedPreviewUrl}
-                  download={`DMF-Selbstvorstellung-${Date.now()}.webm`}
+                  download={recordedFileName}
                   className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-xs font-semibold text-slate-800"
                 >
                   <Download className="w-3.5 h-3.5" />

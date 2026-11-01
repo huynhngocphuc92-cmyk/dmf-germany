@@ -314,6 +314,7 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
 
   // Host visibility/language changes invalidate in-flight work before paint.
   // Resetting the corresponding UI here reflects that external lifecycle boundary.
+  /* eslint-disable react-hooks/set-state-in-effect */
   useLayoutEffect(() => {
     languageRef.current = lang;
     openRef.current = isOpen;
@@ -329,6 +330,7 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
       leadRequests.cancel();
     };
   }, [isOpen, lang]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   useEffect(() => {
     const writer = new HistoryWriter<Message[]>(async (snapshot, signal) => {
