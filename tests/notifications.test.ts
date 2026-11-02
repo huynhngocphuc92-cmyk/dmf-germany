@@ -51,6 +51,17 @@ it("escapes customer text and uses the configured recipient", async () => {
   expect(sent.html).toContain("&lt;script&gt;");
   expect(sent.to.address).toBe("admin@example.invalid");
 });
+it("resolves sender address from SMTP_FROM or CONTACT_EMAIL when SMTP_USER is a token user like resend", async () => {
+  vi.stubEnv("SMTP_USER", "resend");
+  vi.stubEnv("CONTACT_EMAIL", "contact@dmf-talents.de");
+  mocks.send.mockResolvedValue({ accepted: ["contact@dmf-talents.de"] });
+  expect((await deliverNotification(job)).status).toBe("sent");
+  expect(mocks.send.mock.calls[0][0].from.address).toBe("contact@dmf-talents.de");
+
+  vi.stubEnv("SMTP_FROM", "noreply@dmf-talents.de");
+  expect((await deliverNotification(job)).status).toBe("sent");
+  expect(mocks.send.mock.calls[1][0].from.address).toBe("noreply@dmf-talents.de");
+});
 it("treats missing configuration as skipped, not sent", async () => {
   vi.stubEnv("TELEGRAM_BOT_TOKEN", "");
   expect(await deliverNotification({ ...job, channel: "telegram" })).toEqual({

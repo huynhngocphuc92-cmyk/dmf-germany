@@ -68,7 +68,11 @@ export async function deliverNotification(job: Job): Promise<DeliveryResult> {
         : { status: "failed", error: "telegram_rejected" };
     }
     const transporter = getMailTransporter();
-    const from = process.env.SMTP_USER;
+    const smtpUser = process.env.SMTP_USER?.trim();
+    const from =
+      process.env.SMTP_FROM?.trim() ||
+      (smtpUser?.includes("@") ? smtpUser : process.env.CONTACT_EMAIL?.trim()) ||
+      smtpUser;
     const recipient = job.channel === "auto_reply" ? p.email : process.env.CONTACT_EMAIL;
     if (!transporter || !from || !recipient)
       return { status: "skipped", error: "smtp_not_configured" };

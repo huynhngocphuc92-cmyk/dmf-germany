@@ -795,7 +795,7 @@ try {
     assert.equal(body.mode, "guided");
     assert.equal(body.provider, "guided_engine");
     assert.ok(body.message.startsWith(expected));
-    assert.ok(body.message.includes("mailto:contact@dmf.edu.vn"));
+    assert.ok(body.message.includes("mailto:contact@dmf-talents.de"));
     assert.ok(body.requestId && Number.isFinite(body.durationMs));
   }
   assert.equal((await post("/api/chat", { message: "" })).status, 400);
