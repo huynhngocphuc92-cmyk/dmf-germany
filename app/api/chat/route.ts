@@ -1,7 +1,14 @@
 import { randomUUID } from "node:crypto";
 import { requireAdmin } from "@/lib/auth/admin";
 import { adminAuthorizationResponse } from "@/lib/auth/admin-http";
-import { getGuidedChatResponse } from "@/lib/chatbot/fallback";
+import {
+  getOpenRouterCandidateModels,
+  runWithOpenRouterFallback,
+  type OpenRouterMessage,
+} from "@/lib/ai/openrouter";
+import { providerFailure } from "@/lib/ai/provider-runtime";
+import { getGuidedChatResponse, shouldUseGuidedCache } from "@/lib/chatbot/fallback";
+import { buildChatbotSystemPrompt } from "@/lib/chatbot/knowledge-base";
 import { InvalidBody, readJsonBody } from "@/lib/intake/body";
 import { checkRateLimit, getClientIp, RATE_LIMITS } from "@/lib/rate-limit";
 import { NextRequest, NextResponse } from "next/server";
@@ -16,9 +23,6 @@ const chatSchema = z.object({
   language: z.enum(["de", "en", "vi", "vn"]).default("de"),
 });
 
-// Public chat is deliberately scripted for this product phase. Provider keys,
-// model settings and client fields cannot enable AI. History is bounded and
-// validated for compatibility, but never used as instructions or FAQ context.
 export async function POST(request: NextRequest) {
   const requestId = randomUUID();
   const startedAt = Date.now();
@@ -30,15 +34,47 @@ export async function POST(request: NextRequest) {
   try {
     const parsed = chatSchema.safeParse(await readJsonBody(request, 100000));
     if (!parsed.success) return reply({ error: "Invalid chat request" }, 400);
-    const { message, language } = parsed.data;
+    const { message, history, language } = parsed.data;
     const rate = await checkRateLimit(`chat:${getClientIp(request)}`, RATE_LIMITS.CHAT);
     if (!rate.success)
       return reply({ error: "Too many requests. Please try again later." }, 429, {
         "Retry-After": String(rate.resetIn),
       });
 
+    const normalizedLanguage = language === "vn" ? "vi" : language;
+    const openRouterKey = process.env.OPENROUTER_API_KEY?.trim() || "";
+
+    if (openRouterKey && !shouldUseGuidedCache(message, history.length)) {
+      try {
+        const boundedHistory = history.slice(-8).map((item) => ({
+          role: item.role,
+          content: item.content.slice(0, 600),
+        }));
+        const openRouterMessages: OpenRouterMessage[] = [
+          { role: "system", content: buildChatbotSystemPrompt(normalizedLanguage) },
+          ...boundedHistory,
+          { role: "user", content: message },
+        ];
+        const aiResult = await runWithOpenRouterFallback(openRouterKey, openRouterMessages, {
+          timeoutMs: 12000,
+        });
+        return reply({
+          message: aiResult.text,
+          usage: aiResult.usage,
+          provider: "openrouter",
+          model: aiResult.modelName,
+          mode: "ai",
+        });
+      } catch (aiError) {
+        console.warn("[Chat] OpenRouter fallback to guided engine", {
+          requestId,
+          code: providerFailure(aiError),
+        });
+      }
+    }
+
     return reply({
-      message: getGuidedChatResponse(language === "vn" ? "vi" : language, message),
+      message: getGuidedChatResponse(normalizedLanguage, message),
       usage: { inputTokens: 0, outputTokens: 0 },
       provider: "guided_engine",
       mode: "guided",
@@ -74,6 +110,7 @@ export async function GET(request: NextRequest) {
       return reply({ error: "Diagnostics unavailable" }, 503);
     }
   }
+  const openRouterConfigured = Boolean(process.env.OPENROUTER_API_KEY?.trim());
   return reply({
     status: "ready",
     mode: "guided",
@@ -82,7 +119,11 @@ export async function GET(request: NextRequest) {
       "Built-in scripted FAQ responder configured. This is not an availability guarantee or a backend health check.",
     ...(diagnostics
       ? {
-          diagnostics: { ai: "disabled in this public-chat phase; no provider requests performed" },
+          diagnostics: {
+            ai: openRouterConfigured
+              ? `openrouter configured (${getOpenRouterCandidateModels().join(" -> ")}); no provider requests performed`
+              : "disabled in this public-chat phase; no provider requests performed",
+          },
         }
       : {}),
   });

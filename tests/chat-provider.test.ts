@@ -27,6 +27,7 @@ const request = (body: unknown = { message: "What services do you offer?", langu
 const diagnostics = () =>
   GET(new NextRequest("https://example.invalid/api/chat?diagnostics=1&mode=ai&forceAI=true"));
 beforeEach(() => {
+  vi.stubEnv("OPENROUTER_API_KEY", "");
   vi.stubEnv("XAI_API_KEY", "fixture-xai-secret");
   vi.stubEnv("GEMINI_API_KEY", "fixture-gemini-secret");
   vi.stubEnv("XAI_MODEL", "fixture-model");
@@ -194,5 +195,71 @@ describe("Public chat guided-only contract", () => {
     );
     expect(response.status).toBe(200);
     expect((await response.json()).message).toContain("**Documents:**");
+  });
+
+  it("uses OpenRouter AI for natural multi-word questions and falls back to guided FAQ on provider failure", async () => {
+    vi.stubEnv("OPENROUTER_API_KEY", "sk-or-v1-fixture-secret");
+    const fetchSpy = vi
+      .spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(
+        new Response(
+          JSON.stringify({
+            model: "google/gemma-4-26b-a4b-it:free",
+            choices: [
+              {
+                message: {
+                  content:
+                    "Chương trình Du học nghề Điều dưỡng tại Đức yêu cầu trình độ tiếng Đức tối thiểu B1 trước khi nhập cảnh.",
+                },
+              },
+            ],
+            usage: { prompt_tokens: 120, completion_tokens: 35 },
+          }),
+          { status: 200 }
+        )
+      )
+      .mockRejectedValueOnce(new Error("OpenRouter network timeout"));
+
+    // 1. Tier 0 quick keyword on initial turn still uses guided cache (0 OpenRouter requests)
+    const cachedResponse = await POST(request({ message: "Chi phí", language: "vi" }));
+    expect(await cachedResponse.json()).toMatchObject({
+      mode: "guided",
+      provider: "guided_engine",
+      usage: { inputTokens: 0, outputTokens: 0 },
+    });
+    expect(fetchSpy).not.toHaveBeenCalled();
+
+    // 2. Natural question invokes OpenRouter
+    const aiResponse = await POST(
+      request({
+        message:
+          "Em 20 tuổi ở Việt Nam muốn đi du học nghề ngành điều dưỡng tại Đức thì cần điều kiện gì?",
+        language: "vi",
+      })
+    );
+    expect(aiResponse.status).toBe(200);
+    expect(await aiResponse.json()).toMatchObject({
+      mode: "ai",
+      provider: "openrouter",
+      model: "google/gemma-4-26b-a4b-it:free",
+      usage: { inputTokens: 120, outputTokens: 35 },
+      message: expect.stringContaining("Du học nghề Điều dưỡng"),
+    });
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
+
+    // 3. Provider failure falls back cleanly to guided FAQ (never 503)
+    const fallbackResponse = await POST(
+      request({
+        message:
+          "Cho mình hỏi chi tiết về hồ sơ xin visa du học nghề tại Đức cần chuẩn bị những gì?",
+        language: "vi",
+      })
+    );
+    expect(fallbackResponse.status).toBe(200);
+    expect(await fallbackResponse.json()).toMatchObject({
+      mode: "guided",
+      provider: "guided_engine",
+      message: expect.stringContaining("**Hồ sơ:**"),
+    });
   });
 });

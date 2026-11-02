@@ -9,6 +9,7 @@ import {
   LocalFaq,
   LEAD_DEADLINE_MS,
 } from "@/lib/chatbot/client-state";
+import { shouldUseGuidedCache } from "@/lib/chatbot/fallback";
 import { currentRequestContext } from "@/lib/intake/context";
 import { renderMessageContent } from "@/lib/chatbot/message-content";
 import { useSubmissionKey } from "@/lib/intake/client";
@@ -184,7 +185,9 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
 
   const [cooldownUntil, setCooldownUntil] = useState(0);
   const [leadCooldownUntil, setLeadCooldownUntil] = useState(0);
+  const [isThinking, setIsThinking] = useState(false);
   const localFaq = useRef(new LocalFaq());
+  const chatLane = useRef(new RequestLane());
   const leadLane = useRef(new RequestLane());
   const historyRef = useRef<HistoryWriter<Message[]> | null>(null);
   const languageRef = useRef(lang);
@@ -319,14 +322,18 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
     languageRef.current = lang;
     openRef.current = isOpen;
     const faq = localFaq.current;
+    const chatRequests = chatLane.current;
     const leadRequests = leadLane.current;
     faq.resetDuplicate();
+    chatRequests.cancel();
     leadRequests.cancel();
+    setIsThinking(false);
     setIsLeadSaving(false);
     setLeadFormError(null);
     if (!isOpen) setShowLeadForm(false);
     return () => {
       faq.resetDuplicate();
+      chatRequests.cancel();
       leadRequests.cancel();
     };
   }, [isOpen, lang]);
@@ -364,12 +371,47 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
 
   const sendMessage = useCallback(
     (messageText?: string) => {
-      if (!openRef.current) return;
+      if (!openRef.current || isThinking) return;
       const result = localFaq.current.answer(lang, messageText ?? inputValue);
       if (result.status === "empty" || result.status === "duplicate") return;
       setCooldownUntil(result.cooldownUntil);
       if (result.status === "throttled") return;
-      const finalMessages = boundMessages([
+
+      const priorUserMessages = messagesRef.current.filter((m) => m.role === "user");
+      // Tier 0: Quick actions, greetings, privacy requests, and initial keyword queries
+      // resolve synchronously with 0ms latency and 0 OpenRouter quota usage.
+      if (shouldUseGuidedCache(result.message, priorUserMessages.length)) {
+        const finalMessages = boundMessages([
+          ...messagesRef.current,
+          {
+            id: `user-${crypto.randomUUID()}`,
+            role: "user" as const,
+            content: result.message,
+            timestamp: new Date(),
+          },
+          {
+            id: `assistant-${crypto.randomUUID()}`,
+            role: "assistant" as const,
+            content: result.answer,
+            timestamp: new Date(),
+          },
+        ]);
+        messagesRef.current = finalMessages;
+        setMessages(finalMessages);
+        if (messageText === undefined) setInputValue("");
+        historyRef.current?.enqueue(finalMessages);
+        return;
+      }
+
+      const controller = chatLane.current.begin();
+      if (!controller) return;
+      const language = lang;
+      const historyForApi = messagesRef.current
+        .filter((m) => m.id !== "welcome")
+        .slice(-8)
+        .map((m) => ({ role: m.role, content: m.content }));
+
+      const withUserMessage = boundMessages([
         ...messagesRef.current,
         {
           id: `user-${crypto.randomUUID()}`,
@@ -377,20 +419,75 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
           content: result.message,
           timestamp: new Date(),
         },
-        {
-          id: `assistant-${crypto.randomUUID()}`,
-          role: "assistant" as const,
-          content: result.answer,
-          timestamp: new Date(),
-        },
       ]);
-      messagesRef.current = finalMessages;
-      setMessages(finalMessages);
-      // A topic button should not discard an unrelated typed draft.
+      messagesRef.current = withUserMessage;
+      setMessages(withUserMessage);
       if (messageText === undefined) setInputValue("");
-      historyRef.current?.enqueue(finalMessages);
+      setIsThinking(true);
+
+      const commitAssistantReply = (replyText: string) => {
+        const finalMessages = boundMessages([
+          ...messagesRef.current,
+          {
+            id: `assistant-${crypto.randomUUID()}`,
+            role: "assistant" as const,
+            content: replyText,
+            timestamp: new Date(),
+          },
+        ]);
+        messagesRef.current = finalMessages;
+        setMessages(finalMessages);
+        historyRef.current?.enqueue(finalMessages);
+      };
+
+      void withDeadline(
+        (signal) =>
+          postJson<{ message?: string }>(
+            "/api/chat",
+            {
+              message: result.message,
+              language,
+              history: historyForApi,
+            },
+            signal
+          ),
+        15000,
+        controller
+      )
+        .then(({ response, data }) => {
+          if (
+            !chatLane.current.isCurrent(controller) ||
+            !openRef.current ||
+            languageRef.current !== language
+          ) {
+            return;
+          }
+          if (response.status === 429) {
+            setCooldownUntil(chatLane.current.coolDown(response.headers.get("Retry-After")));
+          }
+          const aiReply =
+            response.ok && typeof data?.message === "string" && data.message.trim()
+              ? data.message.trim()
+              : result.answer;
+          commitAssistantReply(aiReply);
+        })
+        .catch(() => {
+          if (
+            chatLane.current.owns(controller) &&
+            openRef.current &&
+            languageRef.current === language
+          ) {
+            commitAssistantReply(result.answer);
+          }
+        })
+        .finally(() => {
+          if (chatLane.current.owns(controller)) {
+            chatLane.current.finish(controller);
+            setIsThinking(false);
+          }
+        });
     },
-    [inputValue, lang]
+    [inputValue, isThinking, lang]
   );
 
   const openLeadForm = () => {
@@ -518,8 +615,10 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
   const handleClose = () => {
     openRef.current = false;
     localFaq.current.resetDuplicate();
+    chatLane.current.cancel();
     leadLane.current.cancel();
     // Normal close lets serialized history settle; the writer effect stops on unmount.
+    setIsThinking(false);
     setIsLeadSaving(false);
     setShowLeadForm(false);
     setIsOpen(false);
@@ -708,6 +807,20 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
                 </motion.div>
               ))}
 
+              {isThinking && (
+                <div className="flex justify-start items-center gap-2 text-xs text-gray-500 px-2">
+                  <div className="w-2 h-2 rounded-full bg-primary/60 animate-bounce" />
+                  <div
+                    className="w-2 h-2 rounded-full bg-primary/60 animate-bounce"
+                    style={{ animationDelay: "150ms" }}
+                  />
+                  <div
+                    className="w-2 h-2 rounded-full bg-primary/60 animate-bounce"
+                    style={{ animationDelay: "300ms" }}
+                  />
+                </div>
+              )}
+
               <div ref={messagesEndRef} />
             </div>
 
@@ -761,10 +874,10 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
                 />
                 <button
                   type="submit"
-                  disabled={cooldownUntil !== 0 || !inputValue.trim()}
+                  disabled={cooldownUntil !== 0 || isThinking || !inputValue.trim()}
                   className={cn(
                     "w-10 h-10 rounded-lg flex items-center justify-center transition-colors",
-                    cooldownUntil !== 0 || !inputValue.trim()
+                    cooldownUntil !== 0 || isThinking || !inputValue.trim()
                       ? "bg-gray-100 text-gray-400 cursor-not-allowed"
                       : "bg-primary text-primary-foreground hover:bg-primary/90"
                   )}
