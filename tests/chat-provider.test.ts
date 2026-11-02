@@ -197,7 +197,7 @@ describe("Public chat guided-only contract", () => {
     expect((await response.json()).message).toContain("**Documents:**");
   });
 
-  it("uses OpenRouter AI for natural multi-word questions and falls back to guided FAQ on provider failure", async () => {
+  it("auto-detects input language, uses OpenRouter AI consultant, and falls back to guided FAQ on provider failure", async () => {
     vi.stubEnv("OPENROUTER_API_KEY", "sk-or-v1-fixture-secret");
     const fetchSpy = vi
       .spyOn(globalThis, "fetch")
@@ -209,7 +209,7 @@ describe("Public chat guided-only contract", () => {
               {
                 message: {
                   content:
-                    "Chương trình Du học nghề Điều dưỡng tại Đức yêu cầu trình độ tiếng Đức tối thiểu B1 trước khi nhập cảnh.",
+                    "Dạ chào bạn! Với chương trình Du học nghề Điều dưỡng tại Đức, mình cần chuẩn bị trình độ tiếng Đức tối thiểu B1/B2 trước khi bay nhé. Hiện tại bạn đã học tiếng Đức chưa ạ?",
                 },
               },
             ],
@@ -220,21 +220,23 @@ describe("Public chat guided-only contract", () => {
       )
       .mockRejectedValueOnce(new Error("OpenRouter network timeout"));
 
-    // 1. Tier 0 quick keyword on initial turn still uses guided cache (0 OpenRouter requests)
-    const cachedResponse = await POST(request({ message: "Chi phí", language: "vi" }));
-    expect(await cachedResponse.json()).toMatchObject({
+    // 1. Privacy / GDPR deletion request still uses deterministic legal notice (0 OpenRouter requests)
+    const privacyResponse = await POST(
+      request({ message: "Tôi muốn xóa dữ liệu cá nhân", language: "de" })
+    );
+    expect(await privacyResponse.json()).toMatchObject({
       mode: "guided",
       provider: "guided_engine",
       usage: { inputTokens: 0, outputTokens: 0 },
+      message: expect.stringContaining("**Dữ liệu cá nhân:**"),
     });
     expect(fetchSpy).not.toHaveBeenCalled();
 
-    // 2. Natural question invokes OpenRouter
+    // 2. Vietnamese question sent while UI language is "de" auto-detects Vietnamese and invokes OpenRouter AI
     const aiResponse = await POST(
       request({
-        message:
-          "Em 20 tuổi ở Việt Nam muốn đi du học nghề ngành điều dưỡng tại Đức thì cần điều kiện gì?",
-        language: "vi",
+        message: "Chào bạn, mình muốn hỏi về du học nghề điều dưỡng tại Đức",
+        language: "de",
       })
     );
     expect(aiResponse.status).toBe(200);
@@ -246,13 +248,15 @@ describe("Public chat guided-only contract", () => {
       message: expect.stringContaining("Du học nghề Điều dưỡng"),
     });
     expect(fetchSpy).toHaveBeenCalledTimes(1);
+    const systemPromptSent = JSON.parse(fetchSpy.mock.calls[0][1]!.body as string).messages[0]
+      .content;
+    expect(systemPromptSent).toContain("TIẾNG VIỆT");
 
-    // 3. Provider failure falls back cleanly to guided FAQ (never 503)
+    // 3. Provider failure falls back cleanly to guided FAQ in the detected language (never 503)
     const fallbackResponse = await POST(
       request({
-        message:
-          "Cho mình hỏi chi tiết về hồ sơ xin visa du học nghề tại Đức cần chuẩn bị những gì?",
-        language: "vi",
+        message: "Cho mình hỏi về hồ sơ du học nghề?",
+        language: "de",
       })
     );
     expect(fallbackResponse.status).toBe(200);

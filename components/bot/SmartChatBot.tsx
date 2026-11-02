@@ -9,7 +9,11 @@ import {
   LocalFaq,
   LEAD_DEADLINE_MS,
 } from "@/lib/chatbot/client-state";
-import { shouldUseGuidedCache } from "@/lib/chatbot/fallback";
+import {
+  detectMessageLanguage,
+  getGuidedChatResponse,
+  shouldUseGuidedCache,
+} from "@/lib/chatbot/fallback";
 import { currentRequestContext } from "@/lib/intake/context";
 import { renderMessageContent } from "@/lib/chatbot/message-content";
 import { useSubmissionKey } from "@/lib/intake/client";
@@ -67,13 +71,13 @@ interface LeadData {
 
 const chatTranslations = {
   de: {
-    title: "Automatischer Chatbot",
-    guided: "Vorbereitete FAQ-Antworten",
-    placeholder: "Stellen Sie Ihre Frage...",
+    title: "DMF Talents Beratung",
+    guided: "Online • Deutsch, Tiếng Việt, English",
+    placeholder: "Schreiben Sie uns Ihre Frage...",
     send: "Senden",
     close: "Schließen",
     welcome:
-      "Guten Tag! Dies ist der automatische FAQ-Chatbot von DMF Talents mit vorbereiteten Antworten zu unseren Programmen, Kosten, Ablauf und Unterlagen. Eine Nachricht hier ist noch keine Kontaktanfrage. Nutzen Sie dafür das Anfrageformular.",
+      "Guten Tag! 👋 Willkommen bei DMF Talents. Wie kann ich Ihnen heute weiterhelfen – suchen Sie qualifizierte Fachkräfte bzw. Auszubildende für Ihr Unternehmen oder interessieren Sie sich für ein Programm in Deutschland? (Sie können gerne auf Deutsch, Vietnamesisch oder Englisch schreiben.)",
     error: "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
     rateLimit: "Zu viele Anfragen. Bitte warten Sie einen Moment.",
     quickActions: {
@@ -94,13 +98,13 @@ const chatTranslations = {
     },
   },
   en: {
-    title: "Automated chatbot",
-    guided: "Prepared FAQ answers",
-    placeholder: "Ask your question...",
+    title: "DMF Talents Advisory",
+    guided: "Online • English, Deutsch, Tiếng Việt",
+    placeholder: "Write your question...",
     send: "Send",
     close: "Close",
     welcome:
-      "Hello! This is the automated DMF Talents FAQ chatbot with prepared answers about our programmes, pricing, process and documents. A chat message is not a contact inquiry. Please use the inquiry form to submit one.",
+      "Hello! 👋 Welcome to DMF Talents. How can I help you today — are you an employer looking for Vietnamese talent, or planning to study or work in Germany? (Feel free to write in English, German, or Vietnamese.)",
     error: "An error occurred. Please try again.",
     rateLimit: "Too many requests. Please wait a moment.",
     quickActions: {
@@ -121,13 +125,13 @@ const chatTranslations = {
     },
   },
   vn: {
-    title: "Chatbot tự động",
-    guided: "Trả lời theo chủ đề",
-    placeholder: "Đặt câu hỏi của bạn...",
+    title: "Tư vấn viên DMF Talents",
+    guided: "Trực tuyến • Tiếng Việt, Deutsch, English",
+    placeholder: "Nhập câu hỏi của bạn...",
     send: "Gửi",
     close: "Đóng",
     welcome:
-      "Xin chào! Đây là chatbot tự động của DMF Talents với câu trả lời soạn sẵn về chương trình, chi phí, quy trình và hồ sơ. Tin nhắn chat chưa phải yêu cầu liên hệ. Hãy dùng biểu mẫu để gửi yêu cầu.",
+      "Chào bạn! 👋 Rất vui được đón tiếp bạn tại DMF Talents. Mình có thể hỗ trợ thông tin gì cho bạn hôm nay — bạn đang tìm hiểu chương trình Du học nghề, Đại học, Lao động chuyên môn tại Đức hay là Doanh nghiệp đang cần tuyển dụng nhân sự ạ?",
     error: "Đã xảy ra lỗi. Vui lòng thử lại.",
     rateLimit: "Quá nhiều yêu cầu. Vui lòng đợi một chút.",
     quickActions: {
@@ -377,10 +381,11 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
       setCooldownUntil(result.cooldownUntil);
       if (result.status === "throttled") return;
 
-      const priorUserMessages = messagesRef.current.filter((m) => m.role === "user");
-      // Tier 0: Quick actions, greetings, privacy requests, and initial keyword queries
-      // resolve synchronously with 0ms latency and 0 OpenRouter quota usage.
-      if (shouldUseGuidedCache(result.message, priorUserMessages.length)) {
+      const detectedLang = detectMessageLanguage(result.message, lang === "vn" ? "vi" : lang);
+      const fallbackAnswer = getGuidedChatResponse(detectedLang, result.message);
+
+      // Only strict GDPR privacy deletion requests or bare email addresses bypass AI.
+      if (shouldUseGuidedCache(result.message)) {
         const finalMessages = boundMessages([
           ...messagesRef.current,
           {
@@ -392,7 +397,7 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
           {
             id: `assistant-${crypto.randomUUID()}`,
             role: "assistant" as const,
-            content: result.answer,
+            content: fallbackAnswer,
             timestamp: new Date(),
           },
         ]);
@@ -446,7 +451,7 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
             "/api/chat",
             {
               message: result.message,
-              language,
+              language: detectedLang,
               history: historyForApi,
             },
             signal
@@ -468,7 +473,7 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
           const aiReply =
             response.ok && typeof data?.message === "string" && data.message.trim()
               ? data.message.trim()
-              : result.answer;
+              : fallbackAnswer;
           commitAssistantReply(aiReply);
         })
         .catch(() => {
@@ -477,7 +482,7 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
             openRef.current &&
             languageRef.current === language
           ) {
-            commitAssistantReply(result.answer);
+            commitAssistantReply(fallbackAnswer);
           }
         })
         .finally(() => {

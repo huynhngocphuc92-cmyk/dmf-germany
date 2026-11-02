@@ -227,73 +227,76 @@ export function getGuidedChatResponse(
 // Backward compatible for existing consumers; the public route uses the primary name.
 export const getFallbackChatResponse = getGuidedChatResponse;
 
-const QUICK_ACTION_PRESETS = new Set(
-  [
-    "Ich möchte einen Beratungstermin vereinbaren.",
-    "Tôi muốn đặt lịch tư vấn.",
-    "I would like to book a consultation.",
-    "Erzählen Sie mir mehr über das Ausbildungsprogramm.",
-    "Hãy cho tôi biết thêm về chương trình Du học nghề.",
-    "Tell me more about the Vocational Training program.",
-    "Wie funktioniert das Studienprogramm?",
-    "Chương trình Đại học hoạt động như thế nào?",
-    "How does the University program work?",
-    "Ich suche Fachkräfte für mein Unternehmen.",
-    "Tôi đang tìm kiếm lao động có tay nghề cho công ty.",
-    "I'm looking for skilled workers for my company.",
-    "Welche Kosten entstehen?",
-    "What are the costs?",
-    "Chi phí bao nhiêu?",
-    "Wie ist der Ablauf?",
-    "What is the process?",
-    "Quy trình thế nào?",
-    "Welche Unterlagen brauche ich?",
-    "Which documents do I need?",
-    "Cần giấy tờ gì?",
-    "Ich möchte eine Kontaktanfrage stellen.",
-    "Tôi muốn để lại thông tin liên hệ.",
-    "I would like to submit a contact request.",
-  ].map((s) =>
-    normalize(s)
-      .replace(/[^a-z0-9@]+/g, " ")
-      .trim()
-  )
-);
-
 const PRIVACY_INTENT =
   /\b(datenschutz\w*|dsgvo|gdpr|privacy|personal data|personenbezogen\w*|daten losch\w*|delete my data|du lieu ca nhan|bao mat|quyen rieng tu|xoa du lieu)\b/;
 
 /**
- * Tier 0 Smart Intent Cache:
- * Returns true when a message should be served immediately by the deterministic
- * curated FAQ (0ms latency, 0 OpenRouter quota) rather than invoking the LLM.
+ * Automatically detects whether the user's input message is in Vietnamese, German, or English,
+ * falling back to the UI session language when ambiguous.
  */
-export function shouldUseGuidedCache(userMessage: string, historyLength = 0): boolean {
+export function detectMessageLanguage(
+  userMessage: string,
+  fallbackLanguage: SupportedChatLanguage = "de"
+): SupportedChatLanguage {
+  const raw = userMessage.trim();
+  if (!raw) return fallbackLanguage;
+
+  // 1. Vietnamese diacritics (excluding ä, ö, ü, ß)
+  if (/[àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]/i.test(raw)) {
+    return "vi";
+  }
+
+  const ascii = normalize(raw)
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+
+  // 2. Unaccented Vietnamese keywords
+  if (
+    /\b(xin chao|chao ban|chao anh|chao chi|minh|cho hoi|tu van|du hoc|hoc nghe|dieu duong|lao dong|thoi vu|dai hoc|chi phi|hoc phi|ho so|giay to|tieng duc|sang duc|nuoc duc|cong ty|doanh nghiep|can gi|bao nhieu|the nao|khong|duoc ko|lam sao)\b/.test(
+      ascii
+    )
+  ) {
+    return "vi";
+  }
+
+  // 3. German characters or keywords
+  if (
+    /[äöüß]/i.test(raw) ||
+    /\b(guten tag|hallo|ich|wir|bitte|danke|ausbildung|auszubildende\w*|azubi\w*|fachkraft\w*|saisonarbeit|studium|kosten|preis\w*|unterlagen|ablauf|visum|anerkennung|unternehmen|arbeitgeber|pflege\w*|wie|welche\w*|möchte\w*|suche\w*|brauche\w*|fuer)\b/.test(
+      ascii
+    )
+  ) {
+    return "de";
+  }
+
+  // 4. English keywords
+  if (
+    /\b(hello|hi there|hey|please|thank|thanks|how|what|which|where|when|would|could|looking for|interested|vocational|skilled|workers|seasonal|university|pricing|cost|costs|documents|process|recognition|company|employer|nursing)\b/.test(
+      ascii
+    )
+  ) {
+    return "en";
+  }
+
+  return fallbackLanguage;
+}
+
+/**
+ * Only strict GDPR/privacy deletion requests or bare email addresses bypass the AI
+ * to enforce the deterministic legal notice. All other questions go to the AI consultant.
+ */
+export function shouldUseGuidedCache(userMessage: string): boolean {
   const text = normalize(userMessage)
     .replace(/[^a-z0-9@]+/g, " ")
     .trim();
 
   if (!text) return true;
 
-  // Always enforce deterministic legal notices for privacy/GDPR requests or pasted emails.
-  if (PRIVACY_INTENT.test(text) || /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i.test(userMessage)) {
+  if (
+    PRIVACY_INTENT.test(text) ||
+    /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i.test(userMessage.trim())
+  ) {
     return true;
-  }
-
-  // Exact Quick Action button clicks always use the instant curated response.
-  if (QUICK_ACTION_PRESETS.has(text)) {
-    return true;
-  }
-
-  // On initial turn, simple greetings or 1-3 word topic keywords use the curated FAQ cache.
-  if (historyLength === 0) {
-    if (/^(hi|hello|hey|hallo|guten tag|xin chao|chao)( there| ban)?$/.test(text)) {
-      return true;
-    }
-    const words = text.split(/\s+/).filter(Boolean);
-    if (words.length <= 3 && intents.some(([, pattern]) => pattern.test(text))) {
-      return true;
-    }
   }
 
   return false;

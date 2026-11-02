@@ -7,7 +7,11 @@ import {
   type OpenRouterMessage,
 } from "@/lib/ai/openrouter";
 import { providerFailure } from "@/lib/ai/provider-runtime";
-import { getGuidedChatResponse, shouldUseGuidedCache } from "@/lib/chatbot/fallback";
+import {
+  detectMessageLanguage,
+  getGuidedChatResponse,
+  shouldUseGuidedCache,
+} from "@/lib/chatbot/fallback";
 import { buildChatbotSystemPrompt } from "@/lib/chatbot/knowledge-base";
 import { InvalidBody, readJsonBody } from "@/lib/intake/body";
 import { checkRateLimit, getClientIp, RATE_LIMITS } from "@/lib/rate-limit";
@@ -44,33 +48,43 @@ export async function POST(request: NextRequest) {
     const normalizedLanguage = language === "vn" ? "vi" : language;
     const openRouterKey = process.env.OPENROUTER_API_KEY?.trim() || "";
 
-    if (openRouterKey && !shouldUseGuidedCache(message, history.length)) {
-      try {
-        const boundedHistory = history.slice(-8).map((item) => ({
-          role: item.role,
-          content: item.content.slice(0, 600),
-        }));
-        const openRouterMessages: OpenRouterMessage[] = [
-          { role: "system", content: buildChatbotSystemPrompt(normalizedLanguage) },
-          ...boundedHistory,
-          { role: "user", content: message },
-        ];
-        const aiResult = await runWithOpenRouterFallback(openRouterKey, openRouterMessages, {
-          timeoutMs: 12000,
-        });
-        return reply({
-          message: aiResult.text,
-          usage: aiResult.usage,
-          provider: "openrouter",
-          model: aiResult.modelName,
-          mode: "ai",
-        });
-      } catch (aiError) {
-        console.warn("[Chat] OpenRouter fallback to guided engine", {
-          requestId,
-          code: providerFailure(aiError),
-        });
+    if (openRouterKey) {
+      const effectiveLanguage = detectMessageLanguage(message, normalizedLanguage);
+      if (!shouldUseGuidedCache(message)) {
+        try {
+          const boundedHistory = history.slice(-8).map((item) => ({
+            role: item.role,
+            content: item.content.slice(0, 600),
+          }));
+          const openRouterMessages: OpenRouterMessage[] = [
+            { role: "system", content: buildChatbotSystemPrompt(effectiveLanguage) },
+            ...boundedHistory,
+            { role: "user", content: message },
+          ];
+          const aiResult = await runWithOpenRouterFallback(openRouterKey, openRouterMessages, {
+            timeoutMs: 12000,
+          });
+          return reply({
+            message: aiResult.text,
+            usage: aiResult.usage,
+            provider: "openrouter",
+            model: aiResult.modelName,
+            mode: "ai",
+          });
+        } catch (aiError) {
+          console.warn("[Chat] OpenRouter fallback to guided engine", {
+            requestId,
+            code: providerFailure(aiError),
+          });
+        }
       }
+
+      return reply({
+        message: getGuidedChatResponse(effectiveLanguage, message),
+        usage: { inputTokens: 0, outputTokens: 0 },
+        provider: "guided_engine",
+        mode: "guided",
+      });
     }
 
     return reply({
