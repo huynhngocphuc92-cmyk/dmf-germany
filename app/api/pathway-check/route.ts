@@ -175,8 +175,35 @@ export async function POST(request: NextRequest) {
     }
 
     const lang = parsed.data.lang || "vn";
-    const systemPrompt = `Du bist ein erfahrener Studien- und Karriereberater der DMF Vietnam Academy (Spezialist für das deutsche Fachkräfteeinwanderungsgesetz FEG §16a Ausbildung und §18a/b Fachkräfte).
-Analysiere das Profil des Bewerbers und gib eine ehrliche, motivierende Einschätzung in der Sprache "${lang === "de" ? "Deutsch" : lang === "en" ? "English" : "Tiếng Việt (xưng hô thân thiện anh/chị hoặc bạn - mình)"}".
+    const systemPrompt =
+      lang === "vn"
+        ? `Bạn là chuyên viên tư vấn định hướng lộ trình du học nghề (§ 16a AufenthG) và lao động có tay nghề (§ 18a/b AufenthG) tại Đức của DMF Vietnam Academy.
+Hãy phân tích hồ sơ của ứng viên và trả lời HOÀN TOÀN BẰNG TIẾNG VIỆT tự nhiên, thân thiện (xưng "mình" - gọi "bạn").
+Trả về DUY NHẤT một JSON object hợp lệ:
+{
+  "recommendedTrack": "Tên chương trình bằng tiếng Việt (VD: Du học nghề kép hưởng lương tại Đức - Ausbildung)",
+  "legalBasis": "§ 16a AufenthG hoặc § 18a/b AufenthG",
+  "eligibilityScore": 90,
+  "estimatedMonthsToDeparture": 8,
+  "salaryRange": "Mức thu nhập/trợ cấp bằng tiếng Việt (VD: 1.050 € – 1.400 €/tháng trợ cấp học nghề)",
+  "roadmapSteps": ["Bước 1 bằng tiếng Việt", "Bước 2 bằng tiếng Việt", "Bước 3 bằng tiếng Việt"],
+  "advisorSummary": "2-3 câu nhận xét và khích lệ cá nhân hóa bằng tiếng Việt"
+}`
+        : lang === "en"
+          ? `You are a Senior Career & Visa Advisor at DMF Vietnam Academy (specialist in Germany's Skilled Immigration Act FEG §16a vocational training and §18a/b skilled workers).
+Analyze the applicant profile and respond ENTIRELY IN ENGLISH.
+Return ONLY a valid JSON object:
+{
+  "recommendedTrack": "...",
+  "legalBasis": "§ 16a AufenthG or § 18a/b AufenthG",
+  "eligibilityScore": 90,
+  "estimatedMonthsToDeparture": 8,
+  "salaryRange": "...",
+  "roadmapSteps": ["Step 1", "Step 2", "Step 3"],
+  "advisorSummary": "2-3 sentences of personalized assessment in English"
+}`
+          : `Du bist ein erfahrener Studien- und Karriereberater der DMF Vietnam Academy (Spezialist für das deutsche Fachkräfteeinwanderungsgesetz FEG §16a Ausbildung und §18a/b Fachkräfte).
+Analysiere das Profil des Bewerbers und gib eine ehrliche, motivierende Einschätzung auf DEUTSCH.
 Antworte AUSSCHLIESSLICH als valides JSON-Objekt:
 {
   "recommendedTrack": "...",
@@ -185,7 +212,7 @@ Antworte AUSSCHLIESSLICH als valides JSON-Objekt:
   "estimatedMonthsToDeparture": 8,
   "salaryRange": "...",
   "roadmapSteps": ["Schritt 1", "Schritt 2", "Schritt 3"],
-  "advisorSummary": "2-3 Sätze persönliche Einschätzung"
+  "advisorSummary": "2-3 Sätze persönliche Einschätzung auf Deutsch"
 }`;
 
     try {
