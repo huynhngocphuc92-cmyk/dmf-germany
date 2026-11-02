@@ -4,6 +4,7 @@ import { adminAuthorizationResponse } from "@/lib/auth/admin-http";
 import { BlogLanguage, TopicSuggestion } from "@/app/admin/blog-writer/types";
 import { buildTopicSuggestionsPrompt } from "@/lib/prompts/blog-writer";
 import { runWithGrokModelFallback, GrokMessage } from "@/lib/ai/grok";
+import { runWithOpenRouterFallback } from "@/lib/ai/openrouter";
 
 export async function GET(request: NextRequest) {
   try {
@@ -17,9 +18,16 @@ export async function GET(request: NextRequest) {
     // Build the prompt
     const systemPrompt = buildTopicSuggestionsPrompt(language, category);
 
-    const apiKey = process.env.XAI_API_KEY || "";
-    const grokMessages: GrokMessage[] = [{ role: "user", content: systemPrompt }];
-    const result = await runWithGrokModelFallback(apiKey, grokMessages);
+    const openRouterKey = process.env.OPENROUTER_API_KEY?.trim() || "";
+    const xaiKey = process.env.XAI_API_KEY?.trim() || "";
+    const messages: GrokMessage[] = [{ role: "user", content: systemPrompt }];
+    const result = openRouterKey
+      ? await runWithOpenRouterFallback(openRouterKey, messages, {
+          maxTokens: 900,
+          temperature: 0.5,
+          timeoutMs: 18000,
+        })
+      : await runWithGrokModelFallback(xaiKey, messages);
     const rawText = result.text;
 
     if (!rawText) {

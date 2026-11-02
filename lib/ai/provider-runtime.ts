@@ -19,6 +19,8 @@ export class ProviderError extends Error {
 export interface ProviderRequestOptions {
   signal?: AbortSignal;
   timeoutMs?: number;
+  maxTokens?: number;
+  temperature?: number;
 }
 
 export function providerSignal(options: ProviderRequestOptions = {}) {

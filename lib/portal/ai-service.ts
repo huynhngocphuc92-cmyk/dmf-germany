@@ -1,5 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { DEFAULT_GEMINI_MODEL, runWithGeminiFallback } from "@/lib/ai/gemini";
+import { runWithOpenRouterFallback } from "@/lib/ai/openrouter";
 import type {
   DocumentTypeKey,
   DocumentVariant,
@@ -32,6 +33,52 @@ function extractJsonBlock<T>(rawText: string, fallback: T): T {
   }
 }
 
+async function runPortalTextAI(
+  systemPrompt: string,
+  userPayload: string,
+  maxTokens = 900
+): Promise<string | null> {
+  const isUnmockedTest =
+    process.env.NODE_ENV === "test" &&
+    typeof (globalThis.fetch as { mock?: unknown })?.mock === "undefined";
+  if (isUnmockedTest) {
+    return null;
+  }
+
+  const openRouterKey = process.env.OPENROUTER_API_KEY?.trim();
+  if (openRouterKey) {
+    try {
+      const { text } = await runWithOpenRouterFallback(
+        openRouterKey,
+        [
+          { role: "system", content: systemPrompt },
+          { role: "user", content: userPayload },
+        ],
+        { maxTokens, temperature: 0.3, timeoutMs: 18000 }
+      );
+      if (text?.trim()) {
+        return text;
+      }
+    } catch {
+      // Fall through to Gemini or deterministic fallback
+    }
+  }
+
+  const geminiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY;
+  if (geminiKey) {
+    try {
+      const { text } = await runWithGeminiFallback(geminiKey, systemPrompt, [], userPayload);
+      if (text?.trim()) {
+        return text;
+      }
+    } catch {
+      // Fall through to deterministic fallback
+    }
+  }
+
+  return null;
+}
+
 /**
  * 1. AI Chuẩn hoá Thuật ngữ Nghề Đức (BERUFENET Standard) cho Tabellarischer Lebenslauf
  */
@@ -45,8 +92,6 @@ export async function translateAndStandardizeCVEntries(params: {
   education: EducationEntry[];
   work: WorkExperienceEntry[];
 }> {
-  const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY;
-
   const fallbackEducation = params.education.map((e) => ({
     ...e,
     institutionDe:
@@ -77,10 +122,6 @@ export async function translateAndStandardizeCVEntries(params: {
         : "Unterstützung im Tagesgeschäft, Teamarbeit und sorgfältige Ausführung von Fachaufgaben"),
   }));
 
-  if (!apiKey) {
-    return { education: fallbackEducation, work: fallbackWork };
-  }
-
   const systemPrompt = `Du bist ein deutscher HR-Experte für internationale Fachkräfte und Auszubildende aus Vietnam (Standard: Bundesagentur für Arbeit / BERUFENET).
 Übersetze und standardisiere die vietnamesischen Angaben aus Bildungsweg (education) und Berufserfahrung (work) in präzises, professionelles Deutsch für einen tabellarischen Lebenslauf.
 WICHTIG:
@@ -89,17 +130,19 @@ WICHTIG:
 - Antworte AUSSCHLIESSLICH als valides JSON-Objekt mit dem Format: {"education": [...], "work": [...]}.`;
 
   try {
-    const { text } = await runWithGeminiFallback(
-      apiKey,
+    const text = await runPortalTextAI(
       systemPrompt,
-      [],
       JSON.stringify({
         targetProfession: params.targetProfession,
         programTrack: params.programTrack,
         education: params.education,
         work: params.work,
-      })
+      }),
+      1000
     );
+    if (!text) {
+      return { education: fallbackEducation, work: fallbackWork };
+    }
     const parsed = extractJsonBlock<{ education: EducationEntry[]; work: WorkExperienceEntry[] }>(
       text,
       { education: fallbackEducation, work: fallbackWork }
@@ -165,16 +208,6 @@ Ihr Betrieb spricht mich besonders an, da Sie großen Wert auf eine fundierte Ei
 
 Über die Gelegenheit, mich Ihnen in einem persönlichen Online-Vorstellungsgespräch vorzustellen, freue ich mich sehr.`;
 
-  const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY;
-  if (!apiKey) {
-    return {
-      subject_de: defaultSubject,
-      salutation_de: defaultSalutation,
-      body_de: fallbackBody,
-      closing_de: "Mit freundlichen Grüßen",
-    };
-  }
-
   const systemPrompt = `Du bist ein erfahrener Bewerbungscoach für den deutschen Mittelstand (DIN 5008).
 Schreibe ein authentisches, überzeugendes deutsches Anschreiben (Motivationsschreiben) auf solidem ${profile.german_level}-Niveau (maximal 260 Wörter für den Haupttext, damit es perfekt auf 1 DIN-A4-Seite passt).
 
@@ -189,10 +222,8 @@ STRENGEQUALITÄTSREGELN (Anti-KI-Klischees):
 - Antworte AUSSCHLIESSLICH als JSON-Objekt: {"subject_de": "...", "salutation_de": "...", "body_de": "...", "closing_de": "Mit freundlichen Grüßen"}`;
 
   try {
-    const { text } = await runWithGeminiFallback(
-      apiKey,
+    const text = await runPortalTextAI(
       systemPrompt,
-      [],
       JSON.stringify({
         applicantName: profile.full_name,
         programTrack: trackInfo.labelDe,
@@ -204,8 +235,18 @@ STRENGEQUALITÄTSREGELN (Anti-KI-Klischees):
         education: profile.education_history,
         workExperience: profile.work_experience,
         studentAnswersInVietnamese: answers,
-      })
+      }),
+      900
     );
+
+    if (!text) {
+      return {
+        subject_de: defaultSubject,
+        salutation_de: defaultSalutation,
+        body_de: fallbackBody,
+        closing_de: "Mit freundlichen Grüßen",
+      };
+    }
 
     const parsed = extractJsonBlock(text, {
       subject_de: defaultSubject,
@@ -215,7 +256,7 @@ STRENGEQUALITÄTSREGELN (Anti-KI-Klischees):
     });
 
     return {
-      subject_de: parsed.subject_de || defaultSubject,
+      subject_de: (parsed.subject_de || defaultSubject).replace(/\.+$/, ""),
       salutation_de: parsed.salutation_de || defaultSalutation,
       body_de: parsed.body_de || fallbackBody,
       closing_de: parsed.closing_de || "Mit freundlichen Grüßen",
@@ -447,11 +488,6 @@ Vielen Dank für Ihre Zeit. Ich freue mich sehr auf ein persönliches Vorstellun
     },
   ];
 
-  const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY;
-  if (!apiKey) {
-    return { scriptDe: defaultScript, qaList: defaultQa };
-  }
-
   const systemPrompt = `Du bist ein Interview-Coach für vietnamesische Bewerber in Deutschland (Beruf: ${profession}, Programm: ${track.labelDe}, Deutschniveau: ${profile.german_level}).
 Erstelle:
 1. "scriptDe": Einen natürlichen, 60 bis 90 Sekunden langen Selbstvorstellungstext für einen Teleprompter (mit "[Pause]" Markierungen zum Atmen), perfekt angepasst an den Bewerber.
@@ -459,10 +495,8 @@ Erstelle:
 Antworte AUSSCHLIESSLICH als JSON-Objekt: {"scriptDe": "...", "qaList": [{"id": "qa-1", "questionDe": "...", "questionVn": "...", "sampleAnswerDe": "...", "sampleAnswerVn": "...", "pronunciationTip": "..."}]}`;
 
   try {
-    const { text } = await runWithGeminiFallback(
-      apiKey,
+    const text = await runPortalTextAI(
       systemPrompt,
-      [],
       JSON.stringify({
         name,
         city,
@@ -472,8 +506,13 @@ Antworte AUSSCHLIESSLICH als JSON-Objekt: {"scriptDe": "...", "qaList": [{"id": 
         experienceYears: profile.experience_years,
         education: profile.education_history,
         work: profile.work_experience,
-      })
+      }),
+      1200
     );
+
+    if (!text) {
+      return { scriptDe: defaultScript, qaList: defaultQa };
+    }
 
     const parsed = extractJsonBlock(text, { scriptDe: defaultScript, qaList: defaultQa });
     return {
@@ -521,11 +560,6 @@ export async function evaluateStudentInterviewAnswer(params: {
     evaluatedAt: nowIso,
   };
 
-  const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY;
-  if (!apiKey) {
-    return fallbackEvaluation;
-  }
-
   const systemPrompt = `Du bist ein deutscher Prüfer für Vorstellungsgespräche (Zielberuf: ${params.profile.target_profession}, Sprachniveau: ${params.profile.german_level}).
 Bewerte die gesprochene/geschriebene Antwort eines vietnamesischen Bewerbers auf die Interviewfrage: "${params.questionDe}".
 
@@ -543,16 +577,18 @@ Erstelle außerdem:
 Antworte AUSSCHLIESSLICH als valides JSON-Objekt.`;
 
   try {
-    const { text } = await runWithGeminiFallback(
-      apiKey,
+    const text = await runPortalTextAI(
       systemPrompt,
-      [],
       JSON.stringify({
         questionDe: params.questionDe,
         studentAnswerDe: raw,
         sampleAnswerDe: params.sampleAnswerDe,
-      })
+      }),
+      700
     );
+    if (!text) {
+      return fallbackEvaluation;
+    }
     const parsed = extractJsonBlock<InterviewAnswerEvaluation>(text, fallbackEvaluation);
     return {
       overallScore:

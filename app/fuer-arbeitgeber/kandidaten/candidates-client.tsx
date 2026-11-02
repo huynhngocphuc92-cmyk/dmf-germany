@@ -2,7 +2,7 @@
 import Link from "next/link";
 
 import { useState, useMemo } from "react";
-import { Users, X } from "lucide-react";
+import { Users, X, Sparkles, Search, Loader2, RotateCcw } from "lucide-react";
 import { CandidateCard } from "@/components/candidates/CandidateCard";
 import { InquiryModal } from "@/components/candidates/InquiryModal";
 import { useLanguage } from "@/components/providers/LanguageProvider";
@@ -16,11 +16,24 @@ interface CandidatesClientProps {
   error: string | null;
 }
 
+interface MatchResultItem {
+  id: string;
+  matchScore: number;
+  reason: string;
+}
+
 export function CandidatesClient({ initialCandidates, error }: CandidatesClientProps) {
   const { lang, t } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<CandidateCategory | "all">("all");
   const [selectedCandidate, setSelectedCandidate] = useState<PublicCandidate | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // AI Talent Matcher state
+  const [aiQuery, setAiQuery] = useState("");
+  const [isMatching, setIsMatching] = useState(false);
+  const [aiMatches, setAiMatches] = useState<Record<string, MatchResultItem> | null>(null);
+  const [aiSummary, setAiSummary] = useState<string | null>(null);
+  const [aiError, setAiError] = useState<string | null>(null);
 
   // Get unique categories from candidates
   const availableCategories = useMemo(() => {
@@ -33,13 +46,80 @@ export function CandidatesClient({ initialCandidates, error }: CandidatesClientP
     return Array.from(categories);
   }, [initialCandidates]);
 
-  // Filter candidates by category
+  // Filter and optionally rank candidates by AI match score
   const filteredCandidates = useMemo(() => {
-    if (selectedCategory === "all") {
-      return initialCandidates;
+    const base =
+      selectedCategory === "all"
+        ? initialCandidates
+        : initialCandidates.filter((c) => c.category === selectedCategory);
+
+    if (!aiMatches) {
+      return base;
     }
-    return initialCandidates.filter((c) => c.category === selectedCategory);
-  }, [initialCandidates, selectedCategory]);
+
+    const matchedOnly = base.filter((c) => Boolean(aiMatches[c.id]));
+    const listToSort = matchedOnly.length > 0 ? matchedOnly : base;
+    return [...listToSort].sort(
+      (a, b) => (aiMatches[b.id]?.matchScore ?? 0) - (aiMatches[a.id]?.matchScore ?? 0)
+    );
+  }, [initialCandidates, selectedCategory, aiMatches]);
+
+  const handleRunAiMatcher = async (customQuery?: string) => {
+    const q = (customQuery ?? aiQuery).trim();
+    if (q.length < 2 || initialCandidates.length === 0) return;
+    if (customQuery) setAiQuery(customQuery);
+
+    setIsMatching(true);
+    setAiError(null);
+    try {
+      const response = await fetch("/api/candidates/match", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          query: q,
+          candidates: initialCandidates,
+          lang,
+        }),
+      });
+      const result = await response.json();
+      if (!response.ok || !Array.isArray(result.matches)) {
+        setAiError(
+          result.error ||
+            (lang === "de"
+              ? "KI-Analyse momentan nicht verfügbar."
+              : lang === "en"
+                ? "AI matching temporarily unavailable."
+                : "Tính năng lọc AI tạm thời gián đoạn.")
+        );
+        return;
+      }
+
+      const map: Record<string, MatchResultItem> = {};
+      for (const item of result.matches as MatchResultItem[]) {
+        map[item.id] = item;
+      }
+      setAiMatches(map);
+      setAiSummary(result.summary || null);
+      setSelectedCategory("all");
+    } catch {
+      setAiError(
+        lang === "de"
+          ? "Netzwerkfehler bei der KI-Suche."
+          : lang === "en"
+            ? "Network error during AI search."
+            : "Lỗi kết nối khi phân tích ứng viên."
+      );
+    } finally {
+      setIsMatching(false);
+    }
+  };
+
+  const handleResetAiMatcher = () => {
+    setAiQuery("");
+    setAiMatches(null);
+    setAiSummary(null);
+    setAiError(null);
+  };
 
   const handleRequestProfile = (candidate: PublicCandidate) => {
     setSelectedCandidate(candidate);
@@ -50,6 +130,25 @@ export function CandidatesClient({ initialCandidates, error }: CandidatesClientP
     setIsModalOpen(false);
     setSelectedCandidate(null);
   };
+
+  const examplePrompts =
+    lang === "de"
+      ? [
+          "Pflegefachkraft mit Deutsch B2 & Krankenhauserfahrung",
+          "Motivierte Auszubildende für Gastronomie / Hotellerie",
+          "Fachkraft Handwerk / CNC / Elektrotechnik ab B1",
+        ]
+      : lang === "en"
+        ? [
+            "Nursing professional with German B2 & hospital experience",
+            "Motivated apprentices for hospitality / culinary",
+            "Skilled technician in machining / electronics (B1+)",
+          ]
+        : [
+            "Điều dưỡng viên trình độ B2 có kinh nghiệm bệnh viện",
+            "Học viên du học nghề Nhà hàng - Khách sạn",
+            "Thợ kỹ thuật cơ khí CNC / Điện công nghiệp từ B1",
+          ];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
@@ -69,6 +168,122 @@ export function CandidatesClient({ initialCandidates, error }: CandidatesClientP
           </div>
         </div>
       </section>
+
+      {/* AI Talent Matcher Section */}
+      {initialCandidates.length > 0 && (
+        <section className="py-8 bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 text-white border-b border-blue-900/40">
+          <div className="container mx-auto px-4 max-w-5xl">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+              <div className="flex items-center gap-2.5">
+                <span className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
+                  <Sparkles className="w-5 h-5" />
+                </span>
+                <div>
+                  <h2 className="text-lg font-bold">
+                    {lang === "de"
+                      ? "KI-Kandidaten-Matcher (Sofort-Empfehlung)"
+                      : lang === "en"
+                        ? "AI Talent Matcher (Instant Shortlist)"
+                        : "Trợ lý AI Tìm Ứng viên Phù hợp"}
+                  </h2>
+                  <p className="text-xs text-slate-300">
+                    {lang === "de"
+                      ? "Beschreiben Sie kurz Ihre offene Stelle – unsere KI bewertet und sortiert den Kandidaten-Pool in Sekunden."
+                      : lang === "en"
+                        ? "Describe your open role in one sentence — our AI scores and ranks matching profiles in seconds."
+                        : "Mô tả ngắn vị trí đang cần tuyển — AI sẽ chấm điểm mức độ phù hợp và lọc ứng viên ngay lập tức."}
+                  </p>
+                </div>
+              </div>
+              {aiMatches && (
+                <button
+                  type="button"
+                  onClick={handleResetAiMatcher}
+                  className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-300 hover:text-white bg-white/10 hover:bg-white/15 px-3 py-1.5 rounded-lg transition-colors self-start md:self-auto"
+                >
+                  <RotateCcw className="w-3.5 h-3.5" />
+                  {lang === "de"
+                    ? "KI-Filter zurücksetzen"
+                    : lang === "en"
+                      ? "Reset AI filter"
+                      : "Xóa bộ lọc AI"}
+                </button>
+              )}
+            </div>
+
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleRunAiMatcher();
+              }}
+              className="flex flex-col sm:flex-row gap-3"
+            >
+              <div className="relative flex-1">
+                <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <input
+                  type="text"
+                  value={aiQuery}
+                  onChange={(e) => setAiQuery(e.target.value)}
+                  placeholder={
+                    lang === "de"
+                      ? "z.B. Suche 2 Pflegefachkräfte mit Deutsch B2 und Krankenhauserfahrung..."
+                      : lang === "en"
+                        ? "e.g. Looking for 2 nursing professionals with German B2..."
+                        : "VD: Cần tìm 2 ứng viên Điều dưỡng trình độ B2 có kinh nghiệm..."
+                  }
+                  className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder:text-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400"
+                />
+              </div>
+              <Button
+                type="submit"
+                disabled={isMatching || aiQuery.trim().length < 2}
+                className="bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-6 py-3 h-auto rounded-xl gap-2"
+              >
+                {isMatching ? (
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                ) : (
+                  <Sparkles className="w-4 h-4" />
+                )}
+                {lang === "de"
+                  ? "Passende Talente finden"
+                  : lang === "en"
+                    ? "Match Candidates"
+                    : "Lọc ứng viên bằng AI"}
+              </Button>
+            </form>
+
+            {/* Quick Example Chips */}
+            <div className="flex flex-wrap items-center gap-2 mt-3">
+              <span className="text-xs text-slate-400">
+                {lang === "de" ? "Beispiele:" : lang === "en" ? "Examples:" : "Gợi ý nhanh:"}
+              </span>
+              {examplePrompts.map((prompt) => (
+                <button
+                  key={prompt}
+                  type="button"
+                  onClick={() => handleRunAiMatcher(prompt)}
+                  className="text-xs px-2.5 py-1 rounded-full bg-white/10 hover:bg-emerald-500/20 hover:border-emerald-400/40 border border-white/15 text-slate-200 transition-colors"
+                >
+                  {prompt}
+                </button>
+              ))}
+            </div>
+
+            {aiError && (
+              <p className="mt-3 text-xs text-amber-300 bg-amber-950/60 border border-amber-700/50 rounded-lg px-3 py-2">
+                {aiError}
+              </p>
+            )}
+
+            {aiSummary && (
+              <div className="mt-4 p-3.5 rounded-xl bg-emerald-950/60 border border-emerald-500/40 text-emerald-100 text-sm flex items-start gap-2.5">
+                <Sparkles className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+                <span>{aiSummary}</span>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* Filter Section - Simple Category Buttons */}
       {availableCategories.length > 0 && (
@@ -136,6 +351,8 @@ export function CandidatesClient({ initialCandidates, error }: CandidatesClientP
                   key={candidate.id}
                   candidate={candidate}
                   onRequestProfile={handleRequestProfile}
+                  matchScore={aiMatches?.[candidate.id]?.matchScore}
+                  matchReason={aiMatches?.[candidate.id]?.reason}
                 />
               ))}
             </div>

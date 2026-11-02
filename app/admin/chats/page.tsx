@@ -18,14 +18,20 @@ import {
   Clock,
   ChevronRight,
   X,
+  Sparkles,
+  Copy,
+  Check,
+  Loader2,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   getChatSessions,
   getChatStats,
   deleteChatSession,
+  analyzeChatSessionWithAI,
   ChatSession,
   ChatStats,
+  ChatLeadAnalysis,
 } from "./actions";
 
 // ============================================
@@ -316,19 +322,127 @@ function SessionRow({
 }
 
 function ChatModal({ session, onClose }: { session: ChatSession; onClose: () => void }) {
+  const [analysis, setAnalysis] = useState<ChatLeadAnalysis | null>(null);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState(false);
+
+  const handleAnalyze = async () => {
+    if (isAnalyzing) return;
+    setIsAnalyzing(true);
+    try {
+      const result = await analyzeChatSessionWithAI(session.session_id);
+      if (result) {
+        setAnalysis(result);
+      }
+    } finally {
+      setIsAnalyzing(false);
+    }
+  };
+
+  const handleCopyFollowUp = async () => {
+    if (!analysis) return;
+    const fullText = `Betreff: ${analysis.followUpSubject}\n\n${analysis.followUpEmailDraft}`;
+    await navigator.clipboard.writeText(fullText);
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2500);
+  };
+
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col">
         {/* Header */}
-        <div className="p-4 border-b border-gray-200 flex items-center justify-between">
+        <div className="p-4 border-b border-gray-200 flex items-center justify-between gap-3">
           <div>
             <h2 className="text-lg font-semibold text-gray-900">Chat-Verlauf</h2>
             <p className="text-sm text-gray-500">Session: {session.session_id.slice(-12)}</p>
           </div>
-          <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg">
-            <X className="w-5 h-5 text-gray-400" />
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={handleAnalyze}
+              disabled={isAnalyzing}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold transition-colors disabled:opacity-60"
+            >
+              {isAnalyzing ? (
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              ) : (
+                <Sparkles className="w-3.5 h-3.5" />
+              )}
+              {analysis ? "KI-Analyse aktualisieren" : "KI-Lead-Analyse & E-Mail"}
+            </button>
+            <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg">
+              <X className="w-5 h-5 text-gray-400" />
+            </button>
+          </div>
         </div>
+
+        {/* AI Lead Analysis Panel */}
+        {analysis && (
+          <div className="p-4 bg-indigo-50/90 border-b border-indigo-200 space-y-3 max-h-64 overflow-y-auto">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <span
+                  className={cn(
+                    "px-2.5 py-0.5 rounded-full text-xs font-bold uppercase",
+                    analysis.leadTemperature === "hot"
+                      ? "bg-red-100 text-red-700 border border-red-300"
+                      : analysis.leadTemperature === "warm"
+                        ? "bg-amber-100 text-amber-800 border border-amber-300"
+                        : "bg-slate-200 text-slate-700"
+                  )}
+                >
+                  {analysis.leadTemperature === "hot"
+                    ? "🔥 Hot Lead"
+                    : analysis.leadTemperature === "warm"
+                      ? "⚡ Warm Lead"
+                      : "❄️ Cold Lead"}
+                </span>
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-100 text-indigo-800 border border-indigo-200">
+                  {analysis.segment === "b2b_employer"
+                    ? "🏢 B2B Arbeitgeber (DE)"
+                    : analysis.segment === "b2c_applicant"
+                      ? "🎓 B2C Bewerber (VN)"
+                      : "💬 Allgemein"}
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={handleCopyFollowUp}
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white border border-indigo-200 hover:bg-indigo-100 text-indigo-900 text-xs font-semibold transition-colors"
+              >
+                {copiedEmail ? (
+                  <>
+                    <Check className="w-3.5 h-3.5 text-emerald-600" />
+                    <span>E-Mail kopiert!</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-3.5 h-3.5" />
+                    <span>Follow-up E-Mail kopieren</span>
+                  </>
+                )}
+              </button>
+            </div>
+            <p className="text-xs text-indigo-950 font-medium leading-relaxed">
+              {analysis.summary}
+            </p>
+            {analysis.keyNeeds.length > 0 && (
+              <ul className="text-xs text-indigo-900 list-disc list-inside space-y-0.5">
+                {analysis.keyNeeds.map((need, idx) => (
+                  <li key={idx}>{need}</li>
+                ))}
+              </ul>
+            )}
+            <details className="text-xs bg-white rounded-lg border border-indigo-100 p-2.5">
+              <summary className="cursor-pointer font-semibold text-indigo-900">
+                Vorschau Follow-up E-Mail: {analysis.followUpSubject}
+              </summary>
+              <pre className="mt-2 whitespace-pre-wrap font-sans text-slate-700 leading-relaxed">
+                {analysis.followUpEmailDraft}
+              </pre>
+            </details>
+          </div>
+        )}
 
         {/* Lead Info */}
         {(session.lead_email || session.lead_company) && (

@@ -59,7 +59,8 @@ async function requestOpenRouterCompletion(
   apiKey: string,
   models: string[],
   messages: OpenRouterMessage[],
-  signal: AbortSignal
+  signal: AbortSignal,
+  options: ProviderRequestOptions = {}
 ): Promise<OpenRouterResponseData> {
   const [primaryModel] = models;
   const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
@@ -75,8 +76,8 @@ async function requestOpenRouterCompletion(
       model: primaryModel,
       ...(models.length > 1 ? { models } : {}),
       messages,
-      max_tokens: 450,
-      temperature: 0.3,
+      max_tokens: options.maxTokens ?? 450,
+      temperature: options.temperature ?? 0.3,
       reasoning: { effort: "none" },
     }),
   });
@@ -133,7 +134,7 @@ export async function runWithOpenRouterFallback(
   const signal = providerSignal(options);
 
   try {
-    return await requestOpenRouterCompletion(apiKey, candidates, messages, signal);
+    return await requestOpenRouterCompletion(apiKey, candidates, messages, signal, options);
   } catch (firstError) {
     const paidBackup = candidates[candidates.length - 1];
     if (
@@ -142,7 +143,7 @@ export async function runWithOpenRouterFallback(
       paidBackup &&
       isOpenRouterRetryableError(firstError)
     ) {
-      return await requestOpenRouterCompletion(apiKey, [paidBackup], messages, signal);
+      return await requestOpenRouterCompletion(apiKey, [paidBackup], messages, signal, options);
     }
     throw firstError;
   }

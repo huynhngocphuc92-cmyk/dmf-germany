@@ -5,6 +5,7 @@ import { BlogGenerationRequest, GeneratedBlog } from "@/app/admin/blog-writer/ty
 import { buildBlogSystemPrompt } from "@/lib/prompts/blog-writer";
 import { checkRateLimit, RATE_LIMITS } from "@/lib/rate-limit";
 import { runWithGrokModelFallback, GrokMessage } from "@/lib/ai/grok";
+import { runWithOpenRouterFallback } from "@/lib/ai/openrouter";
 
 export async function POST(request: NextRequest) {
   try {
@@ -29,12 +30,19 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
-    const apiKey = process.env.XAI_API_KEY || "";
-    const grokMessages: GrokMessage[] = [
+    const openRouterKey = process.env.OPENROUTER_API_KEY?.trim() || "";
+    const xaiKey = process.env.XAI_API_KEY?.trim() || "";
+    const messages: GrokMessage[] = [
       { role: "system", content: buildBlogSystemPrompt(body) },
       { role: "user", content: `Write a blog post about: "${body.topic}"` },
     ];
-    const result = await runWithGrokModelFallback(apiKey, grokMessages);
+    const result = openRouterKey
+      ? await runWithOpenRouterFallback(openRouterKey, messages, {
+          maxTokens: 2500,
+          temperature: 0.4,
+          timeoutMs: 25000,
+        })
+      : await runWithGrokModelFallback(xaiKey, messages);
     const rawText = result.text;
 
     if (!rawText) {

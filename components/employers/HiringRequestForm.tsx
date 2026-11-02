@@ -3,7 +3,7 @@ import { useId, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CheckCircle2, ArrowRight, Loader2 } from "lucide-react";
+import { CheckCircle2, ArrowRight, Loader2, Sparkles } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { EMPLOYER_COPY } from "@/lib/content/employers";
 import {
@@ -59,6 +59,9 @@ export function HiringRequestForm({
   const [saved, setSaved] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [detailsOpen, setDetailsOpen] = useState(false);
+  const [jdText, setJdText] = useState("");
+  const [isParsingJd, setIsParsingJd] = useState(false);
+  const [jdSuccess, setJdSuccess] = useState(false);
   const {
     register,
     handleSubmit,
@@ -89,6 +92,36 @@ export function HiringRequestForm({
     "aria-invalid": Boolean(errors[name]),
     "aria-describedby": errors[name] ? `${id(name)}-error` : undefined,
   });
+  async function handleParseJobDescription() {
+    if (jdText.trim().length < 5 || isParsingJd) return;
+    setIsParsingJd(true);
+    setJdSuccess(false);
+    setError(null);
+    try {
+      const response = await fetch("/api/hiring/parse", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: jdText, lang }),
+      });
+      const result = await response.json();
+      if (!response.ok || !result.data) {
+        setError(result.error || t.error);
+        return;
+      }
+      const { service: parsedService, headcount, location, timing, summaryMessage } = result.data;
+      if (parsedService) setValue("service", parsedService, { shouldValidate: true });
+      if (summaryMessage) setValue("message", summaryMessage, { shouldValidate: true });
+      if (headcount) setValue("headcount", String(headcount), { shouldValidate: true });
+      if (location) setValue("location", location, { shouldValidate: true });
+      if (timing) setValue("timing", timing, { shouldValidate: true });
+      if (headcount || location || timing) setDetailsOpen(true);
+      setJdSuccess(true);
+    } catch {
+      setError(t.error);
+    } finally {
+      setIsParsingJd(false);
+    }
+  }
   async function submit(values: HiringFormValues) {
     if (saved) return;
     setError(null);
@@ -183,6 +216,73 @@ export function HiringRequestForm({
             {error}
           </p>
         )}
+
+        {/* Smart AI JD Parser Box */}
+        <details className="rounded-xl border border-primary/25 bg-primary/5 p-4">
+          <summary className="cursor-pointer font-semibold text-sm text-primary flex items-center gap-2">
+            <Sparkles className="h-4 w-4 flex-shrink-0" />
+            <span>
+              {lang === "de"
+                ? "KI-Schnellausfüllung: Stellenbeschreibung oder Freitext einfügen"
+                : lang === "en"
+                  ? "AI Quick-Fill: Paste job description or requirement notes"
+                  : "Trợ lý AI Điền Nhanh: Dán mô tả công việc (JD) hoặc ghi chú tuyển dụng"}
+            </span>
+          </summary>
+          <div className="mt-3 space-y-3">
+            <p className="text-xs text-muted-foreground">
+              {lang === "de"
+                ? "Kopieren Sie einfach Ihre bestehende Stellenanzeige oder Stichpunkte hier hinein. Unsere KI erkennt automatisch Berufsgruppe, Anzahl, Standort, Zeitraum und fasst den Bedarf zusammen."
+                : lang === "en"
+                  ? "Paste your job posting or bullet points below. Our AI automatically extracts category, headcount, location, timing, and summarizes your request."
+                  : "Dán nội dung tin tuyển dụng hoặc yêu cầu sơ bộ vào ô dưới đây. AI sẽ tự động bóc tách nhóm dịch vụ, số lượng, địa điểm, thời gian và tóm tắt yêu cầu."}
+            </p>
+            <textarea
+              value={jdText}
+              onChange={(e) => setJdText(e.target.value)}
+              rows={3}
+              maxLength={4000}
+              placeholder={
+                lang === "de"
+                  ? "z.B. Wir suchen für unsere Klinik in München ab Herbst 2026 insgesamt 3 Pflegefachkräfte oder Auszubildende mit B2..."
+                  : lang === "en"
+                    ? "e.g. We are looking for 3 nursing professionals in Munich starting Autumn 2026 with German B2..."
+                    : "VD: Công ty tại München cần tuyển 3 điều dưỡng viên trình độ B2 làm việc từ mùa thu 2026..."
+              }
+              className="w-full rounded-lg border border-input bg-background px-3 py-2 text-sm focus-visible:outline-2 focus-visible:outline-primary"
+            />
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <button
+                type="button"
+                disabled={isParsingJd || jdText.trim().length < 5}
+                onClick={handleParseJobDescription}
+                className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
+              >
+                {isParsingJd ? (
+                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                ) : (
+                  <Sparkles className="h-3.5 w-3.5" />
+                )}
+                {lang === "de"
+                  ? "Formular mit KI ausfüllen"
+                  : lang === "en"
+                    ? "Auto-fill form with AI"
+                    : "Tự động điền biểu mẫu bằng AI"}
+              </button>
+              {jdSuccess && (
+                <span className="text-xs font-medium text-emerald-700 flex items-center gap-1">
+                  <CheckCircle2 className="h-3.5 w-3.5" />
+                  {lang === "de"
+                    ? "Felder wurden erfolgreich vorausgefüllt!"
+                    : lang === "en"
+                      ? "Form fields auto-populated!"
+                      : "Đã tự động điền thông tin vào biểu mẫu!"}
+                </span>
+              )}
+            </div>
+          </div>
+        </details>
+
         <div className="grid sm:grid-cols-2 gap-5">
           <Field id={id("company")} label={`${t.company} *`} error={errors.company?.message}>
             <input

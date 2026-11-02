@@ -130,6 +130,7 @@ describe("direct Server Action authorization", () => {
     () => chats.getChatSession("fixture"),
     () => chats.getChatStats(),
     () => chats.deleteChatSession("fixture"),
+    () => chats.analyzeChatSessionWithAI("fixture"),
     () => leads.getLeads(),
     () => leads.getLeadStats(),
     () => leads.updateLeadStatus("fixture", "contacted"),

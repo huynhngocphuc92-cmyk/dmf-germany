@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useConsent, openConsentSettings } from "@/components/CookieConsent";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Briefcase, Award, FileText } from "lucide-react";
+import { Briefcase, Award, FileText, Sparkles } from "lucide-react";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -20,6 +20,8 @@ interface CandidateCardProps {
   candidate: PublicCandidate;
   onRequestProfile?: (candidate: PublicCandidate) => void;
   preview?: boolean;
+  matchScore?: number;
+  matchReason?: string;
 }
 
 /**
@@ -71,6 +73,8 @@ export const CandidateCard = ({
   candidate,
   onRequestProfile,
   preview = false,
+  matchScore,
+  matchReason,
 }: CandidateCardProps) => {
   const { lang, t } = useLanguage();
   const [imageError, setImageError] = useState(false);
@@ -116,9 +120,17 @@ export const CandidateCard = ({
 
             {/* Code */}
             <div className="flex-1 min-w-0">
-              <p className="text-xs text-muted-foreground font-mono tracking-wide mb-1">
-                {t.candidates?.code_label || "Kandidat"} #{candidateCode}
-              </p>
+              <div className="flex items-center justify-between gap-2 mb-1">
+                <p className="text-xs text-muted-foreground font-mono tracking-wide">
+                  {t.candidates?.code_label || "Kandidat"} #{candidateCode}
+                </p>
+                {typeof matchScore === "number" && (
+                  <span className="inline-flex items-center gap-1 rounded-full bg-emerald-600 px-2.5 py-0.5 text-xs font-bold text-white shadow-sm">
+                    <Sparkles className="h-3 w-3" />
+                    {matchScore}% Match
+                  </span>
+                )}
+              </div>
               {candidate.category && (
                 <Badge
                   variant="outline"
@@ -139,6 +151,19 @@ export const CandidateCard = ({
               {candidate.profession || "Beruf auf Anfrage"}
             </h3>
           }
+
+          {matchReason && (
+            <div className="mb-4 rounded-lg border border-emerald-200 bg-emerald-50/80 p-3 text-xs text-emerald-950 leading-relaxed">
+              <span className="font-semibold text-emerald-800 block mb-0.5">
+                {lang === "de"
+                  ? "KI-Empfehlung:"
+                  : lang === "en"
+                    ? "AI Match Insight:"
+                    : "Đánh giá từ AI:"}
+              </span>
+              {matchReason}
+            </div>
+          )}
 
           {/* Experience & German Level */}
           <div className="space-y-3 mb-4">

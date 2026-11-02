@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useEffect, memo } from "react";
 import Link from "next/link";
-import { Clock, ArrowRight } from "lucide-react";
+import { Clock, ArrowRight, Sparkles, Loader2, CheckCircle2 } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { SliderWithMarker } from "./roi/SliderWithMarker";
 import { ProductTypeTabs, type ProductType } from "./roi/ProductTypeTabs";
@@ -193,9 +193,16 @@ export const RoiCalculator = memo(function RoiCalculator() {
   const [contractDuration, setContractDuration] = useState(
     () => getProductDefaultsFromIndustry("fachkraefte").contractDuration
   );
+  const [aiBrief, setAiBrief] = useState<{
+    headline: string;
+    bullets: string[];
+    recommendation: string;
+  } | null>(null);
+  const [isGeneratingBrief, setIsGeneratingBrief] = useState(false);
 
   useEffect(() => {
     setSelectedIndustry(null);
+    setAiBrief(null);
   }, [productType]);
 
   useEffect(() => {
@@ -203,7 +210,38 @@ export const RoiCalculator = memo(function RoiCalculator() {
     setDmfSalary(currentDefaults.dmfSalary);
     setRecruitmentFee(currentDefaults.recruitmentFee);
     setContractDuration(currentDefaults.contractDuration);
+    setAiBrief(null);
   }, [currentDefaults]);
+
+  const handleGenerateBrief = async () => {
+    if (isGeneratingBrief) return;
+    setIsGeneratingBrief(true);
+    try {
+      const response = await fetch("/api/roi/brief", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          productType,
+          industry: selectedIndustry,
+          germanSalary,
+          dmfSalary,
+          recruitmentFee,
+          contractDuration,
+          savings: calculations.savings,
+          savingsPercentage: calculations.savingsPercentage,
+          lang,
+        }),
+      });
+      const result = await response.json();
+      if (response.ok && result.data) {
+        setAiBrief(result.data);
+      }
+    } catch {
+      // Ignore network error quietly
+    } finally {
+      setIsGeneratingBrief(false);
+    }
+  };
 
   const calculations = useMemo(() => {
     const germanTotalCost = germanSalary * 13 * contractDuration;
@@ -440,6 +478,70 @@ export const RoiCalculator = memo(function RoiCalculator() {
               {t.roi?.disclaimer ||
                 "Hinweis: Diese Berechnung dient nur als Referenz und berücksichtigt keine zusätzlichen Zulagen, Sozialabgaben, Steuern oder andere Nebenkosten. Die tatsächlichen Kosten können je nach individuellem Fall variieren."}
             </p>
+          </div>
+
+          {/* AI Executive Brief Card */}
+          <div className="bg-white border border-indigo-200 rounded-xl p-5 shadow-sm space-y-3">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div className="flex items-center gap-2 text-indigo-950 font-bold text-sm">
+                <Sparkles className="w-4 h-4 text-indigo-600" />
+                <span>
+                  {lang === "de"
+                    ? "KI-Management-Kurzanalyse (CFO & HR)"
+                    : lang === "en"
+                      ? "AI Executive ROI Brief (CFO & HR)"
+                      : "Phân tích Hiệu quả Đầu tư bằng AI (Dành cho Ban Giám đốc)"}
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={handleGenerateBrief}
+                disabled={isGeneratingBrief}
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold transition-colors disabled:opacity-60"
+              >
+                {isGeneratingBrief ? (
+                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                ) : (
+                  <Sparkles className="w-3.5 h-3.5" />
+                )}
+                {aiBrief
+                  ? lang === "de"
+                    ? "Analyse aktualisieren"
+                    : lang === "en"
+                      ? "Refresh Brief"
+                      : "Cập nhật phân tích"
+                  : lang === "de"
+                    ? "KI-Analyse erstellen"
+                    : lang === "en"
+                      ? "Generate AI Brief"
+                      : "Tạo báo cáo phân tích AI"}
+              </button>
+            </div>
+
+            {aiBrief ? (
+              <div className="pt-2 border-t border-indigo-100 space-y-2.5 text-xs text-slate-700">
+                <p className="font-bold text-indigo-950 text-sm">{aiBrief.headline}</p>
+                <ul className="space-y-1.5">
+                  {aiBrief.bullets.map((bullet, idx) => (
+                    <li key={idx} className="flex items-start gap-2 leading-relaxed">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="pt-1 font-medium text-indigo-900 bg-indigo-50/70 rounded-lg p-2.5">
+                  {aiBrief.recommendation}
+                </p>
+              </div>
+            ) : (
+              <p className="text-xs text-slate-500 leading-relaxed">
+                {lang === "de"
+                  ? "Erstellen Sie per Klick eine individuelle Amortisations- und FEG-Vorlaufzeit-Analyse für Ihre Geschäftsführung auf Basis der oben gewählten Parameter."
+                  : lang === "en"
+                    ? "Click to generate a customized break-even, retention, and FEG visa timeline summary for your leadership team based on your selected parameters."
+                    : "Bấm nút để AI lập bản tóm tắt điểm hoàn vốn (Break-Even), độ ổn định nhân sự và thời gian chuẩn bị hồ sơ Visa FEG theo đúng thông số anh/chị vừa chọn."}
+              </p>
+            )}
           </div>
 
           {/* Conversion CTA Card */}

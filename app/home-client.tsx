@@ -8,6 +8,7 @@ import { ValuesSection } from "@/components/sections/ValuesSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { ProcessRoadmap } from "@/components/b2b/ProcessRoadmap";
 import { DeferredSalarySimulator } from "@/components/performance/DeferredSalarySimulator";
+import { PathwayFinder } from "@/components/tools/PathwayFinder";
 import ContactSection from "@/components/sections/ContactSection";
 import { PartnerSection } from "@/components/sections/PartnerSection";
 import type { ReactNode } from "react";
@@ -42,6 +43,7 @@ export function HomeClient({ assets, heroCandidates, talentCandidates }: HomeCli
       <ProcessRoadmap />
       <DeferredSalarySimulator />
       {talentCandidates}
+      <PathwayFinder />
       <ContactSection />
     </div>
   );
