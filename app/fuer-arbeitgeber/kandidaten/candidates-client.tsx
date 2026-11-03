@@ -5,6 +5,7 @@ import { useState, useMemo } from "react";
 import { Users, X, Sparkles, Search, Loader2, RotateCcw } from "lucide-react";
 import { CandidateCard } from "@/components/candidates/CandidateCard";
 import { InquiryModal } from "@/components/candidates/InquiryModal";
+import { ShortlistDrawer } from "@/components/candidates/ShortlistDrawer";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import type { CandidateCategory } from "@/app/admin/candidates/types";
 import type { PublicCandidate } from "@/lib/candidates/public-profile";
@@ -316,7 +317,7 @@ export function CandidatesClient({ initialCandidates, error }: CandidatesClientP
       )}
 
       {/* Candidates Grid */}
-      <section className="py-12 md:py-16">
+      <section className="py-12 md:py-16 pb-28">
         <div className="container mx-auto px-4">
           {error ? (
             <div className="text-center py-12">
@@ -362,6 +363,9 @@ export function CandidatesClient({ initialCandidates, error }: CandidatesClientP
 
       {/* Inquiry Modal */}
       <InquiryModal candidate={selectedCandidate} isOpen={isModalOpen} onClose={handleCloseModal} />
+
+      {/* Floating Shortlist (Merkliste) Drawer */}
+      <ShortlistDrawer />
     </div>
   );
 }

@@ -1,16 +1,26 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useConsent, openConsentSettings } from "@/components/CookieConsent";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Briefcase, Award, FileText, Sparkles } from "lucide-react";
+import {
+  Briefcase,
+  Award,
+  FileText,
+  Sparkles,
+  Bookmark,
+  BookmarkCheck,
+  ExternalLink,
+} from "lucide-react";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { BLUR_SQUARE } from "@/lib/image-placeholder";
 import type { PublicCandidate } from "@/lib/candidates/public-profile";
+import { useCandidateShortlist } from "@/lib/candidates/shortlist";
 import { categoryLabelsI18n } from "@/app/admin/candidates/types";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
@@ -57,11 +67,16 @@ const getCandidateCode = (id: string): string => {
  */
 const getInitials = (profession?: string | null, category?: string): string => {
   if (profession) {
-    const words = profession.split(" ");
+    const words = profession
+      .split(/\s+/)
+      .map((w) => w.replace(/[^a-zA-ZÄÖÜäöüß]/g, ""))
+      .filter((w) => w.length > 0);
     if (words.length >= 2) {
       return `${words[0][0]}${words[1][0]}`.toUpperCase();
     }
-    return profession.substring(0, 2).toUpperCase();
+    if (words.length === 1 && words[0].length >= 2) {
+      return words[0].substring(0, 2).toUpperCase();
+    }
   }
   if (category) {
     return category.substring(0, 2).toUpperCase();
@@ -80,6 +95,8 @@ export const CandidateCard = ({
   const [imageError, setImageError] = useState(false);
   const [videoError, setVideoError] = useState(false);
   const { externalMedia: videoAllowed } = useConsent();
+  const { isShortlisted, toggleShortlist } = useCandidateShortlist();
+  const savedInShortlist = isShortlisted(candidate.id);
 
   const candidateCode = getCandidateCode(candidate.id);
   const embedUrl = candidate.video_url ? getEmbedUrl(candidate.video_url) : null;
@@ -96,50 +113,93 @@ export const CandidateCard = ({
     >
       <Card className="h-full flex flex-col border border-gray-200 hover:border-primary/30 hover:shadow-lg transition-all duration-300 overflow-hidden group">
         {/* Header - Avatar & Code */}
-        <CardHeader className="pb-4 bg-gradient-to-br from-muted/30 to-muted/10 border-b">
-          <div className="flex items-center gap-4">
-            {/* Avatar */}
-            <Avatar className="h-16 w-16 border-2 border-primary/20">
-              {candidate.avatar_url && !imageError ? (
-                <Image
-                  src={candidate.avatar_url}
-                  alt={candidateCode}
-                  fill
-                  className="object-cover"
-                  onError={() => setImageError(true)}
-                  unoptimized={candidate.avatar_url.startsWith("http")}
-                  placeholder="blur"
-                  blurDataURL={BLUR_SQUARE}
-                />
-              ) : (
-                <AvatarFallback className="bg-primary/10 text-primary font-bold text-lg">
-                  {getInitials(candidate.profession, candidate.category)}
-                </AvatarFallback>
-              )}
-            </Avatar>
-
-            {/* Code */}
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center justify-between gap-2 mb-1">
-                <p className="text-xs text-muted-foreground font-mono tracking-wide">
-                  {t.candidates?.code_label || "Kandidat"} #{candidateCode}
-                </p>
-                {typeof matchScore === "number" && (
-                  <span className="inline-flex items-center gap-1 rounded-full bg-emerald-600 px-2.5 py-0.5 text-xs font-bold text-white shadow-sm">
-                    <Sparkles className="h-3 w-3" />
-                    {matchScore}% Match
-                  </span>
+        <CardHeader className="pb-4 bg-gradient-to-br from-slate-50 to-white border-b border-slate-100">
+          <div className="flex items-start justify-between gap-3">
+            <div className="flex items-center gap-3.5 min-w-0">
+              {/* Avatar */}
+              <Avatar className="h-14 w-14 border-2 border-primary/15 flex-shrink-0 shadow-xs">
+                {candidate.avatar_url && !imageError ? (
+                  <Image
+                    src={candidate.avatar_url}
+                    alt={candidateCode}
+                    fill
+                    className="object-cover"
+                    onError={() => setImageError(true)}
+                    unoptimized={candidate.avatar_url.startsWith("http")}
+                    placeholder="blur"
+                    blurDataURL={BLUR_SQUARE}
+                  />
+                ) : (
+                  <AvatarFallback className="bg-primary/10 text-primary font-bold text-base">
+                    {getInitials(candidate.profession, candidate.category)}
+                  </AvatarFallback>
                 )}
+              </Avatar>
+
+              {/* Code & Category */}
+              <div className="min-w-0">
+                <p className="text-xs text-slate-500 font-mono tracking-wide whitespace-nowrap mb-1.5">
+                  {t.candidates?.code_label || "Kandidat"}{" "}
+                  <span className="font-semibold text-slate-700">#{candidateCode}</span>
+                </p>
+                <div className="flex flex-wrap items-center gap-1.5">
+                  {candidate.category && (
+                    <Badge
+                      variant="outline"
+                      className="text-xs border-primary/25 text-primary bg-primary/5 font-medium"
+                    >
+                      {categoryLabel}
+                    </Badge>
+                  )}
+                  {typeof matchScore === "number" && (
+                    <span className="inline-flex items-center gap-1 rounded-full bg-emerald-600 px-2 py-0.5 text-[11px] font-bold text-white shadow-xs">
+                      <Sparkles className="h-2.5 w-2.5" />
+                      {matchScore}% Match
+                    </span>
+                  )}
+                </div>
               </div>
-              {candidate.category && (
-                <Badge
-                  variant="outline"
-                  className="text-xs border-primary/30 text-primary bg-primary/5"
-                >
-                  {categoryLabel}
-                </Badge>
-              )}
             </div>
+
+            {!preview && (
+              <button
+                type="button"
+                onClick={() => toggleShortlist(candidate)}
+                title={
+                  savedInShortlist
+                    ? lang === "de"
+                      ? "Von Merkliste entfernen"
+                      : "Remove from shortlist"
+                    : lang === "de"
+                      ? "Auf Merkliste speichern"
+                      : "Save to shortlist"
+                }
+                className={`inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-semibold border transition-all flex-shrink-0 ${
+                  savedInShortlist
+                    ? "bg-emerald-50 border-emerald-300 text-emerald-700 shadow-xs"
+                    : "bg-white border-slate-200 text-slate-600 hover:border-primary/40 hover:text-primary"
+                }`}
+              >
+                {savedInShortlist ? (
+                  <BookmarkCheck className="h-3.5 w-3.5 text-emerald-600" />
+                ) : (
+                  <Bookmark className="h-3.5 w-3.5" />
+                )}
+                <span>
+                  {savedInShortlist
+                    ? lang === "de"
+                      ? "Gemerkt"
+                      : lang === "en"
+                        ? "Saved"
+                        : "Đã lưu"
+                    : lang === "de"
+                      ? "Merken"
+                      : lang === "en"
+                        ? "Save"
+                        : "Lưu"}
+                </span>
+              </button>
+            )}
           </div>
         </CardHeader>
 
@@ -238,9 +298,17 @@ export const CandidateCard = ({
         </CardContent>
 
         {/* Footer - CTA Button */}
-        <CardFooter className="pt-4 pb-5 border-t bg-muted/20">
+        <CardFooter className="pt-4 pb-5 border-t bg-muted/20 flex flex-col sm:flex-row gap-2">
+          {!preview && (
+            <Button asChild variant="outline" className="w-full sm:w-auto gap-1.5 text-xs">
+              <Link href={`/fuer-arbeitgeber/kandidaten/${candidate.id}`}>
+                <ExternalLink className="h-3.5 w-3.5" />
+                {lang === "de" ? "Exposé" : lang === "en" ? "Dossier" : "Hồ sơ"}
+              </Link>
+            </Button>
+          )}
           <Button
-            className="w-full gap-2 bg-primary hover:bg-primary/90 shadow-md"
+            className="w-full flex-1 gap-2 bg-primary hover:bg-primary/90 shadow-md"
             disabled={preview}
             onClick={() => onRequestProfile?.(candidate)}
           >

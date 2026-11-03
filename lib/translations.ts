@@ -805,6 +805,8 @@ export const TRANSLATIONS = {
       timeline_desc: "Prozessdauer simulieren",
       candidates: "Kandidaten-Pool",
       candidates_desc: "Top-Talente entdecken",
+      branchen: "Branchenlösungen",
+      branchen_desc: "Pflege, Handwerk, Gastro, Industrie & Logistik",
       // Kooperation & Programme
       cooperation: "Kooperation & Programme",
       dual_training: "Duale Ausbildung",
@@ -2003,6 +2005,8 @@ export const TRANSLATIONS = {
       timeline_desc: "Simulate process duration",
       candidates: "Candidate Pool",
       candidates_desc: "Discover Top Talents",
+      branchen: "Industry Solutions",
+      branchen_desc: "Nursing, Trades, Hospitality, Industry & Logistics",
       // Cooperation & Programs
       cooperation: "Cooperation & Programs",
       dual_training: "Vocational Training",
@@ -3191,6 +3195,8 @@ export const TRANSLATIONS = {
       timeline_desc: "Mô phỏng thời gian quy trình",
       candidates: "Danh sách ứng viên",
       candidates_desc: "Khám phá nhân tài hàng đầu",
+      branchen: "Giải pháp theo Ngành",
+      branchen_desc: "Điều dưỡng, Xây dựng, Nhà hàng, Cơ khí & Kho vận",
       // Cooperation & programs
       cooperation: "Hợp tác & Chương trình",
       dual_training: "Du học Nghề",

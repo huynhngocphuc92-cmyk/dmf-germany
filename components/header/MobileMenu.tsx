@@ -64,6 +64,7 @@ export const MobileMenu = memo(function MobileMenu({
 
   const iconMap: Record<string, typeof MapPin> = {
     hiring_request: ClipboardCheck,
+    branchen: Briefcase,
     references: MapPin,
     roi_calculator: Calculator,
     timeline: Calendar,

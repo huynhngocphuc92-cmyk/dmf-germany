@@ -63,7 +63,7 @@ export async function POST(request: NextRequest) {
     );
     response.cookies.set(OWNER_COOKIE, ownerToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: process.env.NODE_ENV === "production" || process.env.INTAKE_TEST_BACKEND === "true",
       sameSite: "lax",
       path: "/api/chat/history",
       maxAge: 60 * 60 * 24 * 30,

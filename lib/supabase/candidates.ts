@@ -60,6 +60,27 @@ export async function getPublicCandidates(filters?: {
   return queryPublishedCandidates(filters);
 }
 
+export async function getPublicCandidateById(id: string): Promise<PublicCandidate | null> {
+  try {
+    const supabase = createPublicClient();
+    const { data, error } = await supabase
+      .from("candidates")
+      .select(PUBLIC_CANDIDATE_FIELDS)
+      .eq("id", id)
+      .eq("publication_status", "published")
+      .gte("publication_valid_until", new Date().toISOString().slice(0, 10))
+      .limit(1);
+
+    if (error || !data || data.length === 0) {
+      return null;
+    }
+    const parsed = toPublicCandidates(data);
+    return parsed[0] ?? null;
+  } catch {
+    return null;
+  }
+}
+
 /**
  * Get unique categories from public candidates
  */

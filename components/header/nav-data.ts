@@ -8,6 +8,7 @@ import {
   School,
   Briefcase,
   ClipboardCheck,
+  Building2,
 } from "lucide-react";
 
 // Navigation item types
@@ -51,6 +52,12 @@ export const EMPLOYER_ITEMS: DropdownItem[] = [
     icon: ClipboardCheck,
   },
   {
+    href: "/fuer-arbeitgeber/branchen",
+    labelKey: "branchen",
+    descKey: "branchen_desc",
+    icon: Building2,
+  },
+  {
     href: "/fuer-arbeitgeber/kandidaten",
     labelKey: "candidates",
     descKey: "candidates_desc",
@@ -79,6 +86,7 @@ export const EMPLOYER_ITEMS: DropdownItem[] = [
 // Employer active routes for highlighting
 export const EMPLOYER_ACTIVE_ROUTES = [
   "/fuer-arbeitgeber/personalbedarf",
+  "/fuer-arbeitgeber/branchen",
   "/referenzen",
   "/roi-rechner",
   "/fuer-arbeitgeber/zeitplan",
