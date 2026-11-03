@@ -3,8 +3,17 @@
 import { revalidatePath } from "next/cache";
 import { cache } from "react";
 import { createAdminClient as createClient } from "@/lib/auth/admin";
+import { PRIMARY_CONTACT } from "@/lib/company/contact";
 import { createPublicClient } from "@/utils/supabase/public";
 import type { SiteConfigItem, SiteConfigGrouped } from "@/types/theme";
+
+function normalizeSiteAssetValue(key: string, value: string | null | undefined): string | null {
+  if (!value) return null;
+  if (key === "contact_email" && value.trim().toLowerCase().endsWith("@dmf.edu.vn")) {
+    return PRIMARY_CONTACT.email;
+  }
+  return value;
+}
 
 // ============================================
 // GET SITE CONFIGS
@@ -38,14 +47,18 @@ async function fetchSiteConfigs(): Promise<SiteConfigItem[]> {
   // UI will map these to display tabs
 
   return (data || []).map((item: Record<string, unknown>) => {
+    const normalizedValue = normalizeSiteAssetValue(
+      String(item.key || ""),
+      (item.value as string | null) ?? null
+    );
     return {
       ...item,
       // Keep section from DB (branding, home, contact, settings)
       section: (item.section as string) || "settings",
-      asset_type: (item.asset_type as string) || (item.value ? "image" : "text"),
-      value: (item.value as string | null) ?? null,
+      asset_type: (item.asset_type as string) || (normalizedValue ? "image" : "text"),
+      value: normalizedValue,
       // image_url is deprecated, use value instead
-      image_url: (item.value as string | null) ?? null,
+      image_url: normalizedValue,
     };
   }) as SiteConfigItem[];
 }
@@ -151,7 +164,11 @@ export async function getSiteConfigByKey(key: string): Promise<{
       return { data: null, error: error.message };
     }
 
-    return { data: data as SiteConfigItem, error: null };
+    const item = data as SiteConfigItem;
+    return {
+      data: { ...item, value: normalizeSiteAssetValue(item.key, item.value) },
+      error: null,
+    };
   } catch (err) {
     console.error("Error in getSiteConfigByKey:", err);
     return { data: null, error: "Failed to fetch site config" };
@@ -177,7 +194,13 @@ const fetchSiteConfigsByKeys = cache(
         console.error("Error fetching site assets by keys:", error);
         return { data: null, error: error.message || "Failed to fetch site assets" };
       }
-      return { data: data ?? [], error: null };
+      return {
+        data: (data ?? []).map((item) => ({
+          ...item,
+          value: normalizeSiteAssetValue(item.key, item.value),
+        })),
+        error: null,
+      };
     } catch (error) {
       console.error("Error fetching site assets by keys:", error);
       return { data: null, error: "Failed to fetch site assets" };

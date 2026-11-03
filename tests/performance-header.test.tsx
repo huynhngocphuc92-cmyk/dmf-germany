@@ -43,3 +43,10 @@ it("keeps default header available when the optional branding query fails", asyn
   });
   expect((await HeaderWrapper()).props).toEqual({ logoUrl: null, hotline: null, email: null });
 });
+it("ignores legacy @dmf.edu.vn contact_email from site_assets so Header falls back to dmf-talents.de", async () => {
+  query.mockResolvedValue({
+    data: [{ key: "contact_email", value: "contact@dmf.edu.vn" }],
+    error: null,
+  });
+  expect((await HeaderWrapper()).props.email).toBeNull();
+});

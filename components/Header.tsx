@@ -146,7 +146,8 @@ export const Header = memo(function Header({ logoUrl, hotline, email }: HeaderPr
 
   // Display values with fallbacks
   const displayHotline = hotline || GERMANY_CONTACT.phone;
-  const displayEmail = email || PRIMARY_CONTACT.email;
+  const displayEmail =
+    email && !email.toLowerCase().endsWith("@dmf.edu.vn") ? email : PRIMARY_CONTACT.email;
 
   // Scroll tracking
   useEffect(() => {

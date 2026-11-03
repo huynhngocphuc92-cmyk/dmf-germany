@@ -14,11 +14,7 @@ export async function HeaderWrapper() {
   }
   const logoUrl =
     values.get("site_logo") || values.get("header_logo") || values.get("logo_url") || null;
-  return (
-    <Header
-      logoUrl={logoUrl}
-      hotline={values.get("header_hotline") || null}
-      email={values.get("contact_email") || null}
-    />
-  );
+  const rawEmail = values.get("contact_email")?.trim() || null;
+  const email = rawEmail && !rawEmail.toLowerCase().endsWith("@dmf.edu.vn") ? rawEmail : null;
+  return <Header logoUrl={logoUrl} hotline={values.get("header_hotline") || null} email={email} />;
 }
