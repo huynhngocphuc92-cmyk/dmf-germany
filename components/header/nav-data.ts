@@ -9,6 +9,7 @@ import {
   Briefcase,
   ClipboardCheck,
   Building2,
+  ShieldCheck,
 } from "lucide-react";
 
 // Navigation item types
@@ -64,6 +65,12 @@ export const EMPLOYER_ITEMS: DropdownItem[] = [
     icon: Users,
   },
   {
+    href: "/fuer-arbeitgeber/datenraum",
+    labelKey: "datenraum",
+    descKey: "datenraum_desc",
+    icon: ShieldCheck,
+  },
+  {
     href: "/roi-rechner",
     labelKey: "roi_calculator",
     descKey: "roi_calculator_desc",
@@ -87,6 +94,7 @@ export const EMPLOYER_ITEMS: DropdownItem[] = [
 export const EMPLOYER_ACTIVE_ROUTES = [
   "/fuer-arbeitgeber/personalbedarf",
   "/fuer-arbeitgeber/branchen",
+  "/fuer-arbeitgeber/datenraum",
   "/referenzen",
   "/roi-rechner",
   "/fuer-arbeitgeber/zeitplan",

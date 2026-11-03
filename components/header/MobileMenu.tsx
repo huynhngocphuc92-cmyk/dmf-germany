@@ -17,6 +17,7 @@ import {
   School,
   Briefcase,
   ClipboardCheck,
+  ShieldCheck,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/components/providers/LanguageProvider";
@@ -65,6 +66,7 @@ export const MobileMenu = memo(function MobileMenu({
   const iconMap: Record<string, typeof MapPin> = {
     hiring_request: ClipboardCheck,
     branchen: Briefcase,
+    datenraum: ShieldCheck,
     references: MapPin,
     roi_calculator: Calculator,
     timeline: Calendar,

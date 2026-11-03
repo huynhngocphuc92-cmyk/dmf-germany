@@ -102,6 +102,18 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link
+                  href="/fuer-arbeitgeber/datenraum"
+                  className="text-emerald-400 font-semibold hover:text-white transition"
+                >
+                  {lang === "de"
+                    ? "Arbeitgeber-Datenraum (Login)"
+                    : lang === "en"
+                      ? "Employer Data Room (Login)"
+                      : "Phòng dữ liệu Doanh nghiệp (Login)"}
+                </Link>
+              </li>
+              <li>
                 <Link href="/roi-rechner" className="hover:text-white transition">
                   {t.nav?.roi_calculator || "ROI-Rechner"}
                 </Link>
@@ -160,6 +172,17 @@ export default function Footer() {
                 </Link>
               </div>
               <div>
+                <Link
+                  href="/portal/login"
+                  className="text-slate-400 hover:text-emerald-400 transition underline"
+                >
+                  {lang === "de"
+                    ? "Bewerber- & Azubi-Portal"
+                    : lang === "en"
+                      ? "Applicant & Azubi Portal"
+                      : "Cổng Học Viên & Hồ Sơ (/portal)"}
+                </Link>
+                {" · "}
                 <button
                   onClick={openConsentSettings}
                   className="hover:text-white underline text-left"

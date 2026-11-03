@@ -4,6 +4,9 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
 import { isAdminUser } from "@/lib/auth/admin-policy";
+import { getMailTransporter } from "@/lib/email/transporter";
+import { escapeHtml } from "@/lib/sanitize";
+import { SITE_URL } from "@/lib/site";
 import {
   legalSignatureSchema,
   studentMotivationLetterSchema,
@@ -202,6 +205,7 @@ export async function portalRegister(
     email,
     password,
     options: {
+      emailRedirectTo: `${SITE_URL}/auth/callback?next=/portal`,
       data: {
         full_name: fullName,
         phone,
@@ -515,11 +519,71 @@ export async function saveStudentProfile(
       normalizeProfileRow(data as StudentProfile, buildDefaultProfile(user))
     );
 
+    if (submitForReview) {
+      await notifyAdminStudentDossierSubmitted(hydrated).catch(() => null);
+    }
+
     revalidatePath("/portal");
     revalidatePath("/admin/candidates");
     return { success: true, error: null, profile: hydrated };
   } catch {
     return { success: false, error: "Đã xảy ra lỗi khi lưu hồ sơ." };
+  }
+}
+
+async function notifyAdminStudentDossierSubmitted(profile: StudentProfile): Promise<void> {
+  if (
+    process.env.VERCEL_ENV === "preview" ||
+    (process.env.VERCEL_ENV !== "production" && process.env.NOTIFICATION_DELIVERY !== "enabled")
+  ) {
+    return;
+  }
+
+  const title = `Hồ sơ Học viên mới chờ duyệt: ${profile.full_name || profile.email}`;
+  const adminUrl = `${SITE_URL}/admin/candidates`;
+
+  // 1. Optional Telegram alert
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+  if (token && chatId) {
+    await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      signal: AbortSignal.timeout(8000),
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: `${title}\nDiện: ${profile.program_track.toUpperCase()} • Tiếng Đức: ${profile.german_level}\nNghề mục tiêu: ${profile.target_profession || "Chưa điền"}\nKiểm duyệt tại: ${adminUrl}`,
+      }),
+    }).catch(() => null);
+  }
+
+  // 2. Optional SMTP alert to Admin
+  const transporter = getMailTransporter();
+  const smtpUser = process.env.SMTP_USER?.trim();
+  const from =
+    process.env.SMTP_FROM?.trim() ||
+    (smtpUser?.includes("@") ? smtpUser : process.env.CONTACT_EMAIL?.trim()) ||
+    smtpUser;
+  const recipient = process.env.CONTACT_EMAIL?.trim();
+
+  if (transporter && from && recipient) {
+    const html = `
+      <h2>${escapeHtml(title)}</h2>
+      <p><strong>Họ và tên:</strong> ${escapeHtml(profile.full_name || "–")}</p>
+      <p><strong>Email:</strong> ${escapeHtml(profile.email || "–")}</p>
+      <p><strong>Điện thoại:</strong> ${escapeHtml(profile.phone || "–")}</p>
+      <p><strong>Diện hồ sơ:</strong> ${escapeHtml(profile.program_track.toUpperCase())} · <strong>Tiếng Đức:</strong> ${escapeHtml(profile.german_level)}</p>
+      <p><strong>Nghề mục tiêu:</strong> ${escapeHtml(profile.target_profession || "–")}</p>
+      <p><a href="${adminUrl}">Mở trang Kiểm duyệt Hồ sơ Học viên (/admin/candidates)</a></p>
+    `;
+    await transporter
+      .sendMail({
+        from: { name: "DMF Bewerberportal", address: from },
+        to: { address: recipient, name: "DMF Admin" },
+        subject: title,
+        html,
+      })
+      .catch(() => null);
   }
 }
 

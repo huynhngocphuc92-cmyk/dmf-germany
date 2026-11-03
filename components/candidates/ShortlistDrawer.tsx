@@ -110,6 +110,20 @@ export function ShortlistDrawer() {
             <Button
               asChild
               size="sm"
+              variant="outline"
+              className="hidden sm:inline-flex border-slate-700 bg-slate-800/90 hover:bg-slate-800 text-slate-200 hover:text-white text-xs rounded-xl"
+            >
+              <Link href="/fuer-arbeitgeber/datenraum">
+                {lang === "de"
+                  ? "Im Datenraum öffnen"
+                  : lang === "en"
+                    ? "Open in Data Room"
+                    : "Mở trong Phòng dữ liệu"}
+              </Link>
+            </Button>
+            <Button
+              asChild
+              size="sm"
               className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 text-white font-semibold gap-1.5 rounded-xl"
             >
               <Link href={requestHref}>

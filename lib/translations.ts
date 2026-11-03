@@ -807,6 +807,8 @@ export const TRANSLATIONS = {
       candidates_desc: "Top-Talente entdecken",
       branchen: "Branchenlösungen",
       branchen_desc: "Pflege, Handwerk, Gastro, Industrie & Logistik",
+      datenraum: "Arbeitgeber-Datenraum (Login)",
+      datenraum_desc: "DSGVO-Dossiers, Merkliste & § 81a Tracker",
       // Kooperation & Programme
       cooperation: "Kooperation & Programme",
       dual_training: "Duale Ausbildung",
@@ -2007,6 +2009,8 @@ export const TRANSLATIONS = {
       candidates_desc: "Discover Top Talents",
       branchen: "Industry Solutions",
       branchen_desc: "Nursing, Trades, Hospitality, Industry & Logistics",
+      datenraum: "Employer Data Room (Login)",
+      datenraum_desc: "GDPR Dossiers, Shortlist & § 81a Tracker",
       // Cooperation & Programs
       cooperation: "Cooperation & Programs",
       dual_training: "Vocational Training",
@@ -3197,6 +3201,8 @@ export const TRANSLATIONS = {
       candidates_desc: "Khám phá nhân tài hàng đầu",
       branchen: "Giải pháp theo Ngành",
       branchen_desc: "Điều dưỡng, Xây dựng, Nhà hàng, Cơ khí & Kho vận",
+      datenraum: "Phòng dữ liệu Doanh nghiệp (Login)",
+      datenraum_desc: "Hồ sơ DSGVO, Giỏ ứng viên & Tiến độ § 81a",
       // Cooperation & programs
       cooperation: "Hợp tác & Chương trình",
       dual_training: "Du học Nghề",

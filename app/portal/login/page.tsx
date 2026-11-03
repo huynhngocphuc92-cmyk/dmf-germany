@@ -3,14 +3,26 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { portalLogin } from "../actions";
+import { requestPasswordResetAction } from "@/app/auth/actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { GraduationCap, Loader2, AlertCircle, ArrowRight, ShieldCheck } from "lucide-react";
+import {
+  GraduationCap,
+  Loader2,
+  AlertCircle,
+  ArrowRight,
+  ShieldCheck,
+  CheckCircle2,
+  KeyRound,
+} from "lucide-react";
 
 export default function PortalLoginPage() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [showForgot, setShowForgot] = useState(false);
+  const [resetSent, setResetSent] = useState(false);
+  const [isResetLoading, setIsResetLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,6 +38,20 @@ export default function PortalLoginPage() {
     } catch {
       setIsLoading(false);
     }
+  };
+
+  const handleResetSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setError(null);
+    setIsResetLoading(true);
+    const formData = new FormData(e.currentTarget);
+    const res = await requestPasswordResetAction(formData);
+    setIsResetLoading(false);
+    if (!res.success) {
+      setError(res.error);
+      return;
+    }
+    setResetSent(true);
   };
 
   return (
@@ -72,9 +98,22 @@ export default function PortalLoginPage() {
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor="password" className="text-slate-200 text-xs">
-                Mật khẩu (Passwort) *
-              </Label>
+              <div className="flex items-center justify-between">
+                <Label htmlFor="password" className="text-slate-200 text-xs">
+                  Mật khẩu (Passwort) *
+                </Label>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowForgot((v) => !v);
+                    setError(null);
+                    setResetSent(false);
+                  }}
+                  className="text-[11px] text-emerald-400 hover:text-emerald-300 underline underline-offset-4"
+                >
+                  Quên mật khẩu? (Passwort vergessen?)
+                </button>
+              </div>
               <Input
                 id="password"
                 name="password"
@@ -103,6 +142,52 @@ export default function PortalLoginPage() {
               )}
             </Button>
           </form>
+
+          {showForgot && (
+            <div className="p-4 rounded-xl bg-slate-950/90 border border-slate-800 space-y-3">
+              <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold">
+                <KeyRound className="w-3.5 h-3.5" />
+                Khôi phục mật khẩu (Passwort zurücksetzen)
+              </div>
+              {resetSent ? (
+                <div className="flex items-start gap-2 text-xs text-emerald-300">
+                  <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-emerald-400" />
+                  <span>
+                    Đã gửi liên kết đặt lại mật khẩu! Vui lòng kiểm tra hộp thư Email của bạn (bao
+                    gồm mục Spam).
+                  </span>
+                </div>
+              ) : (
+                <form onSubmit={handleResetSubmit} className="space-y-2.5">
+                  <p className="text-[11px] text-slate-400">
+                    Nhập Email tài khoản của bạn để nhận liên kết đặt lại mật khẩu mới:
+                  </p>
+                  <Input
+                    name="email"
+                    type="email"
+                    required
+                    placeholder="hocvien@example.com"
+                    className="bg-slate-900 border-slate-800 text-white text-xs h-9"
+                  />
+                  <Button
+                    type="submit"
+                    size="sm"
+                    disabled={isResetLoading}
+                    className="w-full bg-slate-800 hover:bg-slate-700 text-white text-xs"
+                  >
+                    {isResetLoading ? (
+                      <>
+                        <Loader2 className="w-3.5 h-3.5 mr-1.5 animate-spin" />
+                        Đang gửi liên kết...
+                      </>
+                    ) : (
+                      "Gửi liên kết đặt lại mật khẩu"
+                    )}
+                  </Button>
+                </form>
+              )}
+            </div>
+          )}
 
           <div className="pt-4 border-t border-slate-800 text-center space-y-3">
             <p className="text-xs text-slate-400">
