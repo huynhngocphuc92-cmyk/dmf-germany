@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -168,12 +169,22 @@ function HeroSection() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="relative hidden lg:block"
           >
-            <div className="relative bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 p-8">
-              <div className="text-center mb-6">
-                <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30">
-                  <Shield className="w-3 h-3 mr-1" />
-                  {b2b?.common?.your_academy || "Ihre Akademie für Talente"}
-                </Badge>
+            <div className="relative bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 p-6 md:p-8">
+              <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden mb-6 border border-white/15 shadow-xl">
+                <Image
+                  src="/images/b2b/hero-ausbildung.jpg"
+                  alt={b2b?.common?.your_academy || "DMF Akademie in Vietnam"}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 520px"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
+                <div className="absolute bottom-3 left-3">
+                  <Badge className="bg-emerald-500/90 text-white border-emerald-400/50 shadow-sm">
+                    <Shield className="w-3 h-3 mr-1" />
+                    {b2b?.common?.your_academy || "Ihre Akademie für Talente"}
+                  </Badge>
+                </div>
               </div>
 
               <div className="space-y-4">
@@ -537,6 +548,7 @@ function QualityGatesSection() {
       ).split("|"),
       icon: Languages,
       color: "blue",
+      image: "/images/b2b/gate-1-sprache.jpg",
     },
     {
       gate: `${b2b?.common?.gate || "Gate"} 2`,
@@ -547,6 +559,7 @@ function QualityGatesSection() {
       ).split("|"),
       icon: Wrench,
       color: "emerald",
+      image: "/images/b2b/gate-2-fachlich.jpg",
     },
     {
       gate: `${b2b?.common?.gate || "Gate"} 3`,
@@ -558,6 +571,7 @@ function QualityGatesSection() {
       ).split("|"),
       icon: Target,
       color: "blue",
+      image: "/images/b2b/gate-3-workskills.jpg",
     },
     {
       gate: `${b2b?.common?.gate || "Gate"} 4`,
@@ -568,6 +582,7 @@ function QualityGatesSection() {
       ).split("|"),
       icon: Heart,
       color: "emerald",
+      image: "/images/b2b/gate-4-kultur.jpg",
     },
   ];
 
@@ -615,46 +630,57 @@ function QualityGatesSection() {
                 whileHover={{ y: -8 }}
                 className="group"
               >
-                <div className="h-full bg-white rounded-2xl p-6 border border-slate-200 hover:border-blue-300 hover:shadow-xl transition-all duration-300">
-                  {/* Gate Badge */}
-                  <div className="flex items-center justify-between mb-4">
-                    <Badge
-                      className={`${
-                        gate.color === "blue"
-                          ? "bg-blue-100 text-blue-700 border-blue-200"
-                          : "bg-emerald-100 text-emerald-700 border-emerald-200"
-                      }`}
-                    >
-                      {gate.gate}
-                    </Badge>
-                    <div
-                      className={`w-10 h-10 rounded-xl flex items-center justify-center ${
-                        gate.color === "blue"
-                          ? "bg-blue-100 text-blue-600"
-                          : "bg-emerald-100 text-emerald-600"
-                      }`}
-                    >
-                      <Icon className="w-5 h-5" />
-                    </div>
+                <div className="h-full bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-blue-300 hover:shadow-xl transition-all duration-300 flex flex-col">
+                  <div className="relative aspect-video w-full overflow-hidden bg-slate-100">
+                    <Image
+                      src={gate.image}
+                      alt={gate.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 300px"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
                   </div>
+                  <div className="p-6 flex-1 flex flex-col">
+                    {/* Gate Badge */}
+                    <div className="flex items-center justify-between mb-4">
+                      <Badge
+                        className={`${
+                          gate.color === "blue"
+                            ? "bg-blue-100 text-blue-700 border-blue-200"
+                            : "bg-emerald-100 text-emerald-700 border-emerald-200"
+                        }`}
+                      >
+                        {gate.gate}
+                      </Badge>
+                      <div
+                        className={`w-10 h-10 rounded-xl flex items-center justify-center ${
+                          gate.color === "blue"
+                            ? "bg-blue-100 text-blue-600"
+                            : "bg-emerald-100 text-emerald-600"
+                        }`}
+                      >
+                        <Icon className="w-5 h-5" />
+                      </div>
+                    </div>
 
-                  {/* Content */}
-                  <h3 className="text-lg font-bold text-slate-900 mb-2">{gate.title}</h3>
-                  <p className="text-slate-500 text-sm mb-4">{gate.description}</p>
+                    {/* Content */}
+                    <h3 className="text-lg font-bold text-slate-900 mb-2">{gate.title}</h3>
+                    <p className="text-slate-500 text-sm mb-4">{gate.description}</p>
 
-                  {/* Checklist */}
-                  <ul className="space-y-2">
-                    {gate.items.map((item, idx) => (
-                      <li key={idx} className="flex items-center gap-2 text-sm text-slate-600">
-                        <CheckCircle2
-                          className={`w-4 h-4 ${
-                            gate.color === "blue" ? "text-blue-500" : "text-emerald-500"
-                          }`}
-                        />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+                    {/* Checklist */}
+                    <ul className="space-y-2 mt-auto">
+                      {gate.items.map((item, idx) => (
+                        <li key={idx} className="flex items-center gap-2 text-sm text-slate-600">
+                          <CheckCircle2
+                            className={`w-4 h-4 ${
+                              gate.color === "blue" ? "text-blue-500" : "text-emerald-500"
+                            }`}
+                          />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </motion.div>
             );
@@ -794,6 +820,45 @@ function SettlementKitSection() {
               "Vollständige Betreuung in der ersten Woche garantiert eine stressfreie Ankunft und minimiert das Risiko von Abbrüchen durch Heimweh oder Überforderung."}
           </p>
         </motion.div>
+
+        {/* Authentic Arrival & Settling-in Photo Strip */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
+          {[
+            {
+              src: "/images/b2b/settlement-1-flughafen.jpg",
+              caption: "Abreise & Flughafenbegleitung",
+            },
+            {
+              src: "/images/b2b/settlement-2-ankunft.jpg",
+              caption: "Persönlicher Empfang in Deutschland",
+            },
+            {
+              src: "/images/b2b/settlement-3-wohnung.jpg",
+              caption: "Schlüsselübergabe & Unterkunft",
+            },
+            {
+              src: "/images/b2b/settlement-4-alltag.jpg",
+              caption: "Erste Orientierung & Betreuung vor Ort",
+            },
+          ].map((photo) => (
+            <div
+              key={photo.src}
+              className="group relative aspect-video rounded-2xl overflow-hidden border border-slate-200 shadow-md"
+            >
+              <Image
+                src={photo.src}
+                alt={photo.caption}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 300px"
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/20 to-transparent" />
+              <p className="absolute bottom-3 left-3 right-3 text-xs font-semibold text-white">
+                {photo.caption}
+              </p>
+            </div>
+          ))}
+        </div>
 
         {/* Timeline */}
         <div className="relative">

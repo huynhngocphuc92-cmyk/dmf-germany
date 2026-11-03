@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useRef } from "react";
+import Image from "next/image";
 import { useConsent, openConsentSettings } from "@/components/CookieConsent";
 import { DeferredInquiryModal } from "@/components/b2b/DeferredInquiryModal";
 import type { PublicCandidate } from "@/lib/candidates/public-profile";
@@ -49,6 +50,7 @@ interface Candidate {
   qualifications: string[];
   availability: string;
   experience: string;
+  avatarUrl?: string | null;
   videoAvailable: boolean; // Deprecated: Use videoUrl instead. Kept for backward compatibility
   videoUrl?: string; // YouTube URL for candidate introduction video
 }
@@ -120,6 +122,7 @@ interface CandidateCardProps {
 
 function CandidateCard({ candidate, index, onViewVideo, onRequestProfile }: CandidateCardProps) {
   const { lang, t } = useLanguage();
+  const [avatarError, setAvatarError] = useState(false);
   const industry = industryConfig[candidate.industry];
   const germanLevel = germanLevelConfig[candidate.germanLevel];
 
@@ -140,9 +143,21 @@ function CandidateCard({ candidate, index, onViewVideo, onRequestProfile }: Cand
           <div className="flex items-center gap-4">
             {/* Avatar */}
             <Avatar className={`h-16 w-16 ${industry.avatarBg} border-2 ${industry.borderColor}`}>
-              <AvatarFallback className={`${industry.avatarText} text-xl font-bold`}>
-                <User className="h-8 w-8" />
-              </AvatarFallback>
+              {candidate.avatarUrl && !avatarError ? (
+                <Image
+                  src={candidate.avatarUrl}
+                  alt={`#${candidate.code}`}
+                  fill
+                  sizes="64px"
+                  className="object-cover"
+                  onError={() => setAvatarError(true)}
+                  unoptimized={candidate.avatarUrl.startsWith("http")}
+                />
+              ) : (
+                <AvatarFallback className={`${industry.avatarText} text-xl font-bold`}>
+                  <User className="h-8 w-8" />
+                </AvatarFallback>
+              )}
             </Avatar>
 
             {/* Info */}
@@ -422,6 +437,7 @@ export function TalentShowcase({ candidates }: { candidates: PublicCandidate[] }
         ? "—"
         : `${profile.experience_years} ${t.candidates.years_experience}`,
     availability: lang === "de" ? "Auf Anfrage" : lang === "en" ? "On request" : "Theo yêu cầu",
+    avatarUrl: profile.avatar_url ?? null,
     videoAvailable: Boolean(profile.video_url),
     videoUrl: profile.video_url ?? undefined,
   }));

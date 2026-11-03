@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 
 import MapWrapper from "@/components/map/MapWrapper";
@@ -40,6 +41,64 @@ export default function ReferenzenPage() {
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-4">
           <MapWrapper />
+        </div>
+      </section>
+
+      {/* Authentic Visual Proof Gallery */}
+      <section className="py-12 md:py-16 bg-slate-50 border-y border-slate-200/70">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3">
+              Einblicke in unsere Akademie &amp; Begleitung in Deutschland
+            </h2>
+            <p className="text-slate-600 max-w-2xl mx-auto">
+              Vom zertifizierten Sprach- und Fachtraining in Vietnam bis zur persönlichen Abholung
+              und Wohnungsübergabe in Deutschland.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                src: "/images/b2b/referenzen-delegation.jpg",
+                title: "Deutsche Partner-Delegationen",
+                desc: "Qualitätsaudits & Kennenlernen direkt am DMF Campus",
+              },
+              {
+                src: "/images/b2b/referenzen-classroom.jpg",
+                title: "Intensivtraining A1–B2",
+                desc: "Praxisnahe Vorbereitung mit deutschen & vietnamesischen Lehrkräften",
+              },
+              {
+                src: "/images/b2b/settlement-2-ankunft.jpg",
+                title: "Ankunft & Empfang in DE",
+                desc: "Persönliche Begleitung durch unser Team ab dem ersten Tag",
+              },
+              {
+                src: "/images/b2b/settlement-3-wohnung.jpg",
+                title: "7-Tage Settling-in vor Ort",
+                desc: "Schlüsselübergabe, Behördengänge und nahtloser Ausbildungsstart",
+              },
+            ].map((item) => (
+              <div
+                key={item.src}
+                className="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200/80 flex flex-col"
+              >
+                <div className="relative aspect-video w-full bg-slate-100">
+                  <Image
+                    src={item.src}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 280px"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-4 flex-1">
+                  <h3 className="font-bold text-slate-900 text-sm mb-1">{item.title}</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

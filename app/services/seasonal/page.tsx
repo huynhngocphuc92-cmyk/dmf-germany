@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState, type ComponentType } from "react";
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { checkQuality } from "@/utils/qa-layer";
@@ -426,79 +427,42 @@ function HeroSection({ content }: { content: SeasonalPageContent }) {
             </div>
           </motion.div>
 
-          {/* Right Content - Visual Stats */}
+          {/* Right Content - Visual Showcase */}
           <motion.div
             initial={{ opacity: 0, x: 60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="relative hidden lg:flex items-center justify-center"
           >
-            {/* Central Speed Indicator */}
-            <div className="relative">
-              {/* Outer ring */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="w-80 h-80 rounded-full border-2 border-dashed border-amber-500/20"
-              />
-
-              {/* Middle ring */}
-              <motion.div
-                animate={{ rotate: -360 }}
-                transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                className="absolute top-8 left-8 w-64 h-64 rounded-full border border-orange-500/30"
-              />
-
-              {/* Center content */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                <div className="bg-white/10 backdrop-blur-xl rounded-3xl border border-white/10 p-8 text-center">
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 0.5, delay: 0.6, type: "spring" }}
-                  >
-                    <div className="text-6xl font-bold bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent mb-2">
-                      4-8
+            <div className="relative w-full max-w-lg">
+              <div className="relative aspect-[16/11] w-full rounded-3xl overflow-hidden border border-white/15 shadow-2xl">
+                <Image
+                  src="/images/b2b/hero-seasonal.jpg"
+                  alt="DMF Saisonkräfte und Servicepersonal Vorbereitung"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 520px"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent" />
+                <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-4">
+                  <div className="bg-slate-950/80 backdrop-blur-md rounded-2xl border border-white/15 px-5 py-3">
+                    <div className="text-3xl font-bold text-amber-400 leading-none">4-8 Wochen</div>
+                    <div className="text-white/90 text-xs mt-1 font-medium">
+                      Schnelle Einsatzbereitschaft
                     </div>
-                    <div className="text-white font-medium text-lg">Wochen</div>
-                    <div className="text-amber-400 text-sm mt-1">bis Einsatz</div>
-                  </motion.div>
+                  </div>
+                  <div className="flex flex-col gap-2 items-end">
+                    <Badge className="bg-amber-500/30 text-amber-200 border-amber-400/40 backdrop-blur-md px-3 py-1.5">
+                      <Zap className="w-3 h-3 mr-1" />
+                      {content?.timeline?.fast_label || "Schnell"}
+                    </Badge>
+                    <Badge className="bg-orange-500/30 text-orange-200 border-orange-400/40 backdrop-blur-md px-3 py-1.5">
+                      <Shield className="w-3 h-3 mr-1" />
+                      100% Legal
+                    </Badge>
+                  </div>
                 </div>
               </div>
-
-              {/* Floating badges */}
-              <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-4 right-8"
-              >
-                <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/30 px-3 py-1.5">
-                  <Zap className="w-3 h-3 mr-1" />
-                  {content?.timeline?.fast_label || "Schnell"}
-                </Badge>
-              </motion.div>
-
-              <motion.div
-                animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                className="absolute -bottom-4 left-8"
-              >
-                <Badge className="bg-orange-500/20 text-orange-300 border-orange-500/30 px-3 py-1.5">
-                  <Shield className="w-3 h-3 mr-1" />
-                  100% Legal
-                </Badge>
-              </motion.div>
-
-              <motion.div
-                animate={{ x: [0, 8, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute top-1/2 -right-12 -translate-y-1/2"
-              >
-                <Badge className="bg-yellow-500/20 text-yellow-300 border-yellow-500/30 px-3 py-1.5">
-                  <Users className="w-3 h-3 mr-1" />
-                  250+
-                </Badge>
-              </motion.div>
             </div>
           </motion.div>
         </div>

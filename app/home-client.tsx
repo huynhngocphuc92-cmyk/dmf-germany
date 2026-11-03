@@ -23,18 +23,20 @@ export function HomeClient({ assets, heroCandidates, talentCandidates }: HomeCli
   return (
     <div className="min-h-screen">
       <HeroSection
-        heroBg={assets["home_hero_bg"]}
+        heroBg={assets["home_hero_bg"] || "/images/home/hero-bg.jpg"}
         heroOverlayOpacity={assets["home_hero_overlay_opacity"]}
         candidateSlot={heroCandidates}
       />
-      <PartnerSection partnerBanner={assets["home_partner_banner"]} />
+      <PartnerSection
+        partnerBanner={assets["home_partner_banner"] || "/images/home/partner-banner.jpg"}
+      />
       <ServiceGateway
-        nursingImg={assets["home_prog_nursing_img"]}
-        techImg={assets["home_prog_tech_img"]}
-        hotelImg={assets["home_prog_hotel_img"]}
+        nursingImg={assets["home_prog_nursing_img"] || "/images/home/prog-azubi.jpg"}
+        techImg={assets["home_prog_tech_img"] || "/images/home/prog-skilled.jpg"}
+        hotelImg={assets["home_prog_hotel_img"] || "/images/home/prog-seasonal.jpg"}
       />
       <AboutSection
-        introImg={assets["home_intro_img"]}
+        introImg={assets["home_intro_img"] || "/images/home/about-academy.jpg"}
         videoThumb={assets["home_intro_video_thumb"]}
       />
       <StatsDashboard />

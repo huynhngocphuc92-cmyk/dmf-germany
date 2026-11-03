@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -176,12 +177,22 @@ function HeroSection() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="relative hidden lg:block"
           >
-            <div className="relative bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 p-8">
-              <div className="text-center mb-6">
-                <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30">
-                  <Shield className="w-3 h-3 mr-1" />
-                  {b2b?.common?.your_academy || "Ihre Akademie für Talente"}
-                </Badge>
+            <div className="relative bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 p-6 md:p-8">
+              <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden mb-6 border border-white/15 shadow-xl">
+                <Image
+                  src="/images/b2b/hero-studium.jpg"
+                  alt={b2b?.common?.your_academy || "DMF Akademie Campus"}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 520px"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
+                <div className="absolute bottom-3 left-3">
+                  <Badge className="bg-emerald-500/90 text-white border-emerald-400/50 shadow-sm">
+                    <Shield className="w-3 h-3 mr-1" />
+                    {b2b?.common?.your_academy || "Ihre Akademie für Talente"}
+                  </Badge>
+                </div>
               </div>
 
               <div className="space-y-4">
