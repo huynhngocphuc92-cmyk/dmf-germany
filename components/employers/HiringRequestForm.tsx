@@ -44,6 +44,7 @@ function Field({
 export function HiringRequestForm({
   service = "unsure",
   candidateId,
+  candidateCode,
   candidateProfession,
   shortlistedCandidates,
   initialBrancheLabel,
@@ -51,6 +52,7 @@ export function HiringRequestForm({
 }: {
   service?: HiringService;
   candidateId?: string;
+  candidateCode?: string;
   candidateProfession?: string | null;
   shortlistedCandidates?: string;
   initialBrancheLabel?: string;
@@ -234,7 +236,7 @@ export function HiringRequestForm({
       {candidateId && (
         <p className="my-4 rounded-lg bg-secondary p-3 text-sm">
           <strong>
-            {t.profile} #{candidateId.slice(0, 8).toUpperCase()}
+            {t.profile} #{candidateCode || candidateId.slice(0, 8).toUpperCase()}
           </strong>
           {candidateProfession && ` · ${candidateProfession}`}
         </p>

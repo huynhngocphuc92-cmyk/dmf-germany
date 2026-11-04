@@ -18,7 +18,7 @@ export interface ShortlistedCandidate {
 export function toShortlistedCandidate(candidate: PublicCandidate): ShortlistedCandidate {
   return {
     id: candidate.id,
-    code: candidate.id.slice(0, 8).toUpperCase(),
+    code: candidate.display_code || candidate.id.slice(0, 8).toUpperCase(),
     profession: candidate.profession || "Fachkraft / Azubi",
     category: candidate.category,
     german_level: candidate.german_level,

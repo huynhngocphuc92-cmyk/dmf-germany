@@ -44,8 +44,9 @@ import {
 import { CandidateForm } from "@/components/admin/CandidateForm";
 import { StudentDossierReviewPanel } from "@/components/admin/StudentDossierReviewPanel";
 import { deleteCandidate, getCandidates } from "./actions";
-import type { Candidate, CandidateCategory } from "./types";
-import { categoryLabels, categoryColors } from "./types";
+import type { Candidate, CandidateCategory, CandidatePoolStage } from "./types";
+import { categoryLabels, categoryColors, poolStageLabels, poolStageColors } from "./types";
+import { mergeWithDmfAdminCandidates } from "@/lib/candidates/dmf-pool-data";
 import type {
   StudentDocument,
   StudentInviteCode,
@@ -89,6 +90,7 @@ export function CandidatesClient({
   // Filter state
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
+  const [stageFilter, setStageFilter] = useState<string>("all");
 
   // Form state
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -103,8 +105,9 @@ export function CandidatesClient({
   const handleRefresh = async () => {
     setIsLoading(true);
     const { data, error: fetchError } = await getCandidates();
-    if (data) {
-      setCandidates(data);
+    const merged = mergeWithDmfAdminCandidates(data);
+    if (merged.length > 0) {
+      setCandidates(merged);
       setError(null);
     } else {
       setError(fetchError);
@@ -114,14 +117,20 @@ export function CandidatesClient({
 
   // Filter candidates
   const filteredCandidates = candidates.filter((candidate) => {
+    const q = searchTerm.toLowerCase();
     const matchesSearch =
-      candidate.full_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      candidate.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      candidate.profession?.toLowerCase().includes(searchTerm.toLowerCase());
+      candidate.full_name.toLowerCase().includes(q) ||
+      candidate.email.toLowerCase().includes(q) ||
+      (candidate.display_code?.toLowerCase().includes(q) ?? false) ||
+      (candidate.cohort?.toLowerCase().includes(q) ?? false) ||
+      (candidate.profession?.toLowerCase().includes(q) ?? false);
 
     const matchesCategory = categoryFilter === "all" || candidate.category === categoryFilter;
+    const cStage =
+      candidate.pool_stage || (candidate.visa_status ? "in_germany" : "interview_ready");
+    const matchesStage = stageFilter === "all" || cStage === stageFilter;
 
-    return matchesSearch && matchesCategory;
+    return matchesSearch && matchesCategory && matchesStage;
   });
 
   // Handle edit
@@ -251,12 +260,27 @@ export function CandidatesClient({
                 <div className="relative flex-1">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                   <Input
-                    placeholder="Nach Name, E-Mail oder Beruf suchen..."
+                    placeholder="Nach Name, Code (#DMF), Kohorte (K21) oder Beruf suchen..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="pl-10"
                   />
                 </div>
+
+                {/* Pool Stage Filter */}
+                <Select value={stageFilter} onValueChange={setStageFilter}>
+                  <SelectTrigger className="w-full sm:w-[220px]">
+                    <SelectValue placeholder="Pool-Phase" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">Alle Phasen ({candidates.length})</SelectItem>
+                    {(Object.keys(poolStageLabels) as CandidatePoolStage[]).map((key) => (
+                      <SelectItem key={key} value={key}>
+                        {poolStageLabels[key]}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
 
                 {/* Category Filter */}
                 <Select value={categoryFilter} onValueChange={setCategoryFilter}>
@@ -330,7 +354,8 @@ export function CandidatesClient({
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead className="w-[300px]">Kandidat</TableHead>
+                      <TableHead className="w-[280px]">Kandidat</TableHead>
+                      <TableHead>Pool-Phase</TableHead>
                       <TableHead>Kategorie</TableHead>
                       <TableHead>Beruf</TableHead>
                       <TableHead>Deutsch</TableHead>
@@ -340,105 +365,127 @@ export function CandidatesClient({
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {filteredCandidates.map((candidate) => (
-                      <TableRow key={candidate.id}>
-                        {/* Candidate Info */}
-                        <TableCell>
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center overflow-hidden">
-                              {candidate.avatar_url ? (
-                                // eslint-disable-next-line @next/next/no-img-element -- Admin preview displays original uploads, including local data/blob URLs.
-                                <img
-                                  src={candidate.avatar_url}
-                                  alt={candidate.full_name}
-                                  className="w-full h-full object-cover"
-                                />
-                              ) : (
-                                <User className="w-5 h-5 text-slate-400" />
-                              )}
+                    {filteredCandidates.map((candidate) => {
+                      const stage =
+                        candidate.pool_stage ||
+                        (candidate.visa_status ? "in_germany" : "interview_ready");
+                      return (
+                        <TableRow key={candidate.id}>
+                          {/* Candidate Info */}
+                          <TableCell>
+                            <div className="flex items-center gap-3">
+                              <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center overflow-hidden">
+                                {candidate.avatar_url ? (
+                                  // eslint-disable-next-line @next/next/no-img-element -- Admin preview displays original uploads, including local data/blob URLs.
+                                  <img
+                                    src={candidate.avatar_url}
+                                    alt={candidate.full_name}
+                                    className="w-full h-full object-cover"
+                                  />
+                                ) : (
+                                  <User className="w-5 h-5 text-slate-400" />
+                                )}
+                              </div>
+                              <div>
+                                <p className="font-medium text-slate-900">
+                                  {candidate.full_name}
+                                  {candidate.cohort && (
+                                    <span className="ml-1.5 text-xs font-semibold text-primary">
+                                      ({candidate.cohort})
+                                    </span>
+                                  )}
+                                </p>
+                                <p className="text-xs text-slate-500 font-mono">
+                                  {candidate.display_code ? `#${candidate.display_code} • ` : ""}
+                                  {candidate.email}
+                                </p>
+                              </div>
                             </div>
-                            <div>
-                              <p className="font-medium text-slate-900">{candidate.full_name}</p>
-                              <p className="text-sm text-slate-500">{candidate.email}</p>
+                          </TableCell>
+
+                          {/* Pool Stage */}
+                          <TableCell>
+                            <Badge variant="outline" className={poolStageColors[stage]}>
+                              {poolStageLabels[stage]}
+                            </Badge>
+                          </TableCell>
+
+                          {/* Category */}
+                          <TableCell>
+                            <Badge variant="outline" className={categoryColors[candidate.category]}>
+                              {categoryLabels[candidate.category]}
+                            </Badge>
+                          </TableCell>
+
+                          {/* Profession */}
+                          <TableCell>
+                            <span className="text-slate-700">{candidate.profession || "-"}</span>
+                            {candidate.experience_years > 0 && (
+                              <span className="text-slate-400 text-sm ml-1">
+                                ({candidate.experience_years} J.)
+                              </span>
+                            )}
+                          </TableCell>
+
+                          {/* German Level */}
+                          <TableCell>
+                            <Badge variant="outline" className="bg-slate-50">
+                              {candidate.german_level}
+                            </Badge>
+                          </TableCell>
+
+                          {/* Visa Status */}
+                          <TableCell>
+                            <Badge
+                              variant="outline"
+                              className={
+                                candidate.visa_status
+                                  ? "bg-emerald-100 text-emerald-700 border-emerald-200"
+                                  : "bg-amber-100 text-amber-700 border-amber-200"
+                              }
+                            >
+                              {candidate.visa_status ? "Visa Vorhanden" : "In Bearbeitung"}
+                            </Badge>
+                          </TableCell>
+
+                          <TableCell>
+                            <p className="text-sm">
+                              {candidate.publication_status === "published" &&
+                              candidate.publication_valid_until &&
+                              candidate.publication_valid_until >=
+                                new Date().toISOString().slice(0, 10)
+                                ? "Veröffentlicht"
+                                : "Nicht öffentlich"}
+                            </p>
+                            <Link
+                              className="text-sm text-emerald-700 underline"
+                              href={`/admin/candidates/${candidate.id}/preview`}
+                            >
+                              Vorschau &amp; Freigabe
+                            </Link>
+                          </TableCell>
+                          {/* Actions */}
+                          <TableCell className="text-right">
+                            <div className="flex items-center justify-end gap-2">
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                onClick={() => handleEdit(candidate)}
+                              >
+                                <Edit2 className="w-4 h-4 text-slate-500" />
+                              </Button>
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                onClick={() => handleDeleteClick(candidate)}
+                              >
+                                <Trash2 className="w-4 h-4 text-red-500" />
+                              </Button>
                             </div>
-                          </div>
-                        </TableCell>
-
-                        {/* Category */}
-                        <TableCell>
-                          <Badge variant="outline" className={categoryColors[candidate.category]}>
-                            {categoryLabels[candidate.category]}
-                          </Badge>
-                        </TableCell>
-
-                        {/* Profession */}
-                        <TableCell>
-                          <span className="text-slate-700">{candidate.profession || "-"}</span>
-                          {candidate.experience_years > 0 && (
-                            <span className="text-slate-400 text-sm ml-1">
-                              ({candidate.experience_years} J.)
-                            </span>
-                          )}
-                        </TableCell>
-
-                        {/* German Level */}
-                        <TableCell>
-                          <Badge variant="outline" className="bg-slate-50">
-                            {candidate.german_level}
-                          </Badge>
-                        </TableCell>
-
-                        {/* Visa Status */}
-                        <TableCell>
-                          <Badge
-                            variant="outline"
-                            className={
-                              candidate.visa_status
-                                ? "bg-emerald-100 text-emerald-700 border-emerald-200"
-                                : "bg-amber-100 text-amber-700 border-amber-200"
-                            }
-                          >
-                            {candidate.visa_status ? "Visa Vorhanden" : "In Bearbeitung"}
-                          </Badge>
-                        </TableCell>
-
-                        <TableCell>
-                          <p className="text-sm">
-                            {candidate.publication_status === "published" &&
-                            candidate.publication_valid_until &&
-                            candidate.publication_valid_until >=
-                              new Date().toISOString().slice(0, 10)
-                              ? "Veröffentlicht"
-                              : "Nicht öffentlich"}
-                          </p>
-                          <Link
-                            className="text-sm text-emerald-700 underline"
-                            href={`/admin/candidates/${candidate.id}/preview`}
-                          >
-                            Vorschau &amp; Freigabe
-                          </Link>
-                        </TableCell>
-                        {/* Actions */}
-                        <TableCell className="text-right">
-                          <div className="flex items-center justify-end gap-2">
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              onClick={() => handleEdit(candidate)}
-                            >
-                              <Edit2 className="w-4 h-4 text-slate-500" />
-                            </Button>
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              onClick={() => handleDeleteClick(candidate)}
-                            >
-                              <Trash2 className="w-4 h-4 text-red-500" />
-                            </Button>
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                    ))}
+                          </TableCell>
+                        </TableRow>
+                      );
+                    })}
                   </TableBody>
                 </Table>
               )}

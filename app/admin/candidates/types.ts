@@ -4,6 +4,13 @@
 
 export type CandidateCategory = "azubi" | "skilled" | "seasonal";
 
+export type CandidatePoolStage =
+  | "a_niveau"
+  | "b_niveau"
+  | "b1_b2_exam"
+  | "interview_ready"
+  | "in_germany";
+
 export type CandidateStatus =
   | "new"
   | "screening"
@@ -34,6 +41,11 @@ export interface Candidate {
   experience_years: number;
   german_level: GermanLevel;
 
+  // Kandidaten Pool Stage & Cohort
+  pool_stage?: CandidatePoolStage;
+  cohort?: string;
+  display_code?: string;
+
   publication_status: "draft" | "published";
   publication_valid_until: string | null;
   publication_consent_note: string | null;
@@ -55,6 +67,8 @@ export interface CandidateFormData {
   profession?: string;
   experience_years: number;
   german_level: GermanLevel;
+  pool_stage?: CandidatePoolStage;
+  cohort?: string;
   visa_status: boolean;
   is_featured: boolean;
   notes?: string;
@@ -86,6 +100,50 @@ export const categoryColors: Record<CandidateCategory, string> = {
   azubi: "bg-blue-100 text-blue-700 border-blue-200",
   skilled: "bg-emerald-100 text-emerald-700 border-emerald-200",
   seasonal: "bg-amber-100 text-amber-700 border-amber-200",
+};
+
+export const poolStageLabelsI18n: Record<CandidatePoolStage, Record<AdminLanguage, string>> = {
+  interview_ready: {
+    de: "Interviewbereit (Zertifiziert)",
+    en: "Interview Ready (Certified)",
+    vn: "Đã sẵn sàng phỏng vấn",
+  },
+  b1_b2_exam: {
+    de: "In B1/B2-Prüfungsvorbereitung",
+    en: "In B1/B2 Exam Prep",
+    vn: "Đang ôn & thi B1/B2",
+  },
+  b_niveau: {
+    de: "Sprachkurs B-Niveau (B1/B2)",
+    en: "Language Training B-Level (B1/B2)",
+    vn: "Đang học tiếng B-Niveaus",
+  },
+  a_niveau: {
+    de: "Sprachkurs A-Niveau (A1/A2)",
+    en: "Language Training A-Level (A1/A2)",
+    vn: "Đang học tiếng A-Niveaus",
+  },
+  in_germany: {
+    de: "In Deutschland (Referenz-Talent)",
+    en: "In Germany (Placed Alumni)",
+    vn: "Đã sang Đức học nghề",
+  },
+};
+
+export const poolStageLabels: Record<CandidatePoolStage, string> = {
+  interview_ready: "Interviewbereit",
+  b1_b2_exam: "In B1/B2-Prüfung",
+  b_niveau: "Sprachkurs B-Niveau",
+  a_niveau: "Sprachkurs A-Niveau",
+  in_germany: "In Deutschland",
+};
+
+export const poolStageColors: Record<CandidatePoolStage, string> = {
+  interview_ready: "bg-emerald-100 text-emerald-800 border-emerald-300",
+  b1_b2_exam: "bg-amber-100 text-amber-800 border-amber-300",
+  b_niveau: "bg-blue-100 text-blue-800 border-blue-300",
+  a_niveau: "bg-slate-100 text-slate-700 border-slate-300",
+  in_germany: "bg-indigo-100 text-indigo-800 border-indigo-300",
 };
 
 // Bilingual labels for status

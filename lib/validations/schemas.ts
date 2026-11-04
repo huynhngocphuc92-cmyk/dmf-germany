@@ -60,6 +60,10 @@ export const candidateFormSchema = z.object({
   german_level: z.enum(["A1", "A2", "B1", "B2", "C1", "C2"], {
     message: "Ungültiges Sprachniveau",
   }),
+  pool_stage: z
+    .enum(["a_niveau", "b_niveau", "b1_b2_exam", "interview_ready", "in_germany"])
+    .optional(),
+  cohort: z.string().trim().max(30).optional(),
   visa_status: z.boolean(),
   is_featured: z.boolean(),
   notes: z.string().max(5000).optional(),

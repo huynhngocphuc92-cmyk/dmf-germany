@@ -11,15 +11,18 @@ import {
   Copy,
   Check,
   FileCheck2,
+  FileText,
+  ExternalLink,
   Printer,
   ShieldCheck,
   Bookmark,
   BookmarkCheck,
   Video,
+  Clock,
 } from "lucide-react";
 import type { PublicCandidate } from "@/lib/candidates/public-profile";
 import { useCandidateShortlist } from "@/lib/candidates/shortlist";
-import { categoryLabelsI18n } from "@/app/admin/candidates/types";
+import { categoryLabelsI18n, poolStageLabelsI18n } from "@/app/admin/candidates/types";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { useConsent, openConsentSettings } from "@/components/CookieConsent";
 import { getEmbedUrl } from "@/lib/utils/youtube";
@@ -36,10 +39,17 @@ export function ProfileDetailClient({ candidate }: { candidate: PublicCandidate 
   const [copied, setCopied] = useState(false);
   const [imgError, setImgError] = useState(false);
 
-  const code = candidate.id.slice(0, 8).toUpperCase();
+  const code = candidate.display_code || candidate.id.slice(0, 8).toUpperCase();
   const saved = isShortlisted(candidate.id);
-  const embedUrl = candidate.video_url ? getEmbedUrl(candidate.video_url) : null;
+  const isLocalVideo =
+    Boolean(candidate.video_url) &&
+    (candidate.video_url!.startsWith("/") || candidate.video_url!.endsWith(".mp4"));
+  const embedUrl = candidate.video_url && !isLocalVideo ? getEmbedUrl(candidate.video_url) : null;
   const categoryLabel = categoryLabelsI18n[candidate.category]?.[lang] || candidate.category;
+  const poolStage =
+    candidate.pool_stage || (candidate.visa_status ? "in_germany" : "interview_ready");
+  const poolStageLabel =
+    poolStageLabelsI18n[poolStage]?.[lang] || poolStageLabelsI18n[poolStage]?.de;
 
   const handleCopyLink = async () => {
     try {
@@ -56,29 +66,38 @@ export function ProfileDetailClient({ candidate }: { candidate: PublicCandidate 
   };
 
   const dossierChecklist =
-    lang === "de"
+    candidate.highlights && candidate.highlights.length > 0
       ? [
-          "Tabellarischer Lebenslauf nach deutschem Standard (geprüft)",
-          "Beglaubigte Übersetzung der Schul- bzw. Berufsabschlüsse",
-          `Nachweis Sprachniveau Deutsch ${candidate.german_level || "B1/B2"} (Goethe / telc / ÖSD)`,
-          "Vorabprüfung für das beschleunigte Fachkräfteverfahren (§ 81a AufenthG)",
-          "Gesundheitliche Eignung & polizeiliches Führungszeugnis vorbereitet",
+          ...candidate.highlights,
+          lang === "de"
+            ? "Vorabprüfung für das beschleunigte Verfahren (§ 16a / § 81a AufenthG)"
+            : lang === "en"
+              ? "Pre-screened for fast-track § 16a / § 81a AufenthG visa procedure"
+              : "Đã rà soát điều kiện làm thủ tục Visa (§ 16a / § 81a AufenthG)",
         ]
-      : lang === "en"
+      : lang === "de"
         ? [
-            "German-standard structured CV (verified)",
-            "Certified translations of academic / vocational diplomas",
-            `Verified German proficiency ${candidate.german_level || "B1/B2"} (Goethe / telc / ÖSD)`,
-            "Pre-screened for fast-track § 81a AufenthG visa procedure",
-            "Medical fitness & police clearance certificate prepared",
+            "Tabellarischer Lebenslauf nach deutschem Standard (geprüft)",
+            "Beglaubigte Übersetzung der Schul- bzw. Berufsabschlüsse",
+            `Nachweis Sprachniveau Deutsch ${candidate.german_level || "B1/B2"} (Goethe / telc / ÖSD)`,
+            "Vorabprüfung für das beschleunigte Fachkräfteverfahren (§ 81a AufenthG)",
+            "Gesundheitliche Eignung & polizeiliches Führungszeugnis vorbereitet",
           ]
-        : [
-            "Sơ yếu lý lịch (Lebenslauf) chuẩn định dạng doanh nghiệp Đức",
-            "Bản dịch công chứng bằng cấp và bảng điểm chuyên môn",
-            `Chứng chỉ tiếng Đức ${candidate.german_level || "B1/B2"} (Goethe / telc / ÖSD)`,
-            "Đã rà soát điều kiện làm thủ tục rút gọn § 81a AufenthG",
-            "Đủ điều kiện sức khỏe và lý lịch tư pháp sẵn sàng xin Visa",
-          ];
+        : lang === "en"
+          ? [
+              "German-standard structured CV (verified)",
+              "Certified translations of academic / vocational diplomas",
+              `Verified German proficiency ${candidate.german_level || "B1/B2"} (Goethe / telc / ÖSD)`,
+              "Pre-screened for fast-track § 81a AufenthG visa procedure",
+              "Medical fitness & police clearance certificate prepared",
+            ]
+          : [
+              "Sơ yếu lý lịch (Lebenslauf) chuẩn định dạng doanh nghiệp Đức",
+              "Bản dịch công chứng bằng cấp và bảng điểm chuyên môn",
+              `Chứng chỉ tiếng Đức ${candidate.german_level || "B1/B2"} (Goethe / telc / ÖSD)`,
+              "Đã rà soát điều kiện làm thủ tục rút gọn § 81a AufenthG",
+              "Đủ điều kiện sức khỏe và lý lịch tư pháp sẵn sàng xin Visa",
+            ];
 
   return (
     <div className="min-h-screen bg-slate-50 pt-36 md:pt-44 pb-28 print:pt-4 print:bg-white">
@@ -183,7 +202,9 @@ export function ProfileDetailClient({ candidate }: { candidate: PublicCandidate 
                     />
                   ) : (
                     <span className="text-2xl font-bold text-white/90">
-                      {(candidate.profession || "DM").slice(0, 2).toUpperCase()}
+                      {(candidate.initials_label || candidate.profession || "DM")
+                        .slice(0, 2)
+                        .toUpperCase()}
                     </span>
                   )}
                 </div>
@@ -191,24 +212,26 @@ export function ProfileDetailClient({ candidate }: { candidate: PublicCandidate 
                 <div>
                   <div className="flex flex-wrap items-center gap-2 mb-2">
                     <span className="font-mono text-xs uppercase tracking-wider px-2.5 py-1 rounded-md bg-white/10 text-emerald-300 border border-emerald-400/30">
-                      {lang === "de"
-                        ? `Anonymisiertes Kurzprofil #${code}`
-                        : lang === "en"
-                          ? `Anonymized Profile #${code}`
-                          : `Hồ sơ ẩn danh #${code}`}
+                      #{code}
+                      {candidate.initials_label ? ` • ${candidate.initials_label}` : ""}
+                      {candidate.cohort ? ` (${candidate.cohort})` : ""}
                     </span>
+                    <Badge className="bg-emerald-500/20 text-emerald-200 border border-emerald-400/30">
+                      {poolStageLabel}
+                    </Badge>
                     <Badge className="bg-blue-500/20 text-blue-200 border border-blue-400/30">
                       {categoryLabel}
                     </Badge>
-                    {candidate.visa_status && (
-                      <Badge className="bg-emerald-500/20 text-emerald-200 border border-emerald-400/30">
-                        § 81a AufenthG Vorbereitet
-                      </Badge>
-                    )}
                   </div>
                   <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
                     {candidate.profession || "Qualifizierte Fachkraft / Auszubildende(r)"}
                   </h1>
+                  {candidate.availability_label && (
+                    <p className="text-xs text-slate-300 mt-1.5 flex items-center gap-1.5">
+                      <Clock className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>{candidate.availability_label}</span>
+                    </p>
+                  )}
                 </div>
               </div>
 
@@ -216,7 +239,7 @@ export function ProfileDetailClient({ candidate }: { candidate: PublicCandidate 
                 {candidate.german_level && (
                   <div className="rounded-xl bg-white/10 border border-white/15 px-4 py-3 text-center min-w-[135px]">
                     <span className="block text-xs text-slate-300 mb-0.5">
-                      {lang === "de" ? "Deutsch-Zertifikat" : "German Level"}
+                      {lang === "de" ? "Sprachniveau" : "German Level"}
                     </span>
                     <span className="text-lg font-bold text-white">
                       Niveau {candidate.german_level}
@@ -226,17 +249,20 @@ export function ProfileDetailClient({ candidate }: { candidate: PublicCandidate 
                 {candidate.experience_years != null && (
                   <div className="rounded-xl bg-white/10 border border-white/15 px-4 py-3 text-center min-w-[135px]">
                     <span className="block text-xs text-slate-300 mb-0.5">
-                      {lang === "de" ? "Berufserfahrung" : "Experience"}
+                      {lang === "de" ? "Praxis / Ausbildung" : "Experience"}
                     </span>
                     <span className="text-lg font-bold text-white">
-                      {candidate.experience_years}{" "}
-                      {candidate.experience_years === 1
-                        ? lang === "de"
-                          ? "Jahr"
-                          : "Yr"
-                        : lang === "de"
-                          ? "Jahre"
-                          : "Yrs"}
+                      {candidate.experience_years > 0
+                        ? `${candidate.experience_years} ${
+                            candidate.experience_years === 1
+                              ? lang === "de"
+                                ? "Jahr"
+                                : "Yr"
+                              : lang === "de"
+                                ? "Jahre"
+                                : "Yrs"
+                          }`
+                        : candidate.cohort || "DMF"}
                     </span>
                   </div>
                 )}
@@ -251,17 +277,17 @@ export function ProfileDetailClient({ candidate }: { candidate: PublicCandidate 
                 <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2 mb-3">
                   <FileCheck2 className="w-5 h-5 text-primary" />
                   {lang === "de"
-                    ? "Geprüfte Unterlagen in der Bewerbungsmappe"
+                    ? "Geprüfte Unterlagen & Ausbildungsstand"
                     : lang === "en"
-                      ? "Verified Documents in Full Dossier"
-                      : "Hồ sơ đã được thẩm định của ứng viên"}
+                      ? "Verified Documents & Training Status"
+                      : "Hồ sơ & Trạng thái đào tạo tại DMF"}
                 </h2>
                 <p className="text-sm text-slate-600 mb-4 leading-relaxed">
                   {lang === "de"
-                    ? "Aus Datenschutzgründen (DSGVO) sind Klarnamen und Zeugniskopien im öffentlichen Kurzprofil ausgeblendet. Als Arbeitgeber erhalten Sie auf Anfrage umgehend die ungeschwärzte Bewerbungsmappe."
+                    ? "Aus Datenschutzgründen (DSGVO) sind Reisepass- und Ausweiskopien im öffentlichen Kurzprofil ausgeblendet. Die folgenden geprüften Bewerbungsunterlagen (Lebenslauf, Motivationsschreiben, Sprachzertifikat) stehen Ihnen direkt als PDF-Vorschau zur Verfügung."
                     : lang === "en"
-                      ? "For GDPR compliance, personal names and certificate scans are anonymized in this public preview. Employers receive the complete unredacted dossier upon request."
-                      : "Để tuân thủ luật bảo mật dữ liệu Đức (DSGVO), họ tên đầy đủ và bản scan văn bằng được ẩn trên trang công khai. Doanh nghiệp sẽ nhận trọn bộ hồ sơ gốc ngay khi gửi yêu cầu."}
+                      ? "For GDPR compliance, passport and ID scans are excluded from public view. Verified application documents (CV, motivation letter, language certificate) can be previewed directly below."
+                      : "Để tuân thủ luật bảo mật dữ liệu Đức (DSGVO), bản scan hộ chiếu/CCCD được ẩn trên trang công khai. Doanh nghiệp có thể xem trực tiếp CV tiếng Đức, Thư động lực và Chứng chỉ B1 bên dưới."}
                 </p>
                 <ul className="space-y-2.5">
                   {dossierChecklist.map((item) => (
@@ -276,8 +302,54 @@ export function ProfileDetailClient({ candidate }: { candidate: PublicCandidate 
                 </ul>
               </div>
 
+              {/* Direct Dossier PDF Documents */}
+              {candidate.documents && candidate.documents.length > 0 && (
+                <div className="pt-2 print:hidden">
+                  <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2 mb-3">
+                    <FileText className="w-5 h-5 text-primary" />
+                    {lang === "de"
+                      ? "Hinterlegte Bewerbungsunterlagen (PDF-Direktansicht)"
+                      : lang === "en"
+                        ? "Uploaded Application Documents (Direct PDF View)"
+                        : "Hồ sơ & Văn bằng đính kèm (Xem PDF trực tiếp)"}
+                  </h2>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {candidate.documents.map((doc) => (
+                      <a
+                        key={doc.url}
+                        href={doc.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white hover:border-primary/40 hover:bg-primary/5 p-3.5 shadow-2xs transition-all"
+                      >
+                        <div className="flex items-center gap-3 min-w-0">
+                          <div className="h-9 w-9 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
+                            <FileText className="w-4 h-4" />
+                          </div>
+                          <div className="min-w-0">
+                            <span className="block text-sm font-semibold text-slate-900 group-hover:text-primary truncate">
+                              {doc.label}
+                            </span>
+                            <span className="block text-[11px] text-slate-500 uppercase tracking-wider">
+                              {doc.type === "cv"
+                                ? "Deutscher Lebenslauf (PDF)"
+                                : doc.type === "motivation"
+                                  ? "Motivationsschreiben (PDF)"
+                                  : doc.type === "certificate"
+                                    ? "Sprachzertifikat (PDF)"
+                                    : "Bewerbungsmappe (PDF)"}
+                            </span>
+                          </div>
+                        </div>
+                        <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-primary flex-shrink-0" />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {/* Video Self-Intro */}
-              {embedUrl && (
+              {(isLocalVideo || embedUrl) && (
                 <div className="pt-2 print:hidden">
                   <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2 mb-3">
                     <Video className="w-5 h-5 text-primary" />
@@ -287,7 +359,18 @@ export function ProfileDetailClient({ candidate }: { candidate: PublicCandidate 
                         ? "Video Self-Introduction (German)"
                         : "Video ứng viên tự giới thiệu bằng tiếng Đức"}
                   </h2>
-                  {!videoAllowed ? (
+                  {isLocalVideo ? (
+                    <div className="relative aspect-video rounded-xl overflow-hidden bg-slate-950 border border-slate-200 shadow-sm">
+                      <video
+                        src={candidate.video_url!}
+                        controls
+                        preload="metadata"
+                        playsInline
+                        className="w-full h-full object-cover"
+                        title={`Vorstellungsvideo Kandidat #${code}`}
+                      />
+                    </div>
+                  ) : !videoAllowed ? (
                     <button
                       type="button"
                       onClick={openConsentSettings}
@@ -300,7 +383,7 @@ export function ProfileDetailClient({ candidate }: { candidate: PublicCandidate 
                   ) : (
                     <div className="relative aspect-video rounded-xl overflow-hidden bg-black border border-slate-200 shadow-sm">
                       <iframe
-                        src={embedUrl}
+                        src={embedUrl!}
                         className="w-full h-full"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
@@ -365,6 +448,7 @@ export function ProfileDetailClient({ candidate }: { candidate: PublicCandidate 
           <HiringRequestForm
             service={candidate.category}
             candidateId={candidate.id}
+            candidateCode={code}
             candidateProfession={candidate.profession}
             headingLevel={2}
           />

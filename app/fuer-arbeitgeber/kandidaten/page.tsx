@@ -1,17 +1,19 @@
 import { Suspense } from "react";
 import { getFeaturedCandidates } from "@/lib/supabase/candidates";
+import { mergeWithDmfPoolCandidates } from "@/lib/candidates/dmf-pool-data";
 import { CandidatesClient } from "./candidates-client";
 
 // Publication expiry and withdrawal must apply on the next request.
 export const dynamic = "force-dynamic";
 
 export default async function KandidatenPage() {
-  // The pool includes all reviewed, currently published profiles.
-  const { data: initialCandidates, error } = await getFeaturedCandidates();
+  // The pool includes all reviewed, currently published profiles merged with the DMF student pool.
+  const { data: dbCandidates } = await getFeaturedCandidates();
+  const initialCandidates = mergeWithDmfPoolCandidates(dbCandidates);
 
   return (
     <Suspense fallback={<CandidatesPageSkeleton />}>
-      <CandidatesClient initialCandidates={initialCandidates || []} error={error} />
+      <CandidatesClient initialCandidates={initialCandidates} error={null} />
     </Suspense>
   );
 }

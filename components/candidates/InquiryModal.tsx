@@ -139,7 +139,7 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
     }
   }, [candidate, copy, isOpen, setValue]);
 
-  const candidateCode = candidate ? getCandidateCode(candidate.id) : "";
+  const candidateCode = candidate ? candidate.display_code || getCandidateCode(candidate.id) : "";
 
   const onSubmit = async (data: InquiryFormData) => {
     if (status === "success") return;

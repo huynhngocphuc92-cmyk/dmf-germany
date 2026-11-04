@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/utils/supabase/server";
 import { getPublicCandidates } from "@/lib/supabase/candidates";
+import { mergeWithDmfPoolCandidates } from "@/lib/candidates/dmf-pool-data";
 import type { PublicCandidate } from "@/lib/candidates/public-profile";
 import { createIntakeClient } from "@/lib/supabase/intake";
 import { getMailTransporter } from "@/lib/email/transporter";
@@ -108,7 +109,8 @@ export async function getEmployerDataRoomBundle(): Promise<EmployerDataRoomBundl
     }
 
     const profile = extractEmployerProfile(user);
-    const { data: candidates } = await getPublicCandidates();
+    const { data: dbCandidates } = await getPublicCandidates();
+    const candidates = mergeWithDmfPoolCandidates(dbCandidates);
 
     let inquiries: EmployerInquiryRecord[] = [];
     if (user.email) {

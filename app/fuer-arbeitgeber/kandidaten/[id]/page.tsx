@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getPublicCandidateById } from "@/lib/supabase/candidates";
+import { findDmfPoolCandidateById } from "@/lib/candidates/dmf-pool-data";
 import { pageMetadata, siteUrl, SITE_NAME } from "@/lib/site";
 import { categoryLabels } from "@/app/admin/candidates/types";
 import { ProfileDetailClient } from "./profile-detail-client";
@@ -13,7 +14,7 @@ export async function generateMetadata({
   params: Promise<{ id: string }>;
 }): Promise<Metadata> {
   const { id } = await params;
-  const candidate = await getPublicCandidateById(id);
+  const candidate = (await getPublicCandidateById(id)) ?? findDmfPoolCandidateById(id);
 
   if (!candidate) {
     return pageMetadata(
@@ -23,24 +24,24 @@ export async function generateMetadata({
     );
   }
 
-  const code = candidate.id.slice(0, 8).toUpperCase();
+  const code = candidate.display_code || candidate.id.slice(0, 8).toUpperCase();
   const role = candidate.profession || categoryLabels[candidate.category] || "Fachkraft";
   const level = candidate.german_level ? ` (Deutsch ${candidate.german_level})` : "";
   const title = `Bewerber-Exposé #${code}: ${role}${level}`;
   const description = `Anonymisiertes Bewerberprofil #${code} (${role}${level}) aus Vietnam für deutsche Arbeitgeber. Geprüfte Unterlagen und § 81a AufenthG Vorbereitung über ${SITE_NAME}.`;
 
-  return pageMetadata(`/fuer-arbeitgeber/kandidaten/${candidate.id}`, title, description);
+  return pageMetadata(`/fuer-arbeitgeber/kandidaten/${id}`, title, description);
 }
 
 export default async function CandidateDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const candidate = await getPublicCandidateById(id);
+  const candidate = (await getPublicCandidateById(id)) ?? findDmfPoolCandidateById(id);
 
   if (!candidate) {
     notFound();
   }
 
-  const code = candidate.id.slice(0, 8).toUpperCase();
+  const code = candidate.display_code || candidate.id.slice(0, 8).toUpperCase();
   const role = candidate.profession || categoryLabels[candidate.category] || "Fachkraft";
 
   const jsonLd = {

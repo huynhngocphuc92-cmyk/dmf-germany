@@ -18,6 +18,7 @@ export type {
   Candidate,
   CandidateFormData,
   CandidateCategory,
+  CandidatePoolStage,
   CandidateStatus,
   GermanLevel,
 } from "@/app/admin/candidates/types";

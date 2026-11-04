@@ -13,6 +13,8 @@ import {
   getHomepageFeaturedCandidates,
   getPublicCandidates,
 } from "@/lib/supabase/candidates";
+import { toPublicCandidates } from "@/lib/candidates/public-profile";
+import { DMF_POOL_PUBLIC_CANDIDATES } from "@/lib/candidates/dmf-pool-data";
 
 const privateFields = {
   full_name: "PRIVATE_NAME_SENTINEL",
@@ -105,4 +107,30 @@ it("separates featuring from publication for the public pool", async () => {
 it("only promotes featured profiles on the homepage", async () => {
   mock.rows = [{ ...published, is_featured: false }];
   expect((await getHomepageFeaturedCandidates()).data).toEqual([]);
+});
+
+it("validates all 296 DMF Kandidaten-Pool profiles across 5 stages with avatars, videos, and dossiers", () => {
+  const parsed = toPublicCandidates(DMF_POOL_PUBLIC_CANDIDATES);
+  expect(parsed).toHaveLength(296);
+
+  const stageCounts = parsed.reduce<Record<string, number>>((acc, c) => {
+    const st = c.pool_stage || "unknown";
+    acc[st] = (acc[st] || 0) + 1;
+    return acc;
+  }, {});
+
+  expect(stageCounts).toEqual({
+    interview_ready: 15,
+    b1_b2_exam: 42,
+    b_niveau: 76,
+    a_niveau: 158,
+    in_germany: 5,
+  });
+
+  const withAvatars = parsed.filter((c) => Boolean(c.avatar_url));
+  const withVideos = parsed.filter((c) => Boolean(c.video_url));
+  const withDocs = parsed.filter((c) => (c.documents?.length ?? 0) > 0);
+  expect(withAvatars.length).toBeGreaterThanOrEqual(16);
+  expect(withVideos.length).toBeGreaterThanOrEqual(5);
+  expect(withDocs.length).toBeGreaterThanOrEqual(19);
 });
