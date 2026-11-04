@@ -370,7 +370,7 @@ def run_ultra_qc():
             print(f"  {i}. {err}")
     else:
         print("\n🏆 PERFECT SCORE: ZERO CRITICAL ERRORS DETECTED!")
-        print("   All 74 posts, unique covers, embedded SVGs, and link graphs are 100% compliant.")
+        print(f"   All {stats.get('total_posts', 0)} posts, unique covers, embedded SVGs, and link graphs are 100% compliant.")
 
     if warnings:
         print("\n⚠️ QUALITY WARNINGS / ADVISORIES (Top 10):")

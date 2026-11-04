@@ -96,7 +96,7 @@ AI_PATTERNS = [
 ]
 
 def audit_ai_tone():
-    print("Fetching all 74 posts from Supabase...")
+    print("Fetching published posts from Supabase...")
     req = urllib.request.Request(
         f"{SUPABASE_URL}/rest/v1/posts?select=id,slug,title,content&order=published_at.desc",
         headers={"apikey": SERVICE_ROLE_KEY, "Authorization": f"Bearer {SERVICE_ROLE_KEY}"}
