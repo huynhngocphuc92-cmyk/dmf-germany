@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <rect width="720" height="540" rx="16" fill="#F8FAFC"/>
+  <rect x="20" y="20" width="680" height="500" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="20" y="20" width="680" height="72" rx="12" fill="#003366"/>
+  <text x="44" y="52" fill="#FFFFFF" font-size="18" font-weight="700">DMF Vietnam &amp; DMF Talents: Integrierte Akademie- &amp; Brückenstruktur</text>
+  <text x="44" y="75" fill="#CBD5E1" font-size="12">Zwei Trainingsstandorte in Vietnam + Direkte Repräsentanz in Deutschland (Über 58 Sprachkohorten)</text>
+
+  <!-- Left Column: Vietnam Operations -->
+  <g transform="translate(44, 110)">
+    <rect width="304" height="230" rx="10" fill="#F8FAFC" stroke="#003366" stroke-width="2"/>
+    <rect width="304" height="38" rx="10" fill="#003366"/>
+    <text x="16" y="24" fill="#FFFFFF" font-size="13" font-weight="700">Hauptsitz &amp; Akademie in Vietnam</text>
+    <text x="16" y="62" fill="#003366" font-size="13" font-weight="700">1. Campus Biên Hòa (Đồng Nai)</text>
+    <text x="16" y="80" fill="#475569" font-size="11">A11 KDC Quang Vinh, P. Quang Vinh, TP. Biên Hòa</text>
+    <text x="16" y="106" fill="#003366" font-size="13" font-weight="700">2. Campus Ho-Chi-Minh-Stadt</text>
+    <text x="16" y="124" fill="#475569" font-size="11">174/11 Điện Biên Phủ, Bình Thạnh, TP.HCM</text>
+    <line x1="16" y1="138" x2="288" y2="138" stroke="#CBD5E1" stroke-width="1"/>
+    <text x="16" y="158" fill="#9A3412" font-size="12" font-weight="700">Leitung vor Ort: Herr Achim Betticher</text>
+    <text x="16" y="176" fill="#334155" font-size="11">• 58+ gestartete Sprachklassen (K1 bis K58)</text>
+    <text x="16" y="194" fill="#334155" font-size="11">• 1:1 Bewerbungsgespräch-Coaching auf Deutsch</text>
+    <text x="16" y="212" fill="#334155" font-size="11">• Praktische Vorschulung (Gastronomie &amp; Pflege)</text>
+  </g>
+
+  <!-- Right Column: Germany Representation -->
+  <g transform="translate(372, 110)">
+    <rect width="304" height="230" rx="10" fill="#FFF7ED" stroke="#FF6600" stroke-width="2"/>
+    <rect width="304" height="38" rx="10" fill="#FF6600"/>
+    <text x="16" y="24" fill="#FFFFFF" font-size="13" font-weight="700">Direkte Vertretung in Deutschland</text>
+    <text x="16" y="62" fill="#9A3412" font-size="13" font-weight="700">Ansprechpartner: Herr Umit Elezov</text>
+    <text x="16" y="80" fill="#7C2D12" font-size="11">Direkter Kontakt: +49 174 9015811</text>
+    <text x="16" y="106" fill="#9A3412" font-size="13" font-weight="700">Arbeitgeberbetreuung vor Ort</text>
+    <text x="16" y="124" fill="#7C2D12" font-size="11">Persönliche Betriebsbesuche &amp; Bedarfsanalyse</text>
+    <line x1="16" y1="138" x2="288" y2="138" stroke="#FDBA74" stroke-width="1"/>
+    <text x="16" y="158" fill="#003366" font-size="12" font-weight="700">Behörden- &amp; Onboarding-Begleitung</text>
+    <text x="16" y="176" fill="#334155" font-size="11">• Abstimmung mit IHK, HWK, BA &amp; Pflegeschulen</text>
+    <text x="16" y="194" fill="#334155" font-size="11">• Flughafenabholung &amp; 30-Tage-Startbegleitung</text>
+    <text x="16" y="212" fill="#334155" font-size="11">• 3 Jahre Nachbetreuung während der Ausbildung</text>
+  </g>
+
+  <!-- Bottom 5 Business Pillars -->
+  <g transform="translate(44, 358)">
+    <rect width="632" height="106" rx="10" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1.5"/>
+    <text x="18" y="25" fill="#003366" font-size="13" font-weight="700">Die 5 Kernbereiche des DMF-Ökosystems (Qualitätsgesichert nach internem Governance-Standard):</text>
+    <rect x="18" y="38" width="114" height="54" rx="6" fill="#FFFFFF" stroke="#003366"/>
+    <text x="75" y="60" text-anchor="middle" fill="#003366" font-size="11" font-weight="700">1. Sprachakademie</text>
+    <text x="75" y="78" text-anchor="middle" fill="#475569" font-size="10">Intensiv A1 bis B2</text>
+
+    <rect x="142" y="38" width="114" height="54" rx="6" fill="#FFFFFF" stroke="#003366"/>
+    <text x="199" y="60" text-anchor="middle" fill="#003366" font-size="11" font-weight="700">2. Ausbildung §16a</text>
+    <text x="199" y="78" text-anchor="middle" fill="#475569" font-size="10">Pflege, HoGa, Technik</text>
+
+    <rect x="266" y="38" width="114" height="54" rx="6" fill="#FFFFFF" stroke="#003366"/>
+    <text x="323" y="60" text-anchor="middle" fill="#003366" font-size="11" font-weight="700">3. Fachkräfte §18a/b</text>
+    <text x="323" y="78" text-anchor="middle" fill="#475569" font-size="10">Anerkennung &amp; Visa</text>
+
+    <rect x="390" y="38" width="114" height="54" rx="6" fill="#FFFFFF" stroke="#FF6600"/>
+    <text x="447" y="60" text-anchor="middle" fill="#9A3412" font-size="11" font-weight="700">4. DMF Quality Gate</text>
+    <text x="447" y="78" text-anchor="middle" fill="#7C2D12" font-size="10">Profil + 90s-Video</text>
+
+    <rect x="514" y="38" width="100" height="54" rx="6" fill="#FFFFFF" stroke="#15803D"/>
+    <text x="564" y="60" text-anchor="middle" fill="#15803D" font-size="11" font-weight="700">5. Studium</text>
+    <text x="564" y="78" text-anchor="middle" fill="#475569" font-size="10">APS &amp; Studienkolleg</text>
+  </g>
+
+  <rect x="44" y="476" width="632" height="32" rx="6" fill="#003366"/>
+  <text x="360" y="497" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="600">Kein anonymer CV-Versand: Eigene Sprachausbildung + persönliche Vertretung in Deutschland &amp; Vietnam</text>
+</svg>

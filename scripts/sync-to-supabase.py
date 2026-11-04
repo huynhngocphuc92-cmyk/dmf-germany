@@ -158,6 +158,18 @@ POST_COVER_MAPPING = {
     "personalgewinnung-vietnam-hamburg-schleswig-holstein-maritim": "/images/blog/dmf-hamburg-schleswig-holstein-hafen-pflege-gastronomie.jpg",
     "fachkraefte-vietnam-rheinland-pfalz-saarland-zfe-kaiserslautern": "/images/blog/dmf-rheinland-pfalz-saarland-zfe-kaiserslautern-industrie.jpg",
     "fachkraefte-vietnam-mecklenburg-vorpommern-sachsen-anhalt-ostsee": "/images/blog/dmf-mecklenburg-vorpommern-sachsen-anhalt-ostsee-industrie.jpg",
+    "dmf-vietnam-unternehmensprofil-ausbildungsakademie-deutschland": "/images/blog/dmf-vietnam-unternehmensprofil-ausbildungsakademie-deutschland.jpg",
+    "deutschunterricht-intensivkurs-a1-b2-dmf-akademie-vietnam": "/images/blog/dmf-deutschunterricht-intensivkurs-a1-b2-akademie-vietnam.jpg",
+    "interview-coaching-achim-betticher-dmf-vorbereitung-vietnam": "/images/blog/dmf-interview-coaching-achim-betticher-vorbereitung-vietnam.jpg",
+    "direkte-vertretung-deutschland-umit-elezov-arbeitgeberbetreuung": "/images/blog/dmf-direkte-vertretung-deutschland-umit-elezov-arbeitgeberbetreuung.jpg",
+    "dmf-quality-gate-entscheidungsfaehige-kandidatenprofile-video": "/images/blog/dmf-quality-gate-entscheidungsfaehige-kandidatenprofile-video.jpg",
+    "praxisvorbereitung-gastronomie-hotellerie-bcis-dmf-vietnam": "/images/blog/dmf-praxisvorbereitung-gastronomie-hotellerie-bcis-vietnam.jpg",
+    "pflegeausbildung-vorbereitung-dmf-vietnam-sprachkompetenz-empathie": "/images/blog/dmf-pflegeausbildung-vorbereitung-vietnam-sprachkompetenz-empathie.jpg",
+    "ankunft-onboarding-deutschland-30-tage-begleitung-dmf": "/images/blog/dmf-ankunft-onboarding-deutschland-30-tage-begleitung.jpg",
+    "fallstudie-industrie-handwerk-hoang-duy-ausbildung-meppen": "/images/blog/dmf-fallstudie-industrie-handwerk-hoang-duy-ausbildung-meppen.jpg",
+    "fallstudie-hotellerie-zfa-thien-tuan-hoang-dung-erfolgsgeschichten": "/images/blog/dmf-fallstudie-hotellerie-zfa-thien-tuan-hoang-dung-erfolgsgeschichten.jpg",
+    "gemeinschaft-kultur-integration-dmf-campus-leben-vietnam": "/images/blog/dmf-gemeinschaft-kultur-integration-campus-leben-vietnam.jpg",
+    "kooperationsmodell-deutsche-arbeitgeber-dmf-talents-schritt-fuer-schritt": "/images/blog/dmf-kooperationsmodell-deutsche-arbeitgeber-schritt-fuer-schritt.jpg",
 }
 
 def sync_posts():
@@ -169,7 +181,7 @@ def sync_posts():
     print(f"Loaded {len(posts)} posts from {COMPILED_FILE}")
 
     # Generate published dates spaced across recent days/weeks
-    base_time = datetime(2026, 10, 31, 10, 0, 0, tzinfo=timezone.utc)
+    base_time = datetime(2026, 11, 4, 14, 0, 0, tzinfo=timezone.utc)
 
     payload = []
     for i, p in enumerate(posts):
@@ -203,20 +215,29 @@ def sync_posts():
     }
 
     # Upsert in batches of 10 to ensure clean transmission
+    import time
     batch_size = 10
     total_synced = 0
     for i in range(0, len(payload), batch_size):
         batch = payload[i:i + batch_size]
         data_bytes = json.dumps(batch, ensure_ascii=False).encode("utf-8")
-        req = urllib.request.Request(url, data=data_bytes, method="POST", headers=headers)
-        try:
-            with urllib.request.urlopen(req) as resp:
-                total_synced += len(batch)
-                print(f"Batch {i//batch_size + 1}: synced {len(batch)} posts (Status {resp.status})")
-        except urllib.error.HTTPError as e:
-            err_body = e.read().decode()
-            print(f"HTTP Error {e.code} on batch {i}: {err_body}")
-            raise e
+        for attempt in range(4):
+            req = urllib.request.Request(url, data=data_bytes, method="POST", headers=headers)
+            try:
+                with urllib.request.urlopen(req, timeout=30) as resp:
+                    total_synced += len(batch)
+                    print(f"Batch {i//batch_size + 1}: synced {len(batch)} posts (Status {resp.status})")
+                    break
+            except urllib.error.HTTPError as e:
+                err_body = e.read().decode()
+                print(f"HTTP Error {e.code} on batch {i}: {err_body}")
+                raise e
+            except Exception as e:
+                if attempt < 3:
+                    print(f"Transient error on batch {i//batch_size + 1} ({e}), retrying...")
+                    time.sleep(1.5)
+                else:
+                    raise e
 
     print(f"\nSUCCESS: Synced all {total_synced} posts to Supabase table 'posts' with status 'published'!")
 

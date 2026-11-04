@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <rect width="720" height="540" rx="16" fill="#F8FAFC"/>
+  <rect x="20" y="20" width="680" height="500" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="20" y="20" width="680" height="72" rx="12" fill="#003366"/>
+  <text x="44" y="52" fill="#FFFFFF" font-size="18" font-weight="700">Das DMF Tandem-Modell: Direkte Präsenz in Deutschland &amp; Vietnam</text>
+  <text x="44" y="75" fill="#CBD5E1" font-size="12">Verbindliche Ansprechpartner in beiden Zeitzonen für deutsche Ausbildungsbetriebe</text>
+
+  <!-- Left Card: Umit Elezov -->
+  <g transform="translate(44, 112)">
+    <rect width="290" height="260" rx="10" fill="#FFF7ED" stroke="#FF6600" stroke-width="2"/>
+    <rect width="290" height="44" rx="10" fill="#FF6600"/>
+    <text x="16" y="20" fill="#FFFFFF" font-size="13" font-weight="700">Direkte Vertretung in Deutschland</text>
+    <text x="16" y="36" fill="#FFEDD5" font-size="11">Herr Umit Elezov (+49 174 9015811)</text>
+    <text x="16" y="70" fill="#9A3412" font-size="12" font-weight="700">Aufgaben vor Ort in Deutschland:</text>
+    <text x="16" y="94" fill="#334155" font-size="11">• Persönliche Besuche im Ausbildungsbetrieb</text>
+    <text x="16" y="116" fill="#334155" font-size="11">• Klärung von Ausbildungsplan, Schicht &amp; Wohnraum</text>
+    <text x="16" y="138" fill="#334155" font-size="11">• Abstimmung mit IHK/HWK, Pflegeschulen &amp; Behörden</text>
+    <text x="16" y="160" fill="#334155" font-size="11">• Begleitung beim Onboarding nach der Einreise</text>
+    <text x="16" y="182" fill="#334155" font-size="11">• Direkter Krisen- &amp; Mediationskontakt in der Probezeit</text>
+    <rect x="16" y="202" width="258" height="42" rx="6" fill="#FFFFFF" stroke="#FDBA74"/>
+    <text x="145" y="220" text-anchor="middle" fill="#9A3412" font-size="11" font-weight="700">Keine Sprach- oder Zeitzonenbarriere</text>
+    <text x="145" y="236" text-anchor="middle" fill="#7C2D12" font-size="10">Direkt erreichbar zu deutschen Bürozeiten</text>
+  </g>
+
+  <!-- Center Arrow / Bridge -->
+  <g transform="translate(342, 210)">
+    <rect x="0" y="0" width="36" height="44" rx="6" fill="#003366"/>
+    <text x="18" y="27" text-anchor="middle" fill="#FFFFFF" font-size="16" font-weight="800">⇄</text>
+  </g>
+
+  <!-- Right Card: Achim Betticher & VN Team -->
+  <g transform="translate(386, 112)">
+    <rect width="290" height="260" rx="10" fill="#F8FAFC" stroke="#003366" stroke-width="2"/>
+    <rect width="290" height="44" rx="10" fill="#003366"/>
+    <text x="16" y="20" fill="#FFFFFF" font-size="13" font-weight="700">Vertretung &amp; Akademie in Vietnam</text>
+    <text x="16" y="36" fill="#CBD5E1" font-size="11">Herr Achim Betticher (+84 855 070773)</text>
+    <text x="16" y="70" fill="#003366" font-size="12" font-weight="700">Aufgaben vor Ort in Vietnam:</text>
+    <text x="16" y="94" fill="#334155" font-size="11">• Qualitätskontrolle des Deutschunterrichts (A1–B2)</text>
+    <text x="16" y="116" fill="#334155" font-size="11">• Gezielte Kandidatenauswahl nach Betriebsprofil</text>
+    <text x="16" y="138" fill="#334155" font-size="11">• 1:1 Interview-Vorbereitung &amp; Sprechtest</text>
+    <text x="16" y="160" fill="#334155" font-size="11">• Dokumentenprüfung, Übersetzung &amp; Visumverfahren</text>
+    <text x="16" y="182" fill="#334155" font-size="11">• Eltern- &amp; Familienkommunikation vor dem Abflug</text>
+    <rect x="16" y="202" width="258" height="42" rx="6" fill="#FFFFFF" stroke="#CBD5E1"/>
+    <text x="145" y="220" text-anchor="middle" fill="#003366" font-size="11" font-weight="700">Operative Steuerung (Khoa, Sún, Phượng, Vy)</text>
+    <text x="145" y="236" text-anchor="middle" fill="#475569" font-size="10">Lückenlose Übergabe von Kurs bis Abflug</text>
+  </g>
+
+  <!-- Bottom Workflow Bar -->
+  <g transform="translate(44, 390)">
+    <rect width="632" height="72" rx="8" fill="#F1F5F9" stroke="#CBD5E1"/>
+    <text x="20" y="24" fill="#003366" font-size="12" font-weight="700">Wie das Tandem im Alltag für Ihren Betrieb zusammenspielt:</text>
+    <text x="20" y="44" fill="#334155" font-size="11">1. Anforderungsprofil mit Umit Elezov / Achim Betticher klären → 2. Geprüfte Shortlist aus Vietnam erhalten</text>
+    <text x="20" y="61" fill="#334155" font-size="11">3. Gemeinsames Video-Interview → 4. IHK-/BA-/Visum-Abwicklung → 5. Abholung &amp; Vor-Ort-Betreuung in Deutschland</text>
+  </g>
+
+  <rect x="44" y="476" width="632" height="32" rx="6" fill="#003366"/>
+  <text x="360" y="497" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="600">Volle Verantwortlichkeit aus einer Hand – vom ersten Sprachtag in Biên Hòa bis zur Abschlussprüfung</text>
+</svg>

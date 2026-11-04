@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <rect width="720" height="540" rx="16" fill="#F8FAFC"/>
+  <rect x="20" y="20" width="680" height="500" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="20" y="20" width="680" height="72" rx="12" fill="#003366"/>
+  <text x="44" y="52" fill="#FFFFFF" font-size="18" font-weight="700">DMF-Spezialprüfung für die generalistische Pflegeausbildung</text>
+  <text x="44" y="75" fill="#CBD5E1" font-size="12">Verzahnung von Sprachreife (B1/B2), Empathie, Schichtdienst-Bereitschaft &amp; Pflegeschul-Abstimmung</text>
+
+  <!-- Top Dual Check: Kandidat vs. Struktur -->
+  <g transform="translate(44, 110)">
+    <rect width="304" height="195" rx="10" fill="#F8FAFC" stroke="#003366" stroke-width="2"/>
+    <rect width="304" height="36" rx="10" fill="#003366"/>
+    <text x="16" y="23" fill="#FFFFFF" font-size="12" font-weight="700">A. Kandidaten-Vorbereitung in Vietnam</text>
+    <text x="16" y="58" fill="#003366" font-size="12" font-weight="700">1. Sprachniveau B1+ / B2-Pflegefokus</text>
+    <text x="16" y="76" fill="#475569" font-size="11">Körperteile, Vitalwerte, Pflegebericht, Übergabe</text>
+    <text x="16" y="102" fill="#003366" font-size="12" font-weight="700">2. Realistisches Berufsbild Grundpflege</text>
+    <text x="16" y="120" fill="#475569" font-size="11">Körperpflege, Mobilisation, Ernährung &amp; Hygiene</text>
+    <text x="16" y="146" fill="#003366" font-size="12" font-weight="700">3. Psychologische Schichtdienst-Reife</text>
+    <text x="16" y="164" fill="#475569" font-size="11">Früh-, Spät- und Wochenenddienste klar besprochen</text>
+  </g>
+
+  <g transform="translate(372, 110)">
+    <rect width="304" height="195" rx="10" fill="#FFF7ED" stroke="#FF6600" stroke-width="2"/>
+    <rect width="304" height="36" rx="10" fill="#FF6600"/>
+    <text x="16" y="23" fill="#FFFFFF" font-size="12" font-weight="700">B. Struktur-Check mit dem deutschen Träger</text>
+    <text x="16" y="58" fill="#9A3412" font-size="12" font-weight="700">1. Träger der praktischen Ausbildung</text>
+    <text x="16" y="76" fill="#7C2D12" font-size="11">Klinikum, Pflegeheim oder ambulanter Dienst</text>
+    <text x="16" y="102" fill="#9A3412" font-size="12" font-weight="700">2. Fester Schulplatz an der Pflegeschule</text>
+    <text x="16" y="120" fill="#7C2D12" font-size="11">Kooperationsvertrag &amp; Starttermin (April/Aug./Okt.)</text>
+    <text x="16" y="146" fill="#9A3412" font-size="12" font-weight="700">3. Praxisanleitung &amp; Wohnortnähe</text>
+    <text x="16" y="164" fill="#7C2D12" font-size="11">Erreichbarkeit im Frühdienst &amp; feste Mentoren</text>
+  </g>
+
+  <!-- Bottom Checklist -->
+  <g transform="translate(44, 324)">
+    <rect width="632" height="134" rx="10" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1.5"/>
+    <text x="20" y="26" fill="#003366" font-size="13" font-weight="700">Vollständiges Dokumentenpaket für Pflege- &amp; ZFA-Ausbildungsbetriebe:</text>
+    <text x="20" y="50" fill="#334155" font-size="11">• Beglaubigte &amp; übersetzte Schulzeugnisse + ggf. Schulabschluss-Anerkennung der Landesbehörde</text>
+    <text x="20" y="72" fill="#334155" font-size="11">• Ärztliches Attest zur gesundheitlichen Eignung + Impfnachweise (Masernschutz / Hepatitis-Status)</text>
+    <text x="20" y="94" fill="#334155" font-size="11">• Erweitertes Führungszeugnis + B1/B2-Zertifikat + Bestätigung des laufenden Fachsprachkurses</text>
+    <text x="20" y="116" fill="#15803D" font-size="11" font-weight="700">• Vorabstimmung bei verspätetem Start (z. B. Musterfall Willy-Hellpach-Schule Heidelberg)</text>
+  </g>
+
+  <rect x="44" y="474" width="632" height="32" rx="6" fill="#003366"/>
+  <text x="360" y="495" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="600">Sicherheit für Pflegedienstleitungen: Keine Fehlbesetzungen durch lückenlose Vorab-Aufklärung</text>
+</svg>

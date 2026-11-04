@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <rect width="720" height="540" rx="16" fill="#F8FAFC"/>
+  <rect x="20" y="20" width="680" height="500" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="20" y="20" width="680" height="72" rx="12" fill="#003366"/>
+  <text x="44" y="52" fill="#FFFFFF" font-size="18" font-weight="700">Praxisvorbereitung in Vietnam für Hotellerie, Küche &amp; Bäckerei</text>
+  <text x="44" y="75" fill="#CBD5E1" font-size="12">Praktische Trainingseinheiten (u. a. BCIS-Lehrküche) vor dem Ausbildungsstart in Deutschland</text>
+
+  <!-- 4 Practical Training Modules -->
+  <g transform="translate(44, 112)">
+    <rect width="304" height="158" rx="10" fill="#F8FAFC" stroke="#003366" stroke-width="1.5"/>
+    <rect width="304" height="34" rx="10" fill="#003366"/>
+    <text x="16" y="22" fill="#FFFFFF" font-size="12" font-weight="700">1. Küche &amp; Lebensmittelhandwerk (Koch)</text>
+    <text x="16" y="54" fill="#334155" font-size="11">• Schneidetechniken, Mise en Place &amp; Küchengeräte</text>
+    <text x="16" y="74" fill="#334155" font-size="11">• Deutsche Küchenbegriffe &amp; Posten-Kommunikation</text>
+    <text x="16" y="94" fill="#334155" font-size="11">• Arbeitssicherheit, Arbeitskleidung &amp; Tempo</text>
+    <text x="16" y="114" fill="#334155" font-size="11">• Grundverständnis für HACCP &amp; Kühlketten</text>
+    <text x="16" y="138" fill="#003366" font-size="11" font-weight="700">Ziel: Sofortige Einsatzfähigkeit in Woche 1</text>
+  </g>
+
+  <g transform="translate(372, 112)">
+    <rect width="304" height="158" rx="10" fill="#FFF7ED" stroke="#FF6600" stroke-width="1.5"/>
+    <rect width="304" height="34" rx="10" fill="#FF6600"/>
+    <text x="16" y="22" fill="#FFFFFF" font-size="12" font-weight="700">2. Bäckerei &amp; Konditorei (Praxislabor)</text>
+    <text x="16" y="54" fill="#7C2D12" font-size="11">• Teigführung, Abwiegen, Formen &amp; Ofenarbeit</text>
+    <text x="16" y="74" fill="#7C2D12" font-size="11">• Umgang mit Rezepturen &amp; deutschen Maßeinheiten</text>
+    <text x="16" y="94" fill="#7C2D12" font-size="11">• Vorbereitung auf Frühschichten &amp; Backstuben-Rhythmus</text>
+    <text x="16" y="114" fill="#7C2D12" font-size="11">• Sauberkeit am Arbeitsplatz nach deutschem Standard</text>
+    <text x="16" y="138" fill="#9A3412" font-size="11" font-weight="700">Ziel: Reale Vorstellung vom Bäcker-/Konditorberuf</text>
+  </g>
+
+  <g transform="translate(44, 288)">
+    <rect width="304" height="158" rx="10" fill="#F8FAFC" stroke="#003366" stroke-width="1.5"/>
+    <rect width="304" height="34" rx="10" fill="#334155"/>
+    <text x="16" y="22" fill="#FFFFFF" font-size="12" font-weight="700">3. Restaurant- &amp; Veranstaltungsservice</text>
+    <text x="16" y="54" fill="#334155" font-size="11">• Eindecken nach deutschem Standard, Tragegriffe</text>
+    <text x="16" y="74" fill="#334155" font-size="11">• Gästebegrüßung, Bestellaufnahme &amp; Wein-/Getränke-ABC</text>
+    <text x="16" y="94" fill="#334155" font-size="11">• Höfliche Redewendungen bei Reklamationen</text>
+    <text x="16" y="114" fill="#334155" font-size="11">• Teamarbeit zwischen Service und Küche</text>
+    <text x="16" y="138" fill="#003366" font-size="11" font-weight="700">Ziel: Souveränes Auftreten am Gast</text>
+  </g>
+
+  <g transform="translate(372, 288)">
+    <rect width="304" height="158" rx="10" fill="#F0FDF4" stroke="#15803D" stroke-width="1.5"/>
+    <rect width="304" height="34" rx="10" fill="#15803D"/>
+    <text x="16" y="22" fill="#FFFFFF" font-size="12" font-weight="700">4. Hotelfach (Housekeeping &amp; Rezeption)</text>
+    <text x="16" y="54" fill="#14532D" font-size="11">• Verständnis für abteilungsübergreifende Rotation</text>
+    <text x="16" y="74" fill="#14532D" font-size="11">• Qualitätsstandards im Housekeeping &amp; Frühstücksdienst</text>
+    <text x="16" y="94" fill="#14532D" font-size="11">• Check-in/Check-out-Dialoge &amp; Telefon-Etikette</text>
+    <text x="16" y="114" fill="#14532D" font-size="11">• Realistische Einstellung zu Wochenend-/Teildiensten</text>
+    <text x="16" y="138" fill="#15803D" font-size="11" font-weight="700">Ziel: Hohe Bleibequote in der Probezeit</text>
+  </g>
+
+  <rect x="44" y="468" width="632" height="38" rx="6" fill="#003366"/>
+  <text x="360" y="492" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="600">Praxis-Effekt: Unsere HoGa-Azubis kennen Handgriffe, Fachbegriffe &amp; Arbeitsrealität schon vor dem Abflug</text>
+</svg>

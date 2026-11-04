@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <rect width="720" height="540" rx="16" fill="#F8FAFC"/>
+  <rect x="20" y="20" width="680" height="500" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="20" y="20" width="680" height="72" rx="12" fill="#003366"/>
+  <text x="44" y="52" fill="#FFFFFF" font-size="18" font-weight="700">DMF Campus-Kultur &amp; Auswirkung auf die Ausbildungs-Bleibequote</text>
+  <text x="44" y="75" fill="#CBD5E1" font-size="12">Warum soziale Einbindung vor der Ausreise das Heimweh- und Abbruchrisiko in Deutschland senkt</text>
+
+  <!-- 3 Pillars of Campus Culture -->
+  <g transform="translate(44, 112)">
+    <rect width="198" height="205" rx="10" fill="#F8FAFC" stroke="#003366" stroke-width="1.5"/>
+    <rect width="198" height="36" rx="10" fill="#003366"/>
+    <text x="99" y="23" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="700">1. Verbindliche Alltagsdisziplin</text>
+    <text x="14" y="60" fill="#334155" font-size="11">• Pünktlichkeit im 5-Tage-Kurs</text>
+    <text x="14" y="82" fill="#334155" font-size="11">• Feste Hausaufgaben- &amp; Prüfroutinen</text>
+    <text x="14" y="104" fill="#334155" font-size="11">• Ordnung &amp; Teamverantwortung</text>
+    <text x="14" y="126" fill="#334155" font-size="11">• Transparente Lernstandberichte</text>
+    <rect x="14" y="150" width="170" height="40" rx="6" fill="#EFF6FF"/>
+    <text x="99" y="174" text-anchor="middle" fill="#003366" font-size="11" font-weight="700">Basis für deutsche Arbeitsmoral</text>
+  </g>
+
+  <g transform="translate(261, 112)">
+    <rect width="198" height="205" rx="10" fill="#FFF7ED" stroke="#FF6600" stroke-width="1.5"/>
+    <rect width="198" height="36" rx="10" fill="#FF6600"/>
+    <text x="99" y="23" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="700">2. „Dorf der Deutschland-Azubis“</text>
+    <text x="14" y="60" fill="#7C2D12" font-size="11">• Tết-Fest &amp; Weihnachtsfeiern</text>
+    <text x="14" y="82" fill="#7C2D12" font-size="11">• Open Days, Uni Fair &amp; Sporttage</text>
+    <text x="14" y="104" fill="#7C2D12" font-size="11">• Feierliche Visa-Übergaben</text>
+    <text x="14" y="126" fill="#7C2D12" font-size="11">• Kohorten-Zusammenhalt (K1–K58)</text>
+    <rect x="14" y="150" width="170" height="40" rx="6" fill="#FFEDD5"/>
+    <text x="99" y="174" text-anchor="middle" fill="#9A3412" font-size="11" font-weight="700">Starke Peer-Group gegen Einsamkeit</text>
+  </g>
+
+  <g transform="translate(478, 112)">
+    <rect width="198" height="205" rx="10" fill="#F0FDF4" stroke="#15803D" stroke-width="1.5"/>
+    <rect width="198" height="36" rx="10" fill="#15803D"/>
+    <text x="99" y="23" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="700">3. Alumni-Netzwerk in DE</text>
+    <text x="14" y="60" fill="#14532D" font-size="11">• Erfahrungsaustausch mit Azubis,</text>
+    <text x="22" y="76" fill="#14532D" font-size="11">die bereits in Deutschland leben</text>
+    <text x="14" y="98" fill="#14532D" font-size="11">• Gegenseitige Hilfe beim Einleben</text>
+    <text x="14" y="120" fill="#14532D" font-size="11">• Einbindung der Eltern in Vietnam</text>
+    <rect x="14" y="150" width="170" height="40" rx="6" fill="#DCFCE7"/>
+    <text x="99" y="174" text-anchor="middle" fill="#15803D" font-size="11" font-weight="700">Langfristige Bindung an Betrieb</text>
+  </g>
+
+  <!-- Impact Box -->
+  <g transform="translate(44, 336)">
+    <rect width="632" height="122" rx="10" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1.5"/>
+    <text x="20" y="28" fill="#003366" font-size="13" font-weight="700">Warum Gemeinschaft in Vietnam über den Erfolg in der deutschen Probezeit entscheidet:</text>
+    <text x="20" y="52" fill="#334155" font-size="11">1. Wer 8 bis 14 Monate lang gemeinsam an der DMF-Akademie lernt, baut ein stabiles soziales Sicherheitsnetz auf.</text>
+    <text x="20" y="74" fill="#334155" font-size="11">2. Bei Tandem-Platzierungen (2 Azubis im selben Betrieb/Ort) unterstützen sich die Kandidaten im Alltag gegenseitig.</text>
+    <text x="20" y="96" fill="#334155" font-size="11">3. Deutsche Werte wie Direktheit, Pünktlichkeit und Eigeninitiative werden schon im Campus-Alltag eingeübt.</text>
+  </g>
+
+  <rect x="44" y="472" width="632" height="34" rx="6" fill="#003366"/>
+  <text x="360" y="494" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="600">Ergebnis: Sozial gefestigte Persönlichkeiten statt isolierter Einzelkämpfer im ersten Lehrjahr</text>
+</svg>

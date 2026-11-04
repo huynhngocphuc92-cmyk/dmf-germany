@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <rect width="720" height="540" rx="16" fill="#F8FAFC"/>
+  <rect x="20" y="20" width="680" height="500" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="20" y="20" width="680" height="72" rx="12" fill="#003366"/>
+  <text x="44" y="52" fill="#FFFFFF" font-size="18" font-weight="700">DMF Sprachakademie: 5-Tage-Intensivcurriculum (A1 bis B2)</text>
+  <text x="44" y="75" fill="#CBD5E1" font-size="12">Kleine Lerngruppen (8–15 Teilnehmende) • 5 Sitzungen/Woche à 90 Min. • Vietnamesische &amp; deutsche Lehrkräfte</text>
+
+  <!-- 4 Course Stages -->
+  <g transform="translate(44, 112)">
+    <rect width="632" height="68" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+    <rect width="120" height="68" rx="8" fill="#003366"/>
+    <text x="60" y="30" text-anchor="middle" fill="#FFFFFF" font-size="15" font-weight="800">Stufe A1</text>
+    <text x="60" y="50" text-anchor="middle" fill="#CBD5E1" font-size="11">60 Sitzungen</text>
+    <text x="140" y="26" fill="#003366" font-size="13" font-weight="700">Fundament &amp; Phonetik-Training (ca. 2,5–3 Monate)</text>
+    <text x="140" y="45" fill="#334155" font-size="11">• Systematische Aussprachekorrektur ab Woche 1 • Basisgrammatik (Grammatik aktiv)</text>
+    <text x="140" y="61" fill="#475569" font-size="11">• Alltagsdialoge, Zahlen, Uhrzeiten &amp; erste Hörverständnis-Routinen</text>
+  </g>
+
+  <g transform="translate(44, 192)">
+    <rect width="632" height="68" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+    <rect width="120" height="68" rx="8" fill="#003366"/>
+    <text x="60" y="30" text-anchor="middle" fill="#FFFFFF" font-size="15" font-weight="800">Stufe A2</text>
+    <text x="60" y="50" text-anchor="middle" fill="#CBD5E1" font-size="11">70 Sitzungen</text>
+    <text x="140" y="26" fill="#003366" font-size="13" font-weight="700">Satzbau-Sicherheit &amp; Aktives Sprechen (ca. 3–3,5 Monate)</text>
+    <text x="140" y="45" fill="#334155" font-size="11">• Nebensätze, Perfekt/Präteritum, Modalverben im Arbeitskontext</text>
+    <text x="140" y="61" fill="#475569" font-size="11">• Freies Erzählen über den eigenen Lebenslauf ohne Ablesen von Notizen</text>
+  </g>
+
+  <g transform="translate(44, 272)">
+    <rect width="632" height="68" rx="8" fill="#FFF7ED" stroke="#FDBA74" stroke-width="1.5"/>
+    <rect width="120" height="68" rx="8" fill="#FF6600"/>
+    <text x="60" y="30" text-anchor="middle" fill="#FFFFFF" font-size="15" font-weight="800">Stufe B1</text>
+    <text x="60" y="50" text-anchor="middle" fill="#FFEDD5" font-size="11">80 Sitzungen</text>
+    <text x="140" y="26" fill="#9A3412" font-size="13" font-weight="700">Berufsorientierte Kommunikationsfähigkeit (ca. 3,5–4 Monate)</text>
+    <text x="140" y="45" fill="#7C2D12" font-size="11">• Ausgewogenes 4-Fertigkeiten-Training (Hören, Sprechen, Lesen, Schreiben)</text>
+    <text x="140" y="61" fill="#9A3412" font-size="11">• Start des 1:1 Interview-Coachings mit Herrn Achim Betticher &amp; Videoaufnahme</text>
+  </g>
+
+  <g transform="translate(44, 352)">
+    <rect width="632" height="68" rx="8" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5"/>
+    <rect width="120" height="68" rx="8" fill="#15803D"/>
+    <text x="60" y="30" text-anchor="middle" fill="#FFFFFF" font-size="15" font-weight="800">Stufe B2</text>
+    <text x="60" y="50" text-anchor="middle" fill="#DCFCE7" font-size="11">100 Sitzungen</text>
+    <text x="140" y="26" fill="#166534" font-size="13" font-weight="700">Fachsprache für Pflege, Gastronomie &amp; Berufsschule (ca. 4,5 Monate)</text>
+    <text x="140" y="45" fill="#14532D" font-size="11">• Dienstübergabe, Patienten-/Gästegespräche, Beschwerdemanagement &amp; Fachberichte</text>
+    <text x="140" y="61" fill="#166534" font-size="11">• Präsenz- &amp; Online-B2-Klassen (z. B. K44) für nahtlosen Übergang bis zur Ausreise</text>
+  </g>
+
+  <rect x="44" y="434" width="632" height="32" rx="6" fill="#F1F5F9" stroke="#CBD5E1"/>
+  <text x="360" y="455" text-anchor="middle" fill="#003366" font-size="12" font-weight="700">Lehrkörper-Mix: Vietnamesische Grammatik-Dozenten (Lộc, Khang, Ly) + Muttersprachler (Achim, Tamara, Ralf)</text>
+
+  <rect x="44" y="476" width="632" height="32" rx="6" fill="#003366"/>
+  <text x="360" y="497" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="600">Ergebnis: Echte Hör- und Sprechkompetenz im Betrieb statt reiner Multiple-Choice-Prüfungsroutine</text>
+</svg>

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <rect width="720" height="540" rx="16" fill="#F8FAFC"/>
+  <rect x="20" y="20" width="680" height="500" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="20" y="20" width="680" height="72" rx="12" fill="#003366"/>
+  <text x="44" y="52" fill="#FFFFFF" font-size="18" font-weight="700">Das 4-stufige DMF Quality Gate vor jedem Arbeitgeber-Vorschlag</text>
+  <text x="44" y="75" fill="#CBD5E1" font-size="12">Warum DMF Talents nur entscheidungsfähige Profile mit 60–90-Sekunden-Video vorlegt</text>
+
+  <!-- 4 Quality Gates -->
+  <g transform="translate(44, 110)">
+    <rect width="298" height="118" rx="8" fill="#F8FAFC" stroke="#003366" stroke-width="1.5"/>
+    <rect width="298" height="30" rx="8" fill="#003366"/>
+    <text x="14" y="20" fill="#FFFFFF" font-size="12" font-weight="700">Gate 1: Dokumenten- &amp; Berufskonsistenz</text>
+    <text x="14" y="52" fill="#334155" font-size="11">• Schulabschluss, Notenbild &amp; Reisepass geprüft</text>
+    <text x="14" y="72" fill="#334155" font-size="11">• Einheitlicher Berufswunsch in CV &amp; Anschreiben</text>
+    <text x="14" y="92" fill="#334155" font-size="11">• Gesundheitliche Eignung &amp; Führungszeugnis</text>
+  </g>
+
+  <g transform="translate(378, 110)">
+    <rect width="298" height="118" rx="8" fill="#F8FAFC" stroke="#003366" stroke-width="1.5"/>
+    <rect width="298" height="30" rx="8" fill="#003366"/>
+    <text x="14" y="20" fill="#FFFFFF" font-size="12" font-weight="700">Gate 2: Realer Sprech- &amp; Hörtest (B1/B2)</text>
+    <text x="14" y="52" fill="#334155" font-size="11">• Nicht nur Zertifikatsstatus, sondern freies Gespräch</text>
+    <text x="14" y="72" fill="#334155" font-size="11">• Prüfung durch Akademieleitung (Khoa &amp; Achim)</text>
+    <text x="14" y="92" fill="#334155" font-size="11">• Transparente Angabe laufender B2-Module</text>
+  </g>
+
+  <g transform="translate(44, 244)">
+    <rect width="298" height="118" rx="8" fill="#FFF7ED" stroke="#FF6600" stroke-width="1.5"/>
+    <rect width="298" height="30" rx="8" fill="#FF6600"/>
+    <text x="14" y="20" fill="#FFFFFF" font-size="12" font-weight="700">Gate 3: 60–90 Sekunden Vorstellungsvideo</text>
+    <text x="14" y="52" fill="#7C2D12" font-size="11">• Authentische Aufnahme auf Deutsch ohne Teleprompter</text>
+    <text x="14" y="72" fill="#7C2D12" font-size="11">• Ausbilder hören Aussprache &amp; Sprechfluss sofort</text>
+    <text x="14" y="92" fill="#7C2D12" font-size="11">• Spart Personalabteilungen 70 % Vorauswahlzeit</text>
+  </g>
+
+  <g transform="translate(378, 244)">
+    <rect width="298" height="118" rx="8" fill="#F0FDF4" stroke="#15803D" stroke-width="1.5"/>
+    <rect width="298" height="30" rx="8" fill="#15803D"/>
+    <text x="14" y="20" fill="#FFFFFF" font-size="12" font-weight="700">Gate 4: Erwartungs- &amp; Standort-Check</text>
+    <text x="14" y="52" fill="#14532D" font-size="11">• Bereitschaft zu Schicht-, Wochenend- &amp; Feiertagsdienst</text>
+    <text x="14" y="72" fill="#14532D" font-size="11">• Akzeptanz auch ländlicher Regionen / ÖPNV-Wege</text>
+    <text x="14" y="92" fill="#14532D" font-size="11">• Verbindlicher Starttermin &amp; Finanzierungsplan</text>
+  </g>
+
+  <!-- Deliverable Box -->
+  <g transform="translate(44, 380)">
+    <rect width="632" height="82" rx="8" fill="#F1F5F9" stroke="#003366" stroke-width="1.5"/>
+    <text x="20" y="24" fill="#003366" font-size="13" font-weight="700">Das erhalten Sie als Arbeitgeber im DMF-Kandidaten-Dossier:</text>
+    <text x="20" y="46" fill="#334155" font-size="11">✓ Strukturierter deutscher Lebenslauf &amp; Motivationsschreiben   ✓ Ehrliche Sprachstand-Einschätzung (Mündlich/Schriftlich)</text>
+    <text x="20" y="66" fill="#334155" font-size="11">✓ Direkt abrufbares 60–90s Kurzvideo des Kandidaten           ✓ Geprüfte Zeugnisse, Verfügbarkeit &amp; Interview-Terminvorschläge</text>
+  </g>
+
+  <rect x="44" y="476" width="632" height="32" rx="6" fill="#003366"/>
+  <text x="360" y="497" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="600">Qualität vor Quantität: 2 bis 3 passgenaue Profile statt 30 ungeprüfter Standard-Bewerbungen</text>
+</svg>
