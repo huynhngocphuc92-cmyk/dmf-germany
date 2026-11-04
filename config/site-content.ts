@@ -89,6 +89,7 @@ export interface SiteContent {
     description: string;
     badge: string;
     headquarters: {
+      name?: string;
       title: string;
       location: string;
       phone: string;
@@ -430,19 +431,20 @@ const deContent: SiteContent = {
       "Nehmen Sie Kontakt mit uns auf, um mehr über unsere Dienstleistungen zu erfahren oder ein individuelles Beratungsgespräch zu vereinbaren.",
     badge: "Jetzt Kontakt aufnehmen",
 
-    // Hauptsitz Vietnam
+    // Hauptsitz & Vertretung Vietnam
     headquarters: {
-      title: "Hauptsitz in Vietnam",
+      name: VIETNAM_OFFICE_CONTACT.name,
+      title: VIETNAM_OFFICE_CONTACT.title,
       location: "Đồng Nai, Vietnam",
       phone: VIETNAM_OFFICE_CONTACT.phone,
-      email: VIETNAM_OFFICE_CONTACT.email,
+      email: VIETNAM_OFFICE_CONTACT.representativeEmail,
       website: VIETNAM_OFFICE_CONTACT.website,
     },
 
-    // Ansprechpartner Deutschland
+    // Direkte Vertretung Deutschland
     germanContact: {
-      name: "Herr Achim Betticher",
-      title: "Ihr Ansprechpartner für Deutschland",
+      name: GERMANY_CONTACT.name,
+      title: GERMANY_CONTACT.title,
       phone: GERMANY_CONTACT.phone,
       email: GERMANY_CONTACT.email,
     },
@@ -807,16 +809,17 @@ const vnContent: SiteContent = {
     badge: "Liên hệ ngay",
 
     headquarters: {
-      title: "Trụ sở tại Việt Nam",
+      name: "Ông Achim Betticher",
+      title: "Trụ sở & Pháp nhân đại diện tại Việt Nam",
       location: "Đồng Nai, Việt Nam",
       phone: VIETNAM_OFFICE_CONTACT.phone,
-      email: VIETNAM_OFFICE_CONTACT.email,
+      email: VIETNAM_OFFICE_CONTACT.representativeEmail,
       website: VIETNAM_OFFICE_CONTACT.website,
     },
 
     germanContact: {
-      name: "Ông Achim Betticher",
-      title: "Đại diện tại Đức",
+      name: "Ông Umit Elezov",
+      title: "Pháp nhân đại diện trực tiếp tại Đức",
       phone: GERMANY_CONTACT.phone,
       email: GERMANY_CONTACT.email,
     },

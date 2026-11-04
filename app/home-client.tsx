@@ -38,6 +38,8 @@ export function HomeClient({ assets, heroCandidates, talentCandidates }: HomeCli
       <AboutSection
         introImg={assets["home_intro_img"] || "/images/home/about-academy.jpg"}
         videoThumb={assets["home_intro_video_thumb"]}
+        repDeImg={assets["home_rep_de_img"] || "/images/home/umit-elezov.jpg"}
+        repVnImg={assets["home_rep_vn_img"] || "/images/home/achim-betticher.jpg"}
       />
       <StatsDashboard />
       <ValuesSection />
@@ -46,7 +48,10 @@ export function HomeClient({ assets, heroCandidates, talentCandidates }: HomeCli
       <DeferredSalarySimulator />
       {talentCandidates}
       <PathwayFinder />
-      <ContactSection />
+      <ContactSection
+        repDeImg={assets["home_rep_de_img"] || "/images/home/umit-elezov.jpg"}
+        repVnImg={assets["home_rep_vn_img"] || "/images/home/achim-betticher.jpg"}
+      />
     </div>
   );
 }

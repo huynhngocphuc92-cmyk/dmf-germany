@@ -7,6 +7,27 @@ import { PRIMARY_CONTACT } from "@/lib/company/contact";
 import { createPublicClient } from "@/utils/supabase/public";
 import type { SiteConfigItem, SiteConfigGrouped } from "@/types/theme";
 
+const DEFAULT_REPRESENTATIVE_ASSETS: SiteConfigItem[] = [
+  {
+    key: "home_rep_de_img",
+    asset_type: "image",
+    value: "/images/home/umit-elezov.jpg",
+    image_url: "/images/home/umit-elezov.jpg",
+    label: "Ảnh Đại Diện tại Đức (Umit Elezov)",
+    description: "Hình chân dung đại diện pháp nhân tại Đức ở mục Giới thiệu",
+    section: "home",
+  },
+  {
+    key: "home_rep_vn_img",
+    asset_type: "image",
+    value: "/images/home/achim-betticher.jpg",
+    image_url: "/images/home/achim-betticher.jpg",
+    label: "Ảnh Đại Diện tại Việt Nam (Achim Betticher)",
+    description: "Hình chân dung đại diện pháp nhân tại Việt Nam ở mục Giới thiệu",
+    section: "home",
+  },
+];
+
 function normalizeSiteAssetValue(key: string, value: string | null | undefined): string | null {
   if (!value) return null;
   if (key === "contact_email" && value.trim().toLowerCase().endsWith("@dmf.edu.vn")) {
@@ -85,6 +106,17 @@ export async function getSiteConfigs(): Promise<{
       value: item.value ?? null,
       image_url: item.value ?? null, // For backward compatibility in components
     }));
+
+    const existingKeys = new Set(normalizedConfigs.map((item) => item.key));
+    for (const defaultAsset of DEFAULT_REPRESENTATIVE_ASSETS) {
+      if (!existingKeys.has(defaultAsset.key)) {
+        normalizedConfigs.push({
+          ...defaultAsset,
+          value: defaultAsset.value ?? null,
+          image_url: defaultAsset.value ?? null,
+        });
+      }
+    }
 
     // Group by DB section (branding, home, contact, settings)
     // Keep original DB section names for filtering
@@ -234,12 +266,25 @@ export async function updateSiteConfig(
     const supabase = await createClient();
 
     // All asset types use 'value' column in site_assets table
+    const defaultRepAsset = DEFAULT_REPRESENTATIVE_ASSETS.find((item) => item.key === key);
     const updateData = {
       value: newValue,
       updated_at: new Date().toISOString(),
     };
 
-    const { error } = await supabase.from("site_assets").update(updateData).eq("key", key);
+    const { error } = defaultRepAsset
+      ? await supabase.from("site_assets").upsert(
+          {
+            key: defaultRepAsset.key,
+            asset_type: defaultRepAsset.asset_type,
+            label: defaultRepAsset.label,
+            description: defaultRepAsset.description,
+            section: defaultRepAsset.section,
+            ...updateData,
+          },
+          { onConflict: "key" }
+        )
+      : await supabase.from("site_assets").update(updateData).eq("key", key);
 
     if (error) {
       console.error(`Error updating asset for key ${key}:`, error);

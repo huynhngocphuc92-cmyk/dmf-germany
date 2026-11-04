@@ -3,15 +3,23 @@
 import { m } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { MotionProvider } from "@/components/shared/MotionProvider";
-import { BookOpen, Globe2, UserCheck } from "lucide-react";
+import { BookOpen, Globe2, Mail, MapPin, Phone, ShieldCheck, UserCheck } from "lucide-react";
 import { AssetImageWithDebug } from "@/components/ui/AssetImageWithDebug";
+import { GERMANY_CONTACT, VIETNAM_OFFICE_CONTACT } from "@/lib/company/contact";
 
 interface AboutSectionProps {
   introImg?: string | null;
   videoThumb?: string | null;
+  repDeImg?: string | null;
+  repVnImg?: string | null;
 }
 
-export const AboutSection = ({ introImg, videoThumb }: AboutSectionProps = {}) => {
+export const AboutSection = ({
+  introImg,
+  videoThumb,
+  repDeImg = "/images/home/umit-elezov.jpg",
+  repVnImg = "/images/home/achim-betticher.jpg",
+}: AboutSectionProps = {}) => {
   const { t } = useLanguage();
 
   // Use video thumbnail if available, otherwise use intro image
@@ -38,6 +46,41 @@ export const AboutSection = ({ introImg, videoThumb }: AboutSectionProps = {}) =
     {
       title: t.about.feature_3_title,
       description: t.about.feature_3_desc,
+    },
+  ];
+
+  const representatives = [
+    {
+      key: "de",
+      configKey: "home_rep_de_img",
+      image: repDeImg || "/images/home/umit-elezov.jpg",
+      initials: "UE",
+      badge: t.about.rep_de_badge,
+      name: t.about.rep_de_name,
+      role: t.about.rep_de_role,
+      description: t.about.rep_de_desc,
+      phone: GERMANY_CONTACT.phone,
+      phoneHref: GERMANY_CONTACT.phoneHref,
+      email: GERMANY_CONTACT.email,
+      emailHref: GERMANY_CONTACT.emailHref,
+      location: t.contact.de_location,
+      accentClass: "border-primary/20 bg-primary/5 text-primary",
+    },
+    {
+      key: "vn",
+      configKey: "home_rep_vn_img",
+      image: repVnImg || "/images/home/achim-betticher.jpg",
+      initials: "AB",
+      badge: t.about.rep_vn_badge,
+      name: t.about.rep_vn_name,
+      role: t.about.rep_vn_role,
+      description: t.about.rep_vn_desc,
+      phone: VIETNAM_OFFICE_CONTACT.phone,
+      phoneHref: VIETNAM_OFFICE_CONTACT.phoneHref,
+      email: VIETNAM_OFFICE_CONTACT.representativeEmail,
+      emailHref: VIETNAM_OFFICE_CONTACT.representativeEmailHref,
+      location: t.contact.vn_address,
+      accentClass: "border-emerald-500/20 bg-emerald-500/10 text-emerald-700",
     },
   ];
 
@@ -137,7 +180,7 @@ export const AboutSection = ({ introImg, videoThumb }: AboutSectionProps = {}) =
             </div>
 
             {/* Features - Responsive Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8 mb-16 md:mb-24">
               {features.map((feature, index) => {
                 const Icon = icons[index] || BookOpen;
                 return (
@@ -164,6 +207,108 @@ export const AboutSection = ({ introImg, videoThumb }: AboutSectionProps = {}) =
                 );
               })}
             </div>
+
+            {/* Direct Representatives in Germany & Vietnam */}
+            <m.div
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="space-y-8 md:space-y-10"
+            >
+              <div className="text-center space-y-3 max-w-3xl mx-auto">
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">
+                  {t.about.reps_title}
+                </h3>
+                <p className="text-sm sm:text-base md:text-lg text-muted-foreground">
+                  {t.about.reps_subtitle}
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+                {representatives.map((rep, index) => (
+                  <m.div
+                    key={rep.key}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.15 * index }}
+                    className="flex flex-col sm:flex-row gap-6 p-6 md:p-7 rounded-2xl bg-card border border-border shadow-sm hover:shadow-xl hover:border-primary/30 transition-all duration-300"
+                  >
+                    {/* Portrait Image Slot */}
+                    <div className="w-full sm:w-44 md:w-48 shrink-0">
+                      <div className="w-full aspect-[4/5] rounded-xl overflow-hidden border border-border/60 bg-gradient-to-br from-slate-100 to-slate-200/70 relative shadow-sm">
+                        {rep.image ? (
+                          <AssetImageWithDebug
+                            src={rep.image}
+                            configKey={rep.configKey}
+                            alt={rep.name}
+                            fill
+                            className="object-cover object-top"
+                          />
+                        ) : (
+                          <div className="w-full h-full flex flex-col items-center justify-center p-4 text-center bg-gradient-to-br from-primary/10 via-slate-50 to-primary/5">
+                            <div className="w-20 h-20 rounded-full bg-primary/15 border border-primary/25 flex items-center justify-center text-2xl font-bold text-primary mb-3 shadow-inner">
+                              {rep.initials}
+                            </div>
+                            <span className="text-xs font-semibold text-foreground/80">
+                              {rep.name}
+                            </span>
+                            <span className="text-[11px] text-muted-foreground mt-0.5">
+                              {rep.location}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Representative Info */}
+                    <div className="flex flex-col justify-between flex-1 space-y-4">
+                      <div className="space-y-2.5">
+                        <span
+                          className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border ${rep.accentClass}`}
+                        >
+                          <ShieldCheck className="w-3.5 h-3.5 shrink-0" />
+                          {rep.badge}
+                        </span>
+                        <div>
+                          <h4 className="text-xl md:text-2xl font-bold text-foreground">
+                            {rep.name}
+                          </h4>
+                          <p className="text-xs sm:text-sm font-medium text-primary mt-0.5">
+                            {rep.role}
+                          </p>
+                        </div>
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                          {rep.description}
+                        </p>
+                      </div>
+
+                      <div className="pt-3 border-t border-border/60 space-y-2 text-sm">
+                        <a
+                          href={rep.phoneHref}
+                          className="flex items-center gap-2.5 text-foreground font-semibold hover:text-primary transition-colors"
+                        >
+                          <Phone className="w-4 h-4 text-primary shrink-0" />
+                          <span>{rep.phone}</span>
+                        </a>
+                        <a
+                          href={rep.emailHref}
+                          className="flex items-center gap-2.5 text-muted-foreground hover:text-primary transition-colors break-all"
+                        >
+                          <Mail className="w-4 h-4 text-primary shrink-0" />
+                          <span>{rep.email}</span>
+                        </a>
+                        <div className="flex items-center gap-2.5 text-muted-foreground">
+                          <MapPin className="w-4 h-4 text-primary shrink-0" />
+                          <span>{rep.location}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </m.div>
+                ))}
+              </div>
+            </m.div>
           </div>
         </div>
       </section>

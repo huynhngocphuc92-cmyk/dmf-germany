@@ -45,6 +45,8 @@ export default async function Home() {
     // About/Intro Section
     "home_intro_img",
     "home_intro_video_thumb",
+    "home_rep_de_img",
+    "home_rep_vn_img",
     // Programs Section
     "home_prog_nursing_img",
     "home_prog_tech_img",

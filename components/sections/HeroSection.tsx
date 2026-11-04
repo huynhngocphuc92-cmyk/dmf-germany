@@ -3,11 +3,12 @@
 import Image from "next/image";
 import { LazyMotion, m } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, Download, Phone, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import type { ReactNode } from "react";
 import { handleContactAnchorClick } from "@/lib/navigation/contact-anchor";
+import { GERMANY_CONTACT } from "@/lib/company/contact";
 
 // Animation variants - Modern & Smooth
 const fadeInUp = {
@@ -33,11 +34,17 @@ export const HeroSection = ({
   heroOverlayOpacity,
   candidateSlot,
 }: HeroSectionProps = {}) => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const parsedOverlayOpacity = Number.parseFloat(heroOverlayOpacity ?? "");
   const overlayOpacity = Number.isFinite(parsedOverlayOpacity)
     ? Math.min(Math.max(parsedOverlayOpacity, 0), 1)
     : 0.75;
+  const repBadgeLabel =
+    lang === "de"
+      ? "Direkte Vertretung in Deutschland"
+      : lang === "en"
+        ? "Direct Representative in Germany"
+        : "Pháp nhân đại diện trực tiếp tại Đức";
 
   return (
     <section
@@ -85,6 +92,27 @@ export const HeroSection = ({
               }}
               className="space-y-6 md:space-y-8"
             >
+              {/* Direct Germany Representative Badge */}
+              <m.div variants={fadeInUp}>
+                <div className="inline-flex flex-wrap items-center gap-2 sm:gap-3 px-4 py-2.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-white shadow-lg">
+                  <span className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-emerald-300">
+                    <ShieldCheck className="h-4 w-4 text-emerald-400 shrink-0" />
+                    {repBadgeLabel}:
+                  </span>
+                  <span className="text-xs sm:text-sm font-bold text-white">
+                    {GERMANY_CONTACT.rawName}
+                  </span>
+                  <span className="text-white/30 hidden sm:inline">•</span>
+                  <a
+                    href={GERMANY_CONTACT.phoneHref}
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-primary/90 hover:bg-primary text-white text-xs sm:text-sm font-semibold transition-colors"
+                  >
+                    <Phone className="h-3.5 w-3.5 shrink-0" />
+                    {GERMANY_CONTACT.phone}
+                  </a>
+                </div>
+              </m.div>
+
               {/* H1 - Large, Bold, White with drop shadow */}
               <m.h1
                 variants={fadeInUp}

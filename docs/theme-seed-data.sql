@@ -30,7 +30,9 @@ INSERT INTO site_assets (key, asset_type, label, description, section, value, im
   ('home_hero_title', 'text', 'Hero Title', 'Tiêu đề chính Hero section', 'home', NULL, NULL),
   ('home_hero_subtitle', 'text', 'Hero Subtitle', 'Mô tả phụ Hero section', 'home', NULL, NULL),
   ('home_hero_video_url', 'text', 'Hero Video URL', 'URL video YouTube/Vimeo cho Hero (optional)', 'home', NULL, NULL),
-  ('home_slogan', 'text', 'Slogan', 'Slogan công ty hiển thị trên trang chủ', 'home', NULL, NULL)
+  ('home_slogan', 'text', 'Slogan', 'Slogan công ty hiển thị trên trang chủ', 'home', NULL, NULL),
+  ('home_rep_de_img', 'image', 'Ảnh Đại Diện tại Đức (Umit Elezov)', 'Hình chân dung đại diện pháp nhân tại Đức ở mục Giới thiệu', 'home', NULL, NULL),
+  ('home_rep_vn_img', 'image', 'Ảnh Đại Diện tại Việt Nam (Achim Betticher)', 'Hình chân dung đại diện pháp nhân tại Việt Nam ở mục Giới thiệu', 'home', NULL, NULL)
 ON CONFLICT (key) DO UPDATE SET
   asset_type = EXCLUDED.asset_type,
   label = EXCLUDED.label,

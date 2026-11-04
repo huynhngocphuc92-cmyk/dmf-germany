@@ -68,9 +68,10 @@ interface TopBarProps {
   hotline: string;
   email: string;
   isHidden: boolean;
+  repLabel: string;
 }
 
-const TopBar = memo(function TopBar({ hotline, email, isHidden }: TopBarProps) {
+const TopBar = memo(function TopBar({ hotline, email, isHidden, repLabel }: TopBarProps) {
   return (
     <div
       className={cn(
@@ -78,23 +79,31 @@ const TopBar = memo(function TopBar({ hotline, email, isHidden }: TopBarProps) {
         isHidden ? "h-0 opacity-0 overflow-hidden" : "h-10 opacity-100"
       )}
     >
-      <div className="container mx-auto flex items-center justify-center md:justify-start px-4 lg:px-8 h-full">
-        <div className="flex items-center gap-4 md:gap-6">
+      <div className="container mx-auto flex items-center justify-center md:justify-between px-2 lg:px-8 h-full">
+        <div className="flex items-center gap-3 md:gap-5">
+          <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-xs md:text-sm font-medium text-white/95">
+            <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" />
+            <span>{repLabel}:</span>
+            <strong className="font-semibold text-white">{GERMANY_CONTACT.rawName}</strong>
+          </span>
+          <span className="text-white/30 text-xs">|</span>
           <a
             href={`tel:${hotline.replace(/\s/g, "")}`}
-            className="flex items-center gap-1.5 hover:text-primary-foreground/80 transition-colors text-xs md:text-sm"
+            className="flex items-center gap-1.5 hover:text-primary-foreground/80 transition-colors text-xs md:text-sm font-semibold"
             aria-label={`Anrufen: ${hotline}`}
           >
             <Phone className="w-3 h-3 md:w-3.5 md:h-3.5 flex-shrink-0" />
-            <span className="text-[10px] sm:text-xs md:text-sm">{hotline}</span>
+            <span className="text-[10px] sm:text-xs md:text-sm whitespace-nowrap">{hotline}</span>
           </a>
+        </div>
+        <div className="hidden sm:flex items-center">
           <a
             href={`mailto:${email}`}
             className="flex items-center gap-1.5 hover:text-primary-foreground/80 transition-colors text-xs md:text-sm"
             aria-label={`E-Mail senden an: ${email}`}
           >
             <Mail className="w-3 h-3 md:w-3.5 md:h-3.5 flex-shrink-0" />
-            <span className="text-[10px] sm:text-xs md:text-sm truncate max-w-[120px] sm:max-w-none">
+            <span className="text-[10px] sm:text-xs md:text-sm truncate max-w-[160px] md:max-w-none">
               {email}
             </span>
           </a>
@@ -144,10 +153,17 @@ export const Header = memo(function Header({ logoUrl, hotline, email }: HeaderPr
   const pathname = usePathname();
   const [scrollY, setScrollY] = useState(0);
 
-  // Display values with fallbacks
-  const displayHotline = hotline || GERMANY_CONTACT.phone;
+  // Display values with fallbacks (ignore legacy +84 hotline in Germany top bar)
+  const displayHotline =
+    hotline && !hotline.trim().startsWith("+84") ? hotline : GERMANY_CONTACT.phone;
   const displayEmail =
     email && !email.toLowerCase().endsWith("@dmf.edu.vn") ? email : PRIMARY_CONTACT.email;
+  const repLabel =
+    lang === "de"
+      ? "Direkte Vertretung in Deutschland"
+      : lang === "en"
+        ? "Direct Representative in Germany"
+        : "Đại diện trực tiếp tại Đức";
 
   // Scroll tracking
   useEffect(() => {
@@ -215,7 +231,12 @@ export const Header = memo(function Header({ logoUrl, hotline, email }: HeaderPr
   return (
     <header className="fixed top-0 w-full z-50 transition-all duration-300">
       {/* Top Bar */}
-      <TopBar hotline={displayHotline} email={displayEmail} isHidden={isScrolled} />
+      <TopBar
+        hotline={displayHotline}
+        email={displayEmail}
+        isHidden={isScrolled}
+        repLabel={repLabel}
+      />
 
       {/* Main Bar */}
       <div

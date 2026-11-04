@@ -41,6 +41,19 @@ export const TRANSLATIONS = {
       stat_candidates: "Kandidaten",
       stat_partners: "Partner",
       stat_success: "Erfolgsquote",
+      reps_title: "Unsere Repräsentanten in Deutschland & Vietnam",
+      reps_subtitle:
+        "Direkte Ansprechpartner vor Ort für eine rechtssichere und persönliche Betreuung auf beiden Seiten.",
+      rep_de_badge: "Direkte Vertretung in Deutschland",
+      rep_de_name: "Herr Umit Elezov",
+      rep_de_role: "Repräsentanz & Direkter Ansprechpartner in Deutschland",
+      rep_de_desc:
+        "Persönliche Beratung für deutsche Arbeitgeber, Begleitung bei Behördenprozessen und direkte Betreuung vor Ort in Deutschland.",
+      rep_vn_badge: "Vertretung in Vietnam",
+      rep_vn_name: "Herr Achim Betticher",
+      rep_vn_role: "Repräsentanz & Ausbildungsleitung in Vietnam",
+      rep_vn_desc:
+        "Qualitätssicherung vor Ort in Vietnam, Sprach- und Fachvorbereitung nach deutschen Standards sowie Kandidatenauswahl.",
     },
     values: {
       badge: "Unsere Werte",
@@ -98,10 +111,11 @@ export const TRANSLATIONS = {
       info_phone: "Telefon",
       info_address: "Adresse",
       label_hotline: "Hotline",
-      vn_office: "Hauptsitz in Vietnam",
+      vn_office: "Hauptsitz & Vertretung in Vietnam",
+      vn_name: "Herr Achim Betticher",
       vn_address: "Dong Nai, Vietnam",
-      de_office: "Ihr Ansprechpartner für Deutschland",
-      de_name: "Herr Achim Betticher",
+      de_office: "Direkte Vertretung in Deutschland",
+      de_name: "Herr Umit Elezov",
       de_location: "Deutschland",
       banner_title: "Fachkräfte gesucht?",
       banner_text: "Kontaktieren Sie uns für eine unverbindliche Beratung.",
@@ -237,8 +251,8 @@ export const TRANSLATIONS = {
           },
           contact: {
             title: "Kontakt",
-            vietnamHQ: "Hauptsitz Vietnam",
-            germanContact: "Ihr Ansprechpartner für Deutschland",
+            vietnamHQ: "Hauptsitz & Vertretung in Vietnam",
+            germanContact: "Direkte Vertretung in Deutschland",
           },
           registerEntry: {
             title: "Registereintrag",
@@ -1247,6 +1261,19 @@ export const TRANSLATIONS = {
       stat_candidates: "Candidates",
       stat_partners: "Partners",
       stat_success: "Success Rate",
+      reps_title: "Our Representatives in Germany & Vietnam",
+      reps_subtitle:
+        "Direct on-site representatives ensuring legally compliant and personal support in both countries.",
+      rep_de_badge: "Direct Representative in Germany",
+      rep_de_name: "Mr. Umit Elezov",
+      rep_de_role: "Legal Representation & Direct Contact in Germany",
+      rep_de_desc:
+        "Personal consultation for German employers, support with administrative processes, and direct on-site assistance in Germany.",
+      rep_vn_badge: "Representative in Vietnam",
+      rep_vn_name: "Mr. Achim Betticher",
+      rep_vn_role: "Representation & Training Management in Vietnam",
+      rep_vn_desc:
+        "On-site quality assurance in Vietnam, language and technical preparation to German standards, and candidate selection.",
     },
     values: {
       badge: "Our Values",
@@ -1304,10 +1331,11 @@ export const TRANSLATIONS = {
       info_phone: "Phone",
       info_address: "Address",
       label_hotline: "Hotline",
-      vn_office: "Headquarters in Vietnam",
+      vn_office: "Headquarters & Representative in Vietnam",
+      vn_name: "Mr. Achim Betticher",
       vn_address: "Dong Nai, Vietnam",
-      de_office: "Your Contact for Germany",
-      de_name: "Mr. Achim Betticher",
+      de_office: "Direct Representative in Germany",
+      de_name: "Mr. Umit Elezov",
       de_location: "Germany",
       banner_title: "Looking for Skilled Workers?",
       banner_text: "Contact us for a non-binding consultation.",
@@ -1442,8 +1470,8 @@ export const TRANSLATIONS = {
           },
           contact: {
             title: "Contact",
-            vietnamHQ: "Headquarters Vietnam",
-            germanContact: "Contact Person Germany",
+            vietnamHQ: "Headquarters & Representative in Vietnam",
+            germanContact: "Direct Representative in Germany",
           },
           registerEntry: {
             title: "Register Entry",
@@ -2440,6 +2468,19 @@ export const TRANSLATIONS = {
       stat_candidates: "Ứng viên",
       stat_partners: "Đối tác",
       stat_success: "Tỷ lệ thành công",
+      reps_title: "Pháp nhân đại diện tại Đức & Việt Nam",
+      reps_subtitle:
+        "Đại diện trực tiếp tại hai quốc gia, đảm bảo tính pháp lý minh bạch và đồng hành sát sao cùng doanh nghiệp.",
+      rep_de_badge: "Pháp nhân đại diện trực tiếp tại Đức",
+      rep_de_name: "Ông Umit Elezov",
+      rep_de_role: "Đại diện trực tiếp tại Đức",
+      rep_de_desc:
+        "Trực tiếp tư vấn cho doanh nghiệp Đức, hỗ trợ thủ tục pháp lý, cơ quan chức năng và đồng hành tại CHLB Đức.",
+      rep_vn_badge: "Pháp nhân đại diện tại Việt Nam",
+      rep_vn_name: "Ông Achim Betticher",
+      rep_vn_role: "Đại diện pháp nhân & Giám đốc đào tạo tại Việt Nam",
+      rep_vn_desc:
+        "Giám sát chất lượng đào tạo tiếng Đức, kỹ năng nghề theo tiêu chuẩn Đức và tuyển chọn ứng viên trực tiếp tại Việt Nam.",
     },
     values: {
       badge: "Giá trị cốt lõi",
@@ -2497,10 +2538,11 @@ export const TRANSLATIONS = {
       info_phone: "Hotline",
       info_address: "Địa chỉ",
       label_hotline: "Hotline",
-      vn_office: "Trụ sở tại Việt Nam",
+      vn_office: "Trụ sở & Pháp nhân đại diện tại Việt Nam",
+      vn_name: "Ông Achim Betticher",
       vn_address: "Đồng Nai, Việt Nam",
-      de_office: "Người liên hệ tại Đức",
-      de_name: "Ông Achim Betticher",
+      de_office: "Pháp nhân đại diện trực tiếp tại Đức",
+      de_name: "Ông Umit Elezov",
       de_location: "Đức",
       banner_title: "Tìm kiếm nhân sự?",
       banner_text: "Liên hệ với chúng tôi để được tư vấn miễn phí.",
@@ -2636,8 +2678,8 @@ export const TRANSLATIONS = {
           },
           contact: {
             title: "Liên hệ",
-            vietnamHQ: "Trụ sở tại Việt Nam",
-            germanContact: "Người liên hệ tại Đức",
+            vietnamHQ: "Trụ sở & Pháp nhân đại diện tại Việt Nam",
+            germanContact: "Pháp nhân đại diện trực tiếp tại Đức",
           },
           registerEntry: {
             title: "Đăng ký kinh doanh",

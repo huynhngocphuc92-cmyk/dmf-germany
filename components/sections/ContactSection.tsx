@@ -1,6 +1,7 @@
 "use client";
 
 import { trackEvent } from "@/components/analytics/GoogleAnalytics";
+import { AssetImageWithDebug } from "@/components/ui/AssetImageWithDebug";
 import { GERMANY_CONTACT, VIETNAM_OFFICE_CONTACT } from "@/lib/company/contact";
 import { useSubmissionKey } from "@/lib/intake/client";
 import {
@@ -8,11 +9,19 @@ import {
   submitContactForm,
   validateContactPhone,
 } from "@/lib/contact/native-form";
-import { Globe, Loader2, Mail, MapPin, Phone, Send, User } from "lucide-react";
+import { Globe, Loader2, Mail, MapPin, Phone, Send, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { useRef, useState, type FormEvent } from "react";
 
-export default function ContactSection() {
+interface ContactSectionProps {
+  repDeImg?: string | null;
+  repVnImg?: string | null;
+}
+
+export default function ContactSection({
+  repDeImg = "/images/home/umit-elezov.jpg",
+  repVnImg = "/images/home/achim-betticher.jpg",
+}: ContactSectionProps = {}) {
   const { forPayload: submissionKey, reset: resetSubmissionKey } = useSubmissionKey();
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -223,37 +232,101 @@ export default function ContactSection() {
             )}
           </div>
 
-          {/* RIGHT COLUMN: INFO CARDS (RESTORED) */}
+          {/* RIGHT COLUMN: INFO CARDS */}
           <div className="space-y-6">
-            {/* Card 1: Vietnam */}
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center text-red-600">
-                  <MapPin size={20} />
+            {/* Card 1: Germany */}
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-200 transition-colors">
+              <div className="flex items-center gap-4 pb-4 mb-4 border-b border-slate-100">
+                <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-blue-100 shadow-sm shrink-0 bg-slate-100">
+                  <AssetImageWithDebug
+                    src={repDeImg || "/images/home/umit-elezov.jpg"}
+                    configKey="home_rep_de_img"
+                    alt={GERMANY_CONTACT.name}
+                    fill
+                    className="object-cover object-top"
+                  />
                 </div>
-                <h3 className="font-bold text-slate-900">Hauptsitz in Vietnam</h3>
+                <div className="min-w-0">
+                  <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded-full mb-1">
+                    <ShieldCheck size={12} className="shrink-0" />
+                    {GERMANY_CONTACT.title}
+                  </span>
+                  <h3 className="font-bold text-lg text-slate-900 leading-snug">
+                    {GERMANY_CONTACT.name}
+                  </h3>
+                  <p className="text-xs text-slate-500">Ansprechpartner vor Ort in Deutschland</p>
+                </div>
               </div>
-              <ul className="space-y-4 text-sm text-slate-600">
-                <li className="flex gap-3">
-                  <Phone size={16} className="text-slate-400 shrink-0 mt-0.5" />
+              <ul className="space-y-3.5 text-sm text-slate-600">
+                <li className="flex gap-3 items-center">
+                  <Phone size={16} className="text-blue-600 shrink-0" />
+                  <a
+                    href={GERMANY_CONTACT.phoneHref}
+                    className="font-semibold text-slate-800 hover:text-blue-600 transition-colors"
+                  >
+                    {GERMANY_CONTACT.phone}
+                  </a>
+                </li>
+                <li className="flex gap-3 items-center">
+                  <Mail size={16} className="text-slate-400 shrink-0" />
+                  <a
+                    href={GERMANY_CONTACT.emailHref}
+                    className="hover:text-blue-600 transition-colors break-all"
+                  >
+                    {GERMANY_CONTACT.email}
+                  </a>
+                </li>
+                <li className="flex gap-3 items-center">
+                  <MapPin size={16} className="text-slate-400 shrink-0" />
+                  <span>{GERMANY_CONTACT.location}</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Card 2: Vietnam */}
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-emerald-200 transition-colors">
+              <div className="flex items-center gap-4 pb-4 mb-4 border-b border-slate-100">
+                <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-emerald-100 shadow-sm shrink-0 bg-slate-100">
+                  <AssetImageWithDebug
+                    src={repVnImg || "/images/home/achim-betticher.jpg"}
+                    configKey="home_rep_vn_img"
+                    alt={VIETNAM_OFFICE_CONTACT.name}
+                    fill
+                    className="object-cover object-top"
+                  />
+                </div>
+                <div className="min-w-0">
+                  <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full mb-1">
+                    <ShieldCheck size={12} className="shrink-0" />
+                    {VIETNAM_OFFICE_CONTACT.title}
+                  </span>
+                  <h3 className="font-bold text-lg text-slate-900 leading-snug">
+                    {VIETNAM_OFFICE_CONTACT.name}
+                  </h3>
+                  <p className="text-xs text-slate-500">Hauptsitz & Vertretung in Vietnam</p>
+                </div>
+              </div>
+              <ul className="space-y-3.5 text-sm text-slate-600">
+                <li className="flex gap-3 items-center">
+                  <Phone size={16} className="text-emerald-600 shrink-0" />
                   <a
                     href={VIETNAM_OFFICE_CONTACT.phoneHref}
-                    className="hover:text-blue-600 transition-colors"
+                    className="font-semibold text-slate-800 hover:text-blue-600 transition-colors"
                   >
                     {VIETNAM_OFFICE_CONTACT.phone}
                   </a>
                 </li>
-                <li className="flex gap-3">
-                  <Mail size={16} className="text-slate-400 shrink-0 mt-0.5" />
+                <li className="flex gap-3 items-center">
+                  <Mail size={16} className="text-slate-400 shrink-0" />
                   <a
-                    href={VIETNAM_OFFICE_CONTACT.emailHref}
-                    className="hover:text-blue-600 transition-colors"
+                    href={VIETNAM_OFFICE_CONTACT.representativeEmailHref}
+                    className="hover:text-blue-600 transition-colors break-all"
                   >
-                    {VIETNAM_OFFICE_CONTACT.email}
+                    {VIETNAM_OFFICE_CONTACT.representativeEmail}
                   </a>
                 </li>
-                <li className="flex gap-3">
-                  <Globe size={16} className="text-slate-400 shrink-0 mt-0.5" />
+                <li className="flex gap-3 items-center">
+                  <Globe size={16} className="text-slate-400 shrink-0" />
                   <a
                     href={VIETNAM_OFFICE_CONTACT.websiteHref}
                     target="_blank"
@@ -263,46 +336,9 @@ export default function ContactSection() {
                     {VIETNAM_OFFICE_CONTACT.website}
                   </a>
                 </li>
-                <li className="flex gap-3">
-                  <MapPin size={16} className="text-slate-400 shrink-0 mt-0.5" />
+                <li className="flex gap-3 items-center">
+                  <MapPin size={16} className="text-slate-400 shrink-0" />
                   <span>{VIETNAM_OFFICE_CONTACT.location}</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Card 2: Germany */}
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
-                  <User size={20} />
-                </div>
-                <h3 className="font-bold text-slate-900">Ihr Ansprechpartner für Deutschland</h3>
-              </div>
-              <div className="mb-4">
-                <p className="font-bold text-slate-900">{GERMANY_CONTACT.name}</p>
-              </div>
-              <ul className="space-y-4 text-sm text-slate-600">
-                <li className="flex gap-3">
-                  <Phone size={16} className="text-slate-400 shrink-0 mt-0.5" />
-                  <a
-                    href={GERMANY_CONTACT.phoneHref}
-                    className="hover:text-blue-600 transition-colors"
-                  >
-                    {GERMANY_CONTACT.phone}
-                  </a>
-                </li>
-                <li className="flex gap-3">
-                  <Mail size={16} className="text-slate-400 shrink-0 mt-0.5" />
-                  <a
-                    href={GERMANY_CONTACT.emailHref}
-                    className="hover:text-blue-600 transition-colors"
-                  >
-                    {GERMANY_CONTACT.email}
-                  </a>
-                </li>
-                <li className="flex gap-3">
-                  <MapPin size={16} className="text-slate-400 shrink-0 mt-0.5" />
-                  <span>{GERMANY_CONTACT.location}</span>
                 </li>
               </ul>
             </div>

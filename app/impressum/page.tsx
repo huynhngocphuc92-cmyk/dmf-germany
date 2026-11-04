@@ -120,6 +120,9 @@ export default function ImpressumPage() {
                     <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">
                       {impressum.sections.contact.vietnamHQ}
                     </p>
+                    <p className="text-base font-medium text-foreground mb-3">
+                      {VIETNAM_OFFICE_CONTACT.name}
+                    </p>
                     <div className="space-y-3">
                       <div className="flex items-center gap-3">
                         <Phone className="h-4 w-4 text-primary flex-shrink-0" />
@@ -133,10 +136,10 @@ export default function ImpressumPage() {
                       <div className="flex items-center gap-3">
                         <Mail className="h-4 w-4 text-primary flex-shrink-0" />
                         <a
-                          href={VIETNAM_OFFICE_CONTACT.emailHref}
+                          href={VIETNAM_OFFICE_CONTACT.representativeEmailHref}
                           className="text-base text-foreground hover:text-primary transition-colors break-all"
                         >
-                          {VIETNAM_OFFICE_CONTACT.email}
+                          {VIETNAM_OFFICE_CONTACT.representativeEmail}
                         </a>
                       </div>
                       <div className="flex items-center gap-3">
