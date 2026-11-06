@@ -297,7 +297,35 @@ def run_ultra_qc():
                         errors.append(f"Failed to read embedded SVG '{img_url}': {e}")
 
     stats["unique_covers"] = len(seen_covers)
-    print(f"   ✓ Analyzed {len(seen_covers)} covers: 100% photographic, unique & verified.")
+
+    # Perceptual Similarity & Binary Hash Gate across all cover images
+    import hashlib
+    cover_thumbs = {}
+    cover_hashes = {}
+    for cover, slug in seen_covers.items():
+        local_cover_path = PUB_DIR / cover.lstrip("/")
+        if local_cover_path.exists():
+            md5 = hashlib.md5(local_cover_path.read_bytes()).hexdigest()
+            if md5 in cover_hashes:
+                errors.append(f"Binary duplicate cover MD5 shared by [{cover_hashes[md5]}] and [{slug}] ({cover})")
+            else:
+                cover_hashes[md5] = slug
+            with Image.open(local_cover_path) as im:
+                small = im.convert("RGB").resize((32, 18), Image.Resampling.BILINEAR)
+                cover_thumbs[cover] = list(small.getdata())
+
+    cover_keys = list(cover_thumbs.keys())
+    near_dup_count = 0
+    for i in range(len(cover_keys)):
+        for j in range(i + 1, len(cover_keys)):
+            c1, c2 = cover_keys[i], cover_keys[j]
+            p1, p2 = cover_thumbs[c1], cover_thumbs[c2]
+            diff = sum(abs(a[0] - b[0]) + abs(a[1] - b[1]) + abs(a[2] - b[2]) for a, b in zip(p1, p2)) / (len(p1) * 3)
+            if diff < 14.0:
+                near_dup_count += 1
+                errors.append(f"Perceptually near-identical covers (MAE={diff:.2f}): '{c1}' vs '{c2}'")
+
+    print(f"   ✓ Analyzed {len(seen_covers)} covers: 100% photographic, unique & verified (near-duplicates={near_dup_count}).")
 
     # ---------------------------------------------------------
     # STEP 5: LINK GRAPH & ROUTE INTEGRITY
