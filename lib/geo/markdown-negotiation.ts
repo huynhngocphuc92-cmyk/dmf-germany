@@ -463,7 +463,7 @@ export function resolveMarkdownDocument(
 ): { status: 200 | 404; markdown: string } | null {
   const pathname = normalizeMarkdownPathname(rawPathname);
 
-  // Never intercept API, admin, portal, auth, or Next internal routes
+  // Never intercept API, admin, portal, auth, static discovery files, or Next internal routes
   if (
     pathname.startsWith("/api/") ||
     pathname === "/api" ||
@@ -474,7 +474,13 @@ export function resolveMarkdownDocument(
     pathname.startsWith("/auth/") ||
     pathname === "/login" ||
     pathname.startsWith("/_next/") ||
-    pathname === "/monitoring"
+    pathname === "/monitoring" ||
+    pathname.startsWith("/.well-known/") ||
+    pathname === "/llms.txt" ||
+    pathname === "/llms-full.txt" ||
+    pathname === "/openapi.json" ||
+    pathname === "/robots.txt" ||
+    pathname === "/sitemap.xml"
   ) {
     return null;
   }

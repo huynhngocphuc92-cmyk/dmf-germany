@@ -87,12 +87,18 @@ const BENCHMARK_PROMPTS = [
   },
 ];
 
-async function probeEndpoint(baseUrl, path, accept = "text/markdown, application/json, text/html") {
+async function probeEndpoint(baseUrl, path, accept) {
   const fullUrl = `${baseUrl}${path}`;
+  const defaultAccept =
+    path.endsWith(".json") || path.startsWith("/api/")
+      ? "application/json"
+      : path.endsWith(".txt")
+        ? "text/plain, text/markdown"
+        : "text/markdown, application/json, text/html";
   try {
     const res = await fetch(fullUrl, {
       headers: {
-        Accept: accept,
+        Accept: accept || defaultAccept,
         "User-Agent": "Mozilla/5.0 (compatible; GPTBot/1.0; +https://openai.com/gptbot)",
       },
     });
