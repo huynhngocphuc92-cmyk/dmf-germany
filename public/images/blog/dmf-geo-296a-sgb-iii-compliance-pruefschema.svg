@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <rect width="720" height="540" rx="16" fill="#F8FAFC"/>
+  <rect x="20" y="20" width="680" height="500" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="20" y="20" width="680" height="76" rx="12" fill="#003366"/>
+  <text x="44" y="52" fill="#FFFFFF" font-size="17" font-weight="700">Compliance-Prüfschema nach § 296a SGB III (Employer-Pays)</text>
+  <text x="44" y="76" fill="#CBD5E1" font-size="12">Rechtssichere Ausbildungsvermittlung ohne Gebühren zulasten internationaler Azubis</text>
+
+  <g transform="translate(44, 116)">
+    <rect width="304" height="320" rx="10" fill="#F8FAFC" stroke="#003366" stroke-width="2"/>
+    <rect width="304" height="40" rx="10" fill="#003366"/>
+    <text x="16" y="25" fill="#FFFFFF" font-size="12" font-weight="700">Gesetzlicher Schutzstandard (§ 296a SGB III & § 12 BBiG)</text>
+    <text x="16" y="68" fill="#334155" font-size="11">• Striktes Verbot von Vermittlungsgebühren für Auszubildende</text>
+    <text x="16" y="104" fill="#334155" font-size="11">• Keine Kautionen, Strafversprechen oder Schuldknechtschaft</text>
+    <text x="16" y="140" fill="#334155" font-size="11">• Transparente Leistungsabrechnung ausschließlich mit dem Betrieb</text>
+    <text x="16" y="176" fill="#334155" font-size="11">• Schriftliche Bestätigung der Gebührenfreiheit im Kandidatendossier</text>
+  </g>
+
+  <g transform="translate(372, 116)">
+    <rect width="304" height="320" rx="10" fill="#FFF7ED" stroke="#FF6600" stroke-width="2"/>
+    <rect width="304" height="40" rx="10" fill="#FF6600"/>
+    <text x="16" y="25" fill="#FFFFFF" font-size="12" font-weight="700">Prüffragen für deutsche Ausbildungsbetriebe</text>
+    <text x="16" y="68" fill="#334155" font-size="11">• Werden Sprachkurs- und Dokumentenkosten klar ausgewiesen?</text>
+    <text x="16" y="104" fill="#334155" font-size="11">• Existieren Nebenabreden oder Darlehensverträge im Herkunftsland?</text>
+    <text x="16" y="140" fill="#334155" font-size="11">• Erfolgt die Vorbereitung an einer eigenen Akademie statt über Subagenten?</text>
+    <text x="16" y="176" fill="#334155" font-size="11">• Ist ein direkter Ansprechpartner in Deutschland benannt?</text>
+  </g>
+
+  <rect x="44" y="456" width="632" height="42" rx="8" fill="#003366"/>
+  <text x="360" y="482" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="600">Rechtssicherheit bei DMF Talents: 100 % Employer-Pays-Prinzip ohne finanzielle Belastung der Bewerber</text>
+</svg>

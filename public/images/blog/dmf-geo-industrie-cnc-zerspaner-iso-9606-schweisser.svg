@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <rect width="720" height="540" rx="16" fill="#F8FAFC"/>
+  <rect x="20" y="20" width="680" height="500" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="20" y="20" width="680" height="76" rx="12" fill="#003366"/>
+  <text x="44" y="52" fill="#FFFFFF" font-size="17" font-weight="700">Industrie & Metallbau: CNC-Zerspanung und ISO-9606-1-Schweißtechnik</text>
+  <text x="44" y="76" fill="#CBD5E1" font-size="12">Technische Qualifikationsprofile und IHK-FOSA-Anerkennung für Fertigungsbetriebe</text>
+
+  <g transform="translate(44, 116)">
+    <rect width="304" height="320" rx="10" fill="#F8FAFC" stroke="#003366" stroke-width="2"/>
+    <rect width="304" height="40" rx="10" fill="#003366"/>
+    <text x="16" y="25" fill="#FFFFFF" font-size="12" font-weight="700">CNC-Zerspanungsmechaniker (KldB 24232)</text>
+    <text x="16" y="68" fill="#334155" font-size="11">• 3- bis 5-Achs-Drehen und -Fräsen nach technischer Zeichnung</text>
+    <text x="16" y="104" fill="#334155" font-size="11">• Erfahrung mit Fanuc-, Siemens-Sinumerik- oder Heidenhain-Steuerungen</text>
+    <text x="16" y="140" fill="#334155" font-size="11">• Umgang mit Messmitteln (Bügelmessschraube, Messschieber, Prüflehren)</text>
+    <text x="16" y="176" fill="#334155" font-size="11">• Gleichwertigkeitsprüfung über die IHK FOSA (§ 18a / § 16d AufenthG)</text>
+  </g>
+
+  <g transform="translate(372, 116)">
+    <rect width="304" height="320" rx="10" fill="#FFF7ED" stroke="#FF6600" stroke-width="2"/>
+    <rect width="304" height="40" rx="10" fill="#FF6600"/>
+    <text x="16" y="25" fill="#FFFFFF" font-size="12" font-weight="700">Schweißer & Konstruktionsmechaniker (KldB 24412)</text>
+    <text x="16" y="68" fill="#334155" font-size="11">• Geprüfte Verfahren: MAG (135), WIG (141) und E-Hand (111)</text>
+    <text x="16" y="104" fill="#334155" font-size="11">• Zertifizierung nach DIN EN ISO 9606-1 (Stahl / Edelstahl)</text>
+    <text x="16" y="140" fill="#334155" font-size="11">• Sicht- und Nahtprüfung sowie Vorbereitung auf DIN EN 1090</text>
+    <text x="16" y="176" fill="#334155" font-size="11">• Arbeitsschutz- und Schweißrauch-Unterweisung vor Betriebsstart</text>
+  </g>
+
+  <rect x="44" y="456" width="632" height="42" rx="8" fill="#003366"/>
+  <text x="360" y="482" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="600">Praxistransfer: Technische Vorprüfung in Vietnam + strukturierte Maschineneinweisung in Deutschland</text>
+</svg>

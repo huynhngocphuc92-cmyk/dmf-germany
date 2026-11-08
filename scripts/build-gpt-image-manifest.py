@@ -1,16 +1,20 @@
 #!/usr/bin/env python3
 """
-Builds the complete 146-post visual manifest for DMF Talents (/blog):
-- 18 Authentic Inside-DMF & Case Study covers (100% distinct real DMF photos, zero burst overlap)
-- 128 Bespoke Editorial B2B covers rendered via Codex GPT Image (1536x1024 -> 1200x675 JPEG)
+Builds the complete 146-post visual manifest for DMF Talents (/blog) — Phase 2 (De-AI Documentary Realism):
+- 18 Authentic Inside-DMF & Case Study covers (retouched via Codex Image Edit `identity-preserve`)
+- 128 Documentary Reportage B2B covers rendered across 5 distinct Camera Archetypes
+  with 5500K overcast/neutral German daylight, f/5.6 deep depth of field, real skin pores,
+  and weathered workwear, followed by ISO 400 Optical Sensor Emulation.
 """
+
+from __future__ import annotations
 
 import json
 from pathlib import Path
 
 ROOT = Path("/Users/chong/dmf-talents.de")
 
-# 18 Inside-DMF & Authentic Case Study covers (kept as real DMF photography)
+# 18 Inside-DMF & Authentic Case Study covers (retouched from real DMF photography)
 AUTHENTIC_DMF_COVERS = {
     "dmf-kooperationsmodell-deutsche-arbeitgeber-schritt-fuer-schritt.jpg",
     "dmf-gemeinschaft-kultur-integration-campus-leben-vietnam.jpg",
@@ -32,542 +36,695 @@ AUTHENTIC_DMF_COVERS = {
     "dmf-sprachkurs-praxis-unterricht.jpg",
 }
 
-# 128 Bespoke GPT Image Prompts (each tailored to the exact German B2B article topic)
-GPT_IMAGE_PROMPTS = {
-    # --- ALREADY RENDERED IN DEMO (3) ---
-    "dmf-fluggeraetmechaniker-luftfahrt-wartung-hangar.jpg": (
-        "A modern German aircraft maintenance hangar where a young Vietnamese aviation mechanic "
-        "in clean dark-blue workwear inspects an open turbofan jet engine alongside a senior German lead engineer"
-    ),
-    "dmf-geruestbau-montage-hoehe.jpg": (
-        "A young Vietnamese scaffolding specialist (Gerüstbauer) in professional German PPE safety harness "
-        "and white hard hat assembling steel facade scaffolding on a modern German commercial building alongside a German Bauleiter"
-    ),
-    "dmf-augenoptiker-optometrie-brillen-refraktion.jpg": (
-        "A young Vietnamese optician (Augenoptiker) in a bright, modern German optical studio operating "
-        "a digital phoropter eye refraction unit with a senior German master optician and a customer"
-    ),
+# 5 Camera Archetype prefixes to guarantee visual variety and zero repetitive AI staging
+ARCHETYPE_SOLO = (
+    "Camera archetype: Candid Solo Action (35mm f/5.6, three-quarter angle over the shoulder, "
+    "ONLY ONE person in frame, absorbed in work, zero eye contact with camera, overcast 5500K daylight, "
+    "real skin pores, lived-in scuffed workwear). Scene: "
+)
+ARCHETYPE_DESK = (
+    "Camera archetype: Documentary German Office Desk & Dossier Close-up (50mm f/5.6 high-angle overhead/three-quarter view, "
+    "NO faces or posed models, focusing on real German grey mottled Leitz Ordner lever-arch binders, printed documents, "
+    "ballpoint pen, half-empty porcelain coffee mug on a lived-in wooden desk in soft overcast window light). Scene: "
+)
+ARCHETYPE_WIDE = (
+    "Camera archetype: Wide Environmental Reportage (28mm f/8 wide architectural & industrial view in Germany under "
+    "pale overcast Northern European sky, wet or weathered concrete/asphalt, human figures small in scale within the environment, "
+    "zero golden hour, zero dramatic sunset). Scene: "
+)
+ARCHETYPE_HANDS = (
+    "Camera archetype: Technical Hands & Industrial Equipment Close-up (50mm f/4 macro-documentary framing on working hands "
+    "in worn work gloves or nitrile gloves operating real industrial/medical equipment, authentic brushed metal and cables, "
+    "neutral fluorescent/daylight mix, no posed faces). Scene: "
+)
+ARCHETYPE_OBSERVER = (
+    "Camera archetype: Unposed Observer-View Workplace Moment (35mm f/5.6 shot from across the room through a doorway or glass partition, "
+    "subjects seen in candid profile or three-quarter back view mid-activity, flat neutral workplace lighting, zero staged smiles). Scene: "
+)
 
-    # --- REGIONAL BUNDESLÄNDER GUIDES (10) ---
+# 128 De-AI Documentary Reportage Prompts across the 5 Camera Archetypes
+GPT_IMAGE_PROMPTS: dict[str, str] = {
+    # --- REGIONAL BUNDESLÄNDER GUIDES (10) -> Primarily ARCHETYPE_WIDE ---
+    "dmf-hamburg-schleswig-holstein-hafen-pflege-gastronomie.jpg": (
+        ARCHETYPE_WIDE
+        + "A rainy, overcast morning at the Port of Hamburg container terminal along the Elbe river, wet asphalt with puddles, "
+        "stacked weathered shipping containers and gantry cranes in atmospheric mist, with a Vietnamese logistics coordinator in a worn yellow rain jacket walking along the quay."
+    ),
     "dmf-mecklenburg-vorpommern-sachsen-anhalt-ostsee-industrie.jpg": (
-        "Wide angle view of a modern Baltic Sea maritime port and offshore wind turbine assembly yard in Rostock, Germany, "
-        "where a Vietnamese industrial technician and a German operations manager in high-vis jackets review blueprints by the harbor cranes"
+        ARCHETYPE_WIDE
+        + "Wide documentary view of the Rostock Baltic Sea industrial port and wind-turbine rotor blade storage yard under a grey coastal sky, "
+        "wet concrete dock, crane structures, and a lone technician in weathered high-vis gear inspecting a turbine flange."
     ),
     "dmf-rheinland-pfalz-saarland-zfe-kaiserslautern-industrie.jpg": (
-        "A modern chemical and pharmaceutical process engineering plant in Ludwigshafen / Rheinland-Pfalz, Germany, "
-        "with stainless steel piping and control gauges, where a Vietnamese process technician and a German plant engineer inspect a digital tablet"
-    ),
-    "dmf-hamburg-schleswig-holstein-hafen-pflege-gastronomie.jpg": (
-        "Overlooking the Port of Hamburg container terminals and Elbe river at golden hour, a Vietnamese logistics specialist "
-        "and a German shipping dispatcher in smart business-casual attire discuss supply chain schedules on a balcony"
+        ARCHETYPE_WIDE
+        + "Exterior pipe-rack corridor and stainless-steel distillation towers of a chemical processing plant in Rheinland-Pfalz under pale overcast daylight, "
+        "damp concrete walkway, steam vents in the distance, and a process technician in grey flame-retardant overalls checking a manual valve."
     ),
     "dmf-berlin-brandenburg-gesundheit-industrie-fachkraefte.jpg": (
-        "A sunlit modern innovation campus and hospital complex in Berlin-Brandenburg with contemporary glass architecture, "
-        "where a Vietnamese healthcare professional and a German clinic director walk together across the courtyard"
+        ARCHETYPE_WIDE
+        + "Courtyard of a contemporary brick-and-glass municipal hospital complex in Berlin-Brandenburg on a cloudy autumn morning, "
+        "fallen leaves on damp paving stones, bicycle racks, and hospital staff in scrubs walking between buildings in the midground."
     ),
     "dmf-ostdeutschland-sachsen-thueringen-dresden.jpg": (
-        "Inside a high-tech Silicon Saxony semiconductor and microelectronics cleanroom facility in Dresden, Germany, "
-        "a Vietnamese mechatronics technician and a German engineer inspect precision wafer automation equipment through glass"
+        ARCHETYPE_OBSERVER
+        + "Viewed through an observation window with faint glass reflections into a Dresden semiconductor cleanroom corridor, "
+        "where a technician in full white cleanroom bunny suit, hood, and mask carries a wafer cassettier past automated machinery."
     ),
     "dmf-niedersachsen-bremen-handwerk-industrie.jpg": (
-        "An automated automotive and wind-energy manufacturing hall in Lower Saxony (Niedersachsen), Germany, "
-        "with yellow industrial robotics arms in the background, where a Vietnamese skilled worker and a German Meister calibrate a sensor"
+        ARCHETYPE_WIDE
+        + "Wide interior view of a heavy wind-energy and automotive component manufacturing bay in Lower Saxony (Niedersachsen), "
+        "yellow overhead bridge crane, scuffed grey epoxy floor with pallet jacks, and a worker operating a control pendant."
     ),
     "dmf-hessen-rhein-main-it-logistik-frankfurt.jpg": (
-        "With the Frankfurt am Main skyline visible through floor-to-ceiling windows, a Vietnamese IT systems engineer "
-        "and a German technology director review network architecture on a large ultrawide monitor in a modern Rhein-Main office"
+        ARCHETYPE_WIDE
+        + "Overcast rainy day view from an office window in Niederrad looking toward the distant Frankfurt am Main banking skyline in mist, "
+        "with an unposed IT systems engineer in the foreground seen from behind working at a dual-monitor Linux terminal."
     ),
     "dmf-nrw-kliniken-pflege-krankenhaus-team.jpg": (
-        "At the nurses station of a modern university hospital in North Rhine-Westphalia (NRW), Germany, "
-        "two Vietnamese registered nurses in clean medical scrubs collaborate with a German senior physician over digital patient charts"
+        ARCHETYPE_OBSERVER
+        + "Unposed morning shift handover at a hospital nurses station in North Rhine-Westphalia (NRW), seen from down the hallway: "
+        "fluorescent corridor lighting, wheeled metal medication carts, binder racks, and two nurses in blue tunics looking at a wall schedule."
     ),
     "dmf-baden-wuerttemberg-maschinenbau-azubis.jpg": (
-        "Inside a flagship precision mechanical engineering (Maschinenbau) factory in Stuttgart / Baden-Württemberg, "
-        "a Vietnamese apprentice and a German industrial master examine a freshly milled stainless-steel gear component with a micrometer"
+        ARCHETYPE_HANDS
+        + "Close-up of a machinist's oil-smudged hands in a Baden-Württemberg precision Maschinenbau workshop using a Mitutoyo digital outside micrometer "
+        "to measure a freshly turned steel shaft still mounted in a lathe chuck wet with milky cooling emulsion."
     ),
     "dmf-bayern-mittelstand-industrie-fachkraefte.jpg": (
-        "At a prosperous Bavarian Mittelstand manufacturing headquarters with subtle Alpine foothills in the distance, "
-        "a Vietnamese engineering specialist and a German Geschäftsführer shake hands in front of a modern glass factory entrance"
+        ARCHETYPE_WIDE
+        + "Courtyard and loading bay of a family-owned Bavarian Mittelstand industrial factory on a cloudy morning with low forested hills in the background, "
+        "wet tarmac, stacked Euro-pallets, and an engineer walking past the plant gate."
     ),
 
     # --- HEALTHCARE, MEDICAL, DENTAL & CARE PROFESSIONS (14) ---
     "dmf-mtra-radiologie-computertomographie-klinik.jpg": (
-        "In a modern German hospital radiology control room, a Vietnamese radiology technologist (MTRA) "
-        "analyzes high-resolution 3D CT scanner cross-sections on dual medical monitors while looking through lead glass at a modern CT gantry"
+        ARCHETYPE_SOLO
+        + "Seen from over the shoulder in a dimly lit German hospital radiology control room, a single Vietnamese radiology technologist (MTRA) "
+        "in white clinic tunic sits at a diagnostic workstation examining grayscale axial chest CT slices, with the CT scanner visible through leaded glass."
     ),
     "dmf-mtla-medizinische-technologen-labor-analyse.jpg": (
-        "In a bright, sterile German clinical diagnostics laboratory, a Vietnamese medical laboratory technologist (MTLA) "
-        "in lab coat and nitrile gloves operates an automated hematology analyzer and multichannel pipette beside a German lab supervisor"
+        ARCHETYPE_HANDS
+        + "Close-up documentary shot inside a German clinical laboratory showing hands in purple nitrile gloves holding an Eppendorf multichannel pipette "
+        "over a 96-well microplate beside barcode-labeled EDTA blood sample tubes and a Roche analyzer."
     ),
     "dmf-mfa-arztpraxis-blutentnahme-labor.jpg": (
-        "In a friendly, contemporary German medical care center (MVZ Arztpraxis), a Vietnamese medical assistant (MFA) "
-        "in crisp white clinic attire prepares an ECG and blood pressure check for an elderly German patient"
+        ARCHETYPE_SOLO
+        + "In a lived-in German general practitioner treatment room (Hausarztpraxis), a single Vietnamese medical assistant (MFA) in white polo and trousers "
+        "prepares sterile blood-collection vacutainer tubes and tourniquet on a stainless steel tray beside an ECG cart."
     ),
     "dmf-zfa-zahnarztpraxis-behandlung-stuhl.jpg": (
-        "Inside a high-end German dental clinic (Zahnarztpraxis), a Vietnamese dental assistant (ZFA) "
-        "assists a German dentist chairside using an intraoral 3D scanner and surgical suction unit under bright LED treatment lights"
+        ARCHETYPE_SOLO
+        + "Candid three-quarter view inside a German dental clinic treatment room between appointments: a single Vietnamese dental assistant (ZFA) "
+        "in blue scrubs and surgical mask prepares sterilized handpieces and ultrasonic scaler tips on the swivel bracket table beside the dental chair."
     ),
     "dmf-zahntechnik-dentallabor-fraesen.jpg": (
-        "In a modern German dental laboratory (Dentallabor), a Vietnamese dental technician (Zahntechniker) "
-        "inspects a ceramic zirconia crown bridge beside a 5-axis CAD/CAM dental milling machine and 3D design screen"
+        ARCHETYPE_HANDS
+        + "Close-up of a dental technician's ceramic-dust-covered hands on a wooden bench pin in a German Dentallabor, using a high-speed micromotor handpiece "
+        "and loupes to finish a zirconia dental bridge beside plaster articulators."
     ),
     "dmf-physiotherapie-reha-behandlung.jpg": (
-        "In a sunlit German rehabilitation and physiotherapy clinic, a Vietnamese physiotherapist "
-        "guides a German patient through shoulder mobility and resistance exercises alongside parallel bars and therapy equipment"
+        ARCHETYPE_OBSERVER
+        + "Shot from the doorway of a German rehabilitation gym under overcast window light: a Vietnamese physiotherapist in運動 polo shirt "
+        "assists an older patient stepping between parallel bars on a non-slip floor, with therapy balls and treatment tables in the background."
     ),
     "dmf-klinik-geburtshilfe-hebammen-team.jpg": (
-        "In a warm, modern German hospital maternity ward (Kreißsaal / Geburtshilfe), a compassionate Vietnamese midwife (Hebamme) "
-        "and a German senior midwife check a cardiotocography (CTG) monitor in a comforting birthing room"
+        ARCHETYPE_SOLO
+        + "In a quiet German hospital maternity room (Kreißsaal) under soft daylight, a single Vietnamese midwife (Hebamme) in hospital scrubs "
+        "checks the paper strip printout emerging from a fetal cardiotocography (CTG) monitor beside an adjustable delivery bed."
     ),
     "dmf-pflege-station-visite-team.jpg": (
-        "During morning ward rounds in a modern German hospital corridor, a Vietnamese nursing assistant advancing to registered nurse "
-        "walks with a German ward manager (Stationsleitung) reviewing a tablet computer"
+        ARCHETYPE_OBSERVER
+        + "Candid view down a linoleum-floored German hospital ward corridor during early shift: a Vietnamese nurse pushes a stainless-steel mobile nursing chart trolley "
+        "past closed patient room doors and wall-mounted hand sanitizer dispensers."
     ),
     "dmf-azubi-ankunft-deutschland.jpg": (
-        "In a welcoming German senior care facility garden terrace, a young Vietnamese nursing assistant (Krankenpflegehelfer) "
-        "in medical scrubs warmly assists a smiling elderly German resident in a wheelchair"
+        ARCHETYPE_OBSERVER
+        + "On the paved courtyard path of a German senior nursing home (Seniorenheim) under a cloudy sky, a young Vietnamese care assistant in scrubs "
+        "walks beside an elderly resident using a wheeled rollator walker near brick garden planters."
     ),
     "dmf-unterricht-interaktiv.jpg": (
-        "Inside a bright, colorful German kindergarten (Kita) playroom with wooden Montessori toys, "
-        "a qualified Vietnamese early childhood educator (Erzieherin) builds wooden blocks at a low table with happy German children"
+        ARCHETYPE_OBSERVER
+        + "Candid documentary view inside a German municipal Kindergarten (Kita) group room with natural birch plywood shelves and coat hooks: "
+        "a Vietnamese early childhood educator (Erzieherin) sits on a woven rug helping two toddlers assemble wooden train tracks."
     ),
     "dmf-medizin-simulation-saal.jpg": (
-        "Inside a sterile German hospital operating theater (OP-Saal), a Vietnamese surgical technologist (OTA) "
-        "in green surgical scrubs gown and cap arranges sterile stainless-steel surgical instruments on a Mayo stand beside an anesthesia monitor"
+        ARCHETYPE_SOLO
+        + "Inside a German hospital sterile supply and operating preparation room, a single Vietnamese surgical technologist (OTA) in green scrub cap, mask, and gown "
+        "counts sterile hemostats and retractors on a green surgical drape under overhead clinical lights."
     ),
     "dmf-klinik-partner-audit.jpg": (
-        "In a modern German hospital boardroom, a German nursing director (Pflegedienstleitung) and a Vietnamese healthcare coordinator "
-        "review quality certification documents with a green seal of approval on the table"
+        ARCHETYPE_DESK
+        + "A hospital Pflegedienstleitung office desk in Germany showing an open roster binder (Dienstplan), printed qualification recognition certificates, "
+        "a hospital ID badge on a lanyard, a stethoscope, and a porcelain coffee cup."
     ),
     "dmf-pflege-station-praxis.jpg": (
-        "In a bright German hospital patient room, a skilled Vietnamese nurse checks an intravenous infusion pump "
-        "and communicates empathetically in German with a recovering patient while a colleague takes notes"
+        ARCHETYPE_HANDS
+        + "Close-up documentary shot in a German hospital room of a nurse's hands adjusting the drip rate and digital keypad of a Braun IV infusion pump "
+        "mounted on a metal IV pole beside a hospital bed rail."
+    ),
+    "dmf-augenoptiker-optometrie-brillen-refraktion.jpg": (
+        ARCHETYPE_HANDS
+        + "Close-up in a German optometry workshop (Augenoptiker-Werkstatt) showing an optician's hands using a digital lensmeter (Scheitelbrechwertmesser) "
+        "and micro-screwdriver to align titanium eyeglass frames beside an automated lens edging machine."
     ),
 
-    # --- INDUSTRY, CONSTRUCTION, CRAFTS & ENGINEERING (23 remaining) ---
+    # --- INDUSTRY, CONSTRUCTION, CRAFTS & ENGINEERING (25) ---
+    "dmf-dachdecker-solar-fassadenbau.jpg": (
+        ARCHETYPE_SOLO
+        + "On a weathered red clay-tile roof in a German residential neighborhood under an overcast grey sky with green scaffolding safety netting, "
+        "a single Vietnamese roofer (Dachdecker) in dusty grey knee-pad work trousers and safety harness tightens an aluminum solar mounting rail with a torque wrench."
+    ),
+    "dmf-fluggeraetmechaniker-luftfahrt-wartung-hangar.jpg": (
+        ARCHETYPE_SOLO
+        + "Inside a German MRO aircraft maintenance hangar under high-bay industrial lighting, a single Vietnamese aviation mechanic (Fluggerätmechaniker) "
+        "standing on a mobile yellow maintenance platform uses a flashlight and inspection mirror inside an open Airbus turbofan engine cowling."
+    ),
+    "dmf-geruestbau-montage-hoehe.jpg": (
+        ARCHETYPE_SOLO
+        + "On the exterior of a German brick apartment renovation site under a cloudy sky, a single Vietnamese scaffolder (Gerüstbauer) in worn leather tool belt, "
+        "safety harness, and white hard hat hammers a steel wedge coupler on galvanized Layher scaffolding."
+    ),
     "dmf-schornsteinfeger-brandschutz-feuerungsanlage.jpg": (
-        "In a clean German residential utility room, a Vietnamese chimney sweep and fire-safety technician (Schornsteinfeger) "
-        "in black workwear uses a digital flue-gas analyzer probe on a modern condensing heating system with a German Bezirksschornsteinfeger"
+        ARCHETYPE_SOLO
+        + "In a cramped concrete basement boiler room of a German apartment house, a single Vietnamese technician (Schornsteinfeger) in soot-dusted black work jacket "
+        "inserts a stainless-steel flue-gas probe into the exhaust pipe of a Viessmann condensing boiler while reading a handheld Testo analyzer."
     ),
     "dmf-werkzeugmechaniker-feinwerkmechanik-formenbau.jpg": (
-        "In a German precision toolmaking and injection-mold workshop (Formenbau), a Vietnamese toolmaker (Werkzeugmechaniker) "
-        "inspects a mirror-polished steel injection mold under a stereomicroscope next to a wire EDM machine"
+        ARCHETYPE_HANDS
+        + "Close-up on a steel workbench in a German Formenbau toolmaking shop: a toolmaker's hands using an oilstone and dial test indicator (Fühlhebelmessgerät) "
+        "to polish and measure a complex steel injection-mold core Cavity."
     ),
     "dmf-galabau-gartenbau-aussenanlage.jpg": (
-        "On a modern German urban landscaping project (Garten- und Landschaftsbau), a Vietnamese landscaper "
-        "in outdoor workwear lays natural stone paving blocks and checks a laser level alongside a German landscape foreman"
+        ARCHETYPE_SOLO
+        + "At a damp German municipal courtyard landscaping site (GaLaBau) on a cloudy day, a single Vietnamese landscaper in muddy knee-pad work trousers "
+        "uses a rubber mallet and spirit level to set grey granite cobblestone pavers into a crushed-gravel bedding layer."
     ),
     "dmf-kaeltetechnik-klimaanlage-wartung.jpg": (
-        "On the rooftop of a German commercial building, a Vietnamese refrigeration and HVAC mechatronics technician (Mechatroniker für Kältetechnik) "
-        "connects digital manifold pressure gauges to a large commercial heat pump and chiller unit"
+        ARCHETYPE_HANDS
+        + "Close-up on a wet gravel commercial rooftop in Germany showing a refrigeration technician's gloved hands connecting red and blue brass manifold pressure hoses "
+        "to the service valves of a weathered outdoor commercial chiller unit."
     ),
     "dmf-konstruktionsmechanik-stahlbau-halle.jpg": (
-        "Inside a heavy structural steel fabrication hall (Stahlbau) in Germany with overhead bridge cranes, "
-        "a Vietnamese structural mechanic (Konstruktionsmechaniker) in welding helmet checks massive steel I-beam trusses with a German welding engineer"
+        ARCHETYPE_SOLO
+        + "In a gritty German structural steel fabrication hall (Stahlbau) with scorched welding tables and chain hoists, a single Vietnamese structural mechanic "
+        "in leather welding apron and flipped-up grinding visor uses an angle grinder to bevel a heavy steel H-beam."
     ),
     "dmf-karosserie-lackier-werkstatt.jpg": (
-        "Inside a modern German automotive body and paint repair shop (Karosserie- und Fahrzeugbau), "
-        "a Vietnamese body technician aligns an aluminum car fender frame using a digital laser measuring system beside a glass spray booth"
+        ARCHETYPE_SOLO
+        + "Inside a German automotive body repair workshop (Karosseriebau), a single Vietnamese body technician in dust mask and grey coveralls "
+        "uses an orbital vacuum sander on a primed car door panel mounted on a mobile stand, with masking paper and hoses on the floor."
     ),
     "dmf-gleisbau-schienen-infrastruktur.jpg": (
-        "Along a German railway track construction site (Gleisbau) with a yellow rail tamping machine in the background, "
-        "a Vietnamese track construction worker in orange high-visibility PSA gear and hard hat inspects rail fasteners with a German site supervisor"
+        ARCHETYPE_WIDE
+        + "Wide documentary shot along a gravel-ballast railway track construction site (Gleisbau) in Germany under overcast mist, "
+        "with a yellow Plasser & Theurer track machine in the background and a track worker in soiled orange high-vis trousers tightening Vossloh rail clips."
     ),
     "dmf-tiefbau-strassenbau-baustelle.jpg": (
-        "At a German civil engineering and district-heating pipeline trench site (Tiefbau & Straßenbau), "
-        "a Vietnamese civil construction specialist and a German Polier check a Theodolite surveyor level beside insulated underground pipes and an excavator"
+        ARCHETYPE_WIDE
+        + "At an excavated urban street trench in Germany (Tiefbau) with steel trench shoring plates, muddy earth, and orange PVC drainage pipes, "
+        "a civil construction worker in yellow rubber boots and hard hat checks elevation with a laser receiver rod beside a compact excavator."
     ),
     "dmf-schreiner-tischler-fertigung.jpg": (
-        "In a bright German joinery and cabinetry workshop (Tischlerei / Schreinerei) filled with oak timber, "
-        "a Vietnamese carpenter (Tischler) operates a modern format sliding table saw and checks a custom wooden cabinet with a German master carpenter"
+        ARCHETYPE_SOLO
+        + "In a sawdust-covered German joinery workshop (Tischlerei) smelling of oak timber, a single Vietnamese carpenter in ear defenders and dusty work apron "
+        "pushes a solid oak board across an Altendorf sliding table saw with extraction hoses overhead."
     ),
     "dmf-zimmerer-holzbau-montage.jpg": (
-        "Inside a large German timber-frame construction hall (Holzbau / Zimmerei), a Vietnamese timber framer (Zimmerer) "
-        "in traditional corduroy carpenter trousers and ear protection measures a massive laminated spruce roof beam with a German Zimmerermeister"
+        ARCHETYPE_SOLO
+        + "In a German timber-framing hall (Zimmerei), a single Vietnamese carpenter (Zimmerer) wearing traditional black corduroy flared trousers and leather belt "
+        "uses a heavy Mafell portable circular saw to cut a mortise tenon joint on a massive spruce roof rafter."
     ),
     "dmf-landmaschinen-baumaschinen-werkstatt.jpg": (
-        "In a spacious German agricultural and construction machinery service center, a Vietnamese heavy-equipment mechatronics technician "
-        "connects a diagnostic rugged laptop to the hydraulic valve block of a large green tractor and wheel loader"
-    ),
-    "dmf-dachdecker-solar-fassadenbau.jpg": (
-        "On a pitched clay-tile roof in Germany under a clear sky, a Vietnamese roofer and solar installer (Dachdecker) "
-        "in safety harness mounts monocrystalline photovoltaic solar panels onto aluminum roof rails with a German colleague"
+        ARCHETYPE_SOLO
+        + "Inside a high-door German agricultural machinery repair bay with grease stains on the concrete floor, a single Vietnamese heavy-equipment mechanic "
+        "in oil-smudged green overalls uses a heavy torque wrench on the planetary wheel hub of a mud-splattered tractor."
     ),
     "dmf-lehrkraft-tafel.jpg": (
-        "In a German industrial automation factory, a Vietnamese industrial electrician (Elektroniker für Betriebstechnik) "
-        "uses a Fluke multimeter to test PLC control relays inside a large open industrial switchgear cabinet (Schaltschrank)"
+        ARCHETYPE_HANDS
+        + "Close-up documentary shot inside a German factory electrical room showing an industrial electrician's hands probing DIN-rail terminal blocks "
+        "and Siemens S7 PLC relays inside a densely wired switchgear cabinet (Schaltschrank) using insulated red/black multimeter leads."
     ),
     "dmf-azubi-erfolgreiche-ausreise.jpg": (
-        "In a clean German mechanical production plant, a Vietnamese industrial mechanic (Industriemechaniker) "
-        "performs preventive maintenance on a hydraulic press and pneumatic actuator system alongside a German maintenance lead"
+        ARCHETYPE_SOLO
+        + "In a German manufacturing plant, a single Vietnamese industrial mechanic (Industriemechaniker) in dark blue workwear kneels beside a hydraulic stamping press, "
+        "replacing a braided high-pressure hydraulic hose with open-end wrenches on an oil-absorbent mat."
     ),
     "dmf-seminar-fachkraft-diskussion.jpg": (
-        "In a modern German residential building utility room, a Vietnamese HVAC plumber (Anlagenmechaniker SHK) "
-        "installs insulated copper piping and a hydronic manifold for an air-to-water heat pump (Wärmepumpe)"
+        ARCHETYPE_SOLO
+        + "In an unfinished German residential utility room with exposed concrete walls, a single Vietnamese SHK heating installer (Anlagenmechaniker SHK) "
+        "uses an electric radial press tool (Presszange) to crimp copper fittings onto a wall-mounted heat pump manifold."
     ),
     "dmf-lackier-ausbau-training.jpg": (
-        "Inside a newly renovated German commercial office interior, a Vietnamese painter and drywall finisher (Maler und Lackierer) "
-        "in clean white painter overalls applies smooth acoustic plaster and checks surface quality with a raking light"
+        ARCHETYPE_SOLO
+        + "Inside a German commercial building renovation site with drop cloths and aluminum step ladders, a single Vietnamese painter (Maler und Lackierer) "
+        "in paint-splattered white bib overalls skims joint compound across a drywall ceiling using a wide stainless-steel smoothing trowel."
     ),
     "dmf-bau-handwerk-simulation.jpg": (
-        "On a modern German reinforced-concrete construction site (Hochbau), a Vietnamese mason and concrete builder (Maurer & Betonbauer) "
-        "in hard hat and high-vis vest checks steel rebar formwork and plumb alignment with a German site foreman"
+        ARCHETYPE_SOLO
+        + "On a damp German reinforced-concrete building site (Hochbau), a single Vietnamese concrete builder (Maurer und Betonbauer) in mud-splattered boots "
+        "and hard hat ties steel reinforcement rebar intersections with tie wire and pliers inside Doka timber formwork."
     ),
     "dmf-kfz-diagnose-labor.jpg": (
-        "In a modern German electric vehicle service bay, a Vietnamese automotive mechatronics technician (Kfz-Mechatroniker) "
-        "in insulated high-voltage safety gloves inspects an orange EV high-voltage battery pack and diagnostic terminal on a vehicle lift"
+        ARCHETYPE_HANDS
+        + "Close-up in a German automotive workshop showing a technician's hands in orange Class-0 insulated high-voltage safety gloves "
+        "removing the orange service disconnect plug on an opened electric vehicle lithium-ion battery pack under a two-post lift."
     ),
     "dmf-solar-elektro-schulung.jpg": (
-        "On a commercial flat roof solar park in Germany, a Vietnamese photovoltaic technician (Solarteur) "
-        "wires a three-phase solar string inverter and checks DC voltage readings with a German electrical master"
+        ARCHETYPE_SOLO
+        + "Inside a German commercial building electrical room, a single Vietnamese solar electrician mounts a three-phase hybrid string inverter onto a brick wall, "
+        "stripping black solar DC cables with a cable knife beside an open distribution board."
     ),
     "dmf-azubi-einarbeitung-werkstatt.jpg": (
-        "At a 5-axis CNC machining center (Zerspanungsmechaniker) in a German precision factory, a Vietnamese CNC machinist "
-        "reviews G-code toolpaths on the Siemens Sinumerik control panel while holding a precision turned metal shaft"
+        ARCHETYPE_SOLO
+        + "At an enclosed 5-axis CNC milling machine with coolant droplets on the safety glass window in a German workshop, a single Vietnamese CNC machinist "
+        "in safety glasses adjusts feed-rate overrides on the scratched hardware keys of a Siemens Sinumerik control panel."
     ),
     "dmf-arbeitgeber-kooperation-handwerk.jpg": (
-        "In a German metal fabrication workshop, a certified Vietnamese TIG/MAG welder (Schweißer) "
-        "lifts his auto-darkening welding helmet to inspect a clean stainless-steel weld seam alongside a German welding supervisor (Schweißaufsicht)"
+        ARCHETYPE_SOLO
+        + "In a dimly lit German metalworking booth with local exhaust ventilation hood, a single Vietnamese TIG welder in worn leather gauntlets and auto-darkening helmet "
+        "welds a stainless-steel pipe flange, casting a crisp blue arc reflection on the workbench."
     ),
     "dmf-talent-partnerschaft-deutschland-vietnam.jpg": (
-        "In a modern German mechatronics training workshop, a Vietnamese electronics and mechatronics technician "
-        "tests an automated pneumatic sorting conveyor line alongside a German Ausbilder"
+        ARCHETYPE_HANDS
+        + "Close-up of a mechatronics technician's hands on an aluminum profile test rig in a German workshop, adjusting Festo pneumatic solenoid valves, "
+        "blue polyurethane air tubing, and optical proximity sensors with a precision screwdriver."
     ),
 
     # --- GASTRONOMY, HOSPITALITY & FOOD TRADES (6) ---
     "dmf-brauer-maelzer-getraenketechnik-brauerei.jpg": (
-        "Inside a traditional yet modern German brewery brewhouse (Sudhaus) with gleaming copper and stainless-steel mash tuns, "
-        "a Vietnamese brewer and maltster (Brauer und Mälzer) checks wort gravity in a glass cylinder with a German Braumeister"
+        ARCHETYPE_SOLO
+        + "Inside a wet-tiled German craft brewery cellar (Gärkeller) with stainless-steel cylindroconical fermentation tanks and rubber hoses on the floor, "
+        "a single Vietnamese brewer (Brauer und Mälzer) in rubber apron and boots draws a wort sample from a sample cock into a glass cylinder."
     ),
     "dmf-hotelfach-restaurant-service-training.jpg": (
-        "At the marble reception desk of a 4-star boutique hotel in Germany, a professionally dressed Vietnamese hospitality specialist (Hotelfachfrau) "
-        "warmly welcomes a business traveler with a keycard while a German hotel manager smiles nearby"
+        ARCHETYPE_SOLO
+        + "Behind the wooden reception counter of a German city business hotel during quiet morning hours, a single Vietnamese hotel specialist (Hotelfachfrau) "
+        "in dark blazer checks room keycards and printed arrival registration lists beside a key rack and payment terminal."
     ),
     "dmf-fleischer-metzger-lebensmittelhandwerk.jpg": (
-        "In a spotless, modern German artisan butcher and food-processing facility (Fleischerei), a Vietnamese food technologist and butcher "
-        "in hygienic white coat and hairnet inspects premium cuts and digital temperature logs with a German Fleischermeister"
+        ARCHETYPE_SOLO
+        + "In a cold, white-tiled German butcher production room (Fleischerei), a single Vietnamese butcher in white coat, chainmail cut-resistant apron, and hairnet "
+        "portions fresh meat cuts on a red polyethylene cutting board beside stainless-steel Euro-crates."
     ),
     "dmf-sprachpraxis-dialog-training.jpg": (
-        "On the stainless-steel pass of a busy upscale German restaurant kitchen, a Vietnamese chef (Koch) "
-        "in crisp white chef jacket plates a refined contemporary dish under warm pass lights alongside a German head chef (Küchenchef)"
+        ARCHETYPE_SOLO
+        + "In a cramped, steaming German restaurant kitchen during prep hours, a single Vietnamese line cook (Koch) in stained apron and chef jacket "
+        "sears medallions in a heavy stainless-steel sauté pan over an induction range surrounded by Gastronorm Bain-Marie pans."
     ),
     "dmf-praxis-uebung-labor.jpg": (
-        "In a warm German artisan bakery (Backstube) at dawn, a Vietnamese baker and pastry chef (Bäcker & Konditor) "
-        "in bakery whites pulls golden crusty sourdough loaves from a deck oven alongside a German Bäckermeister"
+        ARCHETYPE_SOLO
+        + "In a flour-dusted German artisan bakery (Backstube) at 5 AM under fluorescent tubes, a single Vietnamese baker (Bäcker) in white cotton trousers "
+        "uses a long wooden peel to unload crusty rye sourdough loaves (Mischbrot) from a multi-deck stone oven."
     ),
     "dmf-gastronomie-hotellerie-service.jpg": (
-        "In an elegant German fine-dining restaurant dining room, a poised Vietnamese restaurant professional (Restaurantfachmann) "
-        "in vest and apron arranges crystal wine glasses and fine table settings before evening service"
+        ARCHETYPE_SOLO
+        + "In an empty German restaurant dining room before afternoon opening, a single Vietnamese restaurant professional (Restaurantfachmann) in black waistcoat "
+        "polishes long-stemmed Riesling wine glasses with a linen cloth beside neatly folded cloth napkins."
     ),
 
     # --- IT, LOGISTICS, BUS/TRANSPORT & DUALES STUDIUM (7) ---
     "dmf-systemintegration-rechenzentrum-server.jpg": (
-        "Inside a modern German enterprise data center server aisle with blue LED rack indicators, a Vietnamese IT systems integration specialist "
-        "(Fachinformatiker Systemintegration) patches fiber-optic network cables while holding a diagnostic laptop"
+        ARCHETYPE_SOLO
+        + "In the narrow cold aisle of a German colocation data center under stark white overhead lighting, a single Vietnamese IT systems technician "
+        "in a fleece jacket kneels before an open 42U server rack tracing yellow single-mode fiber patch cords with a visual fault locator."
     ),
     "dmf-busfahrer-oepnv-linienbus-depot.jpg": (
-        "At a modern German municipal public-transit bus depot (ÖPNV Betriebshof), a Vietnamese professional bus driver "
-        "in neat transit uniform stands beside the open front door of a modern electric city bus holding a digital route tablet"
+        ARCHETYPE_WIDE
+        + "At a wet municipal bus depot (ÖPNV Betriebshof) in a German city on a cloudy morning with rows of parked city buses and overhead charging pantographs, "
+        "a Vietnamese bus driver in transit vest conducts a pre-trip tire and mirror walk-around check."
     ),
     "dmf-stapler-lagerlogistik-schulung.jpg": (
-        "Inside a high-ceiling German logistics distribution center (Hochregallager), a Vietnamese warehouse operator "
-        "in high-vis vest safely operates an electric reach-truck forklift (Gabelstapler) scanning pallet barcodes"
+        ARCHETYPE_SOLO
+        + "Inside a concrete-floored German freight warehouse (Hochregallager), a single Vietnamese forklift operator seated inside the cab of a Jungheinrich reach truck "
+        "looks up while lifting a shrink-wrapped Euro-pallet onto a high steel storage rack."
     ),
     "dmf-duales-studium-hochschule-akademie.jpg": (
-        "In a modern German University of Applied Sciences (Hochschule) robotics and engineering lab, a Vietnamese dual-study student "
-        "(Duales Studium) collaborates with a German professor and corporate mentor over a 3D CAD prototype"
+        ARCHETYPE_SOLO
+        + "In a cluttered engineering laboratory at a German University of Applied Sciences (Hochschule), a single Vietnamese dual-study student (Duales Studium) "
+        "sits at a workbench probing an embedded microcontroller PCB with a Rohde & Schwarz digital oscilloscope."
     ),
     "dmf-fuehrerschein-verkehr-mobilitaet.jpg": (
-        "At a German commercial driving academy yard, a Vietnamese professional driver holds a German EU card driving license "
-        "while standing beside a modern German delivery van and a German driving instructor (Fahrlehrer)"
+        ARCHETYPE_SOLO
+        + "At a rainy German logistics delivery yard, a single Vietnamese commercial driver in a dark weatherproof jacket secures ratchet tie-down straps "
+        "inside the open rear cargo bay of a white Mercedes-Benz Sprinter delivery van."
     ),
     "dmf-logistik-arbeitsplatz-training.jpg": (
-        "At the loading dock of a modern German freight and logistics hub, a Vietnamese warehouse logistics specialist (Fachkraft für Lagerlogistik) "
-        "and a German dispatcher verify digital shipping manifests with a handheld scanner next to a heavy-duty truck"
+        ARCHETYPE_HANDS
+        + "Close-up at a German warehouse loading bay showing a logistics worker's gloved hands using a rugged Zebra handheld barcode scanner "
+        "to scan a DHL/freight shipping label on a cardboard carton stacked on a wooden Euro-pallet."
     ),
     "dmf-it-arbeitsplaetze-schulung.jpg": (
-        "In a bright German software engineering studio, a Vietnamese full-stack software developer (IT-Spezialist) "
-        "and a German tech lead pair-program at a standing desk with dual monitors showing clean architecture diagrams and code"
+        ARCHETYPE_SOLO
+        + "Over-the-shoulder documentary shot in a quiet German software company office: a single Vietnamese backend developer in a sweater sits at a height-adjustable desk "
+        "with mechanical keyboard, coffee mug, and two monitors displaying TypeScript code and Docker terminal logs."
     ),
 
-    # --- VISA, IMMIGRATION LAW, ANERKENNUNG & AUTHORITIES (19) ---
+    # --- VISA, IMMIGRATION LAW, ANERKENNUNG & AUTHORITIES (19) -> Primarily ARCHETYPE_DESK & ARCHETYPE_HANDS ---
     "dmf-auslandsportal-work-and-stay-agentur-digitalisierung.jpg": (
-        "In a modern German HR office, an HR manager reviews a sleek digital visa application dashboard on a laptop screen "
-        "showing a green progress bar and digital document verification alongside a passport and coffee cup"
+        ARCHETYPE_DESK
+        + "A German HR specialist's desk showing a laptop open to an administrative visa tracking spreadsheet, a stack of grey Leitz Ordner binders, "
+        "printed consular checklists with yellow sticky notes, and a black ceramic coffee mug in soft morning window light."
     ),
     "dmf-anerkennungspartnerschaft-praxis-erfahrungen.jpg": (
-        "In a German industrial workshop office, a German employer and a newly arrived Vietnamese skilled worker "
-        "review a structured 12-month recognition training plan binder together while smiling"
+        ARCHETYPE_DESK
+        + "An oak workbench desk in a German craft company office displaying an open 'Anerkennungspartnerschaft — Qualifizierungsplan' binder, "
+        "a Chamber of Crafts (HWK) letter, a pair of safety glasses, and a steel vernier caliper."
     ),
     "dmf-zab-zeugnisbewertung-statement-comparability.jpg": (
-        "A close-up editorial shot on an oak executive desk in Germany where a German HR specialist and a Vietnamese engineer "
-        "examine an official university degree certificate alongside a German Statement of Comparability dossier"
+        ARCHETYPE_DESK
+        + "Close-up on a German HR desk showing an official ZAB Statement of Comparability (Zeugnisbewertung) document folder, "
+        "notarized university diploma translations bound with red-white-black cord, reading glasses, and a silver Pelikan fountain pen."
     ),
     "dmf-daueraufenthalt-eu-niederlassung-pass.jpg": (
-        "In a bright German corporate office, a long-term Vietnamese specialist smiles while holding a German electronic residence permit card "
-        "(Aufenthaltstitel / Niederlassungserlaubnis) during a congratulatory meeting with her German HR director"
+        ARCHETYPE_HANDS
+        + "Close-up at a German municipal Bürgeramt counter where an administrative clerk's hand passes a plastic German electronic residence permit card (Aufenthaltstitel) "
+        "and official PIN letter across a wooden desk to an applicant."
     ),
     "dmf-qualifikationsanalyse-werkstatt-test.jpg": (
-        "In a German Chamber of Crafts (Handwerkskammer) testing workshop, a Vietnamese craftsman demonstrates practical metalworking skills "
-        "at a workbench while two senior German chamber examiners observe with clipboards"
+        ARCHETYPE_SOLO
+        + "In a German Handwerkskammer examination workshop, a single Vietnamese craftsman in work overalls uses a vernier height gauge on a cast-iron surface plate "
+        "to lay out a practical metal test piece while a printed technical drawing lies beside him."
     ),
     "dmf-defizitbescheid-weiterbildung-plan.jpg": (
-        "In a German hospital training room, a German clinical educator and a Vietnamese nurse sit at a table "
-        "mapping out practical adaptation modules on a structured qualification timeline chart"
+        ARCHETYPE_DESK
+        + "A hospital clinical educator's desk in Germany showing a printed 'Defizitbescheid / Anpassungslehrgang' curriculum binder, "
+        "a highlight marker, a hospital ward shift rota, and a stethoscope under neutral office lighting."
     ),
     "dmf-zav-arbeitsagentur-beratung.jpg": (
-        "In a modern German administrative office, a recruitment compliance specialist stamps and reviews an official fast-track "
-        "pre-approval document folder next to a laptop and a desk calendar"
+        ARCHETYPE_HANDS
+        + "Close-up of a German compliance officer's hand stamping a 'Vorabzustimmung § 81a AufenthG' dossier on a wooden desk "
+        "next to a date stamp rack, a green ink pad, and vertical cardboard file folders."
     ),
     "dmf-urkundenpruefung-legalisation-botschaft.jpg": (
-        "A crisp overhead editorial composition on a wooden desk showing official notarized academic transcripts with red wax/embossed seals, "
-        "certified German translations, a fountain pen, and a legal verification checklist"
+        ARCHETYPE_DESK
+        + "Overhead documentary still life on a dark wood desk: certified German translation dossiers fastened with brass eyelets and embossed notary seals, "
+        "a magnifying glass, and a stack of consular verification files."
     ),
     "dmf-verpflichtungserklaerung-buergschaft-vertrag.jpg": (
-        "In a German company boardroom, a managing director (Geschäftsführer) and a legal advisor review a formal sponsorship "
-        "and financial guarantee contract with a calculator and fountain pen on the conference table"
+        ARCHETYPE_DESK
+        + "On a German Mittelstand managing director's desk: an open financial guarantee and sponsorship form (Verpflichtungserklärung), "
+        "a desktop printing calculator with paper tape, company balance folders, and a fountain pen."
     ),
     "dmf-sprachpruefung-goethe-zertifikat.jpg": (
-        "In a modern language examination center, a confident young Vietnamese candidate holds an official B2 German language certificate "
-        "portfolio while shaking hands with an examiner in front of glass office walls"
+        ARCHETYPE_HANDS
+        + "Close-up on a classroom desk showing a candidate's hand filling out a German B2 listening and reading examination answer sheet with a pencil, "
+        "beside an analog desk watch and an ID card."
     ),
     "dmf-praesentation-bildung-arbeitsmarkt.jpg": (
-        "In a modern German company office, a Vietnamese professional transitioning from a job-search visa to permanent employment "
-        "signs a permanent German employment contract (Festanstellung) with a smiling German HR manager"
+        ARCHETYPE_HANDS
+        + "Close-up on a German conference table showing a newly hired specialist's hand signing the signature line of a printed 'Unbefristeter Arbeitsvertrag' "
+        "with a blue ballpoint pen next to a company key fob."
     ),
     "dmf-schulung-werkbank-montage.jpg": (
-        "In a German technical company, an experienced Vietnamese specialist with several years of vocational track record "
-        "demonstrates advanced equipment setup to a German department head"
+        ARCHETYPE_SOLO
+        + "In a German electronics assembly plant, an experienced Vietnamese specialist in an ESD antistatic smock and wrist strap "
+        "solders fine-pitch components under a benchtop illuminated magnifier lamp."
     ),
     "dmf-akademie-abschlussfeier-urkunde.jpg": (
-        "On the first day at a German company, a German HR manager welcomes a Vietnamese talent with a welcome folder "
-        "and workplace badge while showing the training schedule for parallel qualification recognition"
+        ARCHETYPE_DESK
+        + "A German company onboarding desk prepared for day one: a welcome binder, a laminated employee RFID badge on a lanyard, "
+        "a hard hat, safety shoes in an open box, and an induction schedule."
     ),
     "dmf-azubi-abschluss-zertifikat.jpg": (
-        "A proud Vietnamese skilled professional in smart business attire stands in a modern German city business district "
-        "holding a portfolio folder, symbolizing long-term settlement and career permanence in Germany"
+        ARCHETYPE_DESK
+        + "An oak desk in a German workshop office displaying a framed Chamber of Industry and Commerce (IHK) 'Prüfungszeugnis / Gesellenbrief' certificate "
+        "beside a precision machined brass workpiece and micrometers."
     ),
     "dmf-campus-lehrsaal-modern.jpg": (
-        "At a German company's apprentice training center, a German training manager checks a complete § 16a vocational training visa dossier "
-        "and IHK training contract on a desk beside a laptop"
+        ARCHETYPE_DESK
+        + "A German training manager's desk showing an IHK 'Berufsausbildungsvertrag' training contract, a betrieblicher Ausbildungsplan binder, "
+        "a laptop showing the digital IHK portal, and a cup of black coffee."
     ),
     "dmf-bewerber-profil-pruefung.jpg": (
-        "In a German HR strategy meeting, two HR executives evaluate candidate qualification scorecards and points criteria "
-        "on a tablet and printed dossier at a bright conference table"
+        ARCHETYPE_DESK
+        + "A German HR recruitment desk with printed candidate qualification scorecards, a points table for the Chancenkarte (§ 20a AufenthG), "
+        "a highlighter pen, and an open notebook."
     ),
     "dmf-fachsprache-lehrkraft.jpg": (
-        "A side-by-side comparison desk scene in a German HR office where a specialist compares translated Vietnamese vocational transcripts "
-        "with a German Chamber (IHK/HWK) reference curriculum on a dual-screen workstation"
+        ARCHETYPE_DESK
+        + "A dual-monitor workstation in a German vocational chamber office showing a side-by-side comparison of translated technical subject hours "
+        "and a German Rahmenlehrplan reference binder open on the desk."
     ),
     "dmf-delegation-besuch-akademie.jpg": (
-        "In a modern German Ausländerbehörde / corporate compliance office, a coordinator tracks a fast-track § 81a timeline "
-        "on a widescreen monitor while speaking with an employer on a headset"
+        ARCHETYPE_DESK
+        + "An administrative compliance desk in Germany showing a wall calendar with red-circled statutory § 81a fast-track deadlines, "
+        "an open case file folder, a landline office telephone with headset, and a laptop."
     ),
 
     # --- LABOR LAW, HR COMPLIANCE & OCCUPATIONAL SAFETY (15) ---
     "dmf-probezeit-management-ausbilder-meister-leitfaden.jpg": (
-        "In a bright glass-walled office inside a German production facility, a German Meister conducts a constructive 3-month "
-        "probation feedback conversation (Probezeitgespräch) with a young Vietnamese apprentice over coffee and a checklist"
+        ARCHETYPE_OBSERVER
+        + "Seen through the wire-glass window of a German workshop master's office (Meisterbüro): a German Meister in a grey shop coat and a young Vietnamese apprentice "
+        "sit across a small table reviewing a printed training logbook (Berichtsheft)."
     ),
     "dmf-statusfeststellung-scheinselbststaendigkeit-clearing.jpg": (
-        "In a German tax and labor-law advisory office, two legal compliance professionals review social security status classification "
-        "contracts and organizational charts on a sleek conference table"
+        ARCHETYPE_DESK
+        + "A German labor-law and social-security compliance desk showing a Deutsche Rentenversicherung 'Statusfeststellungsverfahren § 7a SGB IV' folder, "
+        "a red Beck'sche Textausgaben 'Arbeitsgesetze (ArbG)' paperback book, and a highlighter."
     ),
     "dmf-betriebsrat-mitbestimmung-99-betrvg-personal.jpg": (
-        "In a modern German works council (Betriebsrat) meeting room, three committee members and an HR director review a new international "
-        "hiring proposal dossier (§ 99 BetrVG) around a sunlit oval table"
+        ARCHETYPE_OBSERVER
+        + "Candid view from the doorway of a German company conference room during a Works Council (Betriebsrat) meeting: "
+        "three committee members seen in profile/back view around a birch table covered with 'Anhörung nach § 99 BetrVG' folders and thermos carafes."
     ),
     "dmf-arbeitsvertrag-rueckzahlung-klausel-pruefung.jpg": (
-        "Close-up editorial photograph in a German law office where a labor lawyer highlights a paragraph in a German employment contract "
-        "with a silver fountain pen beside a German Civil Code (BGB) volume"
+        ARCHETYPE_HANDS
+        + "Close-up on a German legal advisor's desk showing a hand using a steel ruler and red fineliner pen to strike out an invalid repayment clause "
+        "in a printed German contract next to an open 'Bürgerliches Gesetzbuch (BGB)' code book."
     ),
     "dmf-arbeitsunfall-berufsgenossenschaft-schutz.jpg": (
-        "On a clean German factory floor, a safety officer (Sicherheitsbeauftragter) and a Vietnamese worker in high-vis PPE and safety glasses "
-        "inspect a green first-aid station and DGUV workplace safety signage"
+        ARCHETYPE_WIDE
+        + "Inside a German factory production aisle with yellow pedestrian floor markings, a green wall-mounted first-aid stretcher and eyewash station, "
+        "DGUV safety helmets signage, and a worker walking along the marked safety walkway."
     ),
     "dmf-entgeltfortzahlung-attest-krankmeldung.jpg": (
-        "In a German HR payroll office, an HR specialist checks a digital electronic sick-leave notification (eAU) interface "
-        "on a computer monitor alongside a payroll calendar"
+        ARCHETYPE_DESK
+        + "A German payroll clerk's desk showing a computer monitor with an electronic sick-leave certificate (eAU) retrieval screen, "
+        "a DATEV payroll binder, a desk calendar, and a calculator."
     ),
     "dmf-mutterschutz-elternzeit-beratung-personal.jpg": (
-        "In a warm, supportive German HR office, a female HR manager counsels a smiling pregnant international employee "
-        "over a family-leave planning guide and tea"
+        ARCHETYPE_DESK
+        + "A quiet German HR counseling table showing an official BMFSFJ 'Leitfaden zum Mutterschutz' und 'Elternzeit' brochure, "
+        "a workplace risk assessment form, a teapot, and two ceramic cups."
     ),
     "dmf-azubi-beratung-nebenjob-arbeitsvertrag.jpg": (
-        "At a German company HR desk, an advisor explains working-hour regulations and secondary-employment rules "
-        "to a young Vietnamese apprentice holding a work schedule"
+        ARCHETYPE_DESK
+        + "A German training coordinator's desk showing a printed 'Arbeitszeitgesetz (ArbZG)' shift schedule, a secondary-employment approval form (Nebentätigkeitsgenehmigung), "
+        "and a student vocational school timetable."
     ),
     "dmf-arbeitszeiterfassung-stempeluhr-schicht.jpg": (
-        "At the entrance of a modern German manufacturing shift area, a Vietnamese employee taps a contactless RFID employee badge "
-        "against a digital wall-mounted time-tracking terminal (Arbeitszeiterfassung) showing 07:58"
+        ARCHETYPE_HANDS
+        + "Close-up at the concrete entrance wall of a German factory locker room: a worker's hand in a navy work jacket sleeve holding a white RFID plastic keycard "
+        "up to a wall-mounted digital time-clock terminal (Zeiterfassungsterminal) reading 06:57."
     ),
     "dmf-personalbuero-kuendigung-beratung.jpg": (
-        "In a quiet, professional German executive office, an HR director reviews statutory notification deadlines and legal files "
-        "at a clean desk with a calendar and laptop"
+        ARCHETYPE_DESK
+        + "A German HR director's desk under overcast daylight showing a closed confidential personnel file (Personalakte), "
+        "a statutory notice-period calendar, a fountain pen, and a locked steel filing cabinet in the background."
     ),
     "dmf-minderjaehrige-azubis-betreuung.jpg": (
-        "In a German vocational training center, a caring German youth training coordinator welcomes a 17-year-old Vietnamese trainee "
-        "and reviews youth labor protection rules in a bright study lounge"
+        ARCHETYPE_DESK
+        + "On a German vocational training center desk: a printed 'Jugendarbeitsschutzgesetz (JArbSchG)' handbook, a guardian consent document, "
+        "a youth hostel dorm key, and a protective hard hat."
     ),
     "dmf-probezeit-gespraech-auswertung.jpg": (
-        "In a German HR office, a training manager and an HR specialist review an apprentice evaluation matrix "
-        "and structured support options on a laptop"
+        ARCHETYPE_DESK
+        + "A German workshop supervisor's desk showing a 3-month apprentice probation evaluation grid with handwritten notes, "
+        "an IHK training logbook, a pair of calipers, and a coffee mug."
     ),
     "dmf-gespraech-partner-unternehmensleitung.jpg": (
-        "In a German Mittelstand boardroom, a managing director signs a direct permanent employment contract with a Vietnamese specialist, "
-        "symbolizing direct hiring instead of temporary agency leasing"
+        ARCHETYPE_DESK
+        + "A German industrial company boardroom table showing a comparison dossier between direct permanent hiring (Festanstellung) and temporary agency leasing (Arbeitnehmerüberlassung AÜG), "
+        "alongside cost tables and a calculator."
     ),
     "dmf-vertrag-unterzeichnung.jpg": (
-        "At a modern German onboarding desk, an HR specialist hands an official written information sheet on German labor rights (§ 45c AufenthG) "
-        "to a newly hired Vietnamese employee"
+        ARCHETYPE_DESK
+        + "An onboarding folder open on a German HR desk displaying the statutory written information sheet on fair working conditions (§ 45c AufenthG), "
+        "alongside a collective bargaining agreement booklet (Tarifvertrag) and a ballpoint pen."
     ),
     "dmf-fachkraefte-auswahl-kommission.jpg": (
-        "In a transparent German corporate procurement meeting, a CFO and HR director review a fair-recruitment Employer-Pays compliance charter "
-        "and transparent fee breakdown on a conference table"
+        ARCHETYPE_DESK
+        + "A German corporate compliance desk displaying an 'Employer-Pays-Prinzip / Fair Recruitment' audit binder, "
+        "ILO convention guidelines, and a transparent service-fee invoice breakdown."
     ),
 
-    # --- SALARY, TAXES, SOCIAL SECURITY, HOUSING & LANGUAGE FUNDING (17) ---
+    # --- SALARY, TAXES, SOCIAL SECURITY, HOUSING & LANGUAGE FUNDING (18) ---
     "dmf-blaue-karte-eu-2027-gehaltsgrenzen-akademiker.jpg": (
-        "In a modern German tech headquarters in Munich, a Vietnamese graduate engineer and a German HR compensation manager "
-        "review an annual salary package and EU Blue Card contract on a tablet"
+        ARCHETYPE_DESK
+        + "A German HR compensation desk showing a printed 2027 EU Blue Card (Blaue Karte EU § 18g AufenthG) salary threshold table, "
+        "an engineering employment contract, a calculator, and a laptop."
     ),
     "dmf-mindestausbildungsverguetung-2027-sperrkonto-kalkulation.jpg": (
-        "On a German finance manager's desk, a clean financial plan shows apprentice monthly remuneration tiers alongside "
-        "a calculator, training contract, and laptop"
+        ARCHETYPE_DESK
+        + "A German vocational training finance desk showing a 'Mindestausbildungsverguetung 2027 (§ 17 BBiG)' progression table across 1st to 4th training years, "
+        "a blocked account (Sperrkonto) delta sheet, and a pen."
     ),
     "dmf-sprachfoerderung-qualifizierungschancengesetz-schulung.jpg": (
-        "In a modern German company seminar room, a small group of international employees participates in an in-house job-related "
-        "German language coaching session with a professional trainer and interactive screen"
+        ARCHETYPE_OBSERVER
+        + "Seen from the back of a German company meeting room after shift: four international workers in work trousers sit around a U-shaped table "
+        "with German B2 technical workbooks while an instructor writes trade vocabulary on a flipchart."
     ),
     "dmf-rentenbeitraege-drv-erstattung-antrag.jpg": (
-        "In a German financial advisory office, a consultant explains German statutory pension insurance statements "
-        "and contribution records to an international professional over a cup of coffee"
+        ARCHETYPE_DESK
+        + "A German wooden desk showing an official Deutsche Rentenversicherung 'Versicherungsverlauf / Renteninformation' letter, "
+        "a contribution refund form (§ 210 SGB VI), reading glasses, and a calculator."
     ),
     "dmf-einwohnermeldeamt-anmeldung-wohnung.jpg": (
-        "At a bright, friendly German municipal citizens office (Bürgeramt / Einwohnermeldeamt), a clerk hands an official "
-        "residential registration confirmation (Meldebestätigung) to a smiling young Vietnamese newcomer accompanied by a relocation mentor"
+        ARCHETYPE_HANDS
+        + "Close-up at a German municipal Bürgeramt counter where a clerk stamps an official 'Amtliche Meldebestätigung' registration form "
+        "beside a Wohnungsgeberbestätigung document and a passport."
     ),
     "dmf-bankkonto-girokonto-beratung.jpg": (
-        "Inside a modern German retail bank branch lounge, a bank advisor hands a new debit card and Girokonto welcome letter "
-        "to a young Vietnamese professional in smart casual attire"
+        ARCHETYPE_HANDS
+        + "Close-up on a desk showing a newly arrived employee's hand inserting a German Girocard debit card into a portable TAN generator device "
+        "beside an IBAN account confirmation letter and a laptop."
     ),
     "dmf-gehaltsabrechnung-lohnpruefung-tabelle.jpg": (
-        "In a German payroll accounting department, a payroll specialist compares regional collective wage tables (Tarifgehalt / Vergleichsentgelt) "
-        "on a wide monitor beside printed paystubs"
+        ARCHETYPE_DESK
+        + "A German payroll accounting desk showing a printed monthly German payslip (Lohn- und Gehaltsabrechnung) detailing Bruttolohn, Lohnsteuer, and Sozialversicherung, "
+        "beside a regional Tarifvertrag table."
     ),
     "dmf-vorsorge-beratung-arbeitsplatz.jpg": (
-        "In a modern German corporate lounge, an HR benefits specialist presents a company pension plan (betriebliche Altersvorsorge bAV) "
-        "brochure to a Vietnamese engineer"
+        ARCHETYPE_DESK
+        + "An HR benefits desk in Germany showing a 'Betriebliche Altersvorsorge (bAV) — Entgeltumwandlung' pension projection folder, "
+        "a compound-interest chart, and a cup of coffee."
     ),
     "dmf-familiennachzug-wohnung-beratung.jpg": (
-        "In front of a bright, modern German apartment building with a green courtyard, a Vietnamese professional couple holds apartment keys "
-        "and a floor plan alongside a friendly German property manager"
+        ARCHETYPE_WIDE
+        + "Exterior view of a typical German three-story residential apartment building (Mehrfamilienhaus) with balconies, bicycle shed, and green courtyard "
+        "on a cloudy afternoon, with a young Vietnamese couple carrying moving boxes toward the entrance door."
     ),
     "dmf-finanzbuchhaltung-steuer-belege.jpg": (
-        "In a German corporate tax and accounting office (Steuerberatung), a financial controller reviews recruitment invoice receipts "
-        "and corporate tax deduction ledgers on a dual-monitor workstation"
+        ARCHETYPE_DESK
+        + "A German Steuerberater accounting desk with two monitors running DATEV accounting ledger software, "
+        "stacks of stamped recruitment invoices (Betriebsausgaben), and grey binder folders."
     ),
     "dmf-krankenkasse-sozialversicherung-service.jpg": (
-        "At a modern German statutory health insurance (Krankenkasse GKV) customer center, an advisor hands an electronic health insurance card "
-        "(eGK) to a newly arrived Vietnamese employee"
+        ARCHETYPE_DESK
+        + "A German HR onboarding desk showing an electronic health insurance card (elektronische Gesundheitskarte eGK), "
+        "a social security registration printout (Meldebescheinigung zur Sozialversicherung), and a membership application."
     ),
     "dmf-doppelbesteuerung-finanzamt-beratung.jpg": (
-        "In an international tax consultancy in Germany, a senior tax advisor (Steuerberater) explains cross-border double-taxation treaty rules "
-        "to a corporate client with a globe and tax code volumes in the background"
+        ARCHETYPE_DESK
+        + "A German international tax advisor's desk showing a 'Doppelbesteuerungsabkommen (DBA) Deutschland–Vietnam' legal commentary volume, "
+        "Lohnsteuerklasse forms, and a fountain pen."
     ),
     "dmf-interkulturell-austausch-gruppe.jpg": (
-        "At a German company onboarding desk, an HR specialist hands a tax-free employee benefit card, a public transit Deutschlandticket pass, "
-        "and apartment keys to a smiling Vietnamese apprentice"
+        ARCHETYPE_DESK
+        + "A German apprentice welcome kit laid out on a wooden desk: a smartphone displaying a Deutschlandticket QR code, "
+        "a 50-Euro tax-free Sachbezug benefit card, a bunch of apartment keys with a numbered tag, and a city transit map."
     ),
     "dmf-dozenten-fachunterricht.jpg": (
-        "In a German craft workshop, a young Vietnamese trainee in a pre-vocational introductory qualification (Einstiegsqualifizierung EQ) "
-        "practices hands-on assembly alongside a supportive German instructor"
+        ARCHETYPE_SOLO
+        + "In a German craft training workshop, a single young Vietnamese trainee in an Einstiegsqualifizierung (EQ) program "
+        "stands at a blue steel workbench filing a metal workpiece clamped in a bench vise."
     ),
     "dmf-fachbibliothek-unterricht.jpg": (
-        "In a bright German workplace learning lounge, two Vietnamese employees practice occupation-specific German (DeuFöV Berufssprachkurs) "
-        "with headphones and digital language workbooks"
+        ARCHETYPE_SOLO
+        + "In a quiet German workplace breakroom after shift, a single Vietnamese employee in a work fleece sits at a table with over-ear headphones "
+        "and an open 'Berufssprachkurs B2 (DeuFöV)' workbook taking vocabulary notes."
     ),
     "dmf-azubi-leben-in-deutschland.jpg": (
-        "In a sunny German residential neighborhood park, a Vietnamese skilled worker walks happily with his spouse and young child "
-        "near modern German townhomes, symbolizing successful family reunification"
+        ARCHETYPE_WIDE
+        + "On a tree-lined pedestrian path in a German town residential neighborhood under soft overcast light, "
+        "a Vietnamese skilled worker in a casual jacket walks with his wife and young child past brick row houses and parked bicycles."
     ),
     "dmf-azubi-motivation-lernen.jpg": (
-        "In a quiet German company study room after vocational school (Berufsschule), a German tutor coaches two Vietnamese apprentices "
-        "in technical mathematics and trade theory (AsA flex Stützunterricht)"
+        ARCHETYPE_HANDS
+        + "Close-up on a wooden study table in a German vocational training center showing open technical mathematics and electrical engineering textbooks (Fachkunde Elektrotechnik), "
+        "a Casio scientific calculator, a triangle ruler, and a hand writing equations on squared paper."
     ),
     "dmf-wohnraum-azubi-unterkunft.jpg": (
-        "Inside a bright, newly furnished modern studio apartment for apprentices in Germany, with a neat desk, kitchenette, and large window, "
-        "a young Vietnamese apprentice unpacks a suitcase with a smile"
+        ARCHETYPE_WIDE
+        + "Interior documentary view of a clean, modest furnished single room for apprentices (Azubi-Apartment) in Germany under overcast window daylight: "
+        "a simple single bed with white duvet, a compact desk with a German textbook, a small kitchenette, and an open suitcase on the floor."
     ),
 
-    # --- B2B STRATEGY, ROI, DEMOGRAPHICS & LEADERSHIP (19) ---
+    # --- B2B STRATEGY, ROI, DEMOGRAPHICS & LEADERSHIP (16) ---
     "dmf-babyboomer-rentenwelle-wissenstransfer-handwerk.jpg": (
-        "In a traditional German precision workshop, a retiring 63-year-old German senior master craftsman with gray beard "
-        "passes on specialized mechanical know-how to his young 22-year-old Vietnamese successor in matching workwear"
+        ARCHETYPE_OBSERVER
+        + "Unposed observer-view photograph from across a lived-in German precision machine shop: a 63-year-old German senior master in a faded grey shop coat "
+        "and a 22-year-old Vietnamese technician stand in profile beside an older manual lathe inspecting a technical blueprint."
     ),
     "dmf-tandem-kohorten-recruiting-team-einstellung.jpg": (
-        "Walking together into a modern German industrial plant entrance in the morning sun, a cohort of three confident young Vietnamese "
-        "apprentices in matching company workwear smile alongside their German training manager"
+        ARCHETYPE_WIDE
+        + "Early morning shift arrival at the turnstile gate of a German industrial factory under an overcast sky: "
+        "three young Vietnamese apprentices in matching grey work jackets and safety boots walk together with backpacks into the plant yard."
     ),
     "dmf-laendervergleich-vietnam-indien-philippinen-rekrutierung.jpg": (
-        "In a German executive boardroom, a strategy director and HR head analyze an international talent sourcing map "
-        "and demographic comparison metrics on a large wall-mounted presentation screen"
+        ARCHETYPE_DESK
+        + "A German corporate strategy desk showing a printed country-comparison matrix (Vietnam vs. Indien vs. Philippinen) with demographic charts, "
+        "IHK recognition statistics, a pair of glasses, and a black notebook."
     ),
     "dmf-ausbildungsstart-2027-rueckwaerts-zeitplan-planung.jpg": (
-        "In a modern German HR planning room, two recruitment managers map out a 9-month backward project timeline "
-        "for the autumn training intake on a large glass kanban board"
+        ARCHETYPE_DESK
+        + "Close-up of a magnetic whiteboard and planning desk in a German HR office showing a 9-month backward Gantt timeline from November to August 1st (Ausbildungsstart), "
+        "with pinned milestone cards for Visa § 81a, IHK registration, and arrival."
     ),
     "dmf-leitfaden-geschaeftsfuehrer-executive-strategie.jpg": (
-        "Portrait-style editorial shot in a modern German Mittelstand headquarters overlooking the production hall, "
-        "where a confident German Geschäftsführer and an international recruitment advisor discuss long-term workforce strategy"
+        ARCHETYPE_WIDE
+        + "Viewed from the upper mezzanine walkway of a German Mittelstand production hall under neutral industrial lighting, "
+        "a managing director in a dark pullover and dress shirt stands at the railing looking down over CNC machines and assembly bays."
     ),
     "dmf-eigenrekrutierung-vs-agentur-analyse-vergleich.jpg": (
-        "In a German executive office, an operations director and CFO compare total cost of ownership and time-to-hire charts "
-        "on a laptop and printed executive briefing"
+        ARCHETYPE_DESK
+        + "A German CFO's desk showing a printed 'Make-or-Buy: Eigenrekrutierung vs. Vollservice-Agentur' Total Cost of Ownership spreadsheet, "
+        "a calculator, and cost-of-vacancy charts."
     ),
     "dmf-ausbildungsabbruch-risikoabsicherung-garantie.jpg": (
-        "In a German company cafeteria during a break, a dedicated retention mentor chats warmly with a Vietnamese apprentice "
-        "and a German supervisor over coffee, illustrating proactive retention support"
+        ARCHETYPE_OBSERVER
+        + "Candid view inside a modest German factory canteen (Kantine) during mid-morning break: a Vietnamese apprentice and a workplace mentor "
+        "sit at a laminate table with coffee mugs and bread rolls (Brötchen) in quiet conversation."
     ),
     "dmf-agentur-qualitaetskriterien-pruefung-audit.jpg": (
-        "At a German corporate conference table, a procurement team reviews a 10-point recruitment agency quality audit checklist "
-        "and verified language certificates"
+        ARCHETYPE_DESK
+        + "A German procurement desk displaying a 10-point recruitment agency due-diligence checklist, verified telc/Goethe B2 sample certificates, "
+        "and a red pen marking compliance items."
     ),
     "dmf-kosten-preise-honorarmodell-kalkulation.jpg": (
-        "An editorial close-up of a German CFO and HR manager reviewing a transparent milestone-based recruitment fee schedule "
-        "and ROI spreadsheet on an ultrawide monitor"
+        ARCHETYPE_DESK
+        + "Close-up on a German controlling desk showing a milestone-based recruitment fee schedule (Meilenstein-Honorarmodell), "
+        "a 36-month ROI amortization curve on a monitor, and an Excel printout."
     ),
     "dmf-achim-fuehrung-seminar.jpg": (
-        "On the shop floor of a German medium-sized company, a German department head clearly explains daily workflow responsibilities "
-        "on a visual shopfloor board to two attentive Vietnamese team members"
+        ARCHETYPE_OBSERVER
+        + "In a German production hall beside a magnetic shopfloor SQCDP board (Schichtübergabe-Tafel), a workshop leader seen from a three-quarter back angle "
+        "reviews daily production targets with three workers in grey workwear before the morning shift."
     ),
     "dmf-teamarbeit-fallstudien.jpg": (
-        "Around a modern meeting table in a German company, a culturally diverse team of German and Vietnamese colleagues "
-        "collaborates in a constructive weekly feedback und project standup"
+        ARCHETYPE_OBSERVER
+        + "Candid observer view through an open office door of a German engineering team standup meeting around a whiteboard covered in technical schematics, "
+        "with German and Vietnamese colleagues in casual shirts discussing a prototype."
     ),
     "dmf-karriere-urkunde-erfolg.jpg": (
-        "In a German factory office, a controlling manager and workshop leader review a 36-month apprentice productivity and ROI curve "
-        "on a tablet while production runs smoothly through the window"
+        ARCHETYPE_DESK
+        + "A German factory controlling desk overlooking the shop floor through a window, showing a 3-year apprentice net-productivity vs. training-cost chart, "
+        "a calculator, and IHK exam schedules."
     ),
     "dmf-partner-deutschland-meeting.jpg": (
-        "Inside a German production hall, a manager stands beside an idle CNC workstation with a 'Stelle vakant' clipboard, "
-        "discussing the financial cost of vacancy with an HR strategist"
+        ARCHETYPE_WIDE
+        + "Inside a quiet section of a German machine shop, an unstaffed CNC machining center sits idle with its status light on amber "
+        "and a 'Schicht unbesetzt / Stelle vakant' maintenance clipboard hanging on the enclosure door, illustrating the cost of unfilled vacancies."
     ),
     "dmf-leben-in-deutschland-freizeit.jpg": (
-        "At a warm German company welcome barbecue on a sunny terrace, German colleagues and young Vietnamese apprentices "
-        "laugh and share food together, showing strong social integration outside work"
+        ARCHETYPE_WIDE
+        + "At a casual afternoon gathering on the gravel courtyard outside a German craft workshop with wooden beer-garden benches (Bierzeltgarnitur), "
+        "colleagues in everyday clothes and work trousers chat over mineral water and grilled sausages under an overcast sky."
     ),
     "dmf-angebote-pruefung.jpg": (
-        "On a bright German executive desk, a decision-maker compares three recruitment agency proposals side by side "
-        "with a highlighter, checking candidate video profiles on a tablet"
+        ARCHETYPE_DESK
+        + "A German managing director's desk with three competing international recruitment agency proposals laid out side by side, "
+        "marked with yellow post-it notes and a red comparison pen."
     ),
     "dmf-betreuung-unterlagen.jpg": (
-        "On a German HR manager's desk, a structured 'Ersteinstellung Vietnam' onboarding binder with checked-off milestones "
-        "lies beside a headset, laptop, and welcome kit"
+        ARCHETYPE_DESK
+        + "A German HR manager's desk showing an open 'Leitfaden Ersteinstellung aus Vietnam' binder with tabbed checklists for IHK, ZAV, Wohnraum, and Onboarding, "
+        "next to a coffee cup and keyboard."
     ),
 }
 
-def main():
+
+def main() -> None:
     posts = json.loads(Path("/tmp/all_146_posts.json").read_text())
     all_covers = {p["cover_file"] for p in posts}
     covered = AUTHENTIC_DMF_COVERS | set(GPT_IMAGE_PROMPTS.keys())
@@ -578,6 +735,7 @@ def main():
     print(f"GPT Image prompts   : {len(GPT_IMAGE_PROMPTS)}")
     print(f"Missing covers      : {missing}")
     print(f"Extra covers        : {extra}")
+
 
 if __name__ == "__main__":
     main()

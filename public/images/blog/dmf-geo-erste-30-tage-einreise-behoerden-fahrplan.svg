@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <rect width="720" height="540" rx="16" fill="#F8FAFC"/>
+  <rect x="20" y="20" width="680" height="500" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="20" y="20" width="680" height="76" rx="12" fill="#003366"/>
+  <text x="44" y="52" fill="#FFFFFF" font-size="17" font-weight="700">Behörden- & Onboarding-Fahrplan: Die ersten 30 Tage nach Einreise</text>
+  <text x="44" y="76" fill="#CBD5E1" font-size="12">Chronologische Checkliste für Personalabteilungen (HR) und betriebliche Koordinatoren</text>
+
+  <g transform="translate(44, 116)">
+    <rect width="304" height="320" rx="10" fill="#F8FAFC" stroke="#003366" stroke-width="2"/>
+    <rect width="304" height="40" rx="10" fill="#003366"/>
+    <text x="16" y="25" fill="#FFFFFF" font-size="12" font-weight="700">Woche 1 bis 2: Ankunft, Meldewesen & Sozialversicherung</text>
+    <text x="16" y="68" fill="#334155" font-size="11">• Tag 1–2: Flughafenabholung, SIM-Karte, Wohnungsübergabe & Ruhetag</text>
+    <text x="16" y="104" fill="#334155" font-size="11">• Tag 3–7: Wohnsitzanmeldung beim Bürgeramt (§ 17 BMG -> Steuer-ID)</text>
+    <text x="16" y="140" fill="#334155" font-size="11">• Tag 5–10: Mitgliedsbescheinigung der gesetzlichen Krankenkasse (GKV)</text>
+    <text x="16" y="176" fill="#334155" font-size="11">• Tag 7–14: Eröffnung des deutschen Girokontos für den ersten Lohnlauf</text>
+  </g>
+
+  <g transform="translate(372, 116)">
+    <rect width="304" height="320" rx="10" fill="#FFF7ED" stroke="#FF6600" stroke-width="2"/>
+    <rect width="304" height="40" rx="10" fill="#FF6600"/>
+    <text x="16" y="25" fill="#FFFFFF" font-size="12" font-weight="700">Woche 3 bis 4: Betrieblicher Start & Aufenthaltstitel</text>
+    <text x="16" y="68" fill="#334155" font-size="11">• Arbeitsschutzunterweisung (DGUV), Arbeitskleidung & Paten-Tandem</text>
+    <text x="16" y="104" fill="#334155" font-size="11">• Probelauf des Arbeits- und Berufsschulwegs mit öffentlichen Verkehrsmitteln</text>
+    <text x="16" y="140" fill="#334155" font-size="11">• Termin bei der Ausländerbehörde für den elektronischen Aufenthaltstitel (eAT)</text>
+    <text x="16" y="176" fill="#334155" font-size="11">• Tag 30: Strukturierter Stabilitätscheck zwischen Ausbilder, Talent & DMF</text>
+  </g>
+
+  <rect x="44" y="456" width="632" height="42" rx="8" fill="#003366"/>
+  <text x="360" y="482" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="600">Entlastung für HR: DMF begleitet die administrativen Schritte der ersten 30 Tage direkt vor Ort</text>
+</svg>
