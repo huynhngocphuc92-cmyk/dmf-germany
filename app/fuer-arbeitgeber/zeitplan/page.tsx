@@ -2,11 +2,15 @@
 import Link from "next/link";
 
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { AeoSnippetSection } from "@/components/seo/AeoSnippetSection";
+import FAQSection from "@/components/shared/FAQSection";
 import { TimelineSimulator } from "@/components/tools/TimelineSimulator";
+import { ZEITPLAN_AEO_CONFIG, buildTimelinePageSchemas } from "@/lib/seo/aeo-schemas";
 import { ArrowRight, Calendar, CheckCircle2, Clock } from "lucide-react";
 
 export default function ZeitplanPage() {
   const { t } = useLanguage();
+  const timelineSchemas = buildTimelinePageSchemas();
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
@@ -29,6 +33,13 @@ export default function ZeitplanPage() {
           </div>
         </div>
       </section>
+
+      {/* AEO Direct Answer, HowTo JSON-LD & Statutory § 81a Deadline Table */}
+      <AeoSnippetSection
+        config={ZEITPLAN_AEO_CONFIG}
+        schemas={timelineSchemas}
+        accentColor="primary"
+      />
 
       {/* Timeline Simulator Section */}
       <section className="py-12 md:py-16">
@@ -124,6 +135,13 @@ export default function ZeitplanPage() {
           </div>
         </div>
       </section>
+
+      {/* AEO FAQ Section with FAQPage JSON-LD */}
+      <FAQSection
+        items={ZEITPLAN_AEO_CONFIG.faqs}
+        theme="blue"
+        pagePath="/fuer-arbeitgeber/zeitplan"
+      />
     </div>
   );
 }

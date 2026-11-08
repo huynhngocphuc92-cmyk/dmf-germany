@@ -10,6 +10,8 @@ excerpt: "Was bringt die Chancenkarte deutschen Unternehmen? Erfahren Sie, wie B
 
 # Chancenkarte und Fachkräfteeinwanderungsgesetz: Was ändert sich für Arbeitgeber?
 
+**Das Wichtigste in Kürze:** Die Chancenkarte im Fachkräfteeinwanderungsgesetz: Punktesystem, Probebeschäftigung für Unternehmen und Umwandlung in den Fachkrafttitel (§ 18a/b) – Erfahren Sie, wie Betriebe Kandidaten vor Ort erproben und unkompliziert in eine Festanstellung übernehmen.
+
 Mit der vollständigen Umsetzung des reformierten **Fachkräfteeinwanderungsgesetzes (FEG)** hat die Bundesregierung das deutsche Zuwanderungsrecht grundlegend modernisiert. Zu den prominentesten Neuerungen gehört die **Chancenkarte zur Arbeitsplatzsuche (§ 20a und § 20b AufenthG)**. Sie basiert auf einem transparenten Punktesystem und ermöglicht es ausländischen Talenten, auch ohne vorliegenden Arbeitsvertrag zur Arbeitsplatzsuche nach Deutschland einzureisen.
 
 Für deutsche Unternehmen – insbesondere mittelständische Betriebe und Handwerksbetriebe – eröffnet die Chancenkarte völlig neue Rekrutierungsmöglichkeiten: Statt Kandidaten rein digital auf Distanz bewerten zu müssen, können Betriebe Bewerber im Rahmen einer **zweiwöchigen Probebeschäftigung** direkt am Arbeitsplatz im Werk, auf der Baustelle oder in der Pflegeeinrichtung kennenlernen.
@@ -72,3 +74,17 @@ Die Chancenkarte ist eine wertvolle Ergänzung des bewährten beschleunigten Fac
 DMF Talents begleitet beide Wege: Wir qualifizieren motivierte Kandidaten in Vietnam vor, stellen sicher, dass alle Punktkriterien erfüllt sind, und unterstützen Sie bei der rechtssicheren Vertragsgestaltung und der Inlandsanmeldung.
 
 Möchten Sie mehr über die neuen Möglichkeiten des Fachkräfteeinwanderungsgesetzes erfahren? Informieren Sie sich über unser Angebot unter [Fachkräftevermittlung mit DMF](/services/skilled-workers) oder erfassen Sie Ihre offenen Stellen unter [Personalbedarf melden](/fuer-arbeitgeber/personalbedarf).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Chancenkarte nach § 20a AufenthG?
+
+Um eine Chancenkarte zu erhalten, müssen Bewerber aus Drittstaaten wie Vietnam zunächst unverzichtbare Grundvoraussetzungen erfüllen:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Bislang war ein persönliches Probearbeiten für Kandidaten aus Drittstaaten visumrechtlich kaum realisierbar. Die Chancenkarte schließt diese Lücke:
+
+### Wie unterstützt DMF Talents Unternehmen bei Chancenkarte nach § 20a AufenthG?
+
+Hat sich der Kandidat in der Probebeschäftigung bewährt und bietet das Unternehmen einen regulären Arbeitsvertrag an, greift ein wesentlicher Verfahrensvorteil:

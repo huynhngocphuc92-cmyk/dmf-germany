@@ -15,6 +15,8 @@ keywords:
 excerpt: "Warum die Besetzung der Ausbildungsplätze für August und September 2027 bereits im Winter 2026/2027 entschieden wird: Alle Fristen von der Auswahl bis zur Einreise."
 ---
 
+**Das Wichtigste in Kürze:** Pünktlicher Ausbildungsbeginn im August oder September 2027: Der verbindliche Rückwärts-Zeitplan für Auswahl, B2-Prüfung, IHK-Eintragung und § 81a-Visum – Warum die Besetzung der Ausbildungsplätze für August und September 2027 bereits im Winter 2026/2027 entschieden wird: Alle Fristen von der Auswahl bis zur Einreise.
+
 Viele Personalverantwortliche und Handwerksmeister orientieren sich bei der Azubi-Suche noch am klassischen inländischen Bewerbungsrhythmus: Wenn sich bis April oder Mai kein geeigneter Schulabgänger aus der Region gefunden hat, wird kurzfristig nach Alternativen gesucht. Bei der Rekrutierung internationaler Auszubildender aus Vietnam führt ein Start im Frühjahr jedoch fast unweigerlich zu einer verspäteten Einreise im Oktober oder November – mit der Folge, dass wichtige Unterrichtswochen an der Berufsschule fehlen.
 
 Wer seine Ausbildungsplätze zum **1. August oder 1. September 2027** pünktlich und mit sprachlich sattelfesten Kandidaten besetzen möchte, muss rückwärts vom ersten Arbeitstag planen. Das entscheidende Zeitfenster für die Bewerberauswahl und Vertragsunterzeichnung liegt zwischen **November 2026 und Februar 2027**.
@@ -56,3 +58,17 @@ Betriebe, die ihre Auswahlgespräche bereits zwischen November 2026 und Januar 2
 Sollten Sie bereits zum **1. März oder 1. April 2027** (etwa in der generalistischen Pflegeausbildung oder über eine Einstiegsqualifizierung nach § 54a SGB III) starten wollen, greifen wir auf unseren Pool sofort verfügbarer Kandidaten zurück, die ihr B1- oder B2-Zertifikat bereits in den Händen halten. Für den regulären Herbst-Jahrgang 2027 ist jetzt der ideale Zeitpunkt, um Ihre offenen Ausbildungsplätze unverbindlich zu reservieren.
 
 Sehen Sie sich unseren detaillierten [Ablauf- und Zeitplan für Arbeitgeber](/fuer-arbeitgeber/zeitplan) an, informieren Sie sich über das [Duale Ausbildungsprogramm mit DMF Talents](/services/azubi) oder teilen Sie uns Ihren Bedarf für 2027 über das [Anfrageformular für Arbeitgeber](/fuer-arbeitgeber/personalbedarf) mit.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Ausbildungsstart 2027 planen?
+
+Im Gegensatz zu einer inländischen Einstellung setzt sich ein internationales Ausbildungsverfahren aus fünf aufeinander aufbauenden Prozessschritten zusammen, die sich zeitlich nur begrenzt komprimieren lassen:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Die folgende Tabelle zeigt den bewährten Projektablauf für Betriebe, die im August oder September 2027 starten:
+
+### Wie unterstützt DMF Talents Unternehmen bei Ausbildungsstart 2027 planen?
+
+Betriebe, die ihre Auswahlgespräche bereits zwischen November 2026 und Januar 2027 führen, sichern sich im Bewerbermarkt drei handfeste Vorteile:

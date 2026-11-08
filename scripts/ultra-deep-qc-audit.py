@@ -58,6 +58,12 @@ VALID_APP_ROUTES = {
     "/fuer-arbeitgeber/kandidaten",
     "/fuer-arbeitgeber/personalbedarf",
     "/fuer-arbeitgeber/roi-rechner",
+    "/fuer-arbeitgeber/branchen",
+    "/fuer-arbeitgeber/branchen/pflege-gesundheit",
+    "/fuer-arbeitgeber/branchen/handwerk-bau",
+    "/fuer-arbeitgeber/branchen/industrie-metall-technik",
+    "/fuer-arbeitgeber/branchen/gastronomie-hotellerie",
+    "/fuer-arbeitgeber/branchen/logistik-lager",
 }
 
 # Regex patterns

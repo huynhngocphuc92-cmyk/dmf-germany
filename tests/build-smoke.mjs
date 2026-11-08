@@ -748,6 +748,42 @@ try {
     process.stdout.write(
       "PASS M2/M3: 17 canonical/OG/title pages, no sample profiles/videos, robots/login, sitemap, 308 alias and unpublished 404s\n"
     );
+
+    // GEO & Agent-Readiness HTTP verification (Markdown negotiation, Agent 404, Trust Anchors, JSON-LD)
+    const homeMdRes = await fetch(`${base}/`, { headers: { Accept: "text/markdown" } });
+    assert.equal(homeMdRes.status, 200);
+    assert.ok(homeMdRes.headers.get("content-type")?.includes("text/markdown"));
+    assert.ok(homeMdRes.headers.get("vary")?.toLowerCase().includes("accept"));
+    const homeMdBody = await homeMdRes.text();
+    assert.ok(homeMdBody.includes("# DMF Talents"));
+    assert.ok(homeMdBody.includes("## When to use DMF Talents"));
+
+    const probe404Res = await fetch(`${base}/__ora-404-probe-smoke`, {
+      headers: { Accept: "text/markdown" },
+    });
+    assert.equal(probe404Res.status, 404);
+    assert.ok(probe404Res.headers.get("content-type")?.includes("text/markdown"));
+    assert.ok(probe404Res.headers.get("vary")?.toLowerCase().includes("accept"));
+    const probe404Body = await probe404Res.text();
+    assert.ok(probe404Body.includes("https://www.dmf-talents.de/llms.txt"));
+
+    for (const trustPath of ["/privacy", "/about", "/contact"]) {
+      const trustRes = await fetch(`${base}${trustPath}`);
+      assert.equal(trustRes.status, 200, `${trustPath}: trust anchor must resolve 200`);
+      const trustHtml = await trustRes.text();
+      assert.ok(trustHtml.length > 500, `${trustPath}: trust anchor must have >500 chars`);
+    }
+
+    const homeHtmlRes = await fetch(`${base}/`, { headers: { Accept: "text/html" } });
+    assert.equal(homeHtmlRes.status, 200);
+    assert.ok(homeHtmlRes.headers.get("vary")?.toLowerCase().includes("accept"));
+    const homeHtml = await homeHtmlRes.text();
+    assert.ok(homeHtml.includes("PostalAddress"), "Organization PostalAddress JSON-LD");
+    assert.ok(homeHtml.includes("ContactPoint"), "Organization ContactPoint JSON-LD");
+    assert.ok(homeHtml.includes('"@type":"FAQPage"'), "Homepage FAQPage JSON-LD");
+    process.stdout.write(
+      "PASS GEO & Agent-Readiness: Markdown negotiation, Vary: Accept, Agent-friendly 404, /privacy+/about+/contact trust anchors, and Organization/FAQPage JSON-LD\n"
+    );
   }
   for (const path of ["/api/chat/history", "/api/leads"]) {
     const response = await fetch(`${base}${path}`);

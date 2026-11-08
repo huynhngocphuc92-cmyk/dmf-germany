@@ -170,6 +170,14 @@ export default function Footer() {
                 <Link href="/datenschutz" className="hover:text-white transition">
                   {t.footer.datenschutz}
                 </Link>
+                {" · "}
+                <Link href="/privacy" className="hover:text-white transition">
+                  Privacy
+                </Link>
+                {" · "}
+                <Link href="/llms.txt" className="hover:text-white transition">
+                  llms.txt
+                </Link>
               </div>
               <div>
                 <Link

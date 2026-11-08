@@ -15,6 +15,8 @@ keywords:
 excerpt: "Schnittbilddiagnostik, Dosisoptimierung nach ALARA und Patientenbetreuung: Wie Radiologie-Praxen und Spitäler MTR aus Vietnam rechtskonform rekrutieren."
 ---
 
+**Das Wichtigste in Kürze:** Medizinische Technologen für Radiologie (MTRA): CT, MRT, Strahlentherapie, Fachkunde nach StrlSchG/StrlSchV und berufliche Anerkennung aus Drittstaaten – Schnittbilddiagnostik, Dosisoptimierung nach ALARA und Patientenbetreuung: Wie Radiologie-Praxen und Spitäler MTR aus Vietnam rechtskonform rekrutieren.
+
 Moderne Spitzenmedizin ist ohne hochauflösende bildgebende Diagnostik und strahlentherapeutische Präzision undenkbar. Computertomographie (CT), Magnetresonanztomographie (MRT), interventionelle Angiographie und Linearbeschleuniger fordern täglich höchste Fachkompetenz. Doch der Personalnotstand bei den ehemals als MTRA bekannten **Medizinischen Technologen für Radiologie (MTR)** bedroht die Versorgung: Bundesweit müssen radiologische Praxen und Spitäler Untersuchungskontingente kürzen, weil qualifiziertes Fachpersonal für den Schicht- und Notfalldienst fehlt.
 
 Vietnam bildet an medizinischen Universitäten spezialisierte Bachelor-Absolventen der diagnostischen Radiologie (Kỹ thuật Hình ảnh Y học) aus. Die Bewerber verfügen über fundierte Kenntnisse in digitaler Bildgebung, Schnittbildanatomie und Strahlenschutz.
@@ -73,3 +75,17 @@ Ein vierstufiges Onboarding sichert höchste Untersuchungsqualität:
 DMF Talents begleitet Spitäler und radiologische Verbünde bei der Beglaubigung von Dokumenten, Sprachprüfungen und allen Behördenwegen bis zur Approbationserteilung.
 
 Informieren Sie sich über unsere Angebote unter [Für Arbeitgeber: Medizin & Pflege](/services/skilled-workers) oder erfassen Sie Ihren [Personalbedarf direkt](/fuer-arbeitgeber/personalbedarf).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema MTR aus Vietnam für Radiologie?
+
+Die Ausübung des MTR-Berufs ist in Deutschland an strenge gesetzliche Auflagen geknüpft:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Internationale Radiologie-Fachkräfte aus Vietnam bringen umfangreiche Vorkenntnisse an modernen Großgeräten führender Hersteller (Siemens Healthineers, Philips, GE Healthcare, Canon) mit:
+
+### Wie unterstützt DMF Talents Unternehmen bei MTR aus Vietnam für Radiologie?
+
+Für vietnamesische Absolventen verläuft das Verfahren vor den Landesgesundheitsämtern strukturiert:

@@ -15,6 +15,8 @@ keywords:
 excerpt: "Die ersten vier bis sechs Monate entscheiden über den langfristigen Verbleib im Betrieb: Ein konkreter 180-Tage-Leitfaden für Ausbilder, Handwerksmeister, Küchenchefs und Praxisanleiter."
 ---
 
+**Das Wichtigste in Kürze:** Praxisleitfaden für die ersten 180 Tage (§ 20 BBiG / § 622 BGB): Wie Ausbilder, Meister und Stationsleitungen internationale Talente erfolgreich durch die Probezeit führen – Die ersten vier bis sechs Monate entscheiden über den langfristigen Verbleib im Betrieb: Ein konkreter 180-Tage-Leitfaden für Ausbilder, Handwerksmeister, Küchenchefs und Praxisanleiter.
+
 Mit der Landung am deutschen Flughafen und dem ersten Arbeitstag im Betrieb ist das internationale Recruiting-Projekt noch nicht abgeschlossen – vielmehr beginnt jetzt die entscheidende Phase der betrieblichen Integration. Sowohl in der dualen Berufsausbildung (**vier Monate Höchstprobezeit nach § 20 BBiG**) als auch bei regulären Arbeitsverträgen (**sechs Monate Probezeit nach § 622 Abs. 3 BGB**) stellen die ersten 180 Tage die Weichen dafür, ob aus einem neuen Talent aus Vietnam ein über Jahre hinweg produktiver und loyaler Leistungsträger wird.
 
 Ausbilder, Handwerksmeister, Schichtführer und Praxisanleiter stehen in dieser Zeit vor praktischen Alltagsfragen: _Warum sagt der neue Mitarbeiter immer höflich „Ja“, obwohl er die Anweisung noch nicht ganz verstanden hat? Wie erkenne ich Heimweh frühzeitig? Und welche Meilensteine sollten nach 30, 60, 90 und 180 Tagen erreicht sein?_
@@ -56,3 +58,17 @@ Fehler gehören in jeder Einarbeitungs- und Ausbildungsphase dazu. Entscheidend 
 Bei DMF Talents endet die Betreuung nicht mit der Vertragsunterschrift oder der Ankunft am Flughafen. Sollte es in den ersten Monaten zu sprachlichen Missverständnissen, Fragen zur Berufsschule oder organisatorischen Themen rund um den elektronischen Aufenthaltstitel (eAT) kommen, stehen unsere zweisprachigen Integrationsbetreuer sowohl Ihrem Ausbilderteam als auch den Talenten direkt beratend zur Seite.
 
 Informieren Sie sich über unsere ganzjährige Nachbetreuung im Rahmen des [Azubi-Programms](/services/azubi) und der [Fachkräfte-Vermittlung](/services/skilled-workers), prüfen Sie unseren [Projekt-Zeitplan](/fuer-arbeitgeber/zeitplan) oder nehmen Sie [direkt Kontakt für eine Erstberatung auf](/fuer-arbeitgeber/personalbedarf).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Probezeit-Management internationale Azubis & Fachkräfte?
+
+Das häufigste Missverständnis in den ersten vier Wochen auf der Baustelle, in der Werkstatt oder auf der Pflegestation entsteht durch unterschiedliche Kommunikationsnormen zwischen Deutschland und Südostasien:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Damit die Probezeit nicht dem Zufall überlassen bleibt, hat sich in unseren Partnerbetrieben folgender Phasenplan bewährt:
+
+### Wie unterstützt DMF Talents Unternehmen bei Probezeit-Management internationale Azubis & Fachkräfte?
+
+Fehler gehören in jeder Einarbeitungs- und Ausbildungsphase dazu. Entscheidend ist, wie Korrekturen kommuniziert werden:

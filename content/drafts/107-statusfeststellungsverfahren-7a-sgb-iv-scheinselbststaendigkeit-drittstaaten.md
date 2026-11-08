@@ -15,6 +15,8 @@ keywords:
 excerpt: "Weisungsgebundenheit, Eingliederung und Haftungsrisiken: Wie Unternehmen internationale Spezialisten rechtssicher beauftragen oder fest anstellen."
 ---
 
+**Das Wichtigste in Kürze:** Internationale IT-Freelancer und Berater: Abgrenzung Scheinselbstständigkeit vs. Anstellung, Clearingstelle der DRV Bund und Haftung nach § 266a StGB – Weisungsgebundenheit, Eingliederung und Haftungsrisiken: Wie Unternehmen internationale Spezialisten rechtssicher beauftragen oder fest anstellen.
+
 Um dem gravierenden Mangel an hochqualifizierten IT-Entwicklern, Cloud-Architekten oder Ingenieuren zu begegnen, greifen deutsche Technologieunternehmen und Projektgesellschaften gerne auf freiberufliche Experten zurück. Immer häufiger werden Spezialisten aus Drittstaaten (z. B. Vietnam) auf Basis von Dienst- oder Werkverträgen als Freelancer beauftragt – sei es remote aus dem Ausland oder nach Einreise mit einem Visum zur freiberuflichen Tätigkeit (§ 21 AufenthG).
 
 Dabei lauert eine der gefährlichsten Haftungsfallen des deutschen Wirtschaftsrechts: die **Scheinselbstständigkeit**. Stellt die Deutsche Rentenversicherung (DRV) bei einer Betriebsprüfung fest, dass der vermeintliche Freiberufler wie ein Arbeitnehmer in den Betrieb eingegliedert war, drohen existenzbedrohende Beitragsnachzahlungen und strafrechtliche Ermittlungen.
@@ -78,3 +80,17 @@ Vor Beauftragung ausländischer Experten sollten HR-Verantwortliche folgende Pun
 DMF Talents begleitet Unternehmen bei der rechtskonformen Rekrutierung und Festeinstellung internationaler IT- und Technologiespezialisten.
 
 Informieren Sie sich über unsere Angebote unter [Für Arbeitgeber: IT & Engineering](/services/skilled-workers) oder erfassen Sie Ihren [Personalbedarf direkt](/fuer-arbeitgeber/personalbedarf).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Statusfeststellung nach § 7a SGB IV?
+
+Entscheidend für die sozialversicherungsrechtliche Einstufung ist nicht die Bezeichnung im Vertrag („Consulting Agreement“, „Freelance Contract“), sondern die tatsächliche Durchführung der Zusammenarbeit:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Wird eine Scheinselbstständigkeit rückwirkend durch die DRV Bund oder die Finanzkontrolle Schwarzarbeit (FKS) des Zolls aufgedeckt, trifft die Haftung primär den Auftraggeber:
+
+### Wie unterstützt DMF Talents Unternehmen bei Statusfeststellung nach § 7a SGB IV?
+
+Um jedes Haftungsrisiko von vornherein auszuschließen, können Auftraggeber und Auftragnehmer gemeinsam ein Statusfeststellungsverfahren bei der Clearingstelle der DRV Bund beantragen:

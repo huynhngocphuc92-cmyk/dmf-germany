@@ -15,6 +15,8 @@ keywords:
 excerpt: "Line Maintenance, Triebwerkswartung und Strukturreparaturen: Wie Luftfahrtunternehmen und MRO-Dienstleister Fluggerätmechaniker aus Vietnam einbinden."
 ---
 
+**Das Wichtigste in Kürze:** Luftfahrt Instandhaltung (MRO): Fluggerätmechaniker aus Drittstaaten nach EASA Part-66, Zuverlässigkeitsüberprüfung (§ 7 LuftSiG) und LBA-Zulassung – Line Maintenance, Triebwerkswartung und Strukturreparaturen: Wie Luftfahrtunternehmen und MRO-Dienstleister Fluggerätmechaniker aus Vietnam einbinden.
+
 Die zivile Luftfahrt verzeichnet nach der pandemiebedingten Krise historische Passagier- und Frachtrekorde. Gleichzeitig stellt die Instandhaltung, Reparatur und Überholung von Flugzeugen (Maintenance, Repair and Overhaul – MRO) Fluggesellschaften und Wartungsbetriebe vor dramatische Personalengpässe. Die europäische Flugsicherheitsbehörde EASA und das [Luftfahrt-Bundesamt (LBA)](https://www.lba.de) verlangen für jede am Luftfahrzeug durchgeführte Arbeit höchste personelle Qualifikationen und lückenlose Zertifizierungen.
 
 Vietnam hat in den vergangenen fünfzehn Jahren massiv in die zivile Luftfahrtinfrastruktur investiert. Wartungsunternehmen wie VAECO (Vietnam Airlines Engineering Company) betreiben nach EASA Part-145 und FAA zertifizierte Großhangars in Hanoi und Ho-Chi-Minh-Stadt. Tausende vietnamesische Techniker arbeiten täglich an modernen Verkehrsflugzeugen der Muster Airbus A320/A350 und Boeing 787 Dreamliner.
@@ -75,3 +77,17 @@ Luftfahrtbetriebe sichern eine zügige Einbindung durch ein dreistufiges Sicherh
 DMF Talents begleitet MRO-Unternehmen von der Zeugnisprüfung über ZÜP-Unterlagen bis zur behördlichen Arbeitsmarktzulassung.
 
 Informieren Sie sich über unsere Angebote unter [Für Arbeitgeber: Handwerk & Industrie](/services/skilled-workers) oder erfassen Sie Ihren [Personalbedarf unverbindlich](/fuer-arbeitgeber/personalbedarf).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Fluggerätmechaniker aus Vietnam?
+
+In kaum einer Industrie ist die personelle Freigabeberechtigung so strikt europarechtlich normiert wie in der Luftfahrt nach der Verordnung (EU) Nr. 1321/2014:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Bevor ein ausländischer Mechaniker den Sicherheitsbereich eines deutschen Verkehrsflughafens betreten darf, muss er zwingend die Zuverlässigkeitsüberprüfung (ZÜP nach § 7 des Luftsicherheitsgesetzes – LuftSiG) erfolgreich durchlaufen:
+
+### Wie unterstützt DMF Talents Unternehmen bei Fluggerätmechaniker aus Vietnam?
+
+Vietnamesische Fluggerätmechaniker können sofort in spezialisierten Abteilungen eingesetzt werden:

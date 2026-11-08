@@ -15,6 +15,8 @@ keywords:
 excerpt: "Sechs Stunden Zeitverschiebung und fehlende Erreichbarkeit schrecken viele Mittelständler von einer Auslandsrekrutierung ab. Mit Herrn Umit Elezov verfügt DMF über eine direkte Vertretung in Deutschland für Betriebsbesuche, Behördenabstimmung und Nachbetreuung."
 ---
 
+**Das Wichtigste in Kürze:** Warum deutsche Arbeitgeber bei DMF Talents nicht mit einem Callcenter in Übersee, sondern mit Herrn Umit Elezov direkt vor Ort in Deutschland zusammenarbeiten – Sechs Stunden Zeitverschiebung und fehlende Erreichbarkeit schrecken viele Mittelständler von einer Auslandsrekrutierung ab. Mit Herrn Umit Elezov verfügt DMF über eine direkte Vertretung in Deutschland für Betriebsbesuche, Behördenabstimmung und Nachbetreuung.
+
 Eines der häufigsten Bedenken deutscher Geschäftsführer, Personalleiter und Ausbilder bei der Rekrutierung aus Drittstaaten lautet: _„An wen wende ich mich, wenn nach der Vertragsunterschrift Fragen bei der IHK, der Ausländerbehörde oder in den ersten Wochen nach der Einreise auftauchen – muss ich dann jedes Mal mit einem Büro in Südostasien mit sechs Stunden Zeitverschiebung telefonieren?“_
 
 Bei **DMF Talents** lautet die Antwort eindeutig Nein. Unser Kooperationsmodell basiert auf einer festen **Doppelspitze (Tandem-Struktur)** zwischen Deutschland und Vietnam. Während **Herr Achim Betticher** vor Ort in Vietnam die Ausbildungsakademie und die Kandidatenvorbereitung leitet, steht Ihnen **Herr Umit Elezov** (`+49 174 9015811`) als **direkter Repräsentant in Deutschland** persönlich zur Seite – zu regulären deutschen Geschäftszeiten, auf kurzem telefonischem Dienstweg und auf Wunsch direkt bei Ihnen im Betrieb.
@@ -55,3 +57,17 @@ Sie möchten ohne bürokratische Hürden prüfen, welche Kandidatinnen und Kandi
 
 - Kontaktieren Sie **Herrn Umit Elezov** direkt in Deutschland unter **`+49 174 9015811`** oder per E-Mail an `contact@dmf-talents.de`.
 - Oder senden Sie uns Ihre Eckdaten bequem über unser [Online-Formular für Arbeitgeber](/fuer-arbeitgeber/personalbedarf). Ergänzende Zahlen zur Wirtschaftlichkeit finden Sie jederzeit in unserem [ROI-Rechner](/roi-rechner).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Umit Elezov?
+
+Die Rekrutierung internationaler Auszubildender und Fachkräfte ist kein Kataloggeschäft, sondern Vertrenssache. Nach unserem internen Praxisleitfaden für Unternehmenspartnerschaften übernimmt Herr Umit Elezov in Deutschland vier zentrale Aufgabenbereiche für unsere Partnerbetriebe:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Hinter Herrn Umit Elezov in Deutschland und Herrn Achim Betticher in Vietnam arbeitet ein spezialisiertes operatives Partner- und Verfahrens-Team (unter anderem geleitet von Phượng in der operativen Partnerkoordination, Vy in der Arbeitgeberbetreuung sowie Đỗ Mai Hân / Sún im Dokumenten- und Visummanagement). Jeder Kooperationsschritt ist zeitlich klar getaktet:
+
+### Wie unterstützt DMF Talents Unternehmen bei Umit Elezov?
+
+In unserem Partner-CRM betreuen wir bundesweit über 100 qualifizierte Zielbetriebe und Trägergruppen aus dem Hotel- und Gaststättengewerbe (vom inhabergeführten 4-Sterne-Ferienhotel an der Ostsee und im Alpenraum bis zur städtischen Hotelgruppe) sowie aus dem Gesundheits- und Pflegebereich (Kliniken, diakonische und kommunale Pflegeeinrichtungen, Seniorenresidenzen und Zahnarztpraxen) und der mittelständischen Industrie.

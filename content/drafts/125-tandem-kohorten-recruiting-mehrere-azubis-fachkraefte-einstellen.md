@@ -15,6 +15,8 @@ keywords:
 excerpt: "Ob Handwerksbetrieb, Pflegeheim oder Produktionsunternehmen: Warum die Einstellung eines einzelnen Kandidaten das höchste Risiko birgt – und wie ein 2er- oder 3er-Tandem Wohnkosten, Aufwand und Abbruchquoten halbiert."
 ---
 
+**Das Wichtigste in Kürze:** Einzel-Rekrutierung vs. Tandem-Modell: Warum die gleichzeitige Einstellung von 2 bis 5 Fachkräften oder Azubis aus Vietnam Kosten senkt und die Bindung erhöht – Ob Handwerksbetrieb, Pflegeheim oder Produktionsunternehmen: Warum die Einstellung eines einzelnen Kandidaten das höchste Risiko birgt – und wie ein 2er- oder 3er-Tandem Wohnkosten, Aufwand und Abbruchquoten halbiert.
+
 Wenn ein mittelständischer Betrieb zum ersten Mal internationale Auszubildende oder Fachkräfte rekrutiert, liegt ein vorsichtiger Gedanke nahe: _„Probieren wir es im ersten Jahr erst einmal mit einem einzigen Kandidaten aus.“_ Was aus kaufmännischer Sicht zunächst wie eine Risikominimierung wirkt, erweist sich in der betrieblichen Praxis jedoch als das Modell mit der höchsten Abbruchgefahr und den höchsten Stückkosten pro Kopf.
 
 Die Auswertung hunderter erfolgreicher Vermittlungsprojekte im deutschen Mittelstand zeigt ein eindeutiges Ergebnis: Betriebe, die mindestens **ein Tandem (2 Personen) oder eine kleine Kohorte (3 bis 5 Personen)** gleichzeitig einstellen, verzeichnen nach 24 Monaten eine **Verbleibquote von über 92 Prozent** – bei gleichzeitig deutlich geringerem Betreuungs- und Wohnraumaufwand pro Mitarbeiter.
@@ -57,3 +59,17 @@ Was tun, wenn Ihr Handwerksbetrieb tatsächlich nur **eine einzige** offene Ausb
 Viele unserer Kunden im Handwerk (z. B. ein SHK-Betrieb und ein befreundeter Elektro- oder Dachdeckerbetrieb im selben Gewerbegebiet oder derselben Innung) schließen sich zusammen. Jeder Betrieb stellt einen Auszubildenden ein, aber beide Kandidaten werden in Vietnam gemeinsam vorbereitet, fliegen im selben Flugzeug nach Deutschland und teilen sich vor Ort eine 2er-Wohngemeinschaft sowie den Weg zur selben Berufsschule.
 
 Prüfen Sie die Kostendegression bei mehreren Einstellungen direkt in unserem [interaktiven ROI-Rechner](/roi-rechner), informieren Sie sich über unser [Azubi-Programm](/services/azubi) und unsere [Fachkräfte-Vermittlung](/services/skilled-workers) oder besprechen Sie Ihr Tandem-Projekt über unser [Personalbedarfs-Formular](/fuer-arbeitgeber/personalbedarf).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Tandem-Recruiting?
+
+Ein 19- bis 25-jähriger Auszubildender oder Jungfacharbeiter, der rund 9.000 Kilometer von seiner Heimat entfernt in einer deutschen Kleinstadt oder einem Gewerbegebiet neu beginnt, ist während der Arbeitszeit im Betrieb oder in der Berufsschule gut eingebunden. Die kritische Phase beginnt am Freitagnachmittag um 16:00 Uhr sowie an den langen Winterwochenenden im November und Januar:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Gerade auf angespannten Wohnungsmärkten ist die Suche nach einem bezahlbaren 1-Zimmer-Apartment (Single-Wohnung) extrem zeitaufwendig und teuer. Eine 2- oder 3-Zimmer-Wohnung für eine Azubi- oder Mitarbeiter-Wohngemeinschaft (WG) lässt sich dagegen deutlich leichter anmieten und wirtschaftlich betreiben:
+
+### Wie unterstützt DMF Talents Unternehmen bei Tandem-Recruiting?
+
+Auch für Meister, Schichtleiter und Praxisanleiter reduziert ein Tandem den täglichen Erklärungsaufwand spürbar:

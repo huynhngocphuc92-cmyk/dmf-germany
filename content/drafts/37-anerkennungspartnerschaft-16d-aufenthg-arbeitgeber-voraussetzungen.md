@@ -10,6 +10,8 @@ excerpt: "Das FEG ermöglicht die Einreise zur Beschäftigung vor Abschluss der 
 
 # Anerkennungspartnerschaft (§ 16d Abs. 3 AufenthG): Einreise vor Abschluss des Anerkennungsverfahrens
 
+**Das Wichtigste in Kürze:** Fachkräfte sofort beschäftigen und Anerkennung in Deutschland nachholen: Voraussetzungen, Pflichten und Ablauf der Anerkennungspartnerschaft (§ 16d) – Das FEG ermöglicht die Einreise zur Beschäftigung vor Abschluss der Gleichwertigkeitsprüfung. Wie Betriebe die Anerkennungspartnerschaft nach § 16d Abs. 3 nutzen.
+
 Das langwierige Verfahren zur Anerkennung ausländischer Berufsabschlüsse galt über viele Jahre als größter Bremsklotz der Fachkräfteeinwanderung nach Deutschland. Bis die zuständigen Kammern (IHK FOSA, Handwerkskammern oder Landesbehörden) die Gleichwertigkeit prüften und einen Defizitbescheid ausstellten, vergingen oft sechs bis neun Monate – Zeit, in der offene Stellen unbesetzt blieben und Betriebe Aufträge ablehnen mussten.
 
 Mit der Einführung der **Anerkennungspartnerschaft nach § 16d Abs. 3 Aufenthaltsgesetz (AufenthG)** i. V. m. **§ 2a BeschV** hat der Bundesgesetzgeber eine grundlegende Erleichterung geschaffen: Qualifizierte Fachkräfte aus Drittstaaten können nach Deutschland einreisen und ab Tag 1 im Betrieb arbeiten, während das offizielle Anerkennungsverfahren erst nach der Einreise im Inland durchgeführt und begleitet wird.
@@ -70,3 +72,17 @@ Offizielle Leitfäden und Formulare der Bundesagentur für Arbeit zur Anerkennun
 Die Anerkennungspartnerschaft ist insbesondere für **Industrie- und Handwerksberufe** (Mechatroniker, Elektriker, Zerspanungsmechaniker, Bauberufe, SHK) das wirksamste Beschleunigungsinstrument. Während bei Pflegeberufen wegen des Patientenschutzes strengere landesrechtliche Vorprüfungen gelten, können technische Betriebe ihre neuen Kollegen sofort in der Werkstatt oder auf der Baustelle einsetzen und fachlich anleiten.
 
 Sie möchten wissen, ob Ihr Betrieb und Ihre Wunschkandidaten die Voraussetzungen für eine Anerkennungspartnerschaft erfüllen? Prüfen Sie Ihre Anforderungen in unserer [Übersicht zum Rekrutierungszeitplan](/fuer-arbeitgeber/zeitplan) oder kontaktieren Sie DMF Talents direkt.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Anerkennungspartnerschaft § 16d?
+
+Die Anerkennungspartnerschaft ist eine vertragliche Vereinbarung zwischen einem deutschen Arbeitgeber und einer ausländischen Fachkraft. Beide Seiten verpflichten sich verbindlich dazu:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Das Verfahren gliedert sich in drei aufeinander aufbauende Phasen:
+
+### Wie unterstützt DMF Talents Unternehmen bei Anerkennungspartnerschaft § 16d?
+
+Nicht jeder Betrieb darf eine Anerkennungspartnerschaft eingehen. Um Missbrauch zu verhindern, knüpft die Bundesagentur für Arbeit ihre Zustimmung an betriebliche Qualitätskriterien:

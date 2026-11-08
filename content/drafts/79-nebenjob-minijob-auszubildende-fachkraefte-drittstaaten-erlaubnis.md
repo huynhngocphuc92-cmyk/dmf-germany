@@ -11,6 +11,8 @@ status: "published"
 
 # Nebenjob und Minijob: Dürfen Azubis und Fachkräfte aus Drittstaaten hinzuverdienen?
 
+**Das Wichtigste in Kürze:** Dürfen Azubis aus Drittstaaten einen Nebenjob ausüben? § 16a Abs. 3 AufenthG (10 Std./Woche), Minijob 538 €, Arbeitgeber-Erlaubnis und Ausländerbehörde – 538-Euro-Minijob für ausländische Azubis: Was nach § 16a Abs. 3 AufenthG erlaubt ist, welche Genehmigungen nötig sind und wann Arbeitgeber zustimmen sollten.
+
 Mit Beginn einer Ausbildung oder einer Fachkrafttätigkeit in Deutschland stehen viele junge Menschen aus Vietnam vor einer veränderten finanziellen Realität: Zwar sichern die Ausbildungsvergütung oder das Fachkraftgehalt den Lebensunterhalt solide ab, doch Miete, Lebenshaltungskosten, Beiträge zur Krankenversicherung sowie der verständliche Wunsch, die Familie in Vietnam finanziell zu unterstützen oder für den nächsten Heimaturlaub zu sparen, wecken rasch das Interesse an einer **Nebentätigkeit auf Minijob-Basis (bis 538 Euro monatlich)**.
 
 Arbeitgeber reagieren auf solche Anfragen oft verunsichert: _Darf ein Auszubildender mit Visum nach § 16a AufenthG überhaupt nebenbei arbeiten? Gefährdet ein Zweitjob den aufenthaltsrechtlichen Status? Und muss der Hauptarbeitgeber seine schriftliche Zustimmung erteilen?_ Die rechtliche Antwort lautet: **Ja, eine Nebentätigkeit ist gesetzlich zulässig – allerdings unter strengen gesetzlichen Höchstgrenzen und klaren Genehmigungsvorbehalten.**
@@ -67,3 +69,17 @@ Pauschalverbote führen häufig dazu, dass Azubis Nebenjobs heimlich oder im inf
 3. **Schriftliche Genehmigung mit Widerrufsvorbehalt:** Bestätigung ausstellen mit dem Hinweis, dass die Erlaubnis bei Gefährdung des Ausbildungserfolgs widerrufen werden kann.
 
 DMF Talents unterstützt Ausbildungsbetriebe mit praxiserprobten Formularen und Richtlinien für den Umgang mit Nebentätigkeiten.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Nebenjob für Azubis & Fachkräfte aus Drittstaaten?
+
+Mit den Reformen des Fachkräfteeinwanderungsgesetzes hat der Gesetzgeber die Möglichkeiten für Auszubildende aus Drittstaaten deutlich erweitert. In § 16a Abs. 3 Satz 1 AufenthG ist gesetzlich normiert:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Auch wenn das Aufenthaltsrecht den Nebenjob erlaubt, setzt das deutsche Arbeits- und Berufsbildungsrecht (BBiG) dem Auszubildenden arbeitsvertragliche Grenzen:
+
+### Wie unterstützt DMF Talents Unternehmen bei Nebenjob für Azubis & Fachkräfte aus Drittstaaten?
+
+Bei Fachkräften mit einem Aufenthaltstitel nach § 18a (mit Berufsausbildung) oder § 18b (mit akademischer Ausbildung) stellt sich die Rechtslage anders dar:

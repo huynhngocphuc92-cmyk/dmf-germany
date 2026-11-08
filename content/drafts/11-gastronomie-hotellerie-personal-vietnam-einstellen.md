@@ -10,6 +10,8 @@ excerpt: "Personalmangel im Gastgewerbe? Erfahren Sie, welche drei rechtssichere
 
 # Gastronomie & Hotellerie: Personal aus Vietnam rechtssicher einstellen
 
+**Das Wichtigste in Kürze:** Köche, Service- und Hotelkräfte aus Vietnam für deutsche Betriebe: Ausbildung (§ 16a), Fachkraft (§ 18a) und Saisonbeschäftigung (§ 15c BeschV) im Vergleich – Erfahren Sie, welche drei rechtssicheren Rekrutierungsmodelle Gastronomen und Hoteliers für Personal aus Vietnam offenstehen.
+
 Eingeschränkte Öffnungszeiten, geschlossene Ruhetage und verringerte Tischanzahlen: Der akute Mangel an Küchen-, Service- und Hotelpersonal ist für die deutsche Gastronomie und Hotellerie längst zur existenzbedrohenden Wachstumsbremse geworden. Nach aktuellen Konjunkturumfragen des [DEHOGA Bundesverbands](https://www.dehoga-bundesverband.de) suchen mehr als 60 Prozent der gastgewerblichen Betriebe händeringend nach Mitarbeitern.
 
 Vietnam verfügt über eine lebendige Tourismus- und Gastronomiekultur sowie ein ausgeprägtes Berufsbildungssystem für das Hotel- und Gaststättengewerbe (HoReCa). Gastfreundschaft, Serviceorientierung und handwerkliche Sorgfalt genießen in Vietnam einen hohen gesellschaftlichen Stellenwert.
@@ -78,3 +80,17 @@ Zwei Faktoren bestimmen das Gelingen der Integration im Gastgewerbe maßgeblich:
 Ob Sie Nachwuchs über die duale Ausbildung heranziehen, einen erfahrenen Koch für Ihr Restaurant suchen oder saisonale Spitzenzeiten absichern wollen: DMF Talents bietet Ihnen praxiserprobte Rekrutierungskonzepte für das Hotel- und Gaststättengewerbe.
 
 Informieren Sie sich über unsere Angebote unter [Saisonbeschäftigung mit DMF](/services/seasonal) sowie [Fachkräftevermittlung](/services/skilled-workers) oder erfassen Sie Ihre offenen Stellen unter [Personalbedarf melden](/fuer-arbeitgeber/personalbedarf).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Gastronomie & Hotellerie?
+
+Je nach Betriebsstruktur und Zeithorizont wählen Gastronomen und Hoteliers zwischen drei rechtlichen Wegen:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Die duale Ausbildung ist das stabilste Fundament für Betriebe, die ihre Fachkräfte von morgen im eigenen Küchen- und Servicestil heranbilden möchten.
+
+### Wie unterstützt DMF Talents Unternehmen bei Gastronomie & Hotellerie?
+
+Für Restaurants, Hotelküchen oder Systemgastronomen, die nicht drei Jahre warten können, sondern sofort voll einsatzfähige Mitarbeiter am Herd oder im Bankettservice benötigen, bietet sich die direkte Fachkraftanstellung an.

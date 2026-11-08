@@ -2,6 +2,9 @@
 import Link from "next/link";
 
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { AeoSnippetSection } from "@/components/seo/AeoSnippetSection";
+import FAQSection from "@/components/shared/FAQSection";
+import { ROI_RECHNER_AEO_CONFIG, buildRoiAppSchemas } from "@/lib/seo/aeo-schemas";
 import { Calculator } from "lucide-react";
 import dynamic from "next/dynamic";
 
@@ -20,6 +23,7 @@ const RoiCalculator = dynamic(
 
 export default function RoiRechnerPage() {
   const { t } = useLanguage();
+  const roiSchemas = buildRoiAppSchemas("/roi-rechner");
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
@@ -42,6 +46,13 @@ export default function RoiRechnerPage() {
           </div>
         </div>
       </section>
+
+      {/* AEO Direct Answer & Benchmark Table (SSR for Answer Engines & Position Zero) */}
+      <AeoSnippetSection
+        config={ROI_RECHNER_AEO_CONFIG}
+        schemas={roiSchemas}
+        accentColor="primary"
+      />
 
       {/* Calculator Section */}
       <section className="py-12 md:py-16">
@@ -78,6 +89,9 @@ export default function RoiRechnerPage() {
           </div>
         </div>
       </section>
+
+      {/* AEO FAQ Section with FAQPage JSON-LD */}
+      <FAQSection items={ROI_RECHNER_AEO_CONFIG.faqs} theme="blue" pagePath="/roi-rechner" />
     </div>
   );
 }

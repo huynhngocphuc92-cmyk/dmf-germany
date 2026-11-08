@@ -11,6 +11,8 @@ status: "published"
 
 # Girokonto für internationale Mitarbeiter: Basiskonto nach ZKG ohne Schufa
 
+**Das Wichtigste in Kürze:** Girokonto eröffnen für Mitarbeiter aus Drittstaaten: Rechtsanspruch auf Basiskonto nach §§ 31 ff. ZKG, Schufa-Freiheit, Legitimationsprüfung und Gehaltsüberweisung – Wie Arbeitgeber internationalen Fachkräften helfen, nach dem ZKG rechtssicher ein Gehaltskonto zu eröffnen.
+
 Die Fachkraft aus Vietnam ist wohlbehalten in Deutschland gelandet, die Begrüßung im Betrieb war herzlich und der erste Arbeitstag steht bevor. Doch schon in der ersten Arbeitswoche stößt die Personalabteilung auf eine scheinbar banale, im Alltag aber hochgradig zeitraubende Hürde: **Die pünktliche Überweisung der Ausbildungsvergütung oder des ersten Monatsgehalts scheitert daran, dass die örtliche Bank die Eröffnung eines Girokontos verweigert.**
 
 Die Begründungen der Filialbanken klingen oft abweisend: _„Keine deutsche Schufa-Historie vorhanden“_, _„Elektronischer Aufenthaltstitel liegt noch nicht vor, Visum im Pass reicht nicht aus“_ oder _„Unzureichende Deutschkenntnisse für das Beratungsgespräch“_. Was viele Arbeitgeber und Bankmitarbeiter nicht wissen: **Jeder Verbraucher, der sich rechtmäßig in der Europäischen Union aufhält, hat nach dem Zahlungskontengesetz (ZKG) einen einklagbaren Rechtsanspruch auf die Eröffnung eines Basiskontos – vollkommen unabhängig von Schufa-Einträgen oder Bonitätsprüfungen.**
@@ -66,3 +68,17 @@ Viele ausländische Mitarbeiter senden regelmäßig Teile ihres Gehalts an ihre 
 3. **Musterantrag auf Basiskonto bereithalten:** Sollte eine Bankfiliale die Eröffnung blockieren, verweisen Sie höflich auf den gesetzlichen Anspruch nach § 31 ZKG und nutzen Sie das offizielle Antragsformular der Bundesanstalt für Finanzdienstleistungsaufsicht (BaFin).
 
 Reibungslose Abläufe von Tag eins an: DMF Talents unterstützt Partnerbetriebe bei allen behördlichen und organisatorischen Schritten des Onboardings.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Girokonto für Drittstaaten Fachkräfte?
+
+Das Zahlungskontengesetz (ZKG) setzt die europäische Zahlungskonten-Richtlinie (Richtlinie 2014/92/EU) in deutsches Recht um. Kernstück ist der Kontrahierungszwang der Kreditinstitute nach § 31 ZKG:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Um die Identifizierung nach dem Geldwäschegesetz (GwG) rechtssicher abzuschließen, benötigt der Mitarbeiter:
+
+### Wie unterstützt DMF Talents Unternehmen bei Girokonto für Drittstaaten Fachkräfte?
+
+Für Arbeitgeber lohnt es sich, den effizientesten Weg für ihre internationalen Fachkräfte zu wählen:

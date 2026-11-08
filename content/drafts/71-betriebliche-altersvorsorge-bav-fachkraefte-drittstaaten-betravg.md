@@ -11,6 +11,8 @@ status: "published"
 
 # Betriebliche Altersvorsorge (bAV) für internationale Kräfte: § 1a BetrAVG & Auszahlung
 
+**Das Wichtigste in Kürze:** Betriebliche Altersvorsorge (bAV) für Fachkräfte aus Drittstaaten: § 1a BetrAVG, 15% Arbeitgeberzuschuss, Unverfallbarkeit und Rentenauszahlung in Vietnam – Rechtsanspruch auf Entgeltumwandlung, 15% Pflichtzuschuss und was mit dem bAV-Kapital passiert, wenn Mitarbeiter dauerhaft nach Vietnam zurückkehren.
+
 Die betriebliche Altersversorgung (bAV) gehört zu den populärsten Mitarbeiter-Benefits deutscher Unternehmen: Durch steuer- und sozialabgabenfreie Entgeltumwandlung in Kombination mit dem gesetzlichen Arbeitgeberzuschuss bauen Beschäftigte eine kapitalgedeckte Zusatzrente fürs Alter auf.
 
 Bei der Beschäftigung von Fachkräften aus Nicht-EU-Staaten wie Vietnam stehen Personalabteilungen und Finanzverantwortliche jedoch häufig vor speziellen Fragen: **Gilt der Rechtsanspruch auf Entgeltumwandlung auch für ausländische Arbeitnehmer? Was passiert mit dem angesparten Versorgungskapital, wenn die Fachkraft nach fünf oder zehn Jahren dauerhaft in ihr Heimatland zurückkehrt? Und verfällt der Arbeitgeberzuschuss?**
@@ -68,3 +70,17 @@ Für mittelständische Betriebe ist ein überzeugendes bAV-Angebot ein starker W
 - Betriebe, die über den gesetzlichen 15%-Zuschuss hinausgehen (z. B. 20% oder 50 € Festzuschuss), heben sich im internationalen Wettbewerb deutlich von der Masse ab.
 
 Nutzen Sie moderne Benefit-Konzepte zur Mitarbeitergewinnung. DMF Talents unterstützt Sie bei der mehrsprachigen Aufklärung Ihrer neuen Fachkräfte.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Betriebliche Altersvorsorge Drittstaaten?
+
+Das deutsche Arbeitsrecht unterscheidet grundsätzlich nicht nach Staatsangehörigkeit:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Viele internationale Arbeitnehmer zögern, eine bAV abzuschließen, aus Sorge, das eingezahlte Geld bei einer Rückkehr nach Asien zu verlieren. Hier können Arbeitgeber aktiv aufklären und Vertrauen schaffen:
+
+### Wie unterstützt DMF Talents Unternehmen bei Betriebliche Altersvorsorge Drittstaaten?
+
+Für mittelständische Betriebe ist ein überzeugendes bAV-Angebot ein starker Wettbewerbsvorteil bei der Personalgewinnung:

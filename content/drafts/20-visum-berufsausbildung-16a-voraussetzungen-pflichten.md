@@ -10,6 +10,8 @@ excerpt: "Was verlangt § 16a AufenthG von Ausbildungsbetrieben? Erfahren Sie al
 
 # Visum zur Berufsausbildung (§ 16a AufenthG): Voraussetzungen und Arbeitgeberpflichten
 
+**Das Wichtigste in Kürze:** Das Visum zur dualen Berufsausbildung nach § 16a AufenthG: Voraussetzungen, Kammervertrag, B1-Sprachnachweis, Lebensunterhalt und Pflichten des Betriebs – Erfahren Sie alles über Vertragseintragung, Vergütungsgrenzen, Sprachnachweise und Behördenfristen.
+
 Die duale Berufsausbildung in Deutschland gilt weltweit als Vorzeigemodell zur praktischen und theoretischen Nachwuchsförderung. Um den akuten Lehrstellenmangel in Handwerk, Industrie, Pflege und Dienstleistung auszugleichen, gewinnt die Rekrutierung internationaler Schulabgänger über das **Visum zur betrieblichen Aus- und Weiterbildung (§ 16a AufenthG)** rasant an Bedeutung.
 
 Für deutsche Ausbildungsbetriebe ist die Aufnahme eines Auszubildenden aus einem Drittstaat wie Vietnam mit überschaubaren, aber klar definierten Pflichten verbunden. Wer die gesetzlichen Voraussetzungen kennt und Unterlagen rechtzeitig vorbereitet, vermeidet Verzögerungen bei der Botschaftsterminvergabe und sichert den pünktlichen Ausbildungsstart zum 1. August oder 1. September.
@@ -71,3 +73,17 @@ Da Ausbildungsbewerber in Vietnam die deutsche Sprache intensiv von A1 bis B1 er
 DMF Talents begleitet Ausbildungsbetriebe schlüsselfertig: Von der Vorauswahl motivierter vietnamesischer Schulabgänger über den B1-Sprachunterricht bis hin zur Steuerung der Behördenprozesse und der Abholung am Flughafen.
 
 Möchten Sie im kommenden Ausbildungsjahr Azubis aus Vietnam aufnehmen? Informieren Sie sich über unser Ausbildungsprogramm unter [Duale Ausbildung mit DMF](/services/azubi) oder erfassen Sie Ihre Plätze unter [Personalbedarf melden](/fuer-arbeitgeber/personalbedarf).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Visum Berufsausbildung § 16a AufenthG?
+
+Für eine positive Visumentscheidung der deutschen Auslandsvertretung (Botschaft Hanoi oder Generalkonsulat Ho-Chi-Minh-Stadt) müssen fünf Nachweise lückenlos vorliegen:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Ein Ausbildungsbetrieb geht mit dem Abschluss des Ausbildungsvertrags eine verantwortungsvolle Partnerschaft ein:
+
+### Wie unterstützt DMF Talents Unternehmen bei Visum Berufsausbildung § 16a AufenthG?
+
+Ein wesentlicher Vorteil für Ausbildungsbetriebe: Die Bundesagentur für Arbeit (ZAV) prüft im Zustimmungsverfahren nicht mehr, ob inländische oder EU-Bewerber für die Ausbildungsstelle zur Verfügung stehen (Wegfall der Vorrangprüfung).

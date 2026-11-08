@@ -11,6 +11,8 @@ status: "published"
 
 # Vermittlungskosten steuerlich absetzen: Betriebsausgabenabzug & Vorsteuer für Betriebe
 
+**Das Wichtigste in Kürze:** Rekrutierungs- & Vermittlungskosten steuerlich geltend machen: 100% Betriebsausgaben nach § 4 EStG, Vorsteuerabzug, Sprachkurse und CFO-Tipps – Personalbeschaffungskosten für Drittstaaten voll geltend machen: § 4 Abs. 4 EStG, Vorsteuerabzug (§ 15 UStG), Sprachkurskosten und CFO-Checkliste.
+
 Die Rekrutierung von Fachkräften und Auszubildenden aus Drittstaaten ist mit Investitionen verbunden: Agenturhonorare, amtliche Gebühren für das beschleunigte Fachkräfteverfahren, beeidigte Übersetzungen, Sprachkursmodule und Umzugskostenzuschüsse summieren sich schnell auf mehrere tausend Euro pro Kopf.
 
 Für Finanzvorstände (CFOs), kaufmännische Leiter und Inhaber stellt sich dabei eine zentrale wirtschaftliche Frage: **Wie werden diese Aufwendungen steuerlich behandelt? Können Vermittlungskosten sofort im laufenden Geschäftsjahr als Betriebsausgabe abgezogen werden? Und wie verhält es sich mit dem Vorsteuerabzug?**
@@ -65,3 +67,17 @@ Um Beanstandungen bei späteren Betriebsprüfungen auszuschließen, sollte die B
 3. **Quittungen über Gebühren aufbewahren:** Zahlungsnachweise über Kammer- und Behördengebühren müssen digital archiviert werden.
 
 Lesen Sie ergänzend unseren Beitrag zur [ROI-Kalkulation für internationale Auszubildende](/blog/roi-kalkulation-auszubildende-amortisation-betrieb).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Vermittlungskosten steuerlich absetzen?
+
+Nach § 4 Abs. 4 EStG sind Betriebsausgaben diejenigen Aufwendungen, die durch den Betrieb veranlasst sind. Sämtliche Kosten, die im Zusammenhang mit der Suche, Auswahl, behördlichen Abwicklung und Eingliederung neuer Mitarbeiter entstehen, erfüllen diesen Tatbestand uneingeschränkt.
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Rechnet die Personalagentur mit Sitz in Deutschland ab, weist die Rechnung die reguläre deutsche Umsatzsteuer von 19 Prozent aus.
+
+### Wie unterstützt DMF Talents Unternehmen bei Vermittlungskosten steuerlich absetzen?
+
+Übernimmt der Arbeitgeber die Kosten für vorbereitende oder berufsbegleitende Deutsch-Sprachkurse (z. B. B2-Fachsprache für Pflege oder Handwerk), stellt sich die Frage des geldwerten Vorteils für den Arbeitnehmer.

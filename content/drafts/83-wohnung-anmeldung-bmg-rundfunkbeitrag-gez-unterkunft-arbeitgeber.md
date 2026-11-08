@@ -11,6 +11,8 @@ status: "published"
 
 # Meldebestätigung (§ 17 BMG) & Rundfunkbeitrag: Leitfaden für Arbeitgeber-Unterkünfte
 
+**Das Wichtigste in Kürze:** Wohnungsgeberbestätigung nach § 19 BMG, 14-Tage-Frist und Rundfunkbeitrag in Mitarbeiter-WGs: Was Arbeitgeber bei der Bereitstellung von Wohnraum beachten müssen.
+
 Die Bereitstellung von bezahlbarem und angemessenem [Wohnraum für internationale Fachkräfte und Azubis](/blog/wohnraum-fuer-azubis-praxisloesungen-arbeitgeber) ist der entscheidende Erfolgsfaktor bei der Gewinnung von Talenten aus Drittstaaten wie Vietnam. Ob eigenes Mitarbeiter-Apartment, angemietete Wohngemeinschaft (WG) für drei bis vier Auszubildende oder Werkswohnung: Viele Unternehmen treten hierbei selbst als Vermieter oder Wohnungsgeber auf.
 
 Mit der Schlüsselübergabe beginnt jedoch eine Kette behördlicher Verpflichtungen: **Nach § 17 in Verbindung mit § 19 Bundesmeldegesetz (BMG) müssen sich alle einziehenden Personen innerhalb von zwei Wochen beim Einwohnermeldeamt anmelden.** Ohne diese amtliche Meldebestätigung geraten alle weiteren Prozesse – von der Vergabe der Steuer-Identifikationsnummer über die Eröffnung des Bankkontos bis zur Ausstellung des elektronischen Aufenthaltstitels – ins Stocken. Zudem führt die Wohnsitzanmeldung unweigerlich zu Post vom Beitragsservice von ARD, ZDF und Deutschlandradio (**Rundfunkbeitrag / GEZ**), der in Mitarbeiter-WGs regelmäßig für Verwirrung und Mahngebühren sorgt.
@@ -72,3 +74,17 @@ Wenige Wochen nach der Anmeldung erhält jeder gemeldete Bewohner automatisch ei
 4. **Beitragsservice-Brief beantworten:** Direkt nach Erhalt des ersten GEZ-Schreibens das Beitragsnummer-Formular online ausfüllen.
 
 DMF Talents begleitet Ihre internationalen Fachkräfte von der Landung am Flughafen bis zur erfolgreichen Anmeldung beim Bürgeramt.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Wohnungsanmeldung BMG & Rundfunkbeitrag GEZ?
+
+Stellt der Arbeitgeber Wohnraum zur Verfügung (egal ob als Eigentümer oder als Hauptmieter, der an Mitarbeiter untervermietet), gilt er melderechtlich als Wohnungsgeber.
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Der Arbeitnehmer ist nach § 17 Abs. 1 BMG verpflichtet, sich innerhalb von zwei Wochen nach dem Einzug bei der zuständigen Meldebehörde anzumelden.
+
+### Wie unterstützt DMF Talents Unternehmen bei Wohnungsanmeldung BMG & Rundfunkbeitrag GEZ?
+
+Wenige Wochen nach der Anmeldung erhält jeder gemeldete Bewohner automatisch einen Brief vom Beitragsservice (ehemals GEZ). Hier gilt es, Doppelzahlungen und Mahnungen von vornherein zu vermeiden:

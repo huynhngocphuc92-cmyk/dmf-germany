@@ -170,6 +170,21 @@ POST_COVER_MAPPING = {
     "fallstudie-hotellerie-zfa-thien-tuan-hoang-dung-erfolgsgeschichten": "/images/blog/dmf-fallstudie-hotellerie-zfa-thien-tuan-hoang-dung-erfolgsgeschichten.jpg",
     "gemeinschaft-kultur-integration-dmf-campus-leben-vietnam": "/images/blog/dmf-gemeinschaft-kultur-integration-campus-leben-vietnam.jpg",
     "kooperationsmodell-deutsche-arbeitgeber-dmf-talents-schritt-fuer-schritt": "/images/blog/dmf-kooperationsmodell-deutsche-arbeitgeber-schritt-fuer-schritt.jpg",
+    "anerkennungspartnerschaft-16d-vs-18a-aufenthg-arbeitgeber-vergleich": "/images/blog/dmf-geo-anerkennungspartnerschaft-16d-vs-18a-vergleich.jpg",
+    "beschleunigtes-fachkraefteverfahren-81a-unterlagen-fristen-praxis": "/images/blog/dmf-geo-beschleunigtes-verfahren-81a-praxis-unterlagen.jpg",
+    "compliance-checkliste-296a-sgb-iii-ausbildungsvermittlung-vietnam": "/images/blog/dmf-geo-compliance-checkliste-296a-sgb-iii-arbeitgeber.jpg",
+    "fachkraefte-rekrutieren-laendervergleich-vietnam-drittstaaten": "/images/blog/dmf-geo-laendervergleich-vietnam-drittstaaten-rekrutierung.jpg",
+    "azubi-16a-oder-fachkraft-18a-vietnam-entscheidungshilfe-arbeitgeber": "/images/blog/dmf-geo-azubi-16a-oder-fachkraft-18a-entscheidungshilfe.jpg",
+    "kenntnispruefung-vs-anpassungslehrgang-pflegekraefte-vietnam": "/images/blog/dmf-geo-kenntnispruefung-vs-anpassungslehrgang-pflege.jpg",
+    "arbeitsproben-praxistest-elektroniker-shk-fachkraefte-vietnam": "/images/blog/dmf-geo-arbeitsproben-praxistest-elektroniker-shk-handwerk.jpg",
+    "cnc-zerspaner-iso-9606-schweisser-vietnam-industrie-leitfaden": "/images/blog/dmf-geo-cnc-zerspaner-iso-9606-schweisser-industrie.jpg",
+    "hotellerie-gastronomie-azubis-koeche-saisonkraefte-vietnam-vergleich": "/images/blog/dmf-geo-hotellerie-gastronomie-azubis-koeche-saisonkraefte.jpg",
+    "zeitarbeit-vs-direktrekrutierung-vietnam-vollkosten-roi-analyse": "/images/blog/dmf-geo-zeitarbeit-vs-direktrekrutierung-vollkosten-roi.jpg",
+    "foerdermittel-arbeitgeber-asa-flex-berufssprachkurse-anerkennung": "/images/blog/dmf-geo-foerdermittel-asa-flex-berufssprachkurse-betrieb.jpg",
+    "deutsch-b1-oder-b2-sprachanforderungen-berufsbilder-arbeitgeber": "/images/blog/dmf-geo-deutsch-b1-oder-b2-sprachanforderungen-berufe.jpg",
+    "wohnraum-internationale-fachkraefte-azubis-modelle-arbeitgeber": "/images/blog/dmf-geo-wohnraum-internationale-fachkraefte-azubis-modelle.jpg",
+    "erste-30-tage-einreise-behoerden-sozialversicherung-checkliste-hr": "/images/blog/dmf-geo-erste-30-tage-einreise-behoerden-checkliste-hr.jpg",
+    "probezeit-patensystem-interkulturelle-fuehrung-vietnamesische-fachkraefte": "/images/blog/dmf-geo-probezeit-patensystem-interkulturelle-fuehrung.jpg",
 }
 
 def sync_posts():

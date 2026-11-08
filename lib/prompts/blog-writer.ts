@@ -1,4 +1,4 @@
-// AI Blog Writer Prompts
+// AI Blog Writer Prompts (GEO-First Editorial Architecture)
 
 import {
   BlogGenerationRequest,
@@ -6,6 +6,7 @@ import {
   BlogTone,
   LENGTH_CONFIG,
 } from "@/app/admin/blog-writer/types";
+import { GEO_EDITORIAL_STANDARDS, getGeoTopicsByCategory } from "@/lib/geo/topic-matrix";
 
 const LANGUAGE_INSTRUCTIONS: Record<BlogLanguage, string> = {
   de: `Write in German (Deutsch). Use formal "Sie" form. Ensure proper German grammar and spelling.`,
@@ -19,23 +20,28 @@ const TONE_INSTRUCTIONS: Record<BlogTone, string> = {
   educational: `Focus on explaining concepts clearly. Use examples and analogies. Structure content for easy learning with clear takeaways.`,
 };
 
-const COMPANY_CONTEXT = `
+export const COMPANY_CONTEXT = `
 DMF Talents is the German-facing brand on https://www.dmf-talents.de.
-Its website presents recruitment from Vietnam for employers in Germany, including skilled workers and trainees.
+Its website presents recruitment from Vietnam for employers in Germany, including skilled workers (§ 18a/b, § 16d AufenthG), trainees (§ 16a AufenthG) and seasonal staff (§ 19c AufenthG).
 
 TARGET AUDIENCE:
-German business owners, HR managers and operational managers considering international recruitment.
-Their questions concern role requirements, candidate selection, responsibilities, service scope, budgeting and onboarding.
+German business owners, HR managers, clinic/care-home directors (Pflegedienstleitungen) and operational managers considering international recruitment.
+Their questions concern role requirements, legal pathways (FEG / AufenthG), credential recognition (BQFG / IHK FOSA / HWK), candidate selection, responsibilities, service scope, budgeting and 90-day onboarding.
 
 VERIFIED INTERNAL DESTINATIONS (link only when relevant):
-- Skilled workers: /services/skilled-workers
-- Trainees: /services/azubi
-- Discuss a staffing requirement: /fuer-arbeitgeber/personalbedarf
+- Skilled workers (§ 18a/b, § 16d AufenthG): /services/skilled-workers
+- Trainees / Apprentices (§ 16a AufenthG): /services/azubi
+- Seasonal staff (§ 19c AufenthG): /services/seasonal
+- Discuss a staffing requirement (B2B intake): /fuer-arbeitgeber/personalbedarf
+- Fast-track timeline simulator (§ 81a AufenthG): /fuer-arbeitgeber/zeitplan
+- ROI & cost-of-vacancy calculator: /roi-rechner
+- Pre-vetted candidate pool: /fuer-arbeitgeber/kandidaten
+- Industry vertical solutions: /fuer-arbeitgeber/branchen
 
 Do not infer DMF's prices, staff qualifications, certifications, partnerships, placement volumes, success rates, candidate availability or support duration from this context. These require approved evidence supplied by the editor.
 `;
 
-const FACTS_GUARDRAIL = `
+export const FACTS_GUARDRAIL = `
 FACTS & EDITORIAL ACCURACY (STRICT):
 - Never invent facts, citations, customer quotations, case studies or credentials. A requested topic or keyword is not evidence.
 - Do not invent German salary levels, visa fees, legal thresholds, deadlines, processing times or labor-market statistics. If no current, verifiable source is supplied, omit the precise claim and describe what the employer should check with the responsible authority.
@@ -45,6 +51,14 @@ FACTS & EDITORIAL ACCURACY (STRICT):
 - Present checklists, example schedules and hypothetical scenarios explicitly as suggestions, not DMF commitments or real customer results.
 - Avoid stereotypes about Vietnamese workers. Assess qualifications, communication and role fit individually.
 - Do not invent an author, legal review, certification or publication date.
+`;
+
+export const GEO_STRUCTURE_INSTRUCTIONS = `
+GEO (GENERATIVE ENGINE OPTIMIZATION) & AI CITATION ARCHITECTURE:
+1. ANSWER-FIRST TL;DR BLOCK: ${GEO_EDITORIAL_STANDARDS.tldrRequirement} Format this opening takeaway as <p><strong>Das Wichtigste in Kürze:</strong> ...</p> (or the equivalent in the requested language).
+2. QUESTION-BASED SUBHEADINGS FOR AUTOMATIC FAQ SCHEMA: ${GEO_EDITORIAL_STANDARDS.questionHeadingsRequirement}
+3. STRUCTURED COMPARISON TABLE: ${GEO_EDITORIAL_STANDARDS.comparisonTableRequirement}
+4. STATUTORY & ENTITY ANCHORING: ${GEO_EDITORIAL_STANDARDS.entityAnchoringRequirement}
 `;
 
 export function buildBlogSystemPrompt(request: BlogGenerationRequest): string {
@@ -59,11 +73,14 @@ ${TONE_INSTRUCTIONS[request.tone]}
 COMPANY CONTEXT:
 ${COMPANY_CONTEXT}
 
+${GEO_STRUCTURE_INSTRUCTIONS}
+
 CONTENT REQUIREMENTS:
 - Aim for approximately ${wordCount} words when the subject warrants it; do not pad the article for SEO
-- Use proper HTML structure: <h2>, <h3>, <p>, <ul>, <ol>, <strong>, <em>
-- Start with an engaging introduction (no <h1> - title is separate)
-- Include 2-4 subheadings (<h2> or <h3>)
+- Use proper HTML structure: <h2>, <h3>, <p>, <ul>, <ol>, <table>, <thead>, <tbody>, <tr>, <th>, <td>, <strong>, <em>
+- Start with an engaging Answer-First summary ("Das Wichtigste in Kürze:") in the opening paragraph (no <h1> - title is separate)
+- Include 3-5 subheadings (<h2> or <h3>), with at least 2-3 phrased as direct employer questions ending with "?" followed immediately by a concise 2-sentence answer paragraph (<p>)
+- Include a structured HTML comparison table (<table>) when comparing legal pathways, roles, responsibilities or process steps
 - End with one specific next step relevant to the buyer question; use a verified internal destination
 - Reference only verified DMF services where relevant; distinguish advice from contractual service scope
 - Include actionable insights or practical tips
@@ -101,7 +118,15 @@ export function buildTopicSuggestionsPrompt(language: BlogLanguage, category?: s
         ? "Generate topics and descriptions in Vietnamese."
         : "Generate topics and descriptions in English.";
 
-  return `You are a content strategist for DMF Talents.
+  const blueprints = getGeoTopicsByCategory(category).slice(0, 6);
+  const blueprintText = blueprints
+    .map(
+      (b, idx) =>
+        `${idx + 1}. Prompt: "${b.targetPromptDe}" -> Angle: "${b.recommendedTitleDe}" (Entities: ${b.legalEntities.join(", ")})`
+    )
+    .join("\n");
+
+  return `You are a B2B GEO (Generative Engine Optimization) content strategist for DMF Talents.
 
 ${langInstructions}
 
@@ -110,14 +135,17 @@ ${COMPANY_CONTEXT}
 
 ${category ? `FOCUS CATEGORY: ${category}` : "INCLUDE DIVERSE CATEGORIES"}
 
-Generate 6 blog topic suggestions that would interest German HR managers and business owners looking to hire Vietnamese workers.
+HIGH-INTENT B2B EMPLOYER PROMPT ARCHETYPES (use as strategic inspiration for AI-search citation):
+${blueprintText}
+
+Generate 6 blog topic suggestions that directly answer high-intent questions German HR managers, clinic directors and business owners ask AI answer engines (ChatGPT, Perplexity, Google AI Overviews, Claude) when planning to recruit Vietnamese skilled workers or apprentices.
 
 Consider:
-- Employer questions about planning and comparing recruitment options
-- Common questions about hiring foreign workers
+- Employer questions about planning and comparing recruitment pathways (§ 18a/b, § 16d, § 16a, § 81a AufenthG, § 296a SGB III)
+- Decision matrices comparing costs (Cost of Vacancy vs. direct recruitment), recognition routes (BQFG, IHK FOSA, HWK), and onboarding
 - Seasonal topics (if applicable)
-- Customer case studies only when the editor supplies documented facts and permission; otherwise suggest a practical checklist
-- Industry-specific content (Pflege, Gastronomie, Handwerk)
+- Customer case studies only when the editor supplies documented facts and permission; otherwise suggest a practical checklist or comparison guide
+- Industry-specific content (Pflege, Gastronomie, Handwerk, Industrie & Metall)
 
 ${FACTS_GUARDRAIL}
 
@@ -126,7 +154,7 @@ Return a valid JSON array with exactly this structure:
 [
   {
     "topic": "Blog title idea",
-    "description": "2-3 sentence description of what the blog would cover",
+    "description": "2-3 sentence description of what the blog would cover, including target legal entities and comparison criteria",
     "category": "one of: visa-legal, german-culture, industry-specific, language-learning, success-stories, company-news",
     "keywords": ["keyword1", "keyword2", "keyword3"]
   }

@@ -15,6 +15,8 @@ keywords:
 excerpt: "Schutzfristen, Kündigungsschutz und Visumsverlängerung: Leitfaden für Personalabteilungen bei Schwangerschaft internationaler Kräfte."
 ---
 
+**Das Wichtigste in Kürze:** Schwangerschaft bei ausländischen Fachkräften & Azubis: MuSchG Schutzfristen, Elterngeldanspruch nach BEEG, Visumsverlängerung und U2-Umlage – Schutzfristen, Kündigungsschutz und Visumsverlängerung: Leitfaden für Personalabteilungen bei Schwangerschaft internationaler Kräfte.
+
 Wird eine internationale Fachkraft oder Auszubildende aus einem Drittstaat (z. B. Vietnam) schwanger, stehen Personalabteilungen vor komplexen arbeits- und aufenthaltsrechtlichen Fragen: Welche Schutzvorschriften greifen? Erlischt das Visum während der Schutzfristen oder der Elternzeit? Wie wird die Ausbildungszeit nach dem Berufsbildungsgesetz angepasst? Und wer trägt die anfallenden Lohnkosten?
 
 Grundsatz für Arbeitgeber: **Das deutsche Arbeits- und Sozialrecht gilt für alle im Inland beschäftigten Arbeitnehmerinnen gleichermaßen – unabhängig von ihrer Staatsangehörigkeit.** Die gesetzlichen Bestimmungen des Mutterschutzgesetzes (MuSchG) und des Bundeselterngeld- und Elternzeitgesetzes (BEEG) schützen internationale Mitarbeiterinnen vollumfänglich.
@@ -54,3 +56,17 @@ Ein weit verbreiteter Irrtum besagt, dass eine Unterbrechung der Erwerbstätigke
 | **Elternzeit (bis 3 Jahre)**          | Ruhendes Arbeitsverhältnis / Elterngeld | Elterngeldstelle (L-Bank / ZBFS etc.) | Verlängerung bei Kammer &amp; ABH |
 
 DMF Talents unterstützt Arbeitgeber und Mitarbeiterinnen bei der Kommunikation mit der Ausländerbehörde und den Kammern, um einen reibungslosen Übergang und die spätere Rückkehr an den Arbeitsplatz sicherzustellen.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Mutterschutz & Elternzeit bei Drittstaatsangehörigen?
+
+Sobald eine Mitarbeiterin die Schwangerschaft mitteilt, greifen die gesetzlichen Schutzmechanismen des Mutterschutzgesetzes:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Personalverantwortliche müssen keine unkalkulierbaren Lohnkosten befürchten. Das deutsche Sozialversicherungssystem fängt Mutterschaftsleistungen über das U2-Umlageverfahren vollständig auf:
+
+### Wie unterstützt DMF Talents Unternehmen bei Mutterschutz & Elternzeit bei Drittstaatsangehörigen?
+
+Ein weit verbreiteter Irrtum besagt, dass eine Unterbrechung der Erwerbstätigkeit den Aufenthaltstitel gefährde. Das Gegenteil ist der Fall:

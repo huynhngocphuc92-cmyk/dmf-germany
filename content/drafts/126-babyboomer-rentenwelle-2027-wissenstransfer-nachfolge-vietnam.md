@@ -15,6 +15,8 @@ keywords:
 excerpt: "Zwischen 2027 und 2030 erreichen die geburtenstärksten Jahrgänge der deutschen Nachkriegsgeschichte das Rentenalter. Wie Betriebe mit einer 24-monatigen Tandem-Überlappung ihr Erfahrungswissen retten."
 ---
 
+**Das Wichtigste in Kürze:** Wenn die geburtenstarken Jahrgänge 1961–1965 in Rente gehen: Wie Mittelstand und Handwerk durch 24 Monate Überlappung mit Talenten aus Vietnam Wissen sichern – Zwischen 2027 und 2030 erreichen die geburtenstärksten Jahrgänge der deutschen Nachkriegsgeschichte das Rentenalter. Wie Betriebe mit einer 24-monatigen Tandem-Überlappung ihr Erfahrungswissen retten.
+
 Für den deutschen Mittelstand markieren die Jahre **2027 bis 2030** den Höhepunkt der demografischen Verschiebung am Arbeitsmarkt: Die geburtenstärksten Jahrgänge der deutschen Geschichte (**1961 bis 1965**, mit jeweils über 1,3 Millionen Geburten pro Jahrgang) erreichen das reguläre Renteneintrittsalter bzw. die Altersgrenze für besonders langjährig Versicherte nach 45 Beitragsjahren. Nach Berechnungen des Instituts für Arbeitsmarkt- und Berufsforschung (IAB) sowie des Kompetenzzentrums Fachkräftesicherung (KOFA) scheiden in diesem Zeitraum jährlich rund **400.000 bis 500.000 mehr Erwerbspersonen** altersbedingt aus dem Arbeitsleben aus, als junge Nachwuchskräfte aus dem inländischen Schulsystem nachrücken.
 
 Für Produktionsbetriebe, Handwerksunternehmen und Pflegeeinrichtungen ist dabei nicht allein die quantitative Lücke im Schichtplan bedrohlich, sondern der **unwiederbringliche Verlust von implizitem Erfahrungswissen**. Wenn der langjährige Werkstattleiter, Vorarbeiter, Zerspanungsspezialist oder Küchenchef am letzten Arbeitstag seinen Spindschlüssel abgibt, ohne dass ein Nachfolger an seiner Seite eingearbeitet wurde, verliert der Betrieb über Jahrzehnte aufgebaute Prozesskompetenz.
@@ -52,3 +54,17 @@ Damit Ihr Unternehmen zwischen 2027 und 2030 keine Aufträge wegen Personalmange
 3. **Überlappungs-Recruiting starten:** Für alle Mitarbeiter, die in den Jahren **2028, 2029 oder 2030** in den Ruhestand treten, muss die Rekrutierung von Auszubildenden oder Fachkräften bereits im Winter **2026/2027** eingeleitet werden, damit die gemeinsame Einarbeitungszeit im Betrieb gesichert ist.
 
 Berechnen Sie die Kosten einer unbesetzten Stelle im Vergleich zur frühzeitigen Nachfolgeplanung in unserem [interaktiven ROI-Rechner](/roi-rechner), prüfen Sie den zeitlichen Vorlauf in unserem [Projekt-Zeitplan](/fuer-arbeitgeber/zeitplan) oder vereinbaren Sie ein Strategiegespräch über unser [Personalbedarfs-Formular](/fuer-arbeitgeber/personalbedarf).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Babyboomer-Rentenwelle 2027?
+
+In vielen mittelständischen Betrieben wird eine Stelle erst dann zur Nachbesetzung ausgeschrieben, wenn der verdiente Mitarbeiter seinen konkreten Ausscheidetermin (oft sechs Monate vor Ruhestandsbeginn) mitteilt. Bei spezialisierten Facharbeiterstellen im Maschinenbau, in der Schweißtechnik, im Anlagenbau oder in der Backstube ist es zu diesem Zeitpunkt jedoch bereits zu spät:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+In der vietnamesischen Kultur genießen Lebensalter, Berufserfahrung und der Status eines Meisters („Thầy“ – Lehrer/Meister) höchsten gesellschaftlichen Respekt. Diese kulturelle Grundhaltung passt hervorragend zu erfahrenen deutschen Facharbeitern der Jahrgänge 1961 bis 1968:
+
+### Wie unterstützt DMF Talents Unternehmen bei Babyboomer-Rentenwelle 2027?
+
+Damit Ihr Unternehmen zwischen 2027 und 2030 keine Aufträge wegen Personalmangels ablehnen muss, empfehlen wir ein strukturiertes Vorgehen in drei Schritten:

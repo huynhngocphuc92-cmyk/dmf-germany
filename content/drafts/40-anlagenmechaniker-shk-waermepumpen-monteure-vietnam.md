@@ -10,6 +10,8 @@ excerpt: "Das Gebäudeenergiegesetz (GEG) erfordert hunderttausende neue Wärmep
 
 # Anlagenmechaniker SHK & Wärmepumpen-Installateure aus Vietnam gewinnen
 
+**Das Wichtigste in Kürze:** Qualifizierte Anlagenmechaniker SHK für deutsche Handwerksbetriebe: Wärmepumpen-Montage nach GEG, Kälteschein-Grundlagen und BQFG-Anerkennung – Das Gebäudeenergiegesetz (GEG) erfordert hunderttausende neue Wärmepumpen. Wie SHK-Betriebe qualifizierte Anlagenmechaniker aus Vietnam gewinnen.
+
 Die Wärmewende ist das Mammutprojekt des deutschen Handwerks: Nach den Vorgaben des reformierten Gebäudeenergiegesetzes (GEG) muss künftig nahezu jede neu eingebaute Heizungsanlage zu mindestens 65 Prozent mit erneuerbaren Energien betrieben werden. In der Praxis bedeutet dies einen beispiellosen Boom bei der Installation von Luft-Wasser- und Sole-Wasser-Wärmepumpen.
 
 Gleichzeitig steht die SHK-Branche (Sanitär-, Heizungs- und Klimatechnik) vor einer historischen Personalengpasskrise: Laut Schätzungen des Zentralverbandes Sanitär Heizung Klima (ZVSHK) fehlen bundesweit über 60.000 Monteure und Techniker, um die klimapolitischen Ausbauziele zu realisieren. Immer mehr vorausschauende Handwerksbetriebe und Installationsunternehmen rekrutieren deshalb ausgebildete SHK- und Kältetechnik-Fachkräfte aus Vietnam.
@@ -60,3 +62,17 @@ Auf der Baustelle und im Kundenkontakt zählt nicht nur handwerkliches Können, 
 - **Kundenkommunikation:** Höflicher, respektvoller Umgang bei Montagearbeiten im bewohnten Bestand.
 
 Möchten Sie Ihren Betrieb mit motivierten SHK-Monteuren verstärken? [Erfassen Sie Ihren Personalbedarf bei DMF Talents](/fuer-arbeitgeber/personalbedarf), um geprüfte Profile aus Vietnam kennenzulernen.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Anlagenmechaniker SHK aus Vietnam?
+
+Eine Wärmepumpe ist kein gewöhnlicher Kessel, sondern ein hochmodernes thermodynamisches System an der Schnittstelle von Mechanik, Elektronik und Kältetechnik. Qualifizierte vietnamesische Bewerber, die an renommierten Colleges den Ausbildungsgang Kälte- und Klimatechnik (Kỹ thuật máy lạnh và điều hòa không khí) oder Sanitär-/Versorgungstechnik absolviert haben, decken diese drei Kompetenzfelder ab:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Im behördlichen Anerkennungsverfahren nach dem Berufsqualifikationsfeststellungsgesetz (BQFG) kommen für vietnamesische Bewerber in der Regel zwei deutsche Referenzberufe in Betracht:
+
+### Wie unterstützt DMF Talents Unternehmen bei Anlagenmechaniker SHK aus Vietnam?
+
+Auf der Baustelle und im Kundenkontakt zählt nicht nur handwerkliches Können, sondern klares Sprachverständnis:

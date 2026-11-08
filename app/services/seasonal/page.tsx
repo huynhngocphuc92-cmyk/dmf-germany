@@ -8,13 +8,9 @@ import { useLanguage } from "@/components/providers/LanguageProvider";
 import { checkQuality } from "@/utils/qa-layer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import dynamic from "next/dynamic";
-
-// Lazy load FAQ Section (below the fold)
-const FAQSection = dynamic(() => import("@/components/shared/FAQSection"), {
-  loading: () => <div className="py-20 text-center text-slate-500">Laden...</div>,
-  ssr: true, // Keep SSR for SEO content, but split the JS bundle
-});
+import { AeoSnippetSection } from "@/components/seo/AeoSnippetSection";
+import FAQSection from "@/components/shared/FAQSection";
+import { SERVICE_AEO_CONFIGS, buildServicePageSchemas } from "@/lib/seo/aeo-schemas";
 
 import {
   ArrowRight,
@@ -1210,35 +1206,20 @@ export default function SeasonalWorkersPage() {
     DATA_DU_PHONG
   );
 
-  // FAQ Questions for Seasonal Workers (B2B-Focused)
-  const seasonalFAQs = [
-    {
-      question: "Ist der Einsatz rechtssicher?",
-      answer:
-        "Ja, wir vermitteln ausschließlich im Rahmen der gesetzlichen Regelungen für kurzzeitige Beschäftigung (z.B. §15a BeschV) und kümmern uns um alle Genehmigungen der Bundesagentur für Arbeit.",
-    },
-    {
-      question: "Können dieselben Saisonkräfte wiederkommen?",
-      answer:
-        "Ja, das ist ausdrücklich gewünscht. Viele Kunden bauen sich so einen 'Stamm-Pool' auf, was die Einarbeitungszeit in den Folgejahren drastisch reduziert.",
-    },
-    {
-      question: "Wie ist die Arbeitsmoral?",
-      answer:
-        "Vietnamesische Arbeitskräfte sind bekannt für Disziplin und Belastbarkeit, besonders in der Landwirtschaft oder Gastronomie. Fehlzeiten sind eine absolute Ausnahme.",
-    },
-  ];
+  const aeoConfig = SERVICE_AEO_CONFIGS.seasonal;
+  const serviceSchemas = buildServicePageSchemas("seasonal");
 
   return (
     <main className="min-h-screen">
       <HeroSection content={content} />
+      <AeoSnippetSection config={aeoConfig} schemas={serviceSchemas} accentColor="amber" />
       <AdvantagesSection content={content} />
       <SpeedTimelineSection content={content} />
       <TalentPoolSection content={content} />
       <SectorsSection content={content} />
       <StatsSection content={content} />
       <CTASection content={content} />
-      <FAQSection items={seasonalFAQs} theme="amber" />
+      <FAQSection items={aeoConfig.faqs} theme="amber" pagePath={aeoConfig.path} />
     </main>
   );
 }

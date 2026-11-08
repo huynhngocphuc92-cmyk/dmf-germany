@@ -23,16 +23,12 @@ import {
   Users,
   Zap,
 } from "lucide-react";
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-
-// Lazy load FAQ Section (below the fold)
-const FAQSection = dynamic(() => import("@/components/shared/FAQSection"), {
-  loading: () => <div className="py-20 text-center text-slate-500">Laden...</div>,
-  ssr: true, // Keep SSR for SEO content, but split the JS bundle
-});
+import { AeoSnippetSection } from "@/components/seo/AeoSnippetSection";
+import FAQSection from "@/components/shared/FAQSection";
+import { SERVICE_AEO_CONFIGS, buildServicePageSchemas } from "@/lib/seo/aeo-schemas";
 
 // ============================================
 // ANIMATED COUNTER
@@ -785,39 +781,19 @@ function CTASection() {
 // ============================================
 
 export default function AzubiPage() {
-  // FAQ Questions for Azubi (B2B-Focused)
-  const azubiFAQs = [
-    {
-      question: "Wie stellen Sie das Sprachniveau B2 vor der Einreise sicher?",
-      answer:
-        "Wir kooperieren mit zertifizierten Sprachschulen (Goethe/TELC) in Vietnam. Unsere Kandidaten durchlaufen ein intensives 12-monatiges Vorbereitungsprogramm, das nicht nur Sprache, sondern auch deutsche Fachbegriffe und Kultur vermittelt.",
-    },
-    {
-      question: "Wie hoch ist die Bleibeperspektive der vietnamesischen Azubis?",
-      answer:
-        "Vietnamesische Azubis gelten als äußerst loyal. Unsere Statistiken zeigen eine Übernahmequote von über 90% nach der Ausbildung. Wir fördern dies durch kulturelles Onboarding, um Heimweh und Abbrüche zu minimieren.",
-    },
-    {
-      question: "Unterstützen Sie bei der bürokratischen Abwicklung?",
-      answer:
-        "Ja. Wir übernehmen den kompletten Verwaltungsprozess: Vorprüfung der Unterlagen, Beschleunigtes Fachkräfteverfahren (§ 81a AufenthG) bis hin zur Wohnungssuche und Behördengängen.",
-    },
-    {
-      question: "Welche Kosten kommen auf uns zu?",
-      answer:
-        "Wir arbeiten mit einem transparenten erfolgsbasierten Modell ohne versteckte Gebühren. Die Investition amortisiert sich in der Regel bereits im ersten Jahr. Gerne erstellen wir Ihnen ein individuelles Angebot.",
-    },
-  ];
+  const aeoConfig = SERVICE_AEO_CONFIGS.azubi;
+  const serviceSchemas = buildServicePageSchemas("azubi");
 
   return (
     <main className="min-h-screen">
       <HeroSection />
+      <AeoSnippetSection config={aeoConfig} schemas={serviceSchemas} accentColor="blue" />
       <AdvantagesSection />
       <ProcessTimelineSection />
       <QualitySection />
       <StatsSection />
       <CTASection />
-      <FAQSection items={azubiFAQs} theme="blue" />
+      <FAQSection items={aeoConfig.faqs} theme="blue" pagePath={aeoConfig.path} />
     </main>
   );
 }

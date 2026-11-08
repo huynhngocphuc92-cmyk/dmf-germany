@@ -11,6 +11,8 @@ status: "published"
 
 # Probezeit nicht bestanden: Meldepflichten und Handlungsoptionen bei Drittstaatsangehörigen
 
+**Das Wichtigste in Kürze:** Was Arbeitgeber bei Kündigung von Drittstaatsangehörigen beachten müssen: 4-Wochen-Meldepflicht nach § 82 AufenthG, Suchfristen und DMF-Ersatzgarantie – Kündigung in der Probezeit bei internationalen Fachkräften: Die 4-Wochen-Meldepflicht an die Ausländerbehörde (§ 45c & § 82 AufenthG) und Nachbesetzung.
+
 Die Probezeit dient beiden Seiten dazu, die fachliche Eignung, die Teamdynamik und die gegenseitige Verlässlichkeit im Arbeitsalltag zu prüfen. Auch bei sorgfältigster Vorauswahl kann es vorkommen, dass Erwartungen nicht erfüllt werden und ein Betrieb das Arbeits- oder Ausbildungsverhältnis vorzeitig beenden muss.
 
 Bei Mitarbeitern aus Drittstaaten (z. B. mit Aufenthaltstiteln nach § 16a, § 18a, § 18b oder § 19c AufenthG) gelten jedoch **besondere ausländerrechtliche Informations- und Meldepflichten**. Wer diese Fristen ignoriert, riskiert empfindliche Bußgelder. Erfahren Sie hier, welche Schritte Arbeitgeber einleiten müssen und wie eine reibungslose Übergabe gelingt.
@@ -64,3 +66,17 @@ Um das unternehmerische Risiko für Arbeitgeber auf ein absolutes Minimum zu red
 - Gleichzeitig stellt DMF dem ursprünglichen Betrieb prioritär und ohne erneute Vermittlungsgrundgebühr ein neues, passgenaues Kandidatenprofil zur Verfügung.
 
 Erfahren Sie in unserem Ratgeber zu [Frühwarnsignalen bei Ausbildungsabbrüchen](/blog/ausbildungsabbrueche-verhindern-fruehwarnsignale-betreuung), wie Sie Konflikte frühzeitig moderieren, bevor es zur Kündigung kommt.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Probezeit Kündigung Drittstaaten?
+
+Arbeitsrechtlich unterscheidet sich das Kündigungsverfahren für ausländische Arbeitnehmer nicht von inländischen Beschäftigten:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Dies ist der kritischste Punkt für Geschäftsführer und Personalverantwortliche: Nach § 82 Abs. 6 Aufenthaltsgesetz (AufenthG) ist der Arbeitgeber verpflichtet, der zuständigen Ausländerbehörde die vorzeitige Beendigung der Beschäftigung oder Ausbildung innerhalb von vier Wochen schriftlich oder elektronisch mitzuteilen.
+
+### Wie unterstützt DMF Talents Unternehmen bei Probezeit Kündigung Drittstaaten?
+
+Eine weit verbreitete Fehlannahme ist, dass der Mitarbeiter mit Zugang der Kündigung sofort ausreisepflichtig wird. Das ist rechtlich falsch:

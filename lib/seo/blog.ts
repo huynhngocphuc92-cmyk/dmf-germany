@@ -12,7 +12,70 @@ type BlogSeoPost = Pick<
   | "updated_at"
   | "meta_title"
   | "meta_description"
->;
+> & {
+  content?: string | null;
+};
+
+export interface ExtractedBlogFaq {
+  question: string;
+  answer: string;
+}
+
+function stripHtmlTags(raw: string): string {
+  return raw
+    .replace(/<!--[\s\S]*?-->/g, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;/gi, "'")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/**
+ * Extracts citation-ready Q&A pairs from article HTML when `<h2>` or `<h3>`
+ * subheadings are phrased as questions (ending with `?`) and followed by
+ * explanatory `<p>` paragraphs. Used to emit `FAQPage` JSON-LD for GEO/AI engines.
+ */
+export function extractFaqFromHtml(html?: string | null): ExtractedBlogFaq[] {
+  if (!html || typeof html !== "string") return [];
+
+  const results: ExtractedBlogFaq[] = [];
+  const headingRegex = /<h([23])[^>]*>([\s\S]*?)<\/h\1>/gi;
+  const matches = Array.from(html.matchAll(headingRegex));
+
+  for (let i = 0; i < matches.length; i++) {
+    const match = matches[i];
+    const questionText = stripHtmlTags(match[2] || "");
+    if (!questionText.endsWith("?") || questionText.length < 10) {
+      continue;
+    }
+
+    const sectionStart = (match.index ?? 0) + match[0].length;
+    const sectionEnd = i + 1 < matches.length ? (matches[i + 1].index ?? html.length) : html.length;
+    const sectionHtml = html.slice(sectionStart, sectionEnd);
+
+    const paragraphs = Array.from(sectionHtml.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi))
+      .map((m) => stripHtmlTags(m[1] || ""))
+      .filter((p) => p.length > 0);
+
+    if (paragraphs.length === 0) continue;
+
+    // Combine up to the first 2 paragraphs for a concise, citation-ready answer
+    const answerText = paragraphs.slice(0, 2).join(" ").trim();
+    if (answerText.length >= 35) {
+      results.push({
+        question: questionText,
+        answer: answerText,
+      });
+    }
+  }
+
+  return results.slice(0, 10);
+}
 
 function isoDate(value?: string): string | undefined {
   if (!value) return undefined;
@@ -56,37 +119,62 @@ export function blogMetadata(post: BlogSeoPost): Metadata {
 export function blogStructuredData(post: BlogSeoPost) {
   const url = siteUrl(`/blog/${encodeURIComponent(post.slug)}`);
   const image = coverImageUrl(post.cover_image);
-  return [
-    {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "@id": `${url}#article`,
-      url,
-      mainEntityOfPage: { "@type": "WebPage", "@id": url },
-      headline: post.title,
-      description: post.excerpt || undefined,
-      // A draft creation date is not a publication date. Omit unknown dates.
-      datePublished: isoDate(post.published_at),
-      dateModified: isoDate(post.updated_at),
-      ...(image ? { image: [image] } : {}),
-      publisher: {
-        "@type": "Organization",
-        "@id": `${SITE_URL}/#organization`,
-        name: SITE_NAME,
-        url: SITE_URL,
+  const faqs = extractFaqFromHtml(post.content);
+
+  const article = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "@id": `${url}#article`,
+    url,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    headline: post.title,
+    description: post.excerpt || undefined,
+    // A draft creation date is not a publication date. Omit unknown dates.
+    datePublished: isoDate(post.published_at),
+    dateModified: isoDate(post.updated_at),
+    ...(image ? { image: [image] } : {}),
+    publisher: {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["article h1", "article p:first-of-type", "article h2", "article h3"],
+    },
+    // author_id is a private account identifier, not a public author byline.
+  } as const;
+
+  const breadcrumbs = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Startseite", item: siteUrl("/") },
+      { "@type": "ListItem", position: 2, name: "Blog", item: siteUrl("/blog") },
+      { "@type": "ListItem", position: 3, name: post.title, item: url },
+    ],
+  } as const;
+
+  if (faqs.length === 0) {
+    return [article, breadcrumbs] as const;
+  }
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${url}#faq`,
+    mainEntity: faqs.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
       },
-      // author_id is a private account identifier, not a public author byline.
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Startseite", item: siteUrl("/") },
-        { "@type": "ListItem", position: 2, name: "Blog", item: siteUrl("/blog") },
-        { "@type": "ListItem", position: 3, name: post.title, item: url },
-      ],
-    },
-  ] as const;
+    })),
+  } as const;
+
+  return [article, breadcrumbs, faqSchema] as const;
 }
 
 export function serializeJsonLd(value: unknown): string {

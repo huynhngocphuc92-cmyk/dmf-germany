@@ -15,6 +15,8 @@ keywords:
 excerpt: "Rechte und Pflichten bei Arbeitsunfähigkeit im Heimatland: Wie Betriebe Atteste aus Drittstaaten nach § 5 Abs. 2 EFZG rechtssicher prüfen."
 ---
 
+**Das Wichtigste in Kürze:** Erkrankung während des Heimaturlaubs in Vietnam: Entgeltfortzahlungsgesetz (§ 5 EFZG), Beweiswert ausländischer Atteste, eAU und U1-Erstattung – Rechte und Pflichten bei Arbeitsunfähigkeit im Heimatland: Wie Betriebe Atteste aus Drittstaaten nach § 5 Abs. 2 EFZG rechtssicher prüfen.
+
 Internationale Mitarbeiter und Auszubildende nutzen ihren Jahresurlaub verständlicherweise häufig für mehrwöchige Heimaturlaube in Vietnam. Doch was geschieht, wenn der Mitarbeiter während des Aufenthalts im Ausland erkrankt und nicht rechtzeitig zum vereinbarten Arbeitsbeginn nach Deutschland zurückkehren kann? Gilt die deutsche Entgeltfortzahlung? Wie müssen Atteste aus Drittstaaten beschaffen sein? Und wie rufen Arbeitgeber Nachweise ab, wenn das elektronische Meldeverfahren (eAU) an Landesgrenzen endet?
 
 Das **Entgeltfortzahlungsgesetz (EFZG)** regelt die Pflichten des Arbeitnehmers bei einer Erkrankung im Ausland in **§ 5 Abs. 2 EFZG** detailliert. Arbeitgeber sollten die rechtlichen Spielregeln kennen, um berechtigte Lohnansprüche korrekt abzuwickeln und unberechtigte Fehlzeiten abzuwehren.
@@ -58,3 +60,17 @@ Bestehen begründete Zweifel an der Echtheit oder Richtigkeit des Attests (z. B.
 Wird der Mitarbeiter während des Urlaubs arbeitsunfähig, werden die durch ärztliches Zeugnis nachgewiesenen Tage der Arbeitsunfähigkeit gemäß **§ 9 Bundesurlaubsgesetz (BUrlG)** **nicht auf den Jahresurlaub angerechnet**. Der Mitarbeiter darf seinen Urlaub jedoch nicht eigenmächtig um die Krankheitstage verlängern, sondern muss zum genehmigten Urlaubsende zurückkehren oder eine Verlängerung mit dem Arbeitgeber ausdrücklich abstimmen.
 
 DMF Talents unterstützt Arbeitgeber bei der Überprüfung vietnamesischer Dokumente und klärt Zweifelsfragen direkt mit Partnerärzten vor Ort.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Krankmeldung im Ausland Drittstaaten?
+
+Erkrankt ein Arbeitnehmer während des Aufenthalts im Ausland, treffen ihn strengere gesetzliche Nachweispflichten als im Inland:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Seit 2023 rufen deutsche Arbeitgeber die Arbeitsunfähigkeitsdaten ihrer Mitarbeiter digital bei den gesetzlichen Krankenkassen ab (elektronische AU / eAU nach § 109 SGB IV). Dieses elektronische Verfahren funktioniert jedoch ausschließlich bei Ärzten in Deutschland.
+
+### Wie unterstützt DMF Talents Unternehmen bei Krankmeldung im Ausland Drittstaaten?
+
+Nach § 3 Abs. 1 EFZG hat der Arbeitnehmer auch bei einer im Ausland eingetretenen Arbeitsunfähigkeit grundsätzlich Anspruch auf Entgeltfortzahlung bis zur Dauer von sechs Wochen (nach vierwöchiger ununterbrochener Dauer des Arbeitsverhältnisses).

@@ -15,6 +15,8 @@ keywords:
 excerpt: "Die ersten 30 Tage nach der Landung entscheiden darüber, ob sich ein junger Mensch in Deutschland sicher fühlt. So begleitet DMF seine Auszubildenden vom Flughafenterminal bis zur ersten Berufsschulwoche."
 ---
 
+**Das Wichtigste in Kürze:** Wie DMF neue Auszubildende nach der Landung in Deutschland begleitet: Flughafenabholung, SIM-Karte, Wohnungsübergabe, Anmeldung beim Bürgeramt, Girokonto und Krankenkasse – Die ersten 30 Tage nach der Landung entscheiden darüber, ob sich ein junger Mensch in Deutschland sicher fühlt. So begleitet DMF seine Auszubildenden vom Flughafenterminal bis zur ersten Berufsschulwoche.
+
 Für einen achtzehn- bis zweiundzwanzigjährigen jungen Menschen aus Vietnam ist der Moment, in dem sich die Schiebetür im Ankunftsbereich des Flughafens Frankfurt am Main, München oder Berlin öffnet, der Beginn eines völlig neuen Lebensabschnitts. Gleichzeitig beginnt für den aufnehmenden deutschen Ausbildungsbetrieb eine organisatorisch dichte Phase: Bevor die erste reguläre Lohnabrechnung erstellt und der erste Berufsschulblock besucht werden kann, müssen innerhalb weniger Tage zahlreiche Behördengänge, Banktermine und Versicherungsformalitäten erledigt werden.
 
 Viele Vermittlungsagenturen betrachten ihre Aufgabe mit dem Abflug in Vietnam als erledigt und überlassen dem deutschen Arbeitgeber die gesamte organisatorische Abwicklung nach der Landung. Bei **DMF Vietnam & DMF Talents** ist die **Start- und Nachbetreuung in Deutschland (vertraglich verankert in Anlage II unserer Ausbildungsbegleitung)** dagegen ein fester Kernbestandteil unserer Leistung. Erst nach einem dokumentierten **30-Tage-Stabilitätscheck** in Deutschland gilt der Übergabeprozess in unserem internen Verwaltungssystem als erfolgreich abgeschlossen.
@@ -58,3 +60,17 @@ Am Ende des ersten Monats führt unser Team ein strukturiertes Rückmeldegesprä
 Auch nach diesem 30-Tage-Meilenstein bleibt DMF über die gesamten **drei Ausbildungsjahre** hinweg an der Seite Ihrer Auszubildenden – unter anderem bei der fristgerechten Beantragung und Verlängerung des elektronischen Aufenthaltstitels (_eAT_) bei der Ausländerbehörde sowie bei der Vorbereitung auf die Zwischen- und Abschlussprüfung.
 
 Wie Sie dieses Rundum-Sorglos-Paket für Ihren Betrieb nutzen können, erfahren Sie auf unserer Seite zum [Azubi-Programm](/services/azubi) oder im direkten Gespräch mit unserem Team über das [Arbeitgeber-Anfrageformular](/fuer-arbeitgeber/personalbedarf).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema 30-Tage-Onboarding in Deutschland für DMF-Auszubildende?
+
+Unsere Fürsorge beginnt unmittelbar nach der Pass- und Zollkontrolle am deutschen Zielflughafen (wie wir es unter anderem in unserer Bild- und Videodokumentation „DMF cùng Thiện Tuấn ở Đức“ festgehalten haben):
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+In der ersten vollen Woche nach der Einreise stehen die vier zwingenden administrativen Schritte an, ohne die keine ordnungsgemäße Lohnabrechnung im Ausbildungsbetrieb möglich ist:
+
+### Wie unterstützt DMF Talents Unternehmen bei 30-Tage-Onboarding in Deutschland für DMF-Auszubildende?
+
+Ein häufig unterschätzter Praxisfaktor ist der tägliche Arbeits- und Schulweg. Gemeinsam mit den Auszubildenden richten wir das Deutschlandticket auf dem Smartphone ein und fahren die exakte Bus- oder Bahnverbindung zwischen Unterkunft, Ausbildungsbetrieb und Berufsschule vor dem ersten Arbeitstag einmal real ab. So weiß der Auszubildende genau, an welchem Bahnsteig oder welcher Haltestelle er morgens um 05:30 oder 07:00 Uhr einsteigen muss.

@@ -10,6 +10,8 @@ excerpt: "Gute Praxis im Betrieb, aber schlechte Noten in der Berufsschule? Erfa
 
 # Fachtheorie an der Berufsschule meistern: AsA flex und Stützunterricht für vietnamesische Azubis
 
+**Das Wichtigste in Kürze:** Wie internationale Azubis die Berufsschule meistern: Fachtheorie, Prüfungsangst abbauen und das kostenfreie AsA-flex-Programm (§ 75 SGB III) nutzen – Erfahren Sie, wie Betriebe mit AsA flex Fachtheorie und Sprache gezielt und kostenfrei fördern.
+
 Im Ausbildungsalltag vieler deutscher Betriebe zeigt sich bei internationalen Auszubildenden häufig ein vertrautes Bild: In der betrieblichen Praxis – an der Werkbank, auf der Baustelle, am Herd oder auf Station – überzeugen vietnamesische Azubis durch überdurchschnittliche Fingerfertigkeit, Fleiß und Disziplin. Die Ausbilder sind begeistert.
 
 Doch sobald der erste Blockunterricht an der Berufsschule ansteht, folgt oft Ernüchterung: Klausuren fallen schwach aus, Fachbegriffe werden verwechselt und Prüfungsfragen missverstanden. Nach Erhebungen des [Bundesinstituts für Berufsbildung (BIBB)](https://www.bibb.de) sind theoretische Überforderung und Sprachbarrieren in der Berufsschule die häufigste Ursache für Ausbildungsabbrüche bei ausländischen Nachwuchskräften.
@@ -64,3 +66,17 @@ Neben der externen Nachhilfe können Ausbilder die theoretische Festigung im Bet
 Die Berufsschule ist eine Hürde – aber mit der richtigen Begleitung eine absolut machbare. Mit staatlicher Unterstützung via AsA flex und betrieblichem Rückhalt führen Sie internationale Auszubildende sicher zum anerkannten deutschen Berufsabschluss.
 
 Planen Sie die Ausbildung vietnamesischer Nachwuchskräfte? Erfahren Sie mehr über unser Begleitkonzept unter [Duale Ausbildung mit DMF](/services/azubi) oder erfassen Sie Ihre offenen Ausbildungsplätze unter [Personalbedarf melden](/fuer-arbeitgeber/personalbedarf).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Berufsschule & Fachtheorie?
+
+Ein bestandenes B1- oder B2-Sprachzertifikat bescheinigt gute kommunikative Fähigkeiten im Alltag. Die deutsche Berufsschule verlangt jedoch ein völlig anderes Sprachregister:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Die Assistierte Ausbildung flexibel (AsA flex) nach den §§ 75 ff. des Dritten Buches Sozialgesetzbuch (SGB III) setzt genau an diesen Hürden an:
+
+### Wie unterstützt DMF Talents Unternehmen bei Berufsschule & Fachtheorie?
+
+Die Beantragung von AsA flex ist unbürokratisch und kann zu jedem Zeitpunkt der Ausbildung erfolgen:

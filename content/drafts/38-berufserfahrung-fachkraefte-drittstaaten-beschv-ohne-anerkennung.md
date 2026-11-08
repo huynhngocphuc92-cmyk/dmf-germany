@@ -10,6 +10,8 @@ excerpt: "Das reformierte FEG ermöglicht die Rekrutierung über Berufserfahrung
 
 # Fachkräfte mit Berufserfahrung (§ 19c Abs. 2 AufenthG i. V. m. § 6 BeschV): Rekrutierung ohne deutsche Anerkennung
 
+**Das Wichtigste in Kürze:** Ohne formale Gleichwertigkeitsprüfung einstellen: Wie Arbeitgeber Fachkräfte über § 19c AufenthG und § 6 BeschV mit 2 Jahren Berufserfahrung gewinnen – Das reformierte FEG ermöglicht die Rekrutierung über Berufserfahrung ganz ohne Gleichwertigkeitsbescheid. Welche Voraussetzungen und Gehaltsschwellen gelten.
+
 Für viele deutsche Unternehmen war das starre Festhalten an formalen Ausbildungsnachweisen über Jahrzehnte ein zentrales Rekrutierungshindernis: Hochqualifizierte Fachkräfte mit langjähriger Berufspraxis aus Asien oder Amerika scheiterten an der deutschen Gleichwertigkeitsprüfung, weil die theoretischen Lehrpläne im Herkunftsland nicht haargenau dem deutschen Ausbildungsrahmenplan entsprachen.
 
 Mit der Neuregelung der Fachkräfteeinwanderung über die **Erfahrungssäule nach § 19c Abs. 2 AufenthG in Verbindung mit § 6 Beschäftigungsverordnung (BeschV)** hat die Bundesregierung einen unbürokratischen Pfad geschaffen: In allen nicht-reglementierten Berufen können Arbeitgeber ausländische Fachkräfte einstellen, **ohne dass eine deutsche Anerkennung der Berufsqualifikation erforderlich ist**. Entscheidend sind praktische Kompetenz und einschlägige Berufserfahrung.
@@ -63,3 +65,17 @@ Für mittelständische Betriebe und Industrieunternehmen bietet die Erfahrungss�
 3. **Vorabzustimmung nach § 81a AufenthG:** Nutzen Sie das beschleunigte Fachkräfteverfahren bei der Ausländerbehörde, um die Zustimmung der Bundesagentur für Arbeit gebündelt einzuholen.
 
 DMF Talents begleitet deutsche Arbeitgeber bei der Prüfung vietnamesischer Arbeitsnachweise und koordiniert die rechtssichere Beantragung über § 6 BeschV. [Erfassen Sie Ihre offene Stelle im Anfrageportal](/fuer-arbeitgeber/personalbedarf), um passende Kandidatenprofile zu prüfen.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Fachkräfte mit Berufserfahrung?
+
+Damit die Bundesagentur für Arbeit (BA) und die zuständige deutsche Auslandsvertretung dem Visum zustimmen, müssen vier gesetzliche Kriterien erfüllt sein:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Für mittelständische Betriebe und Industrieunternehmen bietet die Erfahrungssäule handfeste Wettbewerbsvorteile:
+
+### Wie unterstützt DMF Talents Unternehmen bei Fachkräfte mit Berufserfahrung?
+
+DMF Talents begleitet deutsche Arbeitgeber bei der Prüfung vietnamesischer Arbeitsnachweise und koordiniert die rechtssichere Beantragung über § 6 BeschV. Erfassen Sie Ihre offene Stelle im Anfrageportal, um passende Kandidatenprofile zu prüfen.

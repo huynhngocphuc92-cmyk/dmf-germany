@@ -10,6 +10,8 @@ excerpt: "Internationale Bewerber mit Chancenkarte sind bereits in Deutschland. 
 
 # Von der Chancenkarte in die Festanstellung: Der nahtlose Übergang für Arbeitgeber
 
+**Das Wichtigste in Kürze:** Kandidaten mit Chancenkarte gefunden? So gelingt der nahtlose Wechsel in den Aufenthaltstitel zur Fachkräftebeschäftigung (§ 18a/b) ohne Ausreise der Fachkraft – Internationale Bewerber mit Chancenkarte sind bereits in Deutschland. Wie Betriebe Probearbeit nutzen und den Statuswechsel in die Festanstellung meistern.
+
 Seit Einführung der **Chancenkarte zur Arbeitsplatzsuche nach § 20a Aufenthaltsgesetz (AufenthG)** halten sich tausende gut ausgebildete Fachkräfte aus Drittstaaten legal in Deutschland auf, um vor Ort einen passenden Arbeitgeber zu finden. Für deutsche Betriebe, die unter akutem Fachkräftemangel leiden, eröffnet sich damit ein hochinteressanter Rekrutierungskanal: Die Kandidaten sind bereits im Bundesgebiet gemeldet, können persönlich zum Vorstellungsgespräch erscheinen und vor Vertragsunterzeichnung im Betrieb hospitieren.
 
 Sobald die fachliche und persönliche Eignung im Betrieb überzeugt und das Unternehmen eine Festanstellung anstrebt, stellen sich in den Personalabteilungen konkrete Rechtsfragen: Muss die Fachkraft für den Visumsantrag zurück in ihr Herkunftsland reisen? Welche Probebeschäftigungen sind während der Chancenkarte erlaubt? Und wie gelingt der nahtlose Übergang in einen dauerhaften Fachkrafttitel nach **§ 18a oder § 18b AufenthG**?
@@ -71,3 +73,17 @@ Rechtliche Grundlagen und Details zur Chancenkarte bietet das Informationsportal
 DMF Talents begleitet Arbeitgeber bei der Prüfung von Chancenkarte-Inhabern: Wir bewerten die vietnamesischen Bildungsnachweise, formulieren die behördengerechte Stellenbeschreibung und begleiten den Kontakt zur örtlichen Ausländerbehörde, bis der elektronische Aufenthaltstitel vorliegt.
 
 Haben Sie einen vielversprechenden Kandidaten kennengelernt und möchten den Statuswechsel einleiten? Nutzen Sie unser [Portal zur Arbeitgeberberatung](/fuer-arbeitgeber/personalbedarf), um offene Fragen direkt zu klären.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Chancenkarte in Festanstellung?
+
+Das Aufenthaltsgesetz sieht ausdrücklich vor, dass ein Inhaber der Chancenkarte für die Festanstellung nicht ausreisen muss. Der gesamte Statuswechsel kann im Inland abgewickelt werden:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+DMF Talents begleitet Arbeitgeber bei der Prüfung von Chancenkarte-Inhabern: Wir bewerten die vietnamesischen Bildungsnachweise, formulieren die behördengerechte Stellenbeschreibung und begleiten den Kontakt zur örtlichen Ausländerbehörde, bis der elektronische Aufenthaltstitel vorliegt.
+
+### Wie unterstützt DMF Talents Unternehmen bei Chancenkarte in Festanstellung?
+
+DMF Talents unterstützt deutsche Unternehmen durch eine eigene Sprach- und Vorbereitungsakademie in Vietnam, vorab geprüfte Kandidatendossiers inklusive Kurzvideo sowie persönliche Begleitung im Behörden- und Onboarding-Prozess in Deutschland nach dem Employer-Pays-Prinzip (§ 296a SGB III).

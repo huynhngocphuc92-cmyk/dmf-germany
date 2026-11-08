@@ -10,6 +10,8 @@ excerpt: "Ausbildungsabbrüche kosten Betriebe Zeit und Geld. Erfahren Sie, wie 
 
 # Ausbildungsabbrüche vermeiden: Frühwarnsignale und Betreuungskonzepte für internationale Azubis
 
+**Das Wichtigste in Kürze:** Wie Ausbildungsbetriebe Abbrüche bei Azubis aus Vietnam verhindern: Frühwarnsignale, AsA flex und das 3-Säulen-Betreuungsdreieck im Betrieb – Ausbildungsabbrüche kosten Betriebe Zeit und Geld. Erfahren Sie, wie Sie Frühwarnsignale bei internationalen Azubis erkennen und durch ein Betreuungsdreieck gegensteuern.
+
 Die Gewinnung junger Nachwuchskräfte über die duale Berufsausbildung (§ 16a AufenthG) ist für viele mittelständische Betriebe in Industrie, Handwerk und Gastronomie die nachhaltigste Antwort auf den Fachkräftemangel. Doch der Erfolg einer Ausbildung entscheidet sich nicht am Flughafen bei der Ankunft, sondern im betrieblichen Alltag der ersten zwölf Monate.
 
 Nach Erhebungen des [Bundesinstituts für Berufsbildung (BIBB)](https://www.bibb.de) wird in Deutschland im Bundesdurchschnitt rund jeder vierte Ausbildungsvertrag vorzeitig gelöst – in Dienstleistungs- und Handwerksberufen liegt die Quote teils noch darüber. Bei Auszubildenden aus Drittstaaten wie Vietnam kommen spezifische Herausforderungen hinzu: Sprachbarrieren in der Berufsschule, Heimweh, ungewohnte bürokratische Prozesse und kulturelle Missverständnisse.
@@ -74,3 +76,17 @@ DMF Talents begleitet Unternehmen und Auszubildende daher kontinuierlich und üb
 Eine erfolgreiche duale Ausbildung ist die solideste Grundlage für eine jahrelange Betriebszugehörigkeit. Mit dem richtigen Betreuungskonzept wird aus einer internationalen Nachwuchskraft eine loyale Fachkraft, die Ihre Unternehmenswerte von Grund auf verinnerlicht hat.
 
 Möchten Sie Auszubildende aus Vietnam in Ihrem Betrieb ausbilden? Informieren Sie sich über unser Ausbildungsprogramm für Arbeitgeber unter [Duale Berufsausbildung mit DMF](/services/azubi) oder [melden Sie Ihren Ausbildungsbedarf direkt an](/fuer-arbeitgeber/personalbedarf).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Ausbildungsabbrüche vermeiden?
+
+Ein stabiles Ausbildungsumfeld stützt sich auf drei tragende Säulen, die den Auszubildenden im Zentrum gemeinsam absichern:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Ein Ausbildungsabbruch kündigt sich selten über Nacht an. In den meisten Fällen gehen ihm Verhaltensänderungen voraus, die bei aufmerksamer Beobachtung frühzeitig Gegenmaßnahmen ermöglichen:
+
+### Wie unterstützt DMF Talents Unternehmen bei Ausbildungsabbrüche vermeiden?
+
+Die größte Hürde für Auszubildende aus Vietnam liegt erfahrungsgemäß nicht in der praktischen Werkstatt- oder Stationsarbeit, sondern in der anspruchsvollen Fachtheorie der Berufsschule. Komplexe Gesetzestexte, physikalische Formeln und spezifische Fachbegriffe überfordern Azubis mit B1- oder B2-Niveau häufig in den ersten Schulblöcken.

@@ -10,6 +10,8 @@ excerpt: "Welche Informationen braucht eine fundierte Personalplanung? Diese Che
 
 # Fachkräfte aus Vietnam einstellen: Ihre Checkliste für das erste Gespräch
 
+**Das Wichtigste in Kürze:** Fachkräfte aus Vietnam einstellen: Klären Sie Aufgaben, Qualifikationen, Budget und Zuständigkeiten. Eine praktische Checkliste für Ihr erstes Gespräch – Diese Checkliste hilft Arbeitgebern, eine Anfrage zur Rekrutierung aus Vietnam vorzubereiten.
+
 Sie möchten eine offene Stelle mit einer Fachkraft aus Vietnam besetzen. Vor der Suche nach konkreten Profilen lohnt sich ein kurzer Blick auf die Aufgabe: Wen brauchen Sie, welche Voraussetzungen sind unverzichtbar und was kann Ihr Betrieb bei der Einarbeitung leisten? Ein klares Briefing gibt einem Vermittlungspartner eine bessere Grundlage als die allgemeine Anfrage „Wir suchen dringend Personal“.
 
 Der folgende Vorschlag hilft Ihnen, die wichtigsten Informationen auf einer Seite festzuhalten. Er dient der Vorbereitung eines Gesprächs; ob eine konkrete Besetzung möglich ist, muss anschließend anhand der Stelle und des individuellen Profils geprüft werden.
@@ -76,3 +78,17 @@ _Sorgfältige Prüfung der Bewerberprofile und Qualifikationsnachweise vor dem e
 ## Besprechen Sie Ihren konkreten Personalbedarf
 
 Einen Überblick über den Bereich finden Sie bei [DMF Talents zur Vermittlung von Fachkräften aus Vietnam](/services/skilled-workers). Wenn Sie eine konkrete Stelle besprechen möchten, [beschreiben Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf). Nennen Sie dabei möglichst Tätigkeit, Standort und gewünschten Start. Diese Angaben bilden die Grundlage für die weitere Klärung Ihres Vorhabens.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Fachkräfte aus Vietnam einstellen?
+
+Beginnen Sie mit drei bis fünf Aufgaben, die die neue Person tatsächlich übernehmen soll. „Mitarbeit in der Produktion“ lässt viel offen. Verständlicher wäre beispielsweise: „Maschine einrichten, Messwerte dokumentieren und Abweichungen an die Schichtleitung melden.“ Das ist ein fiktives Beispiel zur Formulierung, kein Bewerberprofil von DMF.
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Erstellen Sie zwei kurze Listen: „vor Arbeitsbeginn erforderlich“ und „im Betrieb erlernbar“. Beschreiben Sie jeweils, wie Sie die Anforderung im Auswahlgespräch prüfen möchten. Ein Lebenslauf ist ein Ausgangspunkt; eine konkrete Frage zu einem Arbeitsablauf kann Ihnen zusätzliche Anhaltspunkte geben.
+
+### Wie unterstützt DMF Talents Unternehmen bei Fachkräfte aus Vietnam einstellen?
+
+Notieren Sie Ihren gewünschten Start und erklären Sie, weshalb dieser Termin relevant ist. Steht ein Auftrag an, geht jemand in den Ruhestand oder soll das Team wachsen? Trennen Sie anschließend den betrieblichen Bedarf von einem bereits belastbar bestätigten Arbeitsbeginn.

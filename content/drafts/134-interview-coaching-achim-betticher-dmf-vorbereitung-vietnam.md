@@ -15,6 +15,8 @@ keywords:
 excerpt: "Auswendig gelernte Standardantworten helfen weder dem Bewerber noch dem Ausbildungsbetrieb. Herr Achim Betticher erläutert, wie er Kandidaten bei DMF Vietnam zu natürlicher Kommunikation und aktivem Nachfragen anleitet."
 ---
 
+**Das Wichtigste in Kürze:** Wie Herr Achim Betticher als Ausbildungsleiter vor Ort in Vietnam Kandidaten im 1:1-Training auf authentische Vorstellungsgespräche mit deutschen Betrieben vorbereitet – Auswendig gelernte Standardantworten helfen weder dem Bewerber noch dem Ausbildungsbetrieb. Herr Achim Betticher erläutert, wie er Kandidaten bei DMF Vietnam zu natürlicher Kommunikation und aktivem Nachfragen anleitet.
+
 Wer als Personalverantwortlicher oder Ausbildungsleiter per Videokonferenz Bewerberinnen und Bewerber aus Drittstaaten interviewt, erlebt häufig ein bekanntes Muster: Auf die erste Standardfrage (_„Stellen Sie sich bitte kurz vor“_) folgt ein flüssig vorgetragener dreiminütiger Monolog. Sobald der Ausbilder jedoch eine spontane Zwischenfrage stellt (_„Warum möchten Sie gerade in einer kleineren Stadt im Emsland oder im Schwarzwald arbeiten?“_ oder _„Wie gehen Sie damit um, wenn ein Gast im Restaurant unzufrieden ist?“_), bricht der Redefluss abrupt ab. Der Bewerber hatte einen vorformulierten Text auswendig gelernt, ohne die sprachliche Flexibilität für ein echtes Gespräch zu besitzen.
 
 Bei **DMF Vietnam** unterbinden wir dieses Auswendiglernen konsequent. Verantwortlich dafür ist **Herr Achim Betticher**, unser deutscher Repräsentant und Leiter der Interview- und Praxisvorbereitung vor Ort in Vietnam (`achim.betticher@dmf-talents.de`). Bevor ein Kandidat von DMF Talents einem deutschen Arbeitgeber vorgestellt wird, durchläuft er mit Herrn Betticher ein mehrstufiges Einzel- und Kleingruppentraining.
@@ -63,3 +65,17 @@ Das Interview-Coaching bei DMF Vietnam gliedert sich in vier aufeinander aufbaue
 Für deutsche Unternehmen bietet die Position von Herrn Achim Betticher vor Ort in Vietnam einen unmittelbaren Qualitätsvorteil: Wenn Sie besondere Anforderungen an Ihre künftigen Auszubildenden stellen – etwa bestimmte Fachbegriffe für Ihre Speisekarte, Ihre Hotelsoftware, Ihre Zahnarztpraxis oder Ihren Maschinenpark –, integriert Herr Betticher genau diese Inhalte schon während der mehrmonatigen Wartezeit auf das Visum in das Vorbereitungstraining Ihrer ausgewählten Kandidaten.
 
 Lernen Sie unsere Arbeitsweise kennen: Prüfen Sie unsere aktuellen [Kandidatenprofile mit Video](/fuer-arbeitgeber/kandidaten), informieren Sie sich über das [duale Ausbildungsprogramm](/services/azubi) oder richten Sie Ihre Anfrage direkt an unser Team über das [Arbeitgeber-Portal](/fuer-arbeitgeber/personalbedarf).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Interview-Coaching mit Achim Betticher bei DMF Vietnam?
+
+In seinem Trainingsleitfaden für die DMF Akademie bringt Herr Achim Betticher seinen pädagogischen Ansatz auf eine klare Formel:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Ein zentrales Thema im Training von Herrn Betticher ist der kulturelle Unterschied im Umgang mit Nichtverstehen. In der vietnamesischen Alltagskultur gilt es oft als unhöflich oder gesichtsverlierend, einem Ranghöheren oder Älteren direkt zu sagen, dass man eine Aussage akustisch oder inhaltlich nicht verstanden hat. Viele Lernende nicken daher im Gespräch höflich und lächeln, obwohl ihnen ein Schlüsselwort gefehlt hat.
+
+### Wie unterstützt DMF Talents Unternehmen bei Interview-Coaching mit Achim Betticher bei DMF Vietnam?
+
+Das Interview-Coaching bei DMF Vietnam gliedert sich in vier aufeinander aufbauende Schritte:

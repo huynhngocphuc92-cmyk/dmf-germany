@@ -11,6 +11,8 @@ status: "published"
 
 # Arbeitszeitgesetz (ArbZG) & Überstunden: Rechtssicherheit bei internationalen Teams
 
+**Das Wichtigste in Kürze:** Arbeitszeitgesetz (ArbZG) bei internationalen Fachkräften: Höchstarbeitszeit 10 Std., 11 Std. Ruhezeit, digitale Zeiterfassung und Visumsverlängerung – Höchstarbeitszeit, 11 Stunden Ruhezeit und Zeiterfassung: Wie Betriebe bei internationalen Mitarbeitern Bußgelder und Visumsrisiken vermeiden.
+
 Internationale Fachkräfte und Auszubildende aus Vietnam zeichnen sich im Betriebsalltag durch eine bemerkenswerte Arbeitsmoral aus: Sie sind hochmotiviert, übernehmen gerne zusätzliche Schichten und fragen nicht selten von sich aus nach Überstunden, um zusätzliches Geld zu verdienen oder im Betrieb schnell aufzusteigen. Für den Arbeitgeber ist dieser Einsatzwille ein unschätzbarer Gewinn.
 
 Gleichzeitig birgt dieser Fleiß eine arbeits- und aufenthaltsrechtliche Fallgrube: **Das deutsche Arbeitszeitgesetz (ArbZG) ist zwingendes Arbeitsschutzrecht und gilt uneingeschränkt für jeden Beschäftigten – unabhängig von dessen persönlicher Bereitschaft zu Mehrarbeit.** Verstöße gegen tägliche Höchstarbeitszeiten, unzureichende Ruhepausen oder fehlende Zeiterfassungen werden von den Gewerbeaufsichtsämtern mit drakonischen Bußgeldern von bis zu 30.000 Euro geahndet und können bei einer Visaverlängerung die Ausländerbehörde auf den Plan rufen.
@@ -65,3 +67,17 @@ Die lückenlose Dokumentation schützt den Arbeitgeber: Bei Verlängerungen von 
 3. **Monatlicher Abgleich des Arbeitszeitkontos:** Überstundensalden regelmäßig prüfen und bei mehr als 20 Plusstunden zeitnah Freizeitausgleich terminieren.
 
 Schützen Sie Ihr Unternehmen vor Compliance-Risiken. DMF Talents berät Sie zu fairen und rechtssicheren Arbeitszeitmodellen für Ihre internationalen Fachkräfte.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Arbeitszeitgesetz ArbZG & Überstunden?
+
+Um Rechtssicherheit im Betrieb zu garantieren, müssen Geschäftsführer, Werkstattleiter und Pflegedienstleitungen vier elementare Grenzen kennen:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Schließen vietnamesische Jugendliche die Schule in ihrer Heimat bereits mit 17 Jahren ab und beginnen eine Ausbildung in Deutschland, greift das Jugendarbeitsschutzgesetz (JArbSchG):
+
+### Wie unterstützt DMF Talents Unternehmen bei Arbeitszeitgesetz ArbZG & Überstunden?
+
+Nach den Urteilen des Europäischen Gerichtshofs (EuGH) und des Bundesarbeitsgerichts (BAG) sind deutsche Arbeitgeber verpflichtet, ein objektives, verlässliches und zugängliches System zur Erfassung der täglichen Arbeitszeit einzurichten.

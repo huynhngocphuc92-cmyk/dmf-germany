@@ -10,6 +10,8 @@ excerpt: "Reicht ein B1-Zertifikat für den Arbeitsalltag? Erfahren Sie, wie Arb
 
 # Deutsch im Arbeitsalltag: Sprachliche Anforderungen realistisch bewerten
 
+**Das Wichtigste in Kürze:** Sprachkenntnisse ausländischer Fachkräfte realistisch beurteilen: Leitfaden und Beispielfragen für das Vorstellungsgespräch jenseits von B1/B2-Zertifikaten – Erfahren Sie, wie Arbeitgeber Sprachkompetenzen im Vorstellungsgespräch praxisnah und aufgabenbezogen bewerten.
+
 Wer Fachkräfte oder Auszubildende aus dem Ausland rekrutiert, stößt schnell auf die Stufen des Gemeinsamen Europäischen Referenzrahmens für Sprachen (GER): A1, B1, B2. Für die Erteilung eines Arbeits- oder Ausbildungsvisums ist ein entsprechendes Sprachzertifikat (z. B. Goethe-Institut, telc oder ÖSD) eine feste gesetzliche oder fachliche Voraussetzung.
 
 In der betrieblichen Praxis stellen sich Arbeitgeber jedoch häufig eine andere Frage: Was bedeutet ein bestandenes B1- oder B2-Zertifikat tatsächlich für das tägliche Miteinander in der Werkstatt, auf der Pflegestation oder auf der Baustelle?
@@ -88,3 +90,17 @@ Sprachkompetenz entwickelt sich am schnellsten im Arbeitsalltag. Betriebe könne
 Ein strukturiertes Vorstellungsgespräch verschafft Ihnen Klarheit über fachliche Fähigkeiten und das tatsächliche Sprachniveau der Bewerbenden. Einen Einblick in die Vorbereitung und Auswahl qualifizierter Kandidaten erhalten Sie bei [DMF Talents zur Fachkräftevermittlung](/services/skilled-workers).
 
 Möchten Sie offene Stellen besetzen und passende Profile im Videointerview kennenlernen? [Teilen Sie uns Ihren Personalbedarf mit](/fuer-arbeitgeber/personalbedarf), um die Anforderungen Ihrer Stellen gezielt abzustimmen.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Deutsch im Arbeitsalltag?
+
+Ein Sprachzertifikat belegt, dass eine Person Grammatikregeln, Leseverständnis, Hörverstehen und schriftlichen Ausdruck unter standardisierten Prüfungsbedingungen beherrscht. Es ist ein verlässlicher Nachweis für Lernfähigkeit, Disziplin und Grundlagenwissen.
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Bevor Sie ein Vorstellungsgespräch führen, sollten Sie im Fachbereich klären, in welchen konkreten Situationen im Unternehmen Deutsch gesprochen, gelesen oder dokumentiert werden muss:
+
+### Wie unterstützt DMF Talents Unternehmen bei Deutsch im Arbeitsalltag?
+
+Videointerviews mit Kandidatinnen und Kandidaten aus Vietnam sind eine hervorragende Möglichkeit, die alltagspraktische Kommunikationsfähigkeit einzuschätzen. Vermeiden Sie allgemeine Fragen wie „Können Sie Deutsch sprechen?“, auf die meist nur ein kurzes „Ja“ folgt.

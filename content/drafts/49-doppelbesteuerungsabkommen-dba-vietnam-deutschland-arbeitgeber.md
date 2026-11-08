@@ -11,6 +11,8 @@ status: "published"
 
 # Doppelbesteuerungsabkommen (DBA) Deutschland–Vietnam: Leitfaden für Personalabteilungen
 
+**Das Wichtigste in Kürze:** Steuerrechtliche Pflichten bei Fachkräften aus Vietnam: DBA Art. 15, unbeschränkte Steuerpflicht (§ 1 EStG), Steuerklassen I bis IV und Rentenerstattung – Steuerklassen, Ansässigkeit nach DBA Art. 15 und Rentenbeitragserstattung im Detail.
+
 Bei der Einstellung von Arbeitnehmern aus Nicht-EU-Ländern herrscht in Personalabteilungen und bei Steuerberatern häufig Unsicherheit: **Welchem Staat steht das Besteuerungsrecht am Arbeitslohn zu? Welche Lohnsteuerklasse gilt für ledige und verheiratete Fachkräfte? Und was passiert mit den gezahlten Rentenversicherungsbeiträgen bei einer späteren Rückkehr ins Heimatland?**
 
 Grundlage für die steuerliche Einordnung ist das am 16. November 1995 unterzeichnete **Abkommen zwischen der Bundesrepublik Deutschland und der Sozialistischen Republik Vietnam zur Vermeidung der Doppelbesteuerung auf dem Gebiet der Steuern vom Einkommen und vom Vermögen (DBA Deutschland-Vietnam)**. In diesem Beitrag erfahren Sie, wie Sie Lohn- und Gehaltsabrechnungen rechtssicher aufsetzen.
@@ -58,3 +60,17 @@ Zur reibungslosen steuerlichen Integration empfiehlt DMF Talents Betrieben:
 - **Mitarbeiter über Steuererklärung aufklären:** Viele internationale Fachkräfte wissen nicht, dass sie berufsbedingte Kosten (wie Sprachkurse oder Reisekosten) über die jährliche Einkommensteuererklärung steuerlich geltend machen können.
 
 Lesen Sie ergänzend unseren Beitrag zu [steuerfreien Arbeitgeberleistungen für Azubis](/blog/steuerfreie-arbeitgeberleistungen-azubis-sachbezug-wohnzuschuss), um Lohnnebenkosten legal zu optimieren.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema DBA Deutschland?
+
+Nach Art. 15 Abs. 1 des DBA Vietnam-Deutschland dürfen Gehälter, Löhne und ähnliche Vergütungen, die eine in einem Vertragsstaat ansässige Person aus unselbständiger Arbeit bezieht, nur in diesem Staat besteuert werden, es sei denn, die Arbeit wird im anderen Vertragsstaat ausgeübt.
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Nach der Anmeldung beim Einwohnermeldeamt übermittelt das Bundeszentralamt für Steuern (BZSt) dem Arbeitgeber die elektronischen Lohnsteuerabzugsmerkmale (ELStAM).
+
+### Wie unterstützt DMF Talents Unternehmen bei DBA Deutschland?
+
+Während für das Steuerrecht ein klares Doppelbesteuerungsabkommen existiert, gibt es zwischen Deutschland und Vietnam kein bilaterales Sozialversicherungsabkommen.

@@ -11,6 +11,8 @@ status: "published"
 
 # Minderjährige Azubis aus Drittstaaten: Jugendarbeitsschutzgesetz & Sorgerecht
 
+**Das Wichtigste in Kürze:** Ausbildung minderjähriger Fachkräfte aus Drittstaaten: Sorgerechtsvollmacht, Jugendarbeitsschutzgesetz (§ 8, § 32 JArbSchG), Erstuntersuchung und Arbeitszeiten – Ausbildungsstart mit 17 Jahren: Was Betriebe bei elterlicher Zustimmung, JArbSchG-Aufsichtspflicht, Arbeitszeit und Erstuntersuchung beachten müssen.
+
 In Vietnam schließen viele Schüler die zwölfjährige Schullaufbahn bereits im Alter von 17 Jahren ab. Wenn diese motivierten jungen Nachwuchskräfte direkt im Anschluss eine duale Berufsausbildung in Deutschland antreten, sind sie bei der Einreise und zu Beginn des ersten Ausbildungsjahres oft noch **minderjährig (unter 18 Jahren)**.
 
 Für Ausbildungsbetriebe ergeben sich daraus zwei zentrale rechtliche Handlungsfelder: die **ausländerrechtliche und zivilrechtliche Sorgerechtsübertragung** durch die Eltern in Vietnam sowie die strikte Einhaltung der Schutzvorschriften des **Jugendarbeitsschutzgesetzes (JArbSchG)**. Wer die Abläufe kennt, kann 17-jährige Talente rechtssicher, fürsorglich und ohne bürokratische Hürden in Betrieb und Berufsschule integrieren.
@@ -58,3 +60,17 @@ Um die Erziehungsberechtigten in Vietnam zu beruhigen und dem Betrieb die Sorge 
 - Wir organisieren betreute Azubi-Wohngemeinschaften mit festen Hausregeln, sodass eine altersgerechte Unterbringung gewährleistet ist.
 
 Sobald der Azubi das 18. Lebensjahr vollendet, entfallen die Sonderauflagen des JArbSchG automatisch, und es greifen die regulären Bestimmungen des Arbeitszeitgesetzes.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Minderjährige Azubis Drittstaaten?
+
+Minderjährige sind nach § 106 Bürgerliches Gesetzbuch (BGB) beschränkt geschäftsfähig. Daraus folgen zwingende Vorgaben für den Vertragsabschluss:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Sobald ein Jugendlicher im Betrieb tätig ist, überwacht die Gewerbeaufsicht bzw. das Staatliche Amt für Arbeitsschutz die Einhaltung des JArbSchG. Verstöße stellen Ordnungswidrigkeiten dar und können zum Entzug der Ausbildungsberechtigung führen!
+
+### Wie unterstützt DMF Talents Unternehmen bei Minderjährige Azubis Drittstaaten?
+
+Ein minderjähriger Azubi darf erst dann beschäftigt werden, wenn dem Arbeitgeber eine Bescheinigung über die Erstuntersuchung durch einen Arzt vorliegt.

@@ -11,6 +11,8 @@ status: "published"
 
 # Gabelstapler und Flurfördermittel: Geltung ausländischer Scheine (DGUV Vorschrift 68)
 
+**Das Wichtigste in Kürze:** Gabelstapler & Flurfördermittel für ausländische Fachkräfte: Gültigkeit nach DGUV Vorschrift 68, Bedienerausweis DGUV 308-001, G25-Untersuchung und Haftung – Rechtslage nach DGUV Vorschrift 68, Umschreibung nach DGUV Grundsatz 308-001 und Halterhaftung.
+
 In Logistikzentren, Speditionen, Baustoffhandlungen und produzierenden Industriebetrieben ist der Gabelstapler das unverzichtbare Rückgrat des internen Materialflusses. Wenn Unternehmen ausländische Fachkräfte für Lagerlogistik, Fachlageristen oder Produktionshelfer aus Drittstaaten wie Vietnam einstellen, besitzen viele Bewerber bereits jahrelange praktische Erfahrung im Fahren von Frontstaplern, Schubmaststaplern oder Kommissionierern.
 
 Doch Vorsicht: **Darf der neue Mitarbeiter mit seinem heimatlichen Stapler-Zertifikat sofort im deutschen Betrieb ans Steuer?** Wer diese Frage vorschnell mit „Ja“ beantwortet, begeht eine gravierende Verletzung der betrieblichen Organisationspflichten. Kommt es zu einem Unfall, drohen empfindliche Regressforderungen der Berufsgenossenschaft und strafrechtliche Konsequenzen für Geschäftsführer und Logistikleiter.
@@ -74,3 +76,17 @@ Damit neue internationale Lagerfachkräfte zügig produktiv werden, empfiehlt si
 3. **Akku-Ladestation & Batteriewartung:** Korrekte Handhabung von Ladegeräten, Vermeidung von Knallgasbildung und Pflege von Blei-Säure- sowie Li-Ionen-Batterien.
 
 Sichern Sie Ihre Logistikketten mit qualifizierten Staplerfahrern und Fachkräften für Lagerlogistik aus Vietnam. DMF Talents garantiert rechtssichere DGUV-Qualifikationen.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Staplerschein Drittstaaten?
+
+Im Gegensatz zu Pkw-Führerscheinen, die nach § 29 FeV zumindest für die ersten sechs Monate anerkannt werden, gilt für Flurförderzeuge das berufsgenossenschaftliche Vorschriftenwerk der Deutschen Gesetzlichen Unfallversicherung (DGUV):
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Die gute Nachricht für Logistikbetriebe: Da vietnamesische Fachkräfte die Fahr- und Bedienpraxis meist bereits beherrschen, müssen sie keine zeitraubende Mehrtagesschulung für Anfänger durchlaufen.
+
+### Wie unterstützt DMF Talents Unternehmen bei Staplerschein Drittstaaten?
+
+Der Besitz des Staplerscheins allein reicht rein rechtlich noch nicht aus: Nach § 7 Abs. 1 DGUV Vorschrift 68 muss die Beauftragung durch den Arbeitgeber schriftlich erfolgen.

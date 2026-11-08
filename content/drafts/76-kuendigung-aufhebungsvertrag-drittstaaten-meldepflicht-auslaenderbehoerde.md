@@ -11,6 +11,8 @@ status: "published"
 
 # Kündigung und Aufhebungsvertrag: Meldepflichten nach § 4a Abs. 5 AufenthG
 
+**Das Wichtigste in Kürze:** Kündigung und Aufhebungsvertrag bei Drittstaatsangehörigen: 4-Wochen-Meldepflicht nach § 4a Abs. 5 AufenthG, Bußgelder bis 30.000 €, KSchG und Praxis-Leitfaden – Gesetzliche 4-Wochen-Meldepflicht nach § 4a Abs. 5 AufenthG, Fristen und Bußgeldrisiken für Betriebe.
+
 Nicht jedes Arbeitsverhältnis verläuft auf Dauer harmonisch: Sei es durch mangelnde fachliche Entwicklung, unerwartete betriebliche Auftragseinbrüche, persönliche Umorientierung der Fachkraft oder einvernehmliche Trennungen über einen Aufhebungsvertrag – auch bei internationalen Mitarbeitern aus Drittstaaten wie Vietnam kann es zur vorzeitigen Beendigung des Arbeitsverhältnisses kommen.
 
 Für Arbeitgeber birgt die Beendigung eines Arbeitsvertrags mit Drittstaatsangehörigen jedoch gravierende aufenthaltsrechtliche Sonderpflichten, die vielen Personalabteilungen unbekannt sind: **Nach § 4a Abs. 5 Aufenthaltsgesetz (AufenthG) sind Arbeitgeber gesetzlich verpflichtet, die vorzeitige Beendigung der Beschäftigung innerhalb von vier Wochen der zuständigen Ausländerbehörde mitzuteilen.** Ein Verstoß gegen diese Meldepflicht stellt eine Ordnungswidrigkeit dar, die nach **§ 404 Abs. 2 Nr. 4 SGB III mit empfindlichen Bußgeldern von bis zu 30.000 Euro geahndet werden kann**.
@@ -77,3 +79,17 @@ Mit der Beendigung des Arbeitsverhältnisses erlischt nicht sofort die Aufenthal
 4. **Arbeitsbescheinigung nach § 312 SGB III:** Elektronische Übermittlung (BEA) an die Bundesagentur für Arbeit vornehmen, damit der Mitarbeiter nahtlos Leistungen beantragen kann.
 
 Haben Sie Fragen zur rechtssicheren Vertragsgestaltung oder Beendigung? DMF Talents berät Partnerbetriebe professionell in allen arbeits- und aufenthaltsrechtlichen Übergangsprozessen.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Kündigung Drittstaaten Mitarbeiter?
+
+Der Gesetzgeber regelt in § 4a Abs. 5 Satz 1 AufenthG unmissverständlich:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Die Mitteilung muss schriftlich oder über das offizielle elektronische Behördenportal an die für den Wohnsitz des Arbeitnehmers zuständige Ausländerbehörde erfolgen. Folgende Pflichtangaben sind erforderlich:
+
+### Wie unterstützt DMF Talents Unternehmen bei Kündigung Drittstaaten Mitarbeiter?
+
+Neben dem Aufenthaltsrecht gelten die allgemeinen Vorschriften des deutschen Arbeitsrechts uneingeschränkt:

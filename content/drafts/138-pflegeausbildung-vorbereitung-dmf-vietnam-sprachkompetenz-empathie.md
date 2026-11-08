@@ -15,6 +15,8 @@ keywords:
 excerpt: "Die generalistische Pflegeausbildung stellt hohe Anforderungen an Sprachkompetenz und emotionale Belastbarkeit. So bereitet DMF Vietnam Bewerber gezielt auf Grundpflege, Schichtdienst und Pflegeschule vor."
 ---
 
+**Das Wichtigste in Kürze:** Wie DMF Vietnam angehende Pflegefachkräfte auf die generalistische Pflegeausbildung, den Schichtdienst und die Koordination mit der Pflegeschule vorbereitet – Die generalistische Pflegeausbildung stellt hohe Anforderungen an Sprachkompetenz und emotionale Belastbarkeit. So bereitet DMF Vietnam Bewerber gezielt auf Grundpflege, Schichtdienst und Pflegeschule vor.
+
 Kein anderer Ausbildungsbereich in Deutschland ist fachlich, sprachlich und organisatorisch so anspruchsvoll reguliert wie die dreijährige generalistische Ausbildung zum **Pflegefachmann bzw. zur Pflegefachfrau** nach dem Pflegeberufegesetz (PflBG). Für Kliniken, Senioren- und Pflegeheime sowie ambulante Pflegedienste bedeutet eine Fehlbesetzung im ersten Ausbildungsjahr einen erheblichen Verlust an Zeit und Praxisanleiter-Kapazität. Wenn ein internationaler Auszubildender erst nach der Ankunft in Deutschland erfährt, was körpernahe Grundpflege, Wechselschichtdienst am Wochenende oder der theoretische Blockunterricht an der Pflegeschule konkret bedeuten, sind Überforderung und Ausbildungsabbrüche vorprogrammiert.
 
 Bei **DMF Vietnam** gilt für das Berufsfeld Pflege und Gesundheit (einschließlich der Ausbildung zur **Zahnmedizinischen Fachangestellten – ZFA**) deshalb unser strengstes internes Auswahl- und Vorbereitungsprotokoll. Wir vermitteln in die Pflege ausschließlich Kandidatinnen und Kandidaten, deren sprachliche Reife, persönliche Empathie und realistische Berufsvorstellung vorab mehrstufig geprüft wurden.
@@ -56,3 +58,17 @@ Nach unserem internen Praxisleitfaden für deutsche Unternehmenspartnerschaften 
 Zu unseren priorisierten Partnerkontakten in Deutschland zählen sowohl große kirchliche, diakonische und kommunale Klinik- und Pflegeverbünde (wie u. a. Häuser in Hamburg, Stuttgart, München, Aachen und Baden-Württemberg) als auch mittelständische Seniorenheime und Facharzt-/Zahnarztpraxen.
 
 Wenn Sie für den nächsten Ausbildungsstart im Frühjahr oder Herbst verlässliche Pflege-Auszubildende suchen, finden Sie weitere Details auf unserer Fachseite [Duale Ausbildung](/ueber-uns/ausbildung), in unserem [Kandidaten-Pool](/fuer-arbeitgeber/kandidaten) sowie über unser [Anfrageformular für Pflege- und Gesundheitseinrichtungen](/fuer-arbeitgeber/personalbedarf).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Pflegeausbildung Vorbereitung bei DMF Vietnam (B1/B2)?
+
+In manchen Herkunftsländern herrscht bei Schulabsolventen das Missverständnis, eine Pflegefachkraft in Europa arbeite überwiegend am Schreibtisch oder führe ausschließlich medizinisch-technische Tätigkeiten wie Blutabnahmen und Visitenbegleitung durch. An der DMF Akademie klären wir unsere Pflege-Kandidatinnen und -Kandidaten (wie unter anderem in unseren Pflege-Bewerbungsprofilen um Lê Cao Khánh Vy und Trần Hoàng Minh) bereits vor dem Verfassen des Motivationsschreibens ungeschminkt über den tatsächlichen Berufsalltag in deutschen Kliniken und Pflegeheimen auf:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Während in einigen gewerblichen Berufen ein solides B1-Niveau für den Ausbildungsstart genügt, setzen fast alle Bundesländer, Pflegeschulen und Krankenhausträger für die generalistische Pflegeausbildung entweder ein abgeschlossenes B2-Zertifikat oder ein sehr starkes B1-Zertifikat mit aktiv laufendem B2-Fachsprachkurs voraus.
+
+### Wie unterstützt DMF Talents Unternehmen bei Pflegeausbildung Vorbereitung bei DMF Vietnam (B1/B2)?
+
+Nach unserem internen Praxisleitfaden für deutsche Unternehmenspartnerschaften (Handbuch Unternehmenspartnerschaften) prüfen Herr Umit Elezov und Herr Achim Betticher gemeinsam mit Ihrer Einrichtung frühzeitig die formalen Voraussetzungen für ein reibungsloses Visumverfahren nach § 16a AufenthG:

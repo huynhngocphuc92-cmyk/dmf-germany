@@ -15,6 +15,8 @@ keywords:
 excerpt: "Vorlagefristen, Informationspflichten und tarifliche Eingruppierung: Wie Arbeitgeber das Beteiligungsverfahren nach § 99 BetrVG reibungslos gestalten."
 ---
 
+**Das Wichtigste in Kürze:** Beteiligung des Betriebsrats bei ausländischen Fachkräften: Wochenfrist (§ 99 Abs. 3 BetrVG), zulässige Verweigerungsgründe und Arbeitsgerichtsverfahren – Vorlagefristen, Informationspflichten und tarifliche Eingruppierung: Wie Arbeitgeber das Beteiligungsverfahren nach § 99 BetrVG reibungslos gestalten.
+
 Unternehmen mit in der Regel mehr als 20 wahlberechtigten Arbeitnehmern verfügen nach dem **Betriebsverfassungsgesetz (BetrVG)** über einen Betriebsrat. Beabsichtigt die Geschäftsführung die Einstellung einer internationalen Fachkraft oder eines Auszubildenden aus einem Drittstaat (z. B. Vietnam), stellt sich häufig Verunsicherung ein: Welche Beteiligungsrechte hat das Gremium? Welche Unterlagen müssen vorgelegt werden? Welche Fristen gelten? Und darf der Betriebsrat die Zustimmung verweigern, weil eine ausländische Fachkraft eingestellt werden soll?
 
 Grundsatz für Arbeitgeber: **Die Mitbestimmung bei personellen Einzelmaßnahmen nach § 99 BetrVG gilt für alle Einstellungen gleichermaßen.** Eine Diskriminierung aufgrund von Herkunft oder Staatsangehörigkeit ist gesetzlich ausgeschlossen. Eine strukturierte Vorbereitung der Betriebsratsanhörung verhindert zeitliche Verzögerungen im Visumsverfahren.
@@ -74,3 +76,17 @@ Eine kooperative Einbindung des Betriebsrats verhindert Friktionen von vornherei
 DMF Talents stellt Arbeitgebern standardisierte Informationsblätter und Musterbeschreibungen bereit, die eine reibungslose Betriebsratsbeteiligung gewährleisten.
 
 Erfahren Sie mehr über unsere Betreuungskonzepte unter [Für Arbeitgeber: Lösungen](/services/skilled-workers) oder registrieren Sie Ihren [Personalbedarf unverbindlich](/fuer-arbeitgeber/personalbedarf).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Betriebsrat & Drittstaaten Einstellung?
+
+Der Arbeitgeber muss den Betriebsrat vor jeder Einstellung umfassend und rechtzeitig unterrichten. Dazu gehört die Vorlage folgender Unterlagen:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Nach Zugang der vollständigen Unterlagen beim Betriebsratsvorsitzenden beginnt die gesetzliche Frist von einer Woche:
+
+### Wie unterstützt DMF Talents Unternehmen bei Betriebsrat & Drittstaaten Einstellung?
+
+Der Betriebsrat kann die Zustimmung nicht nach freiem Ermessen verweigern. Das Gesetz zählt in § 99 Abs. 2 Nr. 1 bis 6 BetrVG abschließende Gründe auf:

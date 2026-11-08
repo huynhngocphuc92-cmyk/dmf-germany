@@ -10,6 +10,8 @@ excerpt: "Reputationsschutz und Transparenz: Erfahren Sie, warum deutsche Klinik
 
 # Das Gütesiegel „Faire Anwerbung Pflege Deutschland“: Qualitätsstandard für Kliniken und Träger
 
+**Das Wichtigste in Kürze:** Warum das Gütesiegel Faire Anwerbung Pflege für Kliniken unverzichtbar ist: Kriterien, Employer-Pays-Prinzip und ethische Rekrutierung aus Vietnam – Reputationsschutz und Transparenz: Erfahren Sie, warum deutsche Kliniken und Pflegeheime bei der Auslandsrekrutierung auf das RAL Gütezeichen setzen sollten.
+
 Der Mangel an Pflegepersonal in deutschen Krankenhäusern, Rehakliniken und Senioreneinrichtungen ist eine der größten gesellschaftlichen Herausforderungen der Gegenwart. Viele Träger gewinnen Pflegefachpersonen aus Drittstaaten wie Vietnam, um die Versorgungssicherheit auf den Stationen aufrechtzuerhalten. Gleichzeitig wächst das Bewusstsein für die ethischen und rechtlichen Rahmenbedingungen der internationalen Rekrutierung.
 
 Unternehmen laufen Gefahr, ihren Ruf zu schädigen, wenn Vermittlungsagenturen intransparente Gebühren von Pflegekräften verlangen, unzulässige Knebelverträge abschließen oder gegen internationale Abkommen verstoßen. Um Pflegeeinrichtungen und Fachkräften Orientierung zu geben, hat das Bundesministerium für Gesundheit (BMG) gemeinsam mit dem Kuratorium Deutsche Altershilfe (KDA) das staatlich geförderte **RAL Gütezeichen „Faire Anwerbung Pflege Deutschland“** ins Leben gerufen.
@@ -67,3 +69,17 @@ Träger, die sich an diesen Grundsätzen orientieren, erzielen signifikant gerin
 Faire Anwerbung ist die unverzichtbare Grundvoraussetzung für stabile Pflegeteams, hohe Patientensicherheit und exzellente Versorgungsqualität. Informieren Sie sich über die Pflegefachkräfteprogramme bei [DMF Talents zur Fachkräftevermittlung](/services/skilled-workers).
 
 Möchten Sie offene Pflegestellen in Ihrem Krankenhaus oder Ihrer Pflegeeinrichtung nachhaltig mit qualifizierten Kräften besetzen und dabei auf höchste ethische Standards setzen? [Teilen Sie uns Ihren Personalbedarf mit](/fuer-arbeitgeber/personalbedarf), um ein unverbindliches Beratungsgespräch zu vereinbaren.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Gütesiegel Faire Anwerbung Pflege?
+
+Das Gütezeichen basiert auf dem WHO Global Code of Practice on the International Recruitment of Health Personnel und stellt verbindliche Anforderungen an den gesamten Rekrutierungsprozess:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Nach § 296a SGB III ist es in Deutschland unzulässig, Vermittlungsgebühren von Arbeitsuchenden zu verlangen. Dennoch versuchen unregulierte Vermittler gelegentlich, Gebühren über verdeckte Darlehen, Kautionen oder Ausbildungskostenverträge im Herkunftsland auf die Pflegekräfte abzuwälzen.
+
+### Wie unterstützt DMF Talents Unternehmen bei Gütesiegel Faire Anwerbung Pflege?
+
+Die faire Gewinnung vietnamesischer Pflegekräfte folgt einem transparenten Fünf-Stufen-Modell:

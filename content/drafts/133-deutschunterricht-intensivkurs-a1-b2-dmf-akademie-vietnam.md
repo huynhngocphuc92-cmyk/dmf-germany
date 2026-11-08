@@ -15,6 +15,8 @@ keywords:
 excerpt: "Ein bestandenes Sprachzertifikat auf dem Papier garantiert noch keine flüssige Verständigung im Betrieb. So kombiniert die DMF Sprachakademie vietnamesische Grammatik-Dozenten und deutsche Muttersprachler im 5-Tage-Wochenrhythmus."
 ---
 
+**Das Wichtigste in Kürze:** Wie Auszubildende an der DMF Sprachakademie in Vietnam in kleinen Gruppen (8–15 Personen) an 5 Tagen pro Woche von A1 bis B2 auf den Berufsalltag vorbereitet werden – Ein bestandenes Sprachzertifikat auf dem Papier garantiert noch keine flüssige Verständigung im Betrieb. So kombiniert die DMF Sprachakademie vietnamesische Grammatik-Dozenten und deutsche Muttersprachler im 5-Tage-Wochenrhythmus.
+
 Jeder Personalverantwortliche, der schon einmal internationale Auszubildende eingestellt hat, kennt das Phänomen: Ein Bewerber legt ein bestandenes B1- oder B2-Zertifikat vor, wirkt im ersten Gespräch am Telefon jedoch gehemmt, versteht gesprochene Arbeitsanweisungen in normalem Sprechtempo kaum und weicht auf einsilbige Antworten aus. Die Ursache liegt fast immer in einer falsch angelegten Sprachausbildung im Herkunftsland, die einseitig auf das Bestehen standardisierter Multiple-Choice-Prüfungen statt auf aktive mündliche Handlungsfähigkeit ausgerichtet war.
 
 An der **DMF Sprachakademie** in Biên Hòa und Ho-Chi-Minh-Stadt haben wir den Lehrplan deshalb konsequent vom späteren Arbeitsplatz in Deutschland her aufgebaut. Unser Ziel ist nicht allein das Prüfungszeugnis für die Visumstelle, sondern ein Auszubildender, der am ersten Tag in der Berufsschule, im Stationszimmer, in der Hotelküche oder in der Werkhalle versteht, was Ausbilder, Kollegen und Kunden sagen – und der sich traut, aktiv auf Deutsch zu antworten.
@@ -65,3 +67,17 @@ In unserem zentralen akademischen Bewertungssystem (_Đánh giá tình hình h�
 Wenn wir einem deutschen Ausbildungsbetrieb ein Kandidatenprofil vorlegen, stützt sich unsere Spracheinschätzung genau auf diese dokumentierte Lernhistorie. Sie erfahren transparent, welche Module bereits mit Zertifikat abgeschlossen sind und in welcher B1- oder B2-Klasse sich der Bewerber aktuell bis zum Abflug weiterqualifiziert.
 
 Mehr über unsere [Ausbildungsvorbereitung in Vietnam](/ueber-uns/ausbildung) und unser [Azubi-Vermittlungsprogramm](/services/azubi) lesen Sie auf unseren Leistungsseiten. Für eine persönliche Beratung erreichen Sie uns jederzeit über das [Arbeitgeber-Kontaktformular](/fuer-arbeitgeber/personalbedarf).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Deutsch-Intensivunterricht A1?
+
+Spracherwerb für Erwachsene erfordert tägliche Wiederholung und hohe Sprechanteile pro Person. Während viele Großschulen mit 25 bis 30 Lernenden pro Raum arbeiten, begrenzen wir unsere Klassengrößen an der DMF Akademie bewusst auf 8 bis 15 Teilnehmende (in Spezial- und B2-Klassen wie der K44 oft sogar auf 6 bis 10 Teilnehmende).
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Jede Niveaustufe besitzt im Produkt- und Akademieregister von DMF Vietnam einen fest definierten Umfang an Unterrichtseinheiten und Lernzielen:
+
+### Wie unterstützt DMF Talents Unternehmen bei Deutsch-Intensivunterricht A1?
+
+Ein Alleinstellungsmerkmal unserer Akademie ist die gezielte Kombination aus erfahrenen vietnamesischen Deutschlehrkräften und deutschen Muttersprachlern:

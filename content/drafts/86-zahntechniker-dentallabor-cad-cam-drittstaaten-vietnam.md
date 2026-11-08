@@ -15,6 +15,8 @@ keywords:
 excerpt: "CAD/CAM-Konstruktion, Zirkonfräsen und Keramikverblendung: Wie deutsche Dentallabore qualifizierte Zahntechniker aus Vietnam erfolgreich integrieren."
 ---
 
+**Das Wichtigste in Kürze:** Dentallabor Fachkräftemangel lösen: Zahntechniker aus Drittstaaten nach EU-MDR 2017/745, exocad CAD/CAM Fräszentren und HwO-Anerkennung – CAD/CAM-Konstruktion, Zirkonfräsen und Keramikverblendung: Wie deutsche Dentallabore qualifizierte Zahntechniker aus Vietnam erfolgreich integrieren.
+
 Das deutsche Zahntechniker-Handwerk steht an der Schnittstelle zwischen traditioneller Handwerkskunst und digitaler Hochtechnologie. Während moderne Dentallabore und Fräszentren Millionen in 5-Achs-Fräsmaschinen, 3D-Drucker und CAD-Software (exocad, 3Shape) investieren, verschärft sich der Mangel an qualifizierten Zahntechnikern drastisch. Nach Angaben des [Verbands Deutscher Zahntechniker-Innungen (VDZI)](https://www.vdzi.de) scheidet in den kommenden Jahren ein Drittel der erfahrenen Zahntechniker altersbedingt aus.
 
 Gleichzeitig verlangt die europäische **Medizinprodukte-Verordnung (EU-MDR 2017/745)** eine lückenlose Chargendokumentation, Risikobewertung und werkstoffliche Rückverfolgbarkeit für jede individuell angefertigte Sonderanfertigung (Kronen, Brücken, Implantatversorgungen).
@@ -73,3 +75,17 @@ Neben digitaler Kompetenz steht der Gesundheitsschutz im Dentallabor an oberster
 DMF Talents prüft vorab alle Zeugnisse und Curricula, führt handwerkliche Praxistests vor Ort in Vietnam durch und organisiert den vollständigen Visumsantrag.
 
 Erfahren Sie mehr über unsere Betreuungsstandards auf der Seite [Für Arbeitgeber: Handwerk & Industrie](/services/skilled-workers).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Zahntechniker aus Vietnam einstellen?
+
+Zahntechniker aus Vietnam beherrschen sowohl den volldigitalen Workflow als auch die klassische manuelle Fertigung:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Die vietnamesische Ausbildung ist stark praxisorientiert und umfasst an den staatlichen Fachkollegs eine 3-jährige Vollzeitausbildung:
+
+### Wie unterstützt DMF Talents Unternehmen bei Zahntechniker aus Vietnam einstellen?
+
+Zahntechniker ist ein zulassungspflichtiges Handwerk der Anlage A der Handwerksordnung (HwO). Für die Erteilung eines Fachkrafttitels nach § 18a AufenthG bzw. den Direkteinstieg im Dentallabor empfiehlt sich:

@@ -11,6 +11,8 @@ status: "published"
 
 # Verpflichtungserklärung nach §§ 66–68 AufenthG: Haftungsrisiken für Arbeitgeber im Klartext
 
+**Das Wichtigste in Kürze:** Haftungsrisiken bei Verpflichtungserklärung (§§ 66-68 AufenthG): Warum Arbeitgeber keine Bürgschaft unterzeichnen sollten und wie DMF Betriebe schützt – Warum ein regulärer Arbeitsvertrag ausreicht und welche Haftungsfallen drohen.
+
 Im Zuge der Rekrutierung internationaler Fachkräfte aus Drittstaaten fordern manche Ausländerbehörden oder Vermittlungsagenturen von Betrieben die Abgabe einer formellen **Verpflichtungserklärung nach §§ 66 bis 68 Aufenthaltsgesetz (AufenthG)**. Geschäftsführer und Prokuristen unterschreiben dieses Formular oft in dem Glauben, es handele sich um eine reine Formalität zur Bestätigung des Arbeitsverhältnisses.
 
 Das ist ein folgenschwerer Irrtum. Eine Verpflichtungserklärung ist eine **weitreichende, privatrechtliche und öffentlich-rechtliche Bürgschaft**, die existenzielle finanzielle Risiken für das Unternehmen begründen kann. In diesem Leitfaden erfahren Sie, warum Sie eine solche Erklärung in der Regel nicht abgeben müssen und welcher Weg rechtssicher ist.
@@ -61,3 +63,17 @@ In solchen Fällen empfiehlt sich folgende rechtliche Argumentation durch Ihren 
 DMF Talents strukturiert alle Rekrutierungs- und Einreiseverfahren so, dass deutsche Arbeitgeber zu keinem Zeitpunkt mit unkalkulierbaren Bürgschaften nach § 68 AufenthG belastet werden. Unsere Fachkräfte und Auszubildenden reisen auf Basis rechtssicherer Arbeitsverträge und vollständig gedeckter Lebensunterhaltsprofile ein.
 
 Erfahren Sie mehr über unsere Compliance-Standards im Beitrag zum [Employer-Pays-Prinzip nach § 296a SGB III](/blog/employer-pays-prinzip-296a-sgb-iii-transparenz).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Verpflichtungserklärung § 68 AufenthG?
+
+Mit der Abgabe einer förmlichen Verpflichtungserklärung gegenüber der Ausländerbehörde verpflichtet sich der Unterzeichner zur Erstattung sämtlicher öffentlicher Mittel, die für den Lebensunterhalt des Ausländers aufgewendet werden (§ 68 Abs. 1 AufenthG).
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Die erfreuliche Nachricht für alle Arbeitgeber: Für die Erteilung eines regulären Aufenthaltstitels zur Berufsausbildung (§ 16a), zur Fachkräftebeschäftigung (§ 18a, § 18b) oder zur Anerkennung (§ 16d) ist eine Verpflichtungserklärung gesetzlich überhaupt nicht erforderlich.
+
+### Wie unterstützt DMF Talents Unternehmen bei Verpflichtungserklärung § 68 AufenthG?
+
+Manche Ausländerbehörden verlangen routinemäßig eine Verpflichtungserklärung, wenn vor Beginn der Ausbildung ein mehrmonatiger vorbereitender Sprachkurs in Deutschland absolviert werden soll.

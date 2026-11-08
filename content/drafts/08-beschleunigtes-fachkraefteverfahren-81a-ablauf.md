@@ -10,6 +10,8 @@ excerpt: "Wie verkürzt das beschleunigte Fachkräfteverfahren nach § 81a Aufen
 
 # Das beschleunigte Fachkräfteverfahren nach § 81a AufenthG: Ablauf und Praxisleitfaden für Arbeitgeber
 
+**Das Wichtigste in Kürze:** Das beschleunigte Fachkräfteverfahren nach § 81a AufenthG: Ablauf, Fristen, Kosten und Vorabzustimmung. Ein Praxisleitfaden für deutsche Arbeitgeber – Ablauf, Fristen und Handlungsschritte für Arbeitgeber.
+
 Die Rekrutierung qualifizierter Fachkräfte aus Drittstaaten scheiterte in der Vergangenheit häufig an langwierigen behördlichen Wartezeiten: Monatelanges Warten auf Termine bei deutschen Auslandsvertretungen, zeitraubende Anerkennungsverfahren und unübersichtliche Zuständigkeiten stellten Betriebe vor große Geduldsproben.
 
 Mit dem **beschleunigten Fachkräfteverfahren nach § 81a des Aufenthaltsgesetzes (AufenthG)** hat der Gesetzgeber ein wirksames Instrument geschaffen, um Verfahrenswege zu bündeln und Fristen für Behörden verbindlich zu verkürzen.
@@ -76,3 +78,17 @@ Das Verfahren reduziert die reine behördliche Bearbeitungszeit im Inland oft vo
 Das beschleunigte Fachkräfteverfahren bietet Betrieben planbare Fristen für den Arbeitsbeginn. Eine Übersicht über den gesamten Rekrutierungsprozess finden Sie im [Zeitplan für Arbeitgeber](/fuer-arbeitgeber/zeitplan).
 
 Möchten Sie eine qualifizierte Fachkraft aus Vietnam einstellen und das beschleunigte Verfahren nutzen? [Teilen Sie uns Ihren Personalbedarf mit](/fuer-arbeitgeber/personalbedarf), um die behördlichen Voraussetzungen für Ihre Stelle gemeinsam zu prüfen.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema § 81a AufenthG?
+
+Im Gegensatz zum regulären Visumverfahren wird das beschleunigte Fachkräfteverfahren nicht von der ausländischen Fachkraft bei der Botschaft initiiert, sondern vom Arbeitgeber in Deutschland bei der zuständigen Ausländerbehörde (bzw. der Zentralen Ausländerbehörde des jeweiligen Bundeslandes) beantragt.
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Zu Beginn schließt der Arbeitgeber eine formelle Vereinbarung mit der Ausländerbehörde ab. Hierfür benötigt das Unternehmen:
+
+### Wie unterstützt DMF Talents Unternehmen bei § 81a AufenthG?
+
+Die Ausländerbehörde stößt parallel zwei entscheidende Teilprüfungen an:

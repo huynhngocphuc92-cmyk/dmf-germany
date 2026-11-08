@@ -10,6 +10,8 @@ excerpt: "Ein Angebot lässt sich erst einordnen, wenn Leistungen und Zuständig
 
 # Personalvermittlung aus Vietnam: So vergleichen Sie Angebote
 
+**Das Wichtigste in Kürze:** Personalvermittlung aus Vietnam vergleichen: Fragen zu Leistungsumfang, Kosten, Zuständigkeiten und offenen Risiken für Ihr Gespräch mit einem Anbieter – Ein Angebot lässt sich erst einordnen, wenn Leistungen und Zuständigkeiten klar sind. Diese Fragen helfen Arbeitgebern beim Vergleich von Vermittlungsangeboten.
+
 Sie haben Angebote zur Personalvermittlung aus Vietnam vorliegen und möchten entscheiden, welches zu Ihrem Betrieb passt. Die genannte Vermittlungsgebühr allein beantwortet diese Frage noch nicht. Entscheidend ist auch, welche Arbeit enthalten ist, welche Aufgaben bei Ihnen bleiben und wie mit offenen Punkten umgegangen wird.
 
 Das Bundesportal beschreibt unterschiedliche Leistungsumfänge privater Agenturen, die von der Vermittlung bis zu weiteren Leistungen reichen können. Entsprechend unterscheiden sich Kosten und Angebote. Eine unabhängige Orientierung bietet [Make it in Germany zur Auswahl einer Vermittlungsagentur](https://www.make-it-in-germany.com/de/unternehmen/rekrutieren/vermittlungsagenturen-erkennen).

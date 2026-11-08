@@ -15,6 +15,8 @@ keywords:
 excerpt: "Vollautomatisierte Großanalytik, PCR und Notfalldiagnostik: Wie diagnostische Labore und Kliniken MTL aus Vietnam erfolgreich anerkennen lassen."
 ---
 
+**Das Wichtigste in Kürze:** Medizinische Technologen für Laboratoriumsanalytik (MTLA): Hämatologie, klinische Chemie, PCR, Rili-BÄK Richtlinien und Anerkennung nach dem MTL-Gesetz – Vollautomatisierte Großanalytik, PCR und Notfalldiagnostik: Wie diagnostische Labore und Kliniken MTL aus Vietnam erfolgreich anerkennen lassen.
+
 Medizinische Großlabore, universitäre Laborzentren und mikrobiologische Institute bilden das analytische Rückgrat des deutschen Gesundheitssystems: Rund 70 Prozent aller ärztlichen Diagnosen stützen sich auf Befunde aus der Labormedizin. Gleichzeitig durchlebt das Berufsbild der ehemals als MTLA bekannten **Medizinischen Technologen für Laboratoriumsanalytik (MTL)** den schwersten Fachkräftemangel seiner Geschichte. Das zum 1. Januar 2023 in Kraft getretene **MT-Gesetz (MTLG)** hat die Ausbildung reformiert und den Weg für internationale Fachkräfte klarer strukturiert.
 
 Vietnam verfügt über ein hoch angesehenes universitäres Ausbildungssystem für medizinische Labortechnologie (Kỹ thuật Xét nghiệm Y học). Absolventen bringen fundierte Kenntnisse in molekularbiologischer Diagnostik, Hämatologie, Histologie und klinischer Chemie mit.
@@ -73,3 +75,17 @@ Für einen reibungslosen Übergang empfiehlt sich ein modularer Einarbeitungsabl
 DMF Talents begleitet Labore und Kliniken bei der Validierung der Studienpläne, der Antragstellung bei den Landesprüfungsämtern und der Visumerteilung.
 
 Erfahren Sie mehr über unsere Angebote auf der Seite [Für Arbeitgeber: Medizin & Pflege](/services/skilled-workers) oder erfassen Sie Ihren [Personalbedarf unverbindlich](/fuer-arbeitgeber/personalbedarf).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema MTL aus Vietnam für medizinische Labore?
+
+Seit 2023 regelt das Gesetz über die Berufe in der medizinischen Technologie (MTLG) die Berufszulassung bundesweit einheitlich. Wer als MTL eigenverantwortlich tätig sein möchte, benötigt die staatliche Erlaubnis zum Führen der Berufsbezeichnung:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Vietnamesische Laborfachkräfte decken sämtliche Hauptbereiche moderner Diagnostikzentren ab:
+
+### Wie unterstützt DMF Talents Unternehmen bei MTL aus Vietnam für medizinische Labore?
+
+Die Arbeit im deutschen Medizinlabor unterliegt strikt den Richtlinien der Bundesärztekammer zur Qualitätssicherung laboratoriumsmedizinischer Untersuchungen (Rili-BÄK):

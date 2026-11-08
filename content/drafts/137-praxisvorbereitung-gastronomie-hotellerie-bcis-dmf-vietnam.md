@@ -15,6 +15,8 @@ keywords:
 excerpt: "Theoretischer Sprachunterricht allein reicht für einen gelungenen Start in der deutschen Restaurantküche oder Backstube nicht aus. So trainieren DMF-Kandidaten schon in Vietnam praktische Handgriffe, Hygieneregeln und Fachvokabular."
 ---
 
+**Das Wichtigste in Kürze:** Einblick in das praktische Berufstraining von DMF Vietnam (u. a. BCIS-Lehrküche & Bäckerei): Wie angehende Köche, Bäcker und Hotelfachleute vor dem Abflug geschult werden – Theoretischer Sprachunterricht allein reicht für einen gelungenen Start in der deutschen Restaurantküche oder Backstube nicht aus. So trainieren DMF-Kandidaten schon in Vietnam praktische Handgriffe, Hygieneregeln und Fachvokabular.
+
 Im deutschen Hotel- und Gaststättengewerbe sowie im Lebensmittelhandwerk herrscht ab dem ersten Ausbildungstag ein hohes Arbeitstempo. Wenn ein neuer Auszubildender zum **Koch / zur Köchin**, zur **Fachkraft für Gastronomie / Restaurant- und Veranstaltungsgastronomie**, zum **Hotelfachmann / zur Hotelfachfrau** oder zum **Bäcker / Konditor** im August oder September seinen Dienst antritt, bleibt den Küchenchefs, Restaurantleitern und Backstubenmeistern im laufenden Tagesgeschäft kaum Zeit, elementare Grundbegriffe der Arbeitsorganisation von null an zu erklären.
 
 Genau deshalb geht **DMF Vietnam** über den reinen Klassenzimmer-Sprachunterricht hinaus. Unsere Kandidatinnen und Kandidaten für das Gastgewerbe und das Ernährungshandwerk durchlaufen bereits in Vietnam **praktische Berufsvorbereitungstage in professionellen Lehrküchen und Backstuben (unter anderem im Rahmen unserer Praxiskooperationen bei BCIS)**. Dort verbinden wir handwerkliche Grundübungen in echter Berufskleidung unmittelbar mit dem deutschen Fachwortschatz.
@@ -54,3 +56,17 @@ Die Ergebnisse aus den Praxiseinheiten dokumentieren wir in Wort und Bild. Viele
 Nicht ohne Grund bilden **Hotel und Gastronomie** mit 79 von 109 priorisierten Zielbetrieben in unserem deutschen Partnernetzwerk (darunter renommierte Ferienresorts, Privathotels und Hotelgruppen von der Ostseeküste über das Rheinland bis nach Bayern und Baden-Württemberg) den größten Nachfragesektor bei DMF Talents.
 
 Suchen Sie für die kommende Saison oder das nächste Ausbildungsjahr motivierte Auszubildende für Küche, Service, Hotelfach oder Backstube? Informieren Sie sich über unser [Azubi-Programm](/services/azubi), sehen Sie sich die [Profile unserer aktuell vorbereiteten Kandidaten](/fuer-arbeitgeber/kandidaten) an oder senden Sie uns direkt Ihre [Personalanfrage](/fuer-arbeitgeber/personalbedarf).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Praxisvorbereitung Gastronomie, Hotellerie & Bäckerei (DMF)?
+
+Zwischen der Alltagsküche in einem vietnamesischen Haushalt und einer gewerblichen deutschen Gastronomieküche, Hotelrezeption oder Konditorei liegen erhebliche technische und organisatorische Unterschiede. Ohne praktische Vorschulung entstehen in den ersten Ausbildungswochen häufig vermeidbare Missverständnisse:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Unsere praktischen Trainingstage sind exakt auf die vier gefragtesten deutschen Ausbildungsberufe im Gastgewerbe und Lebensmittelhandwerk zugeschnitten:
+
+### Wie unterstützt DMF Talents Unternehmen bei Praxisvorbereitung Gastronomie, Hotellerie & Bäckerei (DMF)?
+
+Die Ergebnisse aus den Praxiseinheiten dokumentieren wir in Wort und Bild. Viele unserer originalen Fotografien aus den BCIS-Lehrküchen und Backstuben zeigen unsere eigenen DMF-Schülerinnen und -Schüler beim konzentrierten Arbeiten in Schürze und Kochjacke. Für deutsche Hoteliers, Gastronomen und Bäckermeister bietet dies zwei handfeste Vorteile:

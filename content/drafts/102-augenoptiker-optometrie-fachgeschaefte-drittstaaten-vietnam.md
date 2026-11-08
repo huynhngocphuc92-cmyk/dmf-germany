@@ -15,6 +15,8 @@ keywords:
 excerpt: "Brillenglasbestimmung, Videozentrierung und Werkstatttechnik: Wie augenoptische Betriebe und Filialisten Fachkräfte aus Vietnam gewinnen."
 ---
 
+**Das Wichtigste in Kürze:** Augenoptiker Gesellen aus Drittstaaten: Refraktionsbestimmung, Fassungsberatung, CNC-Einschleiftechnik nach RAL-RG 915 und HwO-Anerkennung – Brillenglasbestimmung, Videozentrierung und Werkstatttechnik: Wie augenoptische Betriebe und Filialisten Fachkräfte aus Vietnam gewinnen.
+
 Der demografische Wandel führt in Deutschland zu einem stetig steigenden Bedarf an Sehhilfen: Mehr als zwei Drittel der erwachsenen Bevölkerung tragen eine Brille, während die Nachfrage nach komplexen Gleitsichtgläsern, Arbeitsplatzbrillen und Kontaktlinsen kontinuierlich wächst. Gleichzeitig leidet das Augenoptiker-Handwerk unter einem akuten Gesellenmangel. Nach Angaben des [Zentralverbands der Augenoptiker und Optometristen (ZVA)](https://www.zva.de) können bundesweit hunderte offene Stellen in inhabergeführten Fachgeschäften und Augenoptik-Filialketten nicht besetzt werden.
 
 Vietnam verfügt über ein dynamisches Ausbildungswesen für Optometrie und Augenoptik. An medizinischen Hochschulen und optischen Fachkollegs werden Fachkräfte ausgebildet, die präzise Refraktionstechniken, moderne Videozentriersysteme und hochautomatisierte CNC-Schleifautomaten beherrschen.
@@ -70,3 +72,17 @@ Ein dreimonatiger Einarbeitungsplan sichert den erfolgreichen Übergang in den V
 DMF Talents begleitet Fachgeschäfte und Ketten bei der Auswahl qualifizierter Kandidaten, führt praktische Werkstatttests in Vietnam durch und steuert den gesamten Visumsprozess.
 
 Informieren Sie sich über unsere Angebote unter [Für Arbeitgeber: Handwerk & Industrie](/services/skilled-workers) oder erfassen Sie Ihren [Personalbedarf unverbindlich](/fuer-arbeitgeber/personalbedarf).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Augenoptiker aus Vietnam?
+
+Augenoptiker ist ein zulassungspflichtiges Handwerk der Anlage A der Handwerksordnung (HwO Nr. 12), das modische Stilberatung mit physikalischer Präzision verbindet:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Für Betriebe bieten sich zwei erprobte Rekrutierungsmodelle an:
+
+### Wie unterstützt DMF Talents Unternehmen bei Augenoptiker aus Vietnam?
+
+Gute Augenoptik zeichnet sich durch kompromisslose Maßhaltigkeit aus:

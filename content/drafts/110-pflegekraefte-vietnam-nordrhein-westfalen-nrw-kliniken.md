@@ -15,6 +15,8 @@ keywords:
 excerpt: "Universitätskliniken, Maximalversorger und Senioreneinrichtungen in NRW: Wie Träger examinierte Pflegefachkräfte aus Vietnam rechtskonform einbinden."
 ---
 
+**Das Wichtigste in Kürze:** Pflegepersonal aus Drittstaaten für NRW: ZAG Münster, Anerkennungspartnerschaft (§ 16d Abs. 3), MAGS NRW, TVöD-P und nachhaltige Integration – Universitätskliniken, Maximalversorger und Senioreneinrichtungen in NRW: Wie Träger examinierte Pflegefachkräfte aus Vietnam rechtskonform einbinden.
+
 Nordrhein-Westfalen ist das bevölkerungsreichste Bundesland und verfügt über die dichteste Krankenhaus- und Versorgungslandschaft Europas. Zwischen Rhein und Ruhr behandeln hunderte Krankenhäuser, Universitätskliniken und Spezialzentren jährlich Millionen Patienten, während tausende stationäre Seniorenheime und ambulante Pflegedienste die geriatrische Betreuung sicherstellen. Doch der Personalengpass in der Pflege hat in NRW ein kritisches Ausmaß erreicht: Zehntausende Planstellen für Pflegefachfrauen und Pflegefachmänner können nicht besetzt werden. Ganze Stationsbereiche müssen vorübergehend abgemeldet werden.
 
 Vietnam gehört seit Jahren zu den führenden Partnerländern für ethische Pflegekräftemobilität. Vietnamesische Absolventen vierjähriger universitärer Bachelor-Pflegestudiengänge (Cử nhân Điều dưỡng) bringen herausragende klinische Fertigkeiten, Empathie und eine vorbildliche Serviceorientierung mit.
@@ -68,3 +70,17 @@ DMF Talents begleitet Krankenhäuser und Seniorenresidenzen in ganz NRW durch ei
 3. **Persönliche Betreuung vor Ort** durch muttersprachliche Integrationspaten in den ersten 12 Monaten.
 
 Informieren Sie sich über unsere Angebote unter [Für Arbeitgeber: Medizin & Pflege](/services/skilled-workers) oder erfassen Sie Ihren [Personalbedarf direkt](/fuer-arbeitgeber/personalbedarf).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Pflegekräfte aus Vietnam NRW?
+
+Für die Gleichwertigkeitsprüfung ausländischer Pflegeabschlüsse hat das Ministerium für Arbeit, Gesundheit und Soziales des Landes Nordrhein-Westfalen (MAGS NRW) eine zentrale Behörde eingerichtet: die Zentrale Anerkennungsstelle für Gesundheitsberufe (ZAG) bei der Bezirksregierung Münster:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Für Kliniken und Pflegeheimbetreiber in NRW ist die Anerkennungspartnerschaft nach § 16d Abs. 3 AufenthG das effizienteste Instrument:
+
+### Wie unterstützt DMF Talents Unternehmen bei Pflegekräfte aus Vietnam NRW?
+
+In nordrhein-westfälischen Kliniken ist eine präzise Kommunikation lebenswichtig:

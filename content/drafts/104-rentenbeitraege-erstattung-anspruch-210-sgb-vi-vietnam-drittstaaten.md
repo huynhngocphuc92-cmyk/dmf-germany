@@ -15,6 +15,8 @@ keywords:
 excerpt: "Beitragserstattung der Arbeitnehmeranteile vs. Altersrentenanspruch: Leitfaden für Personalabteilungen und ausscheidende Fachkräfte aus Drittstaaten."
 ---
 
+**Das Wichtigste in Kürze:** Rückzahlung der Rentenversicherungsbeiträge für Drittstaatsangehörige: 24-Monate-Wartefrist (§ 210 SGB VI), DRV-Antrag und Besteuerungsregeln – Beitragserstattung der Arbeitnehmeranteile vs. Altersrentenanspruch: Leitfaden für Personalabteilungen und ausscheidende Fachkräfte aus Drittstaaten.
+
 Arbeiten Fachkräfte aus Drittstaaten (z. B. Vietnam) für einige Jahre in Deutschland und kehren anschließend dauerhaft in ihr Heimatland zurück, stellt sich bei Personalabteilungen und Mitarbeitern regelmäßig dieselbe Frage: **Was geschieht mit den monatlich eingezahlten Beiträgen zur gesetzlichen Rentenversicherung (GRV)?** Verfallen die erworbenen Ansprüche? Besteht ein Anspruch auf Auszahlung? Und welche Fristen müssen eingehalten werden?
 
 Das deutsche Rentenrecht bietet in **§ 210 des Sechsten Buches Sozialgesetzbuch (SGB VI)** eine klare gesetzliche Regelung zur **Beitragserstattung**. Allerdings unterliegt das Verfahren strengen Wartezeiten und formalen Voraussetzungen, die Personalverantwortliche kennen sollten.
@@ -76,3 +78,17 @@ Personalverantwortliche sollten scheidende Fachkräfte sachlich und objektiv inf
 DMF Talents berät Unternehmen bei allen Fragen der sozialversicherungsrechtlichen Entsendung und des On- und Offboardings internationaler Fachkräfte.
 
 Informieren Sie sich über unsere Angebote unter [Für Arbeitgeber: Beratung](/services/skilled-workers) oder erfassen Sie Ihren [Personalbedarf unverbindlich](/fuer-arbeitgeber/personalbedarf).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Rentenbeitragserstattung bei Ausreise?
+
+Gemäß § 210 Abs. 1 Nr. 1 SGB VI werden Beiträge auf Antrag erstattet, wenn der Versicherte nicht mehr der Versicherungspflicht unterliegt und nicht das Recht zur freiwilligen Versicherung hat:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Ein weit verbreiteter Irrtum besagt, dass die gesamten Rentenbeiträge ausgezahlt würden. Die Realität sieht nach § 210 Abs. 3 SGB VI differenzierter aus:
+
+### Wie unterstützt DMF Talents Unternehmen bei Rentenbeitragserstattung bei Ausreise?
+
+Hat die Fachkraft mindestens fünf Jahre (60 Beitragsmonate) in Deutschland gearbeitet und Beiträge entrichtet, hat sie die sogenannte allgemeine Wartezeit für die Regelaltersrente (§ 50 Abs. 1 SGB VI) erfüllt.

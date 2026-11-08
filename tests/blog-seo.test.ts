@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { blogMetadata, blogStructuredData, serializeJsonLd } from "@/lib/seo/blog";
+import {
+  blogMetadata,
+  blogStructuredData,
+  extractFaqFromHtml,
+  serializeJsonLd,
+} from "@/lib/seo/blog";
 
 const post = {
   slug: "fragen-für-arbeitgeber",
@@ -74,5 +79,32 @@ describe("blog search metadata", () => {
       description: "SEO summary",
     });
     expect(blogStructuredData(data)[0].headline).toBe(post.title);
+  });
+
+  it("extracts question-form <h2>/<h3> headings into FAQPage JSON-LD while keeping BlogPosting and BreadcrumbList first", () => {
+    const htmlWithQuestions = `
+      <p><strong>Das Wichtigste in Kürze:</strong> Überblick zum § 81a AufenthG.</p>
+      <h2>Welche Fristen gelten im beschleunigten Fachkräfteverfahren nach § 81a AufenthG?</h2>
+      <p>Die Gleichwertigkeitsprüfung ist gesetzlich auf zwei Monate verkürzt, und die Bundesagentur für Arbeit entscheidet innerhalb einer Woche.</p>
+      <h2>Nicht als Frage formulierte Überschrift</h2>
+      <p>Dieser Abschnitt wird nicht als FAQ extrahiert.</p>
+      <h3>Wer unterzeichnet die Vereinbarung mit der Ausländerbehörde?</h3>
+      <p>Der Arbeitgeber in Deutschland schließt die Vereinbarung direkt oder über einen Bevollmächtigten mit der zuständigen Ausländerbehörde ab.</p>
+    `;
+    const faqs = extractFaqFromHtml(htmlWithQuestions);
+    expect(faqs).toHaveLength(2);
+    expect(faqs[0].question).toBe(
+      "Welche Fristen gelten im beschleunigten Fachkräfteverfahren nach § 81a AufenthG?"
+    );
+    expect(faqs[1].question).toBe("Wer unterzeichnet die Vereinbarung mit der Ausländerbehörde?");
+
+    const schemas = blogStructuredData({ ...post, content: htmlWithQuestions });
+    expect(schemas).toHaveLength(3);
+    expect(schemas[0]["@type"]).toBe("BlogPosting");
+    expect(schemas[1]["@type"]).toBe("BreadcrumbList");
+    expect(schemas[2]).toMatchObject({
+      "@type": "FAQPage",
+      "@id": "https://www.dmf-talents.de/blog/fragen-f%C3%BCr-arbeitgeber#faq",
+    });
   });
 });

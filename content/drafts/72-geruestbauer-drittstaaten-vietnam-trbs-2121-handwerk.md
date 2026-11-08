@@ -11,6 +11,8 @@ status: "published"
 
 # Gerüstbauer aus Vietnam: Schwindelfreie Fachkräfte für Höhenbaustellen
 
+**Das Wichtigste in Kürze:** Gerüstbauer aus Vietnam für Handwerksbetriebe: TRBS 2121, DIN EN 12811, G41-Höhentauglichkeit, Montage-Sicherheit und Fachkräftegewinnung nach § 18a – Extremer Nachwuchsmangel im Gerüstbauhandwerk: Wie Betriebe mit schwindelfreien Fachkräften aus Vietnam TRBS 2121 und Großaufträge absichern.
+
 Ohne Gerüstbauer steht jede Baustelle still: Ob Fassadensanierung, Brückeninstandsetzung, Industriegerüstbau in Chemieparks oder der Aufbau von Schutz- und Traggerüsten für den Hochbau – Gerüstbauer schaffen die unverzichtbare Voraussetzung, damit Dachdecker, Maler, Maurer und Fassadenmonteure sicher in der Höhe arbeiten können. Das Gerüstbauhandwerk ist seit 1998 ein eigenständiges Vollhandwerk (Anlage A der Handwerksordnung) mit dreijähriger dualer Ausbildung.
 
 Gleichzeitig gehört der Beruf des Gerüstbauers zu den am stärksten vom Fachkräftemangel betroffenen Gewerken in ganz Deutschland. Schwere körperliche Belastung bei jeder Witterung, permanente Höheneinsätze und Montagefahrten führen dazu, dass deutsche Schulabgänger den Beruf meiden. Zahlreiche Gerüstbauunternehmen müssen lukrative Industrie- und Infrastrukturaufträge ablehnen. Mit **körperlich fitten, schwindelfreien Fachkräften und Auszubildenden aus Vietnam** sichern zukunftsorientierte Gerüstbauunternehmen ihre Montagekolonnen nachhaltig ab.
@@ -61,3 +63,17 @@ Gerüstbauer rücken morgens im Team mit Lkw (7,5 t oder 18 t) und Pritschenwage
 3. **Feste Kolonnen-Zuweisung:** Integration in eine erfahrene Dreier- oder Viererkolonne unter Leitung eines umsichtigen Gerüstbaumeisters oder geprüften Kolonnenführers.
 
 Sichern Sie die Schlagkraft Ihrer Gerüstbaukolonnen. [Melden Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf), um geprüfte Bewerberprofile aus Vietnam zu erhalten.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Gerüstbauer aus Vietnam?
+
+Das Arbeiten in der Höhe erfordert kompromisslose Disziplin im Arbeitsschutz. In Deutschland überwachen die Berufsgenossenschaft der Bauwirtschaft (BG BAU) und die Gewerbeaufsichtsämter die Einhaltung der technischen Regeln:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+In vietnamesischen Metropolen wie Hanoi und Ho-Chi-Minh-Stadt wachsen Wolkenkratzer und Großinfrastrukturprojekte in rasantem Tempo. Vietnamesische Handwerker sind von klein auf an anspruchsvolle Arbeiten in der Höhe gewöhnt:
+
+### Wie unterstützt DMF Talents Unternehmen bei Gerüstbauer aus Vietnam?
+
+Gerüstbauunternehmen können vietnamesische Mitarbeiter über zwei verlässliche Rechtswege einstellen:

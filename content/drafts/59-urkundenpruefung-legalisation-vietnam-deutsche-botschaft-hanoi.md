@@ -11,6 +11,8 @@ status: "published"
 
 # Urkundenüberprüfung und Legalisation in Vietnam: Zeitplan, Kosten und Echtheitsprüfung
 
+**Das Wichtigste in Kürze:** Konsularische Urkundenüberprüfung in Vietnam: Zeitstrahl, Kosten, Vertrauensanwälte der Botschaft Hanoi und Beschleunigung nach § 81a AufenthG – Warum Vietnam kein Apostille-Land ist: Der Prozess der Urkundenüberprüfung durch die Deutsche Botschaft, Vertrauensanwälte und Vorbeglaubigungen.
+
 Wer als deutscher Arbeitgeber erstmals Fachkräfte oder Auszubildende aus Drittstaaten rekrutiert, stößt schnell auf den bürokratischen Begriff der **konsularischen Legalisation und Urkundenüberprüfung**. Immer wieder stellen sich Personalleiter die Frage: _„Warum genügt nicht einfach eine Haager Apostille wie in anderen Ländern? Warum dauert die Echtheitsprüfung vietnamesischer Urkunden manchmal Wochen?“_
 
 Die Antwort liegt im internationalen Urkundenverkehr: **Vietnam ist kein Mitgliedstaat des Haager Übereinkommens zur Befreiung ausländischer öffentlicher Urkunden von der Legalisation.** Zudem hat Deutschland die konsularische Legalisation vietnamesischer Urkunden aufgrund unsicherer Registerwesen bereits vor Jahren ausgesetzt.
@@ -66,3 +68,17 @@ DMF Talents schließt dieses Risiko zu 100% aus:
 - Seit Bestehen von DMF Talents wurde **nicht ein einziges von uns eingereichtes Dokument von der Deutschen Botschaft beanstandet**.
 
 Verlassen Sie sich auf maximale Rechtssicherheit bei der internationalen Personalgewinnung.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Urkundenüberprüfung Botschaft Hanoi?
+
+Normalerweise bestätigt eine Botschaft mit der „Legalisation“ die Echtheit der Unterschrift und des Siegels einer ausländischen Behörde. Da es in Vietnam jedoch in der Vergangenheit immer wieder zu unklaren Siegelvergaben und Fälschungen von Schul- und Hochschulzeugnissen kam, hat das Auswärtige Amt die Legalisation gemäß § 13 Konsulargesetz ausgesetzt.
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Das Prüfverfahren folgt einer strikten chronologischen Abfolge:
+
+### Wie unterstützt DMF Talents Unternehmen bei Urkundenüberprüfung Botschaft Hanoi?
+
+In der Praxis betrifft die Überprüfung folgende Kerndokumente:

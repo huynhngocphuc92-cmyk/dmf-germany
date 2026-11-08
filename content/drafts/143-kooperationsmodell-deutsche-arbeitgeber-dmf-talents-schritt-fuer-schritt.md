@@ -15,6 +15,8 @@ keywords:
 excerpt: "Wie funktioniert die Zusammenarbeit mit DMF Talents in der Praxis, welche Unterlagen benötigt Ihr Betrieb und wer übernimmt welchen Schritt? Unser transparenter 5-Schritte-Leitfaden für Geschäftsführer und Personalverantwortliche."
 ---
 
+**Das Wichtigste in Kürze:** Schritt-für-Schritt-Leitfaden für deutsche Arbeitgeber: So läuft die Zusammenarbeit mit DMF Talents vom unverbindlichen Erstgespräch bis zum Ausbildungsstart ab – Unser transparenter 5-Schritte-Leitfaden für Geschäftsführer und Personalverantwortliche.
+
 Zum Abschluss unserer Porträt-Serie über **DMF Vietnam & DMF Talents** fassen wir für Geschäftsführer, Personalleiter, Pflegedienstleitungen, Hoteldirektoren und Handwerksmeister konkret zusammen, wie eine Kooperation mit uns im Tagesgeschäft abläuft. Unser Ziel ist es, den administrativen Aufwand für Ihren Betrieb auf ein absolutes Minimum zu reduzieren, während Sie bei der Auswahl Ihrer künftigen Auszubildenden oder Fachkräfte jederzeit die volle Entscheidungs- und Qualitätskontrolle behalten.
 
 Ob Sie für das kommende Ausbildungsjahr zunächst **ein bis zwei Auszubildende nach § 16a AufenthG** oder bereits **ausgebildete Fachkräfte nach § 18a / § 18b AufenthG** suchen: Jede Partnerschaft folgt bei DMF einem klar strukturierten **5-Schritte-Protokoll**.
@@ -84,3 +86,17 @@ Wir laden Sie herzlich ein, unsere Arbeitsweise, unsere Akademie und unsere Kand
   - [Wirtschaftlichkeit im ROI-Rechner kalkulieren](/roi-rechner)
   - [Einreisezeitpunkt im Zeitplan-Simulator berechnen](/fuer-arbeitgeber/zeitplan)
   - [Unverbindliche Personalanfrage senden](/fuer-arbeitgeber/personalbedarf)
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema 5-Schritte-Kooperationsmodell mit DMF Talents für Betriebe?
+
+Am Anfang steht ein kurzes, unverbindliches Gespräch (telefonisch, per Videokonferenz oder direkt bei Ihnen im Betrieb) mit unserem direkten Repräsentanten in Deutschland, Herrn Umit Elezov (`+49 174 9015811`), oder unserem Ausbildungsleiter in Vietnam, Herrn Achim Betticher (`+84 855 070773`).
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Auf Basis Ihres Anforderungsprofils wählt unser Akademieteam in Biên Hòa und Ho-Chi-Minh-Stadt aus den laufenden Sprachkohorten und dem geprüften Bewerberpool genau zwei bis drei passgenaue Kandidatinnen und Kandidaten pro offener Stelle aus.
+
+### Wie unterstützt DMF Talents Unternehmen bei 5-Schritte-Kooperationsmodell mit DMF Talents für Betriebe?
+
+Für die Kandidaten, deren Kurzvideo und Dossier Sie überzeugen, vereinbaren wir kurzfristig ein persönliches Kennenlerngespräch per Zoom oder Microsoft Teams (Dauer: ca. 30 bis 45 Minuten). Unsere Bewerber sind durch das Einzelcoaching von Herrn Betticher darauf vorbereitet, frei und ohne abgelesene Mustertexte auf Ihre Fragen zu antworten.

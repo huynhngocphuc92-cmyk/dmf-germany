@@ -10,6 +10,8 @@ excerpt: "Warum scheitern klassische Stellenbeschreibungen bei der international
 
 # Vom Personalbedarf zum abgestimmten Suchprofil: Typische Hürden vermeiden
 
+**Das Wichtigste in Kürze:** Stellenprofil für die internationale Rekrutierung schärfen: Typische Fehler vermeiden, Anforderungen klar definieren und Zeitpläne realistisch planen – Erfahren Sie, wie Sie ein passgenaues Suchprofil für Fachkräfte aus Vietnam erstellen.
+
 Wenn in einem deutschen Betrieb eine Stelle unbesetzt bleibt, greift die Personalabteilung meist auf bewährte Muster zurück: Die vorhandene interne Stellenbeschreibung wird als Anzeigentext formuliert und veröffentlicht. Häufig enthält sie eine lange Liste wünschenswerter Voraussetzungen: deutsche Facharbeiterausbildung mit konkretem Schwerpunkt, mehrjährige Branchenerfahrung im Bundesgebiet, verhandlungssicheres Deutsch in Wort und Schrift sowie Vertrautheit mit spezifischen internen IT-Systemen.
 
 Bei der Suche auf dem heimischen Arbeitsmarkt ist dieser Ansatz verständlich. Bei der internationalen Rekrutierung – beispielsweise aus Vietnam – führt eine 1:1 übernommene Ausschreibung jedoch fast zwangsläufig zu Verzögerungen oder Fehlbesetzungen.
@@ -80,3 +82,17 @@ _Präzise Abstimmung: Lehrkräfte und Berater definieren klare Kompetenzprofile 
 Ein abgestimmtes Suchprofil ist das Fundament jeder erfolgreichen Rekrutierung. Es stellt sicher, dass Sie von Beginn an die passenden Kandidatinnen und Kandidaten ansprechen und Zeitverluste bei der Auswahl vermeiden.
 
 Haben Sie eine offene Stelle und möchten prüfen, welche Voraussetzungen für eine Besetzung aus Vietnam erfüllt sein müssen? [Erfassen Sie Ihren Personalbedarf bei DMF Talents](/fuer-arbeitgeber/personalbedarf), um gemeinsam ein tragfähiges Anforderungsprofil zu erarbeiten.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Vom Personalbedarf zum Suchprofil für Fachkräfte?
+
+Das deutsche duale Ausbildungssystem ist weltweit anerkannt, in seiner Struktur jedoch nahezu einzigartig. In vielen Herkunftsländern – darunter auch Vietnam – ist die berufliche Bildung anders aufgebaut:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Ein tragfähiges internationales Suchprofil unterscheidet strikt zwischen zwei Kategorien:
+
+### Wie unterstützt DMF Talents Unternehmen bei Vom Personalbedarf zum Suchprofil für Fachkräfte?
+
+Ein präzises Briefing für die Personalsuche sollte folgende fünf Bausteine umfassen:

@@ -10,6 +10,8 @@ excerpt: "Leiharbeit für Arbeitskräfte aus Drittstaaten ist gesetzlich grunds�
 
 # Zeitarbeit vs. Direktvermittlung: Warum Leiharbeit für Drittstaatsangehörige nach § 40 AufenthG verboten ist
 
+**Das Wichtigste in Kürze:** Warum Leiharbeit für Fachkräfte aus Drittstaaten nach § 40 AufenthG verboten ist und weshalb die rechtssichere Direktvermittlung das Risiko für Betriebe eliminiert – Leiharbeit für Arbeitskräfte aus Drittstaaten ist gesetzlich grundsätzlich verboten (§ 40 AufenthG). Warum die Direktvermittlung der einzig sichere Weg für Betriebe ist.
+
 Zur Überbrückung kurzfristiger Personalengpässe greifen viele deutsche Unternehmen auf Personaldienstleister zurück, um Produktionsspitzen abzufedern oder vakante Schichten rasch zu besetzen. Was im innereuropäischen Binnenmarkt (EU-Arbeitnehmerfreizügigkeit) eine weit verbreitete Praxis darstellt, führt bei Arbeitskräften aus Drittstaaten (z. B. Vietnam, Indien, Philippinen) jedoch regelmäßig zu schwerwiegenden Rechtsverstößen.
 
 Immer wieder bieten dubiose Vermittlungsagenturen deutschen Betrieben vietnamesische oder andere Drittstaats-Kräfte im Wege der Arbeitnehmerüberlassung (Zeitarbeit) an. Den wenigsten Verantwortlichen ist bewusst: **Die Beschäftigung von Drittstaatsangehörigen in der Leiharbeit ist in Deutschland gesetzlich grundsätzlich verboten.** Wer gegen diese Vorschrift verstößt, riskiert existenzbedrohende Bußgelder und den sofortigen Verlust des Personals.
@@ -57,3 +59,17 @@ Die Direktvermittlung – wie sie von DMF Talents praktiziert wird – ist nicht
 3. **Mitarbeiteridentifikation:** Fachkräfte, die mit ihrer Familie nach Deutschland kommen, suchen Sicherheit, Verlässlichkeit und ein festes betriebliches Zuhause. Ein direkter Arbeitsplatz schafft Vertrauen und Loyalität.
 
 Schützen Sie Ihr Unternehmen vor illegalen Vermittlungsmodellen. Erfahren Sie in unserem Ratgeber zur [transparenten Personalvermittlung](/blog/personalvermittlung-vietnam-angebote-vergleichen), wie Sie seriöse Partnerangebote erkennen.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Zeitarbeit für Drittstaats-Fachkräfte?
+
+Der Gesetzgeber hat den deutschen Arbeitsmarkt bewusst vor unregulierter Leiharbeit aus Nicht-EU-Ländern geschützt. In § 40 Abs. 1 Nr. 2 Aufenthaltsgesetz (AufenthG) heißt es unmissverständlich:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Eine Tätigkeit in der Zeitarbeit ist für Drittstaatsangehörige nur in eng umrissenen Ausnahmefällen zulässig, in denen der Aufenthaltstitel ohne Zustimmung der Bundesagentur für Arbeit erteilt werden darf:
+
+### Wie unterstützt DMF Talents Unternehmen bei Zeitarbeit für Drittstaats-Fachkräfte?
+
+Die Direktvermittlung – wie sie von DMF Talents praktiziert wird – ist nicht nur die einzig rechtssichere, sondern auch die wirtschaftlich nachhaltigere Lösung:

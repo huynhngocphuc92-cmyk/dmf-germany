@@ -11,6 +11,8 @@ status: "published"
 
 # Gesetzliche Krankenversicherung (GKV) für internationale Fachkräfte: Der Anmeldeprozess
 
+**Das Wichtigste in Kürze:** GKV-Anmeldung für Fachkräfte aus Drittstaaten: Krankenkassenwahlrecht (§ 175 SGB V), Sozialversicherungsnummer, Vorab-Bestätigung und Reise-KV – Schritt-für-Schritt-Anleitung zur Krankenversicherung: Von der Vorab-Bescheinigung für das Visum über die DEÜV-Meldung bis zur elektronischen Gesundheitskarte.
+
 Ohne Nachweis eines lückenlosen Krankenversicherungsschutzes stellt keine deutsche Auslandsvertretung ein nationales Arbeits- oder Ausbildungsvisum aus. Gleichzeitig steht die Lohnbuchhaltung deutscher Unternehmen vor der Herausforderung: **Wie meldet man einen Mitarbeiter bei der Krankenkasse an, der weder eine deutsche Sozialversicherungsnummer noch eine Meldeadresse besitzt?**
 
 Das deutsche Sozialversicherungsrecht bietet hierfür standardisierte, hocheffiziente Schnittstellen. In diesem Leitfaden führen wir Personalleiter und Entgeltabrechner durch die vier Phasen der Anmeldung nach dem Fünften Buch Sozialgesetzbuch (SGB V) und der Datenerfassungs- und -übermittlungsverordnung (DEÜV).
@@ -59,3 +61,17 @@ Damit die Fachkraft bei Krankheit zum Arzt gehen kann, benötigt sie die elektro
 | **eGK Lichtbild-Upload**             | Arbeitnehmer           | Woche 2 nach Einreise | Online-Portal der Krankenkasse         |
 
 DMF Talents übernimmt im Rahmen des Onboarding-Pakets die komplette Korrespondenz mit den gesetzlichen Kassen, sodass Ihre Personalabteilung zum Arbeitsstart lediglich die fertige Mitgliedsbescheinigung in die Lohnakte übernimmt.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Krankenkassen-Anmeldung Drittstaaten?
+
+Bereits im Visumsverfahren verlangt die Deutsche Botschaft Hanoi bzw. das Generalkonsulat Ho-Chi-Minh-Stadt den Nachweis, dass der Antragsteller ab Einreise versichert sein wird.
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Internationale Berufseinsteiger aus Drittstaaten besitzen naturgemäß noch keine deutsche Sozialversicherungsnummer (SV-Nummer / Rentenversicherungsnummer). Diese muss nicht im Vorfeld beantragt werden, sondern wird vollautomatisch über die Lohnsoftware generiert:
+
+### Wie unterstützt DMF Talents Unternehmen bei Krankenkassen-Anmeldung Drittstaaten?
+
+Damit die Fachkraft bei Krankheit zum Arzt gehen kann, benötigt sie die elektronische Gesundheitskarte (eGK):

@@ -1,4 +1,5 @@
 import { validateBuildEnvironment } from "./lib/env/build";
+import { TRUST_ANCHOR_REWRITES } from "./lib/geo/markdown-negotiation";
 import type { NextConfig } from "next";
 import bundleAnalyzer from "@next/bundle-analyzer";
 import { withSentryConfig } from "@sentry/nextjs/config";
@@ -54,6 +55,10 @@ const nextConfig: NextConfig = {
         source: "/:path*",
         headers: [
           {
+            key: "Vary",
+            value: "Accept",
+          },
+          {
             key: "X-DNS-Prefetch-Control",
             value: "on",
           },
@@ -106,6 +111,11 @@ const nextConfig: NextConfig = {
         ],
       },
     ];
+  },
+
+  // 4. GEO & Trust Anchor Rewrites (/privacy, /about, /contact, /kontakt, /terms)
+  async rewrites() {
+    return [...TRUST_ANCHOR_REWRITES];
   },
 };
 

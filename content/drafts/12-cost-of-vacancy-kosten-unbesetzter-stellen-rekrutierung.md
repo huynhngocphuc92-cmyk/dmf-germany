@@ -10,6 +10,8 @@ excerpt: "Unbesetzte Stellen bremsen das Wachstum und treiben Überstunden in di
 
 # Cost of Vacancy: Was kostet eine unbesetzte Stelle im Vergleich zur internationalen Rekrutierung?
 
+**Das Wichtigste in Kürze:** Cost of Vacancy berechnen: Warum unbesetzte Stellen den Mittelstand 25.000–60.000 € kosten und ab wann sich internationale Rekrutierung amortisiert – Unbesetzte Stellen bremsen das Wachstum und treiben Überstunden in die Höhe. Erfahren Sie, wie Sie Ihre Vakanzkosten berechnen und wirtschaftlich gegensteuern.
+
 Wenn Fachkraftstellen im Betrieb über Monate unbesetzt bleiben, taucht dieser Verlust in der betriebswirtschaftlichen Gewinn- und Verlustrechnung nicht als eigenständiger Ausgabenposten auf. Doch die unsichtbaren Kosten einer Vakanz – im Personalmanagement als **Cost of Vacancy (CoV)** bezeichnet – übersteigen die reinen Such- und Schaltungskosten für Stellenanzeigen bei weitem.
 
 Nach Untersuchungen des [Instituts der deutschen Wirtschaft (IW Köln)](https://www.iwkoeln.de) und der Bundesagentur für Arbeit beträgt die durchschnittliche Vakanzzeit für qualifizierte Fachkräfte in Engpassberufen (wie Pflege, Handwerk und Mechatronik) in Deutschland häufig zwischen **150 und über 210 Tage**.

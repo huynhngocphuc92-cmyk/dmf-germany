@@ -8,13 +8,9 @@ import { useLanguage } from "@/components/providers/LanguageProvider";
 import { checkQuality } from "@/utils/qa-layer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import dynamic from "next/dynamic";
-
-// Lazy load FAQ Section (below the fold)
-const FAQSection = dynamic(() => import("@/components/shared/FAQSection"), {
-  loading: () => <div className="py-20 text-center text-slate-500">Laden...</div>,
-  ssr: true, // Keep SSR for SEO content, but split the JS bundle
-});
+import { AeoSnippetSection } from "@/components/seo/AeoSnippetSection";
+import FAQSection from "@/components/shared/FAQSection";
+import { SERVICE_AEO_CONFIGS, buildServicePageSchemas } from "@/lib/seo/aeo-schemas";
 
 import {
   CheckCircle2,
@@ -931,34 +927,19 @@ export default function SkilledWorkersPage() {
     DATA_DU_PHONG
   );
 
-  // FAQ Questions for Skilled Workers (B2B-Focused)
-  const skilledFAQs = [
-    {
-      question: "Wie funktioniert das Anerkennungsverfahren?",
-      answer:
-        "Wir prüfen die vietnamesischen Abschlüsse bereits vor Vertragsschluss auf Gleichwertigkeit (Defizitbescheid). Sollte eine Anpassungsqualifizierung nötig sein, organisieren wir diese gemeinsam mit Ihnen.",
-    },
-    {
-      question: "Wie schnell können die Fachkräfte starten?",
-      answer:
-        "Dank des Beschleunigten Fachkräfteverfahrens oft in 4-6 Monaten. Da wir über einen Pool an bereits sprachlich qualifizierten Kandidaten verfügen, entfallen lange Wartezeiten für den Spracherwerb.",
-    },
-    {
-      question: "Sind die Kandidaten an einer langfristigen Arbeit interessiert?",
-      answer:
-        "Absolut. Unsere Kandidaten suchen eine langfristige Perspektive für sich und ihre Familien. Die kulturelle Integration wird durch unsere Betreuung vor Ort erleichtert.",
-    },
-  ];
+  const aeoConfig = SERVICE_AEO_CONFIGS["skilled-workers"];
+  const serviceSchemas = buildServicePageSchemas("skilled-workers");
 
   return (
     <main className="min-h-screen">
       <HeroSection content={content} />
+      <AeoSnippetSection config={aeoConfig} schemas={serviceSchemas} accentColor="emerald" />
       <AdvantagesSection content={content} />
       <ProcessTimelineSection content={content} />
       <ExpertiseSection content={content} />
       <StatsSection content={content} />
       <CTASection content={content} />
-      <FAQSection items={skilledFAQs} theme="emerald" />
+      <FAQSection items={aeoConfig.faqs} theme="emerald" pagePath={aeoConfig.path} />
     </main>
   );
 }

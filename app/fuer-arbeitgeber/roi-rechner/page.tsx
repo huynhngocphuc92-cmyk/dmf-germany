@@ -1,6 +1,9 @@
 "use client";
 import Link from "next/link";
 
+import { AeoSnippetSection } from "@/components/seo/AeoSnippetSection";
+import FAQSection from "@/components/shared/FAQSection";
+import { ROI_RECHNER_AEO_CONFIG, buildRoiAppSchemas } from "@/lib/seo/aeo-schemas";
 import { ArrowRight, Calculator, CheckCircle2, TrendingDown, Users } from "lucide-react";
 import dynamic from "next/dynamic";
 
@@ -18,6 +21,8 @@ const RoiCalculator = dynamic(
 );
 
 export default function RoiRechnerPage() {
+  const roiSchemas = buildRoiAppSchemas("/fuer-arbeitgeber/roi-rechner");
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Section */}
@@ -39,6 +44,13 @@ export default function RoiRechnerPage() {
           </div>
         </div>
       </section>
+
+      {/* AEO Direct Answer & Benchmark Table (SSR for Answer Engines & Position Zero) */}
+      <AeoSnippetSection
+        config={ROI_RECHNER_AEO_CONFIG}
+        schemas={roiSchemas}
+        accentColor="primary"
+      />
 
       {/* Calculator Section */}
       <section className="py-12 md:py-16">
@@ -126,47 +138,12 @@ export default function RoiRechnerPage() {
         </div>
       </section>
 
-      {/* Additional Info Section */}
-      <section className="py-12 md:py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-              Häufig gestellte Fragen
-            </h3>
-            <div className="space-y-4">
-              <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
-                <h4 className="font-semibold text-gray-900 mb-2">
-                  Was ist in der Vermittlungsgebühr enthalten?
-                </h4>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  Die Gebühr deckt Rekrutierung, Vorauswahl, Sprachprüfung, fachspezifische
-                  Vorbereitung, Visum- und Dokumentationsunterstützung sowie Erstintegration im
-                  Unternehmen.
-                </p>
-              </div>
-              <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
-                <h4 className="font-semibold text-gray-900 mb-2">
-                  Wie lange dauert der Vermittlungsprozess?
-                </h4>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  Nach Abschluss des Vertrags benötigen wir durchschnittlich 3-6 Monate für
-                  Rekrutierung, Vorbereitung und Visa-Bearbeitung, abhängig von der Position und den
-                  individuellen Anforderungen.
-                </p>
-              </div>
-              <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
-                <h4 className="font-semibold text-gray-900 mb-2">
-                  Gibt es Garantien für die Kandidaten?
-                </h4>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  Mögliche Ersatzregelungen und deren Voraussetzungen werden im individuellen
-                  Vertrag vereinbart. Eine allgemeine Zusage wird auf dieser Website nicht gegeben.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* AEO FAQ Section with FAQPage JSON-LD */}
+      <FAQSection
+        items={ROI_RECHNER_AEO_CONFIG.faqs}
+        theme="blue"
+        pagePath="/fuer-arbeitgeber/roi-rechner"
+      />
     </div>
   );
 }

@@ -11,6 +11,8 @@ status: "published"
 
 # Dachdecker und Fassadenbauer aus Vietnam: Das Handwerk im Wandel zur Solarpflicht
 
+**Das Wichtigste in Kürze:** Dachdecker und Fassadenbauer aus Vietnam für Betriebe: Steildach, Flachdach, Photovoltaik-Unterkonstruktion, BG BAU Absturzsicherung und HwO-Regeln – Solarpflicht auf Gewerbedächern und energetische Sanierung treiben die Nachfrage. Wie Dachdeckerbetriebe motivierte Gesellen und Azubis gewinnen.
+
 Die Energiewende und die gesetzlichen Vorgaben des Gebäudeenergiegesetzes (GEG) sowie die in vielen Bundesländern eingeführte **Solarpflicht auf Gewerbedächern und Neubauten** stellen das Dachdecker- und Fassadenbauhandwerk vor beispiellose Herausforderungen. Während die Auftragsbücher für Dachsanierungen, Photovoltaik-Installationen und energetische Fassadendämmungen auf Jahre gefüllt sind, lehnen Meisterbetriebe reihenweise lukrative Großprojekte ab.
 
 Der Grund: Es fehlen qualifizierte Hände auf dem Dach. Die Zahl der deutschen Bewerber für das traditionell wetter- und körperbetonte Dachdeckerhandwerk ist seit Jahren rückläufig. Betriebe, die ihre Zukunft sichern wollen, erschließen mit **Auszubildenden und Fachkräften aus Vietnam** eine verlässliche, schwindelfreie und hochmotivierte Fachkräftebasis.
@@ -72,3 +74,17 @@ Damit der Übergang von der Akademie in Hanoi auf das deutsche Dach reibungslos 
 3. **Patenmodell im Kollegium:** Ein erfahrener Geselle übernimmt die persönliche Mentorenschaft auf den ersten Gerüstbauten und gibt tägliches Feedback.
 
 Sichern Sie sich jetzt motivierte Dachdecker-Azubis für das kommende Ausbildungsjahr. DMF Talents unterstützt Sie von der Bewerberauswahl über das Visumverfahren bis zur erfolgreichen Gesellenprüfung.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Dachdecker aus Vietnam einstellen?
+
+Moderne Dachdecker sind längst nicht mehr nur Handwerker für Tonziegel. Das heutige Berufsbild vereint drei Kernbereiche:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Auf dem Dach duldet Sicherheit keine Kompromisse. Die strengen Vorschriften der Berufsgenossenschaft der Bauwirtschaft (BG BAU) und die DGUV Vorschrift 38 (Bauarbeiten) stehen im Mittelpunkt der Ausbildung.
+
+### Wie unterstützt DMF Talents Unternehmen bei Dachdecker aus Vietnam einstellen?
+
+Erfahrungen deutscher Dachdeckerbetriebe zeigen: Vietnamesische Auszubildende zeichnen sich durch bemerkenswerte Pünktlichkeit, Loyalität und überdurchschnittlichen Teamgeist aus. Die traditionell hohe Wertschätzung von Handwerksmeistern in der asiatischen Kultur erleichtert die Eingliederung auf der Baustelle ungemein.

@@ -15,6 +15,8 @@ keywords:
 excerpt: "Ausbildungsabbrüche internationaler Talente entstehen selten aus fachlichen Gründen, sondern fast immer durch soziale Isolation. Wie die Campus-Gemeinschaft bei DMF Vietnam schon vor der Ausreise ein starkes soziales Fundament aufbaut."
 ---
 
+**Das Wichtigste in Kürze:** Warum das Gemeinschaftsleben an der DMF Akademie in Vietnam („Dorf der Deutschland-Azubis“) Heimweh vorbeugt und die 3-Jahres-Bleibequote in Deutschland erhöht – Ausbildungsabbrüche internationaler Talente entstehen selten aus fachlichen Gründen, sondern fast immer durch soziale Isolation. Wie die Campus-Gemeinschaft bei DMF Vietnam schon vor der Ausreise ein starkes soziales Fundament aufbaut.
+
 Wenn deutsche Ausbildungsbetriebe analysieren, warum manche internationale Rekrutierungen scheitern, zeigt sich ein klares Bild: Nur in den seltensten Fällen liegt die Ursache in mangelnder Intelligenz oder fehlendem handwerklichem Geschick. Der weitaus häufigste Grund für Konflikte oder vorzeitige Vertragsauflösungen in den ersten sechs Monaten ist **soziale Isolation, Heimweh und ein fehlendes Zugehörigkeitsgefühl** am neuen Lebensort.
 
 Ein junger Mensch, der in seinem Heimatland lediglich einen anonymen Online-Sprachkurs am heimischen Bildschirm absolviert hat und anschließend allein in eine deutsche Kleinstadt reist, trifft unvorbereitet auf das selbstständige Leben in einer Wohngemeinschaft und im Betrieb. An der **DMF Akademie in Biên Hòa und Ho-Chi-Minh-Stadt** verfolgen wir deshalb ein bewusst gemeinschaftliches Konzept: Unsere Lernenden bezeichnen ihren Campus liebevoll als **„Làng du học Đức DMF“ (das Dorf der Deutschland-Auszubildenden)**.
@@ -52,3 +54,17 @@ Wenn zwei junge Menschen, die sich bereits seit zehn Monaten aus dem täglichen 
 In Vietnam treffen junge Erwachsene weitreichende Lebensentscheidungen fast immer im engen Familienverbund. Weil DMF Vietnam in Biên Hòa und Ho-Chi-Minh-Stadt als physisch greifbare Institution vor Ort präsent ist, besuchen viele Eltern unsere Akademie persönlich, kennen unsere Lehrkräfte und vertrauen unserer Begleitung. Sollte ein Auszubildender in Deutschland im ersten Lehrjahr einmal eine Phase des Selbstzweifels erleben, wirken unser Team in Deutschland, unsere Akademieleitung in Vietnam und die Eltern am selben Strang, um den jungen Menschen zu ermutigen und auf Kurs zu halten.
 
 Erfahren Sie mehr über unsere [Werte und Ausbildungsphilosophie](/ueber-uns/ausbildung), entdecken Sie unsere [aktuell verfügbaren Talente](/fuer-arbeitgeber/kandidaten) oder nehmen Sie über unser [Kontaktformular für Arbeitgeber](/fuer-arbeitgeber/personalbedarf) direkt Verbindung mit uns auf.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema DMF Campus-Leben in Vietnam?
+
+Über 58 Sprachkohorten (K1 bis K58) haben an unserem Campus bereits gemeinsam gelernt, geübt und gelebt. Während der acht bis vierzehn Monate an der DMF Akademie verbringen die Teilnehmenden täglich viele Stunden miteinander im Präsenzunterricht, in Lerngruppen und in den Gemeinschaftsbereichen. Dabei werden genau jene Sekundärtugenden eingeübt, die deutsche Ausbilder im Betriebsalltag erwarten:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Ein Blick auf den Veranstaltungskalender unserer Akademie und unseres offiziellen Facebook-Kanals (DMF Vietnam - Học tiếng & Du học Đức | Biên Hòa) zeigt, wie intensiv der interkulturelle Austausch im Campus-Alltag gelebt wird:
+
+### Wie unterstützt DMF Talents Unternehmen bei DMF Campus-Leben in Vietnam?
+
+Aus unserer Erfahrung mit über fünfzig Kursjahrgängen empfehlen wir deutschen Ausbildungsbetrieben – wann immer es die Betriebsgröße erlaubt – die Tandem-Platzierung von zwei Auszubildenden aus derselben oder benachbarten DMF-Kohorten.

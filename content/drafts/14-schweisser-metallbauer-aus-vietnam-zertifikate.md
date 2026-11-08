@@ -10,6 +10,8 @@ excerpt: "Engpass im Stahlbau? Erfahren Sie, welche Schweißprüfungen nach DIN 
 
 # Schweißer und Metallbauer aus Vietnam: Qualifikationsnachweise und ISO-Prüfungen
 
+**Das Wichtigste in Kürze:** Wie deutsche Betriebe qualifizierte Schweißer und Metallbauer aus Vietnam gewinnen: ISO 9606-1 Schweißprüfung, MAG/WIG-Verfahren und BQFG-Anerkennung – Erfahren Sie, welche Schweißprüfungen nach DIN EN ISO 9606 Fachkräfte aus Vietnam mitbringen und wie Sie deren Qualifikation rechtssicher anerkennen.
+
 Vom schweren Stahlbau nach DIN EN 1090 über den industriellen Rohrleitungs- und Behälterbau bis hin zum filigranen Edelstahl-Geländerbau im Handwerk: Qualifizierte Schweißer und Metallbauer gehören zu den am stärksten nachgefragten Fachkräften der deutschen Industrie. Nach Erhebungen des [DVS (Deutscher Verband für Schweißen und verwandte Verfahren e. V.)](https://www.dvs-home.de) sind bundesweit tausende Schweißerpositionen unbesetzt – mit steigender Tendenz durch den bevorstehenden Renteneintritt geburtenstarker Jahrgänge.
 
 Gleichzeitig verlangt die europäische Normung kompromisslose Qualität: Schweißnähte müssen extremen Druck-, Temperatur- und Zugbelastungen standhalten und strenge zerstörungsfreie Prüfungen (ZfP) bestehen.
@@ -74,3 +76,17 @@ Betriebe müssen sich bei DMF nicht auf Zeugnisse allein verlassen. Vor der verb
 Mit qualifizierten Schweißern und Metallbauern aus Vietnam sichern Sie Ihre Fertigungskapazitäten ab, verhindern Lieferverzögerungen und stärken Ihre Wettbewerbsfähigkeit im Stahl- und Metallbau.
 
 Suchen Sie Schweißer (MAG, WIG, E-Hand) oder Konstruktionsmechaniker? Informieren Sie sich über unser Vermittlungsprogramm unter [Fachkräftevermittlung mit DMF](/services/skilled-workers) oder erfassen Sie Ihre offenen Stellen unter [Personalbedarf melden](/fuer-arbeitgeber/personalbedarf).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Schweißer aus Vietnam?
+
+Für den Einsatz in der Fertigung oder auf der Baustelle sind standardisierte Schweißerprüfbescheinigungen nach DIN EN ISO 9606-1 (für Stähle) bzw. ISO 9606-2 (für Aluminium) maßgeblich:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Um die Qualifikation vietnamesischer Schweißer realistisch einzuschätzen, ist die Analyse der betrieblichen Praxis in den Herkunftsbetrieben aufschlussreich:
+
+### Wie unterstützt DMF Talents Unternehmen bei Schweißer aus Vietnam?
+
+Nach DIN EN ISO 9606-1 Abschnitt 9.3 bleibt eine bestandene Schweißerprüfung unter folgenden Bedingungen gültig:

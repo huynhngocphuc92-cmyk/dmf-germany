@@ -10,6 +10,8 @@ excerpt: "Die Kita-Krise spitzt sich zu: Bundesweit fehlen hunderttausende Betre
 
 # Erzieherinnen & Pädagogische Fachkräfte aus Vietnam für Kitas und Träger
 
+**Das Wichtigste in Kürze:** Pädagogische Fachkräfte für deutsche Kindertagesstätten: Anerkennungsverfahren für ausländische Erzieher, Sprachkompetenz B2 und Begleitung auf Station – Die Kita-Krise spitzt sich zu: Bundesweit fehlen hunderttausende Betreuungsplätze. Wie Träger staatlich anerkannte Erzieherinnen aus Vietnam gewinnen.
+
 Die frühkindliche Bildung in Deutschland steht vor einer beispiellosen strukturellen Herausforderung: Seit Einführung des Rechtsanspruchs auf einen Betreuungsplatz ab dem ersten Lebensjahr und dem anstehenden Ganztagsförderungsgesetz (GaFöG) für Grundschulkinder vergrößert sich die personelle Lücke dramatisch. Laut aktuellen Daten des _Fachkräftebarometers Frühe Bildung_ fehlen bundesweit über 100.000 Erzieherinnen und pädagogische Fachkräfte in Kindertagesstätten.
 
 Die Konsequenzen sind für Kommunen, Träger und Familien gravierend: Öffnungszeiten werden gekürzt, Gruppen geschlossen und Eltern in ihrer Erwerbstätigkeit blockiert. Immer mehr freie und kommunale Träger (AWO, Caritas, Diakonie, DRK sowie private Kita-Betreiber) suchen daher nach nachhaltigen internationalen Wegen. Vietnam bietet hierfür ideale Voraussetzungen: Absolventinnen pädagogischer Hochschulen bringen eine fundierte vierjährige akademische Ausbildung, hohe Empathie und ausgeprägte Methodenkompetenz mit.
@@ -60,3 +62,17 @@ DMF Talents legt im Sprachentraining größten Wert auf rollenbasierte Simulatio
 Vietnamesische Erzieherinnen bringen Eigenschaften mit, die im Kita-Alltag hochgeschätzt werden: außergewöhnliche Herzlichkeit, Geduld, Respekt gegenüber Kindern und Teamfähigkeit. Angesichts zunehmend mehrsprachiger Kindergruppen bereichert ihre ausgeprägte interkulturelle Sensibilität den Alltag von Kindern, Team und Eltern nachhaltig.
 
 Suchen Sie als Kita-Träger nach verlässlichen Lösungen gegen Gruppenschließungen? Informieren Sie sich über unsere Betreuungsangebote auf der Seite [Für Arbeitgeber: Lösungen](/services/skilled-workers) oder vereinbaren Sie ein Beratungsgespräch.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Erzieherinnen aus Vietnam?
+
+Da der Beruf der Erzieherin bzw. des Erziehers in Deutschland staatlich reglementiert ist und die Bildungshoheit bei den 16 Bundesländern liegt, erfolgt das Verfahren nach landesrechtlichen Vorschriften:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+In kaum einem Beruf ist Sprache so zentral wie in der Frühpädagogik. Die Anforderungen unterscheiden sich jedoch von rein akademischen Prüfungen:
+
+### Wie unterstützt DMF Talents Unternehmen bei Erzieherinnen aus Vietnam?
+
+Vietnamesische Erzieherinnen bringen Eigenschaften mit, die im Kita-Alltag hochgeschätzt werden: außergewöhnliche Herzlichkeit, Geduld, Respekt gegenüber Kindern und Teamfähigkeit. Angesichts zunehmend mehrsprachiger Kindergruppen bereichert ihre ausgeprägte interkulturelle Sensibilität den Alltag von Kindern, Team und Eltern nachhaltig.

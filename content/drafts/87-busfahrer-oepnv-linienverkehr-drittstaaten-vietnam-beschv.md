@@ -15,6 +15,8 @@ keywords:
 excerpt: "Stadtwerke und private Busbetriebe im Dauereinsatz: Wie Verkehrsbetriebe Busfahrer aus Drittstaaten nach § 24a BeschV rechtssicher gewinnen."
 ---
 
+**Das Wichtigste in Kürze:** ÖPNV Fahrermangel lösen: Busfahrer aus Vietnam nach § 24a BeschV, Führerschein Klasse D/DE, BKrFQG Schlüsselzahl 95 und Linienverkehr – Stadtwerke und private Busbetriebe im Dauereinsatz: Wie Verkehrsbetriebe Busfahrer aus Drittstaaten nach § 24a BeschV rechtssicher gewinnen.
+
 Gekürzte Fahrpläne, gestrichene Schullinien und massiver Schichtausfall: Der Fahrermangel im öffentlichen Personennahverkehr (ÖPNV) und im privaten Reisebusverkehr hat ein kritisches Ausmaß erreicht. Nach Erhebungen des [Verbands Deutscher Verkehrsunternehmen (VDV)](https://www.vdv.de) müssen die Verkehrsbetriebe bis 2030 zehntausende Fahrersitze neu besetzen, während die geburtenstarken Jahrgänge geschlossen in den Ruhestand wechseln.
 
 Um den Verkehrskollaps abzuwenden, hat die Bundesregierung den Rechtsrahmen für Berufskraftfahrer aus Drittstaaten gezielt geöffnet: Über **§ 24a der Beschäftigungsverordnung (BeschV)** können Verkehrsunternehmen Busfahrer aus Drittstaaten einstellen, wenn die fahrtechnische und sprachliche Qualifikation strukturiert nachgewiesen wird.
@@ -68,3 +70,17 @@ Der Linien- und Reisebusverkehr unterliegt strengen gesetzlichen Arbeitszeit- un
 - **Tarifliche Zuschläge:** Nacht-, Sonntags- und Feiertagszuschläge nach dem jeweiligen Tarifvertrag (z. B. TV-N) müssen transparent abgerechnet und dem Fahrer vor Dienstantritt verständlich erläutert werden.
 
 Möchten Sie Ihren Fahrplan verlässlich stabilisieren? [Erfassen Sie Ihren Personalbedarf](/fuer-arbeitgeber/personalbedarf) oder kontaktieren Sie unsere Mobilitätsexperten direkt.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Busfahrer aus Drittstaaten einstellen?
+
+Gemäß § 24a Abs. 1 BeschV erteilt die Bundesagentur für Arbeit die Zustimmung zur Beschäftigung als Berufskraftfahrer im Personenverkehr, wenn folgende gesetzliche Voraussetzungen erfüllt sind:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Vietnamesische Berufskraftfahrer verfügen häufig über langjährige Fahrpraxis auf Reise- und Überlandbussen. Das Verfahren zur Erlangung der deutschen Fahrerlaubnis Klasse D gestaltet sich transparent:
+
+### Wie unterstützt DMF Talents Unternehmen bei Busfahrer aus Drittstaaten einstellen?
+
+Die Arbeit im Linienbus ist mehr als reines Lenken: Busfahrer sind das Aushängeschild des Verkehrsbetriebs und erster Ansprechpartner für Fahrgäste. DMF Talents schult Kandidaten vor der Dienstaufnahme in folgenden Praxismodulen:

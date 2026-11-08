@@ -9,6 +9,7 @@ import { ServicesSection } from "@/components/sections/ServicesSection";
 import { ProcessRoadmap } from "@/components/b2b/ProcessRoadmap";
 import { DeferredSalarySimulator } from "@/components/performance/DeferredSalarySimulator";
 import { PathwayFinder } from "@/components/tools/PathwayFinder";
+import { GeoKnowledgeSection } from "@/components/sections/GeoKnowledgeSection";
 import ContactSection from "@/components/sections/ContactSection";
 import { PartnerSection } from "@/components/sections/PartnerSection";
 import type { ReactNode } from "react";
@@ -48,6 +49,7 @@ export function HomeClient({ assets, heroCandidates, talentCandidates }: HomeCli
       <DeferredSalarySimulator />
       {talentCandidates}
       <PathwayFinder />
+      <GeoKnowledgeSection />
       <ContactSection
         repDeImg={assets["home_rep_de_img"] || "/images/home/umit-elezov.jpg"}
         repVnImg={assets["home_rep_vn_img"] || "/images/home/achim-betticher.jpg"}

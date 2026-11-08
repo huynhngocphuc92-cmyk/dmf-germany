@@ -1,8 +1,9 @@
 "use client";
 import { useState } from "react";
 import { ChevronDown, HelpCircle } from "lucide-react";
+import { buildFaqSchema } from "@/lib/seo/aeo-schemas";
 
-interface FAQItem {
+export interface FAQItem {
   question: string;
   answer: string;
 }
@@ -12,6 +13,8 @@ interface FAQSectionProps {
   subtitle?: string;
   items: FAQItem[];
   theme: "blue" | "emerald" | "amber"; // Matches our 3 pages
+  pagePath?: string;
+  emitSchema?: boolean;
 }
 
 export default function FAQSection({
@@ -19,6 +22,8 @@ export default function FAQSection({
   subtitle,
   items,
   theme,
+  pagePath,
+  emitSchema = true,
 }: FAQSectionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
@@ -45,9 +50,18 @@ export default function FAQSection({
   };
 
   const currentTheme = themeStyles[theme];
+  const faqSchema = emitSchema && items.length > 0 ? buildFaqSchema(items, pagePath) : null;
 
   return (
     <section className={`py-20 ${currentTheme.bg}`}>
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(faqSchema).replace(/</g, "\\u003c"),
+          }}
+        />
+      )}
       <div className="container max-w-4xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">
@@ -69,16 +83,18 @@ export default function FAQSection({
               className={`bg-white rounded-xl border ${openIndex === idx ? currentTheme.border + " shadow-md" : "border-slate-100"} overflow-hidden transition-all duration-300`}
             >
               <button
+                type="button"
+                aria-expanded={openIndex === idx}
                 onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
                 className="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-colors"
               >
-                <span
+                <h3
                   className={`font-bold text-lg ${openIndex === idx ? currentTheme.text : "text-slate-700"}`}
                 >
                   {item.question}
-                </span>
+                </h3>
                 <ChevronDown
-                  className={`transition-transform duration-300 ${openIndex === idx ? "rotate-180 " + currentTheme.text : "text-slate-400"}`}
+                  className={`shrink-0 ml-4 transition-transform duration-300 ${openIndex === idx ? "rotate-180 " + currentTheme.text : "text-slate-400"}`}
                   size={20}
                 />
               </button>
@@ -86,9 +102,9 @@ export default function FAQSection({
               <div
                 className={`transition-all duration-300 ease-in-out overflow-hidden ${openIndex === idx ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
               >
-                <div className="p-6 pt-0 text-slate-600 leading-relaxed border-t border-slate-50">
+                <p className="p-6 pt-0 text-slate-600 leading-relaxed border-t border-slate-50">
                   {item.answer}
-                </div>
+                </p>
               </div>
             </div>
           ))}

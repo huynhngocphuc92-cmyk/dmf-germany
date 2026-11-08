@@ -15,6 +15,8 @@ keywords:
 excerpt: "Erstversorgung, Durchgangsarzt und Meldefristen: Leitfaden für Betriebe zur gesetzlichen Unfallversicherung internationaler Beschäftigter."
 ---
 
+**Das Wichtigste in Kürze:** Arbeitsunfall und Wegeunfall bei Drittstaatskräften: Gesetzliche Unfallversicherung (SGB VII), D-Arzt, 3-Tage-Meldepflicht und Visumschutz – Erstversorgung, Durchgangsarzt und Meldefristen: Leitfaden für Betriebe zur gesetzlichen Unfallversicherung internationaler Beschäftigter.
+
 Baustellen, Produktionshallen, Küchen und Werkstätten bergen Unfallrisiken. Erleidet ein ausländischer Auszubildender oder eine Fachkraft aus einem Drittstaat (z. B. Vietnam) einen Arbeits- oder Wegeunfall, geraten Führungskräfte zuweilen in Verunsicherung: Greift die deutsche gesetzliche Unfallversicherung? Welche Meldepflichten gegenüber der Berufsgenossenschaft müssen eingehalten werden? Und droht bei monatelanger unfallbedingter Rehabilitation der Verlust des Aufenthaltstitels?
 
 Die Rechtslage ist eindeutig: **In Deutschland gilt das Territorialitätsprinzip.** Jeder Beschäftigte und jeder Auszubildende steht ab der ersten Arbeitssekunde unter dem vollen Schutz der gesetzlichen Unfallversicherung nach dem **Siebten Buch Sozialgesetzbuch (SGB VII)** – ohne Unterschied hinsichtlich Staatsangehörigkeit, Visumkategorie oder Beschäftigungsdauer.
@@ -64,3 +66,17 @@ Viele Arbeitgeber und Mitarbeiter fürchten, dass eine unfallbedingte Arbeitsunf
 - Bei längeren Ausfallzeiten in der Ausbildung wird die Vertragslaufzeit nach **§ 8 Abs. 2 BBiG** in Abstimmung mit der Handwerkskammer oder IHK formal verlängert. Die Ausländerbehörde passt die Gültigkeitsdauer der Aufenthaltserlaubnis entsprechend an.
 
 DMF Talents unterstützt Betriebe bei der rechtssicheren Kommunikation mit Berufsgenossenschaften und Ausländerbehörden im Schadensfall.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Arbeitsunfall bei ausländischen Fachkräften?
+
+Versichert sind alle Unfälle, die im kausalen Zusammenhang mit der versicherten Tätigkeit stehen:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Kommt es zu einem Unfall, müssen Betriebe zwingend die gesetzlich vorgegebene Meldekette einhalten:
+
+### Wie unterstützt DMF Talents Unternehmen bei Arbeitsunfall bei ausländischen Fachkräften?
+
+Die gesetzliche Unfallversicherung leistet im Schadensfall umfassender als die gesetzliche Krankenversicherung:

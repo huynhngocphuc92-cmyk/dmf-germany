@@ -15,6 +15,8 @@ keywords:
 excerpt: "Wegebau, Vegetationstechnik und Baumpflege: Wie Betriebe des Garten- und Landschaftsbaus motivierte Auszubildende und Fachkräfte aus Vietnam gewinnen."
 ---
 
+**Das Wichtigste in Kürze:** Landschaftsgärtner aus Drittstaaten rekrutieren: Pflasterbau DIN 18318, Baumpflege AS Baum, FLL-Standards und § 16a AufenthG für GaLaBau-Betriebe – Wegebau, Vegetationstechnik und Baumpflege: Wie Betriebe des Garten- und Landschaftsbaus motivierte Auszubildende und Fachkräfte aus Vietnam gewinnen.
+
 Der Garten-, Landschafts- und Sportplatzbau verzeichnet seit Jahren ein stabiles Auftragswachstum. Kommunale Grünflächen, klimagerechte Stadtentwicklung („Schwammstadt“-Konzepte), private Außenanlagen und großflächige Renaturierungsprojekte fordern den Betrieben Höchstleistungen ab. Gleichzeitig schlägt der demografische Wandel im grünen Handwerk mit voller Wucht zu: Nach Erhebungen des [Bundesverbands Garten-, Landschafts- und Sportplatzbau (BGL)](https://www.galabau.de) fehlen bundesweit tausende Fachkräfte und engagierte Auszubildende.
 
 Vietnam bietet für den GaLaBau ideale strukturelle Voraussetzungen: Ein stark landwirtschaftlich und gärtnerisch geprägtes Land, in dem körperliche Arbeit im Freien, Wetterfestigkeit und ein natürlicher Bezug zu Pflanzen und Werkstoffen tief im Alltag verankert sind.
@@ -73,3 +75,17 @@ Die Integration gelingt am besten über feste Routinen in der Arbeitskolonne:
 3. **Woche 4:** Erste eigenständige Aufgaben beim Verfugen, Pflanzen oder Bedienen handgeführter Verdichtungsgeräte unter Aufsicht.
 
 Informieren Sie sich über die Möglichkeiten auf unserer Seite zur [Auszubildendenvermittlung](/services/azubi) oder fordern Sie unverbindlich Profile an.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema GaLaBau Fachkräfte aus Vietnam?
+
+Entgegen veralteter Klischees ist der Landschaftsgärtner ein anspruchsvoller bautechnischer Handwerksberuf. Erfolgreiche Mitarbeiter müssen ein breites Spektrum an handwerklichen und planerischen Fähigkeiten vereinen:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Bewerber aus Vietnam überzeugen Ausbilder und Betriebsinhaber durch Eigenschaften, die im GaLaBau unverzichtbar sind:
+
+### Wie unterstützt DMF Talents Unternehmen bei GaLaBau Fachkräfte aus Vietnam?
+
+Für mittelständische GaLaBau-Betriebe ist die 3-jährige duale Ausbildung zum Landschaftsgärtner (§ 16a AufenthG) der sicherste Pfad zur Fachkräftesicherung. Der Azubi durchläuft:

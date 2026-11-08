@@ -10,6 +10,8 @@ excerpt: "Der Mangel an Fachköchen bedroht die Gastronomie. Über die Sonderreg
 
 # Köche & Spezialitätenköche aus Vietnam nach § 11 Abs. 2 BeschV einstellen
 
+**Das Wichtigste in Kürze:** Leitfaden für Gastronomie und Hotellerie: Wie Restaurants qualifizierte Köche aus Vietnam über § 11 BeschV gewinnen. Nachweise, Fristen und Arbeitsvertrag – Der Mangel an Fachköchen bedroht die Gastronomie. Über die Sonderregelung des § 11 Abs. 2 BeschV können Restaurants Spezialitätenköche aus Vietnam gewinnen.
+
 Die Gastronomie- und Hotelleriebranche in Deutschland erlebt den schwersten Fachkräftemangel der Nachkriegszeit: Nach Angaben des Branchenverbandes DEHOGA (Deutscher Hotel- und Gaststättenverband) suchen über 80 Prozent der gastronomischen Betriebe händeringend nach Küchenpersonal. Tausende Restaurants müssen zusätzliche Ruhetage einführen, ihre Speisekarte radikal verkleinern oder Öffnungszeiten beschränken, weil der Posten des Chef de Partie oder des Sous Chefs in der Küche unbesetzt bleibt.
 
 Insbesondere Restaurants mit asiatischer, vietnamesischer, Fusions- oder internationaler Spezialitätenküche stehen vor einer kaum lösbaren Aufgabe: Authentische Handwerkskunst (Umgang mit Wok-Brennern bei extremen Temperaturen, traditionelle Dämpf- und Fermentiertechniken, feine Brühenherstellung und meisterhafte Schnittkunst) lässt sich auf dem heimischen Arbeitsmarkt kaum rekrutieren.
@@ -72,3 +74,17 @@ Auch wenn ein Meisterkoch seine Töpfe blind beherrscht, müssen deutsche Standa
 - **Küchenfachsprache:** Arbeitsanweisungen im Küchenpass („Mise en place“, Garstufen, Schnittformen, Mengenangaben).
 
 Suchen Sie Küchenprofis für Ihr Restaurant oder Hotel? Nutzen Sie unser [Portal zur Bedarfserfassung](/fuer-arbeitgeber/personalbedarf), um geprüfte Spezialitätenköche kennenzulernen.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Köche aus Vietnam einstellen?
+
+Die Verordnung ermöglicht es gastronomischen Betrieben, erfahrene Köche aus dem Ausland auch dann einzustellen, wenn kein langwieriges deutsches Gleichwertigkeitsverfahren nach dem BQFG durchlaufen wird:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Für Gastronomiebetriebe ist die Unterscheidung der beiden Rechtswege essenziell:
+
+### Wie unterstützt DMF Talents Unternehmen bei Köche aus Vietnam einstellen?
+
+Auch wenn ein Meisterkoch seine Töpfe blind beherrscht, müssen deutsche Standards im Gastgewerbe von Tag 1 an sitzen:

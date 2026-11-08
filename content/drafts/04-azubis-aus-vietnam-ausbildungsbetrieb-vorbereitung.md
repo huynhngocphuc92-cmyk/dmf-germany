@@ -10,6 +10,8 @@ excerpt: "Was muss ein Betrieb vorbereiten, bevor Auszubildende aus Vietnam star
 
 # Azubis aus Vietnam: So bereitet sich der Ausbildungsbetrieb optimal vor
 
+**Das Wichtigste in Kürze:** Auszubildende aus Vietnam im Betrieb aufnehmen: Wohnraum, Betreuung, Berufsschule und Integration. Ein praxisnaher Leitfaden für Ausbildungsbetriebe – Dieser Leitfaden strukturiert Betreuung, Wohnraum und den Einstieg in die duale Ausbildung.
+
 Der Entschluss ist gefasst: Ihr Betrieb möchte eine Ausbildungsstelle mit einer motivierten Nachwuchskraft aus Vietnam besetzen. Damit die duale Ausbildung für beide Seiten ein langfristiger Erfolg wird, reicht ein unterschriebener Ausbildungsvertrag allein nicht aus. Vor dem offiziellen Starttermin am 1. August oder 1. September müssen organisatorische, fachliche und menschliche Weichen im Unternehmen gestellt werden.
 
 Dieser redaktionelle Leitfaden fasst die wichtigsten Vorbereitungsschritte zusammen. Er hilft Ausbildungsleitern, Personalverantwortlichen und Geschäftsführern, typische Reibungsverluste zu vermeiden und den Einstieg verlässlich zu strukturieren.
@@ -80,3 +82,17 @@ Nutzen Sie diese Punkte für Ihre interne Vorbereitung (ca. 8 bis 12 Wochen vor 
 Eine fundierte Vorbereitung verwandelt den Zuzug internationaler Auszubildender in eine nachhaltige Fachkräftesicherung für Ihren Betrieb. Einen Überblick über Ablauf, Voraussetzungen und Profile finden Sie bei [DMF Talents zur Vermittlung vietnamesischer Auszubildender](/services/azubi).
 
 Wenn Sie offene Ausbildungsstellen besetzen möchten oder Fragen zur betrieblichen Vorbereitung haben, [beschreiben Sie Ihren Personalbedarf unverbindlich](/fuer-arbeitgeber/personalbedarf). Wir unterstützen Sie bei der Klärung aller organisatorischen Schritte.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Azubis aus Vietnam?
+
+In der dualen Ausbildung ist die formale Ausbildungsleitung durch die Kammern (IHK oder HWK) vorgeschrieben. Bei internationalen Auszubildenden hat sich in der Praxis jedoch eine zweigeteilte Begleitung bewährt:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Für die Erteilung des Visums zur Berufsausbildung (§ 16a AufenthG) verlangen die deutschen Auslandsvertretungen und Ausländerbehörden unter anderem den Nachweis einer gesicherten Unterkunft. In vielen deutschen Regionen ist bezahlbarer Wohnraum für Auszubildende knapp.
+
+### Wie unterstützt DMF Talents Unternehmen bei Azubis aus Vietnam?
+
+Die größte fachliche Herausforderung für vietnamesische Auszubildende liegt selten im handwerklichen oder praktischen Geschick, sondern in der Fachtheorie an der Berufsschule. Selbst mit einem soliden B1- oder B2-Sprachzertifikat ist das Verstehen komplexer Prüfungsaufgaben und Fachbegriffe anfangs anspruchsvoll.

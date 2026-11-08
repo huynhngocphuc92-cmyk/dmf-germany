@@ -15,6 +15,8 @@ keywords:
 excerpt: "Silicon Saxony, traditionsreiches Handwerk und akuter Nachwuchsmangel: Wie ostdeutsche Betriebe Fachkräfte und Auszubildende aus Vietnam integrieren."
 ---
 
+**Das Wichtigste in Kürze:** Fachkräftemangel in Sachsen & Thüringen lösen: Silicon Saxony, Handwerk, Industrie, historische Verbindungen zu Vietnam und Willkommenskultur – Silicon Saxony, traditionsreiches Handwerk und akuter Nachwuchsmangel: Wie ostdeutsche Betriebe Fachkräfte und Auszubildende aus Vietnam integrieren.
+
 Die ostdeutschen Bundesländer – allen voran der Freistaat Sachsen und der Freistaat Thüringen – stehen vor einer historischen demografischen Zäsur. Während die Region Dresden als **„Silicon Saxony“** zum größten europäischen Halbleiter- und Mikroelektronikstandort aufsteigt und Leipzig als Logistik- und Automobilmetropole boomt, schlägt die Verrentungswelle der geburtenstarken Jahrgänge mit voller Wucht zu. Nach Angaben der Handwerkskammern in Dresden, Chemnitz und Erfurt sind bereits heute über ein Drittel aller Handwerksmeister älter als 55 Jahre; tausende Ausbildungsplätze bleiben unbesetzt.
 
 Gleichzeitig verbindet Ostdeutschland und Vietnam eine gewachsene historische Beziehung: Zehntausende vietnamesische Vertragsarbeiter lebten und arbeiteten vor 1990 in der ehemaligen DDR, viele studierten an Universitäten in Dresden, Freiberg, Leipzig oder Magdeburg. Diese generationenübergreifende Vertrautheit bildet ein stabiles soziokulturelles Fundament für erfolgreiche Zuwanderung.
@@ -70,3 +72,17 @@ Ostdeutsche Betriebe nutzen bevorzugt zwei Zuwanderungsinstrumente:
 DMF Talents unterstützt Betriebe in ganz Ostdeutschland bei der nachhaltigen Sicherung ihrer Fachkräftebasis.
 
 Informieren Sie sich über unsere Angebote unter [Für Arbeitgeber: Handwerk & Industrie](/services/skilled-workers) oder erfassen Sie Ihren [Personalbedarf unverbindlich](/fuer-arbeitgeber/personalbedarf).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Fachkräfte aus Vietnam für Ostdeutschland?
+
+Internationale Talente aus Vietnam unterstützen Schlüsselindustrien in Sachsen und Thüringen:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Die Rekrutierung aus Vietnam stößt in Ostdeutschland auf günstige Rahmenbedingungen:
+
+### Wie unterstützt DMF Talents Unternehmen bei Fachkräfte aus Vietnam für Ostdeutschland?
+
+Damit sich internationale Fachkräfte auch abseits der Großstädte Dresden und Leipzig dauerhaft wohlfühlen, setzen vorausschauende Betriebe auf folgende Maßnahmen:

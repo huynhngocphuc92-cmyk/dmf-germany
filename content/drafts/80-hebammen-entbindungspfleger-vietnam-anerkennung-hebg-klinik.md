@@ -11,6 +11,8 @@ status: "published"
 
 # Hebammen aus Vietnam: Qualifizierte Geburtshilfe für deutsche Kreißsäle
 
+**Das Wichtigste in Kürze:** Hebammen aus Vietnam für Geburtskliniken: Anerkennungsverfahren nach Hebammengesetz (HebG), Kenntnisprüfung, Anpassungslehrgang und Kreißsaal-Fachkräfte – Akuter Hebammenmangel in deutschen Geburtskliniken: Wie Krankenhäuser akademisch ausgebildete Hebammen aus Vietnam nach dem HebG anerkennen.
+
 Die Situation in deutschen Geburtskliniken und Kreißsälen ist dramatisch angespannt: Nach Angaben des Deutschen Hebammenverbandes (DHV) und der Deutschen Gesellschaft für Gynäkologie und Geburtshilfe (DGGG) mussten in den vergangenen Jahren zahlreiche Geburtsstationen vorübergehend abgemeldet oder Betten gesperrt werden, weil das erforderliche Hebammenpersonal fehlt. Die gesetzliche Vorgabe zur 1:1-Betreuung von Gebärenden unter der Geburt lässt sich vielerorts personell kaum noch aufrechterhalten.
 
 Mit der Akademisierung des Hebammenberufs durch das reformierte **Hebammengesetz (HebG)** hat Deutschland die Ausbildung auf ein primärqualifizierendes Hochschulstudium umgestellt. Genau hier liegt die Chance für deutsche Kliniken: **In Vietnam ist die Hebammenausbildung seit vielen Jahren akademisch etabliert.** Absolventinnen vietnamesischer medizinischer Universitäten schließen ihr Hebammenstudium nach vier Jahren mit einem Bachelor of Midwifery ab und bringen hunderte protokollierte Geburten an geburtenstarken Universitätskliniken mit.
@@ -66,3 +68,17 @@ Die Geburtshilfe ist ein hochsensibler Bereich, in dem klare Kommunikation zwisc
 3. **Wohnortnahe Klinikunterkunft:** Bereitstellung eines Mitarbeiterzimmers im Schwesternwohnheim für kurze Wege bei Rufbereitschaften und Schichtwechseln.
 
 Sichern Sie die Zukunft Ihrer Geburtshilfe mit hochqualifizierten Hebammen aus Vietnam. [Sprechen Sie mit den Healthcare-Spezialisten von DMF Talents](/fuer-arbeitgeber/personalbedarf).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Hebammen aus Vietnam?
+
+Da der Hebammenberuf in Deutschland zu den staatlich reglementierten Heilberufen gehört, bedarf die Berufsausübung der staatlichen Erlaubnis zum Führen der Berufsbezeichnung „Hebamme“ (§ 5 HebG).
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Die demografische Struktur Vietnams und die hohe Geburtenrate sorgen dafür, dass vietnamesische Hebammen über eine praktische Routine verfügen, von der deutsche Häuser nur träumen können:
+
+### Wie unterstützt DMF Talents Unternehmen bei Hebammen aus Vietnam?
+
+Die Einstellung erfolgt über das bewährte Verfahren der Anpassungsqualifizierung:

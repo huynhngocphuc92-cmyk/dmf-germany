@@ -15,6 +15,8 @@ keywords:
 excerpt: "Zum 1. Januar 2027 steigen die Beitragsbemessungsgrenzen und der gesetzliche Mindestlohn auf 14,60 Euro. Welche Bruttogehälter Arbeitgeber für die Blaue Karte EU und § 18a/18b AufenthG einplanen müssen."
 ---
 
+**Das Wichtigste in Kürze:** Alle Gehaltsgrenzen 2027 für die Blaue Karte EU (§ 18g AufenthG), Fachkräfte über 45 Jahre und den gesetzlichen Mindestlohn von 14,60 Euro pro Stunde – Zum 1. Januar 2027 steigen die Beitragsbemessungsgrenzen und der gesetzliche Mindestlohn auf 14,60 Euro. Welche Bruttogehälter Arbeitgeber für die Blaue Karte EU und § 18a/18b AufenthG einplanen müssen.
+
 Mit dem Jahreswechsel 2026/2027 treten im deutschen Aufenthalts- und Arbeitsrecht aktualisierte Entgeltuntergrenzen in Kraft. Da die Mindestgehälter für die **Blaue Karte EU (§ 18g AufenthG)** sowie für ältere Fachkräfte ab 45 Jahren prozentual an die jährliche Beitragsbemessungsgrenze in der allgemeinen Rentenversicherung (BBG RV) gekoppelt sind, verschieben sich die Schwellenwerte zum **1. Januar 2027** nach oben. Parallel steigt der allgemeine gesetzliche Mindestlohn nach dem Beschluss der Mindestlohnkommission auf **14,60 Euro brutto pro Zeitstunde**.
 
 Für Personalabteilungen und Geschäftsführer ist die genaue Kenntnis dieser Grenzwerte unverzichtbar: Liegt das im Arbeitsvertrag vereinbarte Jahresbruttogehalt auch nur wenige Euro unter der gesetzlichen Schwelle, lehnt die Bundesagentur für Arbeit (BA) oder die Ausländerbehörde den gewählten Aufenthaltstitel ab.
@@ -66,3 +68,17 @@ Stellt Ihr Unternehmen eine Fachkraft nach § 18a oder § 18b AufenthG ein, die 
 Wenn Sie aktuell im vierten Quartal 2026 Arbeitsverträge ausstellen, deren Visumerteilung oder Arbeitsbeginn in das Jahr 2027 fällt, müssen im Arbeitsvertrag und in der **Erklärung zum Beschäftigungsverhältnis** bereits die **ab 01.01.2027 gültigen Schwellenwerte** eingehalten werden. Andernfalls fordert die Ausländerbehörde im Januar einen Nachtrag zum Arbeitsvertrag an.
 
 Prüfen Sie unsere [Lösungen für akademische und berufliche Fachkräfte](/services/skilled-workers), vergleichen Sie die zeitlichen Abläufe in unserem [Projekt-Zeitplan für Arbeitgeber](/fuer-arbeitgeber/zeitplan) oder vereinbaren Sie eine [unverbindliche Erstberatung zu Ihrem Personalbedarf](/fuer-arbeitgeber/personalbedarf).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Blaue Karte EU 2027 & Mindestlohn 14,60 €?
+
+Die Blaue Karte EU ist der attraktivste Aufenthaltstitel für akademische Fachkräfte (etwa Ingenieure des Maschinenbaus, Elektrotechniker, Bauingenieure) sowie für IT-Spezialisten mit mindestens dreijähriger einschlägiger Berufserfahrung. Seit der Reform des Fachkräfteeinwanderungsgesetzes betragen die Schwellenwerte:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Für beruflich qualifizierte Fachkräfte mit anerkannter Ausbildung (z. B. Elektroniker, Anlagenmechaniker SHK, Zerspanungsmechaniker, Mechatroniker, Köche oder Pflegefachkräfte nach § 18a AufenthG) gilt keine starre bundesweite Mindestgehaltsschwelle wie bei der Blauen Karte EU (sofern der Bewerber jünger als 45 Jahre ist).
+
+### Wie unterstützt DMF Talents Unternehmen bei Blaue Karte EU 2027 & Mindestlohn 14,60 €?
+
+Zum 1. Januar 2027 steigt der gesetzliche Mindestlohn in der zweiten Stufe der Empfehlung der Mindestlohnkommission von bisher 13,90 Euro (2026) auf 14,60 Euro brutto je Zeitstunde (entspricht rund 2.530 Euro brutto im Monat bei einer 40-Stunden-Woche).

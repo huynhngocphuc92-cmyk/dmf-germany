@@ -11,6 +11,8 @@ status: "published"
 
 # Vom Pflegehelfer zur examinierten Pflegefachkraft: Das 1+2 Aufstiegsmodell für Kliniken
 
+**Das Wichtigste in Kürze:** Vom Pflegehelfer zur Pflegefachkraft: Das 1+2 Aufstiegsmodell nach PflAPrV. Sprachbarrieren abbauen, Ausbildungsabbrüche verhindern und Fachkraftquote sichern – Sprachschonend zur Fachkraftquote: Wie Krankenhäuser und Pflegeheime mit dem 1+2 Modell Ausbildungsabbrüche verhindern und Personal langfristig binden.
+
 Krankenhäuser, Rehakliniken und Senioreneinrichtungen in ganz Deutschland stehen unter enormem Druck: Gesetzliche Mindestpersonalvorgaben (Pflegepersonaluntergrenzen / PpUG) und starre Fachkraftquoten zwingen Träger dazu, Betten zu sperren oder ganze Stationen abzumelden, wenn nicht genügend examinierte Pflegefachfrauen und -männer im Dienstplan stehen.
 
 Um die Lücke zu schließen, werben viele Kliniken internationale Auszubildende direkt für die dreijährige generalistische Pflegeausbildung an. Doch die Praxis offenbart eine schmerzhafte Schwachstelle: **Die Durchfall- und Abbruchquote im ersten Lehrjahr ist hoch.** Grund dafür ist selten der fehlende Praxisfleiß, sondern die gigantische sprachliche Hürde der deutschen Pflege-Fachtheorie (Anatomie, Pharmakologie, Pflegeplanung).
@@ -56,3 +58,17 @@ Die Ausländerbehörden unterstützen das 1+2 Modell ausdrücklich:
 - Nach bestandener Prüfung verlängert die Ausländerbehörde den Titel unbürokratisch für die verbleibenden 24 Monate der verkürzten Fachkraftausbildung.
 
 DMF Talents kooperiert bundesweit mit Pflegeschulen und Universitätskliniken, die dieses Modell als neuen Rekrutierungsstandard etabliert haben.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Pflegehelfer zu Pflegefachkraft?
+
+Das Modell teilt den Weg zum Examen in zwei didaktisch und rechtlich aufeinander aufbauende Stufen:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Die Ausländerbehörden unterstützen das 1+2 Modell ausdrücklich:
+
+### Wie unterstützt DMF Talents Unternehmen bei Pflegehelfer zu Pflegefachkraft?
+
+DMF Talents unterstützt deutsche Unternehmen durch eine eigene Sprach- und Vorbereitungsakademie in Vietnam, vorab geprüfte Kandidatendossiers inklusive Kurzvideo sowie persönliche Begleitung im Behörden- und Onboarding-Prozess in Deutschland nach dem Employer-Pays-Prinzip (§ 296a SGB III).

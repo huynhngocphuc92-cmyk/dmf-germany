@@ -15,6 +15,8 @@ keywords:
 excerpt: "Bis zu 100 % Lehrgangskosten und 75 % Lohnfortzahlung: Wie Unternehmen Sprachkurse für ausländische Mitarbeiter über die Bundesagentur für Arbeit finanzieren."
 ---
 
+**Das Wichtigste in Kürze:** Staatliche Zuschüsse für betriebliche Sprachkurse: Bis zu 100 % Lehrgangskostenförderung und Arbeitsentgeltzuschuss (AEZ) nach § 82 SGB III – Bis zu 100 % Lehrgangskosten und 75 % Lohnfortzahlung: Wie Unternehmen Sprachkurse für ausländische Mitarbeiter über die Bundesagentur für Arbeit finanzieren.
+
 Internationale Fachkräfte und Auszubildende aus Drittstaaten bringen fundierte fachliche Qualifikationen mit. Für den langfristigen Erfolg im Unternehmen entscheidet jedoch die sprachliche Handlungssicherheit: Das Verstehen komplexer Sicherheitsvorschriften, die kollegiale Übergabe am Schichtende und die souveräne Kommunikation mit Kunden und Patienten verlangen solide Deutschkenntnisse auf dem Niveau B2 GER.
 
 Viele Arbeitgeber scheuen die hohen Kosten für berufsbegleitenden Sprachunterricht und die Freistellung von der Arbeitszeit. Was viele Geschäftsführer und HR-Manager nicht wissen: Die Bundesagentur für Arbeit fördert betriebliche Weiterbildungen und arbeitsplatzbezogene Sprachkurse über das **Qualifizierungschancengesetz (§ 82 Drittes Buch Sozialgesetzbuch – SGB III)** mit **massiven finanziellen Zuschüssen** – bei Kleinstbetrieben werden bis zu 100 Prozent der Kurskosten übernommen.
@@ -70,3 +72,17 @@ So sichern sich Personalabteilungen die staatliche Förderung:
 DMF Talents berät Partnerbetriebe bei der Auswahl geeigneter Sprachbildungsträger und vermittelt AZAV-akkreditierte Kooperationspartner.
 
 Erfahren Sie mehr über unsere Fördermittelberatung unter [Für Arbeitgeber: Transparenz & Qualität](/services/skilled-workers) oder erfassen Sie Ihren [Personalbedarf unverbindlich](/fuer-arbeitgeber/personalbedarf).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Sprachkurs Förderung nach § 82 SGB III?
+
+Damit eine betriebliche Sprach- oder Weiterbildungsmaßnahme förderfähig ist, müssen folgende gesetzliche Voraussetzungen erfüllt sein:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Die Höhe der staatlichen Zuschüsse richtet sich gestaffelt nach der Mitarbeiterzahl des Unternehmens:
+
+### Wie unterstützt DMF Talents Unternehmen bei Sprachkurs Förderung nach § 82 SGB III?
+
+Neben den reinen Unterrichtskosten stellt der Arbeitsausfall für Betriebe das größte Hindernis dar. Hier greift der Arbeitsentgeltzuschuss (AEZ nach § 82 Abs. 5 SGB III):

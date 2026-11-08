@@ -10,6 +10,8 @@ excerpt: "Was tun bei einem Defizitbescheid? Erfahren Sie, wie Arbeitgeber Teila
 
 # Anerkennungsverfahren für vietnamesische Berufsabschlüsse: Den Defizitbescheid verstehen und lösen
 
+**Das Wichtigste in Kürze:** Anerkennung vietnamesischer Berufsabschlüsse nach dem BQFG: Defizitbescheid verstehen, Anpassungslehrgang (§ 16d) organisieren und Vollanerkennung erreichen – Erfahren Sie, wie Arbeitgeber Teilanerkennungen nach dem BQFG durch betriebliche Qualifizierung (§ 16d) zur Vollanerkennung führen.
+
 Wer als Arbeitgeber eine qualifizierte Fachkraft mit ausländischem Berufsabschluss einstellen möchte, kommt am **Berufsqualifikationsfeststellungsgesetz (BQFG)** nicht vorbei. Die behördliche Gleichwertigkeitsprüfung ist die zentrale rechtliche Voraussetzung für die Visumerteilung als Fachkraft nach § 18a des Aufenthaltsgesetzes (AufenthG).
 
 Viele Unternehmen schrecken jedoch zurück, wenn die zuständige Anerkennungsstelle (z. B. IHK FOSA oder die Handwerkskammer) keinen Bescheid über die volle Gleichwertigkeit ausstellt, sondern einen sogenannten **Defizitbescheid (Bescheid über die teilweise Gleichwertigkeit)** erlässt.
@@ -74,3 +76,17 @@ Offizielle Leitfäden für Unternehmen finden Sie auf [Make it in Germany zum Th
 Ein Defizitbescheid ist kein Hindernis, sondern ein klar strukturierter Fahrplan zur vollen Anerkennung. Gestalten Sie die Qualifizierung Ihrer zukünftigen Fachkraft im eigenen Werk.
 
 Möchten Sie einen Berufsabschluss aus Vietnam anerkennen lassen oder qualifizierte Kandidaten kennenlernen? Informieren Sie sich unter [Fachkräftevermittlung mit DMF](/services/skilled-workers) oder erfassen Sie Ihre Vakanzen unter [Personalbedarf melden](/fuer-arbeitgeber/personalbedarf).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Anerkennungsverfahren BQFG?
+
+Das Verfahren folgt bundesweit standardisierten Kriterien, die auf dem amtlichen Informationsportal Anerkennung in Deutschland zum BQFG zusammengefasst sind:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Ein Defizitbescheid bestätigt zunächst ausdrücklich, dass eine fundierte Berufsqualifikation im Ausland erworben wurde. Er listet jedoch sogenannte wesentliche Unterschiede zur deutschen Ausbildungsordnung auf:
+
+### Wie unterstützt DMF Talents Unternehmen bei Anerkennungsverfahren BQFG?
+
+Liegt eine Teilanerkennung vor, beantragt die Fachkraft ein Visum nach § 16d AufenthG (Maßnahmen zur Anerkennung ausländischer Berufsqualifikationen). Dies bietet dem Arbeitgeber erhebliche Vorteile:

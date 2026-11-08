@@ -15,6 +15,8 @@ keywords:
 excerpt: "Stuhlassistenz, Strahlenschutz und Sterilisation: Wie niedergelassene Zahnarztpraxen und Zahn-MVZ qualifizierte ZFA aus Vietnam rechtssicher einbinden."
 ---
 
+**Das Wichtigste in Kürze:** Zahnmedizinische Fachangestellte aus Drittstaaten: Stuhlassistenz, Röntgenschein nach StrlSchG, RKI-Hygiene, BEMA/GOZ Abrechnung und ZÄK-Anerkennung – Stuhlassistenz, Strahlenschutz und Sterilisation: Wie niedergelassene Zahnarztpraxen und Zahn-MVZ qualifizierte ZFA aus Vietnam rechtssicher einbinden.
+
 Leere Behandlungszimmer, überlastete Praxisinhaber und lange Wartezeiten auf Kontroll- und Prophylaxetermine: Der Personalnotstand bei **Zahnmedizinischen Fachangestellten (ZFA)** hat sich zu einem der größten Engpässe in der ambulanten Gesundheitsversorgung entwickelt. Nach Erhebungen der [Bundeszahnärztekammer (BZÄK)](https://www.bzaek.de) suchen bundesweit zehntausende Zahnarztpraxen, Fachzahnarztpraxen für Kieferorthopädie/Oralchirurgie und zahnmedizinische Versorgungszentren (Z-MVZ) händeringend nach Assistenzpersonal.
 
 Die Anforderungen an moderne ZFA sind hoch: Neben empathischer Betreuung von Angstpatienten verlangen Hygiene-Richtlinien des Robert Koch-Instituts (RKI), das Strahlenschutzgesetz (StrlSchG) und die digitale Abrechnung nach BEMA und GOZ absolute Sorgfalt.
@@ -74,3 +76,17 @@ Ein systematischer Ablauf sichert die rasche Integration in das Praxisteam:
 DMF Talents begleitet Zahnarztpraxen bei allen administrativen Schritten: Vom Ausbildungsvertrag über das Visumverfahren bis zur Bereitstellung geprüfter Bewerberinnen mit soliden Deutschkenntnissen.
 
 Erfahren Sie mehr über unsere Betreuungsangebote auf der Seite [Für Arbeitgeber: Medizin & Pflege](/services/skilled-workers) oder registrieren Sie Ihren [Personalbedarf direkt](/fuer-arbeitgeber/personalbedarf).
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema ZFA aus Vietnam für Zahnarztpraxen?
+
+Der Praxisalltag teilt sich in vier tragende Verantwortungsbereiche:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Zahnbehandlungen sind für viele Patienten mit Stress und Ängsten verbunden. Vietnamesische Nachwuchskräfte zeichnen sich durch ein hohes Maß an Feingefühl, Geduld und zuvorkommendem Auftreten aus:
+
+### Wie unterstützt DMF Talents Unternehmen bei ZFA aus Vietnam für Zahnarztpraxen?
+
+Das Zahnheilkundegesetz (ZHKG) und der Zahnärztliche Delegationsrahmen der Bundeszahnärztekammer (BZÄK) definieren präzise, welche Tätigkeiten der approbierte Zahnarzt an ausgebildete ZFA delegieren darf:

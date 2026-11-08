@@ -10,6 +10,8 @@ excerpt: "Wie gelingt die Einstellung vietnamesischer Pflegekräfte? Erfahren Si
 
 # Pflegekräfte aus Vietnam: Anerkennung, Sprachpraxis und Stationsintegration
 
+**Das Wichtigste in Kürze:** Pflegefachkräfte aus Vietnam einstellen: Anerkennungsverfahren, Fachsprache B2 und erfolgreiche Integration auf Station. Ein Leitfaden für Pflegebetriebe – Erfahren Sie alles über das Anerkennungsverfahren, sprachliche Vorbereitung und Stationsintegration.
+
 Krankenhäuser, Pflegeheime und ambulante Pflegedienste in Deutschland stehen vor enormen personellen Herausforderungen. Der demografische Wandel vergrößert die Lücke zwischen dem steigenden Versorgungsbedarf und dem verfügbaren Pflegepersonal von Jahr zu Jahr. Immer mehr Einrichtungen erweitern deshalb ihren Blickwinkel und rekrutieren Pflegefachkräfte aus Drittstaaten.
 
 Vietnam gehört dabei seit vielen Jahren zu den etablierten und geschätzten Partnerländern. Vietnamesische Pflegekräfte verfügen in der Regel über eine fundierte drei- bis vierjährige Ausbildung an Universitäten oder Colleges, ein hohes Verantwortungsbewusstsein und ausgeprägte Empathie im Patientenkontakt.
@@ -79,3 +81,17 @@ Die Rekrutierung von Pflegefachkräften aus Vietnam stabilisiert die Stationsbes
 Einen Überblick über die Betreuung von Pflegebetrieben und qualifizierten Kandidaten bietet [DMF Talents zur Fachkräftevermittlung](/services/skilled-workers).
 
 Möchten Sie offene Stellen in Ihrem Krankenhaus oder Ihrer Pflegeeinrichtung besetzen? [Erfassen Sie Ihren Personalbedarf unverbindlich](/fuer-arbeitgeber/personalbedarf), um die Anforderungen Ihres Teams und den zeitlichen Ablauf gemeinsam abzustimmen.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Pflegekräfte aus Vietnam?
+
+Pflegeberufe gehören in Deutschland zu den reglementierten Berufen. Das bedeutet: Wer als vollwertige Pflegefachfrau oder Pflegefachmann arbeiten möchte, benötigt eine staatliche Berufszulassung (Approbation bzw. Erlaubnis zum Führen der Berufsbezeichnung).
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Für die Berufszulassung in der Pflege verlangen die Bundesländer in der Regel ein allgemeines B2-Sprachzertifikat oder ein Zertifikat für Fachsprache Pflege (z. B. telc Deutsch B1-B2 Pflege).
+
+### Wie unterstützt DMF Talents Unternehmen bei Pflegekräfte aus Vietnam?
+
+Der Erfolg der Integration entscheidet sich nicht im Personalbüro, sondern direkt auf der Station. Pflegeteams stehen oft unter hoher Arbeitsbelastung. Wenn neue Kolleginnen und Kollegen ankommen, die am Anfang noch nicht die volle Schichtlast tragen können, darf dies nicht als zusätzliche Belastung wahrgenommen werden.

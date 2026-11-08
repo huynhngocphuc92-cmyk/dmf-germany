@@ -10,6 +10,8 @@ excerpt: "Ein vorgeschlagener 90-Tage-Plan hilft, Einarbeitung und Zusammenarbei
 
 # Onboarding internationaler Fachkräfte: Ein Plan für die ersten 90 Tage
 
+**Das Wichtigste in Kürze:** Planen Sie das Onboarding internationaler Fachkräfte: Aufgaben, Ansprechpersonen und Feedback für die ersten 90 Tage. Ein Leitfaden für Arbeitgeber – Ein vorgeschlagener 90-Tage-Plan hilft, Einarbeitung und Zusammenarbeit vorzubereiten. Entscheidend sind klare Zuständigkeiten und regelmäßiges Feedback.
+
 Der Arbeitsvertrag ist unterschrieben. Jetzt stellt sich im Betrieb eine praktische Frage: Wie organisieren wir den Einstieg so, dass die neue Kollegin oder der neue Kollege Aufgaben, Ansprechpartner und Arbeitsabläufe kennenlernt? Ein vorbereiteter Ablauf gibt allen Beteiligten eine gemeinsame Orientierung.
 
 Der folgende 90-Tage-Plan ist ein redaktioneller Vorschlag für Arbeitgeber, auch bei der Einstellung aus Vietnam. Die Zeitabschnitte sind Orientierungspunkte. Sie sind weder eine Zusage, dass die Einarbeitung nach 90 Tagen abgeschlossen ist, noch eine Beschreibung eines vertraglichen DMF-Betreuungsangebots. Passen Sie den Plan an Beruf, Person und Betrieb an.
@@ -71,3 +73,17 @@ Vereinbaren Sie anschließend Ziele und Ansprechpartner für den nächsten Zeitr
 ## Denken Sie die Einarbeitung schon bei der Anfrage mit
 
 Wenn Sie [Fachkräfte aus Vietnam gewinnen möchten](/services/skilled-workers), können Sie Ihre Einarbeitungskapazität bereits bei der Personalplanung festhalten. [Teilen Sie DMF Talents Ihren Personalbedarf mit](/fuer-arbeitgeber/personalbedarf) und beschreiben Sie, wer den Einstieg im Betrieb begleiten kann. Welche ergänzende Unterstützung für Ihr Vorhaben infrage kommt, lässt sich dann im Gespräch klären.
+
+## Häufig gestellte Arbeitgeberfragen (B2B-FAQ)
+
+### Welche Kernvoraussetzungen gelten für Arbeitgeber beim Thema Internationale Fachkräfte?
+
+Erstellen Sie ein gemeinsames Arbeitsblatt mit vier Feldern: Aufgabe, zuständige Person, vorgesehener Termin und Status. Tragen Sie nur Punkte ein, die für den Einstieg tatsächlich relevant sind:
+
+### Worauf kommt es bei der praktischen Umsetzung im Betrieb besonders an?
+
+Planen Sie ausreichend Zeit für den Einstieg und für Rückfragen ein. Zeigen Sie, an wen sich neue Mitarbeitende mit welcher Frage wenden können. Besprechen Sie eine überschaubare erste Aufgabe und erklären Sie, woran ein gutes Ergebnis im jeweiligen Betrieb erkennbar ist.
+
+### Wie unterstützt DMF Talents Unternehmen bei Internationale Fachkräfte?
+
+Wählen Sie gemeinsam einige konkrete Aufgaben für die nächsten Wochen. Notieren Sie, was unter Anleitung geübt wird und wer Rückmeldung gibt. Ein mögliches Lernziel wäre, einen betrieblichen Dokumentationsablauf korrekt auszuführen und Rückfragen an der passenden Stelle zu stellen. Dieses Beispiel ist bewusst allgemein; die geeigneten Ziele bestimmen Sie im Fachbereich.
