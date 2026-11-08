@@ -175,6 +175,7 @@ function AnimatedCounter({
 // ============================================
 
 function HeroSection({ content }: { content: SkilledWorkersContent }) {
+  const { lang } = useLanguage();
   // Use safe content from QA layer
   const heroContent = content?.hero || {};
 
@@ -266,7 +267,7 @@ function HeroSection({ content }: { content: SkilledWorkersContent }) {
             initial={{ opacity: 0, x: 60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="relative hidden lg:flex items-center justify-center"
+            className="relative flex items-center justify-center"
           >
             <div className="relative w-full max-w-lg">
               <div className="relative aspect-[16/11] w-full rounded-3xl overflow-hidden border border-white/15 shadow-2xl">
@@ -281,20 +282,28 @@ function HeroSection({ content }: { content: SkilledWorkersContent }) {
                 <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-4">
                   <div className="bg-slate-950/80 backdrop-blur-md rounded-2xl border border-white/15 px-5 py-3">
                     <div className="text-3xl font-bold text-emerald-400 leading-none">
-                      6-9 Monate
+                      {lang === "vn" ? "3–6 Tháng" : lang === "en" ? "3–6 Months" : "3–6 Monate"}
                     </div>
                     <div className="text-white/90 text-xs mt-1 font-medium">
-                      Anerkennung &amp; Einsatz nach §18a/b
+                      {lang === "vn"
+                        ? "Công nhận bằng & Làm việc (§ 18a/b & § 81a)"
+                        : lang === "en"
+                          ? "Recognition & Deployment (§ 18a/b & § 81a)"
+                          : "Anerkennung & Einsatz (§ 18a/b & § 81a)"}
                     </div>
                   </div>
                   <div className="flex flex-col gap-2 items-end">
                     <Badge className="bg-emerald-500/30 text-emerald-200 border-emerald-400/40 backdrop-blur-md px-3 py-1.5">
                       <Zap className="w-3 h-3 mr-1" />
-                      Rechtssicher
+                      {lang === "vn"
+                        ? "Đúng chuẩn pháp lý"
+                        : lang === "en"
+                          ? "Compliant"
+                          : "Rechtssicher"}
                     </Badge>
                     <Badge className="bg-green-500/30 text-green-200 border-green-400/40 backdrop-blur-md px-3 py-1.5">
                       <Shield className="w-3 h-3 mr-1" />
-                      100% Legal
+                      {lang === "vn" ? "100% Hợp pháp" : "100% Legal"}
                     </Badge>
                   </div>
                 </div>
@@ -328,6 +337,7 @@ function HeroSection({ content }: { content: SkilledWorkersContent }) {
 // ============================================
 
 function AdvantagesSection({ content }: { content: SkilledWorkersContent }) {
+  const { lang } = useLanguage();
   // Use safe content from QA layer
   const raw = content || {};
 
@@ -339,27 +349,56 @@ function AdvantagesSection({ content }: { content: SkilledWorkersContent }) {
     advantages: [
       {
         icon: Shield,
-        title: "Rechtssicher",
+        title:
+          lang === "vn" ? "Đảm bảo pháp lý" : lang === "en" ? "Legally Compliant" : "Rechtssicher",
         description:
-          "Wir garantieren die Einhaltung aller Vorgaben (§18a/b AufenthG). Kein Risiko für Sie.",
+          lang === "vn"
+            ? "Tuân thủ nghiêm ngặt quy định § 18a/b AufenthG & § 296a SGB III. Minh bạch và an toàn cho doanh nghiệp."
+            : lang === "en"
+              ? "Full compliance with all German immigration regulations (§ 18a/b AufenthG). Zero legal risk for your business."
+              : "Wir gewährleisten die Einhaltung aller Vorgaben (§ 18a/b AufenthG). Kein Risiko für Sie.",
         highlight: "100%",
-        highlightDesc: "Rechtssicher",
+        highlightDesc:
+          lang === "vn" ? "Chuẩn pháp lý" : lang === "en" ? "Compliant" : "Rechtssicher",
       },
       {
         icon: Zap,
-        title: "Beschleunigtes Verfahren",
+        title:
+          lang === "vn"
+            ? "Thủ tục nhanh § 81a"
+            : lang === "en"
+              ? "Fast-Track Procedure"
+              : "Beschleunigtes Verfahren",
         description:
-          "§81a Verfahren beschleunigt die Visumserteilung. Transparente Prozesse, keine Überraschungen.",
+          lang === "vn"
+            ? "Thủ tục chuyên gia rút gọn § 81a AufenthG giúp đẩy nhanh tiến độ cấp thị thực với lộ trình minh bạch."
+            : lang === "en"
+              ? "The § 81a fast-track procedure accelerates visa issuance with transparent milestones."
+              : "Das § 81a-Verfahren beschleunigt die Visumserteilung. Transparente Prozesse, keine Überraschungen.",
         highlight: "< 3",
-        highlightDesc: "Monate",
+        highlightDesc:
+          lang === "vn"
+            ? "Tháng (Chấp thuận trước § 81a)"
+            : lang === "en"
+              ? "Months (§ 81a Pre-Approval)"
+              : "Monate (§ 81a Vorabzustimmung)",
       },
       {
         icon: Users,
-        title: "Qualifizierte Experten",
+        title:
+          lang === "vn"
+            ? "Chuyên gia đã thẩm định"
+            : lang === "en"
+              ? "Qualified Specialists"
+              : "Qualifizierte Experten",
         description:
-          "Vorab geprüfte Qualifikationen und Deutschkenntnisse. B1/B2 Zertifikat inklusive.",
+          lang === "vn"
+            ? "Bằng cấp chuyên môn và trình độ tiếng Đức được kiểm tra kỹ lưỡng trước khi phỏng vấn (chứng chỉ B1/B2)."
+            : lang === "en"
+              ? "Pre-screened qualifications and certified German proficiency (B1/B2 certificate included)."
+              : "Vorab geprüfte Qualifikationen und Deutschkenntnisse. B1/B2 Zertifikat inklusive.",
         highlight: "100%",
-        highlightDesc: "Geprüft",
+        highlightDesc: lang === "vn" ? "Đã thẩm định" : lang === "en" ? "Verified" : "Geprüft",
       },
     ],
   };
@@ -439,6 +478,7 @@ function AdvantagesSection({ content }: { content: SkilledWorkersContent }) {
 // ============================================
 
 function ProcessTimelineSection({ content }: { content: SkilledWorkersContent }) {
+  const { lang } = useLanguage();
   const ref = useRef(null);
 
   // Use safe content from QA layer
@@ -516,11 +556,11 @@ function ProcessTimelineSection({ content }: { content: SkilledWorkersContent })
         {/* Timeline */}
         <div className="relative">
           {/* Progress Bar Background */}
-          <div className="absolute top-20 left-0 right-0 h-2 bg-slate-100 rounded-full mx-8 lg:mx-16" />
+          <div className="hidden md:block absolute top-8 left-0 right-0 h-2 bg-slate-100 rounded-full mx-8 lg:mx-16" />
 
           {/* Animated Progress Bar */}
           <motion.div
-            className="absolute top-20 left-0 h-2 bg-gradient-to-r from-emerald-400 via-green-500 to-emerald-500 rounded-full mx-8 lg:mx-16"
+            className="hidden md:block absolute top-8 left-0 h-2 bg-gradient-to-r from-emerald-400 via-green-500 to-emerald-500 rounded-full mx-8 lg:mx-16"
             initial={{ width: "0%" }}
             animate={{ width: isInView ? "100%" : "0%" }}
             transition={{ duration: 2, ease: "easeOut", delay: 0.5 }}
@@ -578,6 +618,109 @@ function ProcessTimelineSection({ content }: { content: SkilledWorkersContent })
             </span>
           </div>
         </motion.div>
+
+        {/* Documentary Visual Proof: Document Compliance & § 81a Execution */}
+        <div className="mt-16 pt-12 border-t border-slate-200/80">
+          <div className="text-center mb-8">
+            <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">
+              {lang === "vn"
+                ? "Bằng chứng Hồ sơ Pháp lý & Thẩm định Năng lực Thực tế"
+                : lang === "en"
+                  ? "Verified Document Compliance & Competency Assessment in Practice"
+                  : "Dokumenten-Compliance & Qualitätsprüfung in der Praxis"}
+            </h3>
+            <p className="text-slate-600 text-sm md:text-base max-w-2xl mx-auto">
+              {lang === "vn"
+                ? "Mọi hồ sơ ứng viên DMF đều được dịch thuật công chứng, thẩm định 1-kèm-1 cùng chuyên gia Đức và hoàn tất thủ tục thị thực D hợp pháp."
+                : lang === "en"
+                  ? "Every DMF candidate dossier undergoes certified German translation, 1-on-1 expert screening, and full National D-Visa processing."
+                  : "Jede DMF-Kandidatenakte durchläuft beglaubigte Übersetzungen, 1-zu-1-Fachprüfungen und die rechtssichere Beantragung des nationalen D-Visums."}
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {[
+              {
+                src: "/images/community/dmf-community-german-translated-transcript.jpg",
+                title:
+                  lang === "vn"
+                    ? "Hồ sơ Dịch thuật Công chứng"
+                    : lang === "en"
+                      ? "Certified German Dossier"
+                      : "Beglaubigte Übersetzungen",
+                caption:
+                  lang === "vn"
+                    ? "Bảng điểm và bằng cấp dịch thuật tiếng Đức chuẩn hóa cho IHK, HWK và ZAB."
+                    : lang === "en"
+                      ? "Academic and vocational transcripts officially translated for IHK, HWK, and ZAB."
+                      : "Vollständige Leistungsnachweise auf Deutsch für IHK FOSA, HWK und ZAB.",
+              },
+              {
+                src: "/images/community/dmf-community-german-expert-1on1-laptop.jpg",
+                title:
+                  lang === "vn"
+                    ? "Thẩm định 1-1 cùng Chuyên gia Đức"
+                    : lang === "en"
+                      ? "1-on-1 German Expert Audit"
+                      : "1-zu-1-Prüfung vor Ort",
+                caption:
+                  lang === "vn"
+                    ? "Kiểm tra trực tiếp năng lực tiếng Đức chuyên ngành và hồ sơ kỹ thuật tại Việt Nam."
+                    : lang === "en"
+                      ? "Direct verification of technical German and qualifications at our Vietnam campus."
+                      : "Persönliche Überprüfung von Fachsprache und Qualifikationsprofil am DMF-Campus.",
+              },
+              {
+                src: "/images/community/dmf-community-vfs-visa-application.jpg",
+                title:
+                  lang === "vn"
+                    ? "Nộp Hồ sơ Thị thực VFS Global"
+                    : lang === "en"
+                      ? "VFS Global Visa Submission"
+                      : "Visabeantragung (VFS Global)",
+                caption:
+                  lang === "vn"
+                    ? "Phòng Pháp chế DMF đại diện chuẩn bị và nộp hồ sơ thị thực § 18a/b & § 81a AufenthG."
+                    : lang === "en"
+                      ? "Complete visa filing prepared by DMF's legal department under § 18a/b & § 81a AufenthG."
+                      : "Rechtssichere Einreichung aller Unterlagen nach § 18a/b und § 81a AufenthG.",
+              },
+              {
+                src: "/images/community/dmf-community-visum-d-zusatzblatt.jpg",
+                title:
+                  lang === "vn"
+                    ? "Thị thực Quốc gia D & Zusatzblatt"
+                    : lang === "en"
+                      ? "National D-Visa & Zusatzblatt"
+                      : "Nationales D-Visum & Zusatzblatt",
+                caption:
+                  lang === "vn"
+                    ? "Thị thực lao động và đào tạo chính thức do Tổng Lãnh sự quán Đức cấp."
+                    : lang === "en"
+                      ? "Official German National D-Visa issued by the German Consulate General."
+                      : "Originales Visum (Kategorie D) inklusive Zusatzblatt der deutschen Auslandsvertretung.",
+              },
+            ].map((card) => (
+              <figure
+                key={card.src}
+                className="rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 shadow-sm flex flex-col"
+              >
+                <div className="relative aspect-[16/10] w-full bg-slate-100">
+                  <Image
+                    src={card.src}
+                    alt={card.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 260px"
+                    className="object-cover"
+                  />
+                </div>
+                <figcaption className="p-4 flex-1">
+                  <h4 className="font-bold text-slate-900 text-sm mb-1">{card.title}</h4>
+                  <p className="text-xs text-slate-600 leading-relaxed">{card.caption}</p>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -588,6 +731,7 @@ function ProcessTimelineSection({ content }: { content: SkilledWorkersContent })
 // ============================================
 
 function ExpertiseSection({ content: contentProp }: { content: SkilledWorkersContent }) {
+  const { lang } = useLanguage();
   // Use safe content from QA layer
   const raw = contentProp || {};
   const expertise = raw.expertise || {};
@@ -600,9 +744,17 @@ function ExpertiseSection({ content: contentProp }: { content: SkilledWorkersCon
       icon: Stethoscope,
       secondaryIcon: Heart,
       color: "emerald",
-      jobs: ["Pflegefachkraft", "Altenpfleger", "Krankenpfleger", "Hebamme"],
+      jobs:
+        lang === "vn"
+          ? ["Điều dưỡng đa khoa", "Điều dưỡng lão khoa", "Chăm sóc tích cực", "Hộ sinh"]
+          : lang === "en"
+            ? ["Registered Nurse", "Geriatric Nurse", "ICU Nurse", "Midwife"]
+            : ["Pflegefachkraft", "Altenpfleger", "Intensivpflegekraft", "Hebamme"],
       description: expertise.health_title || "Qualifizierte Pflegekräfte aus Vietnam",
-      stats: { workers: "80+", time: "6-9 Mo." },
+      stats: {
+        workers: "80+",
+        time: lang === "vn" ? "6-9 tháng" : lang === "en" ? "6-9 mo." : "6-9 Mo.",
+      },
     },
     {
       title: expertise.tech_title || "Technik",
@@ -610,9 +762,17 @@ function ExpertiseSection({ content: contentProp }: { content: SkilledWorkersCon
       icon: Wrench,
       secondaryIcon: Building2,
       color: "green",
-      jobs: ["Ingenieur", "Maschinenbau", "Elektrotechnik", "Bauingenieur"],
+      jobs:
+        lang === "vn"
+          ? ["Kỹ sư cơ khí", "Kỹ sư điện", "Cơ điện tử", "Kỹ sư xây dựng"]
+          : lang === "en"
+            ? ["Mechanical Engineer", "Electrical Engineer", "Mechatronics", "Civil Engineer"]
+            : ["Ingenieur", "Maschinenbau", "Elektrotechnik", "Bauingenieur"],
       description: expertise.tech_title || "Erfahrene Ingenieure",
-      stats: { workers: "50+", time: "6-9 Mo." },
+      stats: {
+        workers: "50+",
+        time: lang === "vn" ? "6-9 tháng" : lang === "en" ? "6-9 mo." : "6-9 Mo.",
+      },
     },
     {
       title: expertise.it_title || "IT & Software",
@@ -620,9 +780,17 @@ function ExpertiseSection({ content: contentProp }: { content: SkilledWorkersCon
       icon: Code,
       secondaryIcon: Laptop,
       color: "emerald",
-      jobs: ["Softwareentwickler", "DevOps", "Data Engineer", "Full Stack"],
+      jobs:
+        lang === "vn"
+          ? ["Lập trình viên", "Kỹ sư DevOps", "Kỹ sư Dữ liệu", "Full Stack"]
+          : lang === "en"
+            ? ["Software Developer", "DevOps Engineer", "Data Engineer", "Full Stack"]
+            : ["Softwareentwickler", "DevOps", "Data Engineer", "Full Stack"],
       description: expertise.it_title || "IT-Profis mit Expertise",
-      stats: { workers: "40+", time: "6-9 Mo." },
+      stats: {
+        workers: "40+",
+        time: lang === "vn" ? "6-9 tháng" : lang === "en" ? "6-9 mo." : "6-9 Mo.",
+      },
     },
   ];
 
@@ -738,14 +906,22 @@ function ExpertiseSection({ content: contentProp }: { content: SkilledWorkersCon
                         className={`w-5 h-5 ${isEmerald ? "text-emerald-600" : "text-green-600"}`}
                       />
                       <span className="font-bold text-slate-900">{sector.stats.workers}</span>
-                      <span className="text-sm text-slate-500">Fachkräfte</span>
+                      <span className="text-sm text-slate-500">
+                        {lang === "vn"
+                          ? "Chuyên gia"
+                          : lang === "en"
+                            ? "Specialists"
+                            : "Fachkräfte"}
+                      </span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Timer
                         className={`w-5 h-5 ${isEmerald ? "text-emerald-600" : "text-green-600"}`}
                       />
                       <span className="font-bold text-slate-900">{sector.stats.time}</span>
-                      <span className="text-sm text-slate-500">Vorlauf</span>
+                      <span className="text-sm text-slate-500">
+                        {lang === "vn" ? "Thời gian" : lang === "en" ? "Lead time" : "Vorlauf"}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -782,7 +958,7 @@ function StatsSection({ content }: { content: SkilledWorkersContent }) {
         icon: Shield,
       },
       {
-        value: "6-9",
+        value: "3-6",
         label: statsData.stat3_label || "Monate bis Arbeitsantritt",
         suffix: "",
         icon: Clock,

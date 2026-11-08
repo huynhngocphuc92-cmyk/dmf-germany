@@ -3,9 +3,8 @@
 import { m } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { MotionProvider } from "@/components/shared/MotionProvider";
-import { BookOpen, Globe2, Mail, MapPin, Phone, ShieldCheck, UserCheck } from "lucide-react";
+import { ArrowRight, BookOpen, Globe2, MapPin, ShieldCheck, UserCheck } from "lucide-react";
 import { AssetImageWithDebug } from "@/components/ui/AssetImageWithDebug";
-import { GERMANY_CONTACT, VIETNAM_OFFICE_CONTACT } from "@/lib/company/contact";
 
 interface AboutSectionProps {
   introImg?: string | null;
@@ -20,7 +19,7 @@ export const AboutSection = ({
   repDeImg = "/images/home/umit-elezov.jpg",
   repVnImg = "/images/home/achim-betticher.jpg",
 }: AboutSectionProps = {}) => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   // Use video thumbnail if available, otherwise use intro image
   const displayImage = videoThumb || introImg;
@@ -28,7 +27,7 @@ export const AboutSection = ({
 
   // Dynamic stats from translations
   const stats = [
-    { value: "500+", label: t.about.stat_candidates },
+    { value: "350+", label: t.about.stat_candidates },
     { value: "50+", label: t.about.stat_partners },
     { value: "98%", label: t.about.stat_success },
   ];
@@ -49,6 +48,69 @@ export const AboutSection = ({
     },
   ];
 
+  const communityBentoItems = [
+    {
+      src: "/images/community/dmf-community-german-delegation-gruezi.jpg",
+      title:
+        lang === "vn"
+          ? "Phái đoàn Đối tác Đức"
+          : lang === "en"
+            ? "German Partner Delegations"
+            : "Deutsche Partner-Delegationen",
+      desc:
+        lang === "vn"
+          ? "Thẩm định chất lượng, giao lưu văn hóa và gặp gỡ trực tiếp học viên tại Học viện DMF Việt Nam."
+          : lang === "en"
+            ? "On-site quality audits, guest lectures, and personal exchange directly at the DMF Campus in Vietnam."
+            : "Qualitätsaudits, Gastvorträge und persönliches Kennenlernen direkt am DMF-Campus in Vietnam.",
+    },
+    {
+      src: "/images/community/dmf-community-achim-interview-panel.jpg",
+      title:
+        lang === "vn"
+          ? "Sát hạch cùng Chuyên gia Đức"
+          : lang === "en"
+            ? "German Interview Coaching"
+            : "Deutsches Interview-Coaching",
+      desc:
+        lang === "vn"
+          ? "Mô phỏng phỏng vấn thực chiến cùng ông Achim Betticher và hội đồng chuyên gia Đức."
+          : lang === "en"
+            ? "Realistic interview simulations conducted on site by Mr. Achim Betticher and German assessors."
+            : "Praxisnahe Bewerbungssimulationen mit Herrn Achim Betticher und deutschen Prüfern vor Ort.",
+    },
+    {
+      src: "/images/community/dmf-community-faculty-thay-khang-lecture.jpg",
+      title:
+        lang === "vn"
+          ? "Đào tạo A1–B2 Toàn thời gian"
+          : lang === "en"
+            ? "Full-Time Academy (A1–B2)"
+            : "Vollzeit-Sprachakademie (A1–B2)",
+      desc:
+        lang === "vn"
+          ? "Lộ trình học tập trung các khóa K14 đến K50 chú trọng tiếng Đức chuyên ngành và kỷ luật nghề."
+          : lang === "en"
+            ? "Structured classroom instruction across cohorts K14 to K50 focused on vocational German."
+            : "Strukturierter Präsenzunterricht in den Kohorten K14 bis K50 mit Fokus auf Fachsprache und Berufspraxis.",
+    },
+    {
+      src: "/images/community/dmf-community-visa-hoang-duy.jpg",
+      title:
+        lang === "vn"
+          ? "98% Cấp Thị thực (§ 16a / § 18a)"
+          : lang === "en"
+            ? "98% Visa Success (§ 16a / § 18a)"
+            : "Verifizierte Visumerfolge (§ 16a / § 18a)",
+      desc:
+        lang === "vn"
+          ? "Chuẩn hóa hồ sơ pháp lý trọn gói và đồng hành trực tiếp đến khi nhập cảnh CHLB Đức."
+          : lang === "en"
+            ? "Complete document compliance and personal accompaniment right up to arrival in Germany."
+            : "Lückenlose Dokumenten-Compliance und persönliche Begleitung bis zur Einreise nach Deutschland.",
+    },
+  ];
+
   const representatives = [
     {
       key: "de",
@@ -59,11 +121,13 @@ export const AboutSection = ({
       name: t.about.rep_de_name,
       role: t.about.rep_de_role,
       description: t.about.rep_de_desc,
-      phone: GERMANY_CONTACT.phone,
-      phoneHref: GERMANY_CONTACT.phoneHref,
-      email: GERMANY_CONTACT.email,
-      emailHref: GERMANY_CONTACT.emailHref,
       location: t.contact.de_location,
+      ctaLabel:
+        lang === "vn"
+          ? "Liên hệ đại diện tại Đức"
+          : lang === "en"
+            ? "Contact Representative in Germany"
+            : "Direktkontakt in Deutschland",
       accentClass: "border-primary/20 bg-primary/5 text-primary",
     },
     {
@@ -75,11 +139,13 @@ export const AboutSection = ({
       name: t.about.rep_vn_name,
       role: t.about.rep_vn_role,
       description: t.about.rep_vn_desc,
-      phone: VIETNAM_OFFICE_CONTACT.phone,
-      phoneHref: VIETNAM_OFFICE_CONTACT.phoneHref,
-      email: VIETNAM_OFFICE_CONTACT.representativeEmail,
-      emailHref: VIETNAM_OFFICE_CONTACT.representativeEmailHref,
       location: t.contact.vn_address,
+      ctaLabel:
+        lang === "vn"
+          ? "Liên hệ học viện tại Việt Nam"
+          : lang === "en"
+            ? "Contact Academy in Vietnam"
+            : "Kontakt zur Akademie in Vietnam",
       accentClass: "border-emerald-500/20 bg-emerald-500/10 text-emerald-700",
     },
   ];
@@ -164,16 +230,32 @@ export const AboutSection = ({
                     />
                   </div>
                 ) : (
-                  <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/10 via-accent/5 to-secondary/10 flex items-center justify-center border border-border/50">
-                    <div className="text-center p-6 md:p-8">
-                      <div className="w-16 h-16 md:w-24 md:h-24 mx-auto mb-3 md:mb-4 rounded-full bg-primary/10 flex items-center justify-center">
-                        <span className="text-3xl md:text-5xl">🎓</span>
-                      </div>
-                      <p className="text-base md:text-lg font-medium text-foreground">
-                        {t.about.title}
-                      </p>
-                      <p className="text-xs md:text-sm text-muted-foreground">Vietnam</p>
-                    </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 md:gap-4">
+                    {communityBentoItems.map((item) => (
+                      <figure
+                        key={item.src}
+                        className="group rounded-2xl overflow-hidden border border-border/60 bg-card shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col"
+                      >
+                        <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100">
+                          <AssetImageWithDebug
+                            src={item.src}
+                            configKey="home_intro_img"
+                            alt={item.title}
+                            fill
+                            sizes="(max-width: 768px) 100vw, 280px"
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
+                        <figcaption className="p-3.5 flex-1 flex flex-col justify-between">
+                          <h4 className="text-xs md:text-sm font-bold text-foreground mb-1">
+                            {item.title}
+                          </h4>
+                          <p className="text-[11px] md:text-xs text-muted-foreground leading-relaxed">
+                            {item.desc}
+                          </p>
+                        </figcaption>
+                      </figure>
+                    ))}
                   </div>
                 )}
               </m.div>
@@ -284,25 +366,18 @@ export const AboutSection = ({
                         </p>
                       </div>
 
-                      <div className="pt-3 border-t border-border/60 space-y-2 text-sm">
-                        <a
-                          href={rep.phoneHref}
-                          className="flex items-center gap-2.5 text-foreground font-semibold hover:text-primary transition-colors"
-                        >
-                          <Phone className="w-4 h-4 text-primary shrink-0" />
-                          <span>{rep.phone}</span>
-                        </a>
-                        <a
-                          href={rep.emailHref}
-                          className="flex items-center gap-2.5 text-muted-foreground hover:text-primary transition-colors break-all"
-                        >
-                          <Mail className="w-4 h-4 text-primary shrink-0" />
-                          <span>{rep.email}</span>
-                        </a>
-                        <div className="flex items-center gap-2.5 text-muted-foreground">
+                      <div className="pt-3 border-t border-border/60 flex flex-wrap items-center justify-between gap-3 text-sm">
+                        <div className="flex items-center gap-2 text-muted-foreground">
                           <MapPin className="w-4 h-4 text-primary shrink-0" />
                           <span>{rep.location}</span>
                         </div>
+                        <a
+                          href="#contact"
+                          className="inline-flex items-center gap-1.5 text-primary font-semibold hover:underline transition-colors"
+                        >
+                          <span>{rep.ctaLabel}</span>
+                          <ArrowRight className="w-4 h-4 shrink-0" />
+                        </a>
                       </div>
                     </div>
                   </m.div>

@@ -82,7 +82,7 @@ function AnimatedCounter({
 // ============================================
 
 function HeroSection() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   // Build hero content from translations
   const content = {
@@ -179,7 +179,7 @@ function HeroSection() {
             initial={{ opacity: 0, x: 60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="relative hidden lg:flex items-center justify-center"
+            className="relative flex items-center justify-center"
           >
             <div className="relative w-full max-w-lg">
               <div className="relative aspect-[16/11] w-full rounded-3xl overflow-hidden border border-white/15 shadow-2xl">
@@ -193,19 +193,25 @@ function HeroSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent" />
                 <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-4">
                   <div className="bg-slate-950/80 backdrop-blur-md rounded-2xl border border-white/15 px-5 py-3">
-                    <div className="text-3xl font-bold text-blue-400 leading-none">3 Jahre</div>
+                    <div className="text-3xl font-bold text-blue-400 leading-none">
+                      {lang === "vn" ? "3 Năm" : lang === "en" ? "3 Years" : "3 Jahre"}
+                    </div>
                     <div className="text-white/90 text-xs mt-1 font-medium">
-                      Duale Ausbildung &amp; Begleitung
+                      {lang === "vn"
+                        ? "Đào tạo kép & Đồng hành"
+                        : lang === "en"
+                          ? "Dual Vocational Training & Support"
+                          : "Duale Ausbildung & Begleitung"}
                     </div>
                   </div>
                   <div className="flex flex-col gap-2 items-end">
                     <Badge className="bg-blue-500/30 text-blue-200 border-blue-400/40 backdrop-blur-md px-3 py-1.5">
                       <Zap className="w-3 h-3 mr-1" />
-                      Langfristig
+                      {lang === "vn" ? "Dài hạn" : lang === "en" ? "Long-Term" : "Langfristig"}
                     </Badge>
                     <Badge className="bg-emerald-500/30 text-emerald-200 border-emerald-400/40 backdrop-blur-md px-3 py-1.5">
                       <Shield className="w-3 h-3 mr-1" />
-                      100% Legal
+                      {lang === "vn" ? "100% Hợp pháp" : "100% Legal"}
                     </Badge>
                   </div>
                 </div>
@@ -261,7 +267,7 @@ function AdvantagesSection() {
         icon: TrendingUp,
         title: advantages.advantage_2_title || "Langfristige Bindung",
         description: advantages.advantage_2_desc || "Hohe Bleibequote nach der Ausbildung",
-        highlight: advantages.advantage_2_highlight || "90%",
+        highlight: advantages.advantage_2_highlight || "95%",
         highlightDesc: advantages.advantage_2_highlight_desc || "Bleibequote",
       },
       {
@@ -347,7 +353,7 @@ function AdvantagesSection() {
 // ============================================
 
 function ProcessTimelineSection() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const ref = useRef(null);
 
   // Build content from translations - map process to timeline structure
@@ -364,27 +370,60 @@ function ProcessTimelineSection() {
         title: process.step1_title || "Bedarfsanalyse",
         description: process.step1_desc || "Wir besprechen Ihre Anforderungen",
         icon: Users,
+        image: "/images/community/dmf-community-cohort-k49-classroom.jpg",
+        imageTag:
+          lang === "vn"
+            ? "Khóa K49 tại Học viện DMF"
+            : lang === "en"
+              ? "Cohort K49 at DMF Academy"
+              : "Kohorte K49 an der DMF Academy",
       },
       {
         step: "2",
         title: process.step2_title || "Video-Interview",
         description: process.step2_desc || "Sie lernen passende Kandidaten kennen",
         icon: UserCheck,
+        image: "/images/community/dmf-community-achim-candidate-speaking.jpg",
+        imageTag:
+          lang === "vn"
+            ? "Phỏng vấn thực chiến bằng tiếng Đức"
+            : lang === "en"
+              ? "Live German Interview Simulation"
+              : "Freies Sprechen im Deutschen Interview",
       },
       {
         step: "3",
         title: process.step3_title || "Visa-Service",
         description: process.step3_desc || "Wir kümmern uns um alle Formalitäten",
         icon: FileCheck,
+        image: "/images/community/dmf-community-visum-d-zusatzblatt.jpg",
+        imageTag:
+          lang === "vn"
+            ? "Thị thực D & Zusatzblatt (§ 16a)"
+            : lang === "en"
+              ? "National D-Visa & Zusatzblatt (§ 16a)"
+              : "Original D-Visum & Zusatzblatt (§ 16a)",
       },
       {
         step: "4",
         title: process.step4_title || "Ausbildungsstart",
         description: process.step4_desc || "Ihr Azubi beginnt motiviert",
         icon: GraduationCap,
+        image: "/images/community/dmf-community-airport-briefing-duy.jpg",
+        imageTag:
+          lang === "vn"
+            ? "Hướng dẫn xuất cảnh tại sân bay"
+            : lang === "en"
+              ? "Airport Pre-Departure Briefing"
+              : "Flughafen-Briefing & Ausreise",
       },
     ],
-    key_message: "Schnell und unkompliziert",
+    key_message:
+      lang === "vn"
+        ? "Nhanh chóng và minh bạch"
+        : lang === "en"
+          ? "Fast and transparent"
+          : "Schnell und unkompliziert",
   };
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
@@ -417,11 +456,11 @@ function ProcessTimelineSection() {
         {/* Timeline */}
         <div className="relative">
           {/* Progress Bar Background */}
-          <div className="absolute top-20 left-0 right-0 h-2 bg-slate-100 rounded-full mx-8 lg:mx-16" />
+          <div className="hidden md:block absolute top-8 left-0 right-0 h-2 bg-slate-100 rounded-full mx-8 lg:mx-16" />
 
           {/* Animated Progress Bar */}
           <motion.div
-            className="absolute top-20 left-0 h-2 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-500 rounded-full mx-8 lg:mx-16"
+            className="hidden md:block absolute top-8 left-0 h-2 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-500 rounded-full mx-8 lg:mx-16"
             initial={{ width: "0%" }}
             animate={{ width: isInView ? "100%" : "0%" }}
             transition={{ duration: 2, ease: "easeOut", delay: 0.5 }}
@@ -458,7 +497,23 @@ function ProcessTimelineSection() {
 
                   {/* Content */}
                   <h3 className="text-xl font-bold text-slate-900 mb-2">{step.title}</h3>
-                  <p className="text-slate-500 text-sm max-w-xs">{step.description}</p>
+                  <p className="text-slate-500 text-sm max-w-xs mb-4">{step.description}</p>
+
+                  {/* Authentic Step Documentary Visual */}
+                  <div className="w-full rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm bg-slate-50">
+                    <div className="relative aspect-[16/10] w-full">
+                      <Image
+                        src={step.image}
+                        alt={step.imageTag}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 260px"
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="px-3 py-2 bg-slate-900/95 text-white text-[11px] font-medium">
+                      {step.imageTag}
+                    </div>
+                  </div>
                 </motion.div>
               );
             })}
@@ -487,7 +542,7 @@ function ProcessTimelineSection() {
 // ============================================
 
 function QualitySection() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   // Build content from translations - map quality to sectors structure
   const raw = t.service_pages.azubi;
@@ -497,7 +552,12 @@ function QualitySection() {
   const sectors = [
     {
       title: quality.prep_title || "Vorbereitung in Vietnam",
-      subtitle: "Sprache & Kultur",
+      subtitle:
+        lang === "vn"
+          ? "Ngôn ngữ & Văn hóa"
+          : lang === "en"
+            ? "Language & Culture"
+            : "Sprache & Kultur",
       icon: BookOpen,
       secondaryIcon: GraduationCap,
       color: "blue",
@@ -511,7 +571,8 @@ function QualitySection() {
     },
     {
       title: quality.support_title || "Begleitung in Deutschland",
-      subtitle: "3 Jahre Support",
+      subtitle:
+        lang === "vn" ? "3 Năm đồng hành" : lang === "en" ? "3 Years Support" : "3 Jahre Support",
       icon: Home,
       secondaryIcon: Heart,
       color: "blue",
@@ -607,6 +668,109 @@ function QualitySection() {
             );
           })}
         </div>
+
+        {/* Authentic Campus & Community Strip (4 Curated Drive Visuals) */}
+        <div className="mt-14 pt-12 border-t border-slate-200/80">
+          <div className="text-center mb-8">
+            <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">
+              {lang === "vn"
+                ? "Đời sống Học tập & Cộng đồng Thực tế tại Học viện DMF"
+                : lang === "en"
+                  ? "Authentic Classroom & Community Life at the DMF Academy"
+                  : "Echte Einblicke in Unterricht & DMF Talents Community"}
+            </h3>
+            <p className="text-slate-600 text-sm md:text-base max-w-2xl mx-auto">
+              {lang === "vn"
+                ? "Từ rèn luyện ngữ pháp B1/B2, giao tiếp vòng tròn cùng giảng viên bản xứ đến lễ hội văn hóa Đức – Việt tại khuôn viên học viện."
+                : lang === "en"
+                  ? "From B1/B2 essay structures and native-speaker speaking circles to German-Vietnamese cultural celebrations on campus."
+                  : "Von B1/B2-Tafelbildern und Sprechkreisen mit Muttersprachlern bis zu gelebten deutsch-vietnamesischen Kulturfesten am Campus."}
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {[
+              {
+                src: "/images/community/dmf-community-b1-b2-whiteboard-lernmotivation.jpg",
+                title:
+                  lang === "vn"
+                    ? "Cấu trúc Luận B1/B2 (Khóa K20)"
+                    : lang === "en"
+                      ? "B1/B2 Essay Structure (Cohort K20)"
+                      : "B1/B2-Tafelbild (Kohorte K20)",
+                caption:
+                  lang === "vn"
+                    ? "Viết luận tiếng Đức chủ đề Động lực học tập & Phát triển sự nghiệp."
+                    : lang === "en"
+                      ? "Structured German essay training on learning motivation and career goals."
+                      : "Strukturierte Textarbeit zu Lernmotivation und langfristiger Karriereentwicklung.",
+              },
+              {
+                src: "/images/community/dmf-community-cohort-k28-speaking-circle.jpg",
+                title:
+                  lang === "vn"
+                    ? "Vòng tròn Phản xạ Nói (Khóa K28)"
+                    : lang === "en"
+                      ? "Speaking Circle (Cohort K28)"
+                      : "Aktiver Sprechkreis (Kohorte K28)",
+                caption:
+                  lang === "vn"
+                    ? "Luyện phản xạ nghe – nói hàng ngày cùng giảng viên Đức và Việt Nam."
+                    : lang === "en"
+                      ? "Daily conversational drills with both German and Vietnamese instructors."
+                      : "Tägliches freies Sprechtraining mit deutschen und vietnamesischen Lehrkräften.",
+              },
+              {
+                src: "/images/community/dmf-community-deutsche-kultur-whiteboard.jpg",
+                title:
+                  lang === "vn"
+                    ? "Chuyên đề Văn hóa & Đời sống Đức"
+                    : lang === "en"
+                      ? "German Culture & Mindset Module"
+                      : "Modul Deutsche Kultur & Alltag",
+                caption:
+                  lang === "vn"
+                    ? "Giảng viên bản xứ chia sẻ về ẩm thực, con người và giải tỏa lo lắng trước khi bay."
+                    : lang === "en"
+                      ? "Native German guest lecturer addressing culture, food, and pre-departure expectations."
+                      : "Muttersprachlicher Workshop zu deutscher Kultur, Menschen, Ängsten und Hoffnungen.",
+              },
+              {
+                src: "/images/community/dmf-community-weihnachten-christmas-event.jpg",
+                title:
+                  lang === "vn"
+                    ? "Giáng sinh Đức tại Cộng đồng DMF"
+                    : lang === "en"
+                      ? "German Christmas at DMF Campus"
+                      : "Weihnachten in der DMF Community",
+                caption:
+                  lang === "vn"
+                    ? "Trải nghiệm văn hóa lễ hội châu Âu và gắn kết cộng đồng học viên trước ngày sang Đức."
+                    : lang === "en"
+                      ? "Experiencing German holiday traditions and building strong peer bonds before departure."
+                      : "Gelebte deutsche Feiertagstraditionen und starker Zusammenhalt vor dem Ausbildungsstart.",
+              },
+            ].map((card) => (
+              <figure
+                key={card.src}
+                className="rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 shadow-sm flex flex-col"
+              >
+                <div className="relative aspect-[16/10] w-full bg-slate-100">
+                  <Image
+                    src={card.src}
+                    alt={card.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 260px"
+                    className="object-cover"
+                  />
+                </div>
+                <figcaption className="p-4 flex-1">
+                  <h4 className="font-bold text-slate-900 text-sm mb-1">{card.title}</h4>
+                  <p className="text-xs text-slate-600 leading-relaxed">{card.caption}</p>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -638,7 +802,7 @@ function StatsSection() {
         icon: Award,
       },
       {
-        value: "90",
+        value: "95",
         label: statsData.stat3_label || "Bleiben nach Abschluss",
         suffix: "%",
         icon: TrendingUp,

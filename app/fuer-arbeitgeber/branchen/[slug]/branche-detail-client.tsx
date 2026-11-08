@@ -27,6 +27,180 @@ import { useLanguage } from "@/components/providers/LanguageProvider";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
+const SECTOR_COMMUNITY_VISUALS: Record<
+  string,
+  Array<{
+    src: string;
+    title: { de: string; en: string; vn: string };
+    caption: { de: string; en: string; vn: string };
+  }>
+> = {
+  "pflege-gesundheit": [
+    {
+      src: "/images/community/dmf-community-native-speaker-desk-coaching.jpg",
+      title: {
+        de: "1-zu-1-Sprachcoaching mit Muttersprachlern",
+        en: "1-on-1 Native Speaker Language Coaching",
+        vn: "Kèm cặp Giao tiếp Y tế 1-1 cùng Người Bản xứ",
+      },
+      caption: {
+        de: "Gezieltes Training von Patientenkommunikation, Übergabegesprächen und Hörverständnis direkt am Schülertisch.",
+        en: "Targeted training in patient communication, shift handovers, and listening comprehension.",
+        vn: "Luyện phản xạ giao tiếp với bệnh nhân, bàn giao ca trực và nghe hiểu thuật ngữ điều dưỡng.",
+      },
+    },
+    {
+      src: "/images/community/dmf-community-visa-hoang-dung.jpg",
+      title: {
+        de: "Erfolgreiche Visumerteilung (ZFA / Gesundheit)",
+        en: "Approved Healthcare & Dental Visa (ZFA)",
+        vn: "Cấp Thị thực Thành công Ngành Y tế – Nha khoa (ZFA)",
+      },
+      caption: {
+        de: "DMF-Absolventin Trần Thị Hoàng Dung mit ihrem erteilten deutschen Visum für den medizinischen Fachbereich.",
+        en: "DMF graduate Trần Thị Hoàng Dung celebrating her approved German healthcare training visa.",
+        vn: "Học viên Trần Thị Hoàng Dung nhận thị thực đào tạo chuyên ngành Trợ lý Nha khoa (ZFA) tại Đức.",
+      },
+    },
+    {
+      src: "/images/community/dmf-community-cohort-k35-textbook-study.jpg",
+      title: {
+        de: "Vollzeit-Intensivkurs bis B1/B2 (Kohorte K35)",
+        en: "Full-Time B1/B2 Intensive Course (Cohort K35)",
+        vn: "Đào tạo Tiếng Đức B1/B2 Toàn thời gian (Khóa K35)",
+      },
+      caption: {
+        de: "Strukturierte Vorbereitung auf telc-/Goethe-Zertifikate und medizinischen Fachwortschatz an der DMF Academy.",
+        en: "Structured preparation for telc/Goethe certificates and clinical vocabulary at the DMF Academy.",
+        vn: "Học tập trung toàn thời gian với giáo trình chuẩn châu Âu và từ vựng chuyên ngành y khoa.",
+      },
+    },
+  ],
+  "handwerk-bau": [
+    {
+      src: "/images/community/dmf-community-german-instructor-k14.jpg",
+      title: {
+        de: "Deutscher Dozent für Arbeitskultur & Sicherheit",
+        en: "German Instructor for Workplace Culture & Safety",
+        vn: "Giảng viên Đức Rèn luyện Tác phong & An toàn Lao động",
+      },
+      caption: {
+        de: "Vermittlung von Pünktlichkeit, Baustellenkommunikation und deutscher Handwerkskultur in Kohorte K14.",
+        en: "Training in punctuality, job-site communication, and German craft standards in Cohort K14.",
+        vn: "Truyền đạt kỷ luật giờ giấc, giao tiếp công trường và văn hóa nghề thủ công Đức ngay tại học viện.",
+      },
+    },
+    {
+      src: "/images/community/dmf-community-visa-hoang-duy.jpg",
+      title: {
+        de: "Visumerfolg für Technik-Ausbildung in Meppen",
+        en: "Visa Success for Technical Training in Meppen",
+        vn: "Trao Thị thực Kỹ thuật — Hoàng Duy (Meppen)",
+      },
+      caption: {
+        de: "DMF-Absolvent Hoàng Duy vor seiner Ausreise zur gewerblich-technischen Ausbildung nach Niedersachsen.",
+        en: "DMF graduate Hoàng Duy prior to departing for his technical apprenticeship in Lower Saxony.",
+        vn: "Học viên Hoàng Duy nhận hoa và thị thực trước khi lên đường sang Meppen (Niedersachsen).",
+      },
+    },
+    {
+      src: "/images/community/dmf-community-visum-d-zusatzblatt.jpg",
+      title: {
+        de: "Originales D-Visum & HWK-konformes Zusatzblatt",
+        en: "Original National D-Visa & Work Supplement",
+        vn: "Thị thực Quốc gia D & Zusatzblatt Hợp pháp",
+      },
+      caption: {
+        de: "Rechtssichere Visumerteilung nach § 16a / § 18a AufenthG für den planmäßigen Ausbildungs- und Arbeitsbeginn.",
+        en: "Legally compliant visa issuance under § 16a / § 18a AufenthG for on-schedule deployment.",
+        vn: "Đảm bảo pháp lý 100% theo § 16a / § 18a AufenthG giúp doanh nghiệp đón nhân sự đúng tiến độ.",
+      },
+    },
+  ],
+  "industrie-metall-technik": [
+    {
+      src: "/images/community/dmf-community-achim-interview-panel.jpg",
+      title: {
+        de: "Fach- & Eignungsprüfung mit Achim Betticher",
+        en: "Technical & Competency Audit with Achim Betticher",
+        vn: "Sát hạch Năng lực cùng Chuyên gia Đức Achim Betticher",
+      },
+      caption: {
+        de: "Deutsche Experten prüfen Motivation, technisches Verständnis und aktive Sprechfähigkeit vor dem Arbeitgeber-Interview.",
+        en: "German experts verify motivation, technical aptitude, and active German speaking skills.",
+        vn: "Hội đồng chuyên gia Đức kiểm tra tư duy kỹ thuật và khả năng trả lời phỏng vấn trực tiếp bằng tiếng Đức.",
+      },
+    },
+    {
+      src: "/images/community/dmf-community-german-translated-transcript.jpg",
+      title: {
+        de: "Beglaubigte MINT- & Fachzeugnisse für IHK FOSA",
+        en: "Certified STEM & Technical Dossiers for IHK FOSA",
+        vn: "Hồ sơ Bảng điểm Kỹ thuật Dịch thuật Công chứng",
+      },
+      caption: {
+        de: "Vollständige deutsche Übersetzung aller Notenübersichten (Mathematik, Physik, Technik) für Anerkennung und ZAV.",
+        en: "Complete certified German translations of mathematics, physics, and technical transcripts.",
+        vn: "Chuẩn hóa toàn bộ bảng điểm Toán, Lý, Kỹ thuật bằng tiếng Đức phục vụ thẩm định IHK FOSA và ZAV.",
+      },
+    },
+    {
+      src: "/images/community/dmf-community-airport-briefing-duy.jpg",
+      title: {
+        de: "Strukturierte Ausreise & Flughafen-Briefing",
+        en: "Structured Departure & Airport Briefing",
+        vn: "Hướng dẫn Hồ sơ Xuất cảnh tại Sân bay Quốc tế",
+      },
+      caption: {
+        de: "Persönliche Begleitung durch DMF-Koordinatoren bis zum Abflug und Empfang durch unser Team in Deutschland.",
+        en: "Personal accompaniment by DMF coordinators up to departure and arrival pickup in Germany.",
+        vn: "Điều phối viên DMF kiểm tra hồ sơ tại sân bay và kết nối trực tiếp với đội ngũ đón tiếp tại Đức.",
+      },
+    },
+  ],
+  "gastronomie-hotellerie": [
+    {
+      src: "/images/community/dmf-community-deutsche-kultur-whiteboard.jpg",
+      title: {
+        de: "Praxismodul: Deutsche Kultur & Essgewohnheiten",
+        en: "Practical Module: German Culture & Dining Customs",
+        vn: "Chuyên đề Văn hóa & Ẩm thực Đức cùng Người Bản xứ",
+      },
+      caption: {
+        de: "Muttersprachliche Dozenten vermitteln deutsche Gastfreundschaft, Esskultur und Service-Etikette.",
+        en: "Native German instructors teaching hospitality standards, culinary culture, and service etiquette.",
+        vn: "Giảng viên người Đức trực tiếp giảng dạy văn hóa ẩm thực, phong cách phục vụ và giao tiếp khách sạn.",
+      },
+    },
+    {
+      src: "/images/community/dmf-community-intercultural-roundtable.jpg",
+      title: {
+        de: "Aktives Kommunikationstraining mit deutschen Gästen",
+        en: "Active Communication Training with German Guests",
+        vn: "Tọa đàm Thực hành Giao tiếp Dịch vụ bằng Tiếng Đức",
+      },
+      caption: {
+        de: "Regelmäßige Gesprächsrunden fördern ein sicheres, freundliches Auftreten an Rezeption, im Restaurant und im Hotel.",
+        en: "Regular roundtables build confident, hospitable communication for front-desk and restaurant roles.",
+        vn: "Rèn luyện phong thái tự tin, thân thiện khi đón tiếp khách hàng tại lễ tân khách sạn và nhà hàng.",
+      },
+    },
+    {
+      src: "/images/community/dmf-community-weihnachten-christmas-event.jpg",
+      title: {
+        de: "Gelebte Feiertagstraditionen am DMF-Campus",
+        en: "Living German Holiday Traditions on Campus",
+        vn: "Trải nghiệm Lễ hội Truyền thống Châu Âu tại Học viện",
+      },
+      caption: {
+        de: "Durch gemeinsame Kulturfeste wie Weihnachten sind unsere Talente bestens auf die Hochsaison in der deutschen Hotellerie vorbereitet.",
+        en: "Celebrating German holidays prepares candidates culturally for peak hospitality seasons in Germany.",
+        vn: "Hiểu rõ văn hóa lễ hội Đức giúp học viên nhanh chóng hòa nhập vào môi trường khách sạn – nhà hàng.",
+      },
+    },
+  ],
+};
+
 export function BrancheDetailClient({
   branche,
   candidates,
@@ -169,7 +343,11 @@ export function BrancheDetailClient({
                   <ShieldCheck className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
                   <span>
                     <strong>
-                      {lang === "de" ? "Zuständige Stellen:" : "Competent Authorities:"}
+                      {lang === "de"
+                        ? "Zuständige Stellen:"
+                        : lang === "en"
+                          ? "Competent Authorities:"
+                          : "Cơ quan thẩm quyền:"}
                     </strong>{" "}
                     {branche.legalPathway.authority[lang]}
                   </span>
@@ -178,7 +356,11 @@ export function BrancheDetailClient({
                   <Clock className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
                   <span>
                     <strong>
-                      {lang === "de" ? "Typische Verfahrensdauer:" : "Estimated Lead Time:"}
+                      {lang === "de"
+                        ? "Typische Verfahrensdauer:"
+                        : lang === "en"
+                          ? "Estimated Lead Time:"
+                          : "Thời gian xử lý dự kiến:"}
                     </strong>{" "}
                     {branche.legalPathway.timelineMonths}
                   </span>
@@ -307,13 +489,17 @@ export function BrancheDetailClient({
               <p className="text-slate-700 font-medium mb-3">
                 {lang === "de"
                   ? "Neue Profile für diesen Fachbereich befinden sich aktuell in der Freigabeprüfung."
-                  : "New candidate profiles for this sector are currently being prepared."}
+                  : lang === "en"
+                    ? "New candidate profiles for this sector are currently being prepared."
+                    : "Các hồ sơ mới cho lĩnh vực này hiện đang trong quá trình rà soát công bố."}
               </p>
               <Button asChild size="sm">
                 <a href="#branchen-anfrage">
                   {lang === "de"
                     ? "Unverbindliche Vorauswahl anfordern"
-                    : "Request Custom Shortlist"}
+                    : lang === "en"
+                      ? "Request Custom Shortlist"
+                      : "Yêu cầu danh sách ứng viên phù hợp"}
                 </a>
               </Button>
             </div>
@@ -359,9 +545,9 @@ export function BrancheDetailClient({
             ))}
           </div>
 
-          {/* Authentic DMF Academy & Delegation Banner */}
-          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 md:p-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-            <div className="lg:col-span-5 space-y-3">
+          {/* Authentic DMF Academy & Sector-Specific Community Documentary Strip */}
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 md:p-8 space-y-6">
+            <div className="max-w-3xl space-y-2">
               <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary">
                 <GraduationCap className="w-4 h-4" />
                 {lang === "de"
@@ -370,50 +556,45 @@ export function BrancheDetailClient({
                     ? "Dedicated Training Academy in Vietnam"
                     : "Học viện Đào tạo trực tiếp tại Việt Nam"}
               </span>
-              <h3 className="text-xl font-bold text-slate-900">
+              <h3 className="text-xl md:text-2xl font-bold text-slate-900">
                 {lang === "de"
-                  ? "Geprüfte Vorbereitung vor Ort & persönliche Arbeitgeber-Audits"
+                  ? "So bereitet DMF Ihre Kandidaten in Vietnam praxisnah vor"
                   : lang === "en"
-                    ? "Verified On-Site Preparation & Employer Selection Visits"
-                    : "Đào tạo thực chiến & Đón phái đoàn Đức sang tuyển trực tiếp"}
+                    ? "How DMF Prepares Your Candidates on Site in Vietnam"
+                    : "Hình ảnh thực tế quá trình chuẩn bị ứng viên & hồ sơ tại DMF"}
               </h3>
               <p className="text-xs md:text-sm text-slate-600 leading-relaxed">
                 {lang === "de"
-                  ? "Unsere Kandidaten lernen an unserem Campus in Vietnam nicht nur Deutsch bis B1/B2, sondern trainieren Fachbegriffe, Arbeitssicherheit und betriebliche Abläufe für Deutschland."
+                  ? "Unsere Kandidaten lernen an unserem Campus in Vietnam nicht nur Deutsch bis B1/B2, sondern durchlaufen branchenspezifisches Kommunikationstraining, Eignungsprüfungen mit deutschen Experten und eine lückenlose Dokumenten-Compliance."
                   : lang === "en"
-                    ? "At our campus in Vietnam, candidates master B1/B2 German alongside technical terminology, occupational safety, and German workplace routines."
-                    : "Ứng viên được rèn luyện tiếng Đức B1/B2, thuật ngữ chuyên ngành và phỏng vấn trực tiếp cùng đại diện doanh nghiệp Đức ngay tại Học viện DMF."}
+                    ? "At our campus in Vietnam, candidates master B1/B2 German alongside sector-specific communication training, German expert audits, and complete visa compliance."
+                    : "Ứng viên được rèn luyện tiếng Đức B1/B2, giao tiếp chuyên ngành, sát hạch cùng chuyên gia Đức và hoàn thiện hồ sơ thị thực hợp pháp ngay tại Học viện DMF."}
               </p>
             </div>
-            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="relative aspect-[16/10] rounded-xl overflow-hidden border border-slate-200 bg-slate-200">
-                <Image
-                  src="/images/b2b/hero-skilled.jpg"
-                  alt="DMF Academy Fachunterricht"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 30vw"
-                  className="object-cover"
-                />
-                <span className="absolute bottom-2 left-2 right-2 px-2.5 py-1 rounded bg-slate-900/80 text-white text-[11px] font-medium backdrop-blur-xs">
-                  {lang === "de"
-                    ? "Intensivtraining & digitale Vorauswahl am DMF-Campus"
-                    : "Intensive training & digital pre-screening at DMF Campus"}
-                </span>
-              </div>
-              <div className="relative aspect-[16/10] rounded-xl overflow-hidden border border-slate-200 bg-slate-200">
-                <Image
-                  src="/images/b2b/referenzen-delegation.jpg"
-                  alt="Deutsche Arbeitgeber-Delegation bei DMF"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 30vw"
-                  className="object-cover"
-                />
-                <span className="absolute bottom-2 left-2 right-2 px-2.5 py-1 rounded bg-slate-900/80 text-white text-[11px] font-medium backdrop-blur-xs">
-                  {lang === "de"
-                    ? "Audits & Auswahlgespräche deutscher Partner vor Ort"
-                    : "On-site audits & interviews by German employers"}
-                </span>
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              {(
+                SECTOR_COMMUNITY_VISUALS[branche.slug] ||
+                SECTOR_COMMUNITY_VISUALS["pflege-gesundheit"]
+              ).map((item) => (
+                <figure
+                  key={item.src}
+                  className="rounded-xl overflow-hidden border border-slate-200 bg-white shadow-xs flex flex-col"
+                >
+                  <div className="relative aspect-[16/10] w-full bg-slate-200">
+                    <Image
+                      src={item.src}
+                      alt={item.title[lang]}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 30vw"
+                      className="object-cover"
+                    />
+                  </div>
+                  <figcaption className="p-4 flex-1">
+                    <h4 className="font-bold text-slate-900 text-sm mb-1">{item.title[lang]}</h4>
+                    <p className="text-xs text-slate-600 leading-relaxed">{item.caption[lang]}</p>
+                  </figcaption>
+                </figure>
+              ))}
             </div>
           </div>
         </div>
