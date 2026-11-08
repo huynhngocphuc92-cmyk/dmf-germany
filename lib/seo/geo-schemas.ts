@@ -1,6 +1,6 @@
-import { GERMANY_CONTACT, VIETNAM_OFFICE_CONTACT } from "@/lib/company/contact";
-import { BRANCHEN_CONFIGS } from "@/lib/content/branchen";
-import { SITE_DESCRIPTION, SITE_NAME, SITE_URL, siteUrl } from "@/lib/site";
+import { GERMANY_CONTACT, VIETNAM_OFFICE_CONTACT } from "../company/contact";
+import { BRANCHEN_CONFIGS } from "../content/branchen";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL, siteUrl } from "../site";
 
 export interface GeoFaqEntry {
   id: string;

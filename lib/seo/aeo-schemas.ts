@@ -1,4 +1,4 @@
-import { SITE_NAME, SITE_URL, siteUrl } from "@/lib/site";
+import { SITE_NAME, SITE_URL, siteUrl } from "../site";
 
 export interface AeoFaqItem {
   question: string;

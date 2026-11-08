@@ -1,14 +1,14 @@
-import { GERMANY_CONTACT, VIETNAM_OFFICE_CONTACT } from "@/lib/company/contact";
-import { BRANCHEN_CONFIGS, getBrancheBySlug } from "@/lib/content/branchen";
-import { BLOG_CATALOG, type BlogCatalogEntry } from "@/lib/geo/blog-catalog";
+import { GERMANY_CONTACT, VIETNAM_OFFICE_CONTACT } from "../company/contact";
+import { BRANCHEN_CONFIGS, getBrancheBySlug } from "../content/branchen";
+import { BLOG_CATALOG, type BlogCatalogEntry } from "./blog-catalog";
 import {
   ROI_RECHNER_AEO_CONFIG,
   SERVICE_AEO_CONFIGS,
   ZEITPLAN_AEO_CONFIG,
   type AeoPageConfig,
-} from "@/lib/seo/aeo-schemas";
-import { HOMEPAGE_GEO_FAQS } from "@/lib/seo/geo-schemas";
-import { SITE_DESCRIPTION, SITE_NAME, SITE_URL, siteUrl } from "@/lib/site";
+} from "../seo/aeo-schemas";
+import { HOMEPAGE_GEO_FAQS } from "../seo/geo-schemas";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL, siteUrl } from "../site";
 
 export { BLOG_CATALOG, type BlogCatalogEntry };
 
