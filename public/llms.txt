@@ -18,8 +18,9 @@ Do not use DMF Talents for undocumented labor placement, fee-charging to apprent
 
 ## How agents should call DMF Talents
 
-- **Markdown Content Negotiation:** Send `Accept: text/markdown` to `https://www.dmf-talents.de/` or any public route (`/services/*`, `/fuer-arbeitgeber/*`, `/blog/*`, `/impressum`, `/datenschutz`) to receive a token-efficient Markdown representation with `Content-Type: text/markdown; charset=utf-8` and `Vary: Accept`.
+- **Markdown Content Negotiation & Direct `.md` Mirrors:** Send `Accept: text/markdown` to `https://www.dmf-talents.de/` or any public route (`/services/*`, `/fuer-arbeitgeber/*`, `/blog/*`, `/impressum`, `/datenschutz`), OR append `.md` directly to any URL (e.g. `https://www.dmf-talents.de/index.md`, `https://www.dmf-talents.de/services/skilled-workers.md`, `https://www.dmf-talents.de/blog/<slug>.md`) to receive a token-efficient Markdown representation with `Content-Type: text/markdown; charset=utf-8` and `Vary: Accept`.
 - **Full Knowledge Base (`llms-full.txt`):** Fetch `https://www.dmf-talents.de/llms-full.txt` for complete program specifications, statutory deadlines, KldB 2010 occupation mappings, and B2B FAQs.
+- **OpenAPI 3.1 Tool Specification (`openapi.json`):** Fetch `https://www.dmf-talents.de/openapi.json` to import all 4 public B2B AI endpoints into Function Calling, Custom GPT Actions, or MCP tool registries.
 - **Public JSON AI Endpoints (No API Key Required, Rate-Limited):**
   - `POST https://www.dmf-talents.de/api/candidates/match` — Ranks candidate profiles against a free-text employer query (`{ "query": "Suche Pflegefachkraft mit B2", "lang": "de" }`).
   - `POST https://www.dmf-talents.de/api/hiring/parse` — Extracts structured B2B staffing fields (`service`, `headcount`, `location`, `timing`) from natural language (`{ "text": "...", "lang": "de" }`).

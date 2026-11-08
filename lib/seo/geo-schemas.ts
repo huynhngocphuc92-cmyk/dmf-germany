@@ -190,6 +190,38 @@ export function buildGlobalSchemas() {
       url: SITE_URL,
       logo: siteUrl("/icon.png"),
       description: SITE_DESCRIPTION,
+      disambiguatingDescription:
+        "DMF Talents (DMF VIETNAM JOINT STOCK COMPANY, Tax-ID 3603878495) ist eine auf die Rekrutierung, Sprachausbildung (GER B1/B2) und Berufsanerkennung vietnamesischer Fachkräfte (§ 18a/b, § 16d AufenthG) und Auszubildender (§ 16a AufenthG) für deutsche Arbeitgeber spezialisierte B2B-Personalvermittlung und Sprachakademie.",
+      knowsAbout: [
+        {
+          "@type": "DefinedTerm",
+          name: "Fachkräfteeinwanderungsgesetz (FEG)",
+          termCode: "§ 18a / § 18b / § 18g AufenthG",
+          description:
+            "Rechtssichere Zuwanderung qualifizierter Fachkräfte mit Berufsausbildung oder akademischem Abschluss aus Vietnam nach Deutschland.",
+        },
+        {
+          "@type": "DefinedTerm",
+          name: "Duale Berufsausbildung für Drittstaatsangehörige",
+          termCode: "§ 16a AufenthG & § 296a SGB III",
+          description:
+            "Vermittlung und Vorbereitung vietnamesischer Auszubildender nach dem Employer-Pays-Prinzip.",
+        },
+        {
+          "@type": "DefinedTerm",
+          name: "Anerkennungspartnerschaft & Anpassungsqualifizierung",
+          termCode: "§ 16d Abs. 1 & Abs. 3 AufenthG / BQFG",
+          description:
+            "Sofortige Beschäftigung in Deutschland bei paralleler Durchführung des Gleichwertigkeitsverfahrens.",
+        },
+        {
+          "@type": "DefinedTerm",
+          name: "Beschleunigtes Fachkräfteverfahren",
+          termCode: "§ 81a AufenthG",
+          description:
+            "Verkürztes Behördenverfahren über die Ausländerbehörde mit verbindlichen Fristen für Anerkennung, ZAV und Botschaft.",
+        },
+      ],
       address: {
         "@type": "PostalAddress",
         streetAddress: "A11 KDC Quang Vinh, Khu phố 3, Phường Quang Vinh",

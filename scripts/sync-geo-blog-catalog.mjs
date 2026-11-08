@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
  * Syncs all compiled blog posts from `content/compiled/all-posts.json` into:
- * 1. `lib/geo/blog-catalog.ts` (for Markdown Content Negotiation on `/blog/[slug]` and `/blog`)
- * 2. `public/llms.txt` (concise LLM discovery index of all 143+ blog posts)
+ * 1. `lib/geo/blog-catalog.ts` (for Markdown Content Negotiation & LLMO Deep Chunk Serving on `/blog/[slug]` and `/blog/[slug].md`)
+ * 2. `public/llms.txt` (concise LLM discovery index of all 158+ blog posts)
  * 3. `public/llms-full.txt` (comprehensive LLM knowledge base with article summaries and subheadings)
  */
 
@@ -17,6 +17,7 @@ const LLMS_FULL_TXT_PATH = path.join(ROOT, "public/llms-full.txt");
 
 function stripHtml(html) {
   return String(html || "")
+    .replace(/<!--[\s\S]*?-->/g, " ")
     .replace(/<[^>]+>/g, " ")
     .replace(/&nbsp;/gi, " ")
     .replace(/&amp;/gi, "&")
@@ -34,11 +35,100 @@ function extractHeadings(html) {
   let match;
   while ((match = regex.exec(String(html || ""))) !== null) {
     const clean = stripHtml(match[1]);
-    if (clean && clean.length >= 4 && headings.length < 6) {
+    if (clean && clean.length >= 4 && headings.length < 8) {
       headings.push(clean);
     }
   }
   return headings;
+}
+
+function extractTldr(html) {
+  const raw = String(html || "");
+  const match = raw.match(
+    /<p[^>]*>\s*<strong>\s*Das Wichtigste in Kürze:\s*<\/strong>([\s\S]*?)<\/p>/i
+  );
+  if (match) {
+    return stripHtml(match[1]);
+  }
+  const firstP = raw.match(/<p[^>]*>([\s\S]*?)<\/p>/i);
+  return firstP ? stripHtml(firstP[1]) : undefined;
+}
+
+function extractFaqs(html) {
+  const raw = String(html || "");
+  const results = [];
+  const headingRegex = /<h([23])[^>]*>([\s\S]*?)<\/h\1>/gi;
+  const matches = Array.from(raw.matchAll(headingRegex));
+
+  for (let i = 0; i < matches.length; i++) {
+    const match = matches[i];
+    const questionText = stripHtml(match[2] || "");
+    if (!questionText.endsWith("?") || questionText.length < 10) {
+      continue;
+    }
+
+    const sectionStart = (match.index ?? 0) + match[0].length;
+    const sectionEnd = i + 1 < matches.length ? (matches[i + 1].index ?? raw.length) : raw.length;
+    const sectionHtml = raw.slice(sectionStart, sectionEnd);
+
+    const paragraphs = Array.from(sectionHtml.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi))
+      .map((m) => stripHtml(m[1] || ""))
+      .filter((p) => p.length > 0);
+
+    if (paragraphs.length === 0) continue;
+
+    const answerText = paragraphs.slice(0, 2).join(" ").trim();
+    if (answerText.length >= 35) {
+      results.push({
+        question: questionText,
+        answer: answerText,
+      });
+    }
+  }
+
+  return results.slice(0, 6);
+}
+
+function extractTableMarkdown(html) {
+  const raw = String(html || "");
+  const tableMatch = raw.match(/<table[^>]*>([\s\S]*?)<\/table>/i);
+  if (!tableMatch) return undefined;
+
+  const tableInner = tableMatch[1];
+  const captionMatch = tableInner.match(/<caption[^>]*>([\s\S]*?)<\/caption>/i);
+  const caption = captionMatch ? stripHtml(captionMatch[1]) : "";
+
+  const rows = [];
+  const trRegex = /<tr[^>]*>([\s\S]*?)<\/tr>/gi;
+  let trMatch;
+  while ((trMatch = trRegex.exec(tableInner)) !== null) {
+    const cells = [];
+    const cellRegex = /<t[hd][^>]*>([\s\S]*?)<\/t[hd]>/gi;
+    let cellMatch;
+    while ((cellMatch = cellRegex.exec(trMatch[1])) !== null) {
+      cells.push(stripHtml(cellMatch[1]).replace(/\|/g, "/"));
+    }
+    if (cells.length >= 2) {
+      rows.push(cells);
+    }
+  }
+
+  if (rows.length < 2) return undefined;
+
+  const colCount = rows[0].length;
+  const headerLine = `| ${rows[0].join(" | ")} |`;
+  const sepLine = `| ${Array(colCount).fill("---").join(" | ")} |`;
+  const bodyLines = rows.slice(1).map((r) => {
+    const padded = Array.from({ length: colCount }, (_, i) => r[i] || "");
+    return `| ${padded.join(" | ")} |`;
+  });
+
+  return [
+    ...(caption ? [`**Tabelle: ${caption}**`, ""] : []),
+    headerLine,
+    sepLine,
+    ...bodyLines,
+  ].join("\n");
 }
 
 function main() {
@@ -46,11 +136,17 @@ function main() {
   const catalog = rawPosts.map((post) => {
     const summary = stripHtml(post.excerpt || post.meta_description || post.title);
     const headings = extractHeadings(post.content);
+    const tldr = extractTldr(post.content);
+    const faqs = extractFaqs(post.content);
+    const tableMarkdown = extractTableMarkdown(post.content);
     return {
       slug: String(post.slug).trim(),
       title: stripHtml(post.title),
       summary,
+      ...(tldr ? { tldr } : {}),
       headings,
+      ...(tableMarkdown ? { tableMarkdown } : {}),
+      ...(faqs.length > 0 ? { faqs } : {}),
     };
   });
 
@@ -61,7 +157,15 @@ function main() {
       slug: "fixture-current",
       title: "Fixture editorial article",
       summary: "Fixture excerpt",
+      tldr: "Fixture Zusammenfassung für automatisierte Rauchtests.",
       headings: ["Welche Kriterien gelten im Auswahlprozess?"],
+      faqs: [
+        {
+          question: "Welche Kriterien gelten im Auswahlprozess?",
+          answer:
+            "Im Auswahlprozess prüfen wir Sprachzertifikate (B1/B2), Berufsabschlüsse nach BQFG und die praktische Eignung für deutsche Arbeitgeber.",
+        },
+      ],
     },
   ];
 
@@ -69,11 +173,19 @@ function main() {
   const tsContent = `// AUTO-GENERATED by scripts/sync-geo-blog-catalog.mjs from content/compiled/all-posts.json
 // Total compiled editorial articles: ${catalog.length}
 
+export interface BlogCatalogFaq {
+  question: string;
+  answer: string;
+}
+
 export interface BlogCatalogEntry {
   slug: string;
   title: string;
   summary: string;
+  tldr?: string;
   headings?: string[];
+  tableMarkdown?: string;
+  faqs?: BlogCatalogFaq[];
 }
 
 export const BLOG_CATALOG: BlogCatalogEntry[] = ${JSON.stringify(fullCatalog, null, 2)};
@@ -100,7 +212,7 @@ export const BLOG_CATALOG: BlogCatalogEntry[] = ${JSON.stringify(fullCatalog, nu
   ].join("\n");
   fs.writeFileSync(LLMS_TXT_PATH, updatedLlmsTxt, "utf8");
 
-  // 3. Update `public/llms-full.txt` with section 5 for all 143 blog posts
+  // 3. Update `public/llms-full.txt` with section 5 for all 158 blog posts
   const llmsFullTxt = fs.readFileSync(LLMS_FULL_TXT_PATH, "utf8");
   const fullBlogMarker = "## 5. Vollständiges Verzeichnis der Redaktionellen Wissensdatenbank";
   const fullMarkerIdx = llmsFullTxt.indexOf(fullBlogMarker);
@@ -133,7 +245,7 @@ export const BLOG_CATALOG: BlogCatalogEntry[] = ${JSON.stringify(fullCatalog, nu
   fs.writeFileSync(LLMS_FULL_TXT_PATH, updatedLlmsFullTxt, "utf8");
 
   process.stdout.write(
-    `Synced ${catalog.length} compiled blog posts into lib/geo/blog-catalog.ts, public/llms.txt, and public/llms-full.txt.\n`
+    `Synced ${catalog.length} compiled blog posts (with TL;DR, Markdown tables, and Q&A chunks) into lib/geo/blog-catalog.ts, public/llms.txt, and public/llms-full.txt.\n`
   );
 }
 

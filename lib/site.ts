@@ -13,10 +13,16 @@ export function siteUrl(path = "/"): string {
 export function pageMetadata(path: string, title: string, description: string): Metadata {
   const cleanTitle = title.replace(/\s*\|\s*DMF(?: Talents| Vietnam| Germany)?(?: Blog)?\s*$/i, "");
   const socialTitle = `${cleanTitle} | ${SITE_NAME}`;
+  const mdPath = path === "/" ? "/index.md" : `${path.replace(/\/$/, "")}.md`;
   return {
     title: cleanTitle,
     description,
-    alternates: { canonical: siteUrl(path) },
+    alternates: {
+      canonical: siteUrl(path),
+      types: {
+        "text/markdown": siteUrl(mdPath),
+      },
+    },
     openGraph: {
       type: "website",
       locale: "de_DE",

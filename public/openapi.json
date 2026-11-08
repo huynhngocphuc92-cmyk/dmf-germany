@@ -1,0 +1,291 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "DMF Talents B2B AI Recruitment & Legal Pathway API",
+    "version": "1.0.0",
+    "description": "Public, stateless B2B API for AI Agents, HR Copilots, and German Employers to evaluate candidate matches, parse hiring job descriptions, generate CFO ROI briefs (§ 18a/b & § 16a AufenthG vs. Zeitarbeit), and check German immigration legal pathways (§ 16a, § 16d, § 18a/b, § 19c, § 81a AufenthG).",
+    "contact": {
+      "name": "DMF Talents (DMF VIETNAM JOINT STOCK COMPANY)",
+      "url": "https://www.dmf-talents.de/fuer-arbeitgeber/personalbedarf",
+      "email": "contact@dmf-talents.de"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://www.dmf-talents.de",
+      "description": "Production Server (Germany / Global Edge)"
+    }
+  ],
+  "paths": {
+    "/api/candidates/match": {
+      "post": {
+        "operationId": "matchCandidatesForEmployer",
+        "summary": "Score and rank anonymized Vietnamese candidate profiles against an employer requirement query",
+        "description": "Evaluates a list of candidate profiles against a free-text employer requirement query (e.g. Pflegefachkraft B2, Elektroniker SHK B1, Azubi Koch) and returns match scores (55-99) with reasoning.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["query", "candidates"],
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 600,
+                    "description": "Employer requirement query in German, English, or Vietnamese."
+                  },
+                  "lang": {
+                    "type": "string",
+                    "enum": ["de", "en", "vn"],
+                    "default": "de"
+                  },
+                  "candidates": {
+                    "type": "array",
+                    "maxItems": 60,
+                    "items": {
+                      "type": "object",
+                      "required": ["id", "category", "visa_status"],
+                      "properties": {
+                        "id": { "type": "string" },
+                        "category": { "type": "string", "enum": ["azubi", "skilled", "seasonal"] },
+                        "profession": { "type": ["string", "null"] },
+                        "experience_years": { "type": ["number", "null"] },
+                        "german_level": {
+                          "type": ["string", "null"],
+                          "enum": ["A1", "A2", "B1", "B2", "C1", "C2", null]
+                        },
+                        "visa_status": { "type": "boolean" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ranked candidate match scores and summary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "matches": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": { "type": "string" },
+                          "matchScore": { "type": "number" },
+                          "reason": { "type": "string" }
+                        }
+                      }
+                    },
+                    "summary": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/hiring/parse": {
+      "post": {
+        "operationId": "parseEmployerHiringRequirement",
+        "summary": "Parse a free-text German job description into a structured B2B hiring draft and top candidate matches",
+        "description": "Extracts service track (skilled, azubi, seasonal), headcount, location in Germany, desired start timing, and top matching candidate profiles from a raw job description.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["text"],
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "minLength": 5,
+                    "maxLength": 5000,
+                    "description": "Free-text job description or staffing request from a German employer."
+                  },
+                  "lang": {
+                    "type": "string",
+                    "enum": ["de", "en", "vn"],
+                    "default": "de"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Structured hiring draft and instant matched candidates",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "draft": {
+                      "type": "object",
+                      "properties": {
+                        "service": {
+                          "type": "string",
+                          "enum": ["skilled", "azubi", "seasonal", "unsure"]
+                        },
+                        "headcount": { "type": "string" },
+                        "location": { "type": "string" },
+                        "timing": { "type": "string" },
+                        "summaryMessage": { "type": "string" }
+                      }
+                    },
+                    "topCandidates": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": { "type": "string" },
+                          "code": { "type": "string" },
+                          "profession": { "type": "string" },
+                          "category": { "type": "string" },
+                          "german_level": { "type": "string" },
+                          "matchScore": { "type": "number" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/roi/brief": {
+      "post": {
+        "operationId": "generateB2bRoiExecutiveBrief",
+        "summary": "Generate an executive CFO/HR ROI brief comparing direct recruitment from Vietnam against German temp staffing",
+        "description": "Calculates break-even months, multi-year savings, and legal pathway notes (§ 18a/b, § 16a, § 81a AufenthG) for German employers.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "productType",
+                  "germanSalary",
+                  "dmfSalary",
+                  "recruitmentFee",
+                  "contractDuration",
+                  "savings",
+                  "savingsPercentage"
+                ],
+                "properties": {
+                  "productType": {
+                    "type": "string",
+                    "enum": ["fachkraefte", "azubi", "saisonkraefte"]
+                  },
+                  "industry": { "type": ["string", "null"] },
+                  "germanSalary": { "type": "number" },
+                  "dmfSalary": { "type": "number" },
+                  "recruitmentFee": { "type": "number" },
+                  "contractDuration": { "type": "integer", "minimum": 1, "maximum": 10 },
+                  "savings": { "type": "number" },
+                  "savingsPercentage": { "type": "string" },
+                  "lang": { "type": "string", "enum": ["de", "en", "vn"], "default": "de" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Executive ROI brief with headline, bullets, and recommendation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "headline": { "type": "string" },
+                    "bullets": { "type": "array", "items": { "type": "string" } },
+                    "recommendation": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/pathway-check": {
+      "post": {
+        "operationId": "evaluateGermanImmigrationPathway",
+        "summary": "Evaluate legal immigration pathway (§ 18a/b, § 16a, § 15a BeschV), lead time, and salary benchmark",
+        "description": "Determines the optimal German Residence Act (AufenthG) pathway, eligibility score, estimated months to arrival, and salary/stipend range.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["age", "education", "germanLevel", "preferredField"],
+                "properties": {
+                  "age": { "type": "integer", "minimum": 16, "maximum": 55 },
+                  "education": {
+                    "type": "string",
+                    "enum": ["highschool", "vocational", "university"]
+                  },
+                  "germanLevel": {
+                    "type": "string",
+                    "enum": ["none", "A1", "A2", "B1", "B2"]
+                  },
+                  "preferredField": {
+                    "type": "string",
+                    "enum": ["nursing", "tech", "hospitality", "seasonal"]
+                  },
+                  "experienceYears": { "type": "integer", "minimum": 0, "maximum": 30, "default": 0 },
+                  "lang": { "type": "string", "enum": ["de", "en", "vn"], "default": "de" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Pathway assessment result with legal basis and roadmap steps",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "result": {
+                      "type": "object",
+                      "properties": {
+                        "recommendedTrack": { "type": "string" },
+                        "legalBasis": { "type": "string" },
+                        "eligibilityScore": { "type": "number" },
+                        "estimatedMonthsToDeparture": { "type": "number" },
+                        "salaryRange": { "type": "string" },
+                        "roadmapSteps": { "type": "array", "items": { "type": "string" } },
+                        "advisorSummary": { "type": "string" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

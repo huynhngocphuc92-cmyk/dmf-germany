@@ -2,6 +2,7 @@
 
 > Canonical Host: https://www.dmf-talents.de
 > Concise Index: https://www.dmf-talents.de/llms.txt
+> OpenAPI 3.1 Tool Spec: https://www.dmf-talents.de/openapi.json
 > XML Sitemap: https://www.dmf-talents.de/sitemap.xml
 > Operator: DMF VIETNAM JOINT STOCK COMPANY (`CÔNG TY CỔ PHẦN TƯ VẤN DU HỌC DMF VIETNAM`)
 > Tax / Registration ID: 3603878495 (`Sở Kế hoạch và Đầu tư tỉnh Đồng Nai`)

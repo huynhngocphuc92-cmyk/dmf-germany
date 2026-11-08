@@ -1,12 +1,11 @@
 #!/usr/bin/env node
 /**
- * Measurable GEO (Generative Engine Optimization), AEO (Answer Engine Optimization)
- * & Agent-Readiness Audit CLI
+ * Measurable GEO (Generative Engine Optimization), AEO (Answer Engine Optimization),
+ * LLMO (Large Language Model Optimization) & Agent-Readiness Audit CLI
  *
  * Evaluates dmf-talents.de against the Is-Agentic (Ora) benchmark, GEO citation
- * requirements, and AEO Featured Snippet / People Also Ask / Speakable standards.
- * Can run statically against the repository or against a live/local server via
- * `--url http://localhost:3000`.
+ * requirements, AEO Featured Snippet / People Also Ask / Speakable standards, and
+ * LLMO token efficiency / entity disambiguation / OpenAPI tool discovery standards.
  */
 
 import fs from "node:fs";
@@ -37,30 +36,33 @@ function recordCheck({ id, name, tier, weight, baselineStatus, passed, evidence 
 }
 
 async function runAudit() {
-  // 1. Markdown Content Negotiation & Vary: Accept (Essential)
+  // 1. Markdown Content Negotiation, Direct .md Mirrors & Vary: Accept (Essential)
   const proxyCode = exists("proxy.ts") ? read("proxy.ts") : "";
   const negCode = exists("lib/geo/markdown-negotiation.ts")
     ? read("lib/geo/markdown-negotiation.ts")
     : "";
   const nextConfigCode = exists("next.config.ts") ? read("next.config.ts") : "";
+  const siteCode = exists("lib/site.ts") ? read("lib/site.ts") : "";
 
   const hasMdNegotiation =
     proxyCode.includes("prefersMarkdown") &&
+    proxyCode.includes("isDirectMarkdownPath") &&
     proxyCode.includes("text/markdown; charset=utf-8") &&
     proxyCode.includes("appendVaryAccept") &&
-    negCode.includes("## When to use DMF Talents") &&
+    negCode.includes("normalizeMarkdownPathname") &&
+    siteCode.includes('"text/markdown"') &&
     nextConfigCode.includes('key: "Vary"');
 
   recordCheck({
     id: "markdown-negotiation-vary",
-    name: "Markdown content negotiation (Accept: text/markdown + Vary: Accept)",
+    name: "Markdown content negotiation, direct .md URL mirrors & <link rel='alternate' type='text/markdown'>",
     tier: "essential",
-    weight: 12,
-    baselineStatus: "FAIL (0/12)",
+    weight: 10,
+    baselineStatus: "FAIL (0/10)",
     passed: hasMdNegotiation,
     evidence: hasMdNegotiation
-      ? "proxy.ts + lib/geo/markdown-negotiation.ts serve text/markdown with Vary: Accept on / and public routes"
-      : "Missing Accept: text/markdown handler or Vary: Accept header",
+      ? "proxy.ts + lib/geo/markdown-negotiation.ts serve text/markdown via Accept header OR .md URL suffix + <link rel='alternate' type='text/markdown'>"
+      : "Missing Accept: text/markdown handler, .md mirror, or Vary: Accept header",
   });
 
   // 2. Agent-Friendly 404s (Essential)
@@ -74,11 +76,11 @@ async function runAudit() {
     id: "agent-friendly-404",
     name: "Agent-friendly 404s (HTTP 404 + Markdown error body + discovery links)",
     tier: "essential",
-    weight: 10,
-    baselineStatus: "PARTIAL (5/10)",
+    weight: 8,
+    baselineStatus: "PARTIAL (4/8)",
     passed: hasAgent404,
     evidence: hasAgent404
-      ? "Nonexistent paths requested with Accept: text/markdown return HTTP 404 + Markdown body linking to llms.txt & sitemap.xml"
+      ? "Nonexistent paths requested with Accept: text/markdown or .md return HTTP 404 + Markdown body linking to llms.txt, openapi.json & sitemap.xml"
       : "Missing Markdown 404 body for AI agents",
   });
 
@@ -99,7 +101,7 @@ async function runAudit() {
     id: "content-no-js",
     name: "Content without JavaScript (Homepage SSR text > 12,000 chars & > 5.5% ratio)",
     tier: "essential",
-    weight: 12,
+    weight: 10,
     baselineStatus: "PARTIAL (4.6% ratio < 5.0% target)",
     passed: hasSsrKnowledgeCompendium,
     evidence: hasSsrKnowledgeCompendium
@@ -153,25 +155,26 @@ async function runAudit() {
       : "Missing When-to-use section in public/llms.txt",
   });
 
-  // 6. Organization & FAQPage Schema Completeness (Recommended)
+  // 6. Organization, Entity Disambiguation, Speakable & FAQPage Schema Completeness (Recommended)
   const hasCompleteSchemas =
     geoSchemasCode.includes('"@type": "PostalAddress"') &&
     geoSchemasCode.includes('"@type": "ContactPoint"') &&
-    geoSchemasCode.includes("contactType") &&
-    geoSchemasCode.includes("legalName") &&
+    geoSchemasCode.includes("disambiguatingDescription") &&
+    geoSchemasCode.includes('"@type": "DefinedTerm"') &&
+    geoSchemasCode.includes("knowsAbout") &&
     geoSchemasCode.includes('"@type": "FAQPage"') &&
     geoSchemasCode.includes('"@type": "SpeakableSpecification"');
 
   recordCheck({
     id: "org-schema-completeness",
-    name: "Organization (PostalAddress + ContactPoint), Speakable & FAQPage JSON-LD graph",
+    name: "Organization, LLMO Entity Disambiguation (DefinedTerm knowsAbout), Speakable & FAQPage JSON-LD",
     tier: "recommended",
     weight: 8,
-    baselineStatus: "PARTIAL (missing contactPoint, address & speakable)",
+    baselineStatus: "PARTIAL (missing contactPoint, address, knowsAbout & speakable)",
     passed: hasCompleteSchemas,
     evidence: hasCompleteSchemas
-      ? "Organization JSON-LD includes PostalAddress (Biên Hoà, VN) + 2 ContactPoints (DE & VN) + SpeakableSpecification + 8-item FAQPage JSON-LD"
-      : "Organization schema missing address, contactPoint, or SpeakableSpecification",
+      ? "Organization JSON-LD includes disambiguatingDescription, 4 DefinedTerm knowsAbout nodes, PostalAddress, 2 ContactPoints, SpeakableSpecification & FAQPage"
+      : "Organization schema missing address, contactPoint, knowsAbout, or SpeakableSpecification",
   });
 
   // 7. Trust Anchor Pages (/about, /contact, /privacy) (Recommended)
@@ -196,7 +199,7 @@ async function runAudit() {
       : "Missing /privacy rewrite or footer anchor",
   });
 
-  // 8. Full 158 Editorial Blog Corpus Synced into GEO Discovery (Recommended)
+  // 8. Full 158 Editorial Blog Corpus + LLMO Deep Chunks (TL;DR, Tables, Q&As) Synced (Recommended)
   const blogCatalogCode = exists("lib/geo/blog-catalog.ts") ? read("lib/geo/blog-catalog.ts") : "";
   const compiledPostsCount = exists("content/compiled/all-posts.json")
     ? JSON.parse(read("content/compiled/all-posts.json")).length
@@ -205,23 +208,21 @@ async function runAudit() {
   const hasFullBlogCorpusSync =
     compiledPostsCount >= 158 &&
     llmsBlogUrlCount >= compiledPostsCount &&
-    blogCatalogCode.includes(
-      "kooperationsmodell-deutsche-arbeitgeber-dmf-talents-schritt-fuer-schritt"
-    ) &&
-    llmsFullTxt.includes(
-      "kooperationsmodell-deutsche-arbeitgeber-dmf-talents-schritt-fuer-schritt"
-    );
+    blogCatalogCode.includes("tableMarkdown") &&
+    (blogCatalogCode.includes("tldr:") || blogCatalogCode.includes('"tldr":')) &&
+    (blogCatalogCode.includes("faqs:") || blogCatalogCode.includes('"faqs":')) &&
+    negCode.includes("Fachfragen & Antworten für Arbeitgeber (Q&A Chunks)");
 
   recordCheck({
     id: "geo-blog-corpus-sync",
-    name: `Full editorial blog corpus synced into GEO (${compiledPostsCount} articles in llms.txt & Markdown catalog)`,
+    name: `LLMO Deep Chunk Serving & Full Blog Corpus Sync (${compiledPostsCount} articles with TL;DR, Markdown tables & Q&A chunks)`,
     tier: "recommended",
     weight: 8,
-    baselineStatus: "PARTIAL (only 23/143 posts indexed)",
+    baselineStatus: "PARTIAL (only 23/143 posts indexed as short stubs)",
     passed: hasFullBlogCorpusSync,
     evidence: hasFullBlogCorpusSync
-      ? `All ${compiledPostsCount} compiled blog posts synced in lib/geo/blog-catalog.ts, public/llms.txt (${llmsBlogUrlCount} URLs), and public/llms-full.txt`
-      : "Blog corpus not fully synced into GEO files",
+      ? `All ${compiledPostsCount} compiled blog posts synced with full TL;DR, pipe-delimited Markdown tables, and Q&A chunks for /blog/[slug] & /blog/[slug].md`
+      : "Blog corpus missing deep Markdown chunks in lib/geo/blog-catalog.ts",
   });
 
   // 9. Automatic FAQPage + SpeakableSpecification JSON-LD on Blog Articles (Recommended)
@@ -345,6 +346,28 @@ async function runAudit() {
       : "Missing SSR AEO blocks or schemas on interactive tool pages",
   });
 
+  // 13. LLMO OpenAPI 3.1 Tool Specification (/openapi.json) for LLM Function Calling
+  const openApiCode = exists("public/openapi.json") ? read("public/openapi.json") : "";
+  const hasOpenApiSpec =
+    openApiCode.includes('"openapi": "3.1.0"') &&
+    openApiCode.includes('"/api/candidates/match"') &&
+    openApiCode.includes('"/api/hiring/parse"') &&
+    openApiCode.includes('"/api/roi/brief"') &&
+    openApiCode.includes('"/api/pathway-check"') &&
+    llmsTxt.includes("/openapi.json");
+
+  recordCheck({
+    id: "llmo-openapi-tool-spec",
+    name: "LLMO OpenAPI 3.1.0 Tool Specification (/openapi.json) for LLM Function Calling & MCP Agents",
+    tier: "recommended",
+    weight: 6,
+    baselineStatus: "FAIL (No machine-readable OpenAPI 3.1 schema for AI endpoints)",
+    passed: hasOpenApiSpec,
+    evidence: hasOpenApiSpec
+      ? "public/openapi.json defines OpenAPI 3.1.0 schemas for /api/candidates/match, /api/hiring/parse, /api/roi/brief, and /api/pathway-check"
+      : "Missing public/openapi.json or OpenAPI link in llms.txt",
+  });
+
   // Optional live HTTP verification if --url is passed
   const liveResults = [];
   if (targetUrl) {
@@ -413,11 +436,13 @@ async function runAudit() {
     );
   } else {
     out("==========================================================================");
-    out(" 🌍 DMF TALENTS — GEO, AEO & AGENT-READINESS AUDIT REPORT");
+    out(" 🌍 DMF TALENTS — GEO, AEO, LLMO & AGENT-READINESS AUDIT REPORT");
     out("==========================================================================");
-    out(` Baseline Score (is-agentic live scan):  74 / 100 ("Ready with a few material gaps")`);
     out(
-      ` Optimized GEO + AEO Score (codebase):   ${totalScore} / ${maxScore} (${allPassed ? "ALL CHECKS PASSING ✅" : "ISSUES FOUND ❌"})`
+      ` Baseline Score (is-agentic live scan):       74 / 100 ("Ready with a few material gaps")`
+    );
+    out(
+      ` Optimized GEO + AEO + LLMO Score (codebase): ${totalScore} / ${maxScore} (${allPassed ? "ALL CHECKS PASSING ✅" : "ISSUES FOUND ❌"})`
     );
     out("--------------------------------------------------------------------------");
     for (const c of checks) {

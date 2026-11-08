@@ -22,9 +22,12 @@ import {
   BLOG_CATALOG,
   TRUST_ANCHOR_REWRITES,
   appendVaryAccept,
+  isDirectMarkdownPath,
+  normalizeMarkdownPathname,
   prefersMarkdown,
   resolveMarkdownDocument,
 } from "@/lib/geo/markdown-negotiation";
+import { pageMetadata } from "@/lib/site";
 import { GEO_TOPIC_MATRIX, getGeoTopicsByCategory } from "@/lib/geo/topic-matrix";
 import { buildBlogSystemPrompt, buildTopicSuggestionsPrompt } from "@/lib/prompts/blog-writer";
 import {
@@ -483,6 +486,80 @@ describe("GEO (Generative Engine Optimization) & Is-Agentic Readiness Suite", ()
         expect.objectContaining({
           "@type": "SpeakableSpecification",
         })
+      );
+    });
+  });
+
+  describe("11. LLMO (Large Language Model Optimization) — Deep Chunks, .md Mirrors, Disambiguation & OpenAPI 3.1", () => {
+    it("serves full-fidelity Markdown with TL;DR, pipe tables, and Q&A chunks on /blog/[slug] and /services/*", () => {
+      const blogDoc = resolveMarkdownDocument(
+        "/blog/anerkennungspartnerschaft-16d-vs-18a-aufenthg-arbeitgeber-vergleich"
+      );
+      expect(blogDoc?.status).toBe(200);
+      expect(blogDoc?.markdown).toContain("**Das Wichtigste in Kürze:**");
+      expect(blogDoc?.markdown).toContain("## Strukturierte Vergleichstabelle (Datenübersicht)");
+      expect(blogDoc?.markdown).toContain("|");
+      expect(blogDoc?.markdown).toContain("## Fachfragen & Antworten für Arbeitgeber (Q&A Chunks)");
+
+      const serviceDoc = resolveMarkdownDocument("/services/skilled-workers");
+      expect(serviceDoc?.status).toBe(200);
+      expect(serviceDoc?.markdown).toContain("**Das Wichtigste in Kürze:**");
+      expect(serviceDoc?.markdown).toContain("| Aufenthaltstitel |");
+      expect(serviceDoc?.markdown).toContain("## Häufig gestellte Arbeitgeberfragen (B2B-Q&A)");
+    });
+
+    it("supports direct .md URL mirrors via proxy even without Accept: text/markdown header and emits <link rel='alternate' type='text/markdown'>", async () => {
+      expect(isDirectMarkdownPath("/index.md")).toBe(true);
+      expect(isDirectMarkdownPath("/services/skilled-workers.md")).toBe(true);
+      expect(isDirectMarkdownPath("/api/roi/brief.md")).toBe(false);
+      expect(normalizeMarkdownPathname("/index.md")).toBe("/");
+      expect(normalizeMarkdownPathname("/roi-rechner.md")).toBe("/roi-rechner");
+
+      const directMdReq = new NextRequest(
+        "https://www.dmf-talents.de/services/skilled-workers.md",
+        {
+          headers: { Accept: "*/*" },
+        }
+      );
+      const directMdRes = await proxy(directMdReq);
+      expect(directMdRes.status).toBe(200);
+      expect(directMdRes.headers.get("content-type")).toContain("text/markdown");
+      const text = await directMdRes.text();
+      expect(text).toContain("§ 18a");
+      expect(text).toContain("| Aufenthaltstitel |");
+
+      const meta = pageMetadata("/roi-rechner", "ROI Rechner", "ROI Beschreibung");
+      expect(meta.alternates?.canonical).toBe("https://www.dmf-talents.de/roi-rechner");
+      expect(meta.alternates?.types?.["text/markdown"]).toBe(
+        "https://www.dmf-talents.de/roi-rechner.md"
+      );
+    });
+
+    it("anchors Entity Disambiguation (disambiguatingDescription + DefinedTerm knowsAbout) and OpenAPI 3.1.0 tool spec", () => {
+      const schemas = buildGlobalSchemas();
+      const org = schemas.find(
+        (s) => Array.isArray(s["@type"]) && s["@type"].includes("Organization")
+      );
+      expect(org?.disambiguatingDescription).toContain("DMF VIETNAM JOINT STOCK COMPANY");
+      expect(org?.knowsAbout).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            "@type": "DefinedTerm",
+            termCode: "§ 81a AufenthG",
+          }),
+        ])
+      );
+
+      const openApiRaw = fs.readFileSync(path.join(process.cwd(), "public/openapi.json"), "utf8");
+      const openApi = JSON.parse(openApiRaw);
+      expect(openApi.openapi).toBe("3.1.0");
+      expect(Object.keys(openApi.paths)).toEqual(
+        expect.arrayContaining([
+          "/api/candidates/match",
+          "/api/hiring/parse",
+          "/api/roi/brief",
+          "/api/pathway-check",
+        ])
       );
     });
   });

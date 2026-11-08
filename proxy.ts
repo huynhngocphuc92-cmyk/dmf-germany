@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import {
   appendVaryAccept,
+  isDirectMarkdownPath,
   prefersMarkdown,
   resolveMarkdownDocument,
 } from "@/lib/geo/markdown-negotiation";
@@ -9,7 +10,8 @@ import { updateSession } from "@/utils/supabase/middleware";
 export async function proxy(request: NextRequest) {
   if (
     (request.method === "GET" || request.method === "HEAD") &&
-    prefersMarkdown(request.headers.get("accept"))
+    (prefersMarkdown(request.headers.get("accept")) ||
+      isDirectMarkdownPath(request.nextUrl.pathname))
   ) {
     const doc = resolveMarkdownDocument(request.nextUrl.pathname);
     if (doc) {

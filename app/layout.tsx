@@ -46,6 +46,11 @@ export const metadata: Metadata = {
   authors: [{ name: SITE_NAME }],
   creator: SITE_NAME,
   publisher: SITE_NAME,
+  alternates: {
+    types: {
+      "text/markdown": `${SITE_URL}/llms.txt`,
+    },
+  },
   formatDetection: {
     email: false,
     address: false,

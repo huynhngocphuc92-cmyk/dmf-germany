@@ -1,6 +1,12 @@
 import { GERMANY_CONTACT, VIETNAM_OFFICE_CONTACT } from "@/lib/company/contact";
 import { BRANCHEN_CONFIGS, getBrancheBySlug } from "@/lib/content/branchen";
 import { BLOG_CATALOG, type BlogCatalogEntry } from "@/lib/geo/blog-catalog";
+import {
+  ROI_RECHNER_AEO_CONFIG,
+  SERVICE_AEO_CONFIGS,
+  ZEITPLAN_AEO_CONFIG,
+  type AeoPageConfig,
+} from "@/lib/seo/aeo-schemas";
 import { HOMEPAGE_GEO_FAQS } from "@/lib/seo/geo-schemas";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL, siteUrl } from "@/lib/site";
 
@@ -16,6 +22,47 @@ export const TRUST_ANCHOR_REWRITES = [
   { source: "/terms", destination: "/impressum" },
   { source: "/legal", destination: "/impressum" },
 ] as const;
+
+/**
+ * Returns true if the URL pathname explicitly requests a `.md` Markdown mirror
+ * (e.g., `/index.md`, `/services/skilled-workers.md`, `/blog/slug.md`).
+ */
+export function isDirectMarkdownPath(rawPathname: string | null | undefined): boolean {
+  if (!rawPathname) return false;
+  const lower = rawPathname.toLowerCase();
+  if (
+    lower.startsWith("/_next/") ||
+    lower.startsWith("/api/") ||
+    lower.startsWith("/admin/") ||
+    lower.startsWith("/portal/")
+  ) {
+    return false;
+  }
+  return lower.endsWith(".md");
+}
+
+/**
+ * Normalizes a `.md` pathname to its canonical route path
+ * (e.g., `/index.md` -> `/`, `/roi-rechner.md` -> `/roi-rechner`).
+ */
+export function normalizeMarkdownPathname(rawPathname: string): string {
+  let pathname = rawPathname || "/";
+  try {
+    pathname = decodeURIComponent(pathname);
+  } catch {
+    // Keep raw pathname if malformed percent-encoding
+  }
+  if (pathname.toLowerCase().endsWith(".md")) {
+    pathname = pathname.slice(0, -3);
+    if (pathname === "" || pathname.toLowerCase() === "/index") {
+      return "/";
+    }
+  }
+  if (pathname.length > 1 && pathname.endsWith("/")) {
+    pathname = pathname.slice(0, -1);
+  }
+  return pathname || "/";
+}
 
 /**
  * Parses an HTTP Accept header per RFC 9110 and returns true when the client
@@ -79,17 +126,54 @@ export function appendVaryAccept(existingVary: string | null | undefined): strin
 function footerMarkdownBlock(): string {
   return [
     "---",
-    "## Kontakt & Rechtliche Angaben (Trust Anchors)",
-    `- **Unternehmen:** DMF VIETNAM JOINT STOCK COMPANY (${SITE_NAME})`,
+    "## Kontakt, Entitäts-Identifikation & KI-Schnittstellen (Trust Anchors)",
+    `- **Unternehmen (Legal Entity):** DMF VIETNAM JOINT STOCK COMPANY (${SITE_NAME})`,
+    "- **Entitäts-Abgrenzung (Disambiguation):** Spezialisierter B2B-Personal- und Ausbildungsvermittler Vietnam–Deutschland nach FEG (§§ 16a, 16d, 18a, 18b, 19c, 81a AufenthG).",
     "- **Steuernummer / Register:** 3603878495 (Sở Kế hoạch và Đầu tư tỉnh Đồng Nai)",
     "- **Hauptsitz Vietnam:** A11 KDC Quang Vinh, Khu phố 3, Phường Quang Vinh, Biên Hoà, Đồng Nai, Vietnam",
     `- **Ansprechpartner Deutschland:** ${GERMANY_CONTACT.name} | Tel: ${GERMANY_CONTACT.phone} | E-Mail: ${GERMANY_CONTACT.email}`,
     `- **Ansprechpartner Vietnam:** ${VIETNAM_OFFICE_CONTACT.name} | Tel: ${VIETNAM_OFFICE_CONTACT.phone} | E-Mail: ${VIETNAM_OFFICE_CONTACT.representativeEmail}`,
     `- **LLM-Übersicht (llms.txt):** ${siteUrl("/llms.txt")}`,
     `- **Vollständige Wissensbasis (llms-full.txt):** ${siteUrl("/llms-full.txt")}`,
+    `- **OpenAPI 3.1 Tool-Spezifikation (openapi.json):** ${siteUrl("/openapi.json")}`,
     `- **XML-Sitemap:** ${siteUrl("/sitemap.xml")}`,
     `- **Impressum:** ${siteUrl("/impressum")}`,
     `- **Datenschutzerklärung (Privacy Policy):** ${siteUrl("/datenschutz")}`,
+  ].join("\n");
+}
+
+function buildAeoPageMarkdown(config: AeoPageConfig): string {
+  const url = siteUrl(config.path);
+  const mdUrl = siteUrl(`${config.path}.md`);
+  const keyFactsLines = config.keyFacts.map((f) => `- **${f.label}:** ${f.value}`).join("\n");
+
+  const headerLine = `| ${config.tableHeaders.join(" | ")} |`;
+  const sepLine = `| ${config.tableHeaders.map(() => "---").join(" | ")} |`;
+  const rowLines = config.tableRows.map((r) => `| ${r.cells.join(" | ")} |`);
+  const tableMd = [`**${config.tableCaption}**`, "", headerLine, sepLine, ...rowLines].join("\n");
+
+  const faqMd = config.faqs.map((f) => `### ${f.question}\n${f.answer}`).join("\n\n");
+
+  return [
+    `# ${config.serviceName} | ${SITE_NAME}`,
+    "",
+    `> **Canonical URL:** ${url}`,
+    `> **Markdown Mirror:** ${mdUrl}`,
+    `> **Rechtsgrundlage:** ${config.legalBasis}`,
+    "",
+    `## ${config.directAnswerTitle}`,
+    `**Das Wichtigste in Kürze:** ${config.directAnswerText}`,
+    "",
+    "## Wichtigste Eckdaten (Key Facts)",
+    keyFactsLines,
+    "",
+    "## Strukturierte Vergleichs- & Referenzdaten",
+    tableMd,
+    "",
+    "## Häufig gestellte Arbeitgeberfragen (B2B-Q&A)",
+    faqMd,
+    "",
+    footerMarkdownBlock(),
   ].join("\n");
 }
 
@@ -107,6 +191,7 @@ function buildHomepageMarkdown(): string {
     `# ${SITE_NAME} — Fachkräfte & Auszubildende aus Vietnam für Deutschland`,
     "",
     `> **Canonical URL:** ${siteUrl("/")}`,
+    `> **Markdown Mirror:** ${siteUrl("/index.md")}`,
     `> **Zusammenfassung:** ${SITE_DESCRIPTION}`,
     "",
     "## When to use DMF Talents (Agent & Employer Guidance)",
@@ -131,6 +216,7 @@ function buildHomepageMarkdown(): string {
     `- **Kandidatenpool einsehen:** ${siteUrl("/fuer-arbeitgeber/kandidaten")}`,
     `- **ROI- & Gehaltsrechner:** ${siteUrl("/roi-rechner")}`,
     `- **Zeitplan-Simulator (§ 81a AufenthG):** ${siteUrl("/fuer-arbeitgeber/zeitplan")}`,
+    `- **OpenAPI 3.1 Tool-Spezifikation:** ${siteUrl("/openapi.json")}`,
     `- **Referenzen & Bundesländer-Präsenz:** ${siteUrl("/referenzen")}`,
     `- **Fachbeiträge & Wissensdatenbank:** ${siteUrl("/blog")}`,
     "",
@@ -162,6 +248,7 @@ function buildBrancheMarkdown(slug: string): string | null {
     `# ${branche.title.de} | ${SITE_NAME}`,
     "",
     `> **Canonical URL:** ${siteUrl(`/fuer-arbeitgeber/branchen/${branche.slug}`)}`,
+    `> **Markdown Mirror:** ${siteUrl(`/fuer-arbeitgeber/branchen/${branche.slug}.md`)}`,
     `> **Kategorie:** ${branche.badge.de}`,
     `> **Rechtsgrundlage:** ${branche.legalPathway.paragraph} | **Durchlaufzeit:** ${branche.legalPathway.timelineMonths}`,
     "",
@@ -192,6 +279,7 @@ export function buildMarkdown404(pathname: string): string {
     "## Wichtige Einstiegspunkte für KI-Agenten & Nutzer (Helpful Links)",
     `- **LLM-Übersicht (llms.txt):** ${siteUrl("/llms.txt")}`,
     `- **Vollständige Wissensdatenbank (llms-full.txt):** ${siteUrl("/llms-full.txt")}`,
+    `- **OpenAPI 3.1 Tool-Spezifikation (openapi.json):** ${siteUrl("/openapi.json")}`,
     `- **XML-Sitemap:** ${siteUrl("/sitemap.xml")}`,
     `- **Startseite:** ${siteUrl("/")}`,
     `- **Fachkräfte (§ 18a/b AufenthG):** ${siteUrl("/services/skilled-workers")}`,
@@ -207,38 +295,9 @@ export function buildMarkdown404(pathname: string): string {
 
 const STATIC_PAGE_MARKDOWN: Record<string, () => string> = {
   "/": buildHomepageMarkdown,
-  "/services/skilled-workers": () =>
-    [
-      `# Qualifizierte Fachkräfte aus Vietnam (§ 18a / § 18b AufenthG) | ${SITE_NAME}`,
-      "",
-      `> **Canonical URL:** ${siteUrl("/services/skilled-workers")}`,
-      "",
-      "DMF Talents vermittelt examinierte Pflegefachkräfte, Elektroniker, Anlagenmechaniker (SHK), CNC-Zerspanungsmechaniker, Schweißer sowie IT-Spezialisten und Ingenieure aus Vietnam nach Deutschland.",
-      "",
-      "## Kernleistungen im Fachkräfteprogramm",
-      "- **Qualifikationsprüfung nach BQFG:** Vollständige Dokumentenaufbereitung für IHK FOSA, HWK, Landesämter für Pflege und ZAB.",
-      "- **Anerkennungspartnerschaft (§ 16d AufenthG):** Sofortiger betrieblicher Einsatz in Deutschland bei paralleler Nachqualifizierung.",
-      "- **Beschleunigtes Verfahren (§ 81a AufenthG):** Verkürzte Vorlaufzeit von 3 bis 6 Monaten bis zur Einreise.",
-      "- **Sprachkompetenz:** Zertifiziertes B1/B2-Niveau (Goethe, telc, ÖSD) inklusive Fachsprache.",
-      "",
-      footerMarkdownBlock(),
-    ].join("\n"),
-  "/ueber-uns/skilled-workers": () => STATIC_PAGE_MARKDOWN["/services/skilled-workers"](),
-  "/services/azubi": () =>
-    [
-      `# Auszubildende (Azubis) aus Vietnam rekrutieren (§ 16a AufenthG) | ${SITE_NAME}`,
-      "",
-      `> **Canonical URL:** ${siteUrl("/services/azubi")}`,
-      "",
-      "Sichern Sie Ihren Fachkräftenachwuchs mit sprachlich (B1/B2) und interkulturell vorbereiteten vietnamesischen Auszubildenden für Pflege, Gastronomie, Handwerk und Industrie.",
-      "",
-      "## Programm-Standards",
-      "- **Rechtssicherheit nach § 296a SGB III:** Strikte Einhaltung des Employer-Pays-Prinzips ohne Vermittlungsgebühren zulasten der Auszubildenden.",
-      "- **Sprachliche Exzellenz:** Vollzeit-Intensivtraining in der DMF-Akademie bis B1/B2 vor Einreise.",
-      "- **Hohe Verbleibquote (> 90 %):** 90-Tage-Onboarding, Wohnraumkoordination und Nutzung von AsA flex (§ 75 SGB III).",
-      "",
-      footerMarkdownBlock(),
-    ].join("\n"),
+  "/services/skilled-workers": () => buildAeoPageMarkdown(SERVICE_AEO_CONFIGS["skilled-workers"]),
+  "/ueber-uns/skilled-workers": () => buildAeoPageMarkdown(SERVICE_AEO_CONFIGS["skilled-workers"]),
+  "/services/azubi": () => buildAeoPageMarkdown(SERVICE_AEO_CONFIGS.azubi),
   "/ueber-uns/ausbildung": () =>
     [
       `# Über DMF Talents & Duale Ausbildungskooperation | ${SITE_NAME}`,
@@ -266,16 +325,7 @@ const STATIC_PAGE_MARKDOWN: Record<string, () => string> = {
       "",
       footerMarkdownBlock(),
     ].join("\n"),
-  "/services/seasonal": () =>
-    [
-      `# Saisonkräfte aus Vietnam (§ 19c AufenthG / § 15c BeschV) | ${SITE_NAME}`,
-      "",
-      `> **Canonical URL:** ${siteUrl("/services/seasonal")}`,
-      "",
-      "Rechtssichere Vermittlung motivierter Saison- und Unterstützungskräfte für Hotellerie, Gastronomie, Landwirtschaft und Logistik zur Abdeckung saisonaler Spitzen.",
-      "",
-      footerMarkdownBlock(),
-    ].join("\n"),
+  "/services/seasonal": () => buildAeoPageMarkdown(SERVICE_AEO_CONFIGS.seasonal),
   "/fuer-arbeitgeber/branchen": () =>
     [
       `# Branchenlösungen für deutsche Arbeitgeber | ${SITE_NAME}`,
@@ -300,6 +350,7 @@ const STATIC_PAGE_MARKDOWN: Record<string, () => string> = {
       "",
       "## KI-Matching-Endpunkt für Agenten",
       "- `POST /api/candidates/match` — Bewertet und sortiert Kandidatenprofile anhand einer freien Stellenbeschreibung.",
+      `- **OpenAPI 3.1 Spezifikation:** ${siteUrl("/openapi.json")}`,
       "",
       footerMarkdownBlock(),
     ].join("\n"),
@@ -319,33 +370,10 @@ const STATIC_PAGE_MARKDOWN: Record<string, () => string> = {
     ].join("\n"),
   "/contact": () => STATIC_PAGE_MARKDOWN["/fuer-arbeitgeber/personalbedarf"](),
   "/kontakt": () => STATIC_PAGE_MARKDOWN["/fuer-arbeitgeber/personalbedarf"](),
-  "/fuer-arbeitgeber/zeitplan": () =>
-    [
-      `# Ablauf- & Zeitplan-Simulator (§ 81a AufenthG) | ${SITE_NAME}`,
-      "",
-      `> **Canonical URL:** ${siteUrl("/fuer-arbeitgeber/zeitplan")}`,
-      "",
-      "Transparente Berechnung der Projektdauer von der Kandidatenauswahl über die Gleichwertigkeitsprüfung (BQFG) und ZAV-Vorabzustimmung bis zur Einreise nach Deutschland.",
-      "",
-      "## Gesetzliche Fristen im § 81a-Verfahren",
-      "- **Gleichwertigkeitsprüfung (IHK FOSA / HWK / Landesamt):** max. 2 Monate",
-      "- **Vorabzustimmung der Bundesagentur für Arbeit (ZAV):** 1 Woche",
-      "- **Visumtermin an der deutschen Auslandsvertretung:** innerhalb von 3 Wochen",
-      "- **Gesamtdurchlaufzeit:** durchschnittlich 3 bis 6 Monate",
-      "",
-      footerMarkdownBlock(),
-    ].join("\n"),
-  "/roi-rechner": () =>
-    [
-      `# ROI- & Gehaltsrechner für internationale Rekrutierung | ${SITE_NAME}`,
-      "",
-      `> **Canonical URL:** ${siteUrl("/roi-rechner")}`,
-      "",
-      "Vergleichen Sie die Gesamtkosten und Amortisationsdauer (Break-Even nach 3–5 Monaten) einer Rekrutierung über DMF Talents mit den Kosten unbesetzter Stellen (Cost of Vacancy) und deutscher Zeitarbeit/Leiharbeit.",
-      "",
-      footerMarkdownBlock(),
-    ].join("\n"),
-  "/fuer-arbeitgeber/roi-rechner": () => STATIC_PAGE_MARKDOWN["/roi-rechner"](),
+  "/fuer-arbeitgeber/zeitplan": () => buildAeoPageMarkdown(ZEITPLAN_AEO_CONFIG),
+  "/roi-rechner": () => buildAeoPageMarkdown(ROI_RECHNER_AEO_CONFIG),
+  "/fuer-arbeitgeber/roi-rechner": () =>
+    buildAeoPageMarkdown({ ...ROI_RECHNER_AEO_CONFIG, path: "/fuer-arbeitgeber/roi-rechner" }),
   "/fuer-arbeitgeber/datenraum": () =>
     [
       `# Geschützter Arbeitgeber-Datenraum | ${SITE_NAME}`,
@@ -412,11 +440,13 @@ const STATIC_PAGE_MARKDOWN: Record<string, () => string> = {
       `# Redaktionelle Leitfäden & B2B-Wissensdatenbank (Blog) | ${SITE_NAME}`,
       "",
       `> **Canonical URL:** ${siteUrl("/blog")}`,
+      `> **Markdown Mirror:** ${siteUrl("/blog.md")}`,
       "",
       "Praxisnahe Leitfäden für deutsche Arbeitgeber zu Fachkräfteeinwanderung (§ 18a/b AufenthG), dualer Ausbildung (§ 16a AufenthG), Berufsanerkennung (BQFG), § 81a-Verfahren und erfolgreicher Integration:",
       "",
       ...BLOG_CATALOG.filter((p) => p.slug !== "fixture-current").map(
-        (p) => `- **[${p.title}](${siteUrl(`/blog/${p.slug}`)}):** ${p.summary}`
+        (p) =>
+          `- **[${p.title}](${siteUrl(`/blog/${p.slug}`)})** ([Markdown](${siteUrl(`/blog/${p.slug}.md`)})): ${p.summary}`
       ),
       "",
       footerMarkdownBlock(),
@@ -425,21 +455,13 @@ const STATIC_PAGE_MARKDOWN: Record<string, () => string> = {
 
 /**
  * Resolves a Markdown representation for a public route when requested with
- * `Accept: text/markdown`. Returns `{ status: 200 | 404, markdown }` for public
- * routes, or `null` for internal/API/authenticated routes that should not be intercepted.
+ * `Accept: text/markdown` or a `.md` URL extension. Returns `{ status: 200 | 404, markdown }`
+ * for public routes, or `null` for internal/API/authenticated routes that should not be intercepted.
  */
 export function resolveMarkdownDocument(
   rawPathname: string
 ): { status: 200 | 404; markdown: string } | null {
-  let pathname = rawPathname || "/";
-  try {
-    pathname = decodeURIComponent(pathname);
-  } catch {
-    // Keep raw pathname if malformed percent-encoding
-  }
-  if (pathname.length > 1 && pathname.endsWith("/")) {
-    pathname = pathname.slice(0, -1);
-  }
+  const pathname = normalizeMarkdownPathname(rawPathname);
 
   // Never intercept API, admin, portal, auth, or Next internal routes
   if (
@@ -476,9 +498,21 @@ export function resolveMarkdownDocument(
     const entry = BLOG_CATALOG.find((item) => item.slug === slug);
     if (entry) {
       const url = siteUrl(`/blog/${encodeURIComponent(entry.slug)}`);
+      const mdUrl = siteUrl(`/blog/${encodeURIComponent(entry.slug)}.md`);
       const headingSection =
         entry.headings && entry.headings.length > 0
           ? ["## Kernaussagen & Gliederung", ...entry.headings.map((h) => `- ${h}`), ""]
+          : [];
+      const tableSection = entry.tableMarkdown
+        ? ["## Strukturierte Vergleichstabelle (Datenübersicht)", "", entry.tableMarkdown, ""]
+        : [];
+      const faqSection =
+        entry.faqs && entry.faqs.length > 0
+          ? [
+              "## Fachfragen & Antworten für Arbeitgeber (Q&A Chunks)",
+              "",
+              ...entry.faqs.map((f) => `### ${f.question}\n${f.answer}\n`),
+            ]
           : [];
       return {
         status: 200,
@@ -486,12 +520,13 @@ export function resolveMarkdownDocument(
           `# ${entry.title} | ${SITE_NAME}`,
           "",
           `> **Canonical URL:** ${url}`,
+          `> **Markdown Mirror:** ${mdUrl}`,
           "",
-          entry.summary,
+          `**Das Wichtigste in Kürze:** ${entry.tldr || entry.summary}`,
           "",
+          ...tableSection,
+          ...faqSection,
           ...headingSection,
-          `Den vollständigen Fachbeitrag mit Tabellen, Checklisten und Praxisleitfäden finden Sie unter ${url}.`,
-          "",
           footerMarkdownBlock(),
         ].join("\n"),
       };
