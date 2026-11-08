@@ -34,6 +34,12 @@ describe("blog search metadata", () => {
       url: canonical,
       mainEntityOfPage: { "@id": canonical },
       datePublished: "2026-09-01T07:00:00.000Z",
+      author: {
+        "@type": "Organization",
+        "@id": "https://www.dmf-talents.de/#organization",
+        name: "DMF Talents",
+        url: "https://www.dmf-talents.de",
+      },
     });
     expect(breadcrumbs.itemListElement?.map((item) => item.item)).toEqual([
       "https://www.dmf-talents.de/",
@@ -106,5 +112,25 @@ describe("blog search metadata", () => {
       "@type": "FAQPage",
       "@id": "https://www.dmf-talents.de/blog/fragen-f%C3%BCr-arbeitgeber#faq",
     });
+  });
+
+  it("extracts inline <figure> and <img> tags into structured ImageObject entries in BlogPosting JSON-LD", () => {
+    const htmlWithFigures = `
+      <p>Einleitung</p>
+      <figure class="dmf-community-figure">
+        <img src="/images/blog/dmf-community-1.jpg" alt="DMF Talents Sprachunterricht" />
+        <figcaption><strong>Einblick in die DMF Talents Community:</strong> B2-Training in Ho-Chi-Minh-Stadt.</figcaption>
+      </figure>
+      <img src="javascript:alert(1)" alt="bad" />
+    `;
+    const [article] = blogStructuredData({ ...post, content: htmlWithFigures });
+    expect(article.image).toEqual([
+      "https://www.dmf-talents.de/images/team.jpg",
+      {
+        "@type": "ImageObject",
+        url: "https://www.dmf-talents.de/images/blog/dmf-community-1.jpg",
+        caption: "Einblick in die DMF Talents Community: B2-Training in Ho-Chi-Minh-Stadt.",
+      },
+    ]);
   });
 });

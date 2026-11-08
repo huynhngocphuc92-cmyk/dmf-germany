@@ -99,8 +99,31 @@
   margin: 2rem 0 0.75rem;
 }
 
+.content figure {
+  margin: 2.25rem 0;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+}
+
+.content figure img {
+  margin: 0;
+  border-radius: 0;
+}
+
+.content figcaption {
+  padding: 0.875rem 1.25rem;
+  color: #475569;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  border-top: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+
 /* Captions remain editable with the CMS's standard image + italic paragraph. */
-.content img + p:has(> em:only-child) {
+.content :is(img, p:has(> img:only-child)) + p:has(> em:only-child) {
   color: #64748b;
   font-size: 0.875rem;
   line-height: 1.6;
@@ -168,5 +191,11 @@
 
   .content blockquote {
     padding: 1rem;
+  }
+
+  .content table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }

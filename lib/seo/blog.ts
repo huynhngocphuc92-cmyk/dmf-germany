@@ -21,6 +21,11 @@ export interface ExtractedBlogFaq {
   answer: string;
 }
 
+export interface ExtractedInlineImage {
+  url: string;
+  caption?: string;
+}
+
 function stripHtmlTags(raw: string): string {
   return raw
     .replace(/<!--[\s\S]*?-->/g, " ")
@@ -93,6 +98,48 @@ function coverImageUrl(value?: string): string | undefined {
   }
 }
 
+/**
+ * Extracts inline `<figure>` / `<img src="..." alt="...">` elements from article HTML
+ * so multi-image editorial posts emit full `ImageObject` entries in `BlogPosting.image`
+ * for Google Images SEO and Generative Engine Optimization (GEO).
+ */
+export function extractInlineImagesFromHtml(html?: string | null): ExtractedInlineImage[] {
+  if (!html || typeof html !== "string") return [];
+
+  const results: ExtractedInlineImage[] = [];
+  const seenUrls = new Set<string>();
+
+  // 1. Extract <figure> blocks with <img> and optional <figcaption>
+  const figureRegex = /<figure[^>]*>([\s\S]*?)<\/figure>/gi;
+  for (const figMatch of html.matchAll(figureRegex)) {
+    const inner = figMatch[1] || "";
+    const srcMatch = inner.match(/<img[^>]+src=["']([^"']+)["'][^>]*>/i);
+    if (!srcMatch?.[1]) continue;
+    const resolved = coverImageUrl(srcMatch[1]);
+    if (!resolved || seenUrls.has(resolved)) continue;
+
+    const altMatch = inner.match(/<img[^>]+alt=["']([^"']+)["'][^>]*>/i);
+    const capMatch = inner.match(/<figcaption[^>]*>([\s\S]*?)<\/figcaption>/i);
+    const caption = stripHtmlTags(capMatch?.[1] || altMatch?.[1] || "");
+
+    seenUrls.add(resolved);
+    results.push({ url: resolved, ...(caption ? { caption } : {}) });
+  }
+
+  // 2. Extract any standalone <img> tags outside <figure>
+  for (const imgMatch of html.matchAll(/<img[^>]+src=["']([^"']+)["'][^>]*>/gi)) {
+    const fullTag = imgMatch[0] || "";
+    const resolved = coverImageUrl(imgMatch[1]);
+    if (!resolved || seenUrls.has(resolved)) continue;
+    const altMatch = fullTag.match(/alt=["']([^"']+)["']/i);
+    const caption = stripHtmlTags(altMatch?.[1] || "");
+    seenUrls.add(resolved);
+    results.push({ url: resolved, ...(caption ? { caption } : {}) });
+  }
+
+  return results.slice(0, 12);
+}
+
 export function blogMetadata(post: BlogSeoPost): Metadata {
   const metadata = pageMetadata(
     `/blog/${encodeURIComponent(post.slug)}`,
@@ -119,7 +166,19 @@ export function blogMetadata(post: BlogSeoPost): Metadata {
 export function blogStructuredData(post: BlogSeoPost) {
   const url = siteUrl(`/blog/${encodeURIComponent(post.slug)}`);
   const image = coverImageUrl(post.cover_image);
+  const inlineImages = extractInlineImagesFromHtml(post.content);
   const faqs = extractFaqFromHtml(post.content);
+
+  const structuredImages = [
+    ...(image ? [image] : []),
+    ...inlineImages
+      .filter((item) => item.url !== image)
+      .map((item) => ({
+        "@type": "ImageObject" as const,
+        url: item.url,
+        ...(item.caption ? { caption: item.caption } : {}),
+      })),
+  ];
 
   const article = {
     "@context": "https://schema.org",
@@ -132,7 +191,13 @@ export function blogStructuredData(post: BlogSeoPost) {
     // A draft creation date is not a publication date. Omit unknown dates.
     datePublished: isoDate(post.published_at),
     dateModified: isoDate(post.updated_at),
-    ...(image ? { image: [image] } : {}),
+    ...(structuredImages.length > 0 ? { image: structuredImages } : {}),
+    author: {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
     publisher: {
       "@type": "Organization",
       "@id": `${SITE_URL}/#organization`,
