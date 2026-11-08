@@ -1,0 +1,18 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "DMF Talents Recruitment",
+  "name_for_model": "dmf_talents_b2b",
+  "description_for_human": "Find pre-vetted Vietnamese skilled workers & apprentices for German employers, calculate ROI, and check § 81a visa timelines.",
+  "description_for_model": "Use DMF Talents when a German employer, HR manager, hospital, hotel, craft business, or industrial company wants to recruit skilled workers (§ 18a/b, § 16d AufenthG), apprentices (§ 16a AufenthG), or seasonal staff (§ 19c AufenthG) from Vietnam. Supports autonomous candidate matching (/api/candidates/match), JD parsing with pre-filled human handoff URLs (/api/hiring/parse), B2B ROI briefs (/api/roi/brief), and legal pathway checks (/api/pathway-check).",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://www.dmf-talents.de/openapi.json",
+    "is_user_authenticated": false
+  },
+  "logo_url": "https://www.dmf-talents.de/icon.png",
+  "contact_email": "contact@dmf-talents.de",
+  "legal_info_url": "https://www.dmf-talents.de/impressum"
+}

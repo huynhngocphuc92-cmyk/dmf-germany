@@ -1,0 +1,67 @@
+{
+  "protocolVersion": "0.2.0",
+  "name": "DMF Talents B2B Recruitment & Immigration Agent",
+  "description": "Specialized B2B agent for German employers, HR managers, hospitals, care homes, hotels, craft businesses, and manufacturers to discover Vietnamese skilled workers (§ 18a/b, § 16d AufenthG) and apprentices (§ 16a AufenthG), calculate 3-year recruitment ROI vs. temp staffing, evaluate § 81a AufenthG timelines, and generate pre-filled hiring intake handoff links.",
+  "url": "https://www.dmf-talents.de",
+  "provider": {
+    "organization": "DMF VIETNAM JOINT STOCK COMPANY (DMF Talents)",
+    "url": "https://www.dmf-talents.de",
+    "taxId": "3603878495",
+    "contactEmail": "contact@dmf-talents.de"
+  },
+  "version": "1.0.0",
+  "documentationUrl": "https://www.dmf-talents.de/llms.txt",
+  "openApiUrl": "https://www.dmf-talents.de/openapi.json",
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "stateTransitionHistory": false,
+    "markdownContentNegotiation": true,
+    "directMarkdownUrlMirrors": true,
+    "humanInTheLoopHandoff": true
+  },
+  "authentication": {
+    "schemes": ["none"],
+    "note": "Read-only matching, JD parsing, ROI calculation, and pathway evaluation endpoints require no API key. Final B2B lead submission requires human-in-the-loop GDPR confirmation via the generated prefillUrl."
+  },
+  "defaultInputModes": ["application/json", "text/plain"],
+  "defaultOutputModes": ["application/json", "text/markdown"],
+  "skills": [
+    {
+      "id": "match_candidates",
+      "name": "Autonomous Candidate Discovery & Matching",
+      "description": "Search and rank anonymized Vietnamese skilled worker and apprentice profiles by profession, German level (A2-C1), and legal track (§ 18a/b, § 16a, § 19c AufenthG). Supports both GET /api/candidates/match?query=... and POST /api/candidates/match.",
+      "tags": ["recruitment", "candidates", "nursing", "handwerk", "azubi", "vietnam"],
+      "examples": [
+        "Suche 2 Pflegefachkräfte mit B2 für München",
+        "Elektroniker oder SHK-Anlagenmechaniker mit B1",
+        "Auszubildende Koch / Hotelfach ab Herbst 2026"
+      ],
+      "endpoint": "https://www.dmf-talents.de/api/candidates/match"
+    },
+    {
+      "id": "parse_hiring_jd_and_handoff",
+      "name": "Job Description Parser & Pre-Filled B2B Handoff Generator",
+      "description": "Extracts structured staffing fields (service, headcount, location, timing, summaryMessage) from free text, matches top candidates, and returns a 1-click prefillUrl for human-in-the-loop review on /fuer-arbeitgeber/personalbedarf.",
+      "tags": ["job-description", "b2b-intake", "prefill", "handoff"],
+      "examples": [
+        "Wir suchen für unsere Seniorenresidenz in Stuttgart ab September 2026 drei Pflege-Azubis mit B1/B2."
+      ],
+      "endpoint": "https://www.dmf-talents.de/api/hiring/parse"
+    },
+    {
+      "id": "calculate_b2b_roi",
+      "name": "CFO/HR Recruitment ROI & Break-Even Calculator",
+      "description": "Computes break-even months, 3-year net savings vs. German temporary staffing (Zeitarbeit AÜG), and legal pathway notes.",
+      "tags": ["roi", "cost-of-vacancy", "zeitarbeit", "finance"],
+      "endpoint": "https://www.dmf-talents.de/api/roi/brief"
+    },
+    {
+      "id": "evaluate_immigration_pathway",
+      "name": "German Immigration Legal Pathway Evaluator (FEG / AufenthG)",
+      "description": "Evaluates age, education, German proficiency, and sector to recommend § 18a/b, § 16a, § 16d, or § 15a BeschV with estimated months to departure.",
+      "tags": ["visa", "aufenthg", "81a", "bqfg", "legal-pathway"],
+      "endpoint": "https://www.dmf-talents.de/api/pathway-check"
+    }
+  ]
+}

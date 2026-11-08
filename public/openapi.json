@@ -18,17 +18,41 @@
   ],
   "paths": {
     "/api/candidates/match": {
+      "get": {
+        "operationId": "discoverCandidatesByQuery",
+        "summary": "Autonomous GET discovery of anonymized Vietnamese candidate profiles matching a query",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "string", "default": "Pflegefachkraft B2" },
+            "description": "Free-text employer search query (e.g. Pflegefachkraft B2, Elektroniker B1)."
+          },
+          {
+            "name": "lang",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "string", "enum": ["de", "en", "vn"], "default": "de" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ranked candidate matches with 1-click B2B handoff URLs"
+          }
+        }
+      },
       "post": {
         "operationId": "matchCandidatesForEmployer",
         "summary": "Score and rank anonymized Vietnamese candidate profiles against an employer requirement query",
-        "description": "Evaluates a list of candidate profiles against a free-text employer requirement query (e.g. Pflegefachkraft B2, Elektroniker SHK B1, Azubi Koch) and returns match scores (55-99) with reasoning.",
+        "description": "Evaluates candidate profiles against a free-text employer requirement query. If `candidates` is omitted, automatically queries the active DMF Talents candidate pool and returns `handoffUrl` for each match.",
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["query", "candidates"],
+                "required": ["query"],
                 "properties": {
                   "query": {
                     "type": "string",
@@ -44,6 +68,7 @@
                   "candidates": {
                     "type": "array",
                     "maxItems": 60,
+                    "description": "Optional list of candidates to score. Omit to search the live DMF Talents pool automatically.",
                     "items": {
                       "type": "object",
                       "required": ["id", "category", "visa_status"],
@@ -142,9 +167,14 @@
                         "headcount": { "type": "string" },
                         "location": { "type": "string" },
                         "timing": { "type": "string" },
-                        "summaryMessage": { "type": "string" }
+                        "summaryMessage": { "type": "string" },
+                        "prefillUrl": {
+                          "type": "string",
+                          "description": "1-click pre-filled B2B intake URL for human-in-the-loop GDPR review and submission."
+                        }
                       }
                     },
+                    "prefillUrl": { "type": "string" },
                     "topCandidates": {
                       "type": "array",
                       "items": {

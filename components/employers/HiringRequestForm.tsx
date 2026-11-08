@@ -48,6 +48,11 @@ export function HiringRequestForm({
   candidateProfession,
   shortlistedCandidates,
   initialBrancheLabel,
+  initialLocation,
+  initialHeadcount,
+  initialTiming,
+  initialCompany,
+  initialMessage,
   headingLevel = 2,
 }: {
   service?: HiringService;
@@ -56,6 +61,11 @@ export function HiringRequestForm({
   candidateProfession?: string | null;
   shortlistedCandidates?: string;
   initialBrancheLabel?: string;
+  initialLocation?: string;
+  initialHeadcount?: string;
+  initialTiming?: string;
+  initialCompany?: string;
+  initialMessage?: string;
   headingLevel?: 1 | 2;
 }) {
   const { lang } = useLanguage();
@@ -65,7 +75,9 @@ export function HiringRequestForm({
   const { forPayload, reset: resetKey } = useSubmissionKey();
   const [saved, setSaved] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [detailsOpen, setDetailsOpen] = useState(false);
+  const [detailsOpen, setDetailsOpen] = useState(
+    Boolean(initialLocation || initialHeadcount || initialTiming)
+  );
   const [jdText, setJdText] = useState("");
   const [isParsingJd, setIsParsingJd] = useState(false);
   const [jdSuccess, setJdSuccess] = useState(false);
@@ -80,15 +92,15 @@ export function HiringRequestForm({
   } = useForm<HiringFormValues>({
     resolver: zodResolver(hiringFormSchema),
     defaultValues: {
-      company: "",
+      company: initialCompany || "",
       name: "",
       email: "",
       service,
       phone: "",
-      location: "",
-      timing: "",
-      headcount: "",
-      message: "",
+      location: initialLocation || "",
+      timing: initialTiming || "",
+      headcount: initialHeadcount || "",
+      message: initialMessage || "",
       privacy: false,
       bot_check: "",
     },
@@ -257,6 +269,7 @@ export function HiringRequestForm({
         </div>
       )}
       <form
+        data-agent-form="b2b-hiring-intake"
         onSubmit={handleSubmit(submit, (invalid) => {
           if (invalid.phone || invalid.location || invalid.headcount || invalid.timing)
             setDetailsOpen(true);
@@ -316,6 +329,7 @@ export function HiringRequestForm({
             <div className="flex flex-wrap items-center justify-between gap-2">
               <button
                 type="button"
+                data-agent-action="parse-job-description"
                 disabled={isParsingJd || jdText.trim().length < 5}
                 onClick={handleParseJobDescription}
                 className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
@@ -404,6 +418,7 @@ export function HiringRequestForm({
             <input
               {...register("company")}
               {...accessibility("company")}
+              defaultValue={initialCompany}
               autoComplete="organization"
               maxLength={500}
               className={input}
@@ -485,6 +500,7 @@ export function HiringRequestForm({
           <textarea
             {...register("message")}
             {...accessibility("message")}
+            defaultValue={initialMessage}
             rows={4}
             maxLength={10000}
             placeholder={t.messagePlaceholder}
@@ -511,6 +527,7 @@ export function HiringRequestForm({
               <input
                 {...register("location")}
                 {...accessibility("location")}
+                defaultValue={initialLocation}
                 maxLength={200}
                 className={input}
               />
@@ -519,6 +536,7 @@ export function HiringRequestForm({
               <input
                 {...register("headcount")}
                 {...accessibility("headcount")}
+                defaultValue={initialHeadcount}
                 inputMode="numeric"
                 maxLength={4}
                 className={input}
@@ -528,6 +546,7 @@ export function HiringRequestForm({
               <input
                 {...register("timing")}
                 {...accessibility("timing")}
+                defaultValue={initialTiming}
                 maxLength={200}
                 className={input}
               />
@@ -565,6 +584,7 @@ export function HiringRequestForm({
           )}
         </div>
         <button
+          data-agent-action="submit-hiring-request"
           disabled={isSubmitting}
           type="submit"
           className="inline-flex min-h-12 w-full sm:w-auto justify-center items-center gap-3 rounded-lg bg-primary px-6 py-3 text-primary-foreground font-semibold disabled:opacity-60"

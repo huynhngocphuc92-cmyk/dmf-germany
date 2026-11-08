@@ -57,8 +57,8 @@ async function runAudit() {
     id: "markdown-negotiation-vary",
     name: "Markdown content negotiation, direct .md URL mirrors & <link rel='alternate' type='text/markdown'>",
     tier: "essential",
-    weight: 10,
-    baselineStatus: "FAIL (0/10)",
+    weight: 8,
+    baselineStatus: "FAIL (0/8)",
     passed: hasMdNegotiation,
     evidence: hasMdNegotiation
       ? "proxy.ts + lib/geo/markdown-negotiation.ts serve text/markdown via Accept header OR .md URL suffix + <link rel='alternate' type='text/markdown'>"
@@ -101,7 +101,7 @@ async function runAudit() {
     id: "content-no-js",
     name: "Content without JavaScript (Homepage SSR text > 12,000 chars & > 5.5% ratio)",
     tier: "essential",
-    weight: 10,
+    weight: 8,
     baselineStatus: "PARTIAL (4.6% ratio < 5.0% target)",
     passed: hasSsrKnowledgeCompendium,
     evidence: hasSsrKnowledgeCompendium
@@ -366,6 +366,46 @@ async function runAudit() {
     evidence: hasOpenApiSpec
       ? "public/openapi.json defines OpenAPI 3.1.0 schemas for /api/candidates/match, /api/hiring/parse, /api/roi/brief, and /api/pathway-check"
       : "Missing public/openapi.json or OpenAPI link in llms.txt",
+  });
+
+  // 14. Agentic Optimization (A2A Agent Card, Autonomous Candidate Discovery, Pre-filled Handoff URL & potentialAction)
+  const agentCardCode = exists("public/.well-known/agent.json")
+    ? read("public/.well-known/agent.json")
+    : "";
+  const aiPluginCode = exists("public/.well-known/ai-plugin.json")
+    ? read("public/.well-known/ai-plugin.json")
+    : "";
+  const matchRouteCode = exists("app/api/candidates/match/route.ts")
+    ? read("app/api/candidates/match/route.ts")
+    : "";
+  const parseRouteCode = exists("app/api/hiring/parse/route.ts")
+    ? read("app/api/hiring/parse/route.ts")
+    : "";
+  const hiringFormCode = exists("components/employers/HiringRequestForm.tsx")
+    ? read("components/employers/HiringRequestForm.tsx")
+    : "";
+
+  const hasAgenticOptimization =
+    agentCardCode.includes('"protocolVersion"') &&
+    agentCardCode.includes('"humanInTheLoopHandoff": true') &&
+    aiPluginCode.includes('"name_for_model": "dmf_talents_b2b"') &&
+    matchRouteCode.includes("export async function GET") &&
+    matchRouteCode.includes("DEFAULT_AUTONOMOUS_CANDIDATE_POOL") &&
+    parseRouteCode.includes("buildHiringPrefillUrl") &&
+    hiringFormCode.includes('data-agent-form="b2b-hiring-intake"') &&
+    geoSchemasCode.includes("potentialAction");
+
+  recordCheck({
+    id: "agentic-optimization-a2a",
+    name: "Agentic Optimization (A2A /.well-known/agent.json, Autonomous Candidate Pool, Pre-filled Handoff URLs & potentialAction)",
+    tier: "recommended",
+    weight: 4,
+    baselineStatus:
+      "FAIL (No A2A manifest, required client candidates array, no prefillUrl handoff)",
+    passed: hasAgenticOptimization,
+    evidence: hasAgenticOptimization
+      ? "/.well-known/agent.json + /.well-known/ai-plugin.json + autonomous GET/POST /api/candidates/match + prefillUrl in /api/hiring/parse + data-agent-* DOM markers"
+      : "Missing A2A agent card, autonomous candidate pool, or prefillUrl handoff",
   });
 
   // Optional live HTTP verification if --url is passed

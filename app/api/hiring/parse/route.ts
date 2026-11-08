@@ -3,6 +3,7 @@ import { z } from "zod";
 import { checkRateLimit, getClientIp, RATE_LIMITS } from "@/lib/rate-limit";
 import { runWithOpenRouterFallback } from "@/lib/ai/openrouter";
 import { getFeaturedCandidates } from "@/lib/supabase/candidates";
+import { siteUrl } from "@/lib/site";
 import type { PublicCandidate } from "@/lib/candidates/public-profile";
 import type { HiringService } from "@/lib/validations/hiring";
 
@@ -17,6 +18,17 @@ export interface ParsedHiringDraft {
   location: string;
   timing: string;
   summaryMessage: string;
+  prefillUrl: string;
+}
+
+function buildHiringPrefillUrl(draft: Omit<ParsedHiringDraft, "prefillUrl">): string {
+  const params = new URLSearchParams();
+  if (draft.service) params.set("service", draft.service);
+  if (draft.headcount) params.set("headcount", draft.headcount);
+  if (draft.location) params.set("location", draft.location);
+  if (draft.timing) params.set("timing", draft.timing);
+  if (draft.summaryMessage) params.set("message", draft.summaryMessage.slice(0, 600));
+  return `${siteUrl("/fuer-arbeitgeber/personalbedarf")}?${params.toString()}`;
 }
 
 export interface InstantMatchedCandidate {
@@ -92,7 +104,7 @@ function deterministicParseHiringText(
   }
 
   const countMatch = rawText.match(
-    /\b(\d{1,3})\s*(?:fachkräfte|azubis|auszubildende|mitarbeiter|kräfte|personen|stellen|ứng viên|người|học viên)\b/i
+    /\b(\d{1,3})\s*(?:[a-zäöüß-]*?(?:fachkräfte|fachkraft|azubis|auszubildende|mitarbeiter|kräfte|personen|stellen|köche|koeche|elektroniker|mechaniker|schweißer|fahrer)|ứng viên|người|học viên)\b/i
   );
   const headcount = countMatch ? countMatch[1] : "";
 
@@ -114,12 +126,16 @@ function deterministicParseHiringText(
         ? `Inquiry based on job description:\n${trimmed}`
         : `Yêu cầu tuyển dụng trích xuất từ mô tả công việc:\n${trimmed}`;
 
-  return {
+  const baseDraft = {
     service,
     headcount,
     location,
     timing,
     summaryMessage,
+  };
+  return {
+    ...baseDraft,
+    prefillUrl: buildHiringPrefillUrl(baseDraft),
   };
 }
 
@@ -152,6 +168,7 @@ export async function POST(request: NextRequest) {
     if (!apiKey) {
       return NextResponse.json({
         data: fallback,
+        prefillUrl: fallback.prefillUrl,
         matchedCandidates: rankTopCandidatesForJd(text, fallback.service, pool),
         mode: "guided",
       });
@@ -196,32 +213,40 @@ Antworte AUSSCHLIESSLICH als valides JSON-Objekt:
         ? aiObj.service
         : fallback.service;
 
+      const aiBaseDraft = {
+        service,
+        headcount:
+          typeof aiObj?.headcount === "string" || typeof aiObj?.headcount === "number"
+            ? String(aiObj.headcount).replace(/[^\d]/g, "").slice(0, 4) || fallback.headcount
+            : fallback.headcount,
+        location:
+          typeof aiObj?.location === "string" && aiObj.location.trim()
+            ? aiObj.location.trim().slice(0, 180)
+            : fallback.location,
+        timing:
+          typeof aiObj?.timing === "string" && aiObj.timing.trim()
+            ? aiObj.timing.trim().slice(0, 180)
+            : fallback.timing,
+        summaryMessage:
+          typeof aiObj?.summaryMessage === "string" && aiObj.summaryMessage.trim().length >= 10
+            ? aiObj.summaryMessage.trim()
+            : fallback.summaryMessage,
+      };
+      const prefillUrl = buildHiringPrefillUrl(aiBaseDraft);
+
       return NextResponse.json({
         data: {
-          service,
-          headcount:
-            typeof aiObj?.headcount === "string" || typeof aiObj?.headcount === "number"
-              ? String(aiObj.headcount).replace(/[^\d]/g, "").slice(0, 4) || fallback.headcount
-              : fallback.headcount,
-          location:
-            typeof aiObj?.location === "string" && aiObj.location.trim()
-              ? aiObj.location.trim().slice(0, 180)
-              : fallback.location,
-          timing:
-            typeof aiObj?.timing === "string" && aiObj.timing.trim()
-              ? aiObj.timing.trim().slice(0, 180)
-              : fallback.timing,
-          summaryMessage:
-            typeof aiObj?.summaryMessage === "string" && aiObj.summaryMessage.trim().length >= 10
-              ? aiObj.summaryMessage.trim()
-              : fallback.summaryMessage,
+          ...aiBaseDraft,
+          prefillUrl,
         },
+        prefillUrl,
         matchedCandidates: rankTopCandidatesForJd(text, service, pool),
         mode: "ai",
       });
     } catch {
       return NextResponse.json({
         data: fallback,
+        prefillUrl: fallback.prefillUrl,
         matchedCandidates: rankTopCandidatesForJd(text, fallback.service, pool),
         mode: "guided",
       });

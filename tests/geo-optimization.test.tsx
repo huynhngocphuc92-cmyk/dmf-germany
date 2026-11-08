@@ -4,15 +4,31 @@ import { NextRequest } from "next/server";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
 
+vi.mock("server-only", () => ({}));
+vi.mock("@/lib/rate-limit", () => ({
+  checkRateLimit: async () => ({ success: true, remaining: 19, resetIn: 60 }),
+  getClientIp: () => "127.0.0.1",
+  RATE_LIMITS: {
+    CHAT: { limit: 20, windowSeconds: 60 },
+    API: { limit: 30, windowSeconds: 60 },
+  },
+}));
+
 vi.mock("next/navigation", () => ({
   usePathname: () => "/",
   useRouter: () => ({ push: vi.fn(), replace: vi.fn(), prefetch: vi.fn() }),
   useSearchParams: () => new URLSearchParams(),
 }));
 
+import {
+  GET as getMatchedCandidates,
+  POST as postMatchedCandidates,
+} from "@/app/api/candidates/match/route";
+import { POST as parseHiringJd } from "@/app/api/hiring/parse/route";
 import { HomeClient } from "@/app/home-client";
 import robots, { AI_SEARCH_USER_AGENTS } from "@/app/robots";
 import Footer from "@/components/Footer";
+import { HiringRequestForm } from "@/components/employers/HiringRequestForm";
 import { LanguageProvider } from "@/components/providers/LanguageProvider";
 import { GeoKnowledgeSection } from "@/components/sections/GeoKnowledgeSection";
 import { AeoSnippetSection } from "@/components/seo/AeoSnippetSection";
@@ -561,6 +577,88 @@ describe("GEO (Generative Engine Optimization) & Is-Agentic Readiness Suite", ()
           "/api/pathway-check",
         ])
       );
+    });
+  });
+
+  describe("12. Agentic Optimization (AO) — A2A Agent Card, Autonomous Candidate Discovery, Pre-filled Handoff URLs & Browser Agent Markers", () => {
+    it("exposes valid A2A Agent Card (/.well-known/agent.json) and AI Plugin Manifest (/.well-known/ai-plugin.json)", () => {
+      const agentCard = JSON.parse(
+        fs.readFileSync(path.join(process.cwd(), "public/.well-known/agent.json"), "utf8")
+      );
+      expect(agentCard.name).toContain("DMF Talents");
+      expect(agentCard.capabilities.humanInTheLoopHandoff).toBe(true);
+      expect(agentCard.skills.length).toBeGreaterThanOrEqual(4);
+
+      const aiPlugin = JSON.parse(
+        fs.readFileSync(path.join(process.cwd(), "public/.well-known/ai-plugin.json"), "utf8")
+      );
+      expect(aiPlugin.name_for_model).toBe("dmf_talents_b2b");
+      expect(aiPlugin.api.url).toBe("https://www.dmf-talents.de/openapi.json");
+    });
+
+    it("allows autonomous AI agents to discover candidates via GET or POST /api/candidates/match without supplying a client candidate array", async () => {
+      const getRes = await getMatchedCandidates(
+        new NextRequest(
+          "https://www.dmf-talents.de/api/candidates/match?query=Pflegefachkraft+B2&lang=de"
+        )
+      );
+      expect(getRes.status).toBe(200);
+      const getBody = await getRes.json();
+      expect(getBody.matches.length).toBeGreaterThan(0);
+      expect(getBody.matches[0].handoffUrl).toContain("/fuer-arbeitgeber/personalbedarf?");
+
+      const postRes = await postMatchedCandidates(
+        new NextRequest("https://www.dmf-talents.de/api/candidates/match", {
+          method: "POST",
+          body: JSON.stringify({ query: "Elektroniker SHK B1", lang: "de" }),
+        })
+      );
+      expect(postRes.status).toBe(200);
+      const postBody = await postRes.json();
+      expect(postBody.matches.length).toBeGreaterThan(0);
+      expect(postBody.matches[0].handoffUrl).toContain("service=");
+    });
+
+    it("generates an actionable prefillUrl in /api/hiring/parse and pre-populates HiringRequestForm with data-agent-* attributes", async () => {
+      const parseRes = await parseHiringJd(
+        new NextRequest("https://www.dmf-talents.de/api/hiring/parse", {
+          method: "POST",
+          body: JSON.stringify({
+            text: "Wir suchen 3 Pflegefachkräfte in München ab Herbst 2026.",
+            lang: "de",
+          }),
+        })
+      );
+      expect(parseRes.status).toBe(200);
+      const parseBody = await parseRes.json();
+      expect(parseBody.prefillUrl).toContain(
+        "https://www.dmf-talents.de/fuer-arbeitgeber/personalbedarf?"
+      );
+      expect(parseBody.prefillUrl).toContain("headcount=3");
+      expect(parseBody.prefillUrl).toContain("M%C3%BCnchen");
+
+      const formHtml = renderToStaticMarkup(
+        <LanguageProvider>
+          <HiringRequestForm
+            service="skilled"
+            initialCompany="Klinikum München"
+            initialLocation="München"
+            initialHeadcount="3"
+            initialTiming="Herbst 2026"
+            initialMessage="3 Pflegefachkräfte ab Herbst 2026 gesucht"
+          />
+        </LanguageProvider>
+      );
+      expect(formHtml).toContain('data-agent-form="b2b-hiring-intake"');
+      expect(formHtml).toContain('data-agent-action="parse-job-description"');
+      expect(formHtml).toContain('data-agent-action="submit-hiring-request"');
+      expect(formHtml).toContain("Klinikum München");
+      expect(formHtml).toContain("München");
+      expect(formHtml).toContain("Herbst 2026");
+
+      const globalSchemas = buildGlobalSchemas();
+      const website = globalSchemas.find((s) => s["@type"] === "WebSite");
+      expect(website?.potentialAction).toHaveLength(2);
     });
   });
 });

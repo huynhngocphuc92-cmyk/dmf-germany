@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { checkRateLimit, getClientIp, RATE_LIMITS } from "@/lib/rate-limit";
 import { runWithOpenRouterFallback } from "@/lib/ai/openrouter";
+import { getFeaturedCandidates } from "@/lib/supabase/candidates";
+import { siteUrl } from "@/lib/site";
 
 const candidateInputSchema = z.object({
   id: z.string().min(1).max(100),
@@ -14,15 +16,63 @@ const candidateInputSchema = z.object({
 
 const matchRequestSchema = z.object({
   query: z.string().trim().min(2).max(600),
-  candidates: z.array(candidateInputSchema).max(60),
+  candidates: z.array(candidateInputSchema).max(60).optional(),
   lang: z.enum(["de", "en", "vn"]).optional(),
 });
 
 export interface CandidateMatchItem {
   id: string;
+  code?: string;
+  profession?: string | null;
+  category?: "azubi" | "skilled" | "seasonal";
+  german_level?: string | null;
   matchScore: number;
   reason: string;
+  handoffUrl?: string;
 }
+
+const DEFAULT_AUTONOMOUS_CANDIDATE_POOL: z.infer<typeof candidateInputSchema>[] = [
+  {
+    id: "dmf-nursing-b2-01",
+    category: "skilled",
+    profession: "Pflegefachkraft (B.Sc. Nursing / § 18a & § 16d AufenthG)",
+    experience_years: 3,
+    german_level: "B2",
+    visa_status: true,
+  },
+  {
+    id: "dmf- nursing-azubi-b2-02".replace(/\s+/g, ""),
+    category: "azubi",
+    profession: "Auszubildende zur Pflegefachfrau (§ 16a AufenthG)",
+    experience_years: 1,
+    german_level: "B2",
+    visa_status: true,
+  },
+  {
+    id: "dmf-elektro-shk-b1-03",
+    category: "skilled",
+    profession: "Elektroniker für Energie- und Gebäudetechnik / SHK (§ 18a AufenthG)",
+    experience_years: 4,
+    german_level: "B1",
+    visa_status: true,
+  },
+  {
+    id: "dmf-cnc-industrie-b1-04",
+    category: "skilled",
+    profession: "CNC-Zerspanungsmechaniker & ISO 9606-1 Schweißer",
+    experience_years: 5,
+    german_level: "B1",
+    visa_status: true,
+  },
+  {
+    id: "dmf-gastro-azubi-b1-05",
+    category: "azubi",
+    profession: "Auszubildender Koch & Hotelfachmann (DEHOGA / § 16a AufenthG)",
+    experience_years: 1,
+    german_level: "B1",
+    visa_status: true,
+  },
+];
 
 const GERMAN_RANK: Record<string, number> = {
   A1: 1,
@@ -32,6 +82,16 @@ const GERMAN_RANK: Record<string, number> = {
   C1: 5,
   C2: 6,
 };
+
+function buildCandidateHandoffUrl(candidate: z.infer<typeof candidateInputSchema>): string {
+  const code = candidate.id.slice(0, 8).toUpperCase();
+  const label = `#${code} (${candidate.profession || candidate.category})`;
+  const params = new URLSearchParams({
+    service: candidate.category,
+    candidates: label,
+  });
+  return `${siteUrl("/fuer-arbeitgeber/personalbedarf")}?${params.toString()}`;
+}
 
 function computeDeterministicMatches(
   query: string,
@@ -99,8 +159,13 @@ function computeDeterministicMatches(
 
     return {
       id: c.id,
+      code: c.id.slice(0, 8).toUpperCase(),
+      profession: c.profession,
+      category: c.category,
+      german_level: c.german_level,
       matchScore: finalScore,
       reason,
+      handoffUrl: buildCandidateHandoffUrl(c),
     };
   });
 
@@ -115,6 +180,38 @@ function computeDeterministicMatches(
         : `Hệ thống đã chọn lọc và xếp hạng ${topMatches.length} ứng viên phù hợp nhất với yêu cầu "${query}" theo chuyên môn, trình độ tiếng Đức và kinh nghiệm.`;
 
   return { matches: topMatches, summary };
+}
+
+async function resolveAutonomousCandidatePool(): Promise<z.infer<typeof candidateInputSchema>[]> {
+  try {
+    const { data } = await getFeaturedCandidates();
+    if (data && data.length > 0) {
+      return data.slice(0, 40).map((c) => ({
+        id: c.id,
+        category: c.category,
+        profession: c.profession,
+        experience_years: c.experience_years,
+        german_level: c.german_level,
+        visa_status: Boolean(c.visa_status),
+      }));
+    }
+  } catch {
+    // Fallback to deterministic pool when DB is not reachable
+  }
+  return DEFAULT_AUTONOMOUS_CANDIDATE_POOL;
+}
+
+export async function GET(request: NextRequest) {
+  const query = request.nextUrl.searchParams.get("query")?.trim() || "Fachkräfte und Azubis B1/B2";
+  const rawLang = request.nextUrl.searchParams.get("lang");
+  const lang: "de" | "en" | "vn" = rawLang === "en" || rawLang === "vn" ? rawLang : "de";
+
+  const pool = await resolveAutonomousCandidatePool();
+  const result = computeDeterministicMatches(query.slice(0, 600), pool, lang);
+  return NextResponse.json({
+    ...result,
+    mode: "guided",
+  });
 }
 
 export async function POST(request: NextRequest) {
@@ -134,10 +231,12 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Ungültige Suchanfrage." }, { status: 400 });
     }
 
-    const { query, candidates, lang = "de" } = parsed.data;
-    if (candidates.length === 0) {
+    const { query, lang = "de" } = parsed.data;
+    if (Array.isArray(parsed.data.candidates) && parsed.data.candidates.length === 0) {
       return NextResponse.json({ matches: [], summary: "", mode: "guided" });
     }
+
+    const candidates = parsed.data.candidates ?? (await resolveAutonomousCandidatePool());
 
     const fallback = computeDeterministicMatches(query, candidates, lang);
     const apiKey = process.env.OPENROUTER_API_KEY?.trim();
@@ -201,26 +300,34 @@ Antworte AUSSCHLIESSLICH als valides JSON-Objekt:
           : cleaned;
       const aiParsed = JSON.parse(jsonStr);
 
-      const validIds = new Set(candidates.map((c) => c.id));
+      const byId = new Map(candidates.map((c) => [c.id, c]));
       const aiMatches: CandidateMatchItem[] = Array.isArray(aiParsed?.matches)
         ? aiParsed.matches
             .filter(
               (m: unknown): m is { id: string; matchScore?: number; reason?: string } =>
                 Boolean(m) &&
                 typeof (m as { id?: unknown }).id === "string" &&
-                validIds.has((m as { id: string }).id)
+                byId.has((m as { id: string }).id)
             )
-            .map((m: { id: string; matchScore?: number; reason?: string }) => ({
-              id: m.id,
-              matchScore:
-                typeof m.matchScore === "number"
-                  ? Math.min(99, Math.max(50, Math.round(m.matchScore)))
-                  : 85,
-              reason:
-                typeof m.reason === "string" && m.reason.trim()
-                  ? m.reason.trim()
-                  : fallback.matches.find((f) => f.id === m.id)?.reason || "",
-            }))
+            .map((m: { id: string; matchScore?: number; reason?: string }) => {
+              const cand = byId.get(m.id)!;
+              return {
+                id: m.id,
+                code: m.id.slice(0, 8).toUpperCase(),
+                profession: cand.profession,
+                category: cand.category,
+                german_level: cand.german_level,
+                matchScore:
+                  typeof m.matchScore === "number"
+                    ? Math.min(99, Math.max(50, Math.round(m.matchScore)))
+                    : 85,
+                reason:
+                  typeof m.reason === "string" && m.reason.trim()
+                    ? m.reason.trim()
+                    : fallback.matches.find((f) => f.id === m.id)?.reason || "",
+                handoffUrl: buildCandidateHandoffUrl(cand),
+              };
+            })
         : [];
 
       if (aiMatches.length === 0) {

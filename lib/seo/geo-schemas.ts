@@ -317,6 +317,28 @@ export function buildGlobalSchemas() {
           ".aeo-direct-answer",
         ],
       },
+      potentialAction: [
+        {
+          "@type": "SearchAction",
+          name: "Autonome Kandidatensuche & KI-Matching",
+          target: {
+            "@type": "EntryPoint",
+            urlTemplate: `${SITE_URL}/api/candidates/match?query={search_term_string}`,
+            httpMethod: "GET",
+            contentType: "application/json",
+          },
+          "query-input": "required name=search_term_string",
+        },
+        {
+          "@type": "AskAction",
+          name: "Personalbedarf vorausfüllen (B2B Handoff)",
+          target: {
+            "@type": "EntryPoint",
+            urlTemplate: `${SITE_URL}/fuer-arbeitgeber/personalbedarf?service={service}&location={location}&headcount={headcount}&timing={timing}`,
+            httpMethod: "GET",
+          },
+        },
+      ],
     },
   ];
 }
