@@ -476,11 +476,7 @@ export function resolveMarkdownDocument(
     pathname.startsWith("/_next/") ||
     pathname === "/monitoring" ||
     pathname.startsWith("/.well-known/") ||
-    pathname === "/llms.txt" ||
-    pathname === "/llms-full.txt" ||
-    pathname === "/openapi.json" ||
-    pathname === "/robots.txt" ||
-    pathname === "/sitemap.xml"
+    /\.(?:txt|json|xml|ico|webmanifest)$/i.test(pathname)
   ) {
     return null;
   }

@@ -16,6 +16,7 @@
     "test:smoke": "node tests/build-smoke.mjs",
     "geo:audit": "node scripts/geo-audit.mjs",
     "geo:sync": "node scripts/sync-geo-blog-catalog.mjs",
+    "geo:indexnow": "node scripts/submit-indexnow.mjs",
     "db:types": "echo 'Run: npx supabase gen types typescript --project-id YOUR_PROJECT_ID > lib/database.types.ts'",
     "prepare": "husky",
     "fix-assets": "node fix-assets.js",
