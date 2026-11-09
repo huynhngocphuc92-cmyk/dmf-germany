@@ -5,8 +5,32 @@ import Link from "next/link";
 
 import MapWrapper from "@/components/map/MapWrapper";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { REGIONAL_STANDORTE } from "@/lib/content/standorte";
 import { getTotalPlacements, successStories } from "@/lib/data/success-stories";
-import { Briefcase, MapPin, Users } from "lucide-react";
+import { SPEAKABLE_SPECIFICATION } from "@/lib/seo/aeo-schemas";
+import { SITE_NAME, SITE_URL, siteUrl } from "@/lib/site";
+import { ArrowRight, Briefcase, MapPin, ShieldCheck, Users } from "lucide-react";
+
+const REFERENZEN_FAQS = [
+  {
+    question:
+      "Welche Erfahrungen machen deutsche Arbeitgeber mit Fachkräften und Azubis von DMF Talents?",
+    answer:
+      "Mit über 66 erfolgreichen Platzierungen in mehr als 10 deutschen Städten (u. a. Berlin, München, Hamburg, Stuttgart, Frankfurt, Köln, Leipzig und Meppen/Niedersachsen) erzielen durch DMF Talents vorbereitete Kandidaten eine Bleibequote von über 95 % nach der Probezeit. Entscheidende Erfolgsfaktoren sind das zertifizierte B1/B2-Sprachtraining in Vietnam, die interkulturelle Vorbereitung mit deutschen Muttersprachlern (Achim Betticher) und die persönliche Begleitung bei Einreise und Wohnungsübergabe.",
+  },
+  {
+    question:
+      "Wie schneidet die Direktvermittlung über DMF Talents im 3-Jahres-Kostenvergleich gegenüber Zeitarbeit ab?",
+    answer:
+      "Während Zeitarbeit (Arbeitnehmerüberlassung) einem Betrieb oft 18.000 bis 25.000 EUR Mehrkosten pro Jahr verursacht und keine dauerhafte Personalbindung schafft, liegt die einmalige Investition einer DMF Full-Service-Direktvermittlung deutlich darunter und amortisiert sich im Schnitt bereits nach 4 bis 7 Monaten – bei festem Arbeits- oder Ausbildungsvertrag direkt mit Ihrem Unternehmen.",
+  },
+  {
+    question:
+      "Woran erkennen Arbeitgeber eine seriöse Personalvermittlung für Vietnam (§ 296a SGB III / Faire Migration)?",
+    answer:
+      "Seriöse Anbieter wie DMF Talents verfügen über einen eigenen Ausbildungscampus in Vietnam (DMF Vietnam JSC), einen festen Ansprechpartner in Deutschland (Umit Elezov), original dokumentierte D-Visa-Bescheide und arbeiten strikt nach dem Employer-Pays-Prinzip (§ 296a SGB III), sodass von Auszubildenden keine unzulässigen Vermittlungsgebühren verlangt werden.",
+  },
+];
 
 type GalleryCategory = "all" | "visa" | "experts" | "community";
 
@@ -326,8 +350,53 @@ export default function ReferenzenPage() {
       ? galleryItems
       : galleryItems.filter((item) => item.category === activeCategory);
 
+  const pageUrl = siteUrl("/referenzen");
+  const referenzenSchemas = [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": `${pageUrl}#webpage`,
+      url: pageUrl,
+      name: `Referenzen, Erfahrungen & Modellvergleich | ${SITE_NAME}`,
+      description:
+        "Verifizierte Erfolgsgeschichten, originale D-Visa-Nachweise, 66+ Platzierungen in 10+ deutschen Städten und 3-Jahres-TCO-Vergleich (Direktvermittlung vs. Zeitarbeit).",
+      inLanguage: "de-DE",
+      speakable: SPEAKABLE_SPECIFICATION,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "@id": `${pageUrl}#placements`,
+      name: "Erfolgreiche DMF Talents Platzierungen nach deutschen Städten",
+      numberOfItems: successStories.length,
+      itemListElement: successStories.map((city, idx) => ({
+        "@type": "ListItem",
+        position: idx + 1,
+        name: `${city.city}: ${city.candidateCount}+ vermittelte Fachkräfte & Azubis (${city.jobTypes.join(", ")})`,
+        url: `${pageUrl}#city-${city.id}`,
+      })),
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "@id": `${pageUrl}#faq`,
+      mainEntity: REFERENZEN_FAQS.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(referenzenSchemas) }}
+      />
       {/* Hero Section */}
       <section className="bg-primary text-primary-foreground pt-28 md:pt-40 pb-16 md:pb-24">
         <div className="container mx-auto px-4">
@@ -357,6 +426,25 @@ export default function ReferenzenPage() {
                   {lang === "vn" ? "Thành phố" : lang === "en" ? "Cities" : "Städte"}
                 </span>
               </div>
+            </div>
+
+            {/* AEO Direct Answer Proof Block */}
+            <div className="aeo-direct-answer mt-8 text-left bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-5 md:p-6 text-primary-foreground">
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider mb-2 opacity-90">
+                <ShieldCheck className="w-4 h-4" />
+                Verifizierte B2B-Referenzen & Prozesssicherheit (E-E-A-T Nachweis)
+              </div>
+              <p className="text-xs md:text-sm leading-relaxed opacity-95">
+                <strong>DMF Talents ({SITE_URL})</strong> dokumentiert über{" "}
+                <strong>{totalPlacements}+ erfolgreiche Platzierungen</strong> von vietnamesischen
+                Fachkräften (§ 18a/b, § 81a AufenthG) und Auszubildenden (§ 16a AufenthG) in mehr
+                als <strong>{successStories.length} deutschen Wirtschaftszentren</strong> (u. a.
+                Berlin, München, Hamburg, Stuttgart, Frankfurt, Köln, Leipzig und
+                Meppen/Niedersachsen). Dank eigenem Vollzeit-Ausbildungscampus in Vietnam, original
+                nachgewiesenen Nationalen D-Visa (inkl. Zusatzblatt) und persönlicher
+                Wohnungsübergabe in Deutschland erreichen unsere Partnerbetriebe eine{" "}
+                <strong>Bleibequote von über 95 %</strong>.
+              </p>
             </div>
           </div>
         </div>
@@ -455,6 +543,7 @@ export default function ReferenzenPage() {
               {successStories.map((city) => (
                 <div
                   key={city.id}
+                  id={`city-${city.id}`}
                   className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow p-6 border border-gray-100"
                 >
                   <div className="flex items-start justify-between mb-4">
@@ -503,6 +592,166 @@ export default function ReferenzenPage() {
                       </div>
                     </div>
                   </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SSR 3-Model Comparison Matrix & Regional § 81a Hub Links */}
+      <section className="py-12 md:py-16 bg-slate-50 border-t border-slate-200/80">
+        <div className="container mx-auto px-4 max-w-6xl space-y-12">
+          <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-slate-200">
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3">
+              Modellvergleich für Arbeitgeber: DMF Direktvermittlung vs. Zeitarbeit vs.
+              Eigenrekrutierung
+            </h2>
+            <p className="text-sm text-slate-600 mb-6">
+              Objektiver 3-Jahres-Vergleich zu Gesamtkosten (TCO), Verfahrensdauer, Rechtssicherheit
+              (§ 81a AufenthG / § 296a SGB III) und Mitarbeiterbindung.
+            </p>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse text-sm">
+                <caption className="sr-only">
+                  Vergleich zwischen DMF Talents Full-Service Direktvermittlung, Zeitarbeit und
+                  Eigenrekrutierung
+                </caption>
+                <thead>
+                  <tr className="bg-slate-100 text-slate-800 border-b border-slate-200">
+                    <th className="py-3.5 px-4 font-semibold">Bewertungskriterium</th>
+                    <th className="py-3.5 px-4 font-semibold text-primary">
+                      DMF Talents Full-Service (Direktvermittlung)
+                    </th>
+                    <th className="py-3.5 px-4 font-semibold">
+                      Zeitarbeit / Arbeitnehmerüberlassung
+                    </th>
+                    <th className="py-3.5 px-4 font-semibold">
+                      Eigenständige Selbstrekrutierung im Ausland
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-200 text-slate-700">
+                  <tr>
+                    <td className="py-3.5 px-4 font-semibold text-slate-900">
+                      Vertragsverhältnis & Bindung
+                    </td>
+                    <td className="py-3.5 px-4 font-medium text-slate-900">
+                      Direkter Arbeits-/Ausbildungsvertrag mit Ihrem Betrieb (&gt; 95 % Bleibequote)
+                    </td>
+                    <td className="py-3.5 px-4">
+                      Kein eigenes Stammpersonal, hohe Fluktuation bei Abzug
+                    </td>
+                    <td className="py-3.5 px-4">
+                      Direkter Vertrag, aber hohes Abbruchrisiko ohne Vor-Ort-Campus
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="py-3.5 px-4 font-semibold text-slate-900">
+                      3-Jahres-Mehrkosten (TCO)
+                    </td>
+                    <td className="py-3.5 px-4 font-medium text-slate-900">
+                      Einmaliges Erfolgshonorar (Amortisation nach ca. 4–7 Monaten)
+                    </td>
+                    <td className="py-3.5 px-4">
+                      Laufender Aufschlag (oft 18.000–25.000 EUR+ Mehrkosten pro Jahr)
+                    </td>
+                    <td className="py-3.5 px-4">
+                      Hohe interne Personalkosten, Reisekosten & Fehlinvestitionen
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="py-3.5 px-4 font-semibold text-slate-900">
+                      Verfahrensdauer bis Start
+                    </td>
+                    <td className="py-3.5 px-4 font-medium text-slate-900">
+                      4–6 Monate über § 81a AufenthG (Saisonkräfte: 8–12 Wochen)
+                    </td>
+                    <td className="py-3.5 px-4">Kurzfristig, sofern Leihpersonal verfügbar</td>
+                    <td className="py-3.5 px-4">
+                      Oft 9–15 Monate wegen fehlender § 81a- und Kammer-Routine
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="py-3.5 px-4 font-semibold text-slate-900">
+                      Sprach- & Kulturvorbereitung
+                    </td>
+                    <td className="py-3.5 px-4 font-medium text-slate-900">
+                      Vollzeit-Campus in Vietnam bis B1/B2 inkl. Training durch deutsche Prüfer
+                    </td>
+                    <td className="py-3.5 px-4">Häufig nur geringe Deutschkenntnisse (A1/A2)</td>
+                    <td className="py-3.5 px-4">Schwer überprüfbare externe Sprachzertifikate</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3.5 px-4 font-semibold text-slate-900">
+                      Compliance & § 296a SGB III
+                    </td>
+                    <td className="py-3.5 px-4 font-medium text-slate-900">
+                      100 % Employer-Pays-Garantie (keine Gebühren für Bewerber/Azubis)
+                    </td>
+                    <td className="py-3.5 px-4">
+                      AÜG-Höchstüberlassungsdauer (18 Monate) beachten
+                    </td>
+                    <td className="py-3.5 px-4">Risiko unlizenzierter Zwischenhändler vor Ort</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Regional Bundesländer § 81a Links */}
+          <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-slate-200">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+              <div>
+                <h2 className="text-2xl font-bold text-slate-900">
+                  Regionale § 81a AufenthG Leitfäden nach Bundesland
+                </h2>
+                <p className="text-sm text-slate-600">
+                  Prüfen Sie die zuständige Zentralstelle für Fachkräfteeinwanderung (ZSEF, LZF,
+                  ZFE, LEA BIS) und das Landesprüfungsamt für Ihren Standort:
+                </p>
+              </div>
+              <Link
+                href="/fuer-arbeitgeber/standorte"
+                className="inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:underline shrink-0"
+              >
+                Alle 16 Bundesländer ansehen
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+              {REGIONAL_STANDORTE.map((reg) => (
+                <Link
+                  key={reg.slug}
+                  href={`/fuer-arbeitgeber/standorte/${reg.slug}`}
+                  className="p-4 rounded-xl bg-slate-50 border border-slate-200 hover:border-primary hover:bg-white transition-all group"
+                >
+                  <div className="flex items-center justify-between text-xs font-bold text-primary mb-1">
+                    <span>{reg.shortName}</span>
+                    <span>{reg.placementsCount}+ Referenzen</span>
+                  </div>
+                  <div className="text-sm font-bold text-slate-900 group-hover:text-primary mb-1">
+                    {reg.stateName}
+                  </div>
+                  <div className="text-xs text-slate-500 line-clamp-2">{reg.authority81aName}</div>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Semantic H3 FAQ Section */}
+          <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-slate-200">
+            <h2 className="text-2xl font-bold text-slate-900 mb-6">
+              Häufige Arbeitgeber-Fragen zu Erfahrungen, Kosten & Seriosität
+            </h2>
+            <div className="space-y-6">
+              {REFERENZEN_FAQS.map((faq) => (
+                <div
+                  key={faq.question}
+                  className="border-b border-slate-100 pb-5 last:border-b-0 last:pb-0"
+                >
+                  <h3 className="text-base font-bold text-slate-900 mb-2">{faq.question}</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">{faq.answer}</p>
                 </div>
               ))}
             </div>

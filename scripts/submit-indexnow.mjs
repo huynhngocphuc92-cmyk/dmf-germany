@@ -34,6 +34,15 @@ const PUBLIC_ROUTES = [
   "/fuer-arbeitgeber/branchen/handwerk-bau",
   "/fuer-arbeitgeber/branchen/industrie-metall-technik",
   "/fuer-arbeitgeber/branchen/logistik-lager",
+  "/fuer-arbeitgeber/standorte",
+  "/fuer-arbeitgeber/standorte/bayern",
+  "/fuer-arbeitgeber/standorte/baden-wuerttemberg",
+  "/fuer-arbeitgeber/standorte/nordrhein-westfalen",
+  "/fuer-arbeitgeber/standorte/niedersachsen",
+  "/fuer-arbeitgeber/standorte/hessen",
+  "/fuer-arbeitgeber/standorte/berlin-brandenburg",
+  "/fuer-arbeitgeber/standorte/sachsen-mitteldeutschland",
+  "/fuer-arbeitgeber/standorte/hamburg-norddeutschland",
   "/fuer-arbeitgeber/kandidaten",
   "/fuer-arbeitgeber/personalbedarf",
   "/roi-rechner",
@@ -49,9 +58,12 @@ const AI_DISCOVERY_PATHS = [
   "/llms.txt",
   "/llms-full.txt",
   "/openapi.json",
+  "/api/mcp",
   "/.well-known/agent.json",
   "/.well-known/ai-plugin.json",
   "/index.md",
+  "/referenzen.md",
+  "/fuer-arbeitgeber/standorte.md",
   "/services/skilled-workers.md",
   "/services/azubi.md",
   "/services/seasonal.md",
@@ -66,7 +78,9 @@ function extractBlogSlugs() {
   const regex = /slug:\s*"([^"]+)"/g;
   let match;
   while ((match = regex.exec(content)) !== null) {
-    slugs.push(match[1]);
+    if (match[1] !== "fixture-current") {
+      slugs.push(match[1]);
+    }
   }
   return slugs;
 }

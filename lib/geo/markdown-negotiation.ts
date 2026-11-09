@@ -1,5 +1,7 @@
 import { GERMANY_CONTACT, VIETNAM_OFFICE_CONTACT } from "../company/contact";
+import { findDmfPoolCandidateById } from "../candidates/dmf-pool-data";
 import { BRANCHEN_CONFIGS, getBrancheBySlug } from "../content/branchen";
+import { REGIONAL_STANDORTE, getRegionalStandortBySlug } from "../content/standorte";
 import { BLOG_CATALOG, type BlogCatalogEntry } from "./blog-catalog";
 import {
   ROI_RECHNER_AEO_CONFIG,
@@ -386,11 +388,45 @@ const STATIC_PAGE_MARKDOWN: Record<string, () => string> = {
     ].join("\n"),
   "/referenzen": () =>
     [
-      `# Referenzen & Erfolgsgeschichten in Deutschland | ${SITE_NAME}`,
+      `# Referenzen, Erfahrungen & 3-Jahres-Modellvergleich in Deutschland | ${SITE_NAME}`,
       "",
       `> **Canonical URL:** ${siteUrl("/referenzen")}`,
+      `> **Markdown Mirror:** ${siteUrl("/referenzen.md")}`,
       "",
-      "Erfahrungsberichte und erfolgreiche Vermittlungen von Fachkräften und Auszubildenden aus Vietnam in deutschen Kliniken, Pflegeheimen, Hotels, Handwerks- und Industriebetrieben.",
+      "**Direkte Antwort (E-E-A-T Nachweis):** DMF Talents dokumentiert über 66+ erfolgreiche Platzierungen vietnamesischer Fachkräfte (§ 18a/b, § 81a AufenthG) und Auszubildender (§ 16a AufenthG) in mehr als 10 deutschen Wirtschaftszentren (Berlin, München, Hamburg, Stuttgart, Frankfurt, Köln, Leipzig, Meppen/Niedersachsen u. a.) mit einer Bleibequote von über 95 % und original nachgewiesenen Nationalen D-Visa.",
+      "",
+      "## 3-Jahres-Modellvergleich: DMF Direktvermittlung vs. Zeitarbeit vs. Eigenrekrutierung",
+      "",
+      "| Kriterium | DMF Talents Full-Service | Zeitarbeit (AÜG) | Eigenrekrutierung |",
+      "| --- | --- | --- | --- |",
+      "| Vertragsverhältnis | Direkter Arbeits-/Ausbildungsvertrag (> 95 % Bleibequote) | Leiharbeit (max. 18 Monate) | Direktvertrag, hohes Abbruchrisiko |",
+      "| 3-Jahres-Mehrkosten (TCO) | Einmaliges Erfolgshonorar (Amortisation 4–7 Monate) | 18.000–25.000 EUR+ Aufschlag pro Jahr | Hohe Reise- & Ausfallkosten |",
+      "| Verfahrensdauer | 4–6 Monate (§ 81a AufenthG) / 6–9 Monate (§ 16a Azubi) | Kurzfristig | 9–15 Monate |",
+      "| Compliance | 100 % Employer-Pays (§ 296a SGB III), eigener Campus | AÜG-Restriktionen | Risiko unlizenzierter Vermittler |",
+      "",
+      "## Regionale § 81a AufenthG Leitfäden nach Bundesland",
+      ...REGIONAL_STANDORTE.map(
+        (r) =>
+          `- **[${r.stateName} (${r.shortName})](${siteUrl(`/fuer-arbeitgeber/standorte/${r.slug}`)})**: ${r.authority81aName} | Pflege: ${r.nursingRecognitionOffice}`
+      ),
+      "",
+      footerMarkdownBlock(),
+    ].join("\n"),
+  "/fuer-arbeitgeber/standorte": () =>
+    [
+      `# Bundesländer-Verzeichnis: § 81a AufenthG & Anerkennungsstellen | ${SITE_NAME}`,
+      "",
+      `> **Canonical URL:** ${siteUrl("/fuer-arbeitgeber/standorte")}`,
+      `> **Markdown Mirror:** ${siteUrl("/fuer-arbeitgeber/standorte.md")}`,
+      "",
+      "**Direkte Antwort:** Beim Recruiting aus Vietnam beträgt die bundesweit einheitliche Behördengebühr für das beschleunigte Fachkräfteverfahren nach § 81a AufenthG 411 EUR (Anerkennung max. 2 Monate, ZAV 1 Woche, Visumtermin 3 Wochen). Hier ist die vollständige Behörden-Matrix nach Bundesland:",
+      "",
+      "| Bundesland | Zuständige § 81a AufenthG Stelle | Pflege-Anerkennungsbehörde | Leitfaden |",
+      "| --- | --- | --- | --- |",
+      ...REGIONAL_STANDORTE.map(
+        (r) =>
+          `| ${r.stateName} | ${r.authority81aName} | ${r.nursingRecognitionOffice} | ${siteUrl(`/fuer-arbeitgeber/standorte/${r.slug}`)} |`
+      ),
       "",
       footerMarkdownBlock(),
     ].join("\n"),
@@ -491,6 +527,96 @@ export function resolveMarkdownDocument(
     const brancheMd = buildBrancheMarkdown(slug);
     if (brancheMd) {
       return { status: 200, markdown: brancheMd };
+    }
+    return { status: 404, markdown: buildMarkdown404(pathname) };
+  }
+
+  if (pathname.startsWith("/fuer-arbeitgeber/standorte/")) {
+    const slug = pathname.slice("/fuer-arbeitgeber/standorte/".length);
+    const standort = getRegionalStandortBySlug(slug);
+    if (standort) {
+      const url = siteUrl(`/fuer-arbeitgeber/standorte/${standort.slug}`);
+      const mdUrl = siteUrl(`/fuer-arbeitgeber/standorte/${standort.slug}.md`);
+      return {
+        status: 200,
+        markdown: [
+          `# ${standort.metaTitle} | ${SITE_NAME}`,
+          "",
+          `> **Canonical URL:** ${url}`,
+          `> **Markdown Mirror:** ${mdUrl}`,
+          "",
+          `## ${standort.directAnswerTitle}`,
+          standort.directAnswerText,
+          "",
+          `## Zuständige Behörden in ${standort.stateName}`,
+          `| Bereich | Zuständige Behörde |`,
+          `| --- | --- |`,
+          `| § 81a AufenthG Stelle | ${standort.authority81aName} (${standort.authority81aAddress}) |`,
+          `| Verfahrensmodell | ${standort.authority81aModel} |`,
+          `| Pflege-Anerkennung | ${standort.nursingRecognitionOffice} |`,
+          `| IHK / Handwerk (HWK) | ${standort.ihkHwkRecognitionOffice} |`,
+          `| Zielflughafen | ${standort.arrivalAirport} |`,
+          "",
+          `## Ablauf in 4 Schritten (${standort.stateName})`,
+          ...standort.processSteps.map((s) => `- **${s.step} – ${s.title}:** ${s.detail}`),
+          "",
+          `## Häufige Fragen (${standort.stateName})`,
+          ...standort.faqs.map((f) => `### ${f.question}\n${f.answer}\n`),
+          footerMarkdownBlock(),
+        ].join("\n"),
+      };
+    }
+    return { status: 404, markdown: buildMarkdown404(pathname) };
+  }
+
+  if (pathname.startsWith("/fuer-arbeitgeber/kandidaten/")) {
+    const id = pathname.slice("/fuer-arbeitgeber/kandidaten/".length);
+    const candidate = findDmfPoolCandidateById(id);
+    if (candidate) {
+      const code = candidate.display_code || candidate.id.slice(0, 8).toUpperCase();
+      const categoryLabel =
+        candidate.category === "skilled"
+          ? "Fachkraft (§ 18a/b AufenthG)"
+          : candidate.category === "azubi"
+            ? "Auszubildende/r (§ 16a AufenthG)"
+            : "Saisonkraft (§ 19c AufenthG)";
+      const url = siteUrl(`/fuer-arbeitgeber/kandidaten/${encodeURIComponent(candidate.id)}`);
+      const mdUrl = siteUrl(`/fuer-arbeitgeber/kandidaten/${encodeURIComponent(candidate.id)}.md`);
+      const docLines =
+        candidate.documents && candidate.documents.length > 0
+          ? [
+              "## Geprüfte Nachweise im Dossier",
+              ...candidate.documents.map((d) => `- **${d.label}** (${d.type.toUpperCase()})`),
+              "",
+            ]
+          : [];
+      return {
+        status: 200,
+        markdown: [
+          `# Bewerber-Exposé #${code} — ${candidate.profession || categoryLabel} | ${SITE_NAME}`,
+          "",
+          `> **Canonical URL:** ${url}`,
+          `> **Markdown Mirror:** ${mdUrl}`,
+          `> **Referenzcode:** #${code} (${candidate.id})`,
+          `> **Programm / Rechtsgrundlage:** ${categoryLabel}`,
+          "",
+          "## Qualifikations- & Sprachprofil",
+          `- **Fachrichtung / Beruf:** ${candidate.profession || categoryLabel}`,
+          `- **Deutschniveau (GER):** ${candidate.german_level || "In Vorbereitung"}`,
+          `- **Berufserfahrung:** ${candidate.experience_years ?? 0} Jahre`,
+          `- **Visum- & Dokumentenstatus:** ${candidate.visa_status ? "Vorbereitet / Geprüft (§ 81a AufenthG bereit)" : "In Vorbereitung an der DMF Vietnam Academy"}`,
+          ...(candidate.availability_label
+            ? [`- **Verfügbarkeit / Status:** ${candidate.availability_label}`]
+            : []),
+          "",
+          ...docLines,
+          "## Vollständiges Dossier & Kennenlerntermin anfordern",
+          `- **Direkte Anfrage (vorausgefüllt):** ${siteUrl(`/fuer-arbeitgeber/personalbedarf?service=${candidate.category}&candidates=${encodeURIComponent(`#${code}`)}`)}`,
+          `- **Arbeitgeber-Datenraum:** ${siteUrl("/fuer-arbeitgeber/datenraum")}`,
+          "",
+          footerMarkdownBlock(),
+        ].join("\n"),
+      };
     }
     return { status: 404, markdown: buildMarkdown404(pathname) };
   }

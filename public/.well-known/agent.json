@@ -9,16 +9,18 @@
     "taxId": "3603878495",
     "contactEmail": "contact@dmf-talents.de"
   },
-  "version": "1.0.0",
+  "version": "1.1.0",
   "documentationUrl": "https://www.dmf-talents.de/llms.txt",
   "openApiUrl": "https://www.dmf-talents.de/openapi.json",
+  "mcpEndpoint": "https://www.dmf-talents.de/api/mcp",
   "capabilities": {
     "streaming": false,
     "pushNotifications": false,
     "stateTransitionHistory": false,
     "markdownContentNegotiation": true,
     "directMarkdownUrlMirrors": true,
-    "humanInTheLoopHandoff": true
+    "humanInTheLoopHandoff": true,
+    "modelContextProtocol": true
   },
   "authentication": {
     "schemes": ["none"],
@@ -62,6 +64,13 @@
       "description": "Evaluates age, education, German proficiency, and sector to recommend § 18a/b, § 16a, § 16d, or § 15a BeschV with estimated months to departure.",
       "tags": ["visa", "aufenthg", "81a", "bqfg", "legal-pathway"],
       "endpoint": "https://www.dmf-talents.de/api/pathway-check"
+    },
+    {
+      "id": "mcp_streamable_http_server",
+      "name": "Model Context Protocol (MCP) JSON-RPC 2.0 Server",
+      "description": "Direct MCP JSON-RPC 2.0 server supporting tools/list, tools/call (match_candidates, get_regional_81a_authority, compare_recruiting_models, build_prefilled_hiring_link), and resources/read.",
+      "tags": ["mcp", "json-rpc", "81a-authorities", "bundeslaender", "tco-comparison"],
+      "endpoint": "https://www.dmf-talents.de/api/mcp"
     }
   ]
 }

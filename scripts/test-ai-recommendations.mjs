@@ -137,6 +137,11 @@ async function main() {
       name: "AI Plugin Manifest (/.well-known/ai-plugin.json)",
       path: "/.well-known/ai-plugin.json",
     },
+    { name: "Public MCP Server (/api/mcp)", path: "/api/mcp" },
+    {
+      name: "Regional § 81a Hub (/fuer-arbeitgeber/standorte.md)",
+      path: "/fuer-arbeitgeber/standorte.md",
+    },
     {
       name: "Live Candidate Match Tool (/api/candidates/match)",
       path: "/api/candidates/match?role=Pflegefachkraft&minGermanLevel=B1",
