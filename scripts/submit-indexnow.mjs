@@ -75,7 +75,7 @@ function extractBlogSlugs() {
   const catalogPath = path.join(process.cwd(), "lib/geo/blog-catalog.ts");
   const content = fs.readFileSync(catalogPath, "utf8");
   const slugs = [];
-  const regex = /slug:\s*"([^"]+)"/g;
+  const regex = /"?slug"?:\s*"([^"]+)"/g;
   let match;
   while ((match = regex.exec(content)) !== null) {
     if (match[1] !== "fixture-current") {
@@ -133,8 +133,13 @@ async function main() {
     }
   }
 
-  // 3. Submit batch to IndexNow & Bing
-  const endpoints = ["https://api.indexnow.org/indexnow", "https://www.bing.com/indexnow"];
+  // 3. Submit batch to IndexNow Consortium endpoints (IndexNow, Bing, Yandex, Seznam)
+  const endpoints = [
+    "https://api.indexnow.org/indexnow",
+    "https://www.bing.com/indexnow",
+    "https://yandex.com/indexnow",
+    "https://search.seznam.cz/indexnow",
+  ];
   const payload = {
     host: INDEXNOW_HOST,
     key: INDEXNOW_KEY,
