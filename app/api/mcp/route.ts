@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { GERMANY_CONTACT, VIETNAM_OFFICE_CONTACT } from "@/lib/company/contact";
 import { REGIONAL_STANDORTE } from "@/lib/content/standorte";
-import { mergeWithDmfFeaturedCandidates } from "@/lib/candidates/dmf-pool-data";
+import { mergeWithDmfPoolCandidates } from "@/lib/candidates/dmf-pool-data";
 import { getFeaturedCandidates } from "@/lib/supabase/candidates";
 import { SITE_NAME, SITE_URL, siteUrl } from "@/lib/site";
 
@@ -141,10 +141,10 @@ async function executeMatchCandidates(args: Record<string, unknown>) {
   const categoryFilter = args.category ? String(args.category) : undefined;
   const minRank = GERMAN_RANK[minGermanLevel] || 3;
 
-  let pool = mergeWithDmfFeaturedCandidates([]);
+  let pool = mergeWithDmfPoolCandidates([]);
   try {
     const { data } = await getFeaturedCandidates();
-    pool = mergeWithDmfFeaturedCandidates(data);
+    pool = mergeWithDmfPoolCandidates(data);
   } catch {
     // Fallback to deterministic pool
   }

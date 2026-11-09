@@ -42,6 +42,7 @@ interface AssetImageWithDebugProps {
   fill?: boolean;
   priority?: boolean;
   quality?: number;
+  sizes?: string;
   fallbackClassName?: string; // Custom className for fallback UI
 }
 
@@ -55,6 +56,7 @@ export const AssetImageWithDebug = ({
   fill = false,
   priority = false,
   quality = 75,
+  sizes,
   fallbackClassName = "",
 }: AssetImageWithDebugProps) => {
   // Check if debug mode is enabled
@@ -100,7 +102,7 @@ export const AssetImageWithDebug = ({
           quality={quality}
           // Private/signed or unknown images bypass the shared image cache.
           unoptimized={!isOptimizablePublicImage(src)}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          sizes={sizes || "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"}
         />
         {showDebug && (
           <span className="absolute top-0 left-0 bg-red-600 text-white text-xs px-2 py-1 z-50 opacity-80 rounded-br">
