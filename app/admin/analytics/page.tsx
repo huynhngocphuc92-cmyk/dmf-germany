@@ -25,7 +25,7 @@ export default function AnalyticsPage() {
               <code className="bg-slate-100 px-2 py-1 rounded">{gaId || "Chưa cấu hình"}</code>
             </p>
 
-            {gaId === "G-H5QF4BKTEW" ? (
+            {gaId === "G-0P6ECEDSWG" ? (
               <div className="text-sm text-green-600 flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                 Mã khớp với cấu hình Google
@@ -34,7 +34,7 @@ export default function AnalyticsPage() {
               <div className="text-sm text-red-600 flex items-center gap-2">
                 <AlertCircle className="w-4 h-4" />
                 Cảnh báo: Mã trong file .env ({gaId || "Chưa có"}) khác với mã trên Google
-                (G-H5QF4BKTEW)
+                (G-0P6ECEDSWG)
               </div>
             )}
 

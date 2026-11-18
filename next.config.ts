@@ -30,6 +30,10 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "picsum.photos", // Blog writer placeholder source
+      },
+      {
+        protocol: "https",
         hostname: "dmf.edu.vn", // Allow legacy images if any
       },
     ],
@@ -86,12 +90,12 @@ const nextConfig: NextConfig = {
             key: "Content-Security-Policy",
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://va.vercel-scripts.com",
               "style-src 'self' 'unsafe-inline'",
               "font-src 'self'",
-              "img-src 'self' data: blob: https://*.supabase.co https://images.unsplash.com https://dmf.edu.vn https://www.google-analytics.com https://cdnjs.cloudflare.com https://*.tile.openstreetmap.org",
+              "img-src 'self' data: blob: https://*.supabase.co https://images.unsplash.com https://picsum.photos https://dmf.edu.vn https://www.google-analytics.com https://cdnjs.cloudflare.com https://*.tile.openstreetmap.org",
               "media-src 'self' blob: https://*.supabase.co",
-              "connect-src 'self' https://*.supabase.co https://api.telegram.org https://www.google-analytics.com https://*.tile.openstreetmap.org https://api.x.ai",
+              "connect-src 'self' https://*.supabase.co https://api.telegram.org https://www.google-analytics.com https://*.tile.openstreetmap.org https://api.x.ai https://va.vercel-scripts.com https://vitals.vercel-insights.com",
               "frame-src https://www.youtube-nocookie.com",
               "frame-ancestors 'self'",
               "form-action 'self'",
