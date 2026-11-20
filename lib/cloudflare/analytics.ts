@@ -150,22 +150,22 @@ export async function fetchEdgeAnalyticsReport(
       runAnalyticsSql<RouteRow>(
         accountId,
         token,
-        `SELECT blob1 AS route_group, blob3 AS cache_status, count() AS reqs, round(avg(double2), 1) AS avg_ms FROM dmf_talents_telemetry WHERE timestamp >= NOW() - ${interval} GROUP BY route_group, cache_status ORDER BY reqs DESC FORMAT JSON`
+        `SELECT blob1 AS route_group, blob3 AS cache_status, SUM(_sample_interval) AS reqs, round(SUM(double2 * _sample_interval) / SUM(_sample_interval), 1) AS avg_ms FROM dmf_talents_telemetry WHERE timestamp >= NOW() - ${interval} GROUP BY route_group, cache_status ORDER BY reqs DESC FORMAT JSON`
       ),
       runAnalyticsSql<ClientRow>(
         accountId,
         token,
-        `SELECT blob6 AS client_kind, count() AS reqs, round(avg(double2), 1) AS avg_ms FROM dmf_talents_telemetry WHERE blob1 != 'cron' AND timestamp >= NOW() - ${interval} GROUP BY client_kind ORDER BY reqs DESC FORMAT JSON`
+        `SELECT blob6 AS client_kind, SUM(_sample_interval) AS reqs, round(SUM(double2 * _sample_interval) / SUM(_sample_interval), 1) AS avg_ms FROM dmf_talents_telemetry WHERE blob1 != 'cron' AND timestamp >= NOW() - ${interval} GROUP BY client_kind ORDER BY reqs DESC FORMAT JSON`
       ),
       runAnalyticsSql<GeoRow>(
         accountId,
         token,
-        `SELECT blob5 AS k, count() AS reqs FROM dmf_talents_telemetry WHERE blob1 != 'cron' AND blob5 != '' AND timestamp >= NOW() - ${interval} GROUP BY k ORDER BY reqs DESC LIMIT 8 FORMAT JSON`
+        `SELECT blob5 AS k, SUM(_sample_interval) AS reqs FROM dmf_talents_telemetry WHERE blob1 != 'cron' AND blob5 != '' AND timestamp >= NOW() - ${interval} GROUP BY k ORDER BY reqs DESC LIMIT 8 FORMAT JSON`
       ),
       runAnalyticsSql<GeoRow>(
         accountId,
         token,
-        `SELECT blob4 AS k, count() AS reqs FROM dmf_talents_telemetry WHERE blob1 != 'cron' AND blob4 != '' AND timestamp >= NOW() - ${interval} GROUP BY k ORDER BY reqs DESC LIMIT 8 FORMAT JSON`
+        `SELECT blob4 AS k, SUM(_sample_interval) AS reqs FROM dmf_talents_telemetry WHERE blob1 != 'cron' AND blob4 != '' AND timestamp >= NOW() - ${interval} GROUP BY k ORDER BY reqs DESC LIMIT 8 FORMAT JSON`
       ),
     ]);
 

@@ -145,6 +145,13 @@ describe("Phase 3: R2 Media Offload, 308 Legacy Redirects & Analytics Engine", (
     expect(report.topColos[0]).toEqual({ key: "FRA", requests: 80 });
     expect(fetchMock).toHaveBeenCalledTimes(4);
     expect(String(fetchMock.mock.calls[0][1].body)).toContain("INTERVAL '7' DAY");
+    for (const [idx, call] of fetchMock.mock.calls.entries()) {
+      const sql = String(call[1].body);
+      expect(sql).toContain("SUM(_sample_interval)");
+      if (idx < 2) {
+        expect(sql).toContain("SUM(double2 * _sample_interval) / SUM(_sample_interval)");
+      }
+    }
   });
 
   it("handles Analytics Engine upstream failures without throwing", async () => {
@@ -156,5 +163,39 @@ describe("Phase 3: R2 Media Offload, 308 Legacy Redirects & Analytics Engine", (
     expect(report.configured).toBe(true);
     expect(report.available).toBe(false);
     expect(report.error).toBeTruthy();
+  });
+
+  it("configures CSP headers to permit regional GA4 endpoints, Cloudflare RUM, and R2 media", async () => {
+    vi.stubEnv("NEXT_PUBLIC_SUPABASE_URL", "https://example.supabase.co");
+    vi.stubEnv("NEXT_PUBLIC_SUPABASE_ANON_KEY", "sb_publishable_test");
+    const { default: nextConfig } = await import("../next.config");
+    const rules = (await nextConfig.headers?.()) ?? [];
+    const globalRule = rules.find((rule) => rule.source === "/:path*");
+    expect(globalRule).toBeDefined();
+
+    const csp =
+      globalRule?.headers.find((header) => header.key === "Content-Security-Policy")?.value ?? "";
+    const directives = Object.fromEntries(
+      csp.split(";").map((part) => {
+        const trimmed = part.trim();
+        const firstSpace = trimmed.indexOf(" ");
+        return firstSpace === -1
+          ? [trimmed, ""]
+          : [trimmed.slice(0, firstSpace), trimmed.slice(firstSpace + 1)];
+      })
+    );
+
+    expect(directives["script-src"]).toContain("https://*.googletagmanager.com");
+    expect(directives["script-src"]).toContain("https://static.cloudflareinsights.com");
+    expect(directives["img-src"]).toContain("https://*.google-analytics.com");
+    expect(directives["img-src"]).toContain("https://*.googletagmanager.com");
+    expect(directives["connect-src"]).toContain("https://*.google-analytics.com");
+    expect(directives["connect-src"]).toContain("https://*.analytics.google.com");
+    expect(directives["connect-src"]).toContain("https://analytics.google.com");
+    expect(directives["connect-src"]).toContain("https://*.googletagmanager.com");
+    expect(directives["connect-src"]).toContain("https://cloudflareinsights.com");
+    expect(directives["media-src"]).toContain(
+      "'self' blob: https://*.supabase.co https://media.dmf-talents.de"
+    );
   });
 });
