@@ -10,8 +10,16 @@ export default defineCloudflareConfig({
     shouldLazilyUpdateOnCacheHit: true,
   }),
   tagCache: doShardedTagCache({
-    baseShardSize: 12,
+    baseShardSize: 4,
     regionalCache: true,
+    regionalCacheTtlSec: 60,
+    shardReplication: {
+      numberOfSoftReplicas: 2,
+      numberOfHardReplicas: 1,
+      regionalReplication: {
+        defaultRegion: "weur",
+      },
+    },
   }),
   queue: doQueue,
 });

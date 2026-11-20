@@ -5,10 +5,11 @@ import { revalidatePath } from "next/cache";
 import { createAdminClient as createClient } from "@/lib/auth/admin";
 import {
   getCompiledPostBySlug,
-  getCompiledPostSummaries,
+  getCompiledPublishedPosts,
   mergeWithCompiledPostSummaries,
   mergeWithCompiledPosts,
 } from "@/lib/blog/compiled-posts";
+import { invalidateEdgeCachePaths } from "@/lib/cloudflare/edge-worker";
 import { classifyBlogPost, isNoindexBlogSlug } from "@/lib/blog/seo-taxonomy";
 import { createPublicClient } from "@/utils/supabase/public";
 import type { BlogPostSummary, Post, PostFormData } from "./types";
@@ -115,7 +116,7 @@ export async function getPublishedSitemapPosts(): Promise<{
       created_at?: string;
     }>;
     const seen = new Set(dbRows.map((row) => row.slug));
-    const compiled = getCompiledPostSummaries()
+    const compiled = getCompiledPublishedPosts()
       .filter((post) => !seen.has(post.slug))
       .map((post) => ({
         slug: post.slug,
@@ -218,6 +219,11 @@ export async function createPost(
     revalidatePath("/admin/posts");
     revalidatePath("/blog", "layout");
     revalidatePath("/sitemap.xml");
+    await invalidateEdgeCachePaths([
+      "/blog",
+      "/sitemap.xml",
+      `/blog/${encodeURIComponent(formData.slug)}`,
+    ]);
 
     return { data: data as Post, error: null };
   } catch (err) {
@@ -281,6 +287,11 @@ export async function updatePost(
     revalidatePath("/sitemap.xml");
     revalidatePath(`/blog/${formData.slug}`);
     if (existingPost?.slug) revalidatePath(`/blog/${existingPost.slug}`);
+    const edgePaths = ["/blog", "/sitemap.xml", `/blog/${encodeURIComponent(formData.slug)}`];
+    if (existingPost?.slug) {
+      edgePaths.push(`/blog/${encodeURIComponent(existingPost.slug)}`);
+    }
+    await invalidateEdgeCachePaths(edgePaths);
 
     return { data: data as Post, error: null };
   } catch (err) {
@@ -325,6 +336,11 @@ export async function deletePost(id: string): Promise<{ error: string | null }> 
     if (post?.slug) {
       revalidatePath(`/blog/${post.slug}`);
     }
+    const edgePaths = ["/blog", "/sitemap.xml"];
+    if (post?.slug) {
+      edgePaths.push(`/blog/${encodeURIComponent(post.slug)}`);
+    }
+    await invalidateEdgeCachePaths(edgePaths);
 
     return { error: null };
   } catch (err) {

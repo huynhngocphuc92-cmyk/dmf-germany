@@ -1,11 +1,78 @@
 "use server";
 
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { revalidatePath } from "next/cache";
 import { cache } from "react";
 import { createAdminClient as createClient } from "@/lib/auth/admin";
+import { invalidateEdgeCachePaths } from "@/lib/cloudflare/edge-worker";
 import { PRIMARY_CONTACT } from "@/lib/company/contact";
 import { createPublicClient } from "@/utils/supabase/public";
 import type { SiteConfigItem, SiteConfigGrouped } from "@/types/theme";
+
+type CachedAssetRow = Pick<SiteConfigItem, "key" | "value" | "asset_type">;
+
+const SITE_ASSETS_CACHE_ORIGIN = "https://www.dmf-talents.de";
+const SITE_ASSETS_CACHE_TTL_SECONDS = 300;
+const seenSerializedKeySets = new Set<string>([
+  JSON.stringify(["contact_email", "header_hotline", "header_logo", "logo_url", "site_logo"]),
+  JSON.stringify(["header_logo", "logo_url", "site_logo"]),
+  JSON.stringify([
+    "home_cta_bg",
+    "home_hero_bg",
+    "home_hero_overlay_opacity",
+    "home_intro_img",
+    "home_intro_video_thumb",
+    "home_partner_banner",
+    "home_prog_hotel_img",
+    "home_prog_nursing_img",
+    "home_prog_tech_img",
+    "home_rep_de_img",
+    "home_rep_vn_img",
+  ]),
+]);
+
+function getWorkerEdgeCacheContext(): {
+  cache: Cache;
+  waitUntil: (promise: Promise<unknown>) => void;
+} | null {
+  try {
+    const { ctx } = getCloudflareContext();
+    const cacheStorage = globalThis.caches as unknown as { default?: Cache } | undefined;
+    const defaultCache = cacheStorage?.default;
+    if (!defaultCache || typeof defaultCache.match !== "function") return null;
+    return {
+      cache: defaultCache,
+      waitUntil: (promise) => {
+        if (typeof ctx?.waitUntil === "function") {
+          ctx.waitUntil(promise);
+        } else {
+          void promise;
+        }
+      },
+    };
+  } catch {
+    return null;
+  }
+}
+
+function siteAssetsCacheRequest(serializedKeys: string): Request {
+  return new Request(
+    `${SITE_ASSETS_CACHE_ORIGIN}/__internal_cache/v1/site-assets?keys=${encodeURIComponent(serializedKeys)}`,
+    { method: "GET" }
+  );
+}
+
+async function invalidateSiteAssetCaches(): Promise<void> {
+  const edge = getWorkerEdgeCacheContext();
+  if (edge) {
+    await Promise.all(
+      [...seenSerializedKeySets].map((serialized) =>
+        edge.cache.delete(siteAssetsCacheRequest(serialized)).catch(() => false)
+      )
+    );
+  }
+  await invalidateEdgeCachePaths(["/", "/fuer-arbeitgeber/branchen"]);
+}
 
 const DEFAULT_REPRESENTATIVE_ASSETS: SiteConfigItem[] = [
   {
@@ -207,14 +274,29 @@ export async function getSiteConfigByKey(key: string): Promise<{
   }
 }
 
-/** Request-local deduplication only; each new render reads current CMS assets. */
+/** Request-local deduplication plus short-lived Cloudflare edge cache in Worker runtime. */
 const fetchSiteConfigsByKeys = cache(
   async (
     serializedKeys: string
   ): Promise<{
-    data: Pick<SiteConfigItem, "key" | "value" | "asset_type">[] | null;
+    data: CachedAssetRow[] | null;
     error: string | null;
   }> => {
+    const edge = getWorkerEdgeCacheContext();
+    const cacheReq = edge ? siteAssetsCacheRequest(serializedKeys) : null;
+    if (edge && cacheReq) {
+      seenSerializedKeySets.add(serializedKeys);
+      try {
+        const hit = await edge.cache.match(cacheReq);
+        if (hit) {
+          const parsed = (await hit.json()) as CachedAssetRow[];
+          return { data: parsed, error: null };
+        }
+      } catch {
+        // Ignore corrupt/unavailable edge cache entries and fall through to Supabase.
+      }
+    }
+
     try {
       const supabase = createPublicClient();
       const { data, error } = await supabase
@@ -226,11 +308,31 @@ const fetchSiteConfigsByKeys = cache(
         console.error("Error fetching site assets by keys:", error);
         return { data: null, error: error.message || "Failed to fetch site assets" };
       }
+
+      const normalized: CachedAssetRow[] = (data ?? []).map((item) => ({
+        ...item,
+        value: normalizeSiteAssetValue(item.key, item.value),
+      }));
+
+      if (edge && cacheReq && data !== null) {
+        edge.waitUntil(
+          edge.cache
+            .put(
+              cacheReq,
+              new Response(JSON.stringify(normalized), {
+                status: 200,
+                headers: {
+                  "Content-Type": "application/json",
+                  "Cache-Control": `public, max-age=${SITE_ASSETS_CACHE_TTL_SECONDS}`,
+                },
+              })
+            )
+            .catch(() => {})
+        );
+      }
+
       return {
-        data: (data ?? []).map((item) => ({
-          ...item,
-          value: normalizeSiteAssetValue(item.key, item.value),
-        })),
+        data: normalized,
         error: null,
       };
     } catch (error) {
@@ -302,6 +404,7 @@ export async function updateSiteConfig(
     // Also revalidate common paths that might use assets
     revalidatePath("/blog", "layout");
     revalidatePath("/services", "layout");
+    await invalidateSiteAssetCaches();
 
     return { error: null };
   } catch (err) {
@@ -423,6 +526,7 @@ export async function createSiteConfig(
     }
 
     revalidatePath("/admin/theme");
+    await invalidateSiteAssetCaches();
     return { error: null };
   } catch (err) {
     console.error("Error in createSiteConfig:", err);

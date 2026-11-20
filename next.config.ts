@@ -142,7 +142,7 @@ export default withSentryConfig(withBundleAnalyzer(nextConfig), {
   widenClientFileUpload: true,
 
   webpack: {
-    autoInstrumentServerFunctions: true,
+    autoInstrumentServerFunctions: false,
     treeshake: {
       removeDebugLogging: true,
     },

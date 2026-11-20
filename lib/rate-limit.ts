@@ -1,3 +1,4 @@
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { withDeadline } from "@/lib/requests/deadline";
 import { getDeployEnv } from "@/lib/env/runtime";
 import { createIntakeClient, getIntakeKey } from "@/lib/supabase/intake";
@@ -14,6 +15,10 @@ export interface RateLimitResult {
   remaining: number;
   resetIn: number;
 }
+interface EdgeRateLimitBinding {
+  limit(options: { key: string }): Promise<{ success: boolean }>;
+}
+
 const resultSchema = z.object({
   success: z.boolean(),
   remaining: z.number().int().nonnegative(),
@@ -21,10 +26,48 @@ const resultSchema = z.object({
 });
 const memory = new Map<string, { count: number; expires: number }>();
 
+function getEdgeRateLimitBinding(config: RateLimitConfig): EdgeRateLimitBinding | null {
+  if (config.windowSeconds !== 60) return null;
+  const bindingName =
+    config.limit === 5
+      ? "DMF_RL_CONTACT"
+      : config.limit === 20
+        ? "DMF_RL_CHAT"
+        : config.limit === 30
+          ? "DMF_RL_API"
+          : null;
+  if (!bindingName) return null;
+
+  try {
+    const { env } = getCloudflareContext();
+    const candidate = (env as unknown as Record<string, unknown>)[bindingName];
+    if (
+      candidate &&
+      typeof candidate === "object" &&
+      typeof (candidate as EdgeRateLimitBinding).limit === "function"
+    ) {
+      return candidate as EdgeRateLimitBinding;
+    }
+  } catch {
+    // Outside Cloudflare Workers request context (Vitest, next start, SSG).
+  }
+  return null;
+}
+
 export async function checkRateLimit(
   identifier: string,
   config: RateLimitConfig
 ): Promise<RateLimitResult> {
+  const edgeLimiter = getEdgeRateLimitBinding(config);
+  if (edgeLimiter) {
+    const { success } = await edgeLimiter.limit({ key: identifier });
+    return {
+      success,
+      remaining: success ? Math.max(1, config.limit - 1) : 0,
+      resetIn: config.windowSeconds,
+    };
+  }
+
   // Production/serverless counters live in PostgreSQL, shared across all function instances.
   if (getDeployEnv() || process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY) {
     const db = createIntakeClient();
