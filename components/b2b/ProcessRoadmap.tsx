@@ -7,6 +7,7 @@ import { MotionProvider } from "@/components/shared/MotionProvider";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { getPublicMediaUrl } from "@/lib/media/r2-public";
 import {
   Users,
   BookOpen,
@@ -545,7 +546,12 @@ export function ProcessRoadmap() {
                 "
                   asChild
                 >
-                  <a href="/DMF Vietnam Handbuch.pdf" download="DMF_Prozess_Guide.pdf">
+                  <a
+                    href={getPublicMediaUrl("/DMF Vietnam Handbuch.pdf")}
+                    download="DMF_Prozess_Guide.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <Download className="h-5 w-5" />
                     {t.processRoadmap.cta_title}
                     <ArrowRight className="h-4 w-4" />

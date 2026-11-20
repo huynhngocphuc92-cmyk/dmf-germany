@@ -123,8 +123,10 @@
     "NEXT_PUBLIC_GA_ID": "G-0P6ECEDSWG",
     "SENTRY_ORG": "dmf-ys",
     "SENTRY_PROJECT": "dmf-germany",
+    "CF_ACCOUNT_ID": "cd2355b1655a8bf991ab9faaa0d14d5f",
     "CF_AI_GATEWAY_ACCOUNT_ID": "cd2355b1655a8bf991ab9faaa0d14d5f",
     "CF_AI_GATEWAY_ID": "dmf-ai-gateway",
+    "NEXT_PUBLIC_MEDIA_BASE_URL": "https://media.dmf-talents.de",
     "NEXT_PUBLIC_TURNSTILE_SITE_KEY": "0x4AAAAAAGJ1Ao5DQXrcFM7U",
     "TURNSTILE_HOSTNAMES": "www.dmf-talents.de,dmf-talents.de"
   }

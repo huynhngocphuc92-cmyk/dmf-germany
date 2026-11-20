@@ -375,6 +375,25 @@ function withVaryAccept(headers: Headers): void {
   }
 }
 
+const MEDIA_PUBLIC_ORIGIN = "https://media.dmf-talents.de";
+const LEGACY_HANDBUCH_PATHS = new Set([
+  "/DMF Vietnam Handbuch.pdf",
+  "/DMF%20Vietnam%20Handbuch.pdf",
+]);
+
+export function resolveLegacyMediaRedirect(url: URL): string | null {
+  if (LEGACY_HANDBUCH_PATHS.has(url.pathname)) {
+    return `${MEDIA_PUBLIC_ORIGIN}/DMF-Vietnam-Handbuch.pdf`;
+  }
+  if (
+    url.pathname.startsWith("/candidates/videos/") ||
+    url.pathname.startsWith("/candidates/dossiers/")
+  ) {
+    return `${MEDIA_PUBLIC_ORIGIN}${url.pathname}`;
+  }
+  return null;
+}
+
 export async function handleEdgeFetch(
   request: Request,
   env: EdgeWorkerEnv,
@@ -383,6 +402,18 @@ export async function handleEdgeFetch(
 ): Promise<Response> {
   const start = Date.now();
   const url = new URL(request.url);
+  if (request.method === "GET" || request.method === "HEAD") {
+    const legacyMediaTarget = resolveLegacyMediaRedirect(url);
+    if (legacyMediaTarget) {
+      return new Response(null, {
+        status: 308,
+        headers: {
+          Location: legacyMediaTarget,
+          "Cache-Control": "public, max-age=86400",
+        },
+      });
+    }
+  }
   const policy = getEdgeCachePolicy(request, url);
   const routeGroup = policy?.routeGroup ?? classifyRouteGroup(url.pathname);
   const cache = policy ? getDefaultCache() : undefined;

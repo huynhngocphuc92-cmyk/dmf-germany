@@ -7,6 +7,7 @@
 
 import type { PublicCandidate } from "./public-profile";
 import type { CandidatePoolStage } from "@/app/admin/candidates/types";
+import { getPublicMediaUrl } from "../media/r2-public";
 
 export const DMF_POOL_STAGE_SUMMARY: Record<
   CandidatePoolStage,
@@ -67,7 +68,7 @@ export const DMF_POOL_STAGE_SUMMARY: Record<
   },
 };
 
-export const DMF_POOL_PUBLIC_CANDIDATES: PublicCandidate[] = [
+const RAW_DMF_POOL_PUBLIC_CANDIDATES: PublicCandidate[] = [
   {
     id: "dmf-pool-001",
     category: "azubi",
@@ -6222,6 +6223,21 @@ export const DMF_POOL_PUBLIC_CANDIDATES: PublicCandidate[] = [
     ],
   },
 ];
+
+export const DMF_POOL_PUBLIC_CANDIDATES: PublicCandidate[] = RAW_DMF_POOL_PUBLIC_CANDIDATES.map(
+  (candidate) => ({
+    ...candidate,
+    ...(candidate.video_url ? { video_url: getPublicMediaUrl(candidate.video_url) } : {}),
+    ...(candidate.documents
+      ? {
+          documents: candidate.documents.map((doc) => ({
+            ...doc,
+            url: getPublicMediaUrl(doc.url),
+          })),
+        }
+      : {}),
+  })
+);
 
 export function mergeWithDmfPoolCandidates(
   dbCandidates: PublicCandidate[] | null | undefined

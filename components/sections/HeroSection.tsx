@@ -6,6 +6,7 @@ import { useLanguage } from "@/components/providers/LanguageProvider";
 import { ArrowRight, Download, Phone, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { getPublicMediaUrl } from "@/lib/media/r2-public";
 import type { ReactNode } from "react";
 import { handleContactAnchorClick } from "@/lib/navigation/contact-anchor";
 import { GERMANY_CONTACT } from "@/lib/company/contact";
@@ -148,7 +149,12 @@ export const HeroSection = ({
                   asChild
                   className="gap-2 px-8 py-4 h-auto text-base md:text-lg font-semibold border-2 border-white/30 bg-white/5 backdrop-blur-sm text-white hover:bg-white/10 hover:border-white/50"
                 >
-                  <a href="/DMF Vietnam Handbuch.pdf" download="DMF_Vietnam_Unternehmensprofil.pdf">
+                  <a
+                    href={getPublicMediaUrl("/DMF Vietnam Handbuch.pdf")}
+                    download="DMF_Vietnam_Unternehmensprofil.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <Download className="h-5 w-5" />
                     {t.hero.cta_secondary}
                   </a>

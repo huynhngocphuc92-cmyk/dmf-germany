@@ -1,7 +1,8 @@
 import "server-only";
 import type { Candidate } from "@/app/admin/candidates/types";
+import { getPublicMediaUrl } from "../media/r2-public";
 
-export const DMF_POOL_ADMIN_CANDIDATES: Candidate[] = [
+const RAW_DMF_POOL_ADMIN_CANDIDATES: Candidate[] = [
   {
     id: "dmf-pool-001",
     created_at: "2026-11-04T08:00:00.000Z",
@@ -6832,6 +6833,13 @@ export const DMF_POOL_ADMIN_CANDIDATES: Candidate[] = [
     notes: "Mã: DMF-ANV-158 | Khóa: K55 | Gói: Học tiếng A1 | Đã đóng: 0 VND",
   },
 ];
+
+export const DMF_POOL_ADMIN_CANDIDATES: Candidate[] = RAW_DMF_POOL_ADMIN_CANDIDATES.map(
+  (candidate) => ({
+    ...candidate,
+    ...(candidate.video_url ? { video_url: getPublicMediaUrl(candidate.video_url) } : {}),
+  })
+);
 
 export function mergeWithDmfAdminCandidates(
   dbCandidates: Candidate[] | null | undefined
