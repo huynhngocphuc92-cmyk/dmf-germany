@@ -9,13 +9,9 @@ import {
   ImageSuggestion,
   BlogLanguage,
 } from "./types";
-import { buildBlogSystemPrompt } from "@/lib/prompts/blog-writer";
+import { buildBlogSystemPrompt, buildTopicSuggestionsPrompt } from "@/lib/prompts/blog-writer";
 import { runWithGrokModelFallback, GrokMessage } from "@/lib/ai/grok";
-
-const getBaseUrl = () => {
-  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
-  return process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-};
+import { runWithOpenRouterFallback } from "@/lib/ai/openrouter";
 
 export async function generateBlogPost(
   request: BlogGenerationRequest
@@ -35,8 +31,10 @@ export async function generateBlogPost(
       return { success: false, error: "Missing required fields" };
     }
 
-    // Check API key
-    if (!process.env.XAI_API_KEY) {
+    const openRouterKey = process.env.OPENROUTER_API_KEY?.trim() || "";
+    const xaiKey = process.env.XAI_API_KEY?.trim() || "";
+
+    if (!openRouterKey && !xaiKey) {
       return { success: false, error: "API not configured" };
     }
 
@@ -45,7 +43,13 @@ export async function generateBlogPost(
       { role: "user", content: `Write a blog post about: "${request.topic}"` },
     ];
 
-    const result = await runWithGrokModelFallback(process.env.XAI_API_KEY, grokMessages);
+    const result = openRouterKey
+      ? await runWithOpenRouterFallback(openRouterKey, grokMessages, {
+          maxTokens: 2500,
+          temperature: 0.4,
+          timeoutMs: 28000,
+        })
+      : await runWithGrokModelFallback(xaiKey, grokMessages);
     const rawText = result.text;
 
     // Extract text content
@@ -129,17 +133,50 @@ export async function getTopicSuggestions(
   category?: string
 ): Promise<{ success: boolean; data?: TopicSuggestion[]; error?: string }> {
   try {
-    const params = new URLSearchParams({ language });
-    if (category) params.append("category", category);
-
-    const response = await fetch(`${getBaseUrl()}/api/admin/blog-writer/topics?${params}`);
-    const result = await response.json();
-
-    if (!response.ok) {
-      return { success: false, error: result.error || "Failed to get topics" };
+    const supabase = await createClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) {
+      return { success: false, error: "Unauthorized" };
     }
 
-    return { success: true, data: result.data };
+    const systemPrompt = buildTopicSuggestionsPrompt(language, category);
+    const openRouterKey = process.env.OPENROUTER_API_KEY?.trim() || "";
+    const xaiKey = process.env.XAI_API_KEY?.trim() || "";
+    if (!openRouterKey && !xaiKey) {
+      return { success: false, error: "API not configured" };
+    }
+
+    const messages: GrokMessage[] = [{ role: "user", content: systemPrompt }];
+    const result = openRouterKey
+      ? await runWithOpenRouterFallback(openRouterKey, messages, {
+          maxTokens: 900,
+          temperature: 0.5,
+          timeoutMs: 18000,
+        })
+      : await runWithGrokModelFallback(xaiKey, messages);
+    const rawText = result.text;
+    if (!rawText) {
+      return { success: false, error: "No content generated" };
+    }
+
+    let jsonText = rawText.trim();
+    if (jsonText.startsWith("```json")) jsonText = jsonText.slice(7);
+    if (jsonText.startsWith("```")) jsonText = jsonText.slice(3);
+    if (jsonText.endsWith("```")) jsonText = jsonText.slice(0, -3);
+    jsonText = jsonText.trim();
+
+    const parsed = JSON.parse(jsonText);
+    const topics: TopicSuggestion[] = parsed.map((item: TopicSuggestion, index: number) => ({
+      id: `topic-${Date.now()}-${index}`,
+      topic: item.topic,
+      description: item.description,
+      category: item.category,
+      keywords: item.keywords || [],
+    }));
+
+    return { success: true, data: topics };
   } catch (error) {
     return {
       success: false,
@@ -152,16 +189,66 @@ export async function searchImages(
   query: string
 ): Promise<{ success: boolean; data?: ImageSuggestion[]; error?: string }> {
   try {
-    const response = await fetch(
-      `${getBaseUrl()}/api/admin/blog-writer/images?query=${encodeURIComponent(query)}`
-    );
-    const result = await response.json();
-
-    if (!response.ok) {
-      return { success: false, error: result.error || "Failed to search images" };
+    const supabase = await createClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) {
+      return { success: false, error: "Unauthorized" };
     }
 
-    return { success: true, data: result.data };
+    const cleanQuery = query.trim();
+    if (!cleanQuery) {
+      return { success: false, error: "Query parameter is required" };
+    }
+
+    const unsplashKey = process.env.UNSPLASH_ACCESS_KEY?.trim();
+    if (unsplashKey) {
+      const unsplashResponse = await fetch(
+        `https://api.unsplash.com/search/photos?query=${encodeURIComponent(cleanQuery)}&per_page=12&orientation=landscape`,
+        {
+          headers: { Authorization: `Client-ID ${unsplashKey}` },
+        }
+      );
+      if (unsplashResponse.ok) {
+        const unsplashData = await unsplashResponse.json();
+        const images: ImageSuggestion[] = (unsplashData.results || []).map(
+          (photo: {
+            id: string;
+            description: string | null;
+            alt_description: string | null;
+            urls: { small: string; regular: string; full: string };
+            user: { name: string; links: { html: string } };
+          }) => ({
+            id: photo.id,
+            query: cleanQuery,
+            description: photo.alt_description || photo.description || cleanQuery,
+            urls: {
+              small: photo.urls.small,
+              regular: photo.urls.regular,
+              full: photo.urls.full,
+            },
+            author: photo.user.name,
+            authorUrl: photo.user.links.html,
+          })
+        );
+        return { success: true, data: images };
+      }
+    }
+
+    const placeholders: ImageSuggestion[] = Array.from({ length: 6 }, (_, i) => ({
+      id: `placeholder-${i}`,
+      query: cleanQuery,
+      description: `${cleanQuery} - Image ${i + 1}`,
+      urls: {
+        small: `https://picsum.photos/seed/${encodeURIComponent(cleanQuery + i)}/400/300`,
+        regular: `https://picsum.photos/seed/${encodeURIComponent(cleanQuery + i)}/800/600`,
+        full: `https://picsum.photos/seed/${encodeURIComponent(cleanQuery + i)}/1920/1080`,
+      },
+      author: "Picsum Photos",
+      authorUrl: "https://picsum.photos",
+    }));
+    return { success: true, data: placeholders };
   } catch (error) {
     return {
       success: false,
@@ -205,6 +292,7 @@ export async function saveBlogAsDraft(
       return { success: false, error: error.message };
     }
 
+    revalidatePath("/admin/posts");
     return { success: true, id: data.id };
   } catch (error) {
     return {

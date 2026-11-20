@@ -1,0 +1,185 @@
+KẾ HOẠCH ĐIỀU TRA SÂU VÀ SỬA DMF-TALENTS.DE
+Ngày: 30/10/2026 — giờ Việt Nam
+Trạng thái: Đã lập kế hoạch từ kiểm tra production, đối chiếu GitHub, đọc mã và tái hiện local.
+Phạm vi lượt này: điều tra và lập kế hoạch; chưa sửa mã ứng dụng, chưa chạy migration/deploy.
+
+1. MỤC TIÊU VÀ CÁCH PHÁT HÀNH
+
+Mục tiêu là xác minh và sửa các luồng người dùng tới tận dữ liệu, kết quả trong admin và thông báo, đồng thời đưa bản triển khai về một phiên bản có thể truy vết và phục hồi.
+
+Đợt A: sửa chatbot, kiểm chứng tiếp nhận yêu cầu, vận hành thông báo và dữ liệu công khai của website hiện có.
+Đợt B: hoàn thiện portal trên môi trường thử riêng; chỉ phát hành khi đăng ký, hồ sơ, upload, mã AI, quyền truy cập và duyệt hồ sơ qua kiểm thử.
+Sau mỗi đợt: kiểm tra production trên đúng domain, ghi commit/deployment ID, theo dõi có thời hạn. Nếu chưa đủ điều kiện thì ghi rõ phần chưa nghiệm thu.
+
+Không dùng trạng thái “hoàn thành” trong DEV_PLAN.md hay kết quả build làm bằng chứng production. Không triển khai toàn bộ working tree hiện tại một cách tự động: có 71 file tracked đang sửa và nhiều file portal/migration chưa được Git theo dõi tại lúc kiểm tra.
+
+2. CÁC PHÁT HIỆN VÀ ĐỘ CHẮC CHẮN
+
+F01 — P1 — Portal chưa hiện diện trên production
+Bằng chứng: /portal, /portal/login, /portal/register đều HTTP 404 trong kiểm tra trước; ảnh portal-404.jpg. GitHub main hiện là 643ef9041275e6da9734e45ae8762d4fb4719b95, trùng HEAD local; đọc app/portal/page.tsx trên main trả 404. Các file portal và migration tháng 10 đang untracked local.
+Kết luận: xác nhận thiếu tính năng trên production và thiếu portal trên remote main. Khả năng cao chưa đóng gói/phát hành phần local này. Chưa biết commit/deployment ID thực tế phục vụ domain, nên chưa kết luận lỗi pipeline hay domain trỏ sai.
+Điều tra tiếp: domain -> Vercel project/team -> deployment -> Git SHA, nhánh production, root directory, build log và lần promote gần nhất.
+Hướng xử lý: chốt phạm vi release và đưa phần mã đã kiểm chứng vào các commit riêng; migration tương thích phải sẵn sàng trước khi bật portal.
+
+F02 — P1 — Mã học viên báo thành công nhưng không mở AI
+Bằng chứng: đã chạy migration portal hiện tại trong PGlite độc lập với helper dmf_is_admin thực tế. RPC dmf_redeem_student_code trả success=true, nhưng ai_enabled=false, invite_code_used=null; gọi lại tiếp tục tăng used_count. Xem invite-reproduction.json.
+Nguyên nhân local đã xác nhận: BEFORE UPDATE trigger dmf_guard_student_profile giữ lại old.ai_enabled/old.invite_code_used đối với người không phải admin, kể cả update bên trong RPC. RPC chưa kiểm tra kết quả mở quyền và chưa ngăn cùng học viên dùng lại mã.
+File: supabase/migrations/20261014132000_student_portal_and_german_dossier.sql:121, :238.
+Hướng sửa: thiết kế giao dịch redeem có đường cập nhật quyền nội bộ được giới hạn rõ; chỉ tiêu lượt sau khi hồ sơ và quyền cập nhật thành công; lưu redemption theo user/code để retry không trừ lượt; không nới quyền cập nhật ai_enabled trực tiếp cho học viên. Không dùng cờ do client tùy ý đặt để bỏ qua trigger.
+Nghiệm thu: mã đúng mở quyền thật; mã sai/hết hạn/hết lượt không mở; dùng lại và gửi đồng thời không trừ lượt sai; thiếu profile không báo thành công; người thường không tự sửa quyền.
+
+F03 — P1 — Upload chưa đảm bảo lưu được file và giới hạn không nhất quán
+Bằng chứng mã local: next.config.ts:38 giới hạn Server Action 5 MB; app/portal/actions.ts:720 cho tài liệu tới 10 MB và :860 cho video tới 50 MB. uploadStudentDocumentAction bỏ qua uploadErr rồi vẫn có thể upsert metadata và trả success. Migration portal không tạo bucket student-documents hoặc storage policies. Chưa xác minh bucket/policy có được tạo thủ công ở backend hay không.
+Hướng sửa: định nghĩa giới hạn thống nhất; upload trực tiếp vào private Storage theo quyền user/signed upload, server xác minh object trước khi ghi nhận tài liệu. Không báo tải thành công nếu không có object; xử lý metadata lỗi sau upload và object mồ côi; quy định retry/replacement. Tài liệu và video dùng đường dẫn lưu trữ riêng phù hợp quyền chia sẻ; private object truy cập qua kiểm tra quyền hoặc signed URL có hạn, không dựa vào getPublicUrl.
+Nghiệm thu: file nhỏ, file sát ngưỡng, quá ngưỡng, loại file sai, Storage lỗi, DB lỗi sau upload, retry và người dùng khác đều có kết quả đúng; file tải xuống được với đúng quyền; không có metadata “đã tải” cho object vắng mặt.
+
+F04 — P1 trước phát hành video — Header đang chặn camera/micro
+Bằng chứng local: next.config.ts:72 đặt camera=(), microphone=() toàn website; TeleprompterStudio.tsx:176 gọi getUserMedia cho video và audio. CSP hiện cũng cần đối chiếu với video blob/Storage trước khi dùng player.
+Hướng sửa: giới hạn cho phép camera/micro tại route portal cần dùng, theo self; kiểm tra media-src tối thiểu cần thiết. Tôn trọng lựa chọn quyền của trình duyệt và có đường dùng file/video link phù hợp khi thiết bị không hỗ trợ.
+Nghiệm thu: thử trên browser hỗ trợ, quyền cho phép/từ chối, không có thiết bị, dừng camera khi đóng; không yêu cầu truy cập camera ngoài thao tác chủ động của người dùng.
+
+F05 — P2 — Chatbot tạo liên kết email sai
+Bằng chứng production: đoạn HTML thừa và mailto sai trong câu trả lời; ảnh chatbot-email.jpg. Đã tái hiện từ chính hàm formatContent local; xem chat-renderer-reproduction.json.
+Nguyên nhân: regex link/email chạy nối tiếp trên chuỗi HTML đã tạo; khớp lại phần đuôi email trong href và label, sinh thẻ a lồng nhau.
+File: components/bot/SmartChatBot.tsx:554.
+Hướng sửa: parse nội dung thành text/link/bold bằng một bước có cấu trúc và render React; kiểm tra protocol cho link, không chạy linkify lên HTML đã sinh.
+Nghiệm thu: email thuần, mailto markdown, https thuần/markdown, dấu câu, nội dung nhiều dòng và HTML đầu vào đều render đúng; contact@dmf.edu.vn mở đúng mailto; không có a lồng nhau hay HTML thừa.
+
+F06 — P1/P2 theo cam kết AI — Chatbot chạy dự phòng dù health báo ready
+Bằng chứng production: GET /api/chat báo ready với xai=true; POST thử trả provider=fallback_engine. Chưa có runtime/provider log để xác nhận lỗi key, quota, model, mạng hay cấu hình.
+Bằng chứng local: health chỉ kiểm tra tồn tại key; lib/ai/grok.ts gọi nhiều model lần lượt, chưa có timeout rõ cho fetch; UI cũng chưa có timeout cho gửi chat. Không khẳng định model nào đã ngừng hỗ trợ chỉ từ tên trong mã.
+Điều tra tiếp: đọc log theo request ID; kiểm tra tên biến theo production scope; xác minh model mà key được phép dùng qua API/danh mục chính thức; gọi chẩn đoán bằng câu tổng hợp không chứa dữ liệu cá nhân. Không xuất key hoặc payload hồ sơ vào log.
+Hướng sửa: thời hạn tổng cho request, phân loại lỗi và retry có giới hạn; cấu hình model được kiểm chứng; response/log cho biết provider/model/mode và độ trễ; health phân biệt configured, operational và degraded, không gọi AI tốn phí ở mỗi lần probe công khai.
+Nghiệm thu: câu hỏi DE/EN/VN trả lời qua provider thật khi hoạt động; lỗi 401/403/429/timeout đi đúng nhánh và phản hồi trong giới hạn; fallback được nhận diện; không hiển thị bí mật hoặc stack trace ra khách.
+
+F07 — P1 về tính đúng dữ liệu — Hồ sơ mặc định và lỗi database có thể bị che
+Bằng chứng local: buildDefaultProfile tự điền lịch học, trình độ B1, chuyên môn và kỹ năng; getOrCreateStudentPortalBundle bỏ qua một số query errors hoặc trả profile mẫu/documents=[]/letters=[] khi lỗi. Admin overview cũng có thể trả danh sách trống khi lỗi. portalRegister chưa xử lý kết quả upsert/redeem đầy đủ.
+File: app/portal/actions.ts:29, :208, :244; app/admin/candidates/portal-actions.ts:19.
+Hướng sửa: hồ sơ mới bắt đầu bằng trường chưa khai báo; nội dung minh họa chỉ là placeholder không được tự lưu như dữ kiện cá nhân. Phân biệt không có dữ liệu, chưa có schema, sai quyền và dịch vụ lỗi; chỉ báo thành công sau khi persist; tải lại được dữ liệu đã lưu. Kiểm tra đăng ký cần xác thực email, URL callback/template và hết phiên.
+Nghiệm thu: tạo user mới không sinh bằng cấp/kỹ năng chưa khai; database lỗi hiện thông báo retry phù hợp; không tạo profile giả có ID không tồn tại; đăng nhập lại vẫn thấy dữ liệu đã lưu.
+
+F08 — P1 về độ trung thực tính năng — OCR chưa đọc nội dung tài liệu
+Bằng chứng local: inspectStudentDocument chỉ nhận tên file, kích thước, MIME và profile; trả documentMatchesType=true, qualityScore và thông tin “trích xuất” từ chính profile. Không nhận bytes/ảnh/text OCR. Hàm chấm phỏng vấn có fallback dựa vào số từ; chưa phải đánh giá âm thanh/phát âm.
+File: lib/portal/ai-service.ts:235, :279, :406.
+Hướng xử lý: ở bản portal đầu, hiển thị chính xác kiểm tra định dạng và trạng thái chờ người duyệt; không xác nhận nội dung “khớp” hoặc chất lượng scan khi chưa đọc. Nếu đưa OCR thật vào phạm vi, truyền nội dung tài liệu theo quyền và sự đồng ý phù hợp, validate output, lưu nguồn xử lý/độ tin cậy và cho người dùng sửa. AI tạo văn bản cũng phải phân biệt template với generation thực tế.
+Nghiệm thu: tài liệu sai loại/sai tên không được mặc định xác nhận đúng; không bịa dữ kiện; lỗi provider hoặc JSON không hợp lệ không báo AI thành công; đánh giá giọng nói chỉ được công bố khi có xử lý âm thanh và kiểm chứng tương ứng.
+
+F09 — P1 về tính đúng hồ sơ — Đang suy diễn đồng ý/ủy quyền từ trạng thái visa
+Bằng chứng local: app/admin/requests/dossier-actions.ts:111-114 gán dsgvo_consent_accepted và vollmacht_accepted từ Boolean(c.visa_status), dùng updated_at làm thời điểm ký dù signature_data_url=null.
+Hướng sửa: thiếu chứng cứ đồng ý/ủy quyền thì hiển thị chưa xác nhận; không suy từ visa_status. Lưu đúng hành vi, phiên bản biểu mẫu và thời điểm đồng ý. Rà dữ liệu và tài liệu được xuất từ fallback trước khi dùng thật.
+Nghiệm thu: candidate có visa không tự xuất hiện là đã ký; template và bản export phản ánh đúng hồ sơ gốc; không tạo ngày ký thay thế từ thời điểm cập nhật chung.
+
+F10 — Cần điều tra — Kho ứng viên trống
+Bằng chứng production: không có hồ sơ công khai. Chưa có quyền truy vấn production để phân biệt dữ liệu chưa publish/hết hạn, RLS, lỗi query hoặc bản ghi bị schema parser loại.
+Điều tra tiếp: chỉ lấy số lượng/metadata cần thiết: tổng, draft/published, còn hạn, có consent/review, featured; so kết quả admin, truy vấn role anon và toPublicCandidates. Không bỏ publication/expiry/RLS để làm danh sách có dữ liệu.
+Hướng sửa phụ thuộc kết quả: sửa query/schema nếu dữ liệu hợp lệ bị loại; hiện lỗi nếu backend lỗi; nếu đúng là chưa có dữ liệu, giữ empty state và thực hiện quy trình duyệt/xuất bản hồ sơ được phép.
+Nghiệm thu: hồ sơ draft/hết hạn/thu hồi không hiện; hồ sơ đủ điều kiện hiện ở đúng vị trí; không lộ tên/email/phone riêng; featured homepage và full pool được phân biệt đúng.
+
+F11 — Cần điều tra — Thông báo cần chứng minh khả năng phục hồi
+Bằng chứng mã: intake lưu receipt trước và gọi dispatch sau response; có hàng đợi, trạng thái, claim token và retry trong admin. Trong repo đã rà chưa thấy scheduler tự quét job lỗi; lịch chạy bên ngoài chưa xác minh.
+Điều tra tiếp: migration/RPC thực tế, backlog pending/failed/skipped/processing, lease timeout, attempts; cấu hình SMTP/Telegram/recipient; scheduler ngoài repo nếu có. Skipped do thiếu cấu hình không được hiểu là delivered.
+Hướng sửa: nếu chưa có cơ chế thì bổ sung worker/lịch xử lý retry có giới hạn, backoff và cảnh báo backlog; kết quả retry phải phản ánh trạng thái gửi thật. Chấp nhận email có thể giao lặp trong một số lỗi mạng, thiết kế chống lặp tối đa và không hứa exactly-once cho nhà cung cấp bên ngoài.
+Nghiệm thu: request lưu trước khi gửi; provider lỗi không làm mất lead; job treo phục hồi được; retry không tạo thêm yêu cầu; ghi rõ SMTP accepted khác với đã tới hộp thư thực tế.
+
+F12 — Khoảng trống kiểm thử
+110 tests + build/smoke trước đó đã PASS, nhưng tests/student-portal.test.ts chủ yếu kiểm tra helper/schema; tests/intake-database.test.ts chưa nạp migration portal; smoke hiện chưa đi đủ portal actions, Storage, invite redemption hoặc camera. Vì vậy các lỗi F02–F04 có thể tồn tại cùng bộ kiểm thử xanh.
+Hướng sửa: bổ sung đúng các test hành vi/lỗi nêu dưới; không chỉ tăng số lượng hoặc assert lại implementation.
+
+3. TRÌNH TỰ CÔNG VIỆC VÀ ĐẦU RA
+
+GIAI ĐOẠN 1 — Chốt phiên bản và hoàn tất chẩn đoán production
+Ước lượng: 0,5–1 ngày công sau khi có quyền đọc đúng hệ thống.
+- Lập bảng domain/project/team/deployment/Git SHA; chốt nhánh production và lịch sử build/promote.
+- Ghi nhận WIP local, tách thay đổi giao diện không liên quan khỏi gói sửa. Dùng branch codex/ phù hợp và checkout/worktree riêng khi triển khai kế hoạch; giữ nguyên WIP gốc.
+- Lập bảng tên biến môi trường cần có theo chức năng, trạng thái có/thiếu và môi trường; không sao chép giá trị secret vào báo cáo.
+- Đối chiếu migration đã áp dụng, schema tables/RPC, Storage bucket/policy và Auth callback/template.
+- Đọc log AI/intake/notifications; đếm trạng thái ứng viên và job, không tải thừa hồ sơ cá nhân.
+Đầu ra: ma trận thực tế vs kỳ vọng, nguyên nhân đã có bằng chứng, danh sách còn thiếu quyền và release base cố định.
+Điều kiện qua: xác định được bản đang chạy và môi trường thử riêng; mọi giả thuyết chưa kết luận được phải còn đánh dấu.
+
+GIAI ĐOẠN 2 — Sửa và kiểm chứng website hiện tại (Đợt A)
+Ước lượng: 1–2 ngày công, có thể thay đổi theo lỗi provider/backend thực tế.
+- F05 renderer, F06 provider timeout/health/diagnostics.
+- Điều tra F10 và sửa đúng nguyên nhân, giữ quy tắc xuất bản.
+- Đi hết form liên hệ, form tuyển dụng, hỏi hồ sơ, lead chatbot -> database -> inbox/detail admin -> thông báo.
+- Nếu F11 có khoảng trống vận hành thì thêm cơ chế phục hồi phù hợp và kiểm tra backlog.
+Đầu ra: thay đổi nhỏ có thể review, báo cáo kiểm thử và kế hoạch phát hành/rollback Đợt A.
+
+GIAI ĐOẠN 3 — Hoàn thiện portal trên staging riêng (Đợt B)
+Ước lượng: 2–4 ngày công cho portal cốt lõi; OCR/đánh giá âm thanh thực sự là hạng mục bổ sung nếu đưa vào phạm vi.
+- Sửa F02; test SQL với role học viên/admin, retry/concurrency và migration upgrade.
+- Sửa F03/F04: Storage, upload/download, transaction boundaries, kích thước, camera và media.
+- Sửa F07/F09: persistence, dữ liệu mặc định, lỗi rõ ràng, nguồn chứng cứ đồng ý.
+- Xử lý F08 bằng trạng thái tính năng trung thực; chỉ bật AI được chứng minh hoạt động.
+- Kiểm tra admin review/sync: tránh tạo candidate trùng khi thao tác lặp/đồng thời; có xử lý nếu candidate đã cập nhật nhưng update profile thất bại. Duyệt nội bộ vẫn giữ candidate draft tới khi xuất bản riêng.
+- Kiểm tra lấy dữ liệu học viên chỉ đúng chủ sở hữu, thu hồi quyền, avatar/video/tài liệu, phiên hết hạn và lỗi mạng.
+Đầu ra: portal cốt lõi hoàn chỉnh trên test backend, bộ test regression, migration bổ sung và checklist phát hành có thứ tự.
+
+GIAI ĐOẠN 4 — Nghiệm thu và phát hành từng đợt
+Ước lượng: 0,5–1 ngày công cho mỗi đợt, tùy số lỗi tìm thấy.
+- Chạy lint, type-check, unit/integration phù hợp và production build/smoke trên backend thử.
+- Nghiệm thu trình duyệt ít nhất desktop + mobile, DE/EN/VN trên luồng chính; Chrome và Safari cho upload/media khi có môi trường hỗ trợ.
+- Xem diff/commit/artifact, migration, cấu hình và recipient thử đã chuẩn bị xong trước bước phát hành.
+- Migration theo hướng bổ sung/tương thích trước, rồi deploy code và bật tính năng đã nghiệm thu; kiểm tra trên đúng domain sau deploy, không chỉ preview URL.
+Đầu ra: biên bản pass/fail theo từng luồng, commit SHA, deployment ID, migration version và các hạn chế còn tồn tại.
+
+GIAI ĐOẠN 5 — Theo dõi sau phát hành
+Thời gian quan sát đề xuất: 48–72 giờ; không phải cam kết chứng minh ổn định dài hạn.
+- Theo dõi availability trang chính/API, lỗi 5xx, tỷ lệ request lưu thành công, AI fallback, độ trễ và tuổi job chưa xử lý.
+- Đo baseline trước khi chọn ngưỡng p95/SLO chính thức; không tự kết luận uptime 99,9% từ một phiên kiểm tra.
+- Cảnh báo khi có lỗi mới, backlog tăng, hoàn thành hoặc cần người xử lý; không gửi cập nhật lặp khi trạng thái không đổi.
+- Chỉ cấu hình monitor/automation khi bước triển khai đó được thực hiện trong phạm vi công việc tiếp theo; lượt lập kế hoạch này chưa tạo lịch.
+
+4. MA TRẬN NGHIỆM THU BẮT BUỘC
+
+T01 Release: domain đúng deployment/SHA; toàn bộ route dự kiến tồn tại, ROI redirect đúng hợp đồng; có release identity truy vết.
+T02 Intake: contact/hiring/profile/chat lead lưu đúng loại, source/campaign/candidate; consent và validation; thiếu DB không báo thành công; timeout/retry cùng idempotency key chỉ tạo một request.
+T03 Admin: đăng nhập đúng vai trò, inbox/detail/filter, phân công/status và xung đột cập nhật; hết phiên/thu hồi quyền không còn thao tác được.
+T04 Delivery: email nội bộ, auto-reply và Telegram chỉ tới người nhận thử đã thống nhất; verify receipt/trạng thái; retry/backlog/lease hoạt động.
+T05 Candidate: draft/published/expired/withdrawn, featured vs pool, consent và public-field allowlist; backend lỗi khác empty thật.
+T06 Chat: DE/EN/VN, mailto/https, provider thật/fallback, quota/timeout; history có ownership, không thể ghi đè phiên khác; lead chỉ báo tiếp nhận khi đã persist.
+T07 Portal auth: đăng ký -> xác thực email -> login -> tạo profile một lần -> logout/login; invalid/expired session và thông báo lỗi.
+T08 Portal persistence: lưu CV -> reload còn dữ liệu; không tự sinh trình độ/bằng cấp/đồng ý; DB lỗi, profile thiếu, thao tác đồng thời.
+T09 Invite/AI: redeem đúng/sai/hết hạn/hết lượt; lặp/đồng thời; quyền không tự sửa được; provenance của AI/template; schema output sai và provider lỗi.
+T10 Files/media: upload/delete/replace/download, private access, file sát/vượt giới hạn, network/Storage/DB failures, object mồ côi; camera/micro/video playback và từ chối quyền.
+T11 Review/export: student submit -> admin xem file -> yêu cầu sửa/duyệt -> sync candidate draft -> publish riêng; không trùng record, không xuất thông tin chưa chứng minh/giả ngày ký; bản in/PDF đúng dữ liệu và layout.
+T12 CMS/public UI: tạo draft/sửa/publish/unpublish blog trong staging, sitemap/slug/redirect/404, ảnh và asset, menu mobile, cookie settings, công cụ ROI/timeline và link liên hệ; không thay đổi thiết kế ngoài lỗi cản trở sử dụng.
+
+Tiêu chí thông qua: không còn lỗi P1 thuộc đợt phát hành; mỗi luồng có bằng chứng UI/API/DB phù hợp; failure case không báo thành công giả; quyền dữ liệu đúng; biết cách phục hồi. Các chức năng chưa triển khai được ghi trạng thái rõ, không nghiệm thu bằng dữ liệu mẫu.
+
+5. QUYỀN VÀ DỮ LIỆU THỬ CẦN CÓ
+
+- Quyền đọc đúng Vercel team/project đang phục vụ dmf-talents.de để xem deployment, runtime logs và tên/trạng thái biến môi trường. Kết nối hiện tại chỉ liệt kê dự án dmf-german-flashcards khi tìm dmf, chưa xác định được dự án website.
+- Quyền đọc project Supabase iihprcuhmilmymlbktpy để đối chiếu schema/migration/log/Storage/Auth. Lần trước connector từ chối permission.
+- Supabase test project riêng, user học viên A/B + admin thử; dữ liệu tổng hợp, tài liệu/video giả không chứa hồ sơ người thật. Preview hiện yêu cầu INTAKE_TEST_BACKEND=true và backend riêng.
+- Người nhận email/Telegram thử được chỉ định trước khi chạy kiểm thử gửi thông báo. Yêu cầu kiểm tra/lập kế hoạch hiện tại chưa chỉ định người nhận và chưa thực hiện gửi.
+- Không yêu cầu cung cấp mật khẩu/key trong chat. Ưu tiên quyền connector hoặc phiên đăng nhập tại đúng hệ thống; chỉ truy cập dữ liệu tối thiểu cần cho chẩn đoán.
+
+Trong lúc thiếu các quyền trên vẫn làm được repro/test và sửa mã trên môi trường cô lập; không thể kết luận nguyên nhân production AI, migration thực tế hay chất lượng delivery chỉ từ local.
+
+6. KHÔI PHỤC VÀ KIỂM SOÁT PHẠM VI
+
+- Lưu deployment tốt gần nhất và release manifest trước thay đổi. Sửa public và portal thành các release độc lập.
+- Nếu portal lỗi: tắt điểm vào/tính năng mới theo cơ chế đã chuẩn bị và đưa traffic về code ổn định; giữ dữ liệu đã tiếp nhận. Không rollback bằng cách xóa bảng hoặc dữ liệu mới.
+- Migration cần thử cả fresh install và upgrade; forward fix khi đã có dữ liệu, code cũ phải tương thích với thay đổi bổ sung. Xác minh backup/restore thực tế trước migration production.
+- Không mở công khai bucket giấy tờ để chữa lỗi download; không bỏ trigger/RLS/pub expiry để chữa lỗi tính năng.
+- Không gom thay đổi giao diện và nội dung đang dở vào gói hotfix. Không commit hoặc push toàn bộ WIP chỉ để portal xuất hiện.
+
+7. BẰNG CHỨNG VÀ TÀI LIỆU ĐỐI CHIẾU
+
+Bằng chứng cùng thư mục:
+- bao-cao.txt, evidence.json: kiểm tra production trước đó và giới hạn kiểm tra.
+- invite-reproduction.json: lỗi redeem đã tái hiện với database local.
+- chat-renderer-reproduction.json: HTML sai tạo từ formatter local.
+- portal-404.jpg, chatbot-email.jpg, form-validation.jpg, candidates-empty.jpg, roi-working.jpg.
+
+GitHub main đã đối chiếu:
+https://github.com/huynhngocphuc92-cmyk/dmf-germany/commit/643ef9041275e6da9734e45ae8762d4fb4719b95
+
+Tài liệu chính thức đã tra để đối chiếu hướng sửa; chọn cấu hình/model cụ thể ở bước triển khai sau khi xác minh môi trường thực tế:
+- Next.js Server Actions/bodySizeLimit: https://nextjs.org/docs/app/api-reference/config/next-config-js/serverActions
+- Supabase private buckets/quyền truy cập: https://supabase.com/docs/guides/storage/buckets/fundamentals
+- Supabase signed download: https://supabase.com/docs/guides/storage/serving/downloads
+- xAI model theo key: https://docs.x.ai/developers/rest-api-reference/inference/models
+
+ƯỚC LƯỢNG TỔNG: khoảng 5–8 ngày công cho điều tra còn lại, Đợt A và portal cốt lõi, cộng 48–72 giờ quan sát sau release. Đây là ước lượng lập kế hoạch, cần cập nhật sau Giai đoạn 1; chưa bao gồm xây mới OCR/đánh giá âm thanh đầy đủ hoặc thời gian chờ quyền truy cập/provider.

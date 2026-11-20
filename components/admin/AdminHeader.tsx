@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useFormStatus } from "react-dom";
 import { Bell, LogOut, Loader2, UserIcon, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -89,9 +90,11 @@ export function AdminHeader({ user, onMenuClick }: AdminHeaderProps) {
           )}
 
           {/* Notifications */}
-          <Button variant="ghost" size="icon" className="relative">
-            <Bell className="w-5 h-5 text-slate-600" />
-            <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full" />
+          <Button variant="ghost" size="icon" className="relative" asChild>
+            <Link href="/admin/notifications" aria-label="Notifications">
+              <Bell className="w-5 h-5 text-slate-600" />
+              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full" />
+            </Link>
           </Button>
 
           {/* Logout */}

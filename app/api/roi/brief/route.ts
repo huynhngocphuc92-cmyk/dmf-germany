@@ -101,7 +101,12 @@ export async function POST(request: NextRequest) {
     const apiKey = process.env.OPENROUTER_API_KEY?.trim();
 
     if (!apiKey) {
-      return NextResponse.json({ data: fallback, mode: "guided" });
+      return NextResponse.json({
+        success: true,
+        ...fallback,
+        data: fallback,
+        mode: "guided",
+      });
     }
 
     const lang = parsed.data.lang || "de";
@@ -138,25 +143,34 @@ Antworte AUSSCHLIESSLICH als valides JSON-Objekt:
           : cleaned;
       const aiObj = JSON.parse(jsonStr);
 
+      const briefData = {
+        headline:
+          typeof aiObj?.headline === "string" && aiObj.headline.trim()
+            ? aiObj.headline.trim()
+            : fallback.headline,
+        bullets:
+          Array.isArray(aiObj?.bullets) && aiObj.bullets.length >= 2
+            ? aiObj.bullets.map((b: unknown) => String(b))
+            : fallback.bullets,
+        recommendation:
+          typeof aiObj?.recommendation === "string" && aiObj.recommendation.trim()
+            ? aiObj.recommendation.trim()
+            : fallback.recommendation,
+      };
+
       return NextResponse.json({
-        data: {
-          headline:
-            typeof aiObj?.headline === "string" && aiObj.headline.trim()
-              ? aiObj.headline.trim()
-              : fallback.headline,
-          bullets:
-            Array.isArray(aiObj?.bullets) && aiObj.bullets.length >= 2
-              ? aiObj.bullets.map((b: unknown) => String(b))
-              : fallback.bullets,
-          recommendation:
-            typeof aiObj?.recommendation === "string" && aiObj.recommendation.trim()
-              ? aiObj.recommendation.trim()
-              : fallback.recommendation,
-        },
+        success: true,
+        ...briefData,
+        data: briefData,
         mode: "ai",
       });
     } catch {
-      return NextResponse.json({ data: fallback, mode: "guided" });
+      return NextResponse.json({
+        success: true,
+        ...fallback,
+        data: fallback,
+        mode: "guided",
+      });
     }
   } catch {
     return NextResponse.json({ error: "Interner Serverfehler." }, { status: 500 });

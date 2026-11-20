@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <rect width="720" height="540" rx="16" fill="#F8FAFC"/>
+  <rect x="20" y="20" width="680" height="500" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="20" y="20" width="680" height="72" rx="12" fill="#003366"/>
+  <text x="44" y="50" fill="#FFFFFF" font-size="16" font-weight="700">Prüfungsfahrplan Jahr 2–3: GAP Teil 1/2 (§ 44 BBiG) &amp; Pflegeexamen</text>
+  <text x="44" y="74" fill="#CBD5E1" font-size="11.5">Betriebliche Förderung, Freistellungspflicht (§ 15 BBiG) und Übernahme in § 18a AufenthG</text>
+
+  <!-- 4 Timeline Phases -->
+  <g transform="translate(44, 110)">
+    <rect x="0" y="0" width="148" height="206" rx="10" fill="#F8FAFC" stroke="#003366" stroke-width="2"/>
+    <rect x="0" y="0" width="148" height="36" rx="10" fill="#003366"/>
+    <text x="74" y="22" text-anchor="middle" fill="#FFFFFF" font-size="11.5" font-weight="700">Monat 16–18</text>
+    <text x="12" y="56" fill="#003366" font-size="11.5" font-weight="700">GAP Teil 1 / Zwischen</text>
+    <text x="12" y="75" fill="#475569" font-size="10">• §§ 37, 44 BBiG / HwO</text>
+    <text x="12" y="92" fill="#475569" font-size="10">• Zählt 25–40 % zur</text>
+    <text x="12" y="106" fill="#475569" font-size="10">  Gesamtnote (GAP 1)</text>
+    <text x="12" y="128" fill="#003366" font-size="10" font-weight="700">Maßnahmen:</text>
+    <text x="12" y="145" fill="#475569" font-size="10">• Probe-Aufträge</text>
+    <text x="12" y="161" fill="#475569" font-size="10">• Wörterbuch-Antrag</text>
+    <text x="12" y="177" fill="#475569" font-size="10">• Fachbegriffe sichern</text>
+
+    <text x="155" y="104" text-anchor="middle" fill="#003366" font-size="15" font-weight="700">→</text>
+
+    <rect x="162" y="0" width="148" height="206" rx="10" fill="#FFF7ED" stroke="#FF6600" stroke-width="2"/>
+    <rect x="162" y="0" width="148" height="36" rx="10" fill="#FF6600"/>
+    <text x="236" y="22" text-anchor="middle" fill="#FFFFFF" font-size="11.5" font-weight="700">Monat 24–30</text>
+    <text x="174" y="56" fill="#9A3412" font-size="11.5" font-weight="700">AsA flex &amp; DeuFöV</text>
+    <text x="174" y="75" fill="#475569" font-size="10">• AsA flex (§ 75 SGB III)</text>
+    <text x="174" y="92" fill="#475569" font-size="10">  kostenfrei für Betrieb</text>
+    <text x="174" y="109" fill="#475569" font-size="10">• DeuFöV (§ 45a AufenthG)</text>
+    <text x="174" y="130" fill="#9A3412" font-size="10" font-weight="700">Praxistraining:</text>
+    <text x="174" y="147" fill="#475569" font-size="10">• Mock-Fachgespräch</text>
+    <text x="174" y="163" fill="#475569" font-size="10">• Pflegeplanung &amp;</text>
+    <text x="174" y="177" fill="#475569" font-size="10">  Berichtsheft-Review</text>
+
+    <text x="317" y="104" text-anchor="middle" fill="#003366" font-size="15" font-weight="700">→</text>
+
+    <rect x="324" y="0" width="148" height="206" rx="10" fill="#F8FAFC" stroke="#003366" stroke-width="2"/>
+    <rect x="324" y="0" width="148" height="36" rx="10" fill="#003366"/>
+    <text x="398" y="22" text-anchor="middle" fill="#FFFFFF" font-size="11.5" font-weight="700">Monat 34–36</text>
+    <text x="336" y="56" fill="#003366" font-size="11.5" font-weight="700">GAP 2 &amp; PflAPrV</text>
+    <text x="336" y="75" fill="#475569" font-size="10">• Pflicht-Freistellung</text>
+    <text x="336" y="90" fill="#475569" font-size="10">  nach § 15 BBiG:</text>
+    <text x="336" y="106" fill="#475569" font-size="10">  Prüfungstage + Arbeitstag</text>
+    <text x="336" y="121" fill="#475569" font-size="10">  vor schriftl. Prüfung</text>
+    <text x="336" y="143" fill="#003366" font-size="10" font-weight="700">Pflege (§§ 9–17):</text>
+    <text x="336" y="160" fill="#475569" font-size="10">• Schriftlich, mündlich,</text>
+    <text x="336" y="175" fill="#475569" font-size="10">  praktisch am Patienten</text>
+
+    <text x="479" y="104" text-anchor="middle" fill="#003366" font-size="15" font-weight="700">→</text>
+
+    <rect x="486" y="0" width="146" height="206" rx="10" fill="#F1F5F9" stroke="#475569" stroke-width="2"/>
+    <rect x="486" y="0" width="146" height="36" rx="10" fill="#475569"/>
+    <text x="559" y="22" text-anchor="middle" fill="#FFFFFF" font-size="11.5" font-weight="700">Abschluss / Tag X</text>
+    <text x="498" y="56" fill="#003366" font-size="11.5" font-weight="700">Statuswechsel</text>
+    <text x="498" y="75" fill="#475569" font-size="10">• Bestanden (§ 21 II):</text>
+    <text x="498" y="90" fill="#003366" font-size="10" font-weight="700">  Übernahme § 18a</text>
+    <text x="498" y="112" fill="#475569" font-size="10">• Nicht bestanden:</text>
+    <text x="498" y="127" fill="#9A3412" font-size="10" font-weight="700">  Verlängerung nach</text>
+    <text x="498" y="142" fill="#9A3412" font-size="10" font-weight="700">  § 21 Abs. 3 BBiG</text>
+    <text x="498" y="163" fill="#475569" font-size="10">• Ggf. Suchtitel nach</text>
+    <text x="498" y="177" fill="#475569" font-size="10">  § 20 Abs. 1 Nr. 3</text>
+  </g>
+
+  <!-- Bottom Support Matrix -->
+  <g transform="translate(44, 332)">
+    <rect width="632" height="124" rx="10" fill="#F8FAFC" stroke="#003366" stroke-width="1.5"/>
+    <text x="16" y="24" fill="#003366" font-size="12" font-weight="700">So sichern Ausbildungsbetriebe die Bestehensquote bei internationalen Auszubildenden:</text>
+    <text x="16" y="46" fill="#475569" font-size="11">1. Rechtzeitige Antragstellung auf zweisprachiges Wörterbuch oder Zeitzuschlag bei IHK / HWK prüfen</text>
+    <text x="16" y="66" fill="#475569" font-size="11">2. Gezielte Simulationen des betrieblichen Auftrags und Fachgesprächs (GAP Teil 2) mit dem Ausbilder</text>
+    <text x="16" y="86" fill="#475569" font-size="11">3. Nahtlose Abstimmung mit der Ausländerbehörde (§ 81 Abs. 4 AufenthG Fiktionswirkung) vor Vertragsende</text>
+    <text x="16" y="106" fill="#9A3412" font-size="11" font-weight="700">4. Praxisanleitung (§ 4 PflAPrV) und AsA flex (§ 75 SGB III) konsequent ab dem 2. Lehrjahr verzahnen</text>
+  </g>
+
+  <rect x="44" y="472" width="632" height="36" rx="8" fill="#003366"/>
+  <text x="360" y="494" text-anchor="middle" fill="#FFFFFF" font-size="10.5" font-weight="600">Retention-Erfolg: Rechtzeitige Prüfungsvorbereitung schützt Ihre 3-jährige Ausbildungsinvestition</text>
+</svg>

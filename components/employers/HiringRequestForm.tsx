@@ -389,7 +389,8 @@ export function HiringRequestForm({
                         <p className="font-semibold text-slate-900 line-clamp-1">{mc.profession}</p>
                         {mc.german_level && (
                           <span className="text-[11px] text-slate-500">
-                            Deutsch {mc.german_level}
+                            {lang === "vn" ? "Tiếng Đức" : lang === "en" ? "German" : "Deutsch"}{" "}
+                            {mc.german_level}
                           </span>
                         )}
                       </div>
@@ -601,19 +602,43 @@ export function HiringRequestForm({
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-border/80 text-xs text-muted-foreground">
           <div className="flex items-center gap-1.5">
             <CheckCircle2 className="h-4 w-4 text-emerald-600 flex-shrink-0" />
-            <span>100% FEG & § 296a SGB III konform</span>
+            <span>
+              {lang === "de"
+                ? "100% FEG & § 296a SGB III konform"
+                : lang === "en"
+                  ? "100% FEG & § 296a SGB III compliant"
+                  : "Tuân thủ 100% FEG & § 296a SGB III"}
+            </span>
           </div>
           <div className="flex items-center gap-1.5">
             <CheckCircle2 className="h-4 w-4 text-emerald-600 flex-shrink-0" />
-            <span>Erfolgsbasiertes Honorar</span>
+            <span>
+              {lang === "de"
+                ? "Erfolgsbasiertes Honorar"
+                : lang === "en"
+                  ? "Success-based fee model"
+                  : "Phí dịch vụ theo tiến độ"}
+            </span>
           </div>
           <div className="flex items-center gap-1.5">
             <CheckCircle2 className="h-4 w-4 text-emerald-600 flex-shrink-0" />
-            <span>Kostenlose Ersatzgarantie</span>
+            <span>
+              {lang === "de"
+                ? "Kostenlose Ersatzgarantie"
+                : lang === "en"
+                  ? "Free replacement guarantee"
+                  : "Bảo hành nhân sự miễn phí"}
+            </span>
           </div>
           <div className="flex items-center gap-1.5">
             <CheckCircle2 className="h-4 w-4 text-emerald-600 flex-shrink-0" />
-            <span>DSGVO-Datenschutz</span>
+            <span>
+              {lang === "de"
+                ? "DSGVO-Datenschutz"
+                : lang === "en"
+                  ? "GDPR Data Protection"
+                  : "Bảo mật chuẩn DSGVO"}
+            </span>
           </div>
         </div>
       </form>

@@ -185,6 +185,21 @@ POST_COVER_MAPPING = {
     "wohnraum-internationale-fachkraefte-azubis-modelle-arbeitgeber": "/images/blog/dmf-geo-wohnraum-internationale-fachkraefte-azubis-modelle.jpg",
     "erste-30-tage-einreise-behoerden-sozialversicherung-checkliste-hr": "/images/blog/dmf-geo-erste-30-tage-einreise-behoerden-checkliste-hr.jpg",
     "probezeit-patensystem-interkulturelle-fuehrung-vietnamesische-fachkraefte": "/images/blog/dmf-geo-probezeit-patensystem-interkulturelle-fuehrung.jpg",
+    "saisonarbeitskraefte-aus-vietnam-zav-kontingent-gastronomie-landwirtschaft": "/images/blog/dmf-p13-saison-zav-kontingent-gastronomie-landwirtschaft.jpg",
+    "ferienbeschaeftigung-14-abs-2-beschv-unterkunft-mindestlohn-2027": "/images/blog/dmf-p13-ferienbeschaeftigung-unterkunft-compliance-2027.jpg",
+    "stammkraefte-wiederkehrer-saisonarbeit-uebergang-16a-18a-aufenthg": "/images/blog/dmf-p13-stammkraefte-wiederkehrer-uebergang.jpg",
+    "tvoed-pflege-tvaoed-avr-eingruppierung-internationale-pflegekraefte": "/images/blog/dmf-p13-tvoed-avr-pflege-eingruppierung.jpg",
+    "3-jahres-tco-vollkostenrechnung-direktrekrutierung-vs-headhunter": "/images/blog/dmf-p13-3-jahres-tco-direktrekrutierung-headhunter.jpg",
+    "ausbildereignungsverordnung-aevo-ausbildungsbefugnis-28-30-bbig-verkuerzung-8-bbig": "/images/blog/dmf-p13-aevo-ausbildungsbefugnis-bbig-betrieb.jpg",
+    "chemikanten-pharmakanten-chemieproduktion-vietnam-ihk": "/images/blog/dmf-chemikant-pharmakant-produktion-labor.jpg",
+    "hoerakustiker-orthopaedietechnik-gesundheitshandwerk-vietnam-hwk": "/images/blog/dmf-hoerakustik-orthopaedietechnik-werkstatt.jpg",
+    "verfahrensmechaniker-kunststoff-kautschuk-vietnam-ihk": "/images/blog/dmf-kunststoff-spritzguss-verfahrensmechaniker.jpg",
+    "zsef-nuernberg-bayern-81a-lfp-amberg-fast-lane": "/images/blog/dmf-zsef-nuernberg-bayern-behoerden-dossier.jpg",
+    "zfe-nrw-bonn-bezirksregierung-koeln-zag-muenster-81a": "/images/blog/dmf-zfe-nrw-bonn-behoerden-koordination.jpg",
+    "ihk-fosa-nuernberg-vs-handwerkskammern-hwk-bqfg-vergleich": "/images/blog/dmf-ihk-fosa-hwk-anerkennung-dokumente.jpg",
+    "gesellenpruefung-teil-1-teil-2-pflegeexamen-internationale-azubis": "/images/blog/dmf-p13-gesellenpruefung-pflegeexamen-azubis.jpg",
+    "arbeitgeberwechsel-zweckwechsel-zusatzblatt-eat-aufenthg-arbeitgeber": "/images/blog/dmf-p13-arbeitgeberwechsel-zusatzblatt-eat.jpg",
+    "ergotherapeuten-pta-vietnam-anerkennung-ergthg-ptag-reha-apotheken": "/images/blog/dmf-p13-ergotherapeuten-pta-reha-apotheke.jpg",
 }
 
 def sync_posts():

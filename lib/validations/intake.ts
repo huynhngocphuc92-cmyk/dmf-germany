@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { optionalBusinessPhoneSchema } from "./phone";
 import { leadRequestSchema } from "./public-intake";
-import { requestContextSchema, type HiringService } from "./hiring";
+import { candidateReferenceSchema, requestContextSchema, type HiringService } from "./hiring";
 
 const common = {
   name: z.string().trim().min(2).max(200),
@@ -22,7 +22,7 @@ export const contactIntakeSchema = z
   .object({
     ...common,
     type: z.enum(["contact", "profile"]).default("contact"),
-    candidateId: z.uuid().optional(),
+    candidateId: candidateReferenceSchema.optional(),
   })
   .superRefine((data, ctx) => {
     if (data.type === "profile" && !data.candidateId)
@@ -36,7 +36,7 @@ export const profileIntakeSchema = z.object({
     .trim()
     .max(10000)
     .default("Bitte senden Sie mir weitere Informationen zum Kandidatenprofil."),
-  candidateId: z.uuid(),
+  candidateId: candidateReferenceSchema,
 });
 export const chatLeadIntakeSchema = leadRequestSchema.extend({
   email: common.email,

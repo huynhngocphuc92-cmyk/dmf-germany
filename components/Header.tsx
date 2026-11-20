@@ -195,12 +195,15 @@ export const Header = memo(function Header({ logoUrl, hotline, email }: HeaderPr
     [pathname]
   );
 
-  // Admin and Student Portal pages have their own header and navigation controls.
+  // Admin, Auth, and Student Portal pages have their own header and navigation controls.
   if (
     pathname === "/admin" ||
     pathname.startsWith("/admin/") ||
     pathname === "/portal" ||
-    pathname.startsWith("/portal/")
+    pathname.startsWith("/portal/") ||
+    pathname === "/login" ||
+    pathname.startsWith("/login/") ||
+    pathname.startsWith("/auth/")
   ) {
     return null;
   }

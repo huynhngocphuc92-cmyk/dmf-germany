@@ -5,7 +5,9 @@ export type GeoTopicCluster =
   | "industry-deep-dive"
   | "roi-finance"
   | "onboarding-retention"
-  | "country-comparison";
+  | "country-comparison"
+  | "seasonal-compliance"
+  | "regional-authorities";
 
 export interface GeoTopicBlueprint {
   id: string;
@@ -450,6 +452,490 @@ export const GEO_TOPIC_MATRIX: GeoTopicBlueprint[] = [
       "Wie lassen sich sprachliche Unsicherheiten im Teamalltag frühzeitig abbauen?",
     ],
     targetCtaUrl: "/fuer-arbeitgeber/personalbedarf",
+  },
+
+  // Phase 13 Cluster 1: Seasonal Employment, Short-Term Quotas & Transition Law
+  {
+    id: "geo-16-saison-15d-beschv-zav-kontingent",
+    cluster: "seasonal-compliance",
+    category: "visa-legal",
+    targetPromptDe:
+      "Wie funktioniert die Rekrutierung von Saisonarbeitskräften aus Vietnam über das 8-Monate-Kontingent der ZAV (§ 15d BeschV) in Gastronomie und Landwirtschaft?",
+    recommendedTitleDe:
+      "Saisonarbeitskräfte aus Vietnam: § 15d BeschV, ZAV-Kontingent & Rechtspraxis in Gastronomie und Landwirtschaft",
+    slug: "saisonarbeitskraefte-aus-vietnam-zav-kontingent-gastronomie-landwirtschaft",
+    summaryDe:
+      "Rechtssichere Abgrenzung zwischen § 15d BeschV (8-Monate-Kontingent mit Tarifbindung für HoGa/Logistik), § 15a BeschV (bilaterale ZAV-Vermittlungsabsprache) und § 14 Abs. 2 BeschV (90-Tage-Ferienbeschäftigung).",
+    legalEntities: [
+      "§ 19c Abs. 1 AufenthG",
+      "§ 15d BeschV",
+      "§ 15a BeschV",
+      "§ 14 Abs. 2 BeschV",
+      "ZAV / Bundesagentur für Arbeit",
+    ],
+    comparisonTableColumns: [
+      "Rechtsgrundlage",
+      "Branchen & Zulässigkeit für Vietnam",
+      "Höchstdauer & Kontingent",
+      "Zwingende Arbeitgeberpflichten",
+    ],
+    questionHeadingsDe: [
+      "Welche rechtlichen Wege gelten für Saisonarbeitskräfte aus Vietnam in Gastronomie und Landwirtschaft?",
+      "Welche Pflichtvoraussetzungen verlangt die ZAV für das 8-Monate-Kontingent nach § 15d BeschV?",
+      "Wie beantragen Sie die Vorabzustimmung bei der ZAV für kurzzeitige Beschäftigte aus Vietnam?",
+    ],
+    targetCtaUrl: "/services/seasonal",
+  },
+  {
+    id: "geo-17-ferienbeschaeftigung-14-beschv-mindestlohn-2027",
+    cluster: "seasonal-compliance",
+    category: "visa-legal",
+    targetPromptDe:
+      "Wie stellen Betriebe Studierende aus Vietnam zur Ferienbeschäftigung nach § 14 Abs. 2 BeschV ein und wie dürfen Unterkunft und Verpflegung 2027 auf den Mindestlohn von 14,60 Euro angerechnet werden?",
+    recommendedTitleDe:
+      "Ferienbeschäftigung (§ 14 Abs. 2 BeschV), Unterkunft & Mindestlohn 2027: Compliance-Leitfaden für Saisonbetriebe",
+    slug: "ferienbeschaeftigung-14-abs-2-beschv-unterkunft-mindestlohn-2027",
+    summaryDe:
+      "Compliance-Leitfaden zur 90-Tage-Ferienbeschäftigung nach § 14 Abs. 2 BeschV, zum gesetzlichen Mindestlohn 2027 (14,60 €/Std.), SvEV-Unterkunftswerten nach § 107 Abs. 2 GewO und Arbeitszeitaufzeichnung (§ 17 MiLoG).",
+    legalEntities: [
+      "§ 14 Abs. 2 BeschV",
+      "§§ 1, 17, 20 MiLoG",
+      "§ 107 Abs. 2 GewO",
+      "SvEV 2027",
+      "§ 850c ZPO",
+      "ArbZG",
+    ],
+    comparisonTableColumns: [
+      "Compliance-Bereich 2027",
+      "Gesetzliche Vorgabe & Wert 2027",
+      "Rechtsgrundlage",
+      "Typische Prüffrage von ZAV / Zoll (FKS)",
+    ],
+    questionHeadingsDe: [
+      "Welche Voraussetzungen prüft die ZAV für die Ferienbeschäftigung nach § 14 Abs. 2 BeschV?",
+      "Wie dürfen Sie Unterkunft und Verpflegung 2027 nach § 107 Abs. 2 GewO auf den Mindestlohn anrechnen?",
+      "Welche Arbeitszeit-, Zoll- und Sozialversicherungspflichten gelten beim Saisoneinsatz im Betrieb?",
+    ],
+    targetCtaUrl: "/services/seasonal",
+  },
+  {
+    id: "geo-18-stammkraefte-wiederkehrer-15d-16a-18a",
+    cluster: "seasonal-compliance",
+    category: "visa-legal",
+    targetPromptDe:
+      "Können bewährte Saisonarbeitskräfte aus Vietnam jedes Jahr wiederkommen oder direkt in Deutschland in eine Ausbildung (§ 16a AufenthG) oder Fachkräftebeschäftigung (§ 18a AufenthG) wechseln?",
+    recommendedTitleDe:
+      "Stammkräfte-Wiederkehrer & Übergangsrecht: Vom Saisoneinsatz (§ 15d BeschV) in Ausbildung (§ 16a) oder Fachkraft (§ 18a)",
+    slug: "stammkraefte-wiederkehrer-saisonarbeit-uebergang-16a-18a-aufenthg",
+    summaryDe:
+      "Wie Saisonbetriebe einen wiederkehrenden Stammpool rechtssicher aufbauen und wie der Übergang aus § 15d oder § 14 Abs. 2 BeschV nach fristgerechter Ausreise über B1/B2-Qualifizierung und § 81a AufenthG in § 16a oder § 18a gelingt.",
+    legalEntities: [
+      "§ 19c Abs. 1 AufenthG",
+      "§ 15d Abs. 3 BeschV",
+      "§ 14 Abs. 2 BeschV",
+      "§ 16a AufenthG",
+      "§ 18a AufenthG",
+      "§ 81a AufenthG",
+    ],
+    comparisonTableColumns: [
+      "Strategiepfad nach Saisonende",
+      "Rechtsgrundlage",
+      "Ausreise erforderlich?",
+      "Typischer Zeitplan & Sprachziel",
+    ],
+    questionHeadingsDe: [
+      "Wie funktioniert das Wiederkehrer-Modell für eingearbeitete Saisonkräfte im Folgejahr?",
+      "Warum ist ein direkter Zweckwechsel aus § 15d BeschV in § 16a oder § 18a AufenthG im Inland nicht zulässig?",
+      "Wie planen Betriebe den rechtssicheren Übergang vom Saisoneinsatz zur festen Ausbildung oder Fachkraftstelle?",
+    ],
+    targetCtaUrl: "/services/seasonal",
+  },
+
+  // Phase 13 Cluster 2: Tariffs, 3-Year TCO & Employer Training Authority
+  {
+    id: "geo-19-tvoed-avr-pflege-eingruppierung",
+    cluster: "roi-finance",
+    category: "industry-specific",
+    targetPromptDe:
+      "In welche Entgeltgruppe im TVöD-Pflege (P5, P6, P7, P8), TVAöD-Pflege oder AVR Caritas und Diakonie werden Pflegekräfte aus Vietnam während der Anerkennung (§ 16d) und nach der Urkunde (§ 18a) eingruppiert?",
+    recommendedTitleDe:
+      "TVöD-Pflege (P5–P8), TVAöD & AVR Caritas/Diakonie: Tarifliche Eingruppierung internationaler Pflegekräfte und Azubis",
+    slug: "tvoed-pflege-tvaoed-avr-eingruppierung-internationale-pflegekraefte",
+    summaryDe:
+      "Praxisvergleich der Eingruppierung internationaler Pflegekräfte (§ 16d / § 18a) und Pflege-Azubis (§ 16a) in TVöD-P, TVAöD-Pflege, AVR Caritas und AVR.DD inklusive § 72 Abs. 3a/3b SGB XI.",
+    legalEntities: [
+      "TVöD-P (P5–P8)",
+      "TVAöD-Pflege",
+      "AVR Caritas Anlagen 31/32",
+      "AVR.DD",
+      "§ 72 Abs. 3a/3b SGB XI",
+      "§ 16d Abs. 3 AufenthG",
+      "§ 2a BeschV",
+    ],
+    comparisonTableColumns: [
+      "Tarifwerk / Arbeitsrechtsregelung",
+      "Pflege-Azubi (§ 16a)",
+      "Anerkennungsphase (§ 16d / Helfer)",
+      "Nach Berufsurkunde (§ 18a Fachkraft)",
+    ],
+    questionHeadingsDe: [
+      "Welche Entgeltgruppen im TVöD-P und in den AVR gelten vor und nach der Pflege-Anerkennung?",
+      "Wie erkennen Sie vietnamesische Berufserfahrung bei der Stufenzuordnung im TVöD und bei Caritas/Diakonie an?",
+      "Wie greifen Tariftreue (§ 72 Abs. 3a/3b SGB XI) und die Pflege-Ausnahme im § 16d Abs. 3 AufenthG für private Träger ineinander?",
+    ],
+    targetCtaUrl: "/fuer-arbeitgeber/branchen/pflege-gesundheit",
+  },
+  {
+    id: "geo-20-3-jahres-tco-direktrekrutierung",
+    cluster: "roi-finance",
+    category: "company-news",
+    targetPromptDe:
+      "Wie fällt die 3-Jahres-Vollkostenrechnung (Total Cost of Ownership) der Direktrekrutierung aus Vietnam im Vergleich zu deutschen Headhuntern, klassischer Personalvermittlung und Zeitarbeit aus?",
+    recommendedTitleDe:
+      "3-Jahres-Vollkostenrechnung (TCO): Direktrekrutierung aus Vietnam vs. Headhunter, Personalvermittlung & Zeitarbeit",
+    slug: "3-jahres-tco-vollkostenrechnung-direktrekrutierung-vs-headhunter",
+    summaryDe:
+      "36-Monats-Vollkostenvergleich (TCO) für CFOs und Geschäftsführungen zwischen DMF-Direktrekrutierung (§ 18a / § 81a), Inlands-Headhuntern und Zeitarbeit (§ 1 Abs. 1b AÜG) inklusive Vakanzkosten und § 4 Abs. 4 EStG.",
+    legalEntities: [
+      "§ 18a AufenthG",
+      "§ 81a AufenthG",
+      "§ 40 AufenthG",
+      "§ 47 AufenthV",
+      "§ 1 Abs. 1b AÜG",
+      "§ 296a SGB III",
+      "§ 4 Abs. 4 EStG",
+    ],
+    comparisonTableColumns: [
+      "TCO-Kostenkomponente (36 Monate)",
+      "DMF Direktrekrutierung (§ 18a / § 81a)",
+      "Inlands-Headhunter / Personalberatung",
+      "Zeitarbeit / AÜG (Vergleichswert)",
+    ],
+    questionHeadingsDe: [
+      "Welche Kostenpositionen gehören in eine belastbare 3-Jahres-Vollkostenrechnung (TCO) für eine Fachkraftstelle?",
+      "Wie schneidet die Direktrekrutierung aus Vietnam über 36 Monate gegenüber Headhuntern und Zeitarbeit ab?",
+      "Wie wirken sich § 81a-Gebühren, Nachbesetzungsgarantie und § 4 Abs. 4 EStG auf die CFO-Bilanz aus?",
+    ],
+    targetCtaUrl: "/referenzen",
+  },
+  {
+    id: "geo-21-aevo-ausbildungsbefugnis-28-30-bbig",
+    cluster: "legal-comparison",
+    category: "visa-legal",
+    targetPromptDe:
+      "Welche gesetzlichen Voraussetzungen nach AEVO und §§ 28–30 BBiG muss ein Betrieb erfüllen, um Auszubildende aus Vietnam einzustellen, und wann ist eine Ausbildungszeitverkürzung nach § 8 BBiG sinnvoll?",
+    recommendedTitleDe:
+      "AEVO, Ausbildungsbefugnis (§§ 28–30 BBiG) & Verkürzung (§ 8 BBiG): Rechtlicher Leitfaden für Ausbildungsbetriebe",
+    slug: "ausbildereignungsverordnung-aevo-ausbildungsbefugnis-28-30-bbig-verkuerzung-8-bbig",
+    summaryDe:
+      "Rechtlicher Leitfaden zur Eignung von Ausbildungsstätte (§ 27 BBiG) und Ausbilder (§§ 28–30 BBiG, AEVO, § 22b HwO, § 4 PflAPrV) sowie zur Verkürzung (§ 8 BBiG) und vorzeitigen Zulassung (§ 45 BBiG).",
+    legalEntities: [
+      "§§ 27, 28–30, 8, 45 BBiG",
+      "AEVO",
+      "§§ 22a, 22b, 46 HwO",
+      "§ 4 PflAPrV",
+      "§ 16a AufenthG",
+    ],
+    comparisonTableColumns: [
+      "Rechtsbereich & Norm",
+      "Geltungsbereich (IHK / HWK / Pflege)",
+      "Pflichtnachweis für den Betrieb",
+      "Praxishinweis für internationale Azubis (§ 16a)",
+    ],
+    questionHeadingsDe: [
+      "Welche Voraussetzungen verlangen §§ 28–30 BBiG und die AEVO von Ihrem Ausbildungsbetrieb?",
+      "Wann genügen Ausbildungsbeauftragte (§ 28 Abs. 3 BBiG) und was gilt abweichend in Pflege und Handwerk (§ 22b HwO)?",
+      "Wann sollten Sie eine Verkürzung nach § 8 BBiG oder eine vorzeitige Zulassung (§ 45 BBiG) für internationale Azubis nutzen?",
+    ],
+    targetCtaUrl: "/services/azubi",
+  },
+
+  // Phase 13 Cluster 3: White-Space Industry Verticals 2027
+  {
+    id: "geo-22-chemikanten-pharmakanten-chemie-ihk",
+    cluster: "industry-deep-dive",
+    category: "industry-specific",
+    targetPromptDe:
+      "Wie können Chemie- und Pharmaunternehmen Chemikanten, Pharmakanten oder Azubis für die chemische Produktion aus Vietnam über IHK FOSA und § 81a AufenthG einstellen?",
+    recommendedTitleDe:
+      "Chemikanten, Pharmakanten & Produktionsfachkräfte Chemie aus Vietnam: IHK-Anerkennung und Schichtbetrieb",
+    slug: "chemikanten-pharmakanten-chemieproduktion-vietnam-ihk",
+    summaryDe:
+      "Rekrutierung und Anerkennung von Chemikanten, Pharmakanten und Produktionsfachkräften Chemie (KldB 41312) über § 16a, § 18a oder § 16d Abs. 3 AufenthG inklusive IHK FOSA, GefStoffV und GMP-Schichtbetrieb.",
+    legalEntities: [
+      "§ 16a AufenthG",
+      "§ 18a AufenthG",
+      "§ 16d Abs. 3 AufenthG",
+      "§ 18b / § 18g AufenthG",
+      "BQFG / IHK FOSA",
+      "GefStoffV",
+      "KldB 41312",
+    ],
+    comparisonTableColumns: [
+      "Berufsbild / KldB 2010",
+      "Ausbildungsdauer (BBiG) & Einstiegspfad",
+      "Zuständige Stelle",
+      "Betriebliche Schwerpunkte (Schicht / Normen)",
+    ],
+    questionHeadingsDe: [
+      "Welche vietnamesischen Abschlüsse eignen sich für die Anerkennung als Chemikant oder Pharmakant?",
+      "Wann ist für Chemie- und Pharmabetriebe die duale Ausbildung (§ 16a AufenthG) sinnvoller als § 16d?",
+      "Wie bereiten Sie vietnamesische Fachkräfte auf Gefahrstoffrecht (GefStoffV), GMP-Standards und Wechselschicht vor?",
+    ],
+    targetCtaUrl: "/fuer-arbeitgeber/branchen/industrie-metall-technik",
+  },
+  {
+    id: "geo-23-hoerakustiker-orthopaedietechnik-hwk",
+    cluster: "industry-deep-dive",
+    category: "industry-specific",
+    targetPromptDe:
+      "Wie können Hörakustik-Fachgeschäfte und Sanitätshäuser Hörakustiker oder Orthopädietechnik-Mechaniker sowie Auszubildende aus Vietnam nach § 16a und § 16d AufenthG gewinnen?",
+    recommendedTitleDe:
+      "Hörakustiker & Orthopädietechnik-Mechaniker aus Vietnam: HWK-Wege für das Gesundheitshandwerk",
+    slug: "hoerakustiker-orthopaedietechnik-gesundheitshandwerk-vietnam-hwk",
+    summaryDe:
+      "Ausbildung (§ 16a) und HWK-Anerkennung (§ 18a / § 16d Abs. 3) für die meisterpflichtigen Gesundheitshandwerke Hörakustik (afh Lübeck) und Orthopädietechnik (BUFA Dortmund) nach Anlage A HwO.",
+    legalEntities: [
+      "Anlage A HwO",
+      "§ 16a AufenthG",
+      "§ 18a AufenthG",
+      "§ 16d Abs. 3 AufenthG",
+      "BQFG / HWK",
+      "KldB 82532 / 82512",
+    ],
+    comparisonTableColumns: [
+      "Gesundheitshandwerk (Anlage A HwO)",
+      "KldB 2010 & Ausbildungsdauer",
+      "Überbetriebliche Fachschule & Kammer",
+      "Typische Aufgaben & Sprachziel",
+    ],
+    questionHeadingsDe: [
+      "Welche Voraussetzungen gelten im Gesundheitshandwerk für die Ausbildung aus Vietnam nach § 16a AufenthG?",
+      "Wann greift für vorqualifizierte Techniker die HWK-Anerkennung nach § 18a oder § 16d AufenthG?",
+      "Warum benötigen Hörakustiker und Orthopädietechniker ein stabiles B1+- bis B2-Sprachniveau im Betrieb?",
+    ],
+    targetCtaUrl: "/fuer-arbeitgeber/branchen/handwerk-bau",
+  },
+  {
+    id: "geo-24-verfahrensmechaniker-kunststoff-kautschuk-ihk",
+    cluster: "industry-deep-dive",
+    category: "industry-specific",
+    targetPromptDe:
+      "Wie rekrutieren deutsche Kunststoffverarbeiter und Spritzgussbetriebe Verfahrensmechaniker für Kunststoff- und Kautschuktechnik bzw. Kunststofftechnologen aus Vietnam?",
+    recommendedTitleDe:
+      "Verfahrensmechaniker für Kunststoff- und Kautschuktechnik aus Vietnam: Fachkräfte für Spritzguss & Extrusion",
+    slug: "verfahrensmechaniker-kunststoff-kautschuk-vietnam-ihk",
+    summaryDe:
+      "Praxisleitfaden zur Gewinnung von Verfahrensmechanikern bzw. Kunststoff- und Kautschuktechnologen (KldB 22102, Neuordnung 2023) für Spritzguss, Extrusion und Faserverbund über IHK FOSA, § 16a und § 16d Abs. 3.",
+    legalEntities: [
+      "§ 16a AufenthG",
+      "§ 18a AufenthG",
+      "§ 16d Abs. 3 AufenthG",
+      "BQFG / IHK FOSA",
+      "GefStoffV",
+      "KldB 22102",
+    ],
+    comparisonTableColumns: [
+      "IHK-Fachrichtung (KldB 22102)",
+      "Typische Industrieabnehmer",
+      "Geeigneter Zuwanderungspfad",
+      "Praxisfokus & Einarbeitung",
+    ],
+    questionHeadingsDe: [
+      "Was ändert die Neuordnung zum Kunststoff- und Kautschuktechnologen für das Recruiting aus Vietnam?",
+      "Wie verläuft die IHK-FOSA-Anerkennung für erfahrene Spritzguss- und Extrusionstechniker nach dem BQFG?",
+      "Welche Fachrichtungen der Kunststofftechnik eignen sich besonders für den Einstieg nach § 16a oder § 16d AufenthG?",
+    ],
+    targetCtaUrl: "/fuer-arbeitgeber/branchen/industrie-metall-technik",
+  },
+
+  // Phase 13 Cluster 4: Regional § 81a ZFE Authorities & Chamber Practice
+  {
+    id: "geo-25-zsef-nuernberg-lfp-amberg-bayern",
+    cluster: "regional-authorities",
+    category: "visa-legal",
+    targetPromptDe:
+      "Wann muss ein Arbeitgeber in Bayern das beschleunigte Fachkräfteverfahren (§ 81a AufenthG) über die ZSEF Nürnberg und das Landesamt für Pflege (LfP Amberg) beantragen?",
+    recommendedTitleDe:
+      "ZSEF Nürnberg & LfP Amberg im „Fast-Lane“-Verfahren: § 81a-Behördenleitfaden für bayerische Arbeitgeber",
+    slug: "zsef-nuernberg-bayern-81a-lfp-amberg-fast-lane",
+    summaryDe:
+      "Verfahrensleitfaden für bayerische Arbeitgeber zur Abgrenzung zwischen zentraler Pflichtzuständigkeit in der Pflege-Fast-Lane (ZSEF Nürnberg + LfP Amberg) und Wahlrecht bei IHK-, HWK- und § 16a-Anträgen.",
+    legalEntities: [
+      "§ 81a AufenthG",
+      "§ 47 Abs. 1 Nr. 15 AufenthV",
+      "§ 14a BQFG",
+      "ZSEF Nürnberg",
+      "Bayerisches Landesamt für Pflege (LfP Amberg)",
+    ],
+    comparisonTableColumns: [
+      "Verfahrenskonstellation in Bayern",
+      "Zuständige § 81a-Behörde",
+      "Anerkennungsstelle",
+      "Gesetzliche Frist & Gebühr (§ 81a / § 47 AufenthV)",
+    ],
+    questionHeadingsDe: [
+      "Wann besteht in Bayern ein Wahlrecht zwischen ZSEF Nürnberg und örtlicher Ausländerbehörde?",
+      "Wie greifen ZSEF Nürnberg und das Landesamt für Pflege (LfP Amberg) in der „Fast Lane“ ineinander?",
+      "Welche Unterlagen und Fristen gelten beim digitalen § 81a-Antrag in Bayern?",
+    ],
+    targetCtaUrl: "/fuer-arbeitgeber/standorte/bayern",
+  },
+  {
+    id: "geo-26-zfe-nrw-bonn-zag-muenster",
+    cluster: "regional-authorities",
+    category: "visa-legal",
+    targetPromptDe:
+      "Wie beantragen Unternehmen und Kliniken in NRW das beschleunigte Fachkräfteverfahren (§ 81a AufenthG) über die ZFE NRW in Bonn und die ZAG bei der Bezirksregierung Münster?",
+    recommendedTitleDe:
+      "ZFE NRW (Bonn/Bezirksregierung Köln) & ZAG Münster: § 81a-Zuständigkeiten für Arbeitgeber in NRW",
+    slug: "zfe-nrw-bonn-bezirksregierung-koeln-zag-muenster-81a",
+    summaryDe:
+      "Behörden-Playbook für Arbeitgeber in Nordrhein-Westfalen: Exklusivzuständigkeit der ZFE NRW (Bonn/Bezirksregierung Köln) für Auslandsanträge nach § 81a sowie Trennung zwischen ZAG Münster, LPA Düsseldorf und Pflegekammer NRW.",
+    legalEntities: [
+      "§ 81a AufenthG",
+      "ZFE NRW (Bezirksregierung Köln / Bonn)",
+      "ZAG-PuG / ZAG-aH Münster",
+      "Pflegekammer NRW",
+      "IHK Wuppertal-Solingen-Remscheid",
+    ],
+    comparisonTableColumns: [
+      "Behörde / Kammer in NRW",
+      "Zentrale Zuständigkeit im Recruiting",
+      "Verfahrensschritt",
+      "Wichtige Abgrenzung für HR",
+    ],
+    questionHeadingsDe: [
+      "Warum ist in NRW die ZFE Bonn statt der kommunalen Ausländerbehörde für § 81a AufenthG zuständig?",
+      "Wie trennen sich die Aufgaben von ZAG Münster, Landesprüfungsamt Düsseldorf und Pflegekammer NRW?",
+      "Wie reichen NRW-Betriebe das § 81a-Verfahren digital über das Portal der Bezirksregierung Köln ein?",
+    ],
+    targetCtaUrl: "/fuer-arbeitgeber/standorte/nordrhein-westfalen",
+  },
+  {
+    id: "geo-27-ihk-fosa-vs-hwk-bqfg",
+    cluster: "regional-authorities",
+    category: "visa-legal",
+    targetPromptDe:
+      "Wann ist die IHK FOSA in Nürnberg und wann die regionale Handwerkskammer für die Berufsanerkennung nach dem BQFG zuständig, und welche Gebühren und Fristen gelten?",
+    recommendedTitleDe:
+      "IHK FOSA (Nürnberg) vs. Handwerkskammern (HWK): Zuständigkeiten, Gebühren & Fristen nach dem BQFG",
+    slug: "ihk-fosa-nuernberg-vs-handwerkskammern-hwk-bqfg-vergleich",
+    summaryDe:
+      "Klare Abgrenzung zwischen IHK FOSA (Nürnberg), den drei eigenständig prüfenden IHK-Bezirken (Hannover, Braunschweig, Wuppertal-Solingen-Remscheid) und 53 regionalen Handwerkskammern inkl. Gebühren und Fristen (§ 6 / § 14a BQFG).",
+    legalEntities: [
+      "§§ 6 Abs. 3, 14a BQFG",
+      "IHK FOSA (Nürnberg)",
+      "BBiG",
+      "HwO Anlage A/B (53 HWKs)",
+      "§ 81a AufenthG",
+    ],
+    comparisonTableColumns: [
+      "Vergleichskriterium",
+      "IHK FOSA (Zentralstelle Nürnberg)",
+      "Eigenständige IHKs (Ausnahmen)",
+      "Regionale Handwerkskammern (53 HWKs)",
+    ],
+    questionHeadingsDe: [
+      "Wie grenzen sich IHK FOSA und regionale Handwerkskammern bei technisch verwandten Berufen ab?",
+      "Welche Gebühren und gesetzlichen Bearbeitungsfristen gelten bei IHK FOSA und HWK nach dem BQFG?",
+      "Welche drei deutschen IHK-Bezirke prüfen Gleichwertigkeitsanträge eigenständig außerhalb der IHK FOSA?",
+    ],
+    targetCtaUrl: "/fuer-arbeitgeber/standorte",
+  },
+
+  // Phase 13 Cluster 5: Retention, Year-2/3 Exam Prep & Inland Compliance + Allied Health
+  {
+    id: "geo-28-gesellenpruefung-gap-pflegeexamen-azubis",
+    cluster: "onboarding-retention",
+    category: "language-learning",
+    targetPromptDe:
+      "Wie bereiten deutsche Ausbildungsbetriebe und Kliniken vietnamesische Auszubildende erfolgreich auf die Gesellenprüfung Teil 1 & 2 (GAP) oder das Pflegeexamen vor?",
+    recommendedTitleDe:
+      "Gesellenprüfung Teil 1 & Teil 2 (GAP 1 / GAP 2) und Pflegeexamen bestehen: Betriebliche Prüfungsvorbereitung für internationale Azubis",
+    slug: "gesellenpruefung-teil-1-teil-2-pflegeexamen-internationale-azubis",
+    summaryDe:
+      "Betriebliche Prüfungsvorbereitung im zweiten und dritten Lehrjahr: Freistellungspflichten nach § 15 BBiG, AsA flex (§ 75 SGB III), DeuFöV (§ 45a AufenthG), Verlängerung (§ 21 Abs. 3 BBiG) und Übernahme nach § 18a.",
+    legalEntities: [
+      "§§ 15, 21, 37, 44 BBiG",
+      "§§ 31, 36a HwO",
+      "PflBG / PflAPrV",
+      "§ 75 SGB III (AsA flex)",
+      "§ 45a / § 18a AufenthG",
+    ],
+    comparisonTableColumns: [
+      "Prüfungsabschnitt / Meilenstein",
+      "Rechtsgrundlage & Zuständigkeit",
+      "Typische Hürde internationaler Azubis",
+      "Konkrete Fördermaßnahme im Betrieb",
+    ],
+    questionHeadingsDe: [
+      "Welche gesetzlichen Freistellungspflichten gelten für Betriebe nach § 15 BBiG vor der Abschlussprüfung?",
+      "Wie lassen sich Fachtheorie, Fachgespräch und betrieblicher Auftrag in GAP 1, GAP 2 und Pflegeexamen gezielt trainieren?",
+      "Was passiert aufenthaltsrechtlich bei Nichtbestehen, Verlängerung nach § 21 Abs. 3 BBiG oder direkter Übernahme (§ 18a AufenthG)?",
+    ],
+    targetCtaUrl: "/services/azubi",
+  },
+  {
+    id: "geo-29-zusatzblatt-eat-arbeitgeberwechsel",
+    cluster: "onboarding-retention",
+    category: "visa-legal",
+    targetPromptDe:
+      "Worauf müssen deutsche Personalabteilungen achten, wenn sie eine Fachkraft oder einen Auszubildenden aus Vietnam im Inland einstellen (§ 4a AufenthG, Zusatzblatt zum eAT, § 9 BeschV)?",
+    recommendedTitleDe:
+      "Arbeitgeberwechsel, Zweckwechsel & Zusatzblatt zum eAT (§§ 16a, 16d, 18a AufenthG): Was Personalabteilungen bei Neueinstellung im Inland prüfen müssen",
+    slug: "arbeitgeberwechsel-zweckwechsel-zusatzblatt-eat-aufenthg-arbeitgeber",
+    summaryDe:
+      "Compliance-Checkliste für HR bei Einstellungen im Inland: Pflichtprüfung von eAT und Zusatzblatt (§ 4a Abs. 5 AufenthG), Arbeitgeberwechsel nach § 9 BeschV sowie Zweckwechsel aus § 16a oder § 16d in § 18a AufenthG.",
+    legalEntities: [
+      "§§ 4a Abs. 3/5, 16a, 16d, 18a, 81 Abs. 4, 82 Abs. 6 AufenthG",
+      "§ 9 BeschV",
+      "§ 404 SGB III",
+    ],
+    comparisonTableColumns: [
+      "Inlands-Konstellation",
+      "Rechtsgrundlage",
+      "Eintrag im Zusatzblatt zum eAT",
+      "Erforderlicher Schritt für HR vor Arbeitsbeginn",
+    ],
+    questionHeadingsDe: [
+      "Welche Prüfpflichten hat die Personalabteilung nach § 4a Abs. 5 AufenthG beim Zusatzblatt zum eAT?",
+      "Wann ist ein Arbeitgeberwechsel ohne Zustimmung der Ausländerbehörde nach § 9 BeschV möglich?",
+      "Wie verläuft der Zweckwechsel von § 16a oder § 16d in die Fachkräftebeschäftigung nach § 18a AufenthG?",
+    ],
+    targetCtaUrl: "/services/skilled-workers",
+  },
+  {
+    id: "geo-30-ergotherapeuten-pta-anerkennung",
+    cluster: "industry-deep-dive",
+    category: "industry-specific",
+    targetPromptDe:
+      "Wie rekrutieren Reha-Zentren und Apotheken Ergotherapeuten oder Pharmazeutisch-technische Assistenten (PTA) aus Vietnam und wie läuft die Anerkennung nach ErgThG und PTAG?",
+    recommendedTitleDe:
+      "Ergotherapeuten & Pharmazeutisch-technische Assistenten (PTA) aus Vietnam: Anerkennung nach ErgThG und PTAG für Reha-Zentren & Apotheken",
+    slug: "ergotherapeuten-pta-vietnam-anerkennung-ergthg-ptag-reha-apotheken",
+    summaryDe:
+      "Berufsanerkennung und Zuwanderung von Ergotherapeuten (§ 2 Abs. 3 ErgThG / § 16b ErgThAPrV) und PTA (§§ 33–41 PTAG / § 18b PTA-APrV) über Anpassungslehrgang oder Kenntnisprüfung (§ 16d / § 18a / § 81a AufenthG).",
+    legalEntities: [
+      "§§ 1, 2 Abs. 3 ErgThG",
+      "§ 16b ErgThAPrV",
+      "§§ 1, 33–41 PTAG",
+      "§ 18b PTA-APrV",
+      "ApBetrO",
+      "§ 16d / § 18a / § 81a AufenthG",
+    ],
+    comparisonTableColumns: [
+      "Berufsbild & Zielbetrieb",
+      "Rechtsgrundlage & Zuständigkeit",
+      "Sprach- & Fachprüfung",
+      "Einsatz vor & nach voller Erlaubnis",
+    ],
+    questionHeadingsDe: [
+      "Welche Voraussetzungen gelten für die staatliche Erlaubnis nach ErgThG und PTAG bei Abschlüssen aus Vietnam?",
+      "Wann empfiehlt sich für Reha-Zentren und Apotheken der Anpassungslehrgang statt der Kenntnisprüfung?",
+      "Wie planen Personalabteilungen den Einsatz während der Anerkennungsphase unter Aufsicht (§ 16d AufenthG)?",
+    ],
+    targetCtaUrl: "/fuer-arbeitgeber/branchen/pflege-gesundheit",
   },
 ];
 

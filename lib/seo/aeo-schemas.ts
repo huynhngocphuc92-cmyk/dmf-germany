@@ -196,77 +196,95 @@ export const SERVICE_AEO_CONFIGS: Record<"skilled-workers" | "azubi" | "seasonal
     seasonal: {
       path: "/services/seasonal",
       serviceName: "Saisonkräfte & Kurzzeitbeschäftigung aus Vietnam (§ 19c AufenthG)",
-      serviceType: "ZAV-konforme Vermittlung von Saisonpersonal & Erntehelfern",
-      legalBasis: "§ 19c AufenthG i.V.m. § 15a BeschV (Bundesagentur für Arbeit / ZAV)",
+      serviceType: "ZAV-konforme Vermittlung von Kurzzeit- und Saisonpersonal",
+      legalBasis:
+        "§ 19c Abs. 1 AufenthG i. V. m. § 15d BeschV (8-Monate-Kontingent), § 14 Abs. 2 BeschV (Ferienbeschäftigung) vs. § 15a BeschV",
       directAnswerTitle:
-        "Wie funktioniert der rechtssichere Einsatz von Saisonkräften über DMF Talents?",
+        "Wie funktioniert der rechtssichere Einsatz von Kurzzeit- und Saisonkräften aus Vietnam über DMF Talents?",
       directAnswerText:
-        "DMF Talents vermittelt körperlich belastbare und zuverlässige Saisonkräfte sowie Kurzzeitbeschäftigte aus Vietnam für Landwirtschaft, Gastronomie, Hotellerie und Logistik. Die Vermittlung erfolgt 100 % ZAV-konform im Rahmen der gesetzlichen Regelungen (§ 19c AufenthG / BeschV) inklusive Behördenabwicklung, Gruppenanreise und deutsch-vietnamesischer Teamkoordination in 4 bis 8 Wochen Vorlaufzeit.",
+        "Für den kurzzeitigen Personaleinsatz aus Vietnam unterscheidet das deutsche Recht klar: Nach § 19c Abs. 1 AufenthG i. V. m. § 15d BeschV können tarifgebundene Arbeitgeber (§ 3 oder § 5 TVG) aus Gastronomie, Hotellerie und Logistik Arbeitskräfte bis zu 8 Monate innerhalb von 12 Monaten über das ZAV-Kontingent (25.000 Zustimmungen jährlich) beschäftigen. Für Landwirtschaft, Gartenbau und HoGa ermöglicht § 14 Abs. 2 BeschV bis zu 90 Tage Ferienbeschäftigung für immatrikulierte Studierende – während klassische Saisonarbeit nach § 15a BeschV bilaterale ZAV-Vermittlungsabsprachen voraussetzt (derzeit nicht mit Vietnam).",
       keyFacts: [
-        { label: "Rechtsrahmen", value: "§ 19c AufenthG / BeschV (ZAV-konform)" },
-        { label: "Vorlaufzeit", value: "4–8 Wochen bis Einsatzbeginn" },
-        { label: "Einsatzdauer", value: "Saisonal (bis zu 90 Tage / 6–8 Monate)" },
-        { label: "Ausfallquote", value: "< 2 % Fehlzeiten im Saisoneinsatz" },
+        {
+          label: "Kurzzeitkontingent (§ 15d BeschV)",
+          value: "Max. 8 Monate/12 Mon. (HoGa & Logistik, Tarifbindung)",
+        },
+        {
+          label: "Ferienbeschäftigung (§ 14 Abs. 2)",
+          value: "Max. 90 Tage/12 Mon. (Studierende inkl. Agrar)",
+        },
+        {
+          label: "Abgrenzung § 15a BeschV",
+          value: "Bilaterale ZAV-Vermittlungsabsprache erforderlich",
+        },
+        {
+          label: "Arbeitszeit & Mindestlohn",
+          value: "Mind. 30 Std./Wo. (§ 15d) & gesetzl. Mindestlohn",
+        },
       ],
-      tableCaption: "Einsatzbereiche & Rahmenbedingungen für Saisonkräfte",
+      tableCaption:
+        "Rechtssichere Einsatzwege für Kurzzeit- und Saisonkräfte aus Vietnam (BeschV / ZAV)",
       tableHeaders: [
-        "Branche / Einsatzfeld",
-        "Typische Tätigkeiten",
-        "Vorlaufzeit",
-        "Besonderheit bei DMF Talents",
+        "Rechtsgrundlage",
+        "Zulässige Branchen (Vietnam)",
+        "Höchstdauer & Kontingent",
+        "Zwingende Arbeitgeberpflichten",
       ],
       tableRows: [
         {
           cells: [
-            "Landwirtschaft & Gartenbau",
-            "Erntehelfer (Spargel, Erdbeeren, Obst, Weinbau), Gewächshaus, Sortierung",
-            "4–6 Wochen",
-            "Hitzeerfahrenes, körperlich fittes Team + Stammkräfte-Aufbau",
+            "§ 19c Abs. 1 AufenthG i. V. m. § 15d BeschV (Kurzzeitkontingent)",
+            "Gastronomie, Hotellerie, Systemgastronomie & Logistik (keine Landwirtschaft)",
+            "Max. 8 Monate in 12 Monaten (25.000/Jahr bundesweit, max. 10 Mon./Betrieb)",
+            "Tarifbindung (§ 3 / § 5 TVG), mind. 30 Std./Woche, Übernahme Hin-/Rückreisekosten",
           ],
         },
         {
           cells: [
-            "Hotellerie & Gastronomie",
-            "Housekeeping, Küchenhilfe, Spülküche, Bankett- & Saisonservice",
-            "6–8 Wochen",
-            "Hygieneschulung + Grundwortschatz Deutsch/Englisch",
+            "§ 14 Abs. 2 BeschV (Ferienbeschäftigung Studierender)",
+            "Landwirtschaft, Gartenbau, Weinbau, Gastronomie, Hotellerie & Logistik",
+            "Max. 90 Tage in 12 Monaten (offizielle Semesterferien, unter 35 Jahre)",
+            "ZAV-Vermittlungsbestätigung, anabin H+/H+/- Immatrikulation, gesetzl. Mindestlohn",
           ],
         },
         {
           cells: [
-            "Logistik & Lebensmittelverarbeitung",
-            "Kommissionierung, Verpackung, Versandspitzen (Q4 / Saison)",
-            "6–8 Wochen",
-            "2-sprachige Teamleiter (Vorarbeiter) zur schnellen Einarbeitung",
+            "§ 15a BeschV (Klassische Saisonbeschäftigung — Abgrenzung)",
+            "Landwirtschaft & Gartenbau (nur Länder mit bilateraler ZAV-Absprache)",
+            "Max. 6 Monate in 12 Monaten",
+            "Bilaterale BA/ZAV-Vermittlungsabsprache (derzeit nicht für Vietnam; Alternative: § 14 Abs. 2 oder § 16a/§ 18a)",
           ],
         },
       ],
       faqs: [
         {
-          question: "Ist der Einsatz von Saisonkräften über DMF Talents zu 100 % rechtssicher?",
+          question:
+            "Welche rechtlichen Wege gelten für Saison- und Kurzzeitkräfte aus Vietnam in Gastronomie, Logistik und Landwirtschaft?",
           answer:
-            "Ja. Wir vermitteln ausschließlich im Rahmen der geltenden gesetzlichen Bestimmungen der Beschäftigungsverordnung (BeschV) sowie § 19c AufenthG und übernehmen die vollständige Antragsabwicklung mit der Bundesagentur für Arbeit (ZAV). Alle Vorgaben zu Mindestlohn, Arbeitszeitgesetz und Unterkunftsstandards werden strikt eingehalten.",
-        },
-        {
-          question: "Wie lange beträgt die Vorlaufzeit bis zum Arbeitsbeginn der Saisonkräfte?",
-          answer:
-            "Bei vorliegenden Kontingenten und vollständigen Betriebsunterlagen sind unsere vorselektierten Teams in durchschnittlich 4 bis 8 Wochen einsatzbereit. Wir koordinieren die ZAV-Zustimmung, Visumerteilung sowie den gesammelten Gruppentransfer direkt zu Ihrem Betrieb.",
-        },
-        {
-          question: "Können bewährte Saisonkräfte in der nächsten Saison wiederkommen?",
-          answer:
-            "Ja, der Aufbau eines festen Stammpools ist ausdrücklich vorgesehen. Über 85 Prozent unserer Partnerbetriebe fordern dieselben eingearbeiteten Teams im Folgejahr erneut an, wodurch die Einarbeitungszeit ab der zweiten Saison nahezu entfällt.",
-        },
-        {
-          question: "Wie erfolgt die Verständigung vor Ort auf dem Feld oder im Hotel?",
-          answer:
-            "Unsere Saisonkräfte erhalten vorab ein Grundlagentraining für arbeitsplatzrelevante Begriffe und Arbeitssicherheit. Bei Gruppenbuchungen stellen wir zudem zweisprachige Teamkoordinatoren (Vorarbeiter mit guten Deutsch- oder Englischkenntnissen) zusammen, die als direkte Schnittstelle zu Ihrer Betriebsleitung fungieren.",
+            "Für Gastronomie, Hotellerie und Logistik steht das 8-Monate-Kontingent nach § 19c Abs. 1 AufenthG i. V. m. § 15d BeschV für tarifgebundene Betriebe offen. In der Landwirtschaft und ebenfalls in der Gastronomie greift für immatrikulierte vietnamesische Studierende bis 90 Tage die Ferienbeschäftigung nach § 14 Abs. 2 BeschV, da die klassische Saisonbeschäftigung nach § 15a BeschV eine bilaterale ZAV-Vermittlungsabsprache voraussetzt.",
         },
         {
           question:
-            "Kann aus einem erfolgreichen Saisoneinsatz eine langfristige Ausbildung oder Fachkräftebeschäftigung entstehen?",
+            "Welche Pflichtvoraussetzungen verlangt die ZAV für das 8-Monate-Kontingent nach § 15d BeschV?",
           answer:
-            "Viele Arbeitgeber nutzen den Saisoneinsatz, um besonders engagierte Talente kennenzulernen. Nach regulärer Rückkehr und entsprechendem Spracherwerb (B1/B2) begleiten wir regelmäßig den rechtssicheren Wechsel in eine dreijährige duale Berufsausbildung (§ 16a AufenthG) oder Fachkräftebeschäftigung (§ 18a AufenthG).",
+            "Das bundesweite Jahreskontingent von 25.000 Zustimmungen nach § 15d BeschV setzt eine echte Tarifbindung des Betriebs (§ 3 oder § 5 TVG), eine wöchentliche Arbeitszeit von mindestens 30 Stunden, die Übernahme der Hin- und Rückreisekosten durch den Arbeitgeber sowie eine maximal zehnmonatige Betriebsnutzung in zwölf Monaten voraus.",
+        },
+        {
+          question:
+            "Worauf müssen Betriebe bei der 90-Tage-Ferienbeschäftigung nach § 14 Abs. 2 BeschV achten?",
+          answer:
+            "Nach § 14 Abs. 2 BeschV dürfen an anerkannten ausländischen Hochschulen (anabin H+/H+/-) immatrikulierte Studierende unter 35 Jahren während ihrer Semesterferien bis zu 90 Tage innerhalb von zwölf Monaten arbeiten. Erforderlich sind eine ZAV-Vermittlungsbestätigung, der gesetzliche Mindestlohn (ab 2027: 14,60 Euro brutto/Std.) und eine lückenlose tägliche Arbeitszeitaufzeichnung nach § 17 MiLoG.",
+        },
+        {
+          question:
+            "Können bewährte Saisonkräfte im Folgejahr wiederkommen oder direkt im Inland in § 16a / § 18a wechseln?",
+          answer:
+            "Der Aufbau eines Stammpools für erneute Einsätze in der nächsten Saison ist im Rahmen der gesetzlichen Jahresgrenzen (8 Monate bei § 15d bzw. 90 Tage bei § 14 Abs. 2 BeschV) vorgesehen. Ein direkter Zweckwechsel aus der Kurzzeit- oder Ferienbeschäftigung im Inland ist gesetzlich ausgeschlossen; der Übergang in eine Ausbildung (§ 16a) oder Fachkräftestelle (§ 18a AufenthG) erfolgt nach fristgerechter Ausreise mit neuem Visumverfahren (§ 81a AufenthG).",
+        },
+        {
+          question:
+            "Wie stellt DMF Talents Mindestlohn, Unterkunftsstandards (SvEV) und Verständigung im Betrieb sicher?",
+          answer:
+            "DMF Talents prüft alle Arbeitsverträge vorab auf Einhaltung von Mindestlohn (§ 1 MiLoG), Arbeitszeitgesetz und Anrechnungsgrenzen für Unterkunft gemäß § 107 Abs. 2 GewO i. V. m. SvEV. Zudem erhalten Kurzzeit- und Saisonteams eine praxisnahe Sicherheits- und Grundwortschatz-Vorbereitung sowie zweisprachige Teamkoordinatoren für eine reibungslose Einarbeitung.",
         },
       ],
     },

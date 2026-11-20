@@ -10,7 +10,6 @@ import JsonLd from "@/components/seo/JsonLd";
 import { ChatBotLauncher } from "@/components/bot/ChatBotLauncher";
 import { CookieConsent } from "@/components/CookieConsent";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
-import { Analytics } from "@vercel/analytics/next";
 import { MobileStickyBar } from "@/components/layout/MobileStickyBar";
 
 import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "@/lib/site";
@@ -108,7 +107,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
           {/* Google Analytics 4 — DSGVO: chỉ nạp sau khi user đồng ý cookie */}
           <GoogleAnalytics />
-          <Analytics />
 
           <MobileStickyBar />
 

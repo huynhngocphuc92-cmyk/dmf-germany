@@ -112,7 +112,7 @@ export const BRANCHEN_CONFIGS: BrancheConfig[] = [
     },
     metaTitle: "Pflegefachkräfte & Pflege-Azubis aus Vietnam rekrutieren",
     metaDescription:
-      "Qualifizierte Pflegefachkräfte (B2) und Auszubildende zur Pflegefachfrau / zum Pflegefachmann aus Vietnam für Kliniken, Seniorenheime und Pflegedienste in Deutschland.",
+      "Pflegefachkräfte (B2) & Pflege-Azubis aus Vietnam für Kliniken, Seniorenheime & Pflegedienste. Rechtssicher mit § 81a-Visaservice & LfP-Anerkennung.",
     heroStats: [
       {
         value: "B1 / B2",

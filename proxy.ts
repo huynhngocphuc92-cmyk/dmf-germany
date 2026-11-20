@@ -3,11 +3,22 @@ import {
   appendVaryAccept,
   isDirectMarkdownPath,
   prefersMarkdown,
+  resolveBlogAliasRedirect,
   resolveMarkdownDocument,
 } from "@/lib/geo/markdown-negotiation";
 import { updateSession } from "@/utils/supabase/middleware";
 
 export async function proxy(request: NextRequest) {
+  const targetPath = resolveBlogAliasRedirect(request.nextUrl.pathname);
+  if (targetPath) {
+    const redirectResponse = NextResponse.redirect(
+      new URL(targetPath + request.nextUrl.search, request.url),
+      308
+    );
+    redirectResponse.headers.set("Vary", "Accept, accept-encoding");
+    return redirectResponse;
+  }
+
   if (
     (request.method === "GET" || request.method === "HEAD") &&
     (prefersMarkdown(request.headers.get("accept")) ||
@@ -41,6 +52,6 @@ export const config = {
      * - favicon.ico (favicon file)
      * - static image assets
      */
-    "/((?!_next/static|_next/image|_vercel|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    "/((?!_next/static|_next/image|cdn-cgi|_vercel|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
   ],
 };

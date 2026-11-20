@@ -1,6 +1,7 @@
 "use client";
 
 import { trackEvent } from "@/components/analytics/GoogleAnalytics";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import { AssetImageWithDebug } from "@/components/ui/AssetImageWithDebug";
 import { GERMANY_CONTACT, VIETNAM_OFFICE_CONTACT } from "@/lib/company/contact";
 import { useSubmissionKey } from "@/lib/intake/client";
@@ -22,6 +23,7 @@ export default function ContactSection({
   repDeImg = "/images/home/umit-elezov.jpg",
   repVnImg = "/images/home/achim-betticher.jpg",
 }: ContactSectionProps = {}) {
+  const { lang, t } = useLanguage();
   const { forPayload: submissionKey, reset: resetSubmissionKey } = useSubmissionKey();
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -64,17 +66,23 @@ export default function ContactSection({
   };
 
   return (
-    <section id="contact" tabIndex={-1} className="py-24 bg-slate-50 relative overflow-hidden">
+    <section
+      id="contact"
+      tabIndex={-1}
+      className="scroll-mt-32 py-24 bg-slate-50 relative overflow-hidden"
+    >
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
           {/* LEFT COLUMN: THE FORM (Span 2) */}
           <div className="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-slate-100 p-8">
-            <h2 className="text-3xl font-bold mb-6 text-slate-900">Kontaktieren Sie uns</h2>
+            <h2 className="text-3xl font-bold mb-6 text-slate-900">{t.contact.title}</h2>
 
             {isSuccess ? (
               <div className="bg-emerald-50 text-emerald-700 p-8 rounded-xl text-center">
-                <h3 className="text-2xl font-bold mb-2">Vielen Dank!</h3>
-                <p>Ihre Anfrage wurde gespeichert. Unser Team meldet sich bei Ihnen.</p>
+                <h3 className="text-2xl font-bold mb-2">
+                  {lang === "de" ? "Vielen Dank!" : lang === "en" ? "Thank you!" : "Xin cảm ơn!"}
+                </h3>
+                <p>{t.contact.success_message}</p>
                 <button
                   onClick={() => {
                     resetSubmissionKey();
@@ -82,7 +90,11 @@ export default function ContactSection({
                   }}
                   className="mt-4 text-sm font-bold underline"
                 >
-                  Neue Nachricht
+                  {lang === "de"
+                    ? "Neue Nachricht"
+                    : lang === "en"
+                      ? "Send another message"
+                      : "Gửi tin nhắn mới"}
                 </button>
               </div>
             ) : (
@@ -93,7 +105,7 @@ export default function ContactSection({
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label htmlFor="contact-name" className="text-sm font-bold text-slate-700">
-                      Name *
+                      {t.contact.label_name}
                     </label>
                     <input
                       id="contact-name"
@@ -102,12 +114,12 @@ export default function ContactSection({
                       required
                       minLength={2}
                       className="w-full p-4 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white transition-all outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="Ihr Name"
+                      placeholder={t.contact.placeholder_name}
                     />
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="contact-email" className="text-sm font-bold text-slate-700">
-                      E-Mail *
+                      {t.contact.label_email}
                     </label>
                     <input
                       id="contact-email"
@@ -116,16 +128,20 @@ export default function ContactSection({
                       required
                       type="email"
                       className="w-full p-4 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white transition-all outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="ihre.email@unternehmen.de"
+                      placeholder={t.contact.placeholder_email}
                     />
                   </div>
                 </div>
 
-                {/* Phone & Company (RESTORED) */}
+                {/* Phone & Company */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label htmlFor="contact-phone" className="text-sm font-bold text-slate-700">
-                      Telefon / Mobil
+                      {lang === "de"
+                        ? "Telefon / Mobil"
+                        : lang === "en"
+                          ? "Phone / Mobile"
+                          : "Số điện thoại"}
                     </label>
                     <input
                       id="contact-phone"
@@ -139,14 +155,14 @@ export default function ContactSection({
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="contact-company" className="text-sm font-bold text-slate-700">
-                      Unternehmen
+                      {t.contact.label_company}
                     </label>
                     <input
                       id="contact-company"
                       name="company"
                       maxLength={500}
                       className="w-full p-4 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white transition-all outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="Ihr Unternehmen GmbH"
+                      placeholder={t.contact.placeholder_company}
                     />
                   </div>
                 </div>
@@ -154,7 +170,7 @@ export default function ContactSection({
                 {/* Message */}
                 <div className="space-y-2">
                   <label htmlFor="contact-message" className="text-sm font-bold text-slate-700">
-                    Nachricht *
+                    {t.contact.label_message}
                   </label>
                   <textarea
                     id="contact-message"
@@ -164,7 +180,7 @@ export default function ContactSection({
                     minLength={10}
                     rows={5}
                     className="w-full p-4 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white transition-all outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Wie können wir Ihnen helfen?"
+                    placeholder={t.contact.placeholder_message}
                   />
                 </div>
 
@@ -179,16 +195,46 @@ export default function ContactSection({
                         className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
                       />
                       <label htmlFor="contact-privacy" className="text-sm leading-6 text-slate-700">
-                        Ich stimme der Verarbeitung meiner Daten gemäß der{" "}
-                        <Link
-                          href="/datenschutz"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="font-semibold text-blue-600 underline underline-offset-4 hover:text-blue-700"
-                        >
-                          Datenschutzerklärung
-                        </Link>{" "}
-                        zu. *
+                        {lang === "de" ? (
+                          <>
+                            Ich stimme der Verarbeitung meiner Daten gemäß der{" "}
+                            <Link
+                              href="/datenschutz"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="font-semibold text-blue-600 underline underline-offset-4 hover:text-blue-700"
+                            >
+                              Datenschutzerklärung
+                            </Link>{" "}
+                            zu. *
+                          </>
+                        ) : lang === "en" ? (
+                          <>
+                            I agree to the processing of my data in accordance with the{" "}
+                            <Link
+                              href="/datenschutz"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="font-semibold text-blue-600 underline underline-offset-4 hover:text-blue-700"
+                            >
+                              Privacy Policy
+                            </Link>
+                            . *
+                          </>
+                        ) : (
+                          <>
+                            Tôi đồng ý việc xử lý dữ liệu theo{" "}
+                            <Link
+                              href="/datenschutz"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="font-semibold text-blue-600 underline underline-offset-4 hover:text-blue-700"
+                            >
+                              Chính sách bảo mật
+                            </Link>
+                            . *
+                          </>
+                        )}
                       </label>
                     </div>
                   </div>
@@ -210,7 +256,7 @@ export default function ContactSection({
                   ) : (
                     <Send className="mr-2" size={18} />
                   )}
-                  Nachricht senden
+                  {t.contact.btn_send}
                 </button>
 
                 {/* Trust Badges */}
@@ -221,11 +267,23 @@ export default function ContactSection({
                   </div>
                   <div className="flex items-center justify-center gap-1.5">
                     <span className="text-emerald-600 font-bold">✓</span>
-                    <span>Kostenfreie Erstberatung</span>
+                    <span>
+                      {lang === "de"
+                        ? "Kostenfreie Erstberatung"
+                        : lang === "en"
+                          ? "Free Initial Consultation"
+                          : "Tư vấn ban đầu miễn phí"}
+                    </span>
                   </div>
                   <div className="flex items-center justify-center gap-1.5">
                     <span className="text-emerald-600 font-bold">✓</span>
-                    <span>Antwort in 24 Stunden</span>
+                    <span>
+                      {lang === "de"
+                        ? "Antwort in 24 Stunden"
+                        : lang === "en"
+                          ? "Response within 24 Hours"
+                          : "Phản hồi trong 24 giờ"}
+                    </span>
                   </div>
                 </div>
               </form>
@@ -249,12 +307,12 @@ export default function ContactSection({
                 <div className="min-w-0">
                   <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded-full mb-1">
                     <ShieldCheck size={12} className="shrink-0" />
-                    {GERMANY_CONTACT.title}
+                    {t.contact.de_office}
                   </span>
                   <h3 className="font-bold text-lg text-slate-900 leading-snug">
-                    {GERMANY_CONTACT.name}
+                    {t.about.rep_de_name}
                   </h3>
-                  <p className="text-xs text-slate-500">Ansprechpartner vor Ort in Deutschland</p>
+                  <p className="text-xs text-slate-500">{t.about.rep_de_role}</p>
                 </div>
               </div>
               <ul className="space-y-3.5 text-sm text-slate-600">
@@ -278,7 +336,7 @@ export default function ContactSection({
                 </li>
                 <li className="flex gap-3 items-center">
                   <MapPin size={16} className="text-slate-400 shrink-0" />
-                  <span>{GERMANY_CONTACT.location}</span>
+                  <span>{t.contact.de_location}</span>
                 </li>
               </ul>
             </div>
@@ -298,12 +356,12 @@ export default function ContactSection({
                 <div className="min-w-0">
                   <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full mb-1">
                     <ShieldCheck size={12} className="shrink-0" />
-                    {VIETNAM_OFFICE_CONTACT.title}
+                    {t.contact.vn_office}
                   </span>
                   <h3 className="font-bold text-lg text-slate-900 leading-snug">
-                    {VIETNAM_OFFICE_CONTACT.name}
+                    {t.about.rep_vn_name}
                   </h3>
-                  <p className="text-xs text-slate-500">Hauptsitz & Vertretung in Vietnam</p>
+                  <p className="text-xs text-slate-500">{t.about.rep_vn_role}</p>
                 </div>
               </div>
               <ul className="space-y-3.5 text-sm text-slate-600">
@@ -338,7 +396,7 @@ export default function ContactSection({
                 </li>
                 <li className="flex gap-3 items-center">
                   <MapPin size={16} className="text-slate-400 shrink-0" />
-                  <span>{VIETNAM_OFFICE_CONTACT.location}</span>
+                  <span>{t.contact.vn_address}</span>
                 </li>
               </ul>
             </div>

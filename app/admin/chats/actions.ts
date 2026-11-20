@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { createPrivilegedAdminClient } from "@/lib/auth/admin";
 import { runWithOpenRouterFallback } from "@/lib/ai/openrouter";
 
@@ -54,43 +55,49 @@ export interface ChatLeadAnalysis {
 // ============================================
 
 export async function getChatSessions(): Promise<ChatSession[]> {
-  const supabase = await createPrivilegedAdminClient();
-  if (!supabase) return [];
+  try {
+    const supabase = await createPrivilegedAdminClient();
+    if (!supabase) return [];
 
-  const { data, error } = await supabase
-    .from("chat_sessions")
-    .select("*")
-    .order("updated_at", { ascending: false });
+    const { data, error } = await supabase
+      .from("chat_sessions")
+      .select("*")
+      .order("updated_at", { ascending: false });
 
-  if (error) {
-    console.error("[Chats] Error fetching sessions:", error.message);
+    if (error) {
+      console.error("[Chats] Error fetching sessions:", error.message);
+      return [];
+    }
+
+    return data || [];
+  } catch {
     return [];
   }
-
-  return data || [];
 }
 
 export async function getChatSession(sessionId: string): Promise<ChatSession | null> {
-  const supabase = await createPrivilegedAdminClient();
-  if (!supabase) return null;
+  try {
+    const supabase = await createPrivilegedAdminClient();
+    if (!supabase) return null;
 
-  const { data, error } = await supabase
-    .from("chat_sessions")
-    .select("*")
-    .eq("session_id", sessionId)
-    .single();
+    const { data, error } = await supabase
+      .from("chat_sessions")
+      .select("*")
+      .eq("session_id", sessionId)
+      .single();
 
-  if (error) {
-    console.error("[Chats] Error fetching session:", error.message);
+    if (error) {
+      console.error("[Chats] Error fetching session:", error.message);
+      return null;
+    }
+
+    return data;
+  } catch {
     return null;
   }
-
-  return data;
 }
 
 export async function getChatStats(): Promise<ChatStats> {
-  const supabase = await createPrivilegedAdminClient();
-
   const defaultStats: ChatStats = {
     totalSessions: 0,
     totalMessages: 0,
@@ -100,45 +107,56 @@ export async function getChatStats(): Promise<ChatStats> {
     sessionsWithLeads: 0,
   };
 
-  if (!supabase) return defaultStats;
+  try {
+    const supabase = await createPrivilegedAdminClient();
+    if (!supabase) return defaultStats;
 
-  const { data, error } = await supabase.from("chat_sessions").select("*");
+    const { data, error } = await supabase.from("chat_sessions").select("*");
 
-  if (error || !data) {
-    console.error("[Chats] Error fetching stats:", error?.message);
+    if (error || !data) {
+      console.error("[Chats] Error fetching stats:", error?.message);
+      return defaultStats;
+    }
+
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+
+    const totalMessages = data.reduce((sum, s) => sum + (s.message_count || 0), 0);
+
+    const stats: ChatStats = {
+      totalSessions: data.length,
+      totalMessages,
+      avgMessagesPerSession: data.length > 0 ? Math.round(totalMessages / data.length) : 0,
+      sessionsToday: data.filter((s) => new Date(s.created_at) >= today).length,
+      sessionsThisWeek: data.filter((s) => new Date(s.created_at) >= weekAgo).length,
+      sessionsWithLeads: data.filter((s) => s.lead_email).length,
+    };
+
+    return stats;
+  } catch {
     return defaultStats;
   }
-
-  const now = new Date();
-  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-
-  const totalMessages = data.reduce((sum, s) => sum + (s.message_count || 0), 0);
-
-  const stats: ChatStats = {
-    totalSessions: data.length,
-    totalMessages,
-    avgMessagesPerSession: data.length > 0 ? Math.round(totalMessages / data.length) : 0,
-    sessionsToday: data.filter((s) => new Date(s.created_at) >= today).length,
-    sessionsThisWeek: data.filter((s) => new Date(s.created_at) >= weekAgo).length,
-    sessionsWithLeads: data.filter((s) => s.lead_email).length,
-  };
-
-  return stats;
 }
 
 export async function deleteChatSession(id: string): Promise<boolean> {
-  const supabase = await createPrivilegedAdminClient();
-  if (!supabase) return false;
+  try {
+    const supabase = await createPrivilegedAdminClient();
+    if (!supabase) return false;
 
-  const { error } = await supabase.from("chat_sessions").delete().eq("id", id);
+    const { error } = await supabase.from("chat_sessions").delete().eq("id", id);
 
-  if (error) {
-    console.error("[Chats] Error deleting session:", error.message);
+    if (error) {
+      console.error("[Chats] Error deleting session:", error.message);
+      return false;
+    }
+
+    revalidatePath("/admin/chats");
+    revalidatePath("/admin");
+    return true;
+  } catch {
     return false;
   }
-
-  return true;
 }
 
 function buildFallbackChatAnalysis(session: ChatSession): ChatLeadAnalysis {
@@ -199,7 +217,12 @@ function buildFallbackChatAnalysis(session: ChatSession): ChatLeadAnalysis {
 export async function analyzeChatSessionWithAI(
   sessionId: string
 ): Promise<ChatLeadAnalysis | null> {
-  const supabase = await createPrivilegedAdminClient();
+  let supabase;
+  try {
+    supabase = await createPrivilegedAdminClient();
+  } catch {
+    return null;
+  }
   if (!supabase) return null;
 
   const { data: session, error } = await supabase

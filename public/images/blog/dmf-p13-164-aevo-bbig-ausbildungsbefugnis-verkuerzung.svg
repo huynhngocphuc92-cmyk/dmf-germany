@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <rect width="720" height="540" rx="16" fill="#F8FAFC"/>
+  <rect x="20" y="20" width="680" height="500" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="20" y="20" width="680" height="72" rx="12" fill="#003366"/>
+  <text x="44" y="50" fill="#FFFFFF" font-size="16" font-weight="700">AEVO, Ausbildungsbefugnis (§§ 27–30 BBiG) &amp; Verkürzung (§ 8 BBiG)</text>
+  <text x="44" y="74" fill="#CBD5E1" font-size="11.5">Rechtsgrundlagen für Ausbildungsbetriebe in IHK, Handwerk (HwO) und Pflege (PflAPrV)</text>
+
+  <!-- Left Column: Ausbildungsbefugnis -->
+  <g transform="translate(44, 110)">
+    <rect width="318" height="346" rx="10" fill="#F8FAFC" stroke="#003366" stroke-width="2"/>
+    <rect width="318" height="40" rx="10" fill="#003366"/>
+    <text x="16" y="25" fill="#FFFFFF" font-size="12.5" font-weight="700">Säule 1: Ausbildungsbefugnis des Betriebs</text>
+
+    <rect x="14" y="54" width="290" height="62" rx="8" fill="#FFFFFF" stroke="#CBD5E1"/>
+    <text x="24" y="74" fill="#003366" font-size="11.5" font-weight="700">1. Eignung der Ausbildungsstätte (§ 27 BBiG)</text>
+    <text x="24" y="92" fill="#475569" font-size="10.5">Einrichtung, Maschinen &amp; Fachkräftequote erfüllen</text>
+    <text x="24" y="107" fill="#475569" font-size="10.5">den Ausbildungsrahmenplan der Kammer</text>
+
+    <rect x="14" y="126" width="290" height="62" rx="8" fill="#FFFFFF" stroke="#CBD5E1"/>
+    <text x="24" y="146" fill="#003366" font-size="11.5" font-weight="700">2. Persönliche &amp; fachliche Eignung (§§ 28–30)</text>
+    <text x="24" y="164" fill="#475569" font-size="10.5">• IHK: Abschluss + Praxis + AEVO-Schein (§ 30 BBiG)</text>
+    <text x="24" y="179" fill="#475569" font-size="10">• HWK: § 22b HwO (Meister IV ersetzt AEVO)</text>
+
+    <rect x="14" y="198" width="290" height="68" rx="8" fill="#FFFFFF" stroke="#CBD5E1"/>
+    <text x="24" y="218" fill="#003366" font-size="11.5" font-weight="700">3. Praxisalltag: Ausbildungsbeauftragte</text>
+    <text x="24" y="236" fill="#475569" font-size="10.5">• § 28 Abs. 3 BBiG: Fachkräfte dürfen im Alltag</text>
+    <text x="24" y="251" fill="#475569" font-size="10.5">  unter Verantwortung des Ausbilders anleiten</text>
+
+    <rect x="14" y="276" width="290" height="56" rx="8" fill="#F1F5F9" stroke="#003366"/>
+    <text x="24" y="296" fill="#003366" font-size="11.5" font-weight="700">4. Sonderregel Pflege (§ 4 PflAPrV)</text>
+    <text x="24" y="314" fill="#475569" font-size="10.5">300-Std.-Praxisanleiter + 10 % geplante Anleitung</text>
+    <text x="24" y="326" fill="#9A3412" font-size="9.5" font-weight="700">(AEVO ersetzt in der Pflege keine Praxisanleitung)</text>
+  </g>
+
+  <!-- Right Column: Ausbildungsdauer & Verkürzung -->
+  <g transform="translate(378, 110)">
+    <rect width="298" height="346" rx="10" fill="#FFF7ED" stroke="#FF6600" stroke-width="2"/>
+    <rect width="298" height="40" rx="10" fill="#FF6600"/>
+    <text x="16" y="25" fill="#FFFFFF" font-size="12.5" font-weight="700">Säule 2: Ausbildungsdauer &amp; Verkürzung</text>
+
+    <rect x="14" y="54" width="270" height="106" rx="8" fill="#FFFFFF" stroke="#FF6600"/>
+    <text x="24" y="74" fill="#9A3412" font-size="11.5" font-weight="700">Verkürzung bei Start (§ 8 Abs. 1 BBiG)</text>
+    <text x="24" y="93" fill="#475569" font-size="10.5">• Gemeinsamer Antrag bei IHK / HWK</text>
+    <text x="24" y="110" fill="#475569" font-size="10.5">• Gründe: Abitur/Vorbildung oder Alter ≥ 21 J.</text>
+    <text x="24" y="127" fill="#475569" font-size="10.5">• Umfang: 6 bis 12 Monate weniger</text>
+    <text x="24" y="146" fill="#9A3412" font-size="10" font-weight="700">Empfehlung für § 16a: Sprachpuffer schützen</text>
+
+    <rect x="14" y="172" width="270" height="96" rx="8" fill="#FFFFFF" stroke="#003366"/>
+    <text x="24" y="192" fill="#003366" font-size="11.5" font-weight="700">Vorzeitige Zulassung (§ 45 Abs. 1 BBiG)</text>
+    <text x="24" y="211" fill="#475569" font-size="10.5">• Nach guten Leistungen in Berufsschule &amp;</text>
+    <text x="24" y="227" fill="#475569" font-size="10.5">  Zwischenprüfung / GAP Teil 1 beantragen</text>
+    <text x="24" y="244" fill="#475569" font-size="10.5">• Bis 6 Monate frühere Abschlussprüfung</text>
+    <text x="24" y="260" fill="#003366" font-size="10" font-weight="700">Ideal bei starker Praxis &amp; B2-Entwicklung</text>
+
+    <rect x="14" y="280" width="270" height="52" rx="8" fill="#FFFFFF" stroke="#475569"/>
+    <text x="24" y="300" fill="#334155" font-size="11" font-weight="700">Eintragung vor § 81a AufenthG</text>
+    <text x="24" y="318" fill="#475569" font-size="10.5">Eintragung in das Verzeichnis (§ 34 BBiG)</text>
+  </g>
+
+  <rect x="44" y="472" width="632" height="36" rx="8" fill="#003366"/>
+  <text x="360" y="494" text-anchor="middle" fill="#FFFFFF" font-size="10.5" font-weight="600">Qualitätsgeprüfte Betriebe mit eingetragener Ausbildungsbefugnis beschleunigen das § 16a-Verfahren</text>
+</svg>

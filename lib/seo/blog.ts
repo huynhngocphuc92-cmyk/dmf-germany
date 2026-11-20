@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { Post } from "@/app/admin/posts/types";
+import { isNoindexBlogSlug } from "@/lib/blog/seo-taxonomy";
 import { pageMetadata, SITE_NAME, SITE_URL, siteUrl } from "@/lib/site";
 
 type BlogSeoPost = Pick<
@@ -147,8 +148,16 @@ export function blogMetadata(post: BlogSeoPost): Metadata {
     post.meta_description || post.excerpt || post.title
   );
   const image = coverImageUrl(post.cover_image);
+  const robots = isNoindexBlogSlug(post.slug)
+    ? {
+        index: false,
+        follow: true,
+        googleBot: { index: false, follow: true },
+      }
+    : undefined;
   return {
     ...metadata,
+    ...(robots ? { robots } : {}),
     openGraph: {
       ...metadata.openGraph,
       type: "article",

@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { createPrivilegedAdminClient } from "@/lib/auth/admin";
 
 // ============================================
@@ -40,26 +41,35 @@ export interface LeadStats {
 // ACTIONS
 // ============================================
 
+function sanitizeCsvCell(raw: string | null | undefined): string {
+  const str = String(raw ?? "");
+  const trimmed = str.trimStart();
+  const safeFormula = /^[=+\-@]/.test(trimmed) ? `'${str}` : str;
+  return `"${safeFormula.replace(/"/g, '""')}"`;
+}
+
 export async function getLeads(): Promise<Lead[]> {
-  const supabase = await createPrivilegedAdminClient();
-  if (!supabase) return [];
+  try {
+    const supabase = await createPrivilegedAdminClient();
+    if (!supabase) return [];
 
-  const { data, error } = await supabase
-    .from("leads")
-    .select("*")
-    .order("created_at", { ascending: false });
+    const { data, error } = await supabase
+      .from("leads")
+      .select("*")
+      .order("created_at", { ascending: false });
 
-  if (error) {
-    console.error("[Leads] Error fetching leads:", error.message);
+    if (error) {
+      console.error("[Leads] Error fetching leads:", error.message);
+      return [];
+    }
+
+    return data || [];
+  } catch {
     return [];
   }
-
-  return data || [];
 }
 
 export async function getLeadStats(): Promise<LeadStats> {
-  const supabase = await createPrivilegedAdminClient();
-
   const defaultStats: LeadStats = {
     total: 0,
     new: 0,
@@ -72,83 +82,105 @@ export async function getLeadStats(): Promise<LeadStats> {
     conversionRate: 0,
   };
 
-  if (!supabase) return defaultStats;
+  try {
+    const supabase = await createPrivilegedAdminClient();
+    if (!supabase) return defaultStats;
 
-  const { data, error } = await supabase.from("leads").select("*");
+    const { data, error } = await supabase.from("leads").select("*");
 
-  if (error || !data) {
-    console.error("[Leads] Error fetching stats:", error?.message);
+    if (error || !data) {
+      console.error("[Leads] Error fetching stats:", error?.message);
+      return defaultStats;
+    }
+
+    const now = new Date();
+    const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+    const monthAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+
+    const stats: LeadStats = {
+      total: data.length,
+      new: data.filter((l) => l.status === "new").length,
+      contacted: data.filter((l) => l.status === "contacted").length,
+      qualified: data.filter((l) => l.status === "qualified").length,
+      converted: data.filter((l) => l.status === "converted").length,
+      lost: data.filter((l) => l.status === "lost").length,
+      thisWeek: data.filter((l) => new Date(l.created_at) >= weekAgo).length,
+      thisMonth: data.filter((l) => new Date(l.created_at) >= monthAgo).length,
+      conversionRate:
+        data.length > 0
+          ? Math.round((data.filter((l) => l.status === "converted").length / data.length) * 100)
+          : 0,
+    };
+
+    return stats;
+  } catch {
     return defaultStats;
   }
-
-  const now = new Date();
-  const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-  const monthAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
-
-  const stats: LeadStats = {
-    total: data.length,
-    new: data.filter((l) => l.status === "new").length,
-    contacted: data.filter((l) => l.status === "contacted").length,
-    qualified: data.filter((l) => l.status === "qualified").length,
-    converted: data.filter((l) => l.status === "converted").length,
-    lost: data.filter((l) => l.status === "lost").length,
-    thisWeek: data.filter((l) => new Date(l.created_at) >= weekAgo).length,
-    thisMonth: data.filter((l) => new Date(l.created_at) >= monthAgo).length,
-    conversionRate:
-      data.length > 0
-        ? Math.round((data.filter((l) => l.status === "converted").length / data.length) * 100)
-        : 0,
-  };
-
-  return stats;
 }
 
 export async function updateLeadStatus(id: string, status: Lead["status"]): Promise<boolean> {
-  const supabase = await createPrivilegedAdminClient();
-  if (!supabase) return false;
+  try {
+    const supabase = await createPrivilegedAdminClient();
+    if (!supabase) return false;
 
-  const { error } = await supabase
-    .from("leads")
-    .update({ status, updated_at: new Date().toISOString() })
-    .eq("id", id);
+    const { error } = await supabase
+      .from("leads")
+      .update({ status, updated_at: new Date().toISOString() })
+      .eq("id", id);
 
-  if (error) {
-    console.error("[Leads] Error updating status:", error.message);
+    if (error) {
+      console.error("[Leads] Error updating status:", error.message);
+      return false;
+    }
+
+    revalidatePath("/admin/leads");
+    revalidatePath("/admin");
+    return true;
+  } catch {
     return false;
   }
-
-  return true;
 }
 
 export async function updateLeadNotes(id: string, notes: string): Promise<boolean> {
-  const supabase = await createPrivilegedAdminClient();
-  if (!supabase) return false;
+  try {
+    const supabase = await createPrivilegedAdminClient();
+    if (!supabase) return false;
 
-  const { error } = await supabase
-    .from("leads")
-    .update({ notes, updated_at: new Date().toISOString() })
-    .eq("id", id);
+    const { error } = await supabase
+      .from("leads")
+      .update({ notes, updated_at: new Date().toISOString() })
+      .eq("id", id);
 
-  if (error) {
-    console.error("[Leads] Error updating notes:", error.message);
+    if (error) {
+      console.error("[Leads] Error updating notes:", error.message);
+      return false;
+    }
+
+    revalidatePath("/admin/leads");
+    return true;
+  } catch {
     return false;
   }
-
-  return true;
 }
 
 export async function deleteLead(id: string): Promise<boolean> {
-  const supabase = await createPrivilegedAdminClient();
-  if (!supabase) return false;
+  try {
+    const supabase = await createPrivilegedAdminClient();
+    if (!supabase) return false;
 
-  const { error } = await supabase.from("leads").delete().eq("id", id);
+    const { error } = await supabase.from("leads").delete().eq("id", id);
 
-  if (error) {
-    console.error("[Leads] Error deleting lead:", error.message);
+    if (error) {
+      console.error("[Leads] Error deleting lead:", error.message);
+      return false;
+    }
+
+    revalidatePath("/admin/leads");
+    revalidatePath("/admin");
+    return true;
+  } catch {
     return false;
   }
-
-  return true;
 }
 
 export async function exportLeadsCSV(): Promise<string> {
@@ -165,6 +197,6 @@ export async function exportLeadsCSV(): Promise<string> {
     new Date(l.created_at).toLocaleString("de-DE"),
   ]);
 
-  const csv = [headers.join(","), ...rows.map((r) => r.map((c) => `"${c}"`).join(","))].join("\n");
+  const csv = [headers.join(","), ...rows.map((r) => r.map(sanitizeCsvCell).join(","))].join("\n");
   return csv;
 }

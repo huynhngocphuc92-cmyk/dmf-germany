@@ -33,7 +33,8 @@ export const CandidateShowcase = ({ candidates = [] }: CandidateShowcaseProps) =
   // Always keep a valid candidate object for rendering.
   const currentCandidate = displayCandidates[currentIndex] || displayCandidates[0];
   if (!currentCandidate) return null;
-  const candidateCode = `DMF-${currentCandidate.id.slice(0, 8).toUpperCase()}`;
+  const candidateCode =
+    currentCandidate.display_code || `DMF-${currentCandidate.id.slice(0, 8).toUpperCase()}`;
 
   // Combine the localized category label with the candidate profession.
   const getPositionText = (candidate: PublicCandidate) => {
@@ -51,9 +52,10 @@ export const CandidateShowcase = ({ candidates = [] }: CandidateShowcaseProps) =
 
     // German level badge
     if (candidate.german_level) {
+      const germanPrefix = lang === "vn" ? "Tiếng Đức" : lang === "en" ? "German" : "Deutsch";
       badges.push({
         icon: "🇩🇪",
-        text: `Deutsch ${candidate.german_level}`,
+        text: `${germanPrefix} ${candidate.german_level}`,
       });
     }
 
@@ -121,8 +123,8 @@ export const CandidateShowcase = ({ candidates = [] }: CandidateShowcaseProps) =
             {/* Name - Bold, White */}
             <h3 className="text-2xl font-bold text-white text-center mb-2">{candidateCode}</h3>
 
-            {/* Position - Brand Blue */}
-            <p className="text-primary text-center font-semibold mb-4 text-sm md:text-base">
+            {/* Position - High-contrast sky blue on dark glass card */}
+            <p className="text-sky-300 text-center font-semibold mb-4 text-sm md:text-base">
               {getPositionText(currentCandidate)}
             </p>
 

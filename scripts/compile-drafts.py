@@ -6,11 +6,22 @@ Outputs to content/compiled/
 
 import os
 import re
+import ast
 import json
 from pathlib import Path
 
 DRAFTS_DIR = Path(__file__).resolve().parent.parent / "content" / "drafts"
 OUTPUT_DIR = Path(__file__).resolve().parent.parent / "content" / "compiled"
+SYNC_SCRIPT = Path(__file__).resolve().parent / "sync-to-supabase.py"
+
+def load_post_cover_mapping():
+    if not SYNC_SCRIPT.exists():
+        return {}
+    tree = ast.parse(SYNC_SCRIPT.read_text(encoding="utf-8"))
+    for node in tree.body:
+        if isinstance(node, ast.Assign) and getattr(node.targets[0], "id", "") == "POST_COVER_MAPPING":
+            return ast.literal_eval(node.value)
+    return {}
 
 def parse_frontmatter(text):
     meta = {}
@@ -32,9 +43,11 @@ def markdown_to_html(md_text):
     in_ul = False
     in_ol = False
     in_table = False
+    in_figure = False
     table_rows = []
     para_lines = []
     quote_lines = []
+    figure_lines = []
 
     def flush_para():
         nonlocal para_lines
@@ -100,6 +113,27 @@ def markdown_to_html(md_text):
 
     for line in lines:
         stripped = line.strip()
+
+        # Raw multi-line <figure> ... </figure> passthrough
+        if in_figure:
+            figure_lines.append(line.rstrip())
+            if "</figure>" in stripped:
+                html_parts.append("\n".join(figure_lines))
+                figure_lines = []
+                in_figure = False
+            continue
+
+        if stripped.startswith("<figure"):
+            flush_para()
+            flush_list()
+            flush_quote()
+            flush_table()
+            if "</figure>" in stripped:
+                html_parts.append(line.rstrip())
+            else:
+                in_figure = True
+                figure_lines = [line.rstrip()]
+            continue
 
         # Blank line
         if not stripped:
@@ -195,6 +229,10 @@ def markdown_to_html(md_text):
         flush_list()
         para_lines.append(stripped)
 
+    if in_figure and figure_lines:
+        html_parts.append("\n".join(figure_lines))
+        figure_lines = []
+        in_figure = False
     flush_para()
     flush_list()
     flush_quote()
@@ -205,6 +243,7 @@ def markdown_to_html(md_text):
 def compile_all():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     all_posts = []
+    cover_mapping = load_post_cover_mapping()
 
     files = sorted(
         [f for f in DRAFTS_DIR.glob("*.md") if f.name != "README.md"],
@@ -222,8 +261,12 @@ def compile_all():
         # Convert markdown body to HTML
         html_content = markdown_to_html(body)
 
-        # Find cover image: prioritize frontmatter meta, then first non-SVG image
-        if meta.get("cover_image"):
+        slug = meta.get("slug", file_path.stem)
+
+        # Find cover image: prioritize dedicated cover mapping, then frontmatter meta, then first non-SVG image
+        if slug in cover_mapping:
+            cover_image = cover_mapping[slug]
+        elif meta.get("cover_image"):
             cover_image = meta["cover_image"]
         else:
             img_matches = re.findall(r'<img\s+src="([^"]+)"', html_content)
@@ -231,7 +274,6 @@ def compile_all():
             photo_imgs = [img for img in img_matches if not img.endswith(".svg")]
             cover_image = photo_imgs[0] if photo_imgs else "/images/blog/dmf-klassenzimmer.jpg"
 
-        slug = meta.get("slug", file_path.stem)
         post_data = {
             "title": title,
             "slug": slug,
@@ -239,7 +281,7 @@ def compile_all():
             "meta_title": meta.get("meta_title", title),
             "meta_description": meta.get("meta_description", ""),
             "language": meta.get("language", "de"),
-            "status": meta.get("status", "draft"),
+            "status": "published",
             "cover_image": cover_image,
             "content": html_content,
         }

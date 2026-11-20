@@ -1,7 +1,7 @@
 import { pageMetadata, SITE_DESCRIPTION } from "@/lib/site";
 export const metadata = {
-  ...pageMetadata("/", "Fachkräfte aus Vietnam für Deutschland", SITE_DESCRIPTION),
-  title: { absolute: "Fachkräfte aus Vietnam für Deutschland | DMF Talents" },
+  ...pageMetadata("/", "Personalvermittlung Vietnam: Fachkräfte & Azubis", SITE_DESCRIPTION),
+  title: { absolute: "Personalvermittlung Vietnam: Fachkräfte & Azubis | DMF Talents" },
 };
 import { Suspense } from "react";
 import { CandidateShowcase } from "@/components/sections/CandidateShowcase";
@@ -10,6 +10,7 @@ import { CandidateRegionState } from "@/components/home/CandidateRegionState";
 import { HomeClient } from "./home-client";
 import { loadAssets } from "@/lib/theme-helpers";
 import { getHomepageFeaturedCandidates } from "@/lib/supabase/candidates";
+import { mergeWithDmfFeaturedCandidates } from "@/lib/candidates/dmf-pool-data";
 
 // Read publication state at request time, including withdrawals and expiry.
 export const dynamic = "force-dynamic";
@@ -21,7 +22,7 @@ async function HeroCandidates({ candidates }: { candidates: CandidatesPromise })
   return error ? (
     <CandidateRegionState error region="hero" />
   ) : (
-    <CandidateShowcase candidates={data ?? []} />
+    <CandidateShowcase candidates={mergeWithDmfFeaturedCandidates(data, 6)} />
   );
 }
 
@@ -30,7 +31,7 @@ async function TalentCandidates({ candidates }: { candidates: CandidatesPromise 
   return error ? (
     <CandidateRegionState error region="talent" />
   ) : (
-    <TalentShowcase candidates={data ?? []} />
+    <TalentShowcase candidates={mergeWithDmfFeaturedCandidates(data, 6)} />
   );
 }
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BRANCHEN_SLUGS, getBrancheBySlug } from "@/lib/content/branchen";
 import { getFeaturedCandidates } from "@/lib/supabase/candidates";
+import { mergeWithDmfPoolCandidates } from "@/lib/candidates/dmf-pool-data";
 import { loadAssets } from "@/lib/theme-helpers";
 import { pageMetadata, siteUrl, SITE_NAME, SITE_URL } from "@/lib/site";
 import { BrancheDetailClient } from "./branche-detail-client";
@@ -44,7 +45,7 @@ export default async function BrancheDetailPage({ params }: { params: Promise<{ 
     getFeaturedCandidates(),
     loadAssets([branche.assetKey]),
   ]);
-  const pool = allCandidates ?? [];
+  const pool = mergeWithDmfPoolCandidates(allCandidates);
   const heroImageUrl = customAssets[branche.assetKey] || branche.heroImage;
 
   // Match candidates by profession keywords first, then fall back to matching categories

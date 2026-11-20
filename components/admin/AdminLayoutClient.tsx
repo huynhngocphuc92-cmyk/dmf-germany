@@ -18,6 +18,7 @@ interface AdminLayoutClientProps {
 export function AdminLayoutClient({ user, children }: AdminLayoutClientProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   // Check if we're on desktop (lg breakpoint = 1024px)
   useEffect(() => {
@@ -32,7 +33,12 @@ export function AdminLayoutClient({ user, children }: AdminLayoutClientProps) {
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Sidebar - Desktop (AdminSidebar already has fixed positioning) */}
-      {isDesktop && <AdminSidebar />}
+      {isDesktop && (
+        <AdminSidebar
+          isCollapsed={isSidebarCollapsed}
+          onToggleCollapse={() => setIsSidebarCollapsed((prev) => !prev)}
+        />
+      )}
 
       {/* Mobile Sidebar Overlay */}
       {isMobileMenuOpen && !isDesktop && (
@@ -64,10 +70,10 @@ export function AdminLayoutClient({ user, children }: AdminLayoutClientProps) {
       {/* Main Content - pushed right on desktop */}
       <div
         className="min-h-screen transition-all duration-300"
-        style={{ marginLeft: isDesktop ? "260px" : "0" }}
+        style={{ marginLeft: isDesktop ? (isSidebarCollapsed ? "70px" : "260px") : "0" }}
       >
         <AdminHeader user={user} onMenuClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} />
-        <main className="p-4 lg:p-6 mt-10">{children}</main>
+        <main className="p-4 lg:p-6">{children}</main>
       </div>
     </div>
   );

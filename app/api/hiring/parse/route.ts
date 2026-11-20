@@ -3,6 +3,7 @@ import { z } from "zod";
 import { checkRateLimit, getClientIp, RATE_LIMITS } from "@/lib/rate-limit";
 import { runWithOpenRouterFallback } from "@/lib/ai/openrouter";
 import { getFeaturedCandidates } from "@/lib/supabase/candidates";
+import { mergeWithDmfPoolCandidates } from "@/lib/candidates/dmf-pool-data";
 import { siteUrl } from "@/lib/site";
 import type { PublicCandidate } from "@/lib/candidates/public-profile";
 import type { HiringService } from "@/lib/validations/hiring";
@@ -72,7 +73,7 @@ function rankTopCandidatesForJd(
 
     return {
       id: c.id,
-      code: c.id.slice(0, 8).toUpperCase(),
+      code: c.display_code || c.id.slice(0, 8).toUpperCase(),
       profession: c.profession || "Fachkraft / Azubi",
       category: c.category,
       german_level: c.german_level,
@@ -162,14 +163,18 @@ export async function POST(request: NextRequest) {
     const { text, lang = "de" } = parsed.data;
     const fallback = deterministicParseHiringText(text, lang);
     const { data: candidatePool } = await getFeaturedCandidates();
-    const pool = candidatePool ?? [];
+    const pool = mergeWithDmfPoolCandidates(candidatePool);
     const apiKey = process.env.OPENROUTER_API_KEY?.trim();
 
     if (!apiKey) {
+      const topMatches = rankTopCandidatesForJd(text, fallback.service, pool);
       return NextResponse.json({
+        success: true,
         data: fallback,
+        draft: fallback,
         prefillUrl: fallback.prefillUrl,
-        matchedCandidates: rankTopCandidatesForJd(text, fallback.service, pool),
+        matchedCandidates: topMatches,
+        topCandidates: topMatches,
         mode: "guided",
       });
     }
@@ -233,21 +238,30 @@ Antworte AUSSCHLIESSLICH als valides JSON-Objekt:
             : fallback.summaryMessage,
       };
       const prefillUrl = buildHiringPrefillUrl(aiBaseDraft);
+      const draftObj = {
+        ...aiBaseDraft,
+        prefillUrl,
+      };
+      const topMatches = rankTopCandidatesForJd(text, service, pool);
 
       return NextResponse.json({
-        data: {
-          ...aiBaseDraft,
-          prefillUrl,
-        },
+        success: true,
+        data: draftObj,
+        draft: draftObj,
         prefillUrl,
-        matchedCandidates: rankTopCandidatesForJd(text, service, pool),
+        matchedCandidates: topMatches,
+        topCandidates: topMatches,
         mode: "ai",
       });
     } catch {
+      const topMatches = rankTopCandidatesForJd(text, fallback.service, pool);
       return NextResponse.json({
+        success: true,
         data: fallback,
+        draft: fallback,
         prefillUrl: fallback.prefillUrl,
-        matchedCandidates: rankTopCandidatesForJd(text, fallback.service, pool),
+        matchedCandidates: topMatches,
+        topCandidates: topMatches,
         mode: "guided",
       });
     }

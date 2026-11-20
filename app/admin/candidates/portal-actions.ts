@@ -183,7 +183,7 @@ export async function syncStudentProfileToB2BCandidateAction(params: {
         const { data: byEmail } = await supabase
           .from("candidates")
           .select("id")
-          .ilike("email", sp.email)
+          .eq("email", sp.email.toLowerCase())
           .maybeSingle();
         if (byEmail?.id) {
           linkedCandidateId = byEmail.id;

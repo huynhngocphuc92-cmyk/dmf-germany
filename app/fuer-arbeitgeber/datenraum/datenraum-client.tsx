@@ -15,6 +15,7 @@ import {
 } from "./actions";
 import { requestPasswordResetAction } from "@/app/auth/actions";
 import { useCandidateShortlist } from "@/lib/candidates/shortlist";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import type { PublicCandidate } from "@/lib/candidates/public-profile";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -82,6 +83,8 @@ function computeB2BReadinessScore(candidate: PublicCandidate): {
 
 export function EmployerDataRoomClient({ initialBundle }: EmployerDataRoomClientProps) {
   const router = useRouter();
+  const { lang } = useLanguage();
+  const tr = (de: string, en: string, vn: string) => (lang === "vn" ? vn : lang === "en" ? en : de);
   const { items: localShortlist, toggleShortlist } = useCandidateShortlist();
 
   // Auth states
@@ -209,7 +212,7 @@ export function EmployerDataRoomClient({ initialBundle }: EmployerDataRoomClient
     setBanner(null);
 
     const c = activeActionCandidate.candidate;
-    const code = c.id.slice(0, 8).toUpperCase();
+    const code = c.display_code || c.id.slice(0, 8).toUpperCase();
     const res = await requestCandidateActionFromDataRoom({
       candidateId: c.id,
       candidateCode: code,
@@ -264,22 +267,32 @@ export function EmployerDataRoomClient({ initialBundle }: EmployerDataRoomClient
   // ============================================================================
   if (!initialBundle.authenticated || !profile) {
     return (
-      <div className="min-h-screen bg-slate-50 pt-28 pb-20">
+      <div className="min-h-screen bg-slate-50 pt-32 md:pt-36 pb-20">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid lg:grid-cols-12 gap-8 items-start">
             {/* Left Column: Value Proposition of the DSGVO Data Room */}
             <div className="lg:col-span-6 space-y-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold uppercase tracking-wider">
                 <ShieldCheck className="w-4 h-4 text-blue-600" />
-                DSGVO-konformer Arbeitgeber-Datenraum
+                {tr(
+                  "DSGVO-konformer Arbeitgeber-Datenraum",
+                  "GDPR-Compliant Employer Data Room",
+                  "Phòng Dữ liệu Doanh nghiệp chuẩn DSGVO"
+                )}
               </div>
               <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
-                Direktzugang zu geprüften Bewerbungsmappen & § 81a Visum-Tracking
+                {tr(
+                  "Direktzugang zu geprüften Bewerbungsmappen & § 81a Visum-Tracking",
+                  "Direct Access to Verified Candidate Dossiers & § 81a Visa Tracking",
+                  "Truy cập Trực tiếp Hồ sơ Ứng viên đã Thẩm định & Theo dõi Thị thực § 81a"
+                )}
               </h1>
               <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                Aus Datenschutzgründen (Art. 6 & Art. 28 DSGVO) sind vollständige
-                Kandidatendossiers, Bewertungsbögen und Interview-Reservierungen exklusiv für
-                registrierte deutsche Arbeitgeber im geschützten Datenraum zugänglich.
+                {tr(
+                  "Aus Datenschutzgründen (Art. 6 & Art. 28 DSGVO) sind vollständige Kandidatendossiers, Bewertungsbögen und Interview-Reservierungen exklusiv für registrierte deutsche Arbeitgeber im geschützten Datenraum zugänglich.",
+                  "For GDPR compliance (Art. 6 & Art. 28 GDPR), full candidate dossiers, evaluation sheets, and interview reservations are exclusively accessible to registered German employers in our protected data room.",
+                  "Để tuân thủ quy định bảo mật dữ liệu (Điều 6 & Điều 28 DSGVO), toàn bộ hồ sơ chi tiết, phiếu đánh giá năng lực và đặt lịch phỏng vấn chỉ dành riêng cho doanh nghiệp Đức đã đăng ký."
+                )}
               </p>
 
               <div className="space-y-4 pt-2">
@@ -289,12 +302,18 @@ export function EmployerDataRoomClient({ initialBundle }: EmployerDataRoomClient
                   </div>
                   <div>
                     <h3 className="font-bold text-slate-900 text-sm">
-                      1. Erweiterte Bewerbungsmappen & DMF Bewertungsbogen
+                      {tr(
+                        "1. Erweiterte Bewerbungsmappen & DMF Bewertungsbogen",
+                        "1. Extended Candidate Dossiers & DMF Evaluation Sheet",
+                        "1. Bộ hồ sơ Bewerbungsmappe & Phiếu đánh giá năng lực DMF"
+                      )}
                     </h3>
                     <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                      Einsicht in detaillierte Fachprofile, Sprachzertifikats-Aufschlüsselungen
-                      (Goethe/telc B1–B2), Stundennachweise für die Anerkennung (IHK FOSA / LfP) und
-                      unsere 100-Punkte-Eignungsbewertung.
+                      {tr(
+                        "Einsicht in detaillierte Fachprofile, Sprachzertifikats-Aufschlüsselungen (Goethe/telc B1–B2), Stundennachweise für die Anerkennung (IHK FOSA / LfP) und unsere 100-Punkte-Eignungsbewertung.",
+                        "Access detailed technical profiles, Goethe/telc B1–B2 score breakdowns, curriculum hours for IHK FOSA / LfP recognition, and our 100-point readiness index.",
+                        "Xem chi tiết hồ sơ chuyên môn, điểm thành phần chứng chỉ Goethe/telc B1–B2, bảng điểm quy đổi giờ học phục vụ công nhận văn bằng (IHK FOSA / LfP) và chỉ số đánh giá 100 điểm."
+                      )}
                     </p>
                   </div>
                 </div>
@@ -305,12 +324,18 @@ export function EmployerDataRoomClient({ initialBundle }: EmployerDataRoomClient
                   </div>
                   <div>
                     <h3 className="font-bold text-slate-900 text-sm">
-                      2. 1-Klick Video-Interview & 7-Tage-Reservierung
+                      {tr(
+                        "2. 1-Klick Video-Interview & 7-Tage-Reservierung",
+                        "2. 1-Click Video Interview & 7-Day Candidate Hold",
+                        "2. Đặt lịch Phỏng vấn Video 1-Click & Giữ chỗ 7 Ngày"
+                      )}
                     </h3>
                     <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                      Buchen Sie direkt aus dem Dossier heraus ein Vorstellungsgespräch per
-                      Microsoft Teams / Zoom (inkl. Fachdolmetscher) oder reservieren Sie passende
-                      Kandidaten unverbindlich für 7 Tage zur internen Abstimmung.
+                      {tr(
+                        "Buchen Sie direkt aus dem Dossier heraus ein Vorstellungsgespräch per Microsoft Teams / Zoom (inkl. Fachdolmetscher) oder reservieren Sie passende Kandidaten unverbindlich für 7 Tage zur internen Abstimmung.",
+                        "Book a Microsoft Teams / Zoom interview (including technical interpreter) directly from the dossier, or place a non-binding 7-day hold on candidates for internal review.",
+                        "Đặt lịch phỏng vấn trực tuyến qua Microsoft Teams / Zoom (kèm phiên dịch chuyên ngành) hoặc giữ chỗ ứng viên trong 7 ngày để hội ý nội bộ."
+                      )}
                     </p>
                   </div>
                 </div>
@@ -321,12 +346,18 @@ export function EmployerDataRoomClient({ initialBundle }: EmployerDataRoomClient
                   </div>
                   <div>
                     <h3 className="font-bold text-slate-900 text-sm">
-                      3. Live-Tracker für § 81a AufenthG & Vorabzustimmung
+                      {tr(
+                        "3. Live-Tracker für § 81a AufenthG & Vorabzustimmung",
+                        "3. Live Tracker for § 81a AufenthG & Pre-Approval",
+                        "3. Theo dõi Trực tuyến Tiến độ § 81a AufenthG & Thị thực"
+                      )}
                     </h3>
                     <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                      Verfolgen Sie alle eingereichten Personalanfragen, den Status der
-                      Gleichwertigkeitsprüfung sowie den Fortschritt des beschleunigten
-                      Fachkräfteverfahrens in Echtzeit.
+                      {tr(
+                        "Verfolgen Sie alle eingereichten Personalanfragen, den Status der Gleichwertigkeitsprüfung sowie den Fortschritt des beschleunigten Fachkräfteverfahrens in Echtzeit.",
+                        "Track all submitted staffing requests, equivalence assessment status, and § 81a fast-track visa milestones in real time.",
+                        "Theo dõi mọi yêu cầu nhân sự đã gửi, tình trạng công nhận bằng cấp và tiến độ thủ tục rút gọn § 81a theo thời gian thực."
+                      )}
                     </p>
                   </div>
                 </div>
@@ -351,7 +382,7 @@ export function EmployerDataRoomClient({ initialBundle }: EmployerDataRoomClient
                         : "text-slate-600 hover:text-slate-900"
                     }`}
                   >
-                    Anmelden (Login)
+                    {tr("Anmelden (Login)", "Sign In (Login)", "Đăng nhập")}
                   </button>
                   <button
                     type="button"
@@ -366,7 +397,11 @@ export function EmployerDataRoomClient({ initialBundle }: EmployerDataRoomClient
                         : "text-slate-600 hover:text-slate-900"
                     }`}
                   >
-                    Unternehmenskonto erstellen
+                    {tr(
+                      "Unternehmenskonto erstellen",
+                      "Create Employer Account",
+                      "Tạo tài khoản Doanh nghiệp"
+                    )}
                   </button>
                 </div>
 
@@ -695,7 +730,7 @@ export function EmployerDataRoomClient({ initialBundle }: EmployerDataRoomClient
   });
 
   return (
-    <div className="min-h-screen bg-slate-50 pt-24 pb-20">
+    <div className="min-h-screen bg-slate-50 pt-32 md:pt-36 pb-20">
       <div className="container mx-auto px-4 max-w-7xl space-y-6">
         {/* Top Corporate Bar */}
         <div className="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
@@ -838,8 +873,10 @@ export function EmployerDataRoomClient({ initialBundle }: EmployerDataRoomClient
                     : activeActionCandidate.actionType === "reservation"
                       ? "Kandidatenprofil unverbindlich für 7 Tage reservieren"
                       : "Vollständige Bewerbungsmappe inkl. Zeugnissen anfordern"}{" "}
-                  — Kandidat #{activeActionCandidate.candidate.id.slice(0, 8).toUpperCase()} (
-                  {activeActionCandidate.candidate.profession})
+                  — Kandidat #
+                  {activeActionCandidate.candidate.display_code ||
+                    activeActionCandidate.candidate.id.slice(0, 8).toUpperCase()}{" "}
+                  ({activeActionCandidate.candidate.profession})
                 </h3>
               </div>
               <button
@@ -975,7 +1012,7 @@ export function EmployerDataRoomClient({ initialBundle }: EmployerDataRoomClient
             ) : (
               <div className="grid md:grid-cols-2 gap-6">
                 {filteredCandidates.map((c) => {
-                  const code = c.id.slice(0, 8).toUpperCase();
+                  const code = c.display_code || c.id.slice(0, 8).toUpperCase();
                   const scores = computeB2BReadinessScore(c);
                   const isSaved = allShortlistedIds.has(c.id);
 

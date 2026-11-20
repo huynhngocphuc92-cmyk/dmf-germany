@@ -52,8 +52,8 @@ type SkilledWorkersContent = {
 const DATA_DU_PHONG: SkilledWorkersContent = {
   hero: {
     badge: "Fachkräfte Vermittlung",
-    headline: "Qualifizierte Fachkräfte",
-    headline_accent: "Anerkannte Abschlüsse. Sofort einsatzbereit.",
+    headline: "Fachkräfte aus Vietnam einstellen",
+    headline_accent: "Anerkannt, B1/B2 & § 81a-beschleunigt.",
     subheadline:
       "Schluss mit dem Behörden-Dschungel. Wir vermitteln Ingenieure, IT-Profis und Pflegekräfte aus Vietnam – rechtssicher nach §18a/b AufenthG.",
     cta1: "Verfügbare Experten prüfen",
@@ -138,7 +138,11 @@ function AnimatedCounter({
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
   const numericValue = Number.parseInt(value, 10);
-  const shouldAnimate = !value.includes("<") && !value.includes("+") && !Number.isNaN(numericValue);
+  const shouldAnimate =
+    !value.includes("<") &&
+    !value.includes("+") &&
+    !value.includes("-") &&
+    !Number.isNaN(numericValue);
 
   useEffect(() => {
     if (!isInView || !shouldAnimate) {
@@ -199,7 +203,7 @@ function HeroSection({ content }: { content: SkilledWorkersContent }) {
       </div>
 
       <div className="relative container mx-auto px-4 max-w-7xl min-h-screen flex items-center">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center w-full py-24 lg:py-0">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center w-full pt-32 pb-16 lg:pt-32 lg:pb-16">
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -222,11 +226,11 @@ function HeroSection({ content }: { content: SkilledWorkersContent }) {
             {/* Headline */}
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8">
               <span className="text-white">
-                {heroContent.headline || "Qualifizierte Fachkräfte"}
+                {heroContent.headline || "Fachkräfte aus Vietnam einstellen"}
               </span>
               <br />
               <span className="bg-gradient-to-r from-emerald-400 via-green-400 to-emerald-400 bg-clip-text text-transparent">
-                {heroContent.headline_accent || "Anerkannte Abschlüsse. Sofort einsatzbereit."}
+                {heroContent.headline_accent || "Anerkannt, B1/B2 & § 81a-beschleunigt."}
               </span>
             </h1>
 
@@ -1041,7 +1045,7 @@ function CTASection({ content }: { content: SkilledWorkersContent }) {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section id="contact" className="py-24 md:py-32 bg-slate-50">
+    <section id="contact" className="scroll-mt-32 py-24 md:py-32 bg-slate-50">
       <div className="container mx-auto px-4 max-w-4xl">
         <motion.div
           ref={ref}

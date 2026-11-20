@@ -2,8 +2,8 @@ import { pageMetadata } from "@/lib/site";
 
 export const metadata = pageMetadata(
   "/fuer-arbeitgeber/roi-rechner",
-  "Personalkosten vergleichen",
-  "Vergleichen Sie Personalkosten anhand Ihrer Annahmen. Eine Modellrechnung ersetzt kein individuelles Angebot."
+  "Personalkosten-Vergleich: Direktrekrutierung Vietnam",
+  "Vergleichen Sie Personalkosten und Amortisationszeit für vietnamesische Fachkräfte und Azubis anhand Ihrer betrieblichen Eckdaten."
 );
 
 export default function PageLayout({ children }: { children: React.ReactNode }) {

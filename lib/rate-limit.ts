@@ -1,4 +1,5 @@
 import { withDeadline } from "@/lib/requests/deadline";
+import { getDeployEnv } from "@/lib/env/runtime";
 import { createIntakeClient, getIntakeKey } from "@/lib/supabase/intake";
 import { createHmac } from "node:crypto";
 import "server-only";
@@ -25,11 +26,7 @@ export async function checkRateLimit(
   config: RateLimitConfig
 ): Promise<RateLimitResult> {
   // Production/serverless counters live in PostgreSQL, shared across all function instances.
-  if (
-    process.env.VERCEL_ENV ||
-    process.env.SUPABASE_SECRET_KEY ||
-    process.env.SUPABASE_SERVICE_ROLE_KEY
-  ) {
+  if (getDeployEnv() || process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY) {
     const db = createIntakeClient();
     const key = createHmac("sha256", getIntakeKey()).update(identifier).digest("hex");
     const { data, error } = await withDeadline(
@@ -61,7 +58,9 @@ export async function checkRateLimit(
 }
 
 export function getClientIp(request: Request): string {
-  const value = process.env.VERCEL_ENV
+  const cfIp = request.headers.get("cf-connecting-ip");
+  if (cfIp) return cfIp.trim();
+  const value = getDeployEnv()
     ? request.headers.get("x-vercel-forwarded-for") || request.headers.get("x-forwarded-for")
     : request.headers.get("x-forwarded-for");
   return value?.split(",")[0]?.trim() || "unknown";

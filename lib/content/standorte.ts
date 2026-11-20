@@ -29,9 +29,9 @@ export const REGIONAL_STANDORTE: RegionalStandortConfig[] = [
     stateName: "Bayern",
     shortName: "BY",
     cities: ["München", "Nürnberg", "Augsburg", "Regensburg", "Würzburg", "Ingolstadt"],
-    metaTitle: "Fachkräfte & Azubis aus Vietnam in Bayern rekrutieren (ZSEF § 81a)",
+    metaTitle: "Fachkräfte & Azubis Vietnam in Bayern (ZSEF § 81a)",
     metaDescription:
-      "Personalvermittlung aus Vietnam für Unternehmen in Bayern: Beschleunigtes Fachkräfteverfahren (§ 81a AufenthG) über die ZSEF Nürnberg, LfP Pflege-Anerkennung & IHK FOSA.",
+      "Personalvermittlung aus Vietnam für Bayern: § 81a-Verfahren über die ZSEF Nürnberg, LfP Amberg Pflege-Anerkennung & IHK FOSA für Ihren Betrieb.",
     authority81aName:
       "Zentrale Stelle für die Einwanderung von Fachkräften (ZSEF) – Regierung von Mittelfranken",
     authority81aAddress: "Marienstraße 17, 90402 Nürnberg",
@@ -111,9 +111,9 @@ export const REGIONAL_STANDORTE: RegionalStandortConfig[] = [
     stateName: "Baden-Württemberg",
     shortName: "BW",
     cities: ["Stuttgart", "Karlsruhe", "Mannheim", "Freiburg", "Ulm", "Heilbronn"],
-    metaTitle: "Fachkräfte & Azubis aus Vietnam in Baden-Württemberg (LZF § 81a)",
+    metaTitle: "Fachkräfte Vietnam in Baden-Württemberg (LZF § 81a)",
     metaDescription:
-      "Personalvermittlung aus Vietnam für Arbeitgeber in Baden-Württemberg: § 81a AufenthG über die Landesagentur für die Zuwanderung von Fachkräften (LZF Stuttgart/Karlsruhe).",
+      "Personalvermittlung aus Vietnam für Baden-Württemberg: Fachkräfte & Azubis über das § 81a-Verfahren der LZF Stuttgart/Karlsruhe rechtssicher gewinnen.",
     authority81aName: "Landesagentur für die Zuwanderung von Fachkräften (LZF Baden-Württemberg)",
     authority81aAddress: "Standorte Stuttgart & Karlsruhe (Digitales Serviceportal BW)",
     authority81aModel:
@@ -192,9 +192,9 @@ export const REGIONAL_STANDORTE: RegionalStandortConfig[] = [
     stateName: "Nordrhein-Westfalen (NRW)",
     shortName: "NRW",
     cities: ["Köln", "Düsseldorf", "Dortmund", "Essen", "Bonn", "Münster", "Bielefeld"],
-    metaTitle: "Fachkräfte & Azubis aus Vietnam in NRW rekrutieren (ZFE Bonn § 81a)",
+    metaTitle: "Fachkräfte & Azubis Vietnam in NRW (ZFE Bonn § 81a)",
     metaDescription:
-      "Personalvermittlung aus Vietnam für Nordrhein-Westfalen (NRW): § 81a AufenthG über die Zentralstelle Fachkräfteeinwanderung (ZFE Bonn) & Bezirksregierung Münster (ZAG).",
+      "Personalvermittlung aus Vietnam für Nordrhein-Westfalen: § 81a-Verfahren über ZFE NRW Bonn & Pflege-Anerkennung bei der Bezirksregierung Münster (ZAG).",
     authority81aName:
       "Zentralstelle Fachkräfteeinwanderung NRW (ZFE Bonn) & kommunale Business Immigration Desks",
     authority81aAddress: "ZFE NRW (Bonn) sowie kommunale Ausländerbehörden am Betriebssitz",
@@ -272,9 +272,9 @@ export const REGIONAL_STANDORTE: RegionalStandortConfig[] = [
     stateName: "Niedersachsen & Bremen",
     shortName: "NI/HB",
     cities: ["Hannover", "Meppen (Emsland)", "Osnabrück", "Oldenburg", "Braunschweig", "Bremen"],
-    metaTitle: "Fachkräfte & Azubis aus Vietnam in Niedersachsen & Emsland (§ 81a)",
+    metaTitle: "Fachkräfte & Azubis Vietnam Niedersachsen (§ 81a)",
     metaDescription:
-      "Personalvermittlung aus Vietnam für Niedersachsen & Bremen: Erfolgreiche Azubi- und Fachkräfte-Platzierungen (u. a. Meppen/Emsland, Hannover) nach § 16a & § 81a AufenthG.",
+      "Personalvermittlung aus Vietnam für Niedersachsen & Bremen: Geprüfte Fachkräfte & Azubis (u. a. Meppen/Emsland, Hannover) nach § 16a & § 81a AufenthG.",
     authority81aName:
       "Kommunale Ausländerbehörden & Fachkräfte-Servicestellen in Niedersachsen / Migrationsamt Bremen",
     authority81aAddress:
@@ -354,9 +354,9 @@ export const REGIONAL_STANDORTE: RegionalStandortConfig[] = [
     stateName: "Hessen & Rhein-Main",
     shortName: "HE",
     cities: ["Frankfurt am Main", "Wiesbaden", "Darmstadt", "Kassel", "Offenbach", "Gießen"],
-    metaTitle: "Fachkräfte & Azubis aus Vietnam in Hessen & Frankfurt (§ 81a)",
+    metaTitle: "Fachkräfte & Azubis Vietnam: Hessen & Frankfurt § 81a",
     metaDescription:
-      "Personalvermittlung aus Vietnam für Hessen & Rhein-Main: Beschleunigtes Fachkräfteverfahren (§ 81a AufenthG), HLfGP Pflege-Anerkennung & Direktflug nach Frankfurt (FRA).",
+      "Personalvermittlung aus Vietnam für Hessen & Frankfurt: Beschleunigtes § 81a-Verfahren, HLfGP Pflege-Anerkennung & Direktflug nach Frankfurt (FRA).",
     authority81aName:
       "Zuständige Ausländerbehörden & Business-Servicestellen in Hessen (Frankfurt, Wiesbaden, Darmstadt, Kassel)",
     authority81aAddress: "Jeweilige kommunale Ausländerbehörde am Betriebssitz in Hessen",
@@ -437,9 +437,9 @@ export const REGIONAL_STANDORTE: RegionalStandortConfig[] = [
       "Brandenburg an der Havel",
       "Oranienburg",
     ],
-    metaTitle: "Fachkräfte & Azubis aus Vietnam in Berlin & Brandenburg (BIS § 81a)",
+    metaTitle: "Fachkräfte & Azubis Vietnam Berlin & BB (LEA § 81a)",
     metaDescription:
-      "Personalvermittlung aus Vietnam für Berlin & Brandenburg: Beschleunigtes Fachkräfteverfahren (§ 81a AufenthG) über den Business Immigration Service (LEA Berlin) & LAGeSo.",
+      "Personalvermittlung aus Vietnam für Berlin & Brandenburg: § 81a AufenthG über LEA Berlin (Business Immigration Service BIS), LAGeSo & IHK/HWK.",
     authority81aName:
       "Landesamt für Einwanderung (LEA) Berlin – Business Immigration Service (BIS) / Ausländerbehörden Brandenburg",
     authority81aAddress: "Fasanenstraße 85, 10623 Berlin (LEA Business Immigration Service)",
@@ -513,9 +513,9 @@ export const REGIONAL_STANDORTE: RegionalStandortConfig[] = [
     stateName: "Sachsen, Sachsen-Anhalt & Thüringen",
     shortName: "SN/ST/TH",
     cities: ["Leipzig", "Dresden", "Chemnitz", "Magdeburg", "Halle (Saale)", "Erfurt", "Jena"],
-    metaTitle: "Fachkräfte & Azubis aus Vietnam in Sachsen & Mitteldeutschland (§ 81a)",
+    metaTitle: "Fachkräfte & Azubis Vietnam in Sachsen (§ 81a)",
     metaDescription:
-      "Personalvermittlung aus Vietnam für Sachsen, Sachsen-Anhalt & Thüringen: § 81a AufenthG über die Landesdirektion Sachsen, KSV Leipzig & regionale Kammern.",
+      "Personalvermittlung aus Vietnam für Sachsen, Sachsen-Anhalt & Thüringen: § 81a AufenthG über Landesdirektion Sachsen, KSV Leipzig & regionale Kammern.",
     authority81aName:
       "Landesdirektion Sachsen (Zentrale Ausländerbehörde Chemnitz/Dresden/Leipzig) & Ausländerbehörden ST/TH",
     authority81aAddress:
@@ -593,9 +593,9 @@ export const REGIONAL_STANDORTE: RegionalStandortConfig[] = [
     stateName: "Hamburg & Schleswig-Holstein",
     shortName: "HH/SH",
     cities: ["Hamburg", "Kiel", "Lübeck", "Flensburg", "Neumünster", "Norderstedt"],
-    metaTitle: "Fachkräfte & Azubis aus Vietnam in Hamburg & Norddeutschland (§ 81a)",
+    metaTitle: "Fachkräfte & Azubis Vietnam in Hamburg (HWC § 81a)",
     metaDescription:
-      "Personalvermittlung aus Vietnam für Hamburg & Schleswig-Holstein: § 81a AufenthG über das Hamburg Welcome Center (HWC) & Landesamt Schleswig-Holstein.",
+      "Personalvermittlung aus Vietnam für Hamburg & Schleswig-Holstein: § 81a AufenthG über Hamburg Welcome Center (HWC) & LaZuF Schleswig-Holstein.",
     authority81aName:
       "Hamburg Welcome Center (HWC) für Fachkräfte / Landesamt für Zuwanderung und Flüchtlinge Schleswig-Holstein",
     authority81aAddress: "Süderstraße 32b, 20097 Hamburg (Hamburg Welcome Center)",

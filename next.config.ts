@@ -1,8 +1,13 @@
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 import { validateBuildEnvironment } from "./lib/env/build";
-import { TRUST_ANCHOR_REWRITES } from "./lib/geo/markdown-negotiation";
+import { BLOG_BENCHMARK_REDIRECTS, TRUST_ANCHOR_REWRITES } from "./lib/geo/markdown-negotiation";
 import type { NextConfig } from "next";
 import bundleAnalyzer from "@next/bundle-analyzer";
 import { withSentryConfig } from "@sentry/nextjs/config";
+
+if (process.env.NODE_ENV === "development") {
+  void initOpenNextCloudflareForDev();
+}
 
 validateBuildEnvironment(process.env);
 
@@ -42,9 +47,6 @@ const nextConfig: NextConfig = {
   // 2. Server Actions: Increase body size limit for file uploads (5MB)
   // Configure experimental.serverActions.bodySizeLimit for Next.js 16
   experimental: {
-    // Remove the measured mobile render-blocking CSS fetch.
-    // Recheck cold/warm loads when upgrading this experimental Next option.
-    inlineCss: true,
     serverActions: {
       bodySizeLimit: "5mb",
     },
@@ -90,12 +92,12 @@ const nextConfig: NextConfig = {
             key: "Content-Security-Policy",
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://va.vercel-scripts.com",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com",
               "style-src 'self' 'unsafe-inline'",
               "font-src 'self'",
               "img-src 'self' data: blob: https://*.supabase.co https://images.unsplash.com https://picsum.photos https://dmf.edu.vn https://www.google-analytics.com https://cdnjs.cloudflare.com https://*.tile.openstreetmap.org",
               "media-src 'self' blob: https://*.supabase.co",
-              "connect-src 'self' https://*.supabase.co https://api.telegram.org https://www.google-analytics.com https://*.tile.openstreetmap.org https://api.x.ai https://va.vercel-scripts.com https://vitals.vercel-insights.com",
+              "connect-src 'self' https://*.supabase.co https://api.telegram.org https://www.google-analytics.com https://*.tile.openstreetmap.org https://api.x.ai https://cloudflareinsights.com",
               "frame-src https://www.youtube-nocookie.com",
               "frame-ancestors 'self'",
               "form-action 'self'",
@@ -120,6 +122,11 @@ const nextConfig: NextConfig = {
   // 4. GEO & Trust Anchor Rewrites (/privacy, /about, /contact, /kontakt, /terms)
   async rewrites() {
     return [...TRUST_ANCHOR_REWRITES];
+  },
+
+  // 5. Legacy Benchmark Slug Redirects (HTTP 308 Permanent Redirects)
+  async redirects() {
+    return [...BLOG_BENCHMARK_REDIRECTS];
   },
 };
 

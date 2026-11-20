@@ -5,7 +5,9 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
 import { isAdminUser } from "@/lib/auth/admin-policy";
 import { getMailTransporter } from "@/lib/email/transporter";
+import { isNotificationDeliveryEnabled } from "@/lib/env/runtime";
 import { escapeHtml } from "@/lib/sanitize";
+import { checkRateLimit, RATE_LIMITS } from "@/lib/rate-limit";
 import { SITE_URL } from "@/lib/site";
 import {
   legalSignatureSchema,
@@ -532,10 +534,7 @@ export async function saveStudentProfile(
 }
 
 async function notifyAdminStudentDossierSubmitted(profile: StudentProfile): Promise<void> {
-  if (
-    process.env.VERCEL_ENV === "preview" ||
-    (process.env.VERCEL_ENV !== "production" && process.env.NOTIFICATION_DELIVERY !== "enabled")
-  ) {
+  if (!isNotificationDeliveryEnabled()) {
     return;
   }
 
@@ -596,42 +595,57 @@ export async function runAiCvStandardization(): Promise<{
   error: string | null;
   profile?: StudentProfile;
 }> {
-  const { profile, isAdmin } = await getOrCreateStudentPortalBundle();
-  if (!profile.ai_enabled && !isAdmin) {
-    return {
-      success: false,
-      error: "Vui lòng nhập Mã Học Viên DMF hoặc chờ Admin mở khoá tính năng AI.",
-    };
+  try {
+    const { profile, isAdmin, dbError } = await getOrCreateStudentPortalBundle();
+    if (dbError) {
+      return { success: false, error: dbError };
+    }
+    if (!profile.ai_enabled && !isAdmin) {
+      return {
+        success: false,
+        error: "Vui lòng nhập Mã Học Viên DMF hoặc chờ Admin mở khoá tính năng AI.",
+      };
+    }
+
+    const rate = await checkRateLimit(`portal-ai:${profile.user_id}`, RATE_LIMITS.CHAT);
+    if (!rate.success) {
+      return {
+        success: false,
+        error: "Bạn đang sử dụng AI quá nhanh. Vui lòng đợi 1 phút rồi thử lại.",
+      };
+    }
+
+    const standardized = await translateAndStandardizeCVEntries({
+      targetProfession: profile.target_profession,
+      programTrack: profile.program_track,
+      germanLevel: profile.german_level,
+      education: profile.education_history,
+      work: profile.work_experience,
+    });
+
+    const supabase = await createClient();
+    const { data, error } = await supabase
+      .from("student_profiles")
+      .update({
+        education_history: standardized.education,
+        work_experience: standardized.work,
+      })
+      .eq("id", profile.id)
+      .select("*")
+      .single();
+
+    if (error || !data) {
+      return { success: false, error: "Không thể lưu dữ liệu CV đã chuẩn hoá." };
+    }
+
+    const storageClient = getOptionalServiceStorageClient() || supabase;
+    const hydrated = await hydrateProfileVideoSignedUrl(storageClient, data as StudentProfile);
+
+    revalidatePath("/portal");
+    return { success: true, error: null, profile: hydrated };
+  } catch {
+    return { success: false, error: "Đã xảy ra lỗi khi chuẩn hoá CV bằng AI." };
   }
-
-  const standardized = await translateAndStandardizeCVEntries({
-    targetProfession: profile.target_profession,
-    programTrack: profile.program_track,
-    germanLevel: profile.german_level,
-    education: profile.education_history,
-    work: profile.work_experience,
-  });
-
-  const supabase = await createClient();
-  const { data, error } = await supabase
-    .from("student_profiles")
-    .update({
-      education_history: standardized.education,
-      work_experience: standardized.work,
-    })
-    .eq("id", profile.id)
-    .select("*")
-    .single();
-
-  if (error || !data) {
-    return { success: false, error: "Không thể lưu dữ liệu CV đã chuẩn hoá." };
-  }
-
-  const storageClient = getOptionalServiceStorageClient() || supabase;
-  const hydrated = await hydrateProfileVideoSignedUrl(storageClient, data as StudentProfile);
-
-  revalidatePath("/portal");
-  return { success: true, error: null, profile: hydrated };
 }
 
 export async function generateAndSaveMotivationLetter(input: unknown): Promise<{
@@ -639,75 +653,97 @@ export async function generateAndSaveMotivationLetter(input: unknown): Promise<{
   error: string | null;
   letter?: StudentMotivationLetter;
 }> {
-  const { profile, isAdmin } = await getOrCreateStudentPortalBundle();
-  if (!profile.ai_enabled && !isAdmin) {
-    return {
-      success: false,
-      error:
-        "Tính năng AI viết Motivationsschreiben chuẩn DIN 5008 yêu cầu mở khoá Mã Học Viên DMF.",
+  try {
+    const { profile, isAdmin, dbError } = await getOrCreateStudentPortalBundle();
+    if (dbError) {
+      return { success: false, error: dbError };
+    }
+    if (!profile.ai_enabled && !isAdmin) {
+      return {
+        success: false,
+        error:
+          "Tính năng AI viết Motivationsschreiben chuẩn DIN 5008 yêu cầu mở khoá Mã Học Viên DMF.",
+      };
+    }
+
+    const rate = await checkRateLimit(`portal-ai:${profile.user_id}`, RATE_LIMITS.CHAT);
+    if (!rate.success) {
+      return {
+        success: false,
+        error: "Bạn đang sử dụng AI quá nhanh. Vui lòng đợi 1 phút rồi thử lại.",
+      };
+    }
+
+    const parsed = studentMotivationLetterSchema.safeParse(input);
+    if (!parsed.success) {
+      return {
+        success: false,
+        error: parsed.error.issues[0]?.message || "Vui lòng kiểm tra thông tin thư động lực.",
+      };
+    }
+
+    const d = parsed.data;
+    const generated = await generateDin5008MotivationLetter({
+      profile,
+      targetCompanyName: d.target_company_name,
+      targetCity: d.target_city,
+      targetContactPerson: d.target_contact_person,
+      targetPositionDe: d.target_position_de || profile.target_profession,
+      answers: d.prompt_answers,
+    });
+
+    const supabase = await createClient();
+    if (d.is_primary) {
+      await supabase
+        .from("student_motivation_letters")
+        .update({ is_primary: false })
+        .eq("student_profile_id", profile.id);
+    }
+
+    const rowPayload = {
+      student_profile_id: profile.id,
+      user_id: profile.user_id,
+      title: d.title,
+      is_primary: d.is_primary,
+      target_company_name: d.target_company_name,
+      target_company_address: d.target_company_address,
+      target_city: d.target_city,
+      target_contact_person: d.target_contact_person,
+      target_position_de: d.target_position_de || profile.target_profession,
+      prompt_answers: d.prompt_answers,
+      subject_de: generated.subject_de,
+      salutation_de: generated.salutation_de,
+      body_de: generated.body_de,
+      closing_de: generated.closing_de,
+      updated_at: new Date().toISOString(),
     };
+
+    let saved;
+    if (d.id) {
+      const { data, error } = await supabase
+        .from("student_motivation_letters")
+        .update(rowPayload)
+        .eq("id", d.id)
+        .eq("student_profile_id", profile.id)
+        .select("*")
+        .single();
+      if (error) return { success: false, error: "Không thể cập nhật Motivationsschreiben." };
+      saved = data;
+    } else {
+      const { data, error } = await supabase
+        .from("student_motivation_letters")
+        .insert(rowPayload)
+        .select("*")
+        .single();
+      if (error) return { success: false, error: "Không thể lưu Motivationsschreiben mới." };
+      saved = data;
+    }
+
+    revalidatePath("/portal");
+    return { success: true, error: null, letter: saved as StudentMotivationLetter };
+  } catch {
+    return { success: false, error: "Đã xảy ra lỗi khi tạo Motivationsschreiben." };
   }
-
-  const parsed = studentMotivationLetterSchema.safeParse(input);
-  if (!parsed.success) {
-    return {
-      success: false,
-      error: parsed.error.issues[0]?.message || "Vui lòng kiểm tra thông tin thư động lực.",
-    };
-  }
-
-  const d = parsed.data;
-  const generated = await generateDin5008MotivationLetter({
-    profile,
-    targetCompanyName: d.target_company_name,
-    targetCity: d.target_city,
-    targetContactPerson: d.target_contact_person,
-    targetPositionDe: d.target_position_de || profile.target_profession,
-    answers: d.prompt_answers,
-  });
-
-  const supabase = await createClient();
-  const rowPayload = {
-    student_profile_id: profile.id,
-    user_id: profile.user_id,
-    title: d.title,
-    is_primary: d.is_primary,
-    target_company_name: d.target_company_name,
-    target_company_address: d.target_company_address,
-    target_city: d.target_city,
-    target_contact_person: d.target_contact_person,
-    target_position_de: d.target_position_de || profile.target_profession,
-    prompt_answers: d.prompt_answers,
-    subject_de: generated.subject_de,
-    salutation_de: generated.salutation_de,
-    body_de: generated.body_de,
-    closing_de: generated.closing_de,
-    updated_at: new Date().toISOString(),
-  };
-
-  let saved;
-  if (d.id) {
-    const { data, error } = await supabase
-      .from("student_motivation_letters")
-      .update(rowPayload)
-      .eq("id", d.id)
-      .eq("student_profile_id", profile.id)
-      .select("*")
-      .single();
-    if (error) return { success: false, error: "Không thể cập nhật Motivationsschreiben." };
-    saved = data;
-  } else {
-    const { data, error } = await supabase
-      .from("student_motivation_letters")
-      .insert(rowPayload)
-      .select("*")
-      .single();
-    if (error) return { success: false, error: "Không thể lưu Motivationsschreiben mới." };
-    saved = data;
-  }
-
-  revalidatePath("/portal");
-  return { success: true, error: null, letter: saved as StudentMotivationLetter };
 }
 
 export async function saveMotivationLetterManual(input: unknown): Promise<{
@@ -715,71 +751,92 @@ export async function saveMotivationLetterManual(input: unknown): Promise<{
   error: string | null;
   letter?: StudentMotivationLetter;
 }> {
-  const { profile } = await getOrCreateStudentPortalBundle();
-  const parsed = studentMotivationLetterSchema.safeParse(input);
-  if (!parsed.success) {
-    return {
-      success: false,
-      error: parsed.error.issues[0]?.message || "Vui lòng kiểm tra nội dung thư.",
+  try {
+    const { profile, dbError } = await getOrCreateStudentPortalBundle();
+    if (dbError) {
+      return { success: false, error: dbError };
+    }
+    const parsed = studentMotivationLetterSchema.safeParse(input);
+    if (!parsed.success) {
+      return {
+        success: false,
+        error: parsed.error.issues[0]?.message || "Vui lòng kiểm tra nội dung thư.",
+      };
+    }
+
+    const d = parsed.data;
+    const supabase = await createClient();
+    if (d.is_primary) {
+      await supabase
+        .from("student_motivation_letters")
+        .update({ is_primary: false })
+        .eq("student_profile_id", profile.id);
+    }
+
+    const rowPayload = {
+      student_profile_id: profile.id,
+      user_id: profile.user_id,
+      title: d.title,
+      is_primary: d.is_primary,
+      target_company_name: d.target_company_name,
+      target_company_address: d.target_company_address,
+      target_city: d.target_city,
+      target_contact_person: d.target_contact_person,
+      target_position_de: d.target_position_de,
+      prompt_answers: d.prompt_answers,
+      subject_de: d.subject_de,
+      salutation_de: d.salutation_de,
+      body_de: d.body_de,
+      closing_de: d.closing_de,
+      updated_at: new Date().toISOString(),
     };
-  }
 
-  const d = parsed.data;
-  const supabase = await createClient();
-  const rowPayload = {
-    student_profile_id: profile.id,
-    user_id: profile.user_id,
-    title: d.title,
-    is_primary: d.is_primary,
-    target_company_name: d.target_company_name,
-    target_company_address: d.target_company_address,
-    target_city: d.target_city,
-    target_contact_person: d.target_contact_person,
-    target_position_de: d.target_position_de,
-    prompt_answers: d.prompt_answers,
-    subject_de: d.subject_de,
-    salutation_de: d.salutation_de,
-    body_de: d.body_de,
-    closing_de: d.closing_de,
-    updated_at: new Date().toISOString(),
-  };
+    if (d.id) {
+      const { data, error } = await supabase
+        .from("student_motivation_letters")
+        .update(rowPayload)
+        .eq("id", d.id)
+        .eq("student_profile_id", profile.id)
+        .select("*")
+        .single();
+      if (error) return { success: false, error: "Không thể lưu bản chỉnh sửa." };
+      revalidatePath("/portal");
+      return { success: true, error: null, letter: data as StudentMotivationLetter };
+    }
 
-  if (d.id) {
     const { data, error } = await supabase
       .from("student_motivation_letters")
-      .update(rowPayload)
-      .eq("id", d.id)
-      .eq("student_profile_id", profile.id)
+      .insert(rowPayload)
       .select("*")
       .single();
-    if (error) return { success: false, error: "Không thể lưu bản chỉnh sửa." };
+    if (error) return { success: false, error: "Không thể tạo phiên bản thư mới." };
     revalidatePath("/portal");
     return { success: true, error: null, letter: data as StudentMotivationLetter };
+  } catch {
+    return { success: false, error: "Đã xảy ra lỗi khi lưu Motivationsschreiben." };
   }
-
-  const { data, error } = await supabase
-    .from("student_motivation_letters")
-    .insert(rowPayload)
-    .select("*")
-    .single();
-  if (error) return { success: false, error: "Không thể tạo phiên bản thư mới." };
-  revalidatePath("/portal");
-  return { success: true, error: null, letter: data as StudentMotivationLetter };
 }
 
 export async function deleteMotivationLetter(
   id: string
 ): Promise<{ success: boolean; error: string | null }> {
-  const { profile } = await getOrCreateStudentPortalBundle();
-  const supabase = await createClient();
-  const { error } = await supabase
-    .from("student_motivation_letters")
-    .delete()
-    .eq("id", id)
-    .eq("student_profile_id", profile.id);
-  if (error) return { success: false, error: "Không thể xoá phiên bản thư này." };
-  revalidatePath("/portal");
-  return { success: true, error: null };
+  try {
+    const { profile, dbError } = await getOrCreateStudentPortalBundle();
+    if (dbError) {
+      return { success: false, error: dbError };
+    }
+    const supabase = await createClient();
+    const { error } = await supabase
+      .from("student_motivation_letters")
+      .delete()
+      .eq("id", id)
+      .eq("student_profile_id", profile.id);
+    if (error) return { success: false, error: "Không thể xoá phiên bản thư này." };
+    revalidatePath("/portal");
+    return { success: true, error: null };
+  } catch {
+    return { success: false, error: "Đã xảy ra lỗi khi xoá Motivationsschreiben." };
+  }
 }
 
 export async function generateAiInterviewKitAction(): Promise<{
@@ -787,36 +844,51 @@ export async function generateAiInterviewKitAction(): Promise<{
   error: string | null;
   profile?: StudentProfile;
 }> {
-  const { profile, isAdmin } = await getOrCreateStudentPortalBundle();
-  if (!profile.ai_enabled && !isAdmin) {
-    return {
-      success: false,
-      error:
-        "Vui lòng mở khoá Mã Học Viên DMF để tạo Kịch bản Teleprompter & Bộ câu hỏi phỏng vấn AI.",
-    };
+  try {
+    const { profile, isAdmin, dbError } = await getOrCreateStudentPortalBundle();
+    if (dbError) {
+      return { success: false, error: dbError };
+    }
+    if (!profile.ai_enabled && !isAdmin) {
+      return {
+        success: false,
+        error:
+          "Vui lòng mở khoá Mã Học Viên DMF để tạo Kịch bản Teleprompter & Bộ câu hỏi phỏng vấn AI.",
+      };
+    }
+
+    const rate = await checkRateLimit(`portal-ai:${profile.user_id}`, RATE_LIMITS.CHAT);
+    if (!rate.success) {
+      return {
+        success: false,
+        error: "Bạn đang sử dụng AI quá nhanh. Vui lòng đợi 1 phút rồi thử lại.",
+      };
+    }
+
+    const kit = await generateInterviewPrepKit(profile);
+    const supabase = await createClient();
+    const { data, error } = await supabase
+      .from("student_profiles")
+      .update({
+        interview_script_de: kit.scriptDe,
+        interview_qa: kit.qaList,
+      })
+      .eq("id", profile.id)
+      .select("*")
+      .single();
+
+    if (error || !data) {
+      return { success: false, error: "Không thể lưu kịch bản phỏng vấn." };
+    }
+
+    const storageClient = getOptionalServiceStorageClient() || supabase;
+    const hydrated = await hydrateProfileVideoSignedUrl(storageClient, data as StudentProfile);
+
+    revalidatePath("/portal");
+    return { success: true, error: null, profile: hydrated };
+  } catch {
+    return { success: false, error: "Đã xảy ra lỗi khi tạo kịch bản phỏng vấn AI." };
   }
-
-  const kit = await generateInterviewPrepKit(profile);
-  const supabase = await createClient();
-  const { data, error } = await supabase
-    .from("student_profiles")
-    .update({
-      interview_script_de: kit.scriptDe,
-      interview_qa: kit.qaList,
-    })
-    .eq("id", profile.id)
-    .select("*")
-    .single();
-
-  if (error || !data) {
-    return { success: false, error: "Không thể lưu kịch bản phỏng vấn." };
-  }
-
-  const storageClient = getOptionalServiceStorageClient() || supabase;
-  const hydrated = await hydrateProfileVideoSignedUrl(storageClient, data as StudentProfile);
-
-  revalidatePath("/portal");
-  return { success: true, error: null, profile: hydrated };
 }
 
 // ============================================================================

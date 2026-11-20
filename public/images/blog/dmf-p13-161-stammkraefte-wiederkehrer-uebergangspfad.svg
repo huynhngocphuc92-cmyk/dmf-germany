@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <rect width="720" height="540" rx="16" fill="#F8FAFC"/>
+  <rect x="20" y="20" width="680" height="500" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="20" y="20" width="680" height="72" rx="12" fill="#003366"/>
+  <text x="44" y="50" fill="#FFFFFF" font-size="16" font-weight="700">Stammkräfte-Wiederkehrer &amp; Übergangsrecht (§ 15d → § 16a / § 18a)</text>
+  <text x="44" y="74" fill="#CBD5E1" font-size="11.5">Zwei rechtssichere strategische Pfade nach Ablauf des zeitlich befristeten Saisoneinsatzes</text>
+
+  <!-- Track 1: Wiederkehrer-Zyklus -->
+  <g transform="translate(44, 110)">
+    <rect width="632" height="122" rx="10" fill="#F8FAFC" stroke="#003366" stroke-width="2"/>
+    <rect width="632" height="32" rx="10" fill="#003366"/>
+    <text x="16" y="21" fill="#FFFFFF" font-size="12" font-weight="700">Pfad A: Stammkräfte-Wiederkehrer-Zyklus (jährliche Wiederholung mit eingearbeitetem Pool)</text>
+
+    <rect x="16" y="46" width="174" height="60" rx="8" fill="#FFFFFF" stroke="#003366"/>
+    <text x="103" y="68" text-anchor="middle" fill="#003366" font-size="11.5" font-weight="700">Saison 1 in Deutschland</text>
+    <text x="103" y="86" text-anchor="middle" fill="#475569" font-size="10">Max. 8 Mon. (§ 15d BeschV)</text>
+    <text x="103" y="99" text-anchor="middle" fill="#475569" font-size="9.5">bzw. 90 Tage (§ 14 Abs. 2)</text>
+
+    <text x="206" y="80" text-anchor="middle" fill="#003366" font-size="18" font-weight="700">→</text>
+
+    <rect x="222" y="46" width="188" height="60" rx="8" fill="#FFFFFF" stroke="#475569"/>
+    <text x="316" y="68" text-anchor="middle" fill="#334155" font-size="11.5" font-weight="700">Fristgerechte Ausreise</text>
+    <text x="316" y="86" text-anchor="middle" fill="#475569" font-size="10">Rückkehr nach Vietnam vor</text>
+    <text x="316" y="99" text-anchor="middle" fill="#475569" font-size="9.5">Visumablauf (Vertrauensbasis)</text>
+
+    <text x="426" y="80" text-anchor="middle" fill="#003366" font-size="18" font-weight="700">→</text>
+
+    <rect x="442" y="46" width="174" height="60" rx="8" fill="#F1F5F9" stroke="#003366"/>
+    <text x="529" y="68" text-anchor="middle" fill="#003366" font-size="11.5" font-weight="700">Wiedereinreise Saison 2</text>
+    <text x="529" y="86" text-anchor="middle" fill="#475569" font-size="10">Neues ZAV-Kontingent im</text>
+    <text x="529" y="99" text-anchor="middle" fill="#475569" font-size="9.5">Folgejahr (0 Einarbeitungszeit)</text>
+  </g>
+
+  <!-- Middle Legal Rule Bar -->
+  <rect x="44" y="246" width="632" height="44" rx="8" fill="#FFF7ED" stroke="#FF6600" stroke-width="2"/>
+  <text x="360" y="265" text-anchor="middle" fill="#9A3412" font-size="11.5" font-weight="700">Wichtige Gesetzesgrenze: Kein direkter Zweckwechsel im Inland aus § 15d oder § 14 Abs. 2 BeschV</text>
+  <text x="360" y="281" text-anchor="middle" fill="#7C2D12" font-size="10.5">Ein langfristiger Wechsel in § 16a oder § 18a AufenthG erfolgt regulär über Rückkehr und nationales D-Visum</text>
+
+  <!-- Track 2: Legal Upgrade Bridge -->
+  <g transform="translate(44, 304)">
+    <rect width="632" height="152" rx="10" fill="#FFF7ED" stroke="#FF6600" stroke-width="2"/>
+    <rect width="632" height="32" rx="10" fill="#FF6600"/>
+    <text x="16" y="21" fill="#FFFFFF" font-size="12" font-weight="700">Pfad B: Legal Upgrade Bridge (Vom bewährten Saisonhelfer zur festen Fachkraft oder Azubi)</text>
+
+    <rect x="16" y="48" width="136" height="86" rx="8" fill="#FFFFFF" stroke="#CBD5E1"/>
+    <text x="84" y="68" text-anchor="middle" fill="#003366" font-size="11" font-weight="700">1. Praxistest</text>
+    <text x="84" y="86" text-anchor="middle" fill="#475569" font-size="10">Bewährung im</text>
+    <text x="84" y="100" text-anchor="middle" fill="#475569" font-size="10">Saisonbetrieb</text>
+    <text x="84" y="118" text-anchor="middle" fill="#9A3412" font-size="9.5" font-weight="700">Bindungsangebot</text>
+
+    <text x="162" y="94" text-anchor="middle" fill="#FF6600" font-size="16" font-weight="700">→</text>
+
+    <rect x="172" y="48" width="142" height="86" rx="8" fill="#FFFFFF" stroke="#CBD5E1"/>
+    <text x="243" y="68" text-anchor="middle" fill="#003366" font-size="11" font-weight="700">2. Qualifizierung</text>
+    <text x="243" y="86" text-anchor="middle" fill="#475569" font-size="10">Ausreise + B1/B2</text>
+    <text x="243" y="100" text-anchor="middle" fill="#475569" font-size="10">in Vietnam sowie</text>
+    <text x="243" y="118" text-anchor="middle" fill="#475569" font-size="9.5">BQFG / Ausbildungsvertrag</text>
+
+    <text x="324" y="94" text-anchor="middle" fill="#FF6600" font-size="16" font-weight="700">→</text>
+
+    <rect x="334" y="48" width="136" height="86" rx="8" fill="#FFFFFF" stroke="#003366"/>
+    <text x="402" y="68" text-anchor="middle" fill="#003366" font-size="11" font-weight="700">3. § 81a Verfahren</text>
+    <text x="402" y="86" text-anchor="middle" fill="#475569" font-size="10">Beschleunigte</text>
+    <text x="402" y="100" text-anchor="middle" fill="#475569" font-size="10">Vorabzustimmung</text>
+    <text x="402" y="118" text-anchor="middle" fill="#003366" font-size="9.5" font-weight="700">D-Visum (Hanoi/HCMC)</text>
+
+    <text x="480" y="94" text-anchor="middle" fill="#FF6600" font-size="16" font-weight="700">→</text>
+
+    <rect x="490" y="48" width="126" height="86" rx="8" fill="#003366"/>
+    <text x="553" y="68" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="700">4. Langfrist-Titel</text>
+    <text x="553" y="88" text-anchor="middle" fill="#CBD5E1" font-size="10">§ 16a (Ausbildung)</text>
+    <text x="553" y="104" text-anchor="middle" fill="#CBD5E1" font-size="10">oder § 18a / § 16d</text>
+    <text x="553" y="122" text-anchor="middle" fill="#FFEDD5" font-size="9.5" font-weight="700">Perspektive § 18c</text>
+  </g>
+
+  <rect x="44" y="472" width="632" height="36" rx="8" fill="#003366"/>
+  <text x="360" y="494" text-anchor="middle" fill="#FFFFFF" font-size="10.5" font-weight="600">Planungssicherheit: Fristgerechte Ausreise sichert Wiederkehrer &amp; spätere § 81a-Anträge</text>
+</svg>

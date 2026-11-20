@@ -2,8 +2,8 @@ import { pageMetadata } from "@/lib/site";
 
 export const metadata = pageMetadata(
   "/services/skilled-workers",
-  "Fachkr\u00e4fte aus Vietnam",
-  "Fachkr\u00e4fte aus Vietnam f\u00fcr Unternehmen in Deutschland. Qualifikationen, Personalbedarf und Vermittlungsm\u00f6glichkeiten besprechen."
+  "Fachkräfte aus Vietnam einstellen (§ 18a & § 81a)",
+  "Personalvermittlung qualifizierter Fachkräfte aus Vietnam (B1/B2) für deutsche Unternehmen. Anerkennung, § 81a-Visabeschleunigung und Betreuung vor Ort."
 );
 
 export default function PageLayout({ children }: { children: React.ReactNode }) {

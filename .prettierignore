@@ -3,9 +3,12 @@ node_modules/
 
 # Build outputs
 .next/
+.open-next/
+.wrangler/
 out/
 build/
 dist/
+cloudflare-env.d.ts
 
 # Cache
 .cache/

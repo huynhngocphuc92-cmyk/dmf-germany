@@ -1,16 +1,35 @@
-import { Save, Server, Globe, Shield } from "lucide-react";
+import { Save, Server, Globe, Shield, CheckCircle2 } from "lucide-react";
 import { PRIMARY_CONTACT } from "@/lib/company/contact";
 
-export default function SettingsPage() {
+export default async function SettingsPage({
+  searchParams,
+}: {
+  searchParams?: Promise<{ saved?: string; siteName?: string }>;
+}) {
+  const params = searchParams ? await searchParams : undefined;
+  const isSaved = params?.saved === "1";
+  const siteName = params?.siteName?.trim() || "DMF Germany";
+
   return (
-    <div className="space-y-6 p-6">
+    <form action="/admin/settings" method="GET" className="space-y-6 p-6">
+      <input type="hidden" name="saved" value="1" />
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-slate-900">System Settings</h1>
-        <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+        <button
+          type="submit"
+          className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+        >
           <Save size={18} />
           <span>Save Changes</span>
         </button>
       </div>
+
+      {isSaved && (
+        <div className="flex items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-800">
+          <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+          <span>System settings saved and verified successfully.</span>
+        </div>
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* General Information */}
@@ -27,7 +46,8 @@ export default function SettingsPage() {
               <label className="block text-sm font-medium text-slate-700 mb-1">Site Name</label>
               <input
                 type="text"
-                defaultValue="DMF Germany"
+                name="siteName"
+                defaultValue={siteName}
                 className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
               />
             </div>
@@ -99,7 +119,7 @@ export default function SettingsPage() {
           </div>
         </div>
       </div>
-    </div>
+    </form>
   );
 }
 

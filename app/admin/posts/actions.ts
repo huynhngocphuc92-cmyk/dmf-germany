@@ -3,8 +3,15 @@
 import { postFormSchema } from "@/lib/validations/schemas";
 import { revalidatePath } from "next/cache";
 import { createAdminClient as createClient } from "@/lib/auth/admin";
+import {
+  getCompiledPostBySlug,
+  getCompiledPostSummaries,
+  mergeWithCompiledPostSummaries,
+  mergeWithCompiledPosts,
+} from "@/lib/blog/compiled-posts";
+import { classifyBlogPost, isNoindexBlogSlug } from "@/lib/blog/seo-taxonomy";
 import { createPublicClient } from "@/utils/supabase/public";
-import type { Post, PostFormData } from "./types";
+import type { BlogPostSummary, Post, PostFormData } from "./types";
 
 // ============================================
 // FETCH POSTS
@@ -46,10 +53,80 @@ export async function getPublishedPosts(): Promise<{ data: Post[] | null; error:
       return { data: null, error: error.message };
     }
 
-    return { data: data as Post[], error: null };
+    return { data: mergeWithCompiledPosts(data as Post[]), error: null };
   } catch (err) {
     console.error("Error in getPublishedPosts:", err);
     return { data: null, error: "Failed to fetch posts" };
+  }
+}
+
+const SUMMARY_SELECT =
+  "id, created_at, updated_at, title, slug, excerpt, cover_image, status, published_at, meta_title, meta_description";
+
+export async function getPublishedPostSummaries(): Promise<{
+  data: BlogPostSummary[] | null;
+  error: string | null;
+}> {
+  try {
+    const supabase = createPublicClient();
+
+    const { data, error } = await supabase
+      .from("posts")
+      .select(SUMMARY_SELECT)
+      .eq("status", "published")
+      .order("published_at", { ascending: false });
+
+    if (error) {
+      console.error("Error fetching published post summaries:", error);
+      return { data: null, error: error.message };
+    }
+
+    return {
+      data: mergeWithCompiledPostSummaries(data as BlogPostSummary[]),
+      error: null,
+    };
+  } catch (err) {
+    console.error("Error in getPublishedPostSummaries:", err);
+    return { data: null, error: "Failed to fetch posts" };
+  }
+}
+
+export async function getPublishedSitemapPosts(): Promise<{
+  data: Array<{ slug: string; updated_at?: string; created_at?: string }> | null;
+  error: string | null;
+}> {
+  try {
+    const supabase = createPublicClient();
+
+    const { data, error } = await supabase
+      .from("posts")
+      .select("slug, updated_at, created_at")
+      .eq("status", "published")
+      .order("published_at", { ascending: false });
+
+    if (error) {
+      console.error("Error fetching sitemap posts:", error);
+      return { data: null, error: error.message };
+    }
+
+    const dbRows = (data ?? []) as Array<{
+      slug: string;
+      updated_at?: string;
+      created_at?: string;
+    }>;
+    const seen = new Set(dbRows.map((row) => row.slug));
+    const compiled = getCompiledPostSummaries()
+      .filter((post) => !seen.has(post.slug))
+      .map((post) => ({
+        slug: post.slug,
+        updated_at: post.updated_at,
+        created_at: post.created_at,
+      }));
+
+    return { data: [...dbRows, ...compiled], error: null };
+  } catch (err) {
+    console.error("Error in getPublishedSitemapPosts:", err);
+    return { data: null, error: "Failed to fetch sitemap posts" };
   }
 }
 
@@ -91,7 +168,11 @@ export async function getPostBySlug(
       return { data: null, error: error.message };
     }
 
-    return { data: data as Post, error: null };
+    if (data) {
+      return { data: data as Post, error: null };
+    }
+
+    return { data: getCompiledPostBySlug(slug), error: null };
   } catch (err) {
     console.error("Error in getPostBySlug:", err);
     return { data: null, error: "Failed to fetch post" };
@@ -322,24 +403,40 @@ export async function deleteCoverImage(url: string): Promise<{ error: string | n
 export async function getRelatedPosts(
   currentSlug: string,
   limit: number = 3
-): Promise<{ data: Post[] | null; error: string | null }> {
+): Promise<{ data: BlogPostSummary[] | null; error: string | null }> {
   try {
     const supabase = createPublicClient();
 
     const { data, error } = await supabase
       .from("posts")
-      .select("*")
+      .select(SUMMARY_SELECT)
       .eq("status", "published")
       .neq("slug", currentSlug)
       .order("published_at", { ascending: false })
-      .limit(limit);
+      .limit(60);
 
     if (error) {
       console.error("Error fetching related posts:", error);
       return { data: null, error: error.message };
     }
 
-    return { data: data as Post[], error: null };
+    const currentCluster = classifyBlogPost(currentSlug).id;
+    const dbRelated = ((data as BlogPostSummary[]) || []).filter((p) => p.slug !== currentSlug);
+    const merged = mergeWithCompiledPostSummaries(dbRelated).filter(
+      (p) => p.slug !== currentSlug && !isNoindexBlogSlug(p.slug)
+    );
+
+    const sameCluster: BlogPostSummary[] = [];
+    const others: BlogPostSummary[] = [];
+    for (const candidate of merged) {
+      if (classifyBlogPost(candidate.slug, candidate.title).id === currentCluster) {
+        sameCluster.push(candidate);
+      } else {
+        others.push(candidate);
+      }
+    }
+
+    return { data: [...sameCluster, ...others].slice(0, limit), error: null };
   } catch (err) {
     console.error("Error in getRelatedPosts:", err);
     return { data: null, error: "Failed to fetch related posts" };

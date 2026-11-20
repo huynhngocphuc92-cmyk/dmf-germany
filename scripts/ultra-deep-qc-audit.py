@@ -64,6 +64,15 @@ VALID_APP_ROUTES = {
     "/fuer-arbeitgeber/branchen/industrie-metall-technik",
     "/fuer-arbeitgeber/branchen/gastronomie-hotellerie",
     "/fuer-arbeitgeber/branchen/logistik-lager",
+    "/fuer-arbeitgeber/standorte",
+    "/fuer-arbeitgeber/standorte/bayern",
+    "/fuer-arbeitgeber/standorte/baden-wuerttemberg",
+    "/fuer-arbeitgeber/standorte/nordrhein-westfalen",
+    "/fuer-arbeitgeber/standorte/niedersachsen",
+    "/fuer-arbeitgeber/standorte/hessen",
+    "/fuer-arbeitgeber/standorte/berlin-brandenburg",
+    "/fuer-arbeitgeber/standorte/sachsen-mitteldeutschland",
+    "/fuer-arbeitgeber/standorte/hamburg-norddeutschland",
 }
 
 # Regex patterns

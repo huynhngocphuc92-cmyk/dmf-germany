@@ -157,7 +157,9 @@ export function ProfileDetailClient({ candidate }: { candidate: PublicCandidate 
               {copied
                 ? lang === "de"
                   ? "Link kopiert!"
-                  : "Copied!"
+                  : lang === "en"
+                    ? "Copied!"
+                    : "Đã sao chép!"
                 : lang === "de"
                   ? "Exposé-Link teilen"
                   : lang === "en"
@@ -224,7 +226,12 @@ export function ProfileDetailClient({ candidate }: { candidate: PublicCandidate 
                     </Badge>
                   </div>
                   <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
-                    {candidate.profession || "Qualifizierte Fachkraft / Auszubildende(r)"}
+                    {candidate.profession ||
+                      (lang === "de"
+                        ? "Qualifizierte Fachkraft / Auszubildende(r)"
+                        : lang === "en"
+                          ? "Qualified Professional / Apprentice"
+                          : "Nhân sự chuyên môn / Học viên nghề")}
                   </h1>
                   {candidate.availability_label && (
                     <p className="text-xs text-slate-300 mt-1.5 flex items-center gap-1.5">
@@ -239,17 +246,26 @@ export function ProfileDetailClient({ candidate }: { candidate: PublicCandidate 
                 {candidate.german_level && (
                   <div className="rounded-xl bg-white/10 border border-white/15 px-4 py-3 text-center min-w-[135px]">
                     <span className="block text-xs text-slate-300 mb-0.5">
-                      {lang === "de" ? "Sprachniveau" : "German Level"}
+                      {lang === "de"
+                        ? "Sprachniveau"
+                        : lang === "en"
+                          ? "German Level"
+                          : "Trình độ tiếng Đức"}
                     </span>
                     <span className="text-lg font-bold text-white">
-                      Niveau {candidate.german_level}
+                      {lang === "vn" ? "Trình độ" : lang === "en" ? "Level" : "Niveau"}{" "}
+                      {candidate.german_level}
                     </span>
                   </div>
                 )}
                 {candidate.experience_years != null && (
                   <div className="rounded-xl bg-white/10 border border-white/15 px-4 py-3 text-center min-w-[135px]">
                     <span className="block text-xs text-slate-300 mb-0.5">
-                      {lang === "de" ? "Praxis / Ausbildung" : "Experience"}
+                      {lang === "de"
+                        ? "Praxis / Ausbildung"
+                        : lang === "en"
+                          ? "Experience"
+                          : "Kinh nghiệm / Đào tạo"}
                     </span>
                     <span className="text-lg font-bold text-white">
                       {candidate.experience_years > 0
@@ -257,10 +273,14 @@ export function ProfileDetailClient({ candidate }: { candidate: PublicCandidate 
                             candidate.experience_years === 1
                               ? lang === "de"
                                 ? "Jahr"
-                                : "Yr"
+                                : lang === "en"
+                                  ? "Yr"
+                                  : "năm"
                               : lang === "de"
                                 ? "Jahre"
-                                : "Yrs"
+                                : lang === "en"
+                                  ? "Yrs"
+                                  : "năm"
                           }`
                         : candidate.cohort || "DMF"}
                     </span>
@@ -332,12 +352,28 @@ export function ProfileDetailClient({ candidate }: { candidate: PublicCandidate 
                             </span>
                             <span className="block text-[11px] text-slate-500 uppercase tracking-wider">
                               {doc.type === "cv"
-                                ? "Deutscher Lebenslauf (PDF)"
+                                ? lang === "de"
+                                  ? "Deutscher Lebenslauf (PDF)"
+                                  : lang === "en"
+                                    ? "German CV (PDF)"
+                                    : "CV tiếng Đức (PDF)"
                                 : doc.type === "motivation"
-                                  ? "Motivationsschreiben (PDF)"
+                                  ? lang === "de"
+                                    ? "Motivationsschreiben (PDF)"
+                                    : lang === "en"
+                                      ? "Motivation Letter (PDF)"
+                                      : "Thư động lực (PDF)"
                                   : doc.type === "certificate"
-                                    ? "Sprachzertifikat (PDF)"
-                                    : "Bewerbungsmappe (PDF)"}
+                                    ? lang === "de"
+                                      ? "Sprachzertifikat (PDF)"
+                                      : lang === "en"
+                                        ? "Language Certificate (PDF)"
+                                        : "Chứng chỉ tiếng Đức (PDF)"
+                                    : lang === "de"
+                                      ? "Bewerbungsmappe (PDF)"
+                                      : lang === "en"
+                                        ? "Application Dossier (PDF)"
+                                        : "Bộ hồ sơ ứng tuyển (PDF)"}
                             </span>
                           </div>
                         </div>
@@ -378,7 +414,9 @@ export function ProfileDetailClient({ candidate }: { candidate: PublicCandidate 
                     >
                       {lang === "de"
                         ? "Video ansehen: Bitte externe Medien in den Datenschutzeinstellungen aktivieren."
-                        : "Watch video: allow external media in privacy settings."}
+                        : lang === "en"
+                          ? "Watch video: allow external media in privacy settings."
+                          : "Xem video: Vui lòng bật cho phép truyền thông bên ngoài trong cài đặt quyền riêng tư."}
                     </button>
                   ) : (
                     <div className="relative aspect-video rounded-xl overflow-hidden bg-black border border-slate-200 shadow-sm">
@@ -413,14 +451,30 @@ export function ProfileDetailClient({ candidate }: { candidate: PublicCandidate 
                     <Briefcase className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
                     <div>
                       <strong className="block text-slate-900">
-                        {lang === "de" ? "Rechtsgrundlage:" : "Legal Basis:"}
+                        {lang === "de"
+                          ? "Rechtsgrundlage:"
+                          : lang === "en"
+                            ? "Legal Basis:"
+                            : "Cơ sở pháp lý:"}
                       </strong>
                       <span>
                         {candidate.category === "azubi"
-                          ? "§ 16a AufenthG (Duale Berufsausbildung)"
+                          ? lang === "de"
+                            ? "§ 16a AufenthG (Duale Berufsausbildung)"
+                            : lang === "en"
+                              ? "§ 16a AufenthG (Dual Vocational Training)"
+                              : "§ 16a AufenthG (Đào tạo nghề kép)"
                           : candidate.category === "skilled"
-                            ? "§ 18a / § 18b AufenthG i.V.m. § 81a AufenthG"
-                            : "Saisonbeschäftigung / § 16a / § 18a AufenthG"}
+                            ? lang === "de"
+                              ? "§ 18a / § 18b AufenthG i.V.m. § 81a AufenthG"
+                              : lang === "en"
+                                ? "§ 18a / § 18b AufenthG with § 81a Fast-Track"
+                                : "§ 18a / § 18b AufenthG kết hợp thủ tục rút gọn § 81a"
+                            : lang === "de"
+                              ? "Saisonbeschäftigung / § 16a / § 18a AufenthG"
+                              : lang === "en"
+                                ? "Seasonal Employment / § 16a / § 18a AufenthG"
+                                : "Lao động thời vụ / § 16a / § 18a AufenthG"}
                       </span>
                     </div>
                   </div>
@@ -428,12 +482,18 @@ export function ProfileDetailClient({ candidate }: { candidate: PublicCandidate 
                     <Award className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
                     <div>
                       <strong className="block text-slate-900">
-                        {lang === "de" ? "Nächster Schritt für Arbeitgeber:" : "Next Step:"}
+                        {lang === "de"
+                          ? "Nächster Schritt für Arbeitgeber:"
+                          : lang === "en"
+                            ? "Next Step:"
+                            : "Bước tiếp theo cho doanh nghiệp:"}
                       </strong>
                       <span>
                         {lang === "de"
                           ? "Vollständige Bewerbungsmappe anfordern & unverbindliches Video-Kennenlernen (30 Min.) vereinbaren."
-                          : "Request complete dossier & schedule a 30-min video interview."}
+                          : lang === "en"
+                            ? "Request complete dossier & schedule a 30-min video interview."
+                            : "Yêu cầu trọn bộ hồ sơ ứng viên & đặt lịch phỏng vấn video (30 phút)."}
                       </span>
                     </div>
                   </div>

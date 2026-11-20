@@ -10,12 +10,14 @@ export function MobileStickyBar() {
   const pathname = usePathname();
   const { lang } = useLanguage();
 
-  // Hide on admin routes, portal, login or if already on the intake page
+  // Hide on admin routes, portal, login, auth, data room, or if already on the intake page
   if (
     pathname.startsWith("/admin") ||
     pathname.startsWith("/portal") ||
     pathname === "/fuer-arbeitgeber/personalbedarf" ||
-    pathname.startsWith("/login")
+    pathname.startsWith("/fuer-arbeitgeber/datenraum") ||
+    pathname.startsWith("/login") ||
+    pathname.startsWith("/auth")
   ) {
     return null;
   }

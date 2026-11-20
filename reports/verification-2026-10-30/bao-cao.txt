@@ -1,0 +1,33 @@
+KIỂM TRA DMF-TALENTS.DE — 30/10/2026 (giờ Việt Nam)
+
+KẾT LUẬN: Website công khai hoạt động ở các phần đã kiểm tra, nhưng nền tảng chưa đủ bằng chứng để nghiệm thu là đầy đủ và ổn định. Có lỗi xác nhận trực tiếp.
+
+PHẠM VI VÀ KẾT QUẢ
+- 29 đường dẫn GET trên production; 15 trang công khai chính đều HTTP 200. Không có timeout/HTTP 5xx trong mẫu này. HTTP 200 chỉ chứng minh tải trang, không xác nhận toàn bộ chức năng.
+- HTTPS và chuyển hướng từ dmf-talents.de sang www hoạt động. robots.txt, sitemap.xml và PDF giới thiệu trả HTTP 200.
+- /admin và /admin/requests chuyển tới /login khi chưa đăng nhập. /api/chat/history và /api/leads từ chối đọc ẩn danh bằng HTTP 401.
+- POST dữ liệu rỗng tới contact/hiring/inquiry/leads bị từ chối HTTP 400. Giao diện form tuyển dụng hiện thông báo thiếu trường bắt buộc và đồng ý quyền riêng tư.
+- ROI: đổi lương từ 3.500 lên 4.000 EUR làm chi phí 3 năm đổi từ 136.500 lên 156.000 EUR, tiết kiệm từ 25.800 lên 45.300 EUR; đúng số học theo giả định hiển thị. Không thẩm định tính phù hợp kinh tế hay pháp lý của các giả định.
+- Mã nguồn tại máy: 12 file / 110 tests PASS; TypeScript PASS; lint PASS; production build và smoke integration với backend giả lập PASS. Kết quả local không chứng minh production đã có cùng mã hoặc cùng cấu hình.
+
+VẤN ĐỀ VÀ ƯU TIÊN
+1. CAO: /portal, /portal/login, /portal/register đều HTTP 404. Trình duyệt xác nhận màn hình 404. Cổng học viên hiện không dùng được trên production, dù mã nguồn local đã có các route này. Cần đối chiếu bản triển khai và migration trước khi đưa tính năng lên.
+2. TRUNG BÌNH: /api/chat GET báo ready và xai=true, nhưng câu hỏi dịch vụ trả provider=fallback_engine; UI trả cùng kịch bản ở lần kiểm tra riêng. Chưa xác minh AI provider thực sự gọi được. Cần xem runtime logs/provider, tránh coi việc tồn tại API key là sức khỏe hoạt động.
+3. TRUNG BÌNH: Chatbot làm hỏng liên kết email contact@dmf.edu.vn, hiện đoạn HTML thừa và mailto sai. Mã local SmartChatBot.tsx formatContent xử lý regex nối tiếp trên HTML đã tạo có thể tiếp tục khớp phần đuôi địa chỉ email. Cần sửa cách render liên kết và kiểm thử lại trên production.
+4. CẦN XÁC NHẬN DỮ LIỆU: Kho ứng viên hiển thị không có hồ sơ công khai. Chưa có quyền đọc backend để biết là dữ liệu chưa xuất bản, hết hạn, hay nguyên nhân khác; không kết luận đây là lỗi database.
+5. SAI KHÁC PHIÊN BẢN: /fuer-arbeitgeber/roi-rechner trên production trả trang riêng HTTP 200; mã local chuyển hướng 308 sang /roi-rechner. Kết hợp với portal 404 cho thấy production không khớp đầy đủ với cây mã local.
+
+CHƯA XÁC MINH ĐƯỢC
+- Lưu yêu cầu hợp lệ trên database thật, xuất hiện trong admin, email/Telegram tới đúng người nhận. Không tạo lead thật hoặc gửi thông báo tới đội ngũ trong lần kiểm tra này.
+- Đăng ký/đăng nhập học viên, tải giấy tờ, tạo CV/thư động lực và quy trình admin trên production.
+- Lịch sử downtime, tỷ lệ lỗi, tải đồng thời, kiểm tra đủ desktop/mobile, toàn bộ bài blog và tất cả biến thể ngôn ngữ.
+- Kết nối Vercel hiện không liệt kê dự án website này; Supabase từ chối quyền truy cập project production. Chưa đọc được deployment/runtime logs hay xác minh migration.
+
+ĐỀ XUẤT THỨ TỰ XỬ LÝ
+1. Đối chiếu và xác định bản deploy đang phục vụ tên miền; kiểm tra migration cho portal trước khi triển khai.
+2. Sửa renderer chatbot và xác minh AI provider bằng log/chẩn đoán có đăng nhập.
+3. Xác nhận dữ liệu hồ sơ được phép công khai; chạy một yêu cầu thử có đánh dấu với người nhận thông báo đã thống nhất để nghiệm thu toàn bộ luồng.
+4. Kiểm tra lịch sử uptime/error rate và theo dõi sau sửa trước khi cam kết ổn định.
+
+Bằng chứng chi tiết: evidence.json; ảnh: portal-404.jpg, chatbot-email.jpg, candidates-empty.jpg, form-validation.jpg, roi-working.jpg.
+Không sửa mã nguồn hoặc triển khai website trong đợt kiểm tra này. Các thay đổi có sẵn trong working tree được giữ nguyên; smoke build chỉ tạo/cập nhật output build local.

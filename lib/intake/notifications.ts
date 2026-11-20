@@ -1,8 +1,11 @@
 import { SITE_URL } from "@/lib/site";
+import { findDmfPoolCandidateById } from "@/lib/candidates/dmf-pool-data";
 import { contactAutoReplyTemplate, profileInquiryAutoReplyTemplate } from "@/lib/email-templates";
 import { getMailTransporter } from "@/lib/email/transporter";
+import { isNotificationDeliveryEnabled } from "@/lib/env/runtime";
 import { escapeHtml, escapeHtmlWithBreaks } from "@/lib/sanitize";
 import { createIntakeClient } from "@/lib/supabase/intake";
+import { candidateReferenceSchema } from "@/lib/validations/hiring";
 import "server-only";
 import { z } from "zod";
 import { notificationLog } from "./notification-log";
@@ -19,7 +22,7 @@ const jobSchema = z.object({
     company: z.string().optional(),
     message: z.string().optional(),
     interest: z.string().optional(),
-    candidateId: z.uuid().optional(),
+    candidateId: candidateReferenceSchema.optional(),
     requestPurpose: z.literal("hiring").optional(),
     service: z.string().optional(),
     headcount: z.number().optional(),
@@ -31,16 +34,16 @@ type Job = z.infer<typeof jobSchema>;
 type DeliveryResult = { status: "sent" | "failed" | "skipped"; error: string | null };
 
 export async function deliverNotification(job: Job): Promise<DeliveryResult> {
-  if (
-    process.env.VERCEL_ENV === "preview" ||
-    (process.env.VERCEL_ENV !== "production" && process.env.NOTIFICATION_DELIVERY !== "enabled")
-  ) {
+  if (!isNotificationDeliveryEnabled()) {
     return { status: "skipped", error: "non_production" };
   }
   const p = job.payload;
-  const code = p.candidateId?.slice(0, 8).toUpperCase();
+  const poolCandidate = p.candidateId?.startsWith("dmf-pool-")
+    ? findDmfPoolCandidateById(p.candidateId)
+    : null;
+  const code = poolCandidate?.display_code || p.candidateId?.slice(0, 8).toUpperCase();
   const title =
-    job.kind === "profile"
+    job.kind === "profile" || Boolean(code)
       ? `Neue Profil-Anfrage #${code}`
       : job.kind === "lead"
         ? "Neue Anfrage aus dem Chat"
@@ -131,11 +134,7 @@ async function finishClaimedNotification(data: unknown) {
 }
 
 export async function dispatchNotificationBatch() {
-  if (
-    process.env.VERCEL_ENV === "preview" ||
-    (process.env.VERCEL_ENV !== "production" && process.env.NOTIFICATION_DELIVERY !== "enabled")
-  )
-    throw new Error("Notification worker disabled");
+  if (!isNotificationDeliveryEnabled()) throw new Error("Notification worker disabled");
   const db = createIntakeClient();
   const { data, error } = await db.rpc("dmf_claim_notification_batch");
   if (error) throw new Error("Notification batch claim failed");

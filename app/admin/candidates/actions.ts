@@ -8,6 +8,7 @@ import {
 } from "@/lib/validations/schemas";
 import { revalidatePath } from "next/cache";
 import { createAdminClient as createClient } from "@/lib/auth/admin";
+import { mergeWithDmfAdminCandidates } from "@/lib/candidates/dmf-admin-pool-data";
 import type { CandidateFormData, Candidate } from "./types";
 
 // ============================================
@@ -36,6 +37,17 @@ export async function getCandidates(): Promise<{
     console.error("Unexpected error:", err);
     return { data: null, error: "Ein unerwarteter Fehler ist aufgetreten." };
   }
+}
+
+export async function getAdminMergedCandidates(): Promise<{
+  data: Candidate[];
+  error: string | null;
+}> {
+  const { data, error } = await getCandidates();
+  return {
+    data: mergeWithDmfAdminCandidates(data),
+    error,
+  };
 }
 
 // ============================================

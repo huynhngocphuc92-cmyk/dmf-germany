@@ -33,6 +33,8 @@ type SeasonalIndustryKey = "agriculture" | "logistics";
 
 interface IndustryData {
   label: string;
+  labelEn?: string;
+  labelVn?: string;
   deSalary: number;
   dmfSalary: number;
   fee: number;
@@ -44,19 +46,82 @@ interface IndustryData {
 
 export const INDUSTRY_DATA = {
   skilled: {
-    pflege: { label: "Pflege & Medizin", deSalary: 3800, dmfSalary: 3000, fee: 1500 },
-    handwerk: { label: "Handwerk & Bau", deSalary: 3200, dmfSalary: 2600, fee: 1500 },
-    gastro: { label: "Hotel & Gastronomie", deSalary: 2800, dmfSalary: 2300, fee: 1500 },
-    it: { label: "IT & Technik", deSalary: 4500, dmfSalary: 3500, fee: 1500 },
+    pflege: {
+      label: "Pflege & Medizin",
+      labelEn: "Healthcare & Nursing",
+      labelVn: "Y tế & Điều dưỡng",
+      deSalary: 3800,
+      dmfSalary: 3000,
+      fee: 1500,
+    },
+    handwerk: {
+      label: "Handwerk & Bau",
+      labelEn: "Skilled Trades & Construction",
+      labelVn: "Thủ công & Xây dựng",
+      deSalary: 3200,
+      dmfSalary: 2600,
+      fee: 1500,
+    },
+    gastro: {
+      label: "Hotel & Gastronomie",
+      labelEn: "Hotel & Gastronomy",
+      labelVn: "Khách sạn & Nhà hàng",
+      deSalary: 2800,
+      dmfSalary: 2300,
+      fee: 1500,
+    },
+    it: {
+      label: "IT & Technik",
+      labelEn: "IT & Engineering",
+      labelVn: "CNTT & Kỹ thuật",
+      deSalary: 4500,
+      dmfSalary: 3500,
+      fee: 1500,
+    },
   },
   azubi: {
-    pflege: { label: "Pflege (Azubi)", deSalary: 1300, dmfSalary: 1100, fee: 1500 },
-    gastro: { label: "Hotel/Küche (Azubi)", deSalary: 1000, dmfSalary: 900, fee: 1500 },
-    handwerk: { label: "Handwerk (Azubi)", deSalary: 1100, dmfSalary: 950, fee: 1500 },
+    pflege: {
+      label: "Pflege (Azubi)",
+      labelEn: "Nursing (Apprentice)",
+      labelVn: "Điều dưỡng (Du học nghề)",
+      deSalary: 1300,
+      dmfSalary: 1100,
+      fee: 1500,
+    },
+    gastro: {
+      label: "Hotel/Küche (Azubi)",
+      labelEn: "Hotel / Culinary (Apprentice)",
+      labelVn: "Khách sạn / Đầu bếp (Du học nghề)",
+      deSalary: 1000,
+      dmfSalary: 900,
+      fee: 1500,
+    },
+    handwerk: {
+      label: "Handwerk (Azubi)",
+      labelEn: "Skilled Trades (Apprentice)",
+      labelVn: "Thủ công kỹ thuật (Du học nghề)",
+      deSalary: 1100,
+      dmfSalary: 950,
+      fee: 1500,
+    },
   },
   seasonal: {
-    agriculture: { label: "Landwirtschaft", deSalary: 2100, dmfSalary: 1800, fee: 1500 },
-    logistics: { label: "Lager & Logistik", deSalary: 2300, dmfSalary: 1900, fee: 1500 },
+    agriculture: {
+      label: "Landwirtschaft",
+      labelEn: "Agriculture",
+      labelVn: "Nông nghiệp",
+      deSalary: 2100,
+      dmfSalary: 1800,
+      fee: 1500,
+    },
+    logistics: {
+      label: "Lager & Logistik",
+      labelEn: "Warehousing & Logistics",
+      labelVn: "Kho vận & Logistics",
+      deSalary: 2300,
+      dmfSalary: 1900,
+      fee: 1500,
+    },
   },
 } as const;
 
@@ -343,7 +408,11 @@ export const RoiCalculator = memo(function RoiCalculator() {
                 </option>
                 {Object.entries(getAvailableIndustries()).map(([key, data]) => (
                   <option key={key} value={key}>
-                    {data.label}
+                    {lang === "vn"
+                      ? data.labelVn || data.label
+                      : lang === "en"
+                        ? data.labelEn || data.label
+                        : data.label}
                   </option>
                 ))}
               </select>
@@ -367,7 +436,7 @@ export const RoiCalculator = memo(function RoiCalculator() {
               avgValue={currentDefaults.avgGerman}
               label={t.roi?.label_salary_de || "Monatsgehalt (Brutto) - Deutscher Kandidat"}
               hint={
-                t.roi?.label_salary_dmf_hint ||
+                t.roi?.label_salary_de_hint ||
                 "Durchschnittliches Monatsgehalt für vergleichbare Position"
               }
               id="german-salary"
@@ -385,7 +454,7 @@ export const RoiCalculator = memo(function RoiCalculator() {
               avgValue={currentDefaults.avgDmf}
               label={t.roi?.label_salary_dmf || "Monatsgehalt (Brutto) - DMF Kandidat"}
               hint={
-                t.roi?.label_salary_dmf_hint || "Erwartetes Gehalt für vietnamesischen Fachkräfte"
+                t.roi?.label_salary_dmf_hint || "Erwartetes Gehalt für vietnamesische Fachkräfte"
               }
               id="dmf-salary"
               markerType="dmf"

@@ -144,7 +144,7 @@ export function getCooperationLabel(labelKey: string, lang: string): string {
       vn: "Du học Nghề",
     },
     dual_training_desc: {
-      de: "Vocational program für Azubis",
+      de: "Dualer Ausbildungsweg für Azubis",
       en: "Dual training for apprentices",
       vn: "Chương trình đào tạo nghề kép",
     },

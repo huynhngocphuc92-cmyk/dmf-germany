@@ -362,7 +362,11 @@ export function BrancheDetailClient({
                           ? "Estimated Lead Time:"
                           : "Thời gian xử lý dự kiến:"}
                     </strong>{" "}
-                    {branche.legalPathway.timelineMonths}
+                    {lang === "vn"
+                      ? branche.legalPathway.timelineMonths.replace("Monate", "tháng")
+                      : lang === "en"
+                        ? branche.legalPathway.timelineMonths.replace("Monate", "months")
+                        : branche.legalPathway.timelineMonths}
                   </span>
                 </div>
               </div>
@@ -389,7 +393,11 @@ export function BrancheDetailClient({
                           KldB {role.kldbCode}
                         </span>
                         <Badge variant="outline" className="border-primary/30 text-primary">
-                          Deutsch min. {role.germanRequirement}
+                          {lang === "vn"
+                            ? `Tiếng Đức tối thiểu ${role.germanRequirement}`
+                            : lang === "en"
+                              ? `German min. ${role.germanRequirement}`
+                              : `Deutsch min. ${role.germanRequirement}`}
                         </Badge>
                       </div>
                       <h3 className="font-bold text-slate-900 text-base">{role.title[lang]}</h3>

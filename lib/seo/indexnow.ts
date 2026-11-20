@@ -40,6 +40,7 @@ export function buildIndexNowUrlList(): string[] {
   }
 
   for (const post of BLOG_CATALOG) {
+    if (post.slug === "fixture-current") continue;
     urls.add(siteUrl(`/blog/${encodeURIComponent(post.slug)}`));
   }
 

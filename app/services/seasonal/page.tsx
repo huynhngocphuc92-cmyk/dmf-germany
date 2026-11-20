@@ -47,13 +47,13 @@ import {
 const DATA_DU_PHONG = {
   hero: {
     badge: "100% ZAV-konform",
-    headline: "Erntehelfer & Servicekräfte",
-    headline_accent: "Schnell verfügbar.",
+    headline: "Saisonkräfte aus Vietnam",
+    headline_accent: "ZAV-konform & schnell einsatzbereit.",
     subheadline:
       "Sichern Sie Ihre Ernte und Ihren Service. Körperlich belastbares Personal für die Hochsaison – einsatzbereit in 4-8 Wochen.",
     cta1: "Verfügbarkeit jetzt prüfen",
     cta2: "Rückruf anfordern",
-    urgency_badge: "Saison 2026 – Jetzt sichern!",
+    urgency_badge: "Saison 2027 – Jetzt sichern!",
   },
   advantages: {
     badge: "Warum Vietnam?",
@@ -115,7 +115,7 @@ const DATA_DU_PHONG = {
     stat3_label: "Wochen bis Einsatz",
   },
   cta: {
-    title: "Bereit für Saison 2026?",
+    title: "Bereit für Saison 2027?",
     subtitle: "Sichern Sie sich jetzt Personal für eine erfolgreiche Saison.",
     cta1: "Angebot anfordern",
     cta2: "Rückruf anfordern",
@@ -137,14 +137,31 @@ const talentPoolContent = {
       {
         id: "AGR-01",
         role: "Erntehelfer",
-        roleVn: "Người thu hoạch",
+        roleEn: "Harvest Worker",
+        roleVn: "Nhân sự thu hoạch",
         category: "Landwirtschaft",
+        categoryEn: "Agriculture",
         categoryVn: "Nông nghiệp",
         avatar: "EH",
         skills: [
-          { text: "Körperlich belastbar", icon: Dumbbell },
-          { text: "Ernteerfahrung", icon: Wheat },
-          { text: "Teamfähig", icon: Users },
+          {
+            text: "Körperlich belastbar",
+            textEn: "Physically resilient",
+            textVn: "Thể lực dẻo dai",
+            icon: Dumbbell,
+          },
+          {
+            text: "Ernteerfahrung",
+            textEn: "Harvesting experience",
+            textVn: "Kinh nghiệm nông nghiệp",
+            icon: Wheat,
+          },
+          {
+            text: "Teamfähig",
+            textEn: "Team player",
+            textVn: "Tinh thần đồng đội",
+            icon: Users,
+          },
         ],
         available: 25,
         icon: Wheat,
@@ -152,29 +169,63 @@ const talentPoolContent = {
       {
         id: "GAS-02",
         role: "Servicekraft",
+        roleEn: "Service Staff",
         roleVn: "Nhân viên phục vụ",
         category: "Gastronomie",
+        categoryEn: "Gastronomy",
         categoryVn: "Nhà hàng",
         avatar: "SK",
         skills: [
-          { text: "Englischkenntnisse", icon: MessageCircle },
-          { text: "Stressresistent", icon: Shield },
-          { text: "Gastfreundlich", icon: Hotel },
+          {
+            text: "Englischkenntnisse",
+            textEn: "English proficiency",
+            textVn: "Giao tiếp tiếng Anh",
+            icon: MessageCircle,
+          },
+          {
+            text: "Stressresistent",
+            textEn: "Stress-resistant",
+            textVn: "Chịu áp lực tốt",
+            icon: Shield,
+          },
+          {
+            text: "Gastfreundlich",
+            textEn: "Hospitable",
+            textVn: "Thái độ chuyên nghiệp",
+            icon: Hotel,
+          },
         ],
         available: 30,
         icon: UtensilsCrossed,
       },
       {
         id: "HOU-03",
-        role: "Zimmermädchen",
+        role: "Housekeeping-Kraft",
+        roleEn: "Housekeeping Staff",
         roleVn: "Nhân viên buồng phòng",
         category: "Hotellerie",
+        categoryEn: "Hospitality",
         categoryVn: "Khách sạn",
         avatar: "ZM",
         skills: [
-          { text: "Detailorientiert", icon: CheckCircle2 },
-          { text: "Zuverlässig", icon: BadgeCheck },
-          { text: "Schnell", icon: Zap },
+          {
+            text: "Detailorientiert",
+            textEn: "Detail-oriented",
+            textVn: "Tỉ mỉ, cẩn thận",
+            icon: CheckCircle2,
+          },
+          {
+            text: "Zuverlässig",
+            textEn: "Reliable",
+            textVn: "Đáng tin cậy",
+            icon: BadgeCheck,
+          },
+          {
+            text: "Schnell",
+            textEn: "Fast & efficient",
+            textVn: "Tác phong nhanh nhẹn",
+            icon: Zap,
+          },
         ],
         available: 20,
         icon: Bed,
@@ -182,14 +233,31 @@ const talentPoolContent = {
       {
         id: "KIT-04",
         role: "Küchenhilfe",
+        roleEn: "Kitchen Assistant",
         roleVn: "Phụ bếp",
         category: "Gastronomie",
+        categoryEn: "Gastronomy",
         categoryVn: "Nhà hàng",
         avatar: "KH",
         skills: [
-          { text: "Hygienebewusst", icon: Shield },
-          { text: "Belastbar", icon: Dumbbell },
-          { text: "Lernbereit", icon: TrendingUp },
+          {
+            text: "Hygienebewusst",
+            textEn: "Hygiene-conscious",
+            textVn: "Tuân thủ vệ sinh ATTP",
+            icon: Shield,
+          },
+          {
+            text: "Belastbar",
+            textEn: "High stamina",
+            textVn: "Sức bền cao",
+            icon: Dumbbell,
+          },
+          {
+            text: "Lernbereit",
+            textEn: "Eager to learn",
+            textVn: "Ham học hỏi",
+            icon: TrendingUp,
+          },
         ],
         available: 35,
         icon: ChefHat,
@@ -214,26 +282,38 @@ const sectorsContent = {
     sectors: [
       {
         title: "Landwirtschaft",
+        titleEn: "Agriculture",
+        titleVn: "Nông nghiệp",
         subtitle: "Agrarsektor",
+        subtitleEn: "Agricultural Sector",
+        subtitleVn: "Canh tác & Thu hoạch",
         icon: Tractor,
         secondaryIcon: Grape,
         color: "amber",
         jobs: ["Spargel", "Erdbeeren", "Weinbau", "Gemüseernte"],
-        jobsVn: ["Măng tây", "Dâu tây", "Nho", "Rau củ"],
+        jobsEn: ["Asparagus", "Strawberries", "Viticulture", "Vegetable Harvest"],
+        jobsVn: ["Măng tây", "Dâu tây", "Trồng nho", "Thu hoạch rau củ"],
         description: "Erntehelfer für Spargel, Erdbeeren, Weinbau & Gemüse.",
+        descriptionEn: "Harvest workers for asparagus, strawberries, viticulture & vegetables.",
         descriptionVn: "Nhân sự thu hoạch măng tây, dâu, nho và rau củ.",
         stats: { workers: "150+", time: "4-6 Wo." },
       },
       {
         title: "Gastronomie & Hotellerie",
+        titleEn: "Gastronomy & Hospitality",
+        titleVn: "Nhà hàng & Khách sạn",
         subtitle: "Hospitality",
+        subtitleEn: "Hospitality",
+        subtitleVn: "Dịch vụ Lưu trú & Ẩm thực",
         icon: UtensilsCrossed,
         secondaryIcon: Hotel,
         color: "orange",
-        jobs: ["Spüler", "Küchenhilfen", "Zimmermädchen", "Servicekräfte"],
-        jobsVn: ["Rửa bát", "Phụ bếp", "Dọn phòng", "Phục vụ"],
-        description: "Spüler, Küchenhilfen & Zimmermädchen für Hotels & Restaurants.",
-        descriptionVn: "Rửa bát, phụ bếp và dọn phòng cho khách sạn & nhà hàng.",
+        jobs: ["Spüler", "Küchenhilfen", "Housekeeping", "Servicekräfte"],
+        jobsEn: ["Dishwashers", "Kitchen Assistants", "Housekeeping", "Service Staff"],
+        jobsVn: ["Phụ rửa", "Phụ bếp", "Buồng phòng", "Phục vụ bàn"],
+        description: "Spüler, Küchenhilfen & Housekeeping für Hotels & Restaurants.",
+        descriptionEn: "Dishwashers, kitchen assistants & housekeeping for hotels & restaurants.",
+        descriptionVn: "Phụ bếp, buồng phòng và phục vụ cho khách sạn & nhà hàng.",
         stats: { workers: "100+", time: "6-8 Wo." },
       },
     ],
@@ -287,7 +367,11 @@ function AnimatedCounter({
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
   const numericValue = Number.parseInt(value, 10);
-  const shouldAnimate = !value.includes("<") && !value.includes("+") && !Number.isNaN(numericValue);
+  const shouldAnimate =
+    !value.includes("<") &&
+    !value.includes("+") &&
+    !value.includes("-") &&
+    !Number.isNaN(numericValue);
 
   useEffect(() => {
     if (!isInView || !shouldAnimate) {
@@ -324,6 +408,7 @@ function AnimatedCounter({
 // ============================================
 
 function HeroSection({ content }: { content: SeasonalPageContent }) {
+  const { lang } = useLanguage();
   // Use safe content from QA layer
   const heroContent = content?.hero || {};
 
@@ -347,7 +432,7 @@ function HeroSection({ content }: { content: SeasonalPageContent }) {
       </div>
 
       <div className="relative container mx-auto px-4 max-w-7xl min-h-screen flex items-center">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center w-full py-24 lg:py-0">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center w-full pt-32 pb-16 lg:pt-32 lg:pb-16">
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -364,7 +449,7 @@ function HeroSection({ content }: { content: SeasonalPageContent }) {
             >
               <Badge className="px-4 py-2 bg-amber-500/20 border border-amber-500/30 text-amber-400 backdrop-blur-sm animate-pulse">
                 <Sparkles className="w-4 h-4 mr-2" />
-                {heroContent.urgency_badge || "Saison 2026 – Jetzt sichern!"}
+                {heroContent.urgency_badge || "Saison 2027 – Jetzt sichern!"}
               </Badge>
             </motion.div>
 
@@ -442,9 +527,15 @@ function HeroSection({ content }: { content: SeasonalPageContent }) {
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent" />
                 <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-4">
                   <div className="bg-slate-950/80 backdrop-blur-md rounded-2xl border border-white/15 px-5 py-3">
-                    <div className="text-3xl font-bold text-amber-400 leading-none">4-8 Wochen</div>
+                    <div className="text-3xl font-bold text-amber-400 leading-none">
+                      {lang === "vn" ? "4-8 Tuần" : lang === "en" ? "4-8 Weeks" : "4-8 Wochen"}
+                    </div>
                     <div className="text-white/90 text-xs mt-1 font-medium">
-                      Schnelle Einsatzbereitschaft
+                      {lang === "vn"
+                        ? "Sẵn sàng làm việc nhanh chóng"
+                        : lang === "en"
+                          ? "Fast Deployment Readiness"
+                          : "Schnelle Einsatzbereitschaft"}
                     </div>
                   </div>
                   <div className="flex flex-col gap-2 items-end">
@@ -454,7 +545,7 @@ function HeroSection({ content }: { content: SeasonalPageContent }) {
                     </Badge>
                     <Badge className="bg-orange-500/30 text-orange-200 border-orange-400/40 backdrop-blur-md px-3 py-1.5">
                       <Shield className="w-3 h-3 mr-1" />
-                      100% Legal
+                      {lang === "vn" ? "100% Hợp pháp" : "100% Legal"}
                     </Badge>
                   </div>
                 </div>
@@ -669,11 +760,11 @@ function SpeedTimelineSection({ content }: { content: SeasonalPageContent }) {
         {/* Timeline */}
         <div className="relative">
           {/* Progress Bar Background */}
-          <div className="absolute top-20 left-0 right-0 h-2 bg-slate-100 rounded-full mx-8 lg:mx-16" />
+          <div className="hidden md:block absolute top-8 left-0 right-0 h-2 bg-slate-100 rounded-full mx-8 lg:mx-16" />
 
           {/* Animated Progress Bar */}
           <motion.div
-            className="absolute top-20 left-0 h-2 bg-gradient-to-r from-amber-400 via-orange-500 to-amber-500 rounded-full mx-8 lg:mx-16"
+            className="hidden md:block absolute top-8 left-0 h-2 bg-gradient-to-r from-amber-400 via-orange-500 to-amber-500 rounded-full mx-8 lg:mx-16"
             initial={{ width: "0%" }}
             animate={{ width: isInView ? "100%" : "0%" }}
             transition={{ duration: 2, ease: "easeOut", delay: 0.5 }}
@@ -704,7 +795,7 @@ function SpeedTimelineSection({ content }: { content: SeasonalPageContent }) {
                     </div>
                     {/* Week badge */}
                     <div className="absolute -top-2 -right-2 bg-slate-900 text-white text-xs font-bold px-2 py-1 rounded-full">
-                      Wo. {step.week}
+                      {timeline.week_label || "Wo."} {step.week}
                     </div>
                   </motion.div>
 
@@ -813,35 +904,46 @@ function TalentPoolSection({ content }: { content: SeasonalPageContent }) {
                         {profile.avatar}
                       </div>
                       <Badge className="bg-amber-100 text-amber-700 border-amber-200 text-xs">
-                        {profile.available}+ verfügbar
+                        {profile.available}+{" "}
+                        {talent.available_label ||
+                          (lang === "vn" ? "sẵn sàng" : lang === "en" ? "available" : "verfügbar")}
                       </Badge>
                     </div>
                     <h3 className="font-bold text-slate-900">
-                      {lang === "vn" ? profile.roleVn : profile.role}
+                      {lang === "vn"
+                        ? profile.roleVn
+                        : lang === "en"
+                          ? profile.roleEn
+                          : profile.role}
                     </h3>
                     <p className="text-sm text-amber-600">
-                      {lang === "vn" ? profile.categoryVn : profile.category}
+                      {lang === "vn"
+                        ? profile.categoryVn
+                        : lang === "en"
+                          ? profile.categoryEn
+                          : profile.category}
                     </p>
                   </div>
 
                   {/* Skills */}
                   <div className="p-5 space-y-3">
-                    {profile.skills.map(
-                      (
-                        skill: { icon: React.ComponentType<{ className?: string }>; text: string },
-                        skillIdx: number
-                      ) => {
-                        const SkillIcon = skill.icon;
-                        return (
-                          <div key={skillIdx} className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center flex-shrink-0">
-                              <SkillIcon className="w-4 h-4 text-slate-500" />
-                            </div>
-                            <span className="text-sm text-slate-600">{skill.text}</span>
+                    {profile.skills.map((skill, skillIdx: number) => {
+                      const SkillIcon = skill.icon;
+                      return (
+                        <div key={skillIdx} className="flex items-center gap-3">
+                          <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center flex-shrink-0">
+                            <SkillIcon className="w-4 h-4 text-slate-500" />
                           </div>
-                        );
-                      }
-                    )}
+                          <span className="text-sm text-slate-600">
+                            {lang === "vn"
+                              ? skill.textVn
+                              : lang === "en"
+                                ? skill.textEn
+                                : skill.text}
+                          </span>
+                        </div>
+                      );
+                    })}
                   </div>
 
                   {/* Action */}
@@ -852,7 +954,8 @@ function TalentPoolSection({ content }: { content: SeasonalPageContent }) {
                     >
                       <Link href="/#contact">
                         <Calendar className="w-4 h-4 mr-2" />
-                        Anfragen
+                        {talent.request_label ||
+                          (lang === "vn" ? "Gửi yêu cầu" : lang === "en" ? "Request" : "Anfragen")}
                       </Link>
                     </Button>
                   </div>
@@ -875,7 +978,7 @@ function TalentPoolSection({ content }: { content: SeasonalPageContent }) {
             className="px-8 py-6 text-base font-semibold border-amber-300 text-amber-700 hover:bg-amber-50 rounded-full"
             asChild
           >
-            <Link href="/#contact">
+            <Link href="/fuer-arbeitgeber/kandidaten">
               {sectionContent.view_all}
               <ArrowRight className="w-5 h-5 ml-2" />
             </Link>
@@ -891,6 +994,7 @@ function TalentPoolSection({ content }: { content: SeasonalPageContent }) {
 // ============================================
 
 function SectorsSection({ content }: { content: SeasonalPageContent }) {
+  const { lang } = useLanguage();
   // Use safe content from QA layer
   const raw = content || {};
   const sectors = raw.sectors || {};
@@ -969,11 +1073,21 @@ function SectorsSection({ content }: { content: SeasonalPageContent }) {
                         <Icon className="w-8 h-8 text-white" />
                       </div>
                       <div>
-                        <h3 className="text-2xl font-bold text-slate-900">{sector.title}</h3>
+                        <h3 className="text-2xl font-bold text-slate-900">
+                          {lang === "vn"
+                            ? sector.titleVn
+                            : lang === "en"
+                              ? sector.titleEn
+                              : sector.title}
+                        </h3>
                         <p
                           className={`text-sm font-medium ${isAmber ? "text-amber-600" : "text-orange-600"}`}
                         >
-                          {sector.subtitle}
+                          {lang === "vn"
+                            ? sector.subtitleVn
+                            : lang === "en"
+                              ? sector.subtitleEn
+                              : sector.subtitle}
                         </p>
                       </div>
                     </div>
@@ -986,7 +1100,12 @@ function SectorsSection({ content }: { content: SeasonalPageContent }) {
 
                   {/* Jobs List */}
                   <div className="grid grid-cols-2 gap-3 mb-6">
-                    {sector.jobs.map((job, jobIdx) => (
+                    {(lang === "vn"
+                      ? sector.jobsVn
+                      : lang === "en"
+                        ? sector.jobsEn
+                        : sector.jobs
+                    ).map((job, jobIdx) => (
                       <div
                         key={jobIdx}
                         className={`flex items-center gap-2 px-3 py-2 rounded-lg ${
@@ -1008,14 +1127,24 @@ function SectorsSection({ content }: { content: SeasonalPageContent }) {
                         className={`w-5 h-5 ${isAmber ? "text-amber-600" : "text-orange-600"}`}
                       />
                       <span className="font-bold text-slate-900">{sector.stats.workers}</span>
-                      <span className="text-sm text-slate-500">Arbeitskräfte</span>
+                      <span className="text-sm text-slate-500">
+                        {lang === "vn" ? "Nhân sự" : lang === "en" ? "Workers" : "Arbeitskräfte"}
+                      </span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Timer
                         className={`w-5 h-5 ${isAmber ? "text-amber-600" : "text-orange-600"}`}
                       />
-                      <span className="font-bold text-slate-900">{sector.stats.time}</span>
-                      <span className="text-sm text-slate-500">Vorlauf</span>
+                      <span className="font-bold text-slate-900">
+                        {lang === "vn"
+                          ? sector.stats.time.replace("Wo.", "tuần")
+                          : lang === "en"
+                            ? sector.stats.time.replace("Wo.", "wks")
+                            : sector.stats.time}
+                      </span>
+                      <span className="text-sm text-slate-500">
+                        {lang === "vn" ? "Thời gian" : lang === "en" ? "Lead time" : "Vorlauf"}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -1082,7 +1211,7 @@ function StatsSection({ content }: { content: SeasonalPageContent }) {
       </div>
 
       <div className="container relative mx-auto px-4 max-w-7xl">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 lg:gap-12">
           {sectionContent.stats.map((stat: StatCard, index) => {
             const Icon = stat.icon;
             return (
@@ -1121,17 +1250,17 @@ function CTASection({ content }: { content: SeasonalPageContent }) {
 
   // Build section content from translations
   const sectionContent = {
-    title: ctaData.title || "Bereit für Saison 2026?",
+    title: ctaData.title || "Bereit für Saison 2027?",
     subtitle: ctaData.subtitle || "Sichern Sie sich jetzt Personal für eine erfolgreiche Saison.",
     cta1: ctaData.cta1 || "Angebot anfordern",
     cta2: ctaData.cta2 || "Rückruf anfordern",
-    urgency: heroData.urgency_badge || "Saison 2026 – Jetzt sichern!", // Reuse from hero
+    urgency: heroData.urgency_badge || "Saison 2027 – Jetzt sichern!", // Reuse from hero
   };
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section id="contact" className="py-24 md:py-32 bg-slate-50">
+    <section id="contact" className="scroll-mt-32 py-24 md:py-32 bg-slate-50">
       <div className="container mx-auto px-4 max-w-4xl">
         <motion.div
           ref={ref}

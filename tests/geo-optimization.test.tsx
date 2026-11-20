@@ -35,12 +35,15 @@ import { AeoSnippetSection } from "@/components/seo/AeoSnippetSection";
 import JsonLd from "@/components/seo/JsonLd";
 import FAQSection from "@/components/shared/FAQSection";
 import {
+  BLOG_BENCHMARK_ALIASES,
+  BLOG_BENCHMARK_REDIRECTS,
   BLOG_CATALOG,
   TRUST_ANCHOR_REWRITES,
   appendVaryAccept,
   isDirectMarkdownPath,
   normalizeMarkdownPathname,
   prefersMarkdown,
+  resolveBlogAliasRedirect,
   resolveMarkdownDocument,
 } from "@/lib/geo/markdown-negotiation";
 import { pageMetadata } from "@/lib/site";
@@ -112,6 +115,61 @@ describe("GEO (Generative Engine Optimization) & Is-Agentic Readiness Suite", ()
       expect(appendVaryAccept("rsc, next-router-state-tree, accept-encoding")).toBe(
         "rsc, next-router-state-tree, accept-encoding, Accept"
       );
+    });
+
+    it("resolves legacy benchmark blog aliases to canonical URLs via 308 redirects for both HTML and .md routes", async () => {
+      expect(Object.keys(BLOG_BENCHMARK_ALIASES)).toHaveLength(2);
+      expect(BLOG_BENCHMARK_REDIRECTS).toHaveLength(4);
+      for (const rule of BLOG_BENCHMARK_REDIRECTS) {
+        expect(rule.permanent).toBe(true);
+      }
+
+      expect(
+        resolveBlogAliasRedirect(
+          "/blog/beschleunigtes-fachkraefteverfahren-81a-aufenthg-leitfaden-arbeitgeber"
+        )
+      ).toBe("/blog/beschleunigtes-fachkraefteverfahren-81a-unterlagen-fristen-praxis");
+      expect(
+        resolveBlogAliasRedirect(
+          "/blog/beschleunigtes-fachkraefteverfahren-81a-aufenthg-leitfaden-arbeitgeber.md"
+        )
+      ).toBe("/blog/beschleunigtes-fachkraefteverfahren-81a-unterlagen-fristen-praxis.md");
+      expect(
+        resolveBlogAliasRedirect(
+          "/blog/auszubildende-aus-vietnam-rekrutieren-anleitung-fuer-ausbildungsbetriebe"
+        )
+      ).toBe("/blog/azubis-aus-vietnam-vorbereitung-ausbildungsbetrieb");
+      expect(
+        resolveBlogAliasRedirect(
+          "/blog/auszubildende-aus-vietnam-rekrutieren-anleitung-fuer-ausbildungsbetriebe.md"
+        )
+      ).toBe("/blog/azubis-aus-vietnam-vorbereitung-ausbildungsbetrieb.md");
+      expect(resolveBlogAliasRedirect("/blog/non-existent-slug")).toBeNull();
+      expect(resolveBlogAliasRedirect("/services/skilled-workers.md")).toBeNull();
+
+      const aliasHtmlRes = await proxy(
+        new NextRequest(
+          "https://www.dmf-talents.de/blog/auszubildende-aus-vietnam-rekrutieren-anleitung-fuer-ausbildungsbetriebe",
+          { headers: { Accept: "text/html" } }
+        )
+      );
+      expect(aliasHtmlRes.status).toBe(308);
+      expect(aliasHtmlRes.headers.get("location")).toBe(
+        "https://www.dmf-talents.de/blog/azubis-aus-vietnam-vorbereitung-ausbildungsbetrieb"
+      );
+      expect(aliasHtmlRes.headers.get("vary")).toBe("Accept, accept-encoding");
+
+      const aliasMdRes = await proxy(
+        new NextRequest(
+          "https://www.dmf-talents.de/blog/beschleunigtes-fachkraefteverfahren-81a-aufenthg-leitfaden-arbeitgeber.md?source=agent",
+          { headers: { Accept: "text/markdown" } }
+        )
+      );
+      expect(aliasMdRes.status).toBe(308);
+      expect(aliasMdRes.headers.get("location")).toBe(
+        "https://www.dmf-talents.de/blog/beschleunigtes-fachkraefteverfahren-81a-unterlagen-fristen-praxis.md?source=agent"
+      );
+      expect(aliasMdRes.headers.get("vary")).toBe("Accept, accept-encoding");
     });
   });
 
@@ -361,7 +419,7 @@ describe("GEO (Generative Engine Optimization) & Is-Agentic Readiness Suite", ()
     });
   });
 
-  describe("9. GEO-First AI Blog Writer Prompts & 15-Topic B2B Prompt Matrix", () => {
+  describe("9. GEO-First AI Blog Writer Prompts & 30-Topic B2B Prompt Matrix", () => {
     it("enforces Answer-First TL;DR, question-form <h2> headings, HTML comparison tables, and primary legal entities in buildBlogSystemPrompt", () => {
       const prompt = buildBlogSystemPrompt({
         topic: "§ 16d vs § 18a AufenthG für Pflegebetriebe",
@@ -380,8 +438,8 @@ describe("GEO (Generative Engine Optimization) & Is-Agentic Readiness Suite", ()
       expect(prompt).toContain("FACTS & EDITORIAL ACCURACY (STRICT)");
     });
 
-    it("provides 15 prompt-targeted B2B topics across all 5 strategic clusters and injects them into buildTopicSuggestionsPrompt", () => {
-      expect(GEO_TOPIC_MATRIX).toHaveLength(15);
+    it("provides 30 prompt-targeted B2B topics across all 7 strategic clusters and injects them into buildTopicSuggestionsPrompt", () => {
+      expect(GEO_TOPIC_MATRIX).toHaveLength(30);
       for (const blueprint of GEO_TOPIC_MATRIX) {
         expect(blueprint.targetPromptDe).toMatch(/\?$/);
         expect(blueprint.legalEntities.length).toBeGreaterThanOrEqual(2);
@@ -606,6 +664,23 @@ describe("GEO (Generative Engine Optimization) & Is-Agentic Readiness Suite", ()
       const getBody = await getRes.json();
       expect(getBody.matches.length).toBeGreaterThan(0);
       expect(getBody.matches[0].handoffUrl).toContain("/fuer-arbeitgeber/personalbedarf?");
+      expect(getBody.prefillUrl).toContain(
+        "https://www.dmf-talents.de/fuer-arbeitgeber/personalbedarf?"
+      );
+
+      const paramGetRes = await getMatchedCandidates(
+        new NextRequest(
+          "https://www.dmf-talents.de/api/candidates/match?role=Pflegefachkraft&minGermanLevel=B2&count=3"
+        )
+      );
+      expect(paramGetRes.status).toBe(200);
+      const paramGetBody = await paramGetRes.json();
+      expect(paramGetBody.matches.length).toBeGreaterThan(0);
+      expect(paramGetBody.summary).toContain("Pflegefachkraft");
+      expect(paramGetBody.prefillUrl).toContain("personalbedarf?");
+      expect(paramGetBody.prefillUrl).toContain("Pflegefachkraft");
+      expect(paramGetBody.prefillUrl).toContain("B2");
+      expect(paramGetBody.prefillUrl).toContain("headcount=3");
 
       const postRes = await postMatchedCandidates(
         new NextRequest("https://www.dmf-talents.de/api/candidates/match", {

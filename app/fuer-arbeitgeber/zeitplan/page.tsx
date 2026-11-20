@@ -184,7 +184,11 @@ export default function ZeitplanPage() {
                     className="object-cover"
                   />
                   <span className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-slate-900/85 text-white text-xs font-bold backdrop-blur-xs">
-                    Meilenstein {item.step}
+                    {lang === "vn"
+                      ? `Cột mốc ${item.step}`
+                      : lang === "en"
+                        ? `Milestone ${item.step}`
+                        : `Meilenstein ${item.step}`}
                   </span>
                 </div>
                 <figcaption className="p-5 flex-1">

@@ -3,10 +3,15 @@ import { z } from "zod";
 import { checkRateLimit, getClientIp, RATE_LIMITS } from "@/lib/rate-limit";
 import { runWithOpenRouterFallback } from "@/lib/ai/openrouter";
 import { getFeaturedCandidates } from "@/lib/supabase/candidates";
+import {
+  findDmfPoolCandidateById,
+  mergeWithDmfFeaturedCandidates,
+} from "@/lib/candidates/dmf-pool-data";
 import { siteUrl } from "@/lib/site";
 
 const candidateInputSchema = z.object({
   id: z.string().min(1).max(100),
+  display_code: z.string().max(40).nullish(),
   category: z.enum(["azubi", "skilled", "seasonal"]),
   profession: z.string().nullish(),
   experience_years: z.number().nonnegative().nullish(),
@@ -83,8 +88,15 @@ const GERMAN_RANK: Record<string, number> = {
   C2: 6,
 };
 
+function resolveCandidateCode(candidate: z.infer<typeof candidateInputSchema>): string {
+  if (candidate.display_code) return candidate.display_code;
+  const poolMatch = findDmfPoolCandidateById(candidate.id);
+  if (poolMatch?.display_code) return poolMatch.display_code;
+  return candidate.id.slice(0, 8).toUpperCase();
+}
+
 function buildCandidateHandoffUrl(candidate: z.infer<typeof candidateInputSchema>): string {
-  const code = candidate.id.slice(0, 8).toUpperCase();
+  const code = resolveCandidateCode(candidate);
   const label = `#${code} (${candidate.profession || candidate.category})`;
   const params = new URLSearchParams({
     service: candidate.category,
@@ -159,7 +171,7 @@ function computeDeterministicMatches(
 
     return {
       id: c.id,
-      code: c.id.slice(0, 8).toUpperCase(),
+      code: resolveCandidateCode(c),
       profession: c.profession,
       category: c.category,
       german_level: c.german_level,
@@ -185,9 +197,11 @@ function computeDeterministicMatches(
 async function resolveAutonomousCandidatePool(): Promise<z.infer<typeof candidateInputSchema>[]> {
   try {
     const { data } = await getFeaturedCandidates();
-    if (data && data.length > 0) {
-      return data.slice(0, 40).map((c) => ({
+    const merged = mergeWithDmfFeaturedCandidates(data, 40);
+    if (merged.length > 0) {
+      return merged.slice(0, 40).map((c) => ({
         id: c.id,
+        display_code: c.display_code,
         category: c.category,
         profession: c.profession,
         experience_years: c.experience_years,
@@ -198,18 +212,75 @@ async function resolveAutonomousCandidatePool(): Promise<z.infer<typeof candidat
   } catch {
     // Fallback to deterministic pool when DB is not reachable
   }
+  const fallbackPool = mergeWithDmfFeaturedCandidates(null, 40);
+  if (fallbackPool.length > 0) {
+    return fallbackPool.slice(0, 40).map((c) => ({
+      id: c.id,
+      display_code: c.display_code,
+      category: c.category,
+      profession: c.profession,
+      experience_years: c.experience_years,
+      german_level: c.german_level,
+      visa_status: Boolean(c.visa_status),
+    }));
+  }
   return DEFAULT_AUTONOMOUS_CANDIDATE_POOL;
 }
 
 export async function GET(request: NextRequest) {
-  const query = request.nextUrl.searchParams.get("query")?.trim() || "Fachkräfte und Azubis B1/B2";
-  const rawLang = request.nextUrl.searchParams.get("lang");
+  const sp = request.nextUrl.searchParams;
+  const explicitQuery = sp.get("query")?.trim() || "";
+  const role = sp.get("role")?.trim() || "";
+  const minGermanLevelRaw = sp.get("minGermanLevel")?.trim() || "";
+  const minGermanLevel = /^(A1|A2|B1|B2|C1|C2)$/i.test(minGermanLevelRaw)
+    ? minGermanLevelRaw.toUpperCase()
+    : minGermanLevelRaw;
+  const categoryRaw = sp.get("category")?.trim().toLowerCase() || "";
+  const category =
+    categoryRaw === "azubi" || categoryRaw === "skilled" || categoryRaw === "seasonal"
+      ? categoryRaw
+      : "";
+  const countRaw = sp.get("count")?.trim() || "";
+  const count = /^\d{1,4}$/.test(countRaw) ? countRaw : "";
+
+  const builtQuery = [count, role, minGermanLevel, category].filter(Boolean).join(" ").trim();
+  const query = explicitQuery || builtQuery || "Fachkräfte und Azubis B1/B2";
+
+  const rawLang = sp.get("lang");
   const lang: "de" | "en" | "vn" = rawLang === "en" || rawLang === "vn" ? rawLang : "de";
 
   const pool = await resolveAutonomousCandidatePool();
   const result = computeDeterministicMatches(query.slice(0, 600), pool, lang);
+
+  const inferredService =
+    category ||
+    (/azubi|ausbildung|lehrling|học nghề/i.test(query)
+      ? "azubi"
+      : /saison|seasonal|ernte|lager|thời vụ/i.test(query)
+        ? "seasonal"
+        : explicitQuery || role
+          ? "skilled"
+          : "unsure");
+
+  const prefillParams = new URLSearchParams({ service: inferredService });
+  if (count && Number(count) >= 1 && Number(count) <= 1000) {
+    prefillParams.set("headcount", count);
+  }
+  const prefillSubject = explicitQuery || [role, minGermanLevel].filter(Boolean).join(" ").trim();
+  if (prefillSubject) {
+    const messageText =
+      lang === "de"
+        ? `Personalbedarf (${prefillSubject})${count ? ` – ${count} Position(en)` : ""}`
+        : lang === "en"
+          ? `Staffing request (${prefillSubject})${count ? ` – ${count} position(s)` : ""}`
+          : `Yêu cầu nhân sự (${prefillSubject})${count ? ` – ${count} vị trí` : ""}`;
+    prefillParams.set("message", messageText.slice(0, 600));
+  }
+  const prefillUrl = `${siteUrl("/fuer-arbeitgeber/personalbedarf")}?${prefillParams.toString()}`;
+
   return NextResponse.json({
     ...result,
+    prefillUrl,
     mode: "guided",
   });
 }
@@ -313,7 +384,7 @@ Antworte AUSSCHLIESSLICH als valides JSON-Objekt:
               const cand = byId.get(m.id)!;
               return {
                 id: m.id,
-                code: m.id.slice(0, 8).toUpperCase(),
+                code: resolveCandidateCode(cand),
                 profession: cand.profession,
                 category: cand.category,
                 german_level: cand.german_level,

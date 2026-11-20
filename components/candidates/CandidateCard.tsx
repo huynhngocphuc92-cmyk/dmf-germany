@@ -196,11 +196,13 @@ export const CandidateCard = ({
   const stageMeta = getStageAccentMeta(poolStage, lang);
 
   // Split multi-profession strings ("Hotelfachmann / Koch / SHK") into primary role + secondary tags
-  const rawProfessions = (candidate.profession || "Beruf auf Anfrage")
+  const defaultProfessionLabel =
+    lang === "de" ? "Beruf auf Anfrage" : lang === "en" ? "Role on request" : "Ngành theo yêu cầu";
+  const rawProfessions = (candidate.profession || defaultProfessionLabel)
     .split(/\s+\/\s+/)
     .map((s) => s.trim())
     .filter(Boolean);
-  const primaryProfession = rawProfessions[0] || "Beruf auf Anfrage";
+  const primaryProfession = rawProfessions[0] || defaultProfessionLabel;
   const secondaryProfessions = rawProfessions.slice(1);
 
   const ctaLabel =
@@ -402,14 +404,19 @@ export const CandidateCard = ({
                   <Badge
                     className={`${getGermanLevelColor(candidate.german_level)} text-xs font-semibold border`}
                   >
-                    Deutsch {candidate.german_level}
+                    {lang === "vn" ? "Tiếng Đức" : lang === "en" ? "German" : "Deutsch"}{" "}
+                    {candidate.german_level}
                   </Badge>
                 </div>
               )}
 
               {candidate.visa_status ? (
                 <Badge className="bg-indigo-50 text-indigo-800 border-indigo-200 text-[11px] font-semibold border">
-                  Visum &amp; Ausbildungsvertrag
+                  {lang === "vn"
+                    ? "Đã có Thị thực & Hợp đồng"
+                    : lang === "en"
+                      ? "Visa & Contract Issued"
+                      : "Visum & Ausbildungsvertrag"}
                 </Badge>
               ) : (
                 candidate.experience_years != null &&
@@ -536,7 +543,17 @@ export const CandidateCard = ({
               ) : (
                 <div className="relative aspect-video rounded-lg overflow-hidden bg-gray-100 border border-gray-200 flex items-center justify-center">
                   <p className="text-sm text-gray-500 text-center px-4">
-                    {!embedUrl || videoError ? "Video-Link ungültig" : "Video wird geladen..."}
+                    {!embedUrl || videoError
+                      ? lang === "vn"
+                        ? "Liên kết video không hợp lệ"
+                        : lang === "en"
+                          ? "Invalid video link"
+                          : "Video-Link ungültig"
+                      : lang === "vn"
+                        ? "Đang tải video..."
+                        : lang === "en"
+                          ? "Loading video..."
+                          : "Video wird geladen..."}
                   </p>
                 </div>
               )}

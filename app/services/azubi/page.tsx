@@ -114,7 +114,7 @@ function HeroSection() {
       </div>
 
       <div className="relative container mx-auto px-4 max-w-7xl min-h-screen flex items-center">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center w-full py-24 lg:py-0">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center w-full pt-32 pb-16 lg:pt-32 lg:pb-16">
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -875,13 +875,13 @@ function CTASection() {
     subtitle: ctaData.subtitle || "Investieren Sie heute in motivierte Azubis aus Vietnam.",
     cta1: ctaData.cta1 || "Azubi-Profile anfordern",
     cta2: ctaData.cta2 || "Beratungsgespräch vereinbaren",
-    highlight: ctaData.highlight || "Nächster Ausbildungsstart: September 2026",
+    highlight: ctaData.highlight || "Nächster Ausbildungsstart: Frühjahr / Herbst 2027",
   };
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section id="contact" className="py-24 md:py-32 bg-slate-50">
+    <section id="contact" className="scroll-mt-32 py-24 md:py-32 bg-slate-50">
       <div className="container mx-auto px-4 max-w-4xl">
         <motion.div
           ref={ref}

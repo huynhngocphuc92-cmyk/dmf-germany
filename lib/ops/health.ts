@@ -2,6 +2,7 @@ import "server-only";
 import { z } from "zod";
 import { createIntakeClient } from "@/lib/supabase/intake";
 import { isSmtpConfigured } from "@/lib/email/transporter";
+import { isNotificationDeliveryEnabled, isPreviewDeploy } from "@/lib/env/runtime";
 
 const count = z.number().int().nonnegative();
 const queueSchema = z.object({
@@ -19,9 +20,7 @@ export async function operationsHealth() {
     ),
     smtpConfigured: isSmtpConfigured() && Boolean(process.env.CONTACT_EMAIL),
     telegramConfigured: Boolean(process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID),
-    deliveryEnabled:
-      process.env.VERCEL_ENV !== "preview" &&
-      (process.env.VERCEL_ENV === "production" || process.env.NOTIFICATION_DELIVERY === "enabled"),
+    deliveryEnabled: isNotificationDeliveryEnabled(),
   };
   // Telegram is optional; its absence is informational, not a required-email outage.
   const configured =
@@ -30,7 +29,7 @@ export async function operationsHealth() {
     configuration.deliveryEnabled;
   let queue: z.infer<typeof queueSchema> | null = null;
   try {
-    if (process.env.VERCEL_ENV === "preview") throw new Error("Preview probe disabled");
+    if (isPreviewDeploy()) throw new Error("Preview probe disabled");
     const { data, error } = await createIntakeClient()
       .rpc("dmf_notification_health")
       .abortSignal(AbortSignal.timeout(5000));

@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <rect width="720" height="540" rx="16" fill="#F8FAFC"/>
+  <rect x="20" y="20" width="680" height="500" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="20" y="20" width="680" height="72" rx="12" fill="#003366"/>
+  <text x="44" y="50" fill="#FFFFFF" font-size="16" font-weight="700">Inlands-Compliance: Zusatzblatt zum eAT &amp; Arbeitgeberwechsel prüfen</text>
+  <text x="44" y="74" fill="#CBD5E1" font-size="11.5">Prüfpflichten für Personalabteilungen (§ 4a Abs. 5 AufenthG, § 9 BeschV, §§ 16a/16d → § 18a)</text>
+
+  <!-- Top HR Entry Gate -->
+  <g transform="translate(44, 108)">
+    <rect width="632" height="68" rx="10" fill="#003366"/>
+    <text x="316" y="25" text-anchor="middle" fill="#FFFFFF" font-size="11.5" font-weight="700">Neueinstellung im Inland: eAT + Zusatzblatt vor Start prüfen (§ 4a Abs. 5 AufenthG)</text>
+    <text x="316" y="45" text-anchor="middle" fill="#CBD5E1" font-size="10.5">Ohne gültiges Zusatzblatt bzw. behördliche Erlaubnis drohen Bußgelder nach § 404 Abs. 2 Nr. 3 SGB III</text>
+  </g>
+
+  <!-- Left Branch: Kein Arbeitgeberwechsel / § 9 BeschV erfüllt -->
+  <g transform="translate(44, 192)">
+    <rect width="304" height="264" rx="10" fill="#F8FAFC" stroke="#003366" stroke-width="2"/>
+    <rect width="304" height="38" rx="10" fill="#003366"/>
+    <text x="16" y="24" fill="#FFFFFF" font-size="12" font-weight="700">Pfad A: Freier Wechsel (§ 9 BeschV)</text>
+
+    <text x="16" y="60" fill="#003366" font-size="11.5" font-weight="700">Wann keine neue ABH-Erlaubnis nötig ist:</text>
+    <text x="16" y="80" fill="#475569" font-size="10.5">• Vermerk im Zusatzblatt zum eAT lautet:</text>
+    <text x="16" y="96" fill="#003366" font-size="10.5" font-weight="700">  „Beschäftigung jeder Art gestattet“</text>
+    <text x="16" y="116" fill="#475569" font-size="10.5">• Vorbeschäftigung ≥ 2 Jahre versicherungspflichtig</text>
+    <text x="16" y="132" fill="#475569" font-size="10.5">  in Deutschland ODER ≥ 3 Jahre rechtmäßiger</text>
+    <text x="16" y="148" fill="#475569" font-size="10.5">  ununterbrochener Aufenthalt (§ 9 Abs. 1 BeschV)</text>
+
+    <rect x="16" y="166" width="272" height="82" rx="8" fill="#F1F5F9" stroke="#003366"/>
+    <text x="26" y="186" fill="#003366" font-size="11" font-weight="700">HR-Pflichten nach § 4a Abs. 5 AufenthG:</text>
+    <text x="26" y="204" fill="#475569" font-size="10.5">1. Vorder- und Rückseite eAT + Zusatzblatt</text>
+    <text x="26" y="220" fill="#475569" font-size="10.5">   als Kopie/Scan in der Personalakte ablegen</text>
+    <text x="26" y="236" fill="#475569" font-size="10.5">2. Ablaufdatum im HR-System fristüberwachen</text>
+  </g>
+
+  <!-- Right Branch: Bindung / Zweckwechsel -->
+  <g transform="translate(372, 192)">
+    <rect width="304" height="264" rx="10" fill="#FFF7ED" stroke="#FF6600" stroke-width="2"/>
+    <rect width="304" height="38" rx="10" fill="#FF6600"/>
+    <text x="16" y="24" fill="#FFFFFF" font-size="12" font-weight="700">Pfad B: Bindung / Zweckwechsel</text>
+
+    <text x="16" y="60" fill="#9A3412" font-size="11" font-weight="700">Wann die ABH vorab freigeben muss:</text>
+    <text x="16" y="80" fill="#475569" font-size="10.5">• Zusatzblatt nennt konkreten Alt-Arbeitgeber</text>
+    <text x="16" y="96" fill="#475569" font-size="10.5">  (erste 2 Jahre bei § 18a / § 18b / § 18g)</text>
+    <text x="16" y="114" fill="#475569" font-size="10.5">• Zweckwechsel nach Abschluss:</text>
+    <text x="16" y="130" fill="#9A3412" font-size="10.5" font-weight="700">  § 16a (Azubi) → § 18a oder § 16d → § 18a</text>
+
+    <rect x="16" y="146" width="272" height="102" rx="8" fill="#FFFFFF" stroke="#FF6600"/>
+    <text x="26" y="166" fill="#9A3412" font-size="11" font-weight="700">Zwingender Ablauf vor Arbeitstag 1:</text>
+    <text x="26" y="184" fill="#475569" font-size="10.5">1. Antrag auf Titeländerung / Zweckwechsel bei</text>
+    <text x="26" y="199" fill="#475569" font-size="10.5">   der zuständigen Ausländerbehörde stellen</text>
+    <text x="26" y="216" fill="#475569" font-size="10.5">2. Arbeitsvertrag, EzB &amp; Abschlussurkunde</text>
+    <text x="26" y="232" fill="#9A3412" font-size="10" font-weight="700">3. Fiktion (§ 81 IV) / Freigabe abwarten</text>
+  </g>
+
+  <rect x="44" y="472" width="632" height="36" rx="8" fill="#003366"/>
+  <text x="360" y="494" text-anchor="middle" fill="#FFFFFF" font-size="10.5" font-weight="600">Bei vorzeitiger Kündigung: Meldepflicht des Alt-Arbeitgebers binnen 4 Wochen (§ 82 Abs. 6 AufenthG)</text>
+</svg>

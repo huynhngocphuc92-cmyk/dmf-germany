@@ -61,6 +61,9 @@ export async function getPublicCandidates(filters?: {
 }
 
 export async function getPublicCandidateById(id: string): Promise<PublicCandidate | null> {
+  if (id.startsWith("dmf-pool-")) {
+    return null;
+  }
   try {
     const supabase = createPublicClient();
     const { data, error } = await supabase

@@ -1,11 +1,11 @@
-import { TRANSLATIONS } from "@/lib/translations";
+"use client";
+
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import Link from "next/link";
 import { Shield, Cookie, Mail, Database, Lock, Eye, FileCheck, AlertCircle } from "lucide-react";
 
-export const dynamic = "force-static";
-
 export default function DatenschutzPage() {
-  const t = TRANSLATIONS.de;
+  const { t } = useLanguage();
   const datenschutz = t.legal.datenschutz;
 
   const sections = [
@@ -155,7 +155,7 @@ export default function DatenschutzPage() {
     <div className="min-h-screen bg-background">
       {/* Header Section */}
       <div className="border-b bg-gradient-to-b from-primary/5 to-background">
-        <div className="container mx-auto px-4 py-12 md:py-16 max-w-5xl">
+        <div className="container mx-auto px-4 pt-32 pb-12 md:pt-36 md:pb-16 max-w-5xl">
           <Link
             href="/"
             className="inline-flex items-center text-sm text-muted-foreground hover:text-primary transition-colors mb-6 group"
@@ -246,12 +246,8 @@ export default function DatenschutzPage() {
                 <Mail className="h-6 w-6 text-primary" />
               </div>
               <div className="flex-1">
-                <h3 className="text-xl font-semibold text-foreground mb-3">
-                  {t.contact.title}
-                </h3>
-                <p className="text-base text-muted-foreground mb-4">
-                  {t.contact.subtitle}
-                </p>
+                <h3 className="text-xl font-semibold text-foreground mb-3">{t.contact.title}</h3>
+                <p className="text-base text-muted-foreground mb-4">{t.contact.subtitle}</p>
                 <div className="flex flex-wrap gap-3">
                   <a
                     href={`mailto:${t.contact.email}`}

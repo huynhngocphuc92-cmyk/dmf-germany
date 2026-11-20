@@ -25,6 +25,61 @@ export const TRUST_ANCHOR_REWRITES = [
   { source: "/legal", destination: "/impressum" },
 ] as const;
 
+export const BLOG_BENCHMARK_ALIASES: Record<string, string> = {
+  "beschleunigtes-fachkraefteverfahren-81a-aufenthg-leitfaden-arbeitgeber":
+    "beschleunigtes-fachkraefteverfahren-81a-unterlagen-fristen-praxis",
+  "auszubildende-aus-vietnam-rekrutieren-anleitung-fuer-ausbildungsbetriebe":
+    "azubis-aus-vietnam-vorbereitung-ausbildungsbetrieb",
+};
+
+export const BLOG_BENCHMARK_REDIRECTS = Object.entries(BLOG_BENCHMARK_ALIASES).flatMap(
+  ([alias, canonical]) => [
+    {
+      source: `/blog/${alias}`,
+      destination: `/blog/${canonical}`,
+      permanent: true as const,
+    },
+    {
+      source: `/blog/${alias}.md`,
+      destination: `/blog/${canonical}.md`,
+      permanent: true as const,
+    },
+  ]
+);
+
+/**
+ * Resolves legacy benchmark blog alias paths (HTML or `.md` mirrors) to their
+ * canonical `/blog/<slug>` or `/blog/<slug>.md` destination for HTTP 308 redirects.
+ */
+export function resolveBlogAliasRedirect(rawPathname: string): string | null {
+  if (!rawPathname) return null;
+  let pathname = rawPathname;
+  try {
+    pathname = decodeURIComponent(pathname);
+  } catch {
+    // Keep raw pathname if malformed percent-encoding
+  }
+  if (pathname.length > 1 && pathname.endsWith("/")) {
+    pathname = pathname.slice(0, -1);
+  }
+  if (!pathname.startsWith("/blog/")) {
+    return null;
+  }
+  const rawSlug = pathname.slice("/blog/".length);
+  if (!rawSlug || rawSlug.includes("/")) {
+    return null;
+  }
+  const hasMdSuffix = rawSlug.toLowerCase().endsWith(".md");
+  const slug = hasMdSuffix ? rawSlug.slice(0, -3) : rawSlug;
+  const canonical = Object.prototype.hasOwnProperty.call(BLOG_BENCHMARK_ALIASES, slug)
+    ? BLOG_BENCHMARK_ALIASES[slug]
+    : undefined;
+  if (!canonical) {
+    return null;
+  }
+  return `/blog/${encodeURIComponent(canonical)}${hasMdSuffix ? ".md" : ""}`;
+}
+
 /**
  * Returns true if the URL pathname explicitly requests a `.md` Markdown mirror
  * (e.g., `/index.md`, `/services/skilled-workers.md`, `/blog/slug.md`).

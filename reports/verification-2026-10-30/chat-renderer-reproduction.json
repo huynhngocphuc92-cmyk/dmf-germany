@@ -1,0 +1,6 @@
+{
+  "scope": "isolated renderer reproduction from current local source",
+  "input": "E-Mail: [contact@dmf.edu.vn](mailto:contact@dmf.edu.vn)",
+  "output": "E-Mail: <a href=\"mailto:c<a href=\"mailto:ontact@dmf.edu.vn\" class=\"underline text-blue-600 hover:text-blue-800 font-medium\">ontact@dmf.edu.vn</a>\" class=\"underline text-blue-600 hover:text-blue-800 font-medium\">c<a href=\"mailto:ontact@dmf.edu.vn\" class=\"underline text-blue-600 hover:text-blue-800 font-medium\">ontact@dmf.edu.vn</a></a>",
+  "malformed": true
+}

@@ -1,6 +1,6 @@
 import { getCandidates } from "./actions";
 import { getAdminPortalOverview } from "./portal-actions";
-import { mergeWithDmfAdminCandidates } from "@/lib/candidates/dmf-pool-data";
+import { mergeWithDmfAdminCandidates } from "@/lib/candidates/dmf-admin-pool-data";
 import { CandidatesClient } from "./candidates-client";
 
 // Force dynamic rendering (uses cookies for auth)

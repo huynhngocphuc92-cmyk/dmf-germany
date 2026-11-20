@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <rect width="720" height="540" rx="16" fill="#F8FAFC"/>
+  <rect x="20" y="20" width="680" height="500" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="20" y="20" width="680" height="72" rx="12" fill="#003366"/>
+  <text x="44" y="50" fill="#FFFFFF" font-size="16" font-weight="700">TVöD-Pflege, TVAöD &amp; AVR Caritas/Diakonie: Eingruppierung (2026/2027)</text>
+  <text x="44" y="74" fill="#CBD5E1" font-size="11.5">Vergütungsstufen von der Anerkennungsphase (§ 16d) bis zur Berufsurkunde (§ 18a) sowie § 72 SGB XI</text>
+
+  <!-- Top Progression Pipeline -->
+  <g transform="translate(44, 108)">
+    <rect x="0" y="0" width="186" height="92" rx="8" fill="#F8FAFC" stroke="#475569" stroke-width="1.5"/>
+    <rect x="0" y="0" width="186" height="28" rx="8" fill="#475569"/>
+    <text x="93" y="18" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="700">Stufe 1: Anerkennung (§ 16d)</text>
+    <text x="12" y="46" fill="#003366" font-size="11" font-weight="700">Pflegehelfer / Anpassung</text>
+    <text x="12" y="64" fill="#475569" font-size="10.5">• TVöD-P: P5 (ab 2.907,18 €)</text>
+    <text x="12" y="80" fill="#475569" font-size="10.5">• TVöD-P: P6 (ab 3.012,49 €)</text>
+
+    <text x="204" y="52" text-anchor="middle" fill="#003366" font-size="18" font-weight="700">→</text>
+
+    <rect x="222" y="0" width="186" height="92" rx="8" fill="#FFF7ED" stroke="#FF6600" stroke-width="2"/>
+    <rect x="222" y="0" width="186" height="28" rx="8" fill="#FF6600"/>
+    <text x="315" y="18" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="700">Meilenstein: Berufsurkunde</text>
+    <text x="234" y="46" fill="#9A3412" font-size="11" font-weight="700">PflBG &amp; Sprache B2</text>
+    <text x="234" y="64" fill="#475569" font-size="10.5">• B2 Pflege / Fachsprache</text>
+    <text x="234" y="80" fill="#475569" font-size="10.5">• Kenntnisprüfung / Lehrgang</text>
+
+    <text x="426" y="52" text-anchor="middle" fill="#003366" font-size="18" font-weight="700">→</text>
+
+    <rect x="444" y="0" width="188" height="92" rx="8" fill="#F8FAFC" stroke="#003366" stroke-width="2"/>
+    <rect x="444" y="0" width="188" height="28" rx="8" fill="#003366"/>
+    <text x="538" y="18" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="700">Stufe 2: Fachkraft (§ 18a)</text>
+    <text x="456" y="46" fill="#003366" font-size="11" font-weight="700">Dreijährige Fachkraft</text>
+    <text x="456" y="64" fill="#475569" font-size="10.5">• P7 (ab 3.510,30 € St. 2)</text>
+    <text x="456" y="80" fill="#475569" font-size="10.5">• P8 Intensiv (ab 3.701,21 €)</text>
+  </g>
+
+  <!-- Lower Left: Tarifwerke Comparison -->
+  <g transform="translate(44, 214)">
+    <rect width="304" height="242" rx="10" fill="#F8FAFC" stroke="#003366" stroke-width="1.5"/>
+    <rect width="304" height="34" rx="10" fill="#003366"/>
+    <text x="16" y="22" fill="#FFFFFF" font-size="12" font-weight="700">Öffentliche &amp; kirchliche Tarifwerke</text>
+
+    <text x="16" y="56" fill="#003366" font-size="11.5" font-weight="700">TVAöD-Pflege (Azubis § 16a, ab 05/2026):</text>
+    <text x="16" y="73" fill="#475569" font-size="10.5">1.490,69 € / 1.552,07 € / 1.653,38 € + 400 € Prämie</text>
+
+    <line x1="16" y1="86" x2="288" y2="86" stroke="#CBD5E1"/>
+    <text x="16" y="106" fill="#003366" font-size="11.5" font-weight="700">AVR Caritas (Anl. 31/32, Reform 01/2027):</text>
+    <text x="16" y="123" fill="#475569" font-size="10.5">• Einstieg Fachkraft in P7 Stufe 2 (Stufe 1 unbesetzt)</text>
+    <text x="16" y="139" fill="#475569" font-size="10.5">• P8 (ab 3.701,21 €) zzgl. Pflege-/Schichtzulagen</text>
+
+    <line x1="16" y1="152" x2="288" y2="152" stroke="#CBD5E1"/>
+    <text x="16" y="172" fill="#003366" font-size="11.5" font-weight="700">AVR Diakonie Deutschland (AVR.DD):</text>
+    <text x="16" y="189" fill="#475569" font-size="10.5">• EG 4 / EG 5 während Anpassungsqualifizierung</text>
+    <text x="16" y="205" fill="#475569" font-size="10.5">• EG 7 (3.874–4.546 €) / EG 8 (4.242–5.004 €)</text>
+    <text x="16" y="226" fill="#334155" font-size="10" font-weight="700">Stufenlaufzeit: Berufspraxis anrechenbar</text>
+  </g>
+
+  <!-- Lower Right: Private Träger & § 72 SGB XI -->
+  <g transform="translate(372, 214)">
+    <rect width="304" height="242" rx="10" fill="#FFF7ED" stroke="#FF6600" stroke-width="1.5"/>
+    <rect width="304" height="34" rx="10" fill="#FF6600"/>
+    <text x="16" y="22" fill="#FFFFFF" font-size="12" font-weight="700">Private Träger &amp; § 72 SGB XI-Ausnahme</text>
+
+    <text x="16" y="56" fill="#9A3412" font-size="11.5" font-weight="700">Ausnahme im § 16d Abs. 3 S. 1 AufenthG:</text>
+    <text x="16" y="74" fill="#475569" font-size="10.5">• Nach § 72 SGB XI zugelassene Pflegebetriebe</text>
+    <text x="16" y="90" fill="#475569" font-size="10.5">  nutzen § 16d (i. V. m. § 2a BeschV) auch ohne</text>
+    <text x="16" y="106" fill="#475569" font-size="10.5">  eigene Tarifbindung (§ 3 / § 5 TVG)</text>
+
+    <line x1="16" y1="120" x2="288" y2="120" stroke="#FDBA74"/>
+    <text x="16" y="140" fill="#9A3412" font-size="11.5" font-weight="700">Tariftreue-Pflicht (§ 72 Abs. 3a/3b SGB XI):</text>
+    <text x="16" y="158" fill="#475569" font-size="10.5">• Zahlung des regional üblichen Entgeltniveaus</text>
+    <text x="16" y="174" fill="#475569" font-size="10.5">• Voraussetzung für Versorgungsvertrag &amp;</text>
+    <text x="16" y="190" fill="#475569" font-size="10.5">  Refinanzierung über die Pflegekassen</text>
+
+    <rect x="16" y="204" width="272" height="26" rx="5" fill="#FFFFFF" stroke="#FF6600"/>
+    <text x="152" y="221" text-anchor="middle" fill="#9A3412" font-size="9" font-weight="700">Nicht-§-72-Betriebe: Tarifbindung bei § 16d III Pflicht</text>
+  </g>
+
+  <rect x="44" y="472" width="632" height="36" rx="8" fill="#003366"/>
+  <text x="360" y="494" text-anchor="middle" fill="#FFFFFF" font-size="10.5" font-weight="600">ZAV-Prüfung (§ 39 AufenthG): Tarifliche bzw. ortsübliche Vergütung sichert Zustimmung</text>
+</svg>

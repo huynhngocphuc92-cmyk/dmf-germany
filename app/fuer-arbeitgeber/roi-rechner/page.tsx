@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import { AeoSnippetSection } from "@/components/seo/AeoSnippetSection";
 import FAQSection from "@/components/shared/FAQSection";
 import { ROI_RECHNER_AEO_CONFIG, buildRoiAppSchemas } from "@/lib/seo/aeo-schemas";
@@ -21,6 +22,7 @@ const RoiCalculator = dynamic(
 );
 
 export default function RoiRechnerPage() {
+  const { t, lang } = useLanguage();
   const roiSchemas = buildRoiAppSchemas("/fuer-arbeitgeber/roi-rechner");
 
   return (
@@ -35,11 +37,11 @@ export default function RoiRechnerPage() {
               </div>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Warum Vietnam? Rechnen Sie selbst!
+              {t.roi?.title || "Warum Vietnam? Rechnen Sie selbst!"}
             </h1>
             <p className="text-lg md:text-xl opacity-90 max-w-2xl mx-auto leading-relaxed">
-              Vergleichen Sie die langfristigen Personalkosten und erkennen Sie die wirtschaftlichen
-              Vorteile sofort.
+              {t.roi?.subtitle ||
+                "Vergleichen Sie die langfristigen Personalkosten und erkennen Sie die wirtschaftlichen Vorteile sofort."}
             </p>
           </div>
         </div>
@@ -64,11 +66,18 @@ export default function RoiRechnerPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-900">
-              Weitere Vorteile von DMF
+              {lang === "vn"
+                ? "Lợi ích chiến lược khi hợp tác cùng DMF"
+                : lang === "en"
+                  ? "Additional Strategic Benefits of DMF"
+                  : "Weitere Vorteile von DMF"}
             </h2>
             <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-              Neben den Kosteneinsparungen bietet DMF weitere wirtschaftliche und strategische
-              Vorteile
+              {lang === "vn"
+                ? "Bên cạnh tối ưu hóa chi phí, DMF mang lại giá trị nhân sự bền vững và dài hạn cho doanh nghiệp Đức"
+                : lang === "en"
+                  ? "Beyond cost savings, DMF delivers sustainable long-term workforce advantages"
+                  : "Neben den Kosteneinsparungen bietet DMF weitere wirtschaftliche und strategische Vorteile"}
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
@@ -76,10 +85,19 @@ export default function RoiRechnerPage() {
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
                   <Users className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Qualifizierte Fachkräfte</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  {lang === "vn"
+                    ? "Nhân sự chuyên môn đã thẩm định"
+                    : lang === "en"
+                      ? "Verified Skilled Professionals"
+                      : "Qualifizierte Fachkräfte"}
+                </h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  Hochqualifizierte Kandidaten mit relevanten Zertifikaten und Berufserfahrung,
-                  sorgfältig von DMF geprüft.
+                  {lang === "vn"
+                    ? "Ứng viên có bằng cấp chuyên môn, chứng chỉ tiếng Đức và kinh nghiệm thực tế được DMF sàng lọc kỹ lưỡng."
+                    : lang === "en"
+                      ? "Qualified candidates with verified certificates and practical experience, carefully screened by DMF."
+                      : "Hochqualifizierte Kandidaten mit relevanten Zertifikaten und Berufserfahrung, sorgfältig von DMF geprüft."}
                 </p>
               </div>
 
@@ -87,10 +105,19 @@ export default function RoiRechnerPage() {
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
                   <TrendingDown className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Geringere Fluktuation</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  {lang === "vn"
+                    ? "Tỷ lệ gắn bó cao"
+                    : lang === "en"
+                      ? "Lower Turnover"
+                      : "Geringere Fluktuation"}
+                </h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  Langfristige Beschäftigung und hohe Mitarbeiterbindung durch umfassende Betreuung
-                  und Integration.
+                  {lang === "vn"
+                    ? "Cam kết làm việc lâu dài và gắn bó nhờ chương trình đào tạo hội nhập văn hóa và đồng hành sau nhập cảnh."
+                    : lang === "en"
+                      ? "Long-term employment and high retention thanks to comprehensive cultural preparation and onboarding support."
+                      : "Langfristige Beschäftigung und hohe Mitarbeiterbindung durch umfassende Betreuung und Integration."}
                 </p>
               </div>
 
@@ -98,10 +125,19 @@ export default function RoiRechnerPage() {
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
                   <CheckCircle2 className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Rundum-Service</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  {lang === "vn"
+                    ? "Đồng hành trọn gói"
+                    : lang === "en"
+                      ? "End-to-End Service"
+                      : "Rundum-Service"}
+                </h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  Von der Rekrutierung bis zur Integration – DMF begleitet Sie in allen Phasen des
-                  Prozesses.
+                  {lang === "vn"
+                    ? "Từ tuyển chọn, đào tạo tiếng Đức đến thủ tục § 81a và hội nhập tại Đức – DMF đồng hành trong mọi giai đoạn."
+                    : lang === "en"
+                      ? "From recruitment and language training to § 81a visa processing and integration — DMF supports every step."
+                      : "Von der Rekrutierung bis zur Integration – DMF begleitet Sie in allen Phasen des Prozesses."}
                 </p>
               </div>
             </div>
@@ -113,24 +149,26 @@ export default function RoiRechnerPage() {
       <section className="py-12 md:py-16 bg-gradient-to-r from-primary to-primary/90 text-primary-foreground">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Überzeugt vom Ergebnis?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              {t.roi?.cta_title || "Überzeugt vom Ergebnis?"}
+            </h2>
             <p className="text-lg opacity-90 mb-8">
-              Kontaktieren Sie uns jetzt, um ein detailliertes, individuelles Angebot für Ihr
-              Unternehmen zu erhalten.
+              {t.roi?.cta_subtitle ||
+                "Kontaktieren Sie uns jetzt, um ein detailliertes, individuelles Angebot für Ihr Unternehmen zu erhalten."}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/#contact"
                 className="px-8 py-4 bg-white text-primary rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg flex items-center justify-center gap-2"
               >
-                Angebot anfordern
+                {t.roi?.cta_contact || "Angebot anfordern"}
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <Link
                 href="/services/skilled-workers"
                 className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-lg font-semibold hover:bg-white/10 transition-colors flex items-center justify-center gap-2"
               >
-                Unsere Dienstleistungen
+                {t.roi?.cta_services || "Unsere Dienstleistungen"}
                 <ArrowRight className="w-5 h-5" />
               </Link>
             </div>

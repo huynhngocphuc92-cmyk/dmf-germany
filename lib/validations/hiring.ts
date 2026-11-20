@@ -59,6 +59,11 @@ export const hiringFormSchema = z.object({
   bot_check: z.string().max(0).optional(),
 });
 export type HiringFormValues = z.infer<typeof hiringFormSchema>;
+export const candidateReferenceSchema = z.union([
+  z.uuid(),
+  z.string().regex(/^dmf-pool-\d{3}$/, "Ungültige Kandidatenkennung."),
+]);
+
 export const hiringIntakeSchema = hiringFormSchema.omit({ headcount: true }).extend({
   email: z
     .email()
@@ -67,6 +72,6 @@ export const hiringIntakeSchema = hiringFormSchema.omit({ headcount: true }).ext
     .transform((v) => v.toLowerCase()),
   privacy: z.literal(true),
   headcount: z.number().int().min(1).max(1000).optional(),
-  candidateId: z.uuid().optional(),
+  candidateId: candidateReferenceSchema.optional(),
   ...requestContextSchema.shape,
 });

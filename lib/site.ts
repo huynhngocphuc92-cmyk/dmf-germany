@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 export const SITE_URL = "https://www.dmf-talents.de";
 export const SITE_NAME = "DMF Talents";
 export const SITE_DESCRIPTION =
-  "Personalvermittlung aus Vietnam für Unternehmen in Deutschland. Informieren Sie sich über Fachkräfte, Ausbildung und saisonalen Personalbedarf.";
+  "Personalvermittlung aus Vietnam für deutsche Arbeitgeber: Qualifizierte Fachkräfte (§ 18a/§ 81a), Azubis (§ 16a) & Saisonkräfte mit B1/B2-Deutsch und direkter Vertretung in Deutschland.";
 
 export function siteUrl(path = "/"): string {
   return new URL(path, `${SITE_URL}/`).toString();

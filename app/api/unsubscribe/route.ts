@@ -1,18 +1,21 @@
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { NextRequest, NextResponse } from "next/server";
-import { promises as fs } from "fs";
+import { escapeHtml } from "@/lib/sanitize";
+import { checkRateLimit, getClientIp, RATE_LIMITS } from "@/lib/rate-limit";
 
 /**
  * GET /api/unsubscribe?email=xxx&pid=123
  *
  * Handles email unsubscribe requests from outreach campaigns.
- * - Logs the unsubscribe to a JSON file (persisted on Vercel via /tmp)
+ * - Persists the unsubscribe in Cloudflare KV (UNSUBSCRIBES_KV), with an in-memory fallback in local dev/tests
  * - Shows a German confirmation page
  * - Also forwards to a webhook (if configured) so the Partner-Suchen
  *   local server can update its database
  */
 
-const UNSUB_LOG = "/tmp/unsubscribes.json";
+const UNSUB_PREFIX = "unsub:";
 const WEBHOOK_URL = process.env.UNSUB_WEBHOOK_URL; // Optional: forward to local server
+const memoryUnsubscribes = new Map<string, UnsubEntry>();
 
 interface UnsubEntry {
   email: string;
@@ -21,26 +24,65 @@ interface UnsubEntry {
   ip: string | null;
 }
 
+interface KvNamespaceBinding {
+  get(key: string): Promise<string | null>;
+  get<T>(key: string, type: "json"): Promise<T | null>;
+  put(key: string, value: string): Promise<void>;
+  list(options?: { prefix?: string; cursor?: string }): Promise<{
+    keys: Array<{ name: string }>;
+    list_complete: boolean;
+    cursor?: string;
+  }>;
+}
+
+function getUnsubscribesKv(): KvNamespaceBinding | null {
+  try {
+    const context = getCloudflareContext();
+    const env = context?.env as { UNSUBSCRIBES_KV?: KvNamespaceBinding } | undefined;
+    return env?.UNSUBSCRIBES_KV ?? null;
+  } catch {
+    return null;
+  }
+}
+
 async function logUnsubscribe(entry: UnsubEntry) {
   try {
-    let entries: UnsubEntry[] = [];
-    try {
-      const data = await fs.readFile(UNSUB_LOG, "utf-8");
-      entries = JSON.parse(data);
-    } catch {
-      // File doesn't exist yet
-    }
-
-    // Don't duplicate
-    if (entries.some((e) => e.email === entry.email)) {
+    const kv = getUnsubscribesKv();
+    if (kv) {
+      const key = `${UNSUB_PREFIX}${entry.email}`;
+      const existing = await kv.get(key);
+      if (!existing) {
+        await kv.put(key, JSON.stringify(entry));
+      }
       return;
     }
 
-    entries.push(entry);
-    await fs.writeFile(UNSUB_LOG, JSON.stringify(entries, null, 2));
+    if (!memoryUnsubscribes.has(entry.email)) {
+      memoryUnsubscribes.set(entry.email, entry);
+    }
   } catch (err) {
     console.error("Failed to log unsubscribe:", err);
   }
+}
+
+async function listUnsubscribes(): Promise<UnsubEntry[]> {
+  const kv = getUnsubscribesKv();
+  if (!kv) {
+    return [...memoryUnsubscribes.values()];
+  }
+
+  const keys: string[] = [];
+  let cursor: string | undefined;
+  do {
+    const page = await kv.list({ prefix: UNSUB_PREFIX, cursor });
+    for (const key of page.keys) {
+      keys.push(key.name);
+    }
+    cursor = page.list_complete ? undefined : page.cursor;
+  } while (cursor);
+
+  const values = await Promise.all(keys.map((key) => kv.get<UnsubEntry>(key, "json")));
+  return values.filter((item): item is UnsubEntry => item !== null);
 }
 
 async function forwardToWebhook(entry: UnsubEntry) {
@@ -56,23 +98,42 @@ async function forwardToWebhook(entry: UnsubEntry) {
   }
 }
 
-export async function GET(request: NextRequest) {
-  const { searchParams } = new URL(request.url);
-  const email = searchParams.get("email");
-  const partnerId = searchParams.get("pid") || searchParams.get("id");
+const EMAIL_REGEX = /^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/;
 
-  if (!email) {
-    return new NextResponse(generateHTML("Fehler", "Keine E-Mail-Adresse angegeben.", "#ef4444"), {
-      status: 400,
-      headers: { "Content-Type": "text/html; charset=utf-8" },
-    });
+export async function GET(request: NextRequest) {
+  const rate = await checkRateLimit(`unsub:${getClientIp(request)}`, RATE_LIMITS.CONTACT);
+  if (!rate.success) {
+    return new NextResponse(
+      generateHTML("Zu viele Anfragen", "Bitte versuchen Sie es später erneut.", "#ef4444"),
+      { status: 429, headers: { "Content-Type": "text/html; charset=utf-8" } }
+    );
   }
 
+  const { searchParams } = new URL(request.url);
+  const rawEmail = searchParams.get("email")?.trim() || "";
+  const partnerId = (searchParams.get("pid") || searchParams.get("id") || "").slice(0, 100) || null;
+
+  if (!rawEmail || rawEmail.length > 320 || !EMAIL_REGEX.test(rawEmail)) {
+    return new NextResponse(
+      generateHTML("Fehler", "Keine gültige E-Mail-Adresse angegeben.", "#ef4444"),
+      {
+        status: 400,
+        headers: { "Content-Type": "text/html; charset=utf-8" },
+      }
+    );
+  }
+
+  const email = rawEmail.toLowerCase();
+  const safeEmail = escapeHtml(email);
+
   const entry: UnsubEntry = {
-    email: email.toLowerCase(),
+    email,
     partnerId,
     timestamp: new Date().toISOString(),
-    ip: request.headers.get("x-forwarded-for") || request.headers.get("x-real-ip"),
+    ip:
+      request.headers.get("cf-connecting-ip") ||
+      request.headers.get("x-forwarded-for") ||
+      request.headers.get("x-real-ip"),
   };
 
   // Log and forward in parallel
@@ -81,7 +142,7 @@ export async function GET(request: NextRequest) {
   return new NextResponse(
     generateHTML(
       "✅ Erfolgreich abgemeldet",
-      `Sie erhalten keine weiteren E-Mails von uns an <strong>${email}</strong>.`,
+      `Sie erhalten keine weiteren E-Mails von uns an <strong>${safeEmail}</strong>.`,
       "#10b981"
     ),
     { status: 200, headers: { "Content-Type": "text/html; charset=utf-8" } }
@@ -91,17 +152,24 @@ export async function GET(request: NextRequest) {
 // Also handle POST (from Mailgun webhook etc.)
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
-    const entry: UnsubEntry = {
-      email: (body.email || "").toLowerCase(),
-      partnerId: body.partnerId || body.pid || null,
-      timestamp: new Date().toISOString(),
-      ip: request.headers.get("x-forwarded-for"),
-    };
-
-    if (!entry.email) {
-      return NextResponse.json({ error: "Missing email" }, { status: 400 });
+    const rate = await checkRateLimit(`unsub:${getClientIp(request)}`, RATE_LIMITS.CONTACT);
+    if (!rate.success) {
+      return NextResponse.json({ error: "Too many requests" }, { status: 429 });
     }
+    const body = await request.json();
+    const rawEmail = String(body.email || "")
+      .trim()
+      .toLowerCase();
+    if (!rawEmail || rawEmail.length > 320 || !EMAIL_REGEX.test(rawEmail)) {
+      return NextResponse.json({ error: "Missing or invalid email" }, { status: 400 });
+    }
+    const entry: UnsubEntry = {
+      email: rawEmail,
+      partnerId:
+        body.partnerId || body.pid ? String(body.partnerId || body.pid).slice(0, 100) : null,
+      timestamp: new Date().toISOString(),
+      ip: request.headers.get("cf-connecting-ip") || request.headers.get("x-forwarded-for"),
+    };
 
     await logUnsubscribe(entry);
     return NextResponse.json({ ok: true, email: entry.email });
@@ -112,16 +180,14 @@ export async function POST(request: NextRequest) {
 
 // List all unsubscribes (for syncing back to local DB)
 export async function PUT(request: NextRequest) {
-  // Simple auth check
   const auth = request.headers.get("authorization");
-  const expectedKey = process.env.UNSUB_API_KEY || "dmf-unsub-key";
-  if (auth !== `Bearer ${expectedKey}`) {
+  const expectedKey = process.env.UNSUB_API_KEY?.trim();
+  if (!expectedKey || auth !== `Bearer ${expectedKey}`) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   try {
-    const data = await fs.readFile(UNSUB_LOG, "utf-8");
-    const entries = JSON.parse(data);
+    const entries = await listUnsubscribes();
     return NextResponse.json({ data: entries });
   } catch {
     return NextResponse.json({ data: [] });
@@ -129,12 +195,14 @@ export async function PUT(request: NextRequest) {
 }
 
 function generateHTML(title: string, message: string, color: string): string {
+  const safeTitle = escapeHtml(title);
+  const safeColor = /^#[0-9a-fA-F]{3,6}$/.test(color) ? color : "#10b981";
   return `<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>${title} — DMF Talents</title>
+  <title>${safeTitle} — DMF Talents</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -154,7 +222,7 @@ function generateHTML(title: string, message: string, color: string): string {
       max-width: 500px;
       margin: 20px;
     }
-    h1 { color: ${color}; margin-bottom: 16px; font-size: 24px; }
+    h1 { color: ${safeColor}; margin-bottom: 16px; font-size: 24px; }
     p { color: #4b5563; line-height: 1.7; font-size: 16px; }
     .footer {
       margin-top: 32px;
@@ -168,7 +236,7 @@ function generateHTML(title: string, message: string, color: string): string {
 </head>
 <body>
   <div class="card">
-    <h1>${title}</h1>
+    <h1>${safeTitle}</h1>
     <p>${message}</p>
     <div class="footer">
       <p>DMF Talents — <a href="https://dmf-talents.de">dmf-talents.de</a></p>

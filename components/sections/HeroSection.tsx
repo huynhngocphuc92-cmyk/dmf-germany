@@ -44,7 +44,7 @@ export const HeroSection = ({
       ? "Direkte Vertretung in Deutschland"
       : lang === "en"
         ? "Direct Representative in Germany"
-        : "Pháp nhân đại diện trực tiếp tại Đức";
+        : "Đại diện trực tiếp tại Đức";
 
   return (
     <section

@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <rect width="720" height="540" rx="16" fill="#F8FAFC"/>
+  <rect x="20" y="20" width="680" height="500" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="20" y="20" width="680" height="72" rx="12" fill="#003366"/>
+  <text x="44" y="50" fill="#FFFFFF" font-size="16" font-weight="700">Saisonkräfte aus Vietnam: § 15d, § 15a &amp; § 14 Abs. 2 BeschV im Vergleich</text>
+  <text x="44" y="74" fill="#CBD5E1" font-size="11.5">Rechtssichere Abgrenzung für Gastronomie, Hotellerie, Logistik und Landwirtschaft (Stand 2027)</text>
+
+  <!-- Top Decision Banner -->
+  <rect x="44" y="106" width="632" height="32" rx="6" fill="#F1F5F9" stroke="#CBD5E1"/>
+  <text x="360" y="126" text-anchor="middle" fill="#003366" font-size="12" font-weight="700">Branchen- &amp; Rechtsprüfung: Welcher ZAV-Weg gilt für vietnamesische Staatsangehörige?</text>
+
+  <!-- Card 1: § 15d BeschV -->
+  <g transform="translate(44, 150)">
+    <rect width="202" height="196" rx="10" fill="#F8FAFC" stroke="#003366" stroke-width="2"/>
+    <rect width="202" height="40" rx="10" fill="#003366"/>
+    <text x="101" y="18" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="700">§ 19c i. V. m. § 15d BeschV</text>
+    <text x="101" y="33" text-anchor="middle" fill="#CBD5E1" font-size="10">Kurzzeitige Beschäftigung</text>
+    <text x="12" y="60" fill="#003366" font-size="11" font-weight="700">Branchen (für Vietnam offen):</text>
+    <text x="12" y="76" fill="#475569" font-size="10.5">• Gastronomie &amp; Hotellerie</text>
+    <text x="12" y="92" fill="#475569" font-size="10.5">• Systemgastronomie &amp; Logistik</text>
+    <text x="12" y="114" fill="#003366" font-size="11" font-weight="700">Dauer &amp; Kontingent:</text>
+    <text x="12" y="130" fill="#475569" font-size="10.5">• Max. 8 Mon. in 12 Monaten</text>
+    <text x="12" y="146" fill="#475569" font-size="10.5">• 25.000/Jahr bundesweit</text>
+    <rect x="12" y="160" width="178" height="24" rx="5" fill="#003366"/>
+    <text x="101" y="176" text-anchor="middle" fill="#FFFFFF" font-size="10" font-weight="700">Tarifbindung (§ 3/5 TVG) Pflicht</text>
+  </g>
+
+  <!-- Card 2: § 15a BeschV -->
+  <g transform="translate(259, 150)">
+    <rect width="202" height="196" rx="10" fill="#F8FAFC" stroke="#475569" stroke-width="1.5"/>
+    <rect width="202" height="40" rx="10" fill="#475569"/>
+    <text x="101" y="18" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="700">§ 15a BeschV</text>
+    <text x="101" y="33" text-anchor="middle" fill="#E2E8F0" font-size="10">Klassische Saisonarbeit</text>
+    <text x="12" y="60" fill="#334155" font-size="11" font-weight="700">Branchen:</text>
+    <text x="12" y="76" fill="#475569" font-size="10.5">• Landwirtschaft, Gartenbau</text>
+    <text x="12" y="92" fill="#475569" font-size="10.5">• Obst-, Gemüse- &amp; Weinbau</text>
+    <text x="12" y="114" fill="#334155" font-size="11" font-weight="700">Status für Vietnam:</text>
+    <text x="12" y="130" fill="#9A3412" font-size="10.5" font-weight="700">• ZAV-Vermittlungsabsprache</text>
+    <text x="12" y="146" fill="#475569" font-size="10.5">  erforderlich (max. 6 Mon.)</text>
+    <rect x="12" y="160" width="178" height="24" rx="5" fill="#E2E8F0"/>
+    <text x="101" y="176" text-anchor="middle" fill="#334155" font-size="10" font-weight="700">Aktuell ohne VN-Abkommen</text>
+  </g>
+
+  <!-- Card 3: § 14 Abs. 2 BeschV -->
+  <g transform="translate(474, 150)">
+    <rect width="202" height="196" rx="10" fill="#FFF7ED" stroke="#FF6600" stroke-width="2"/>
+    <rect width="202" height="40" rx="10" fill="#FF6600"/>
+    <text x="101" y="18" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="700">§ 14 Abs. 2 BeschV</text>
+    <text x="101" y="33" text-anchor="middle" fill="#FFEDD5" font-size="10">Ferienbeschäftigung</text>
+    <text x="12" y="60" fill="#9A3412" font-size="11" font-weight="700">Branchen (für Vietnam offen):</text>
+    <text x="12" y="76" fill="#475569" font-size="10.5">• Landwirtschaft &amp; Gartenbau</text>
+    <text x="12" y="92" fill="#475569" font-size="10.5">• Gastronomie, Hotel, Logistik</text>
+    <text x="12" y="114" fill="#9A3412" font-size="11" font-weight="700">Voraussetzungen:</text>
+    <text x="12" y="130" fill="#475569" font-size="10.5">• Studierende (anabin H+)</text>
+    <text x="12" y="146" fill="#475569" font-size="10.5">• Max. 90 Tage in 12 Mon.</text>
+    <rect x="12" y="160" width="178" height="24" rx="5" fill="#FF6600"/>
+    <text x="101" y="176" text-anchor="middle" fill="#FFFFFF" font-size="10" font-weight="700">Keine Tarifbindung nötig</text>
+  </g>
+
+  <!-- Employer Checklist Box -->
+  <g transform="translate(44, 360)">
+    <rect width="632" height="98" rx="10" fill="#F8FAFC" stroke="#003366" stroke-width="1.5"/>
+    <text x="16" y="22" fill="#003366" font-size="12" font-weight="700">Zwingende Arbeitgeberpflichten im Überblick (ZAV-Vorabzustimmung &amp; Zoll-Compliance 2027):</text>
+    <text x="16" y="44" fill="#475569" font-size="11">✓ Echte Tarifbindung (§ 3 oder § 5 TVG) &amp; mind. 30 Std./Woche bei § 15d BeschV (max. 10 Mon./Betrieb)</text>
+    <text x="16" y="64" fill="#475569" font-size="11">✓ Vollständige Übernahme der Hin- und Rückreisekosten durch den Arbeitgeber bei § 15d Abs. 2 Nr. 3 BeschV</text>
+    <text x="16" y="84" fill="#475569" font-size="11">✓ Lückenloser Mindestlohn 2027 (14,60 €/Std. nach § 1 MiLoG) &amp; Arbeitszeiterfassung (§ 17 MiLoG)</text>
+  </g>
+
+  <rect x="44" y="472" width="632" height="36" rx="8" fill="#003366"/>
+  <text x="360" y="494" text-anchor="middle" fill="#FFFFFF" font-size="10.5" font-weight="600">Für ganzjährigen Bedarf: Nachhaltige Alternative über § 16a (Ausbildung) oder § 18a AufenthG (Fachkraft)</text>
+</svg>

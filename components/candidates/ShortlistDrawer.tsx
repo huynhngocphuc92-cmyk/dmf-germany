@@ -21,7 +21,7 @@ export function ShortlistDrawer() {
   )}&candidates=${encodeURIComponent(codesParam)}`;
 
   return (
-    <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 w-[calc(100%-2rem)] max-w-2xl print:hidden">
+    <div className="fixed bottom-20 lg:bottom-4 left-4 right-20 md:left-1/2 md:right-auto md:-translate-x-1/2 z-40 md:w-[calc(100%-8rem)] max-w-2xl print:hidden">
       <div className="rounded-2xl border border-slate-700/80 ring-1 ring-emerald-400/25 bg-slate-900/95 text-white shadow-2xl backdrop-blur-md overflow-hidden">
         {expanded && (
           <div className="p-4 border-b border-slate-800 max-h-60 overflow-y-auto space-y-2">
@@ -59,7 +59,8 @@ export function ShortlistDrawer() {
                   </Link>
                   {item.german_level && (
                     <span className="text-xs px-2 py-0.5 rounded bg-white/10 text-slate-200">
-                      Deutsch {item.german_level}
+                      {lang === "vn" ? "Tiếng Đức" : lang === "en" ? "German" : "Deutsch"}{" "}
+                      {item.german_level}
                     </span>
                   )}
                 </div>

@@ -1,8 +1,10 @@
-export function validateBuildEnvironment(env: NodeJS.ProcessEnv) {
+import { isProductionDeploy, type EnvMap } from "./runtime";
+
+export function validateBuildEnvironment(env: EnvMap) {
   const missing = ["NEXT_PUBLIC_SUPABASE_URL", "NEXT_PUBLIC_SUPABASE_ANON_KEY"].filter(
     (key) => !env[key]
   );
-  if (env.VERCEL_ENV === "production" && !env.SUPABASE_SECRET_KEY && !env.SUPABASE_SERVICE_ROLE_KEY)
+  if (isProductionDeploy(env) && !env.SUPABASE_SECRET_KEY && !env.SUPABASE_SERVICE_ROLE_KEY)
     missing.push("SUPABASE_SECRET_KEY or SUPABASE_SERVICE_ROLE_KEY");
   if (missing.length)
     throw new Error(`Missing required environment variables: ${missing.join(", ")}`);

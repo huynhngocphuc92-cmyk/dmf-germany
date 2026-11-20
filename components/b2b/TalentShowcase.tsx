@@ -99,15 +99,50 @@ const industryConfig: Record<Industry, IndustryConfig> = {
   },
 };
 
-const germanLevelConfig: Record<GermanLevel, { label: string; description: string }> = {
-  unknown: { label: "—", description: "" },
-  A1: { label: "A1", description: "Anfänger" },
-  C2: { label: "C2", description: "Annähernd muttersprachlich" },
-  A2: { label: "A2", description: "Grundkenntnisse" },
-  B1: { label: "B1", description: "Fortgeschritten" },
-  B2: { label: "B2", description: "Selbständig" },
-  C1: { label: "C1", description: "Fachkundig" },
+const germanLevelConfig: Record<
+  GermanLevel,
+  { label: string; description: Record<"de" | "en" | "vn", string> }
+> = {
+  unknown: { label: "—", description: { de: "", en: "", vn: "" } },
+  A1: {
+    label: "A1",
+    description: { de: "Anfänger", en: "Beginner", vn: "Sơ cấp A1" },
+  },
+  C2: {
+    label: "C2",
+    description: {
+      de: "Annähernd muttersprachlich",
+      en: "Near-native proficiency",
+      vn: "Thành thạo như bản xứ",
+    },
+  },
+  A2: {
+    label: "A2",
+    description: { de: "Grundkenntnisse", en: "Elementary", vn: "Căn bản A2" },
+  },
+  B1: {
+    label: "B1",
+    description: { de: "Fortgeschritten", en: "Intermediate", vn: "Trung cấp B1" },
+  },
+  B2: {
+    label: "B2",
+    description: {
+      de: "Selbständig",
+      en: "Upper-Intermediate",
+      vn: "Trung cao cấp B2",
+    },
+  },
+  C1: {
+    label: "C1",
+    description: { de: "Fachkundig", en: "Advanced", vn: "Cao cấp C1" },
+  },
 };
+
+const isLocalVideo = (url?: string | null): boolean =>
+  Boolean(url && (url.startsWith("/") || url.toLowerCase().endsWith(".mp4")));
+
+const hasPlayableVideo = (url?: string | null): boolean =>
+  Boolean(url && (isLocalVideo(url) || getEmbedUrl(url)));
 
 // ============================================
 // SUB-COMPONENTS
@@ -199,7 +234,7 @@ function CandidateCard({ candidate, index, onViewVideo, onRequestProfile }: Cand
                   <p className="text-3xl font-bold text-foreground tracking-tight">
                     {germanLevel.label}
                   </p>
-                  <p className="text-sm text-muted-foreground">{germanLevel.description}</p>
+                  <p className="text-sm text-muted-foreground">{germanLevel.description[lang]}</p>
                 </div>
               </div>
 
@@ -242,7 +277,7 @@ function CandidateCard({ candidate, index, onViewVideo, onRequestProfile }: Cand
         {/* Card Footer - Actions */}
         <CardFooter className="pt-4 pb-5 bg-muted/20 border-t flex flex-col sm:flex-row gap-3">
           {/* Video Button (Secondary) - Show if videoUrl exists */}
-          {candidate.videoUrl && getEmbedUrl(candidate.videoUrl) && (
+          {hasPlayableVideo(candidate.videoUrl) && (
             <Button
               variant="outline"
               className="flex-1 gap-2 group-hover:border-primary/50 transition-colors"
@@ -256,7 +291,7 @@ function CandidateCard({ candidate, index, onViewVideo, onRequestProfile }: Cand
           {/* Request Profile Button (Primary) */}
           <Button
             className={`gap-2 bg-primary hover:bg-primary/90 shadow-md ${
-              candidate.videoUrl && getEmbedUrl(candidate.videoUrl) ? "flex-1" : "w-full"
+              hasPlayableVideo(candidate.videoUrl) ? "flex-1" : "w-full"
             }`}
             onClick={(event) => onRequestProfile(candidate, event.currentTarget)}
           >
@@ -274,9 +309,10 @@ interface VideoModalProps {
   candidate: Candidate | null;
   isOpen: boolean;
   onClose: () => void;
+  onRequestProfile: (candidate: Candidate, trigger: HTMLButtonElement) => void;
 }
 
-function VideoModal({ candidate, isOpen, onClose }: VideoModalProps) {
+function VideoModal({ candidate, isOpen, onClose, onRequestProfile }: VideoModalProps) {
   const { lang, t } = useLanguage();
   const { externalMedia: media } = useConsent();
   if (!candidate) return null;
@@ -313,7 +349,19 @@ function VideoModal({ candidate, isOpen, onClose }: VideoModalProps) {
         </DialogHeader>
 
         {/* Video Player */}
-        {!media ? (
+        {candidate.videoUrl && isLocalVideo(candidate.videoUrl) ? (
+          <div className="relative aspect-video bg-slate-950 overflow-hidden">
+            <video
+              src={candidate.videoUrl}
+              controls
+              autoPlay
+              preload="metadata"
+              playsInline
+              className="w-full h-full object-contain"
+              title={`Vorstellungsvideo - ${candidate.code}`}
+            />
+          </div>
+        ) : !media ? (
           <div className="p-8 text-center">
             <button onClick={openConsentSettings} className="text-primary underline">
               {lang === "de"
@@ -333,8 +381,13 @@ function VideoModal({ candidate, isOpen, onClose }: VideoModalProps) {
                 return (
                   <div className="absolute inset-0 flex flex-col items-center justify-center bg-red-900/20 rounded-lg">
                     <AlertCircle className="h-12 w-12 text-red-500 mb-2" />
-                    <p className="text-red-500 text-sm font-medium">Ungültiger YouTube-Link</p>
-                    <p className="text-red-400 text-xs mt-1">Bitte überprüfen Sie die URL</p>
+                    <p className="text-red-500 text-sm font-medium">
+                      {lang === "de"
+                        ? "Ungültiger Video-Link"
+                        : lang === "en"
+                          ? "Invalid video link"
+                          : "Liên kết video không hợp lệ"}
+                    </p>
                   </div>
                 );
               }
@@ -345,7 +398,7 @@ function VideoModal({ candidate, isOpen, onClose }: VideoModalProps) {
                   className="w-full h-full rounded-lg"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
-                  title={`Video giới thiệu - ${candidate.code}`}
+                  title={`Vorstellungsvideo - ${candidate.code}`}
                 />
               );
             })()}
@@ -355,7 +408,13 @@ function VideoModal({ candidate, isOpen, onClose }: VideoModalProps) {
           <div className="relative aspect-video bg-gradient-to-br from-slate-900 to-slate-800 rounded-lg">
             <div className="absolute inset-0 flex flex-col items-center justify-center">
               <PlayCircle className="h-16 w-16 text-white/30 mb-4" />
-              <p className="text-white/60 text-sm">Kein Video verfügbar</p>
+              <p className="text-white/60 text-sm">
+                {lang === "de"
+                  ? "Kein Video verfügbar"
+                  : lang === "en"
+                    ? "No video available"
+                    : "Chưa có video"}
+              </p>
             </div>
           </div>
         )}
@@ -368,7 +427,7 @@ function VideoModal({ candidate, isOpen, onClose }: VideoModalProps) {
                 {t.talentShowcase.skills_label}
               </p>
               <p className="text-2xl font-bold text-foreground">{germanLevel.label}</p>
-              <p className="text-xs text-muted-foreground">{germanLevel.description}</p>
+              <p className="text-xs text-muted-foreground">{germanLevel.description[lang]}</p>
             </div>
             <div>
               <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">
@@ -393,12 +452,9 @@ function VideoModal({ candidate, isOpen, onClose }: VideoModalProps) {
           </Button>
           <Button
             className="flex-1"
-            onClick={() => {
+            onClick={(event) => {
               onClose();
-              // Scroll to contact after modal closes
-              setTimeout(() => {
-                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-              }, 300);
+              onRequestProfile(candidate, event.currentTarget);
             }}
           >
             <FileText className="h-4 w-4 mr-2" />
@@ -428,15 +484,21 @@ export function TalentShowcase({ candidates }: { candidates: PublicCandidate[] }
   const [requestedProfile, setRequestedProfile] = useState<PublicCandidate | null>(null);
   const displayCandidates: Candidate[] = candidates.map((profile) => ({
     id: profile.id,
-    code: profile.id.slice(0, 8).toUpperCase(),
+    code: profile.display_code || profile.id.slice(0, 8).toUpperCase(),
     industry: profile.category,
     germanLevel: profile.german_level ?? "unknown",
-    qualifications: profile.profession ? [profile.profession] : [],
+    qualifications: profile.highlights?.length
+      ? profile.highlights.slice(0, 2)
+      : profile.profession
+        ? [profile.profession]
+        : [],
     experience:
       profile.experience_years == null
         ? "—"
         : `${profile.experience_years} ${t.candidates.years_experience}`,
-    availability: lang === "de" ? "Auf Anfrage" : lang === "en" ? "On request" : "Theo yêu cầu",
+    availability:
+      profile.availability_label ||
+      (lang === "de" ? "Auf Anfrage" : lang === "en" ? "On request" : "Theo yêu cầu"),
     avatarUrl: profile.avatar_url ?? null,
     videoAvailable: Boolean(profile.video_url),
     videoUrl: profile.video_url ?? undefined,
@@ -538,6 +600,7 @@ export function TalentShowcase({ candidates }: { candidates: PublicCandidate[] }
           candidate={selectedCandidate}
           isOpen={isVideoModalOpen}
           onClose={() => setIsVideoModalOpen(false)}
+          onRequestProfile={handleRequestProfile}
         />
       </section>
     </MotionProvider>

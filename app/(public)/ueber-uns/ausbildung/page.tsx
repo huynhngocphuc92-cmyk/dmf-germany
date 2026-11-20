@@ -40,7 +40,7 @@ import {
 // ============================================
 
 function HeroSection() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const b2b = t.b2b_pages;
 
   return (
@@ -60,7 +60,7 @@ function HeroSection() {
       </div>
 
       <div className="relative container mx-auto px-4 max-w-7xl min-h-[90vh] flex items-center">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full py-24 lg:py-0">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full pt-32 pb-16 lg:pt-32 lg:pb-16">
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -128,7 +128,9 @@ function HeroSection() {
                   <Calendar className="w-5 h-5 text-blue-400" />
                 </div>
                 <div>
-                  <div className="text-white font-bold">3 Jahre</div>
+                  <div className="text-white font-bold">
+                    {lang === "vn" ? "3 Năm" : lang === "en" ? "3 Years" : "3 Jahre"}
+                  </div>
                   <div className="text-slate-500 text-xs">
                     {b2b?.ausbildung?.stat3_label || "Begleitung"}
                   </div>
@@ -727,7 +729,7 @@ function QualityGatesSection() {
 function SettlementKitSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const b2b = t.b2b_pages;
 
   const getSettlementDays = () => [
@@ -826,19 +828,39 @@ function SettlementKitSection() {
           {[
             {
               src: "/images/b2b/settlement-1-flughafen.jpg",
-              caption: "Abreise & Flughafenbegleitung",
+              caption:
+                lang === "vn"
+                  ? "Tiễn bay & Hỗ trợ tại sân bay"
+                  : lang === "en"
+                    ? "Departure & Airport Escort"
+                    : "Abreise & Flughafenbegleitung",
             },
             {
               src: "/images/b2b/settlement-2-ankunft.jpg",
-              caption: "Persönlicher Empfang in Deutschland",
+              caption:
+                lang === "vn"
+                  ? "Đón tiếp trực tiếp tại Đức"
+                  : lang === "en"
+                    ? "Personal Welcome in Germany"
+                    : "Persönlicher Empfang in Deutschland",
             },
             {
               src: "/images/b2b/settlement-3-wohnung.jpg",
-              caption: "Schlüsselübergabe & Unterkunft",
+              caption:
+                lang === "vn"
+                  ? "Bàn giao chìa khóa & Nơi ở"
+                  : lang === "en"
+                    ? "Key Handover & Accommodation"
+                    : "Schlüsselübergabe & Unterkunft",
             },
             {
               src: "/images/b2b/settlement-4-alltag.jpg",
-              caption: "Erste Orientierung & Betreuung vor Ort",
+              caption:
+                lang === "vn"
+                  ? "Định hướng ban đầu & Đồng hành tại chỗ"
+                  : lang === "en"
+                    ? "Initial Orientation & On-Site Support"
+                    : "Erste Orientierung & Betreuung vor Ort",
             },
           ].map((photo) => (
             <div
@@ -958,7 +980,7 @@ function CTASection() {
         >
           <Badge className="mb-6 px-4 py-2 bg-emerald-500/20 text-emerald-300 border-emerald-500/30">
             <Sparkles className="w-4 h-4 mr-2" />
-            {b2b?.ausbildung?.cta_highlight || "Nächster Ausbildungsstart: September 2026"}
+            {b2b?.ausbildung?.cta_highlight || "Nächster Ausbildungsstart: Frühjahr / Herbst 2027"}
           </Badge>
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight">

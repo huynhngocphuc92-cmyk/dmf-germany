@@ -677,7 +677,7 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
             className={cn(
-              "fixed z-50",
+              "fixed z-[100]",
               "bg-white shadow-2xl",
               "flex flex-col",
               "overflow-hidden",
@@ -903,7 +903,7 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 z-[60] flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/50 z-[110] flex items-center justify-center p-4"
             onClick={closeLeadForm}
           >
             <motion.div

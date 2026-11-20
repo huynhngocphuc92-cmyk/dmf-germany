@@ -45,16 +45,34 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   ShieldCheck,
 };
 
+function formatInputDate(date: Date): string {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function parseInputDateLocal(dateStr: string): Date {
+  const [y, m, d] = dateStr.split("-").map((part) => Number.parseInt(part, 10));
+  if (!Number.isNaN(y) && !Number.isNaN(m) && !Number.isNaN(d)) {
+    return new Date(y, m - 1, d, 0, 0, 0, 0);
+  }
+  const fallback = new Date();
+  fallback.setHours(0, 0, 0, 0);
+  return fallback;
+}
+
 export const TimelineSimulator = () => {
   const { t, lang } = useLanguage();
 
-  // Default start date: today
+  // Default start date: today (local timezone)
   const today = new Date();
   today.setHours(0, 0, 0, 0);
+  const todayStr = formatInputDate(today);
 
   const [productType, setProductType] = useState<ProductType>("fachkraefte");
   const [selectedIndustry, setSelectedIndustry] = useState<string | null>(null);
-  const [startDate, setStartDate] = useState<string>(today.toISOString().split("T")[0]);
+  const [startDate, setStartDate] = useState<string>(todayStr);
   const [isAccelerated, setIsAccelerated] = useState(false);
 
   // Get current timeline steps based on product type and industry
@@ -78,8 +96,7 @@ export const TimelineSimulator = () => {
 
   // Calculate timeline nodes
   const timelineNodes = useMemo<TimelineNode[]>(() => {
-    const start = new Date(startDate);
-    start.setHours(0, 0, 0, 0);
+    const start = parseInputDateLocal(startDate);
 
     const nodes: TimelineNode[] = [];
     let cumulativeWeeks = 0;
@@ -201,7 +218,11 @@ export const TimelineSimulator = () => {
                 </option>
                 {Object.entries(availableIndustries).map(([key, data]) => (
                   <option key={key} value={key}>
-                    {data.label}
+                    {lang === "vn"
+                      ? data.labelVn || data.label
+                      : lang === "en"
+                        ? data.labelEn || data.label
+                        : data.label}
                   </option>
                 ))}
               </select>
@@ -226,7 +247,7 @@ export const TimelineSimulator = () => {
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
               className="w-full max-w-xs"
-              min={today.toISOString().split("T")[0]}
+              min={todayStr}
             />
             <p className="text-xs text-gray-500 mt-1.5">
               {t.timeline?.start_date_hint ||

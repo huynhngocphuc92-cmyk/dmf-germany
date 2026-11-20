@@ -26,6 +26,22 @@ export interface Post {
   meta_description?: string;
 }
 
+export interface BlogPostSummary {
+  id: string;
+  created_at: string;
+  updated_at: string;
+  title: string;
+  slug: string;
+  excerpt?: string;
+  cover_image?: string;
+  status: PostStatus;
+  published_at?: string;
+  meta_title?: string;
+  meta_description?: string;
+  read_time_minutes?: number;
+  content?: string;
+}
+
 export interface PostFormData {
   title: string;
   slug: string;

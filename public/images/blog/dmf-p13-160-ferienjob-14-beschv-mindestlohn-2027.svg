@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <rect width="720" height="540" rx="16" fill="#F8FAFC"/>
+  <rect x="20" y="20" width="680" height="500" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="20" y="20" width="680" height="72" rx="12" fill="#003366"/>
+  <text x="44" y="50" fill="#FFFFFF" font-size="16" font-weight="700">Ferienbeschäftigung (§ 14 Abs. 2 BeschV) &amp; Lohn-Compliance 2027</text>
+  <text x="44" y="74" fill="#CBD5E1" font-size="11.5">ZAV-Verfahrenskette sowie gesetzliche Grenzen für Mindestlohn (14,60 €) und Unterkunft (SvEV)</text>
+
+  <!-- Left Column: § 14 Abs. 2 Process -->
+  <g transform="translate(44, 110)">
+    <rect width="304" height="346" rx="10" fill="#F8FAFC" stroke="#003366" stroke-width="2"/>
+    <rect width="304" height="40" rx="10" fill="#003366"/>
+    <text x="16" y="25" fill="#FFFFFF" font-size="12.5" font-weight="700">Verfahren: § 14 Abs. 2 BeschV (90 Tage)</text>
+
+    <rect x="16" y="54" width="272" height="54" rx="8" fill="#FFFFFF" stroke="#CBD5E1"/>
+    <text x="28" y="75" fill="#003366" font-size="11.5" font-weight="700">1. Hochschulstatus &amp; Alter prüfen</text>
+    <text x="28" y="94" fill="#475569" font-size="10.5">Immatrikulation an anabin H+/H+/- (&lt; 35 J.)</text>
+
+    <text x="152" y="122" text-anchor="middle" fill="#003366" font-size="12" font-weight="700">↓</text>
+
+    <rect x="16" y="128" width="272" height="54" rx="8" fill="#FFFFFF" stroke="#CBD5E1"/>
+    <text x="28" y="149" fill="#003366" font-size="11.5" font-weight="700">2. ZAV-Vermittlungsbestätigung</text>
+    <text x="28" y="168" fill="#475569" font-size="10.5">Offizielle Semesterferien der Heimatuni belegen</text>
+
+    <text x="152" y="196" text-anchor="middle" fill="#003366" font-size="12" font-weight="700">↓</text>
+
+    <rect x="16" y="202" width="272" height="54" rx="8" fill="#FFFFFF" stroke="#CBD5E1"/>
+    <text x="28" y="223" fill="#003366" font-size="11.5" font-weight="700">3. Schengen-Visum (C-Visum)</text>
+    <text x="28" y="242" fill="#475569" font-size="10.5">Zweckgebunden für bis zu 90 Tage in 12 Mon.</text>
+
+    <text x="152" y="270" text-anchor="middle" fill="#003366" font-size="12" font-weight="700">↓</text>
+
+    <rect x="16" y="276" width="272" height="54" rx="8" fill="#F1F5F9" stroke="#003366"/>
+    <text x="28" y="297" fill="#003366" font-size="11.5" font-weight="700">4. Einsatz &amp; Nachweispflicht vor Ort</text>
+    <text x="28" y="316" fill="#475569" font-size="10.5">Arbeitsvertrag, ZAV-Beleg &amp; Stundenzettel (§ 17)</text>
+  </g>
+
+  <!-- Right Column: 2027 Wage & Housing Compliance -->
+  <g transform="translate(372, 110)">
+    <rect width="304" height="346" rx="10" fill="#FFF7ED" stroke="#FF6600" stroke-width="2"/>
+    <rect width="304" height="40" rx="10" fill="#FF6600"/>
+    <text x="16" y="25" fill="#FFFFFF" font-size="12.5" font-weight="700">Lohn- &amp; Unterkunftsgrenzen 2027</text>
+
+    <rect x="16" y="54" width="272" height="62" rx="8" fill="#FFFFFF" stroke="#FF6600"/>
+    <text x="28" y="74" fill="#9A3412" font-size="12" font-weight="700">Mindestlohn ab 01.01.2027: 14,60 €/Std.</text>
+    <text x="28" y="92" fill="#475569" font-size="10.5">Zwingend brutto in jeder geleisteten Stunde</text>
+    <text x="28" y="107" fill="#475569" font-size="10.5">(§ 1, § 20 MiLoG — auch bei Stück-/Akkordlohn)</text>
+
+    <rect x="16" y="128" width="272" height="114" rx="8" fill="#FFFFFF" stroke="#CBD5E1"/>
+    <text x="28" y="148" fill="#003366" font-size="11" font-weight="700">Max. Unterkunftsanrechnung (SvEV 2027)</text>
+    <text x="28" y="167" fill="#475569" font-size="10">Basis: § 107 Abs. 2 GewO i. V. m. SvEV 2027</text>
+    <text x="28" y="186" fill="#334155" font-size="10">• Alleinbelegung: max. 289,00 €/Monat</text>
+    <text x="28" y="203" fill="#334155" font-size="10">• 2 Beschäftigte: max. 173,40 €/Monat</text>
+    <text x="28" y="220" fill="#334155" font-size="10">• 3 Beschäftigte: 144,50 € | &gt;3 Pers.: 115,60 €</text>
+    <text x="28" y="235" fill="#475569" font-size="9.5">Qualitätsmindeststandard gemäß ASR A4.4 Pflicht</text>
+
+    <rect x="16" y="254" width="272" height="76" rx="8" fill="#FFFFFF" stroke="#475569"/>
+    <text x="28" y="274" fill="#003366" font-size="11" font-weight="700">Pfändungsfreigrenze &amp; Arbeitszeit</text>
+    <text x="28" y="293" fill="#475569" font-size="10">• § 850c ZPO: Unpfändbarer Barlohn bleibt frei</text>
+    <text x="28" y="310" fill="#475569" font-size="10">• § 17 MiLoG: Beginn, Ende &amp; Dauer (7 Tage)</text>
+    <text x="28" y="324" fill="#475569" font-size="10">• § 3 ArbZG: Max. 8 Std. (Ausnahme 10 Std./Tag)</text>
+  </g>
+
+  <rect x="44" y="472" width="632" height="36" rx="8" fill="#003366"/>
+  <text x="360" y="494" text-anchor="middle" fill="#FFFFFF" font-size="10.5" font-weight="600">Zollprüfung (FKS): Trennung von Bruttolohn, SvEV-Sachbezug &amp; Arbeitszeitkonto</text>
+</svg>

@@ -1,0 +1,471 @@
+{
+  "checked_at": "2026-10-30T10:49:34.361641+07:00",
+  "target": "https://www.dmf-talents.de",
+  "scope": "Read-only production verification plus isolated local build/integration tests; no deployment or source edits. One synthetic browser chatbot interaction may be stored by the application.",
+  "http_checks": [
+    {
+      "path": "/",
+      "status": 200,
+      "seconds": 2.96,
+      "bytes": 197823,
+      "url": "https://www.dmf-talents.de/",
+      "title": "Fachkräfte aus Vietnam für Deutschland | DMF Talents",
+      "error_page": false,
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "x-matched-path": "/",
+        "x-vercel-cache": "MISS"
+      }
+    },
+    {
+      "path": "/robots.txt",
+      "status": 200,
+      "seconds": 0.72,
+      "bytes": 139,
+      "url": "https://www.dmf-talents.de/robots.txt",
+      "title": "",
+      "error_page": false,
+      "headers": {
+        "Content-Type": "text/plain; charset=utf-8",
+        "Cache-Control": "public, max-age=14400, must-revalidate",
+        "x-matched-path": "/robots.txt",
+        "x-vercel-cache": "MISS"
+      }
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "seconds": 2.97,
+      "bytes": 20481,
+      "url": "https://www.dmf-talents.de/sitemap.xml",
+      "title": "",
+      "error_page": false,
+      "headers": {
+        "Content-Type": "application/xml",
+        "Cache-Control": "public, max-age=0, must-revalidate",
+        "x-matched-path": "/sitemap.xml",
+        "x-vercel-cache": "MISS"
+      }
+    },
+    {
+      "path": "/login",
+      "status": 200,
+      "seconds": 0.98,
+      "bytes": 53073,
+      "url": "https://www.dmf-talents.de/login",
+      "title": "Anmelden | DMF Talents",
+      "error_page": false,
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "public, max-age=0, must-revalidate",
+        "x-matched-path": "/login",
+        "x-vercel-cache": "HIT"
+      }
+    },
+    {
+      "path": "/admin",
+      "status": 200,
+      "seconds": 1.61,
+      "bytes": 53073,
+      "url": "https://www.dmf-talents.de/login",
+      "title": "Anmelden | DMF Talents",
+      "error_page": false,
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "public, max-age=0, must-revalidate",
+        "x-matched-path": "/login",
+        "x-vercel-cache": "HIT"
+      }
+    },
+    {
+      "path": "/admin/requests",
+      "status": 200,
+      "seconds": 1.31,
+      "bytes": 53073,
+      "url": "https://www.dmf-talents.de/login",
+      "title": "Anmelden | DMF Talents",
+      "error_page": false,
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "public, max-age=0, must-revalidate",
+        "x-matched-path": "/login",
+        "x-vercel-cache": "HIT"
+      }
+    },
+    {
+      "path": "/portal",
+      "status": 404,
+      "seconds": 0.69,
+      "body": "<!DOCTYPE html><html lang=\"de\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"preload\" as=\"image\" href=\"https://iihprcuhmilmymlbktpy.supab"
+    },
+    {
+      "path": "/portal/login",
+      "status": 404,
+      "seconds": 0.65,
+      "body": "<!DOCTYPE html><html lang=\"de\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"preload\" as=\"image\" href=\"https://iihprcuhmilmymlbktpy.supab"
+    },
+    {
+      "path": "/portal/register",
+      "status": 404,
+      "seconds": 0.38,
+      "body": "<!DOCTYPE html><html lang=\"de\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"preload\" as=\"image\" href=\"https://iihprcuhmilmymlbktpy.supab"
+    },
+    {
+      "path": "/api/chat/history",
+      "status": 401,
+      "seconds": 0.6,
+      "body": "{\"error\":\"Authentication required\"}"
+    },
+    {
+      "path": "/api/chat",
+      "status": 200,
+      "seconds": 0.67,
+      "bytes": 88,
+      "url": "https://www.dmf-talents.de/api/chat",
+      "title": "",
+      "error_page": false,
+      "headers": {
+        "Content-Type": "application/json",
+        "Cache-Control": "public, max-age=0, must-revalidate",
+        "x-matched-path": "/api/chat",
+        "x-vercel-cache": "MISS"
+      }
+    },
+    {
+      "path": "/api/telegram",
+      "status": 405,
+      "seconds": 0.61,
+      "body": ""
+    },
+    {
+      "path": "/api/logo",
+      "status": 200,
+      "seconds": 1.32,
+      "bytes": 122,
+      "url": "https://www.dmf-talents.de/api/logo",
+      "title": "",
+      "error_page": false,
+      "headers": {
+        "Content-Type": "application/json",
+        "Cache-Control": "public, max-age=0, must-revalidate",
+        "x-matched-path": "/api/logo",
+        "x-vercel-cache": "MISS"
+      }
+    },
+    {
+      "path": "/DMF%20Vietnam%20Handbuch.pdf",
+      "status": 200,
+      "seconds": 2.78,
+      "bytes": 17826884,
+      "url": "https://www.dmf-talents.de/DMF%20Vietnam%20Handbuch.pdf",
+      "title": "",
+      "error_page": false,
+      "headers": {
+        "Content-Type": "application/pdf",
+        "Cache-Control": "public, max-age=14400, must-revalidate",
+        "x-matched-path": "/DMF%20Vietnam%20Handbuch.pdf",
+        "x-vercel-cache": "MISS"
+      }
+    },
+    {
+      "path": "/datenschutz",
+      "status": 200,
+      "seconds": 0.85,
+      "bytes": 99521,
+      "url": "https://www.dmf-talents.de/datenschutz",
+      "title": "Datenschutz | DMF Talents",
+      "error_page": false,
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "public, max-age=0, must-revalidate",
+        "x-matched-path": "/datenschutz",
+        "x-vercel-cache": "HIT"
+      }
+    },
+    {
+      "path": "/blog",
+      "status": 200,
+      "seconds": 1.15,
+      "bytes": 1784492,
+      "url": "https://www.dmf-talents.de/blog",
+      "title": "Personalgewinnung aus Vietnam: Wissen für Arbeitgeber | DMF Talents",
+      "error_page": false,
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "public, max-age=0, must-revalidate",
+        "x-matched-path": "/blog",
+        "x-vercel-cache": "STALE"
+      }
+    },
+    {
+      "path": "/impressum",
+      "status": 200,
+      "seconds": 0.71,
+      "bytes": 91137,
+      "url": "https://www.dmf-talents.de/impressum",
+      "title": "Impressum | DMF Talents",
+      "error_page": false,
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "public, max-age=0, must-revalidate",
+        "x-matched-path": "/impressum",
+        "x-vercel-cache": "HIT"
+      }
+    },
+    {
+      "path": "/referenzen",
+      "status": 200,
+      "seconds": 0.84,
+      "bytes": 73063,
+      "url": "https://www.dmf-talents.de/referenzen",
+      "title": "Referenzen und Zusammenarbeit | DMF Talents",
+      "error_page": false,
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "public, max-age=0, must-revalidate",
+        "x-matched-path": "/referenzen",
+        "x-vercel-cache": "HIT"
+      }
+    },
+    {
+      "path": "/ueber-uns/studium",
+      "status": 200,
+      "seconds": 1.05,
+      "bytes": 135077,
+      "url": "https://www.dmf-talents.de/ueber-uns/studium",
+      "title": "Studium und Orientierung | DMF Talents",
+      "error_page": false,
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "public, max-age=0, must-revalidate",
+        "x-matched-path": "/ueber-uns/studium",
+        "x-vercel-cache": "HIT"
+      }
+    },
+    {
+      "path": "/ueber-uns/ausbildung",
+      "status": 200,
+      "seconds": 1.4,
+      "bytes": 133768,
+      "url": "https://www.dmf-talents.de/ueber-uns/ausbildung",
+      "title": "Ausbildung und Vorbereitung | DMF Talents",
+      "error_page": false,
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "public, max-age=0, must-revalidate",
+        "x-matched-path": "/ueber-uns/ausbildung",
+        "x-vercel-cache": "HIT"
+      }
+    },
+    {
+      "path": "/ueber-uns/skilled-workers",
+      "status": 200,
+      "seconds": 0.8,
+      "bytes": 142023,
+      "url": "https://www.dmf-talents.de/ueber-uns/skilled-workers",
+      "title": "Vorbereitung von Fachkräften | DMF Talents",
+      "error_page": false,
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "public, max-age=0, must-revalidate",
+        "x-matched-path": "/ueber-uns/skilled-workers",
+        "x-vercel-cache": "HIT"
+      }
+    },
+    {
+      "path": "/roi-rechner",
+      "status": 200,
+      "seconds": 0.68,
+      "bytes": 49684,
+      "url": "https://www.dmf-talents.de/roi-rechner",
+      "title": "Personalkosten-Rechner | DMF Talents",
+      "error_page": false,
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "public, max-age=0, must-revalidate",
+        "x-matched-path": "/roi-rechner",
+        "x-vercel-cache": "HIT"
+      }
+    },
+    {
+      "path": "/services/azubi",
+      "status": 200,
+      "seconds": 0.77,
+      "bytes": 92467,
+      "url": "https://www.dmf-talents.de/services/azubi",
+      "title": "Auszubildende aus Vietnam | DMF Talents",
+      "error_page": false,
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "public, max-age=0, must-revalidate",
+        "x-matched-path": "/services/azubi",
+        "x-vercel-cache": "HIT"
+      }
+    },
+    {
+      "path": "/services/skilled-workers",
+      "status": 200,
+      "seconds": 0.76,
+      "bytes": 98609,
+      "url": "https://www.dmf-talents.de/services/skilled-workers",
+      "title": "Fachkräfte aus Vietnam | DMF Talents",
+      "error_page": false,
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "public, max-age=0, must-revalidate",
+        "x-matched-path": "/services/skilled-workers",
+        "x-vercel-cache": "HIT"
+      }
+    },
+    {
+      "path": "/services/seasonal",
+      "status": 200,
+      "seconds": 0.73,
+      "bytes": 116599,
+      "url": "https://www.dmf-talents.de/services/seasonal",
+      "title": "Saisonkräfte aus Vietnam | DMF Talents",
+      "error_page": false,
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "public, max-age=0, must-revalidate",
+        "x-matched-path": "/services/seasonal",
+        "x-vercel-cache": "HIT"
+      }
+    },
+    {
+      "path": "/fuer-arbeitgeber/personalbedarf",
+      "status": 200,
+      "seconds": 1.7,
+      "bytes": 55092,
+      "url": "https://www.dmf-talents.de/fuer-arbeitgeber/personalbedarf",
+      "title": "Personalbedarf melden | DMF Talents",
+      "error_page": false,
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "x-matched-path": "/fuer-arbeitgeber/personalbedarf",
+        "x-vercel-cache": "MISS"
+      }
+    },
+    {
+      "path": "/fuer-arbeitgeber/zeitplan",
+      "status": 200,
+      "seconds": 1.78,
+      "bytes": 76601,
+      "url": "https://www.dmf-talents.de/fuer-arbeitgeber/zeitplan",
+      "title": "Zeitplan für Ihre Personalgewinnung | DMF Talents",
+      "error_page": false,
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "public, max-age=0, must-revalidate",
+        "x-matched-path": "/fuer-arbeitgeber/zeitplan",
+        "x-vercel-cache": "HIT"
+      }
+    },
+    {
+      "path": "/fuer-arbeitgeber/kandidaten",
+      "status": 200,
+      "seconds": 3.99,
+      "bytes": 51997,
+      "url": "https://www.dmf-talents.de/fuer-arbeitgeber/kandidaten",
+      "title": "Kandidaten aus Vietnam | DMF Talents",
+      "error_page": false,
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "x-matched-path": "/fuer-arbeitgeber/kandidaten",
+        "x-vercel-cache": "MISS"
+      }
+    },
+    {
+      "path": "/fuer-arbeitgeber/roi-rechner",
+      "status": 200,
+      "seconds": 0.67,
+      "bytes": 55270,
+      "url": "https://www.dmf-talents.de/fuer-arbeitgeber/roi-rechner",
+      "title": "Personalkosten vergleichen | DMF Talents",
+      "error_page": false,
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "public, max-age=0, must-revalidate",
+        "x-matched-path": "/fuer-arbeitgeber/roi-rechner",
+        "x-vercel-cache": "HIT"
+      }
+    }
+  ],
+  "api_checks": [
+    {
+      "path": "/api/chat",
+      "method": "GET",
+      "status": 200,
+      "body": "{\"status\":\"ready\",\"providers\":{\"xai\":true,\"gemini\":false},\"message\":\"Chat API is ready\"}",
+      "seconds": 0.72
+    },
+    {
+      "path": "/api/leads",
+      "method": "GET",
+      "status": 401,
+      "body": "{\"error\":\"Authentication required\"}",
+      "seconds": 0.61
+    },
+    {
+      "path": "/api/contact",
+      "method": "POST",
+      "status": 400,
+      "body": "{\"success\":false,\"error\":\"Bitte überprüfen Sie Ihre Angaben und die Datenschutzzustimmung.\"}",
+      "seconds": 0.62
+    },
+    {
+      "path": "/api/hiring",
+      "method": "POST",
+      "status": 400,
+      "body": "{\"success\":false,\"error\":\"Bitte überprüfen Sie Ihre Angaben und die Datenschutzzustimmung.\"}",
+      "seconds": 0.57
+    },
+    {
+      "path": "/api/inquiry",
+      "method": "POST",
+      "status": 400,
+      "body": "{\"success\":false,\"error\":\"Bitte überprüfen Sie Ihre Angaben und die Datenschutzzustimmung.\"}",
+      "seconds": 0.66
+    },
+    {
+      "path": "/api/leads",
+      "method": "POST",
+      "status": 400,
+      "body": "{\"success\":false,\"error\":\"Bitte überprüfen Sie Ihre Angaben und die Datenschutzzustimmung.\"}",
+      "seconds": 0.75
+    },
+    {
+      "path": "/api/chat",
+      "method": "POST",
+      "status": 200,
+      "body": "{\"message\":\"Guten Tag! Ich bin der virtuelle Assistent von **DMF Talents** — Ihrer Akademie für qualifizierte Fachkräfte und Auszubildende aus Vietnam.\\n\\nUnsere drei Kernprogramme:\\n1. **Duale Ausbildung:** Pflege, Handwerk, Gastronomie, IT mit intensiver Sprachvorbereitung (A1-B2) und 3-Jahres-Begleitung.\\n2. **Fachkräfte (§18a/b AufenthG):** Qualifizierte Kräfte mit Anerkennungsbegleitung und beschleunigtem Visumsverfahren (§81a).\\n3. **Studienprogramm:** Gezielte Vorbereitung auf ein Hochschulstudium in Deutschland.\\n\\nWie kann ich Ihnen weiterhelfen?\\n• **Persönliche Beratung:** [Termin via Calendly vereinbaren](https://calendly.com/contact-dmf/30min)\\n• **E-Mail:** [contact@dmf.edu.vn](mailto:contact@dmf.edu.vn)\\n• **Kontakt:** [Anfrage über Website senden](https://www.dmf-talents.de/#contact)\\n• Oder hinterlassen Sie uns gerne Ihre Kontaktdaten direkt hier im Chat!\",\"usage\":{\"inputTokens\":0,\"outputTokens\":0},\"provider\":\"fallback_engine\"}",
+      "seconds": 1.51
+    }
+  ],
+  "local_checks": {
+    "unit_tests": "12 files, 110 tests passed",
+    "type_check": "passed",
+    "lint": "passed",
+    "production_build_and_fixture_smoke": "passed; published candidates, SEO, redirects, contact/profile/lead persistence, duplicate safety, failure handling, chat ownership, authenticated admin inbox, employer hiring workflow"
+  },
+  "browser_findings": {
+    "portal_login": "visible 404 page",
+    "chatbot": "reply rendered; malformed mailto link and raw HTML fragment visible",
+    "candidate_pool": "No matching public profiles; underlying cause unverified",
+    "hiring_form": "Empty submit showed company/name/email/message/privacy validation errors",
+    "roi": "Changing salary from 3500 to 4000 changed 3-year savings from 25800 to 45300; arithmetic matches displayed assumptions",
+    "browser_console": "No warnings/errors captured during sampled chatbot and ROI interactions"
+  },
+  "limitations": [
+    "No authorized account session was available to test production admin workflow.",
+    "Connected Vercel scope did not contain this project; deployment identity and runtime logs unavailable.",
+    "Supabase connector denied permission to referenced production project; migrations and underlying records not inspected.",
+    "No valid production lead submitted: database persistence, notification delivery and admin receipt unverified.",
+    "No account creation, document upload or real AI generation verified.",
+    "Single short session, no load test or historical uptime/error-rate analysis; no claim of long-term stability.",
+    "Default Python user agent hit Cloudflare 1010; corrected verification user agent succeeded. This was not classified as an application defect."
+  ]
+}

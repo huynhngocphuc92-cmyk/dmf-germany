@@ -171,7 +171,12 @@ export async function POST(request: NextRequest) {
     const apiKey = process.env.OPENROUTER_API_KEY?.trim();
 
     if (!apiKey) {
-      return NextResponse.json({ data: fallback, mode: "guided" });
+      return NextResponse.json({
+        success: true,
+        data: fallback,
+        result: fallback,
+        mode: "guided",
+      });
     }
 
     const lang = parsed.data.lang || "vn";
@@ -238,41 +243,50 @@ Antworte AUSSCHLIESSLICH als valides JSON-Objekt:
           : cleaned;
       const aiObj = JSON.parse(jsonStr);
 
+      const resultData = {
+        recommendedTrack:
+          typeof aiObj?.recommendedTrack === "string" && aiObj.recommendedTrack.trim()
+            ? aiObj.recommendedTrack.trim()
+            : fallback.recommendedTrack,
+        legalBasis:
+          typeof aiObj?.legalBasis === "string" && aiObj.legalBasis.trim()
+            ? aiObj.legalBasis.trim()
+            : fallback.legalBasis,
+        eligibilityScore:
+          typeof aiObj?.eligibilityScore === "number"
+            ? Math.min(99, Math.max(55, Math.round(aiObj.eligibilityScore)))
+            : fallback.eligibilityScore,
+        estimatedMonthsToDeparture:
+          typeof aiObj?.estimatedMonthsToDeparture === "number"
+            ? Math.min(24, Math.max(2, Math.round(aiObj.estimatedMonthsToDeparture)))
+            : fallback.estimatedMonthsToDeparture,
+        salaryRange:
+          typeof aiObj?.salaryRange === "string" && aiObj.salaryRange.trim()
+            ? aiObj.salaryRange.trim()
+            : fallback.salaryRange,
+        roadmapSteps:
+          Array.isArray(aiObj?.roadmapSteps) && aiObj.roadmapSteps.length >= 2
+            ? aiObj.roadmapSteps.map((s: unknown) => String(s))
+            : fallback.roadmapSteps,
+        advisorSummary:
+          typeof aiObj?.advisorSummary === "string" && aiObj.advisorSummary.trim()
+            ? aiObj.advisorSummary.trim()
+            : fallback.advisorSummary,
+      };
+
       return NextResponse.json({
-        data: {
-          recommendedTrack:
-            typeof aiObj?.recommendedTrack === "string" && aiObj.recommendedTrack.trim()
-              ? aiObj.recommendedTrack.trim()
-              : fallback.recommendedTrack,
-          legalBasis:
-            typeof aiObj?.legalBasis === "string" && aiObj.legalBasis.trim()
-              ? aiObj.legalBasis.trim()
-              : fallback.legalBasis,
-          eligibilityScore:
-            typeof aiObj?.eligibilityScore === "number"
-              ? Math.min(99, Math.max(55, Math.round(aiObj.eligibilityScore)))
-              : fallback.eligibilityScore,
-          estimatedMonthsToDeparture:
-            typeof aiObj?.estimatedMonthsToDeparture === "number"
-              ? Math.min(24, Math.max(2, Math.round(aiObj.estimatedMonthsToDeparture)))
-              : fallback.estimatedMonthsToDeparture,
-          salaryRange:
-            typeof aiObj?.salaryRange === "string" && aiObj.salaryRange.trim()
-              ? aiObj.salaryRange.trim()
-              : fallback.salaryRange,
-          roadmapSteps:
-            Array.isArray(aiObj?.roadmapSteps) && aiObj.roadmapSteps.length >= 2
-              ? aiObj.roadmapSteps.map((s: unknown) => String(s))
-              : fallback.roadmapSteps,
-          advisorSummary:
-            typeof aiObj?.advisorSummary === "string" && aiObj.advisorSummary.trim()
-              ? aiObj.advisorSummary.trim()
-              : fallback.advisorSummary,
-        },
+        success: true,
+        data: resultData,
+        result: resultData,
         mode: "ai",
       });
     } catch {
-      return NextResponse.json({ data: fallback, mode: "guided" });
+      return NextResponse.json({
+        success: true,
+        data: fallback,
+        result: fallback,
+        mode: "guided",
+      });
     }
   } catch {
     return NextResponse.json({ error: "Interner Serverfehler." }, { status: 500 });

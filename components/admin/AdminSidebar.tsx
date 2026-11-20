@@ -93,7 +93,7 @@ const getNavItems = (newInquiriesCount: number | null): NavItem[] => [
     icon: BarChart3,
   },
   {
-    labelDe: "Giao diện",
+    labelDe: "Erscheinungsbild",
     labelVn: "Giao diện",
     href: "/admin/theme",
     icon: Palette,
@@ -110,11 +110,27 @@ const getNavItems = (newInquiriesCount: number | null): NavItem[] => [
 // ADMIN SIDEBAR COMPONENT
 // ============================================
 
-export function AdminSidebar() {
+interface AdminSidebarProps {
+  isCollapsed?: boolean;
+  onToggleCollapse?: () => void;
+}
+
+export function AdminSidebar({
+  isCollapsed: controlledCollapsed,
+  onToggleCollapse,
+}: AdminSidebarProps = {}) {
   const pathname = usePathname();
   const { lang } = useLanguage();
   const isVietnamese = lang === "vn";
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [internalCollapsed, setInternalCollapsed] = useState(false);
+  const isCollapsed = controlledCollapsed ?? internalCollapsed;
+  const handleToggleCollapse = () => {
+    if (onToggleCollapse) {
+      onToggleCollapse();
+    } else {
+      setInternalCollapsed((prev) => !prev);
+    }
+  };
   const [newInquiriesCount, setNewInquiriesCount] = useState<number | null>(null);
 
   // Fetch new inquiries count on mount and when pathname changes
@@ -202,7 +218,7 @@ export function AdminSidebar() {
         <Button
           variant="ghost"
           size="sm"
-          onClick={() => setIsCollapsed(!isCollapsed)}
+          onClick={handleToggleCollapse}
           className={cn(
             "w-full text-slate-400 hover:text-white hover:bg-slate-800",
             isCollapsed && "px-2"

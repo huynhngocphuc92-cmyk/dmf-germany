@@ -23,6 +23,8 @@ export interface TimelineConfig {
 
 export interface IndustryTimelineConfig {
   label: string;
+  labelEn?: string;
+  labelVn?: string;
   recognition?: number; // Override recognition/visa duration for this industry (in weeks)
   schoolSearch?: number; // For Azubi: school search duration override
   zav?: number; // For Seasonal: ZAV approval duration override
@@ -56,18 +58,26 @@ export const TIMELINE_DATA: TimelineDataConfig = {
     industries: {
       pflege: {
         label: "Pflege & Medizin",
+        labelEn: "Healthcare & Nursing",
+        labelVn: "Y tế & Điều dưỡng",
         recognition: 16, // Medical recognition usually takes longer
       },
       handwerk: {
         label: "Handwerk & Bau",
+        labelEn: "Skilled Trades & Construction",
+        labelVn: "Thủ công & Xây dựng",
         recognition: 10,
       },
       it: {
         label: "IT & Technik",
+        labelEn: "IT & Engineering",
+        labelVn: "CNTT & Kỹ thuật",
         recognition: 4, // IT is often faster via Blue Card paths
       },
       gastro: {
         label: "Hotel & Gastro",
+        labelEn: "Hotel & Gastronomy",
+        labelVn: "Khách sạn & Nhà hàng",
         recognition: 8,
       },
     },
@@ -84,12 +94,18 @@ export const TIMELINE_DATA: TimelineDataConfig = {
     industries: {
       pflege: {
         label: "Pflege (Azubi)",
+        labelEn: "Nursing (Apprentice)",
+        labelVn: "Điều dưỡng (Du học nghề)",
       },
       gastro: {
         label: "Hotel/Küche (Azubi)",
+        labelEn: "Hotel / Culinary (Apprentice)",
+        labelVn: "Khách sạn / Đầu bếp (Du học nghề)",
       },
       handwerk: {
         label: "Handwerk (Azubi)",
+        labelEn: "Skilled Trades (Apprentice)",
+        labelVn: "Thủ công kỹ thuật (Du học nghề)",
       },
     },
   },
@@ -105,12 +121,18 @@ export const TIMELINE_DATA: TimelineDataConfig = {
     industries: {
       agriculture: {
         label: "Landwirtschaft",
+        labelEn: "Agriculture",
+        labelVn: "Nông nghiệp",
       },
       logistics: {
         label: "Lager & Logistik",
+        labelEn: "Warehousing & Logistics",
+        labelVn: "Kho vận & Logistics",
       },
       service: {
         label: "Service & Gastro",
+        labelEn: "Service & Gastronomy",
+        labelVn: "Dịch vụ & Nhà hàng",
       },
     },
   },

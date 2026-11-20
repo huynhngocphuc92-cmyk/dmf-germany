@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <rect width="720" height="540" rx="16" fill="#F8FAFC"/>
+  <rect x="20" y="20" width="680" height="500" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="20" y="20" width="680" height="72" rx="12" fill="#003366"/>
+  <text x="44" y="50" fill="#FFFFFF" font-size="16" font-weight="700">NRW § 81a-Zuständigkeiten: ZFE NRW (Bonn) &amp; ZAG Münster</text>
+  <text x="44" y="74" fill="#CBD5E1" font-size="11.5">Klare Behördenarchitektur von der Bezirksregierung Köln bis zu Pflegekammer und kommunaler ABH</text>
+
+  <!-- Top Row: Employer -> ZFE NRW -->
+  <g transform="translate(44, 108)">
+    <rect x="0" y="0" width="180" height="72" rx="8" fill="#F8FAFC" stroke="#475569" stroke-width="1.5"/>
+    <text x="90" y="24" text-anchor="middle" fill="#003366" font-size="12" font-weight="700">NRW-Arbeitgeber</text>
+    <text x="90" y="42" text-anchor="middle" fill="#475569" font-size="10">Klinik, Pflege, Industrie,</text>
+    <text x="90" y="57" text-anchor="middle" fill="#475569" font-size="10">Handwerk (mit Vollmacht)</text>
+
+    <text x="202" y="42" text-anchor="middle" fill="#003366" font-size="18" font-weight="700">→</text>
+
+    <rect x="224" y="0" width="408" height="72" rx="8" fill="#003366"/>
+    <text x="428" y="24" text-anchor="middle" fill="#FFFFFF" font-size="12.5" font-weight="700">ZFE NRW (Bezirksregierung Köln, Dienstsitz Bonn)</text>
+    <text x="428" y="43" text-anchor="middle" fill="#CBD5E1" font-size="10.5">Landesweit zwingend für ALLE § 81a-Anträge aus dem Ausland (411 € Gebühr)</text>
+    <text x="428" y="60" text-anchor="middle" fill="#FFEDD5" font-size="10" font-weight="700">Digitale Einreichung über das Serviceportal der Bezirksregierung Köln</text>
+  </g>
+
+  <!-- Middle Split: Recognition Bodies + ZAV -->
+  <g transform="translate(44, 198)">
+    <rect x="0" y="0" width="304" height="132" rx="10" fill="#FFF7ED" stroke="#FF6600" stroke-width="2"/>
+    <rect x="0" y="0" width="304" height="32" rx="10" fill="#FF6600"/>
+    <text x="16" y="21" fill="#FFFFFF" font-size="11.5" font-weight="700">Pflege &amp; Gesundheit: ZAG Münster</text>
+    <text x="16" y="52" fill="#9A3412" font-size="11" font-weight="700">Bezirksregierung Münster (ZAG-PuG / aH)</text>
+    <text x="16" y="70" fill="#475569" font-size="10.5">• Zentrale Gleichwertigkeitsprüfung &amp; Bescheid</text>
+    <text x="16" y="87" fill="#475569" font-size="10.5">• Max. 2 Monate Prüffrist im § 81a-Verfahren</text>
+    <text x="16" y="106" fill="#9A3412" font-size="10" font-weight="700">Abgrenzung: Kein LPA Düsseldorf (nur Inlands-</text>
+    <text x="16" y="120" fill="#9A3412" font-size="10" font-weight="700">Staatsexamen) &amp; nicht die Pflegekammer NRW</text>
+
+    <rect x="328" y="0" width="304" height="132" rx="10" fill="#F8FAFC" stroke="#003366" stroke-width="2"/>
+    <rect x="328" y="0" width="304" height="32" rx="10" fill="#003366"/>
+    <text x="344" y="21" fill="#FFFFFF" font-size="11.5" font-weight="700">IHK, Handwerk &amp; ZAV-Zustimmung</text>
+    <text x="344" y="52" fill="#003366" font-size="11" font-weight="700">Kammern &amp; Bundesagentur für Arbeit:</text>
+    <text x="344" y="70" fill="#475569" font-size="10.5">• IHK FOSA (Nürnberg) für IHK-Berufe in NRW</text>
+    <text x="344" y="87" fill="#475569" font-size="10.5">• Ausnahme: IHK Wuppertal-Solingen-Remscheid</text>
+    <text x="344" y="104" fill="#475569" font-size="10.5">• Örtliche NRW-HWKs für Handwerk (Anlage A/B)</text>
+    <text x="344" y="121" fill="#003366" font-size="10" font-weight="700">• ZAV: Vorabzustimmung binnen 1 Woche (§ 36)</text>
+  </g>
+
+  <!-- Bottom Row: Visa -> Post-Arrival Municipal ABH & Pflegekammer -->
+  <g transform="translate(44, 346)">
+    <rect x="0" y="0" width="200" height="110" rx="8" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1.5"/>
+    <text x="100" y="24" text-anchor="middle" fill="#003366" font-size="11.5" font-weight="700">Deutsche Auslandsvertretung</text>
+    <text x="100" y="45" text-anchor="middle" fill="#475569" font-size="10.5">Vorabzustimmung der ZFE NRW</text>
+    <text x="100" y="63" text-anchor="middle" fill="#475569" font-size="10.5">Termin in Hanoi/HCMC (3 Wo.)</text>
+    <text x="100" y="81" text-anchor="middle" fill="#475569" font-size="10.5">+ Visumerteilung (3 Wo.)</text>
+    <text x="100" y="99" text-anchor="middle" fill="#003366" font-size="10" font-weight="700">Einreise nach Deutschland</text>
+
+    <text x="218" y="60" text-anchor="middle" fill="#003366" font-size="18" font-weight="700">→</text>
+
+    <rect x="236" y="0" width="188" height="110" rx="8" fill="#F8FAFC" stroke="#003366" stroke-width="1.5"/>
+    <text x="330" y="24" text-anchor="middle" fill="#003366" font-size="11.5" font-weight="700">Kommunale ABH vor Ort</text>
+    <text x="330" y="45" text-anchor="middle" fill="#475569" font-size="10.5">Erst nach Einreise in NRW</text>
+    <text x="330" y="63" text-anchor="middle" fill="#475569" font-size="10.5">zuständig für Verlängerung</text>
+    <text x="330" y="81" text-anchor="middle" fill="#475569" font-size="10.5">und den elektronischen</text>
+    <text x="330" y="99" text-anchor="middle" fill="#003366" font-size="10.5" font-weight="700">Aufenthaltstitel (eAT)</text>
+
+    <text x="436" y="60" text-anchor="middle" fill="#FF6600" font-size="18" font-weight="700">+</text>
+
+    <rect x="448" y="0" width="184" height="110" rx="8" fill="#FFF7ED" stroke="#FF6600" stroke-width="1.5"/>
+    <text x="540" y="24" text-anchor="middle" fill="#9A3412" font-size="11.5" font-weight="700">Pflegekammer NRW</text>
+    <text x="540" y="45" text-anchor="middle" fill="#475569" font-size="10.5">Pflichtregistrierung erst</text>
+    <text x="540" y="63" text-anchor="middle" fill="#475569" font-size="10.5">NACH Erlaubnis zur Führung</text>
+    <text x="540" y="81" text-anchor="middle" fill="#475569" font-size="10.5">der Berufsbezeichnung</text>
+    <text x="540" y="99" text-anchor="middle" fill="#9A3412" font-size="10" font-weight="700">(Kein Defizitbescheid)</text>
+  </g>
+
+  <rect x="44" y="472" width="632" height="36" rx="8" fill="#003366"/>
+  <text x="360" y="494" text-anchor="middle" fill="#FFFFFF" font-size="10.5" font-weight="600">NRW-Compliance: Kommunale Ausländerämter leiten Auslandsanträge an die zentrale ZFE Bonn ab</text>
+</svg>

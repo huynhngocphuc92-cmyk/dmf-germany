@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import { blogMetadata } from "@/lib/seo/blog";
 import BlogJsonLd from "@/components/seo/BlogJsonLd";
 import { getPublishedRedirect } from "@/app/admin/posts/actions";
+import { BLOG_BENCHMARK_ALIASES } from "@/lib/geo/markdown-negotiation";
 import { notFound, permanentRedirect } from "next/navigation";
 import { getPostBySlug, getRelatedPosts } from "@/app/admin/posts/actions";
 import { BlogDetailClient } from "./blog-detail-client";
@@ -14,6 +15,12 @@ interface BlogDetailPageProps {
 }
 
 const resolvePost = cache(async (slug: string) => {
+  const benchmarkTarget = Object.prototype.hasOwnProperty.call(BLOG_BENCHMARK_ALIASES, slug)
+    ? BLOG_BENCHMARK_ALIASES[slug]
+    : undefined;
+  if (benchmarkTarget) {
+    permanentRedirect(`/blog/${encodeURIComponent(benchmarkTarget)}`);
+  }
   const { data: post, error } = await getPostBySlug(slug);
   if (error) throw new Error("Blog content unavailable");
   if (post) return post;

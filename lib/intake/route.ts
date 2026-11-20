@@ -1,5 +1,6 @@
 import { withDeadline } from "@/lib/requests/deadline";
 import { checkRateLimit, getClientIp, RATE_LIMITS } from "@/lib/rate-limit";
+import { findDmfPoolCandidateById } from "@/lib/candidates/dmf-pool-data";
 import { createIntakeClient } from "@/lib/supabase/intake";
 import {
   chatLeadIntakeSchema,
@@ -55,10 +56,32 @@ export async function acceptIntake(
         { success: false, error: "Zu viele Anfragen. Bitte versuchen Sie es später erneut." },
         { status: 429, headers: { ...responseHeaders, "Retry-After": String(rate.resetIn) } }
       );
-    const payload: IntakePayload =
+    const rawPayload: IntakePayload =
       route === "hiring" ? { ...parsed.data, requestPurpose: "hiring" } : parsed.data;
-    const kind: IntakeKind =
-      route === "hiring"
+    const isPoolCandidate = Boolean(rawPayload.candidateId?.startsWith("dmf-pool-"));
+    const poolCandidate =
+      isPoolCandidate && rawPayload.candidateId
+        ? findDmfPoolCandidateById(rawPayload.candidateId)
+        : null;
+    if (isPoolCandidate && !poolCandidate) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Dieses Kandidatenprofil ist nicht mehr verfügbar.",
+        },
+        { status: 400, headers: responseHeaders }
+      );
+    }
+    const poolPrefix = poolCandidate
+      ? `[Kandidat #${poolCandidate.display_code || poolCandidate.id} • ${poolCandidate.id}] `
+      : "";
+    const payload: IntakePayload =
+      poolCandidate && rawPayload.message && !rawPayload.message.includes(poolCandidate.id)
+        ? { ...rawPayload, message: `${poolPrefix}${rawPayload.message}`.slice(0, 10000) }
+        : rawPayload;
+    const kind: IntakeKind = isPoolCandidate
+      ? "contact"
+      : route === "hiring"
         ? payload.candidateId
           ? "profile"
           : "contact"

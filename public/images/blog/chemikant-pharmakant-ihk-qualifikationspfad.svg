@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <rect width="720" height="540" rx="16" fill="#F8FAFC"/>
+  <rect x="20" y="20" width="680" height="500" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="20" y="20" width="680" height="72" rx="12" fill="#003366"/>
+  <text x="44" y="50" fill="#FFFFFF" font-size="16" font-weight="700">Chemikanten, Pharmakanten &amp; Produktionsfachkräfte Chemie (KldB 41312)</text>
+  <text x="44" y="74" fill="#CBD5E1" font-size="11.5">Zwei IHK-Rekrutierungswege aus Vietnam: Duale Ausbildung (§ 16a) und Fachkraft (§ 18a / § 16d)</text>
+
+  <!-- Left Branch: § 16a -->
+  <g transform="translate(44, 110)">
+    <rect width="304" height="222" rx="10" fill="#F8FAFC" stroke="#003366" stroke-width="2"/>
+    <rect width="304" height="38" rx="10" fill="#003366"/>
+    <text x="16" y="24" fill="#FFFFFF" font-size="12" font-weight="700">Weg 1: Duale Ausbildung (§ 16a AufenthG)</text>
+    <text x="16" y="60" fill="#003366" font-size="11.5" font-weight="700">Berufsbilder (BBiG / Regionale IHK):</text>
+    <text x="16" y="79" fill="#475569" font-size="10.5">• Chemikant/-in (3,5 Jahre dual)</text>
+    <text x="16" y="96" fill="#475569" font-size="10.5">• Pharmakant/-in (3,5 Jahre dual)</text>
+    <text x="16" y="113" fill="#475569" font-size="10.5">• Produktionsfachkraft Chemie (2 Jahre)</text>
+    <line x1="16" y1="126" x2="288" y2="126" stroke="#CBD5E1"/>
+    <text x="16" y="146" fill="#003366" font-size="11.5" font-weight="700">Vorteile für Chemie- &amp; Pharmabetriebe:</text>
+    <text x="16" y="165" fill="#475569" font-size="10.5">• Keine BQFG-Gleichwertigkeitsprüfung nötig</text>
+    <text x="16" y="182" fill="#475569" font-size="10.5">• Systematische Einweisung in Anlagen &amp; GMP</text>
+    <text x="16" y="199" fill="#475569" font-size="10.5">• B1/B2-Vorbereitung &amp; Naturwissenschaften</text>
+  </g>
+
+  <!-- Right Branch: § 18a / § 16d -->
+  <g transform="translate(372, 110)">
+    <rect width="304" height="222" rx="10" fill="#FFF7ED" stroke="#FF6600" stroke-width="2"/>
+    <rect width="304" height="38" rx="10" fill="#FF6600"/>
+    <text x="16" y="24" fill="#FFFFFF" font-size="12" font-weight="700">Weg 2: Fachkraft (§ 18a / § 16d Abs. 3)</text>
+    <text x="16" y="60" fill="#9A3412" font-size="11.5" font-weight="700">Anerkennung über IHK FOSA (Nürnberg):</text>
+    <text x="16" y="79" fill="#475569" font-size="10.5">• Gleichwertigkeitsprüfung nach BQFG</text>
+    <text x="16" y="96" fill="#475569" font-size="10.5">• § 18a bei voller Gleichwertigkeit vorab</text>
+    <text x="16" y="113" fill="#475569" font-size="10.5">• § 16d Abs. 3 bei Teilanerkennung/Praxis</text>
+    <line x1="16" y1="126" x2="288" y2="126" stroke="#FDBA74"/>
+    <text x="16" y="146" fill="#9A3412" font-size="11.5" font-weight="700">Ingenieure (Chemie- &amp; Pharmatechnik):</text>
+    <text x="16" y="165" fill="#475569" font-size="10.5">• B.Sc.-Abschluss über anabin (H+) / ZAB</text>
+    <text x="16" y="182" fill="#475569" font-size="10.5">• Blaue Karte EU (§ 18g) oder § 18b AufenthG</text>
+    <text x="16" y="199" fill="#475569" font-size="10.5">• Beschleunigung via § 81a AufenthG (411 €)</text>
+  </g>
+
+  <!-- Bottom 4 KldB 41312 Core Modules -->
+  <g transform="translate(44, 346)">
+    <rect width="632" height="112" rx="10" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1.5"/>
+    <text x="16" y="24" fill="#003366" font-size="12" font-weight="700">4 betriebliche Qualitätsmodule (Vorprüfung &amp; Einarbeitung für KldB 41312):</text>
+
+    <rect x="16" y="38" width="142" height="60" rx="6" fill="#FFFFFF" stroke="#003366"/>
+    <text x="87" y="58" text-anchor="middle" fill="#003366" font-size="11" font-weight="700">Prozessleittechnik</text>
+    <text x="87" y="75" text-anchor="middle" fill="#475569" font-size="9.5">Steuerung, Destillation,</text>
+    <text x="87" y="88" text-anchor="middle" fill="#475569" font-size="9.5">Probenahme &amp; Sensorik</text>
+
+    <rect x="168" y="38" width="142" height="60" rx="6" fill="#FFFFFF" stroke="#003366"/>
+    <text x="239" y="58" text-anchor="middle" fill="#003366" font-size="11" font-weight="700">GMP &amp; Reinraum</text>
+    <text x="239" y="75" text-anchor="middle" fill="#475569" font-size="9.5">Hygieneschleusen,</text>
+    <text x="239" y="88" text-anchor="middle" fill="#475569" font-size="9.5">Protokollierung, Chargen</text>
+
+    <rect x="320" y="38" width="142" height="60" rx="6" fill="#FFFFFF" stroke="#FF6600"/>
+    <text x="391" y="58" text-anchor="middle" fill="#9A3412" font-size="11" font-weight="700">GefStoffV-Schutz</text>
+    <text x="391" y="75" text-anchor="middle" fill="#475569" font-size="9.5">Sicherheitsdatenblätter,</text>
+    <text x="391" y="88" text-anchor="middle" fill="#475569" font-size="9.5">PSA &amp; Ex-Schutz-Regeln</text>
+
+    <rect x="472" y="38" width="144" height="60" rx="6" fill="#FFFFFF" stroke="#475569"/>
+    <text x="544" y="58" text-anchor="middle" fill="#334155" font-size="11" font-weight="700">Schichtbetrieb</text>
+    <text x="544" y="75" text-anchor="middle" fill="#475569" font-size="9.5">Vollkonti-Bereitschaft,</text>
+    <text x="544" y="88" text-anchor="middle" fill="#475569" font-size="9.5">ÖPNV-Planung &amp; B1/B2</text>
+  </g>
+
+  <rect x="44" y="472" width="632" height="36" rx="8" fill="#003366"/>
+  <text x="360" y="494" text-anchor="middle" fill="#FFFFFF" font-size="10.5" font-weight="600">DMF Quality Gate: Vorprüfung chemisch-pharmazeutischer Grundlagen vor dem Interview</text>
+</svg>

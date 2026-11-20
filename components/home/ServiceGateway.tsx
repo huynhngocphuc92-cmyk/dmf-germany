@@ -7,7 +7,6 @@ import { AssetImageWithDebug } from "@/components/ui/AssetImageWithDebug";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { MotionProvider } from "@/components/shared/MotionProvider";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
   GraduationCap,
@@ -37,12 +36,16 @@ interface ServiceCard {
   icon: React.ElementType;
   secondaryIcon: React.ElementType;
   taglineDe: string;
+  taglineEn: string;
   taglineVn: string;
   titleDe: string;
+  titleEn: string;
   titleVn: string;
   descriptionDe: string;
+  descriptionEn: string;
   descriptionVn: string;
   featuresDe: ServiceFeature[];
+  featuresEn: ServiceFeature[];
   featuresVn: ServiceFeature[];
   href: string;
   accentColor: string;
@@ -59,17 +62,26 @@ const services: ServiceCard[] = [
     icon: GraduationCap,
     secondaryIcon: BookOpen,
     taglineDe: "Investition in die Zukunft",
+    taglineEn: "Invest in the Future",
     taglineVn: "Đầu tư cho tương lai",
     titleDe: "Auszubildende",
+    titleEn: "Apprentices (Azubi)",
     titleVn: "Du học nghề",
     descriptionDe:
       "Auszubildende aus Vietnam für Ihren Betrieb. Ausbildungsberuf, Sprachanforderungen und Vorbereitung werden gemeinsam abgestimmt.",
+    descriptionEn:
+      "Motivated apprentices from Vietnam for your company. Training occupation, German language requirements, and preparation are aligned with your needs.",
     descriptionVn:
       "Kết nối học viên Việt Nam với doanh nghiệp đào tạo tại Đức. Nghề, yêu cầu ngôn ngữ và việc chuẩn bị được thống nhất theo từng hồ sơ.",
     featuresDe: [
       { text: "Sprachanforderungen abstimmen" },
       { text: "Interkulturelle Vorbereitung" },
       { text: "Begleitung nach Vereinbarung" },
+    ],
+    featuresEn: [
+      { text: "Tailored German language preparation" },
+      { text: "Intercultural & workplace readiness" },
+      { text: "Structured onboarding support" },
     ],
     featuresVn: [
       { text: "Thống nhất yêu cầu tiếng Đức" },
@@ -85,17 +97,26 @@ const services: ServiceCard[] = [
     icon: Briefcase,
     secondaryIcon: Award,
     taglineDe: "Passende Qualifikationen",
+    taglineEn: "Verified Qualifications",
     taglineVn: "Chuyên môn phù hợp",
     titleDe: "Fachkräfte",
+    titleEn: "Skilled Workers",
     titleVn: "Lao động tay nghề cao",
     descriptionDe:
       "Personalbedarf und berufliche Qualifikationen zusammenbringen. Anerkennung, Sprache und mögliche Einsatztermine werden individuell geprüft.",
+    descriptionEn:
+      "Matching your staffing needs with qualified professionals. Degree recognition, language proficiency, and deployment timelines are verified individually.",
     descriptionVn:
       "Nhân sự đã có bằng Cao đẳng/Đại học và kinh nghiệm tại VN. Quy trình công nhận bằng cấp (Anerkennung).",
     featuresDe: [
       { text: "Qualifikationen prüfen" },
       { text: "Verfahrensschritte abstimmen" },
       { text: "Einsatzbeginn gemeinsam planen" },
+    ],
+    featuresEn: [
+      { text: "Qualification & equivalence check" },
+      { text: "Coordinated § 81a visa procedure" },
+      { text: "Predictable start date planning" },
     ],
     featuresVn: [
       { text: "Đối chiếu bằng cấp" },
@@ -111,17 +132,26 @@ const services: ServiceCard[] = [
     icon: Clock,
     secondaryIcon: Sun,
     taglineDe: "Saisonbedarf planen",
+    taglineEn: "Peak Season Staffing",
     taglineVn: "Lập kế hoạch mùa vụ",
     titleDe: "Saisonkräfte",
+    titleEn: "Seasonal Workers",
     titleVn: "Lao động thời vụ",
     descriptionDe:
       "Personalbedarf für saisonale Spitzen in Landwirtschaft, Gastronomie und Hotellerie besprechen. Einsatzdauer und Voraussetzungen werden vorab geprüft.",
+    descriptionEn:
+      "Cover seasonal peaks in agriculture, hospitality, and logistics. Deployment duration and legal requirements are clarified in advance.",
     descriptionVn:
       "Trao đổi nhu cầu nhân lực mùa vụ trong nông nghiệp, nhà hàng và khách sạn. Thời gian làm việc và điều kiện được kiểm tra trước.",
     featuresDe: [
       { text: "Flexible Einsatzdauer" },
       { text: "Verfügbarkeit individuell klären" },
       { text: "Anforderungsprofil abstimmen" },
+    ],
+    featuresEn: [
+      { text: "Flexible deployment duration" },
+      { text: "Pre-verified candidate availability" },
+      { text: "Aligned job requirement profiles" },
     ],
     featuresVn: [
       { text: "Thời gian làm việc linh hoạt" },
@@ -205,10 +235,22 @@ function ServiceCardItem({
   const SecondaryIcon = service.secondaryIcon;
   const colors = accentColors[service.accentColor];
 
-  const tagline = isVietnamese ? service.taglineVn : service.taglineDe;
-  const title = isVietnamese ? service.titleVn : service.titleDe;
-  const description = isVietnamese ? service.descriptionVn : service.descriptionDe;
-  const features = isVietnamese ? service.featuresVn : service.featuresDe;
+  const tagline = isVietnamese
+    ? service.taglineVn
+    : isEnglish
+      ? service.taglineEn
+      : service.taglineDe;
+  const title = isVietnamese ? service.titleVn : isEnglish ? service.titleEn : service.titleDe;
+  const description = isVietnamese
+    ? service.descriptionVn
+    : isEnglish
+      ? service.descriptionEn
+      : service.descriptionDe;
+  const features = isVietnamese
+    ? service.featuresVn
+    : isEnglish
+      ? service.featuresEn
+      : service.featuresDe;
   const ctaText = isVietnamese ? "Tìm hiểu thêm" : isEnglish ? "Learn More" : "Mehr erfahren";
 
   // FINAL SAFETY CHECK: Ensure serviceImage is valid before passing to AssetImageWithDebug
@@ -334,8 +376,9 @@ function ServiceCardItem({
 
             {/* CTA Button */}
             <div className="mt-auto">
-              <Button
+              <span
                 className={`
+                  inline-flex items-center justify-center rounded-md text-sm font-medium h-9 px-4 py-2
                   w-full gap-2 
                   bg-slate-900 text-white
                   transition-all duration-300
@@ -345,7 +388,7 @@ function ServiceCardItem({
               >
                 {ctaText}
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </Button>
+              </span>
             </div>
           </CardContent>
         </Card>

@@ -46,7 +46,7 @@ import {
 // ============================================
 
 function HeroSection() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const b2b = t.b2b_pages;
 
   return (
@@ -66,7 +66,7 @@ function HeroSection() {
       </div>
 
       <div className="relative container mx-auto px-4 max-w-7xl min-h-[90vh] flex items-center">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full py-24 lg:py-0">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full pt-32 pb-16 lg:pt-32 lg:pb-16">
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -123,7 +123,9 @@ function HeroSection() {
                   <GraduationCap className="w-5 h-5 text-emerald-400" />
                 </div>
                 <div>
-                  <div className="text-white font-bold">1. Semester</div>
+                  <div className="text-white font-bold">
+                    {lang === "vn" ? "Học kỳ 1" : lang === "en" ? "1st Semester" : "1. Semester"}
+                  </div>
                   <div className="text-slate-500 text-xs">
                     {b2b?.studium?.stat2_label || "Mentoring"}
                   </div>
@@ -135,7 +137,7 @@ function HeroSection() {
                 </div>
                 <div>
                   <div className="text-white font-bold">
-                    {t.nav?.cooperation === "Cooperation & Programs" ? "Career" : "Karriere"}
+                    {lang === "vn" ? "Sự nghiệp" : lang === "en" ? "Career" : "Karriere"}
                   </div>
                   <div className="text-slate-500 text-xs">
                     {b2b?.studium?.stat3_label || "Coaching"}

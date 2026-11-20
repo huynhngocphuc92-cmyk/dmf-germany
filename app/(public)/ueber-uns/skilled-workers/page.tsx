@@ -50,7 +50,7 @@ import {
 // ============================================
 
 function HeroSection() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const b2b = t.b2b_pages;
 
   return (
@@ -70,7 +70,7 @@ function HeroSection() {
       </div>
 
       <div className="relative container mx-auto px-4 max-w-7xl min-h-[90vh] flex items-center">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full py-24 lg:py-0">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full pt-32 pb-16 lg:pt-32 lg:pb-16">
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -141,7 +141,7 @@ function HeroSection() {
                 </div>
                 <div>
                   <div className="text-white font-bold">
-                    12 {t.nav?.cooperation === "Cooperation & Programs" ? "Months" : "Monate"}
+                    12 {lang === "vn" ? "Tháng" : lang === "en" ? "Months" : "Monate"}
                   </div>
                   <div className="text-slate-500 text-xs">
                     {b2b?.skilled_workers?.stat3_label || "Nachbetreuung"}
@@ -754,7 +754,7 @@ function QualityGatesSection() {
 function SettlementKitSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const b2b = t.b2b_pages;
 
   const getSettlementDays = () => [
@@ -855,19 +855,39 @@ function SettlementKitSection() {
           {[
             {
               src: "/images/b2b/settlement-1-flughafen.jpg",
-              caption: "Abreise & Flughafenbegleitung",
+              caption:
+                lang === "vn"
+                  ? "Tiễn bay & Hỗ trợ tại sân bay"
+                  : lang === "en"
+                    ? "Departure & Airport Escort"
+                    : "Abreise & Flughafenbegleitung",
             },
             {
               src: "/images/b2b/settlement-2-ankunft.jpg",
-              caption: "Persönlicher Empfang in Deutschland",
+              caption:
+                lang === "vn"
+                  ? "Đón tiếp trực tiếp tại Đức"
+                  : lang === "en"
+                    ? "Personal Welcome in Germany"
+                    : "Persönlicher Empfang in Deutschland",
             },
             {
               src: "/images/b2b/settlement-3-wohnung.jpg",
-              caption: "Schlüsselübergabe & Unterkunft",
+              caption:
+                lang === "vn"
+                  ? "Bàn giao chìa khóa & Nơi ở"
+                  : lang === "en"
+                    ? "Key Handover & Accommodation"
+                    : "Schlüsselübergabe & Unterkunft",
             },
             {
               src: "/images/b2b/settlement-4-alltag.jpg",
-              caption: "Erste Orientierung & Betreuung vor Ort",
+              caption:
+                lang === "vn"
+                  ? "Định hướng ban đầu & Đồng hành tại chỗ"
+                  : lang === "en"
+                    ? "Initial Orientation & On-Site Support"
+                    : "Erste Orientierung & Betreuung vor Ort",
             },
           ].map((photo) => (
             <div
@@ -953,7 +973,9 @@ function SettlementKitSection() {
               </div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-blue-600 mb-2">12 Mo.</div>
+              <div className="text-4xl font-bold text-blue-600 mb-2">
+                {lang === "vn" ? "12 Th." : lang === "en" ? "12 Mo." : "12 Mo."}
+              </div>
               <div className="text-slate-600">
                 {b2b?.skilled_workers?.aftercare_months || "Nachbetreuung inklusive"}
               </div>

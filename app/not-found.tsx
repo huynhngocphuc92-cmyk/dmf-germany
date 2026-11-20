@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { FileQuestion, Home, ArrowLeft, Search, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/components/providers/LanguageProvider";
@@ -58,11 +59,12 @@ const content: Record<"de" | "en" | "vn", NotFoundContent> = {
 };
 
 export default function NotFound() {
+  const router = useRouter();
   const { lang, t: translations } = useLanguage();
   const t = content[lang];
 
   return (
-    <div className="min-h-[calc(100vh-200px)] flex items-center justify-center px-4 py-16">
+    <div className="min-h-[calc(100vh-200px)] flex items-center justify-center px-4 pt-32 pb-16 md:pt-36">
       <div className="max-w-2xl w-full text-center">
         {/* Error Icon */}
         <div className="relative mb-8">
@@ -118,6 +120,8 @@ export default function NotFound() {
             onClick={() => {
               if (typeof window !== "undefined" && window.history.length > 1) {
                 window.history.back();
+              } else {
+                router.push("/");
               }
             }}
           >
@@ -126,7 +130,7 @@ export default function NotFound() {
           </Button>
 
           <Button asChild variant="ghost" size="lg" className="gap-2">
-            <Link href="#contact">
+            <Link href="/#contact">
               <Mail className="h-5 w-5" />
               {t.contact}
             </Link>

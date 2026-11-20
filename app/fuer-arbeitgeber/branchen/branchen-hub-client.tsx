@@ -171,7 +171,11 @@ export function BranchenHubClient({
                           {branche.badge[lang]}
                         </span>
                         <span className="text-xs font-mono font-semibold px-2.5 py-1 rounded-md bg-slate-900/80 text-emerald-300 border border-emerald-400/30 backdrop-blur-xs">
-                          {branche.legalPathway.timelineMonths}
+                          {lang === "vn"
+                            ? branche.legalPathway.timelineMonths.replace("Monate", "tháng")
+                            : lang === "en"
+                              ? branche.legalPathway.timelineMonths.replace("Monate", "months")
+                              : branche.legalPathway.timelineMonths}
                         </span>
                       </div>
                     </Link>
@@ -209,7 +213,8 @@ export function BranchenHubClient({
                               {role.title[lang]}
                             </span>
                             <span className="font-mono text-slate-500 flex-shrink-0">
-                              Deutsch {role.germanRequirement}
+                              {lang === "vn" ? "Tiếng Đức" : lang === "en" ? "German" : "Deutsch"}{" "}
+                              {role.germanRequirement}
                             </span>
                           </div>
                         ))}
@@ -301,7 +306,9 @@ export function BranchenHubClient({
                 <FileCheck2 className="w-4 h-4" />
                 {lang === "de"
                   ? "Kosten- & Zeitplanung für Entscheider"
-                  : "Cost & Timeline Planning for Decision Makers"}
+                  : lang === "en"
+                    ? "Cost & Timeline Planning for Decision Makers"
+                    : "Dự toán Chi phí & Lộ trình cho Ban Giám đốc"}
               </div>
               <h3 className="text-2xl font-bold mb-2">
                 {lang === "de"
@@ -313,21 +320,31 @@ export function BranchenHubClient({
               <p className="text-sm text-slate-300">
                 {lang === "de"
                   ? "Nutzen Sie unseren interaktiven ROI-Rechner und den § 81a-Zeitplan-Simulator für Ihre Budgetplanung."
-                  : "Use our interactive ROI Calculator and § 81a Timeline Simulator for your hiring budget."}
+                  : lang === "en"
+                    ? "Use our interactive ROI Calculator and § 81a Timeline Simulator for your hiring budget."
+                    : "Sử dụng công cụ tính ROI tương tác và trình mô phỏng thời gian thủ tục § 81a cho kế hoạch ngân sách của bạn."}
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
               <Button asChild className="bg-emerald-600 hover:bg-emerald-500 text-white gap-2">
                 <Link href="/roi-rechner">
                   <Calculator className="w-4 h-4" />
-                  {lang === "de" ? "Zum ROI-Rechner" : "ROI Calculator"}
+                  {lang === "de"
+                    ? "Zum ROI-Rechner"
+                    : lang === "en"
+                      ? "ROI Calculator"
+                      : "Công cụ tính ROI"}
                 </Link>
               </Button>
               <Link
                 href="/fuer-arbeitgeber/zeitplan"
                 className="inline-flex items-center justify-center rounded-md px-4 h-9 text-sm font-semibold border border-white/35 bg-white/10 text-white hover:bg-white/20 hover:border-white/60 transition-colors"
               >
-                {lang === "de" ? "Zeitplan-Simulator" : "Timeline Simulator"}
+                {lang === "de"
+                  ? "Zeitplan-Simulator"
+                  : lang === "en"
+                    ? "Timeline Simulator"
+                    : "Mô phỏng thời gian"}
               </Link>
             </div>
           </div>

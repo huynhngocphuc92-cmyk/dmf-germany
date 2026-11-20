@@ -15,7 +15,7 @@ export const TRANSLATIONS = {
       roi_calculator: "ROI-Rechner",
     },
     hero: {
-      title: "Brücken bauen zwischen Vietnam und Deutschland",
+      title: "Fachkräfte & Azubis aus Vietnam für deutsche Unternehmen",
       subtitle:
         "DMF Talents vermittelt qualifizierte Fachkräfte und Auszubildende aus Vietnam an deutsche Unternehmen.",
       cta_primary: "Kontakt aufnehmen",
@@ -95,8 +95,9 @@ export const TRANSLATIONS = {
     },
     contact: {
       badge: "Kontakt",
-      title: "Nachricht senden",
-      subtitle: "Füllen Sie das Formular aus und wir melden uns zeitnah bei Ihnen.",
+      title: "Kontaktieren Sie uns",
+      subtitle:
+        "Wir freuen uns auf Ihre Nachricht. Unser Team steht Ihnen jederzeit zur Verfügung.",
       label_name: "Name *",
       label_email: "E-Mail *",
       label_company: "Unternehmen",
@@ -130,9 +131,9 @@ export const TRANSLATIONS = {
     legal: {
       datenschutz: {
         title: "Datenschutzerklärung",
-        subtitle: "Informationen zum Datenschutz",
+        subtitle: "Informationen zum Datenschutz gemäß DSGVO & TDDDG",
         backToHome: "Zurück zur Startseite",
-        lastUpdated: "Stand: Januar 2024",
+        lastUpdated: "Stand: November 2026",
         sections: {
           overview: {
             title: "1. Datenschutz auf einen Blick",
@@ -141,7 +142,7 @@ export const TRANSLATIONS = {
               "Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.",
             responsibleTitle: "Verantwortliche Stelle",
             responsibleText:
-              "Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist DMF Vietnam. Die verantwortliche Stelle entscheidet allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten.",
+              "Verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist die CÔNG TY CỔ PHẦN TƯ VẤN DU HỌC DMF VIETNAM (DMF VIETNAM JOINT STOCK COMPANY), A11 KDC Quang Vinh, Khu phố 3, Phường Quang Vinh, Thành phố Biên Hoà, Tỉnh Đồng Nai, Vietnam (Direkte Vertretung in Deutschland: Herr Umit Elezov, Tübinger Str. 6, 72108 Rottenburg am Neckar, E-Mail: contact@dmf-talents.de).",
           },
           dataCollection: {
             title: "2. Datenerfassung auf dieser Website",
@@ -171,7 +172,7 @@ export const TRANSLATIONS = {
             title: "4. Kontaktformular und Chatbot",
             processingTitle: "Datenverarbeitung bei Kontaktaufnahme",
             processingText:
-              "Wenn Sie uns per Kontaktformular oder über unseren Chatbot (RecruitBot) Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten (Name, E-Mail, Nachricht) zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Die Daten werden sicher verarbeitet und nicht an Dritte weitergegeben.",
+              "Wenn Sie uns per Kontaktformular, Bedarfsanalyse, im geschützten Arbeitgeber-Datenraum, im Bewerber-Portal oder über unseren Chatbot (RecruitBot) Anfragen zukommen lassen, werden Ihre Angaben inklusive der dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Die Daten werden vertraulich verarbeitet und nicht unbefugt an Dritte weitergegeben.",
             legalBasisTitle: "Rechtsgrundlage",
             legalBasisText:
               "Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt. Die Daten werden gelöscht, sobald sie für die Erreichung des Zweckes ihrer Erhebung nicht mehr erforderlich sind.",
@@ -183,19 +184,21 @@ export const TRANSLATIONS = {
               "Für den Versand der Formulardaten verwenden wir den SMTP-Dienst von Gmail über die Bibliothek Nodemailer. Die von Ihnen eingegebenen Daten werden verschlüsselt über TLS/SSL an unsere E-Mail-Adresse übertragen. Empfänger der E-Mail ist ausschließlich DMF Vietnam.",
           },
           thirdParty: {
-            title: "5. Drittanbieter-Tools und Datentransfer",
-            hostingTitle: "Hosting (Vercel Inc.)",
+            title: "5. Auftragsverarbeiter, Drittanbieter-Tools und Drittlandtransfer",
+            hostingTitle: "Hosting (Cloudflare, Inc.) & Cloud-Datenbank (Supabase Inc.)",
             hostingText:
-              "Diese Website wird auf Servern von Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA gehostet. Beim Aufruf unserer Website werden automatisch Verbindungsdaten an die Server von Vercel übermittelt. Die Rechtsgrundlage hierfür ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der technischen Bereitstellung der Website).",
-            telegramTitle: "Telegram API (Interne Benachrichtigungen)",
+              "Diese Website wird über das globale Edge-Netzwerk und Cloudflare Workers der Cloudflare, Inc. (101 Townsend St., San Francisco, CA 94107, USA / EU-Rechenzentren) bereitgestellt und ausgeliefert. Für die sichere Speicherung von B2B-Anfragen, Arbeitgeber-Datenraum-Konten und Bewerber-Portaldossiers nutzen wir Supabase (Supabase Inc., 970 Toa Payoh North #07-04, Singapur 318992 / EU-Serverinfrastruktur). Mit den Anbietern bestehen Auftragsverarbeitungsverträge inkl. EU-Standardvertragsklauseln (Art. 28, Art. 46 DSGVO) sowie – soweit einschlägig – Zertifizierungen nach dem EU-US Data Privacy Framework. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b und lit. f DSGVO.",
+            telegramTitle:
+              "Webanalyse (Google Analytics 4) & Interne Benachrichtigungen (Telegram API)",
             telegramText:
-              "Zur internen Benachrichtigung unserer Mitarbeiter über eingehende Anfragen (z.B. über Kontaktformular oder Chatbot) nutzen wir die Telegram API. Ihre Daten (Name, E-Mail, Nachricht) werden dabei ausschließlich für die Weiterleitung der Anfrage an unser Team verwendet und nicht für andere Zwecke genutzt. Die Datenübertragung erfolgt verschlüsselt über die Telegram-API. Telegram wird nicht als CRM-System genutzt, sondern ausschließlich für interne Benachrichtigungen.",
-            mapsTitle: "Leaflet/OpenStreetMap (Karten)",
+              "Sofern Sie im Cookie-Banner ausdrücklich einwilligen (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG), setzen wir Google Analytics 4 (Google Ireland Limited, Dublin, Irland) mit aktivierter IP-Anonymisierung ein. Sie können Ihre Einwilligung jederzeit über die Datenschutzeinstellungen im Footer widerrufen. Zur internen Echtzeit-Benachrichtigung unseres Teams bei eingehenden Anfragen nutzen wir verschlüsselt die Telegram API (Art. 6 Abs. 1 lit. f DSGVO).",
+            mapsTitle:
+              "Externe Medien (YouTube Nocookie), Karten (OpenStreetMap) & KI-Assistenzsysteme",
             mapsText:
-              "Auf unserer Website verwenden wir Leaflet in Kombination mit OpenStreetMap (OSM) zur Anzeige von interaktiven Karten. Diese Dienste werden lokal gehostet bzw. über OSM-Server bereitgestellt und erheben keine personenbezogenen Daten von Ihnen. Es werden keine Cookies gesetzt und keine Tracking-Daten an Dritte übertragen.",
-            calendlyTitle: "Calendly (Terminvereinbarung)",
+              "Videos werden erst nach Ihrer Einwilligung im erweiterten Datenschutzmodus (youtube-nocookie.com, Google Ireland Limited) geladen. Interaktive Karten nutzen Leaflet und OpenStreetMap ohne Tracking-Cookies. Für unseren Chatbot (RecruitBot), die KI-Bedarfsanalyse und das Profil-Matching werden Eingaben über verschlüsselte API-Schnittstellen an Sprachmodell-Anbieter (Google Gemini / xAI / OpenRouter) übermittelt; es erfolgt kein Training öffentlicher KI-Modelle mit Ihren personenbezogenen Daten.",
+            calendlyTitle: "Terminvereinbarung (Calendly) & Drittlandtransfer (Art. 44 ff. DSGVO)",
             calendlyText:
-              "Für die Terminvereinbarung nutzen wir den Dienst Calendly (Calendly LLC, 271 17th Street NW, 10th Floor, Atlanta, GA 30363, USA). Wenn Sie einen Termin buchen, werden Ihre Angaben (Name, E-Mail, gewählter Termin) an Calendly übermittelt. Die Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Durchführung vorvertraglicher Maßnahmen). Weitere Informationen finden Sie in der Datenschutzerklärung von Calendly: https://calendly.com/privacy",
+              "Für Online-Terminbuchungen nutzen wir Calendly LLC (USA) auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO. Da der Hauptsitz der DMF Vietnam Joint Stock Company in Vietnam liegt, erfolgt zur Durchführung vorvertraglicher Maßnahmen und der Fachkräftevermittlung zwischen Vietnam und Deutschland eine Datenübermittlung gemäß Art. 49 Abs. 1 lit. b DSGVO bzw. auf Basis geeigneter Garantien nach Art. 46 DSGVO.",
           },
           rights: {
             title: "6. Ihre Rechte als betroffene Person",
@@ -264,16 +267,16 @@ export const TRANSLATIONS = {
             number: "3603878495",
           },
           responsibleContent: {
-            title: "Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV",
+            title: "Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV",
             description:
-              "NGUYỄN HUỲNH ĐĂNG KHOA, A11 KDC Quang Vinh, Khu phố 3, Phường Quang Vinh, Thành phố Biên Hoà, Tỉnh Đồng Nai, Vietnam",
+              "NGUYỄN HUỲNH ĐĂNG KHOA (Hauptsitz Vietnam: A11 KDC Quang Vinh, Khu phố 3, Phường Quang Vinh, Thành phố Biên Hoà, Tỉnh Đồng Nai, Vietnam) sowie Herr Umit Elezov (Direkte Vertretung in Deutschland: Tübinger Str. 6, 72108 Rottenburg am Neckar, Deutschland)",
           },
           disputeResolution: {
-            title: "Streitschlichtung",
+            title: "Hinweis gemäß § 36 VSBG (Streitschlichtung)",
             description:
-              "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit. Unsere E-Mail-Adresse finden Sie oben im Impressum.",
-            platformLink: "https://ec.europa.eu/consumers/odr/",
-            platformText: "Online-Streitbeilegungsplattform der EU",
+              "Das Angebot auf dmf-talents.de richtet sich an gewerbliche Arbeitgeber, Kliniken und Ausbildungsbetriebe (B2B). Hinweis: Die ehemalige Online-Streitbeilegungsplattform (OS) der EU wurde gemäß Verordnung (EU) 2024/3228 zum 20. Juli 2025 endgültig eingestellt.",
+            platformLink: "",
+            platformText: "",
             disclaimer:
               "Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.",
           },
@@ -507,17 +510,17 @@ export const TRANSLATIONS = {
       retention_sub: "Nach 3 Jahren",
       partners: "Partner in DE",
       partners_sub: "Krankenhäuser & Unternehmen",
-      iso: "ISO 9001 Zertifiziert",
-      gov: "Staatlich anerkannt",
-      exp: "10+ Jahre Erfahrung",
+      iso: "§ 296a SGB III & FEG-konform",
+      gov: "Direkte Vertretung in Deutschland",
+      exp: "Eigene Sprachakademie in Vietnam",
     },
     service_pages: {
       overview: SERVICE_OVERVIEWS.de,
       azubi: {
         hero: {
           badge: "Ausbildung §16a AufenthG",
-          headline: "Langfristige Personalsicherung",
-          headline_accent: "durch motivierte Auszubildende.",
+          headline: "Azubis aus Vietnam einstellen",
+          headline_accent: "Rechtssicher nach § 16a AufenthG.",
           subheadline:
             "Verbinden Sie deutsche Ausbildungsqualität mit vietnamesischem Fleiß. Eine Investition in Loyalität und Zukunft.",
           cta1: "Azubi-Profile entdecken",
@@ -538,7 +541,7 @@ export const TRANSLATIONS = {
           advantage_2_title: "Langfristige Bindung",
           advantage_2_desc:
             "Vietnamesische Azubis suchen eine neue Heimat. Hohe Bleibequote nach der Ausbildung statt Job-Hopping.",
-          advantage_2_highlight: "90% Bleibequote",
+          advantage_2_highlight: "95% Bleibequote",
           advantage_2_highlight_desc: "Kein Job-Hopping",
           advantage_3_title: "Rundum-Betreuung",
           advantage_3_desc:
@@ -629,14 +632,14 @@ export const TRANSLATIONS = {
           subtitle: "Investieren Sie heute in motivierte Azubis aus Vietnam.",
           cta1: "Azubi-Profile anfordern",
           cta2: "Beratungsgespräch vereinbaren",
-          highlight: "Nächster Ausbildungsstart: September 2026",
+          highlight: "Nächster Ausbildungsstart: Frühjahr / Herbst 2027",
         },
       },
       skilled_workers: {
         hero: {
           badge: "§18a/b Fachkräfteeinwanderung",
-          headline: "Qualifizierte Fachkräfte.",
-          headline_accent: "Anerkannte Abschlüsse. Sofort einsatzbereit.",
+          headline: "Fachkräfte aus Vietnam einstellen",
+          headline_accent: "Anerkannt, B1/B2 & § 81a-beschleunigt.",
           subheadline:
             "Schluss mit dem Behörden-Dschungel. Wir vermitteln Ingenieure, IT-Profis und Pflegekräfte aus Vietnam – rechtssicher nach §18a/b AufenthG.",
           cta1: "Verfügbare Experten prüfen",
@@ -664,7 +667,7 @@ export const TRANSLATIONS = {
           new_subtitle: "Mit DMF Vietnam",
           new_badge: "Empfohlen",
           new_item1: "Vorab-Check der Gleichwertigkeit (Sofort)",
-          new_item2: "Visumsgarantie dank §81a Verfahren",
+          new_item2: "Strukturierte § 81a-Vorabzustimmung & Visabegleitung",
           new_item3: "Transparente Pauschalgebühr – keine Extras",
           new_item4: "B1/B2 Zertifikat + Fachsprache inklusive",
           new_item5: "12 Monate Integrationsbegleitung",
@@ -731,13 +734,13 @@ export const TRANSLATIONS = {
       seasonal: {
         hero: {
           badge: "100% ZAV-konform",
-          headline: "Erntehelfer & Servicekräfte",
-          headline_accent: "Schnell verfügbar.",
+          headline: "Saisonkräfte aus Vietnam",
+          headline_accent: "ZAV-konform & schnell einsatzbereit.",
           subheadline:
             "Sichern Sie Ihre Ernte und Ihren Service. Körperlich belastbares Personal für die Hochsaison – einsatzbereit in 4-8 Wochen.",
           cta1: "Verfügbarkeit jetzt prüfen",
           cta2: "Rückruf anfordern",
-          urgency_badge: "Saison 2026 – Jetzt sichern!",
+          urgency_badge: "Saison 2027 – Jetzt sichern!",
         },
         timeline: {
           badge: "Schneller Prozess",
@@ -800,7 +803,7 @@ export const TRANSLATIONS = {
           stat3_label: "Wochen bis Einsatz",
         },
         cta: {
-          title: "Bereit für Saison 2026?",
+          title: "Bereit für Saison 2027?",
           subtitle: "Sichern Sie sich jetzt Personal für eine erfolgreiche Saison.",
           cta1: "Angebot anfordern",
           cta2: "Rückruf anfordern",
@@ -826,11 +829,11 @@ export const TRANSLATIONS = {
       // Kooperation & Programme
       cooperation: "Kooperation & Programme",
       dual_training: "Duale Ausbildung",
-      dual_training_desc: "Vocational program für Azubis",
+      dual_training_desc: "Duales Ausbildungsprogramm (§ 16a)",
       study_germany: "Studium in Deutschland",
       study_germany_desc: "Universitätsprogramm mit TestAS Coaching",
       skilled_program: "Fachkräfte-Programm",
-      skilled_program_desc: "§18a/b mit Anerkennung & Placement",
+      skilled_program_desc: "§ 18a/b mit Anerkennung & Vermittlung",
     },
     // B2B Partner Pages
     b2b_pages: {
@@ -901,7 +904,7 @@ export const TRANSLATIONS = {
           "Vollständige Betreuung in der ersten Woche garantiert eine stressfreie Ankunft und minimiert das Risiko von Abbrüchen.",
         cta_title: "Bereit für qualifizierte Azubis?",
         cta_subtitle: "Investieren Sie in die Zukunft Ihres Betriebs.",
-        cta_highlight: "Nächster Ausbildungsstart: September 2026",
+        cta_highlight: "Nächster Ausbildungsstart: Frühjahr / Herbst 2027",
         // Hero card
         language_training: "Sprachausbildung",
         certified_courses: "Zertifizierte Deutschkurse",
@@ -1135,8 +1138,9 @@ export const TRANSLATIONS = {
       subtitle:
         "Prüfen Sie sofort die Wirtschaftlichkeit bei der Rekrutierung vietnamesischer Fachkräfte.",
       label_salary_de: "Monatsgehalt (Brutto) - Deutscher Kandidat",
+      label_salary_de_hint: "Durchschnittsgehalt in Deutschland",
       label_salary_dmf: "Monatsgehalt (Brutto) - DMF Kandidat",
-      label_salary_dmf_hint: "Erwartetes Gehalt für vietnamesischen Fachkräfte",
+      label_salary_dmf_hint: "Erwartetes Gehalt für vietnamesische Fachkräfte",
       label_fee: "Einmalige Vermittlungsgebühr",
       label_fee_hint: "Einmalige Servicegebühr bei erfolgreicher Vermittlung",
       label_duration: "Vertragslaufzeit",
@@ -1237,7 +1241,7 @@ export const TRANSLATIONS = {
       roi_calculator: "ROI Calculator",
     },
     hero: {
-      title: "Building Bridges between Vietnam and Germany",
+      title: "Skilled Workers & Apprentices from Vietnam for German Employers",
       subtitle:
         "DMF Vietnam connects qualified professionals and trainees from Vietnam with German companies.",
       cta_primary: "Contact Us",
@@ -1349,9 +1353,9 @@ export const TRANSLATIONS = {
     legal: {
       datenschutz: {
         title: "Privacy Policy",
-        subtitle: "Privacy Information",
+        subtitle: "Privacy Information in accordance with GDPR & TDDDG",
         backToHome: "Back to Home",
-        lastUpdated: "Last Updated: January 2024",
+        lastUpdated: "Last Updated: November 2026",
         sections: {
           overview: {
             title: "1. Data Protection Overview",
@@ -1360,7 +1364,7 @@ export const TRANSLATIONS = {
               "The following information provides a simple overview of what happens to your personal data when you visit this website. Personal data is any data with which you can be personally identified.",
             responsibleTitle: "Responsible Party",
             responsibleText:
-              "The responsible party for data processing on this website is DMF Vietnam. The responsible party decides alone or jointly with others on the purposes and means of processing personal data.",
+              "The controller responsible for data processing on this website is CÔNG TY CỔ PHẦN TƯ VẤN DU HỌC DMF VIETNAM (DMF VIETNAM JOINT STOCK COMPANY), A11 KDC Quang Vinh, Khu phố 3, Phường Quang Vinh, Biên Hoà City, Đồng Nai Province, Vietnam (Direct Representation in Germany: Mr. Umit Elezov, Tübinger Str. 6, 72108 Rottenburg am Neckar, Germany, Email: contact@dmf-talents.de).",
           },
           dataCollection: {
             title: "2. Data Collection on This Website",
@@ -1390,7 +1394,7 @@ export const TRANSLATIONS = {
             title: "4. Contact Form and Chatbot",
             processingTitle: "Data Processing When Contacting Us",
             processingText:
-              "If you contact us via contact form or through our chatbot (RecruitBot), your details from the contact form including the contact details you provided (name, email, message) will be stored by us for the purpose of processing the inquiry and in case of follow-up questions. The data is processed securely and not shared with third parties.",
+              "If you contact us via contact form, hiring needs form, the protected Employer Data Room, the Applicant Portal, or through our chatbot (RecruitBot), your details including the contact information provided will be stored by us for the purpose of processing the inquiry and in case of follow-up questions. The data is processed confidentially and not shared with unauthorized third parties.",
             legalBasisTitle: "Legal Basis",
             legalBasisText:
               "The processing of this data is based on Art. 6 para. 1 lit. b GDPR, if your inquiry is related to the fulfillment of a contract. The data will be deleted as soon as it is no longer required for achieving the purpose of its collection.",
@@ -1402,19 +1406,21 @@ export const TRANSLATIONS = {
               "For sending the form data, we use Gmail's SMTP service via the Nodemailer library. The data you enter is transmitted encrypted via TLS/SSL to our email address. The recipient of the email is exclusively DMF Vietnam.",
           },
           thirdParty: {
-            title: "5. Third-Party Tools and Data Transfer",
-            hostingTitle: "Hosting (Vercel Inc.)",
+            title: "5. Processors, Third-Party Tools and International Data Transfers",
+            hostingTitle: "Hosting (Cloudflare, Inc.) & Cloud Database (Supabase Inc.)",
             hostingText:
-              "This website is hosted on servers of Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA. When accessing our website, connection data is automatically transmitted to Vercel's servers. The legal basis for this is Art. 6 para. 1 lit. f GDPR (legitimate interest in the technical provision of the website).",
-            telegramTitle: "Telegram API (Internal Notifications)",
+              "This website is hosted and delivered via Cloudflare Workers and the global edge network of Cloudflare, Inc. (101 Townsend St., San Francisco, CA 94107, USA / EU data centers). For secure storage of B2B inquiries, Employer Data Room accounts, and Applicant Portal dossiers, we use Supabase (Supabase Inc., Singapore / EU cloud infrastructure). Data Processing Agreements including EU Standard Contractual Clauses (Art. 28, Art. 46 GDPR) and, where applicable, EU-US Data Privacy Framework safeguards are in place. Legal basis: Art. 6 para. 1 lit. b and lit. f GDPR.",
+            telegramTitle:
+              "Web Analytics (Google Analytics 4) & Internal Notifications (Telegram API)",
             telegramText:
-              "For internal notification of our employees about incoming inquiries (e.g., via contact form or chatbot), we use the Telegram API. Your data (name, email, message) is used exclusively for forwarding the inquiry to our team and is not used for other purposes. Data transmission is encrypted via the Telegram API. Telegram is not used as a CRM system, but exclusively for internal notifications.",
-            mapsTitle: "Leaflet/OpenStreetMap (Maps)",
+              "Only if you explicitly consent via our cookie banner (Art. 6 para. 1 lit. a GDPR, § 25 para. 1 TDDDG), we use Google Analytics 4 (Google Ireland Limited, Dublin, Ireland) with IP anonymization enabled. You may withdraw your consent at any time via the Privacy Settings in the footer. For internal real-time notifications of incoming inquiries to our team, we use the encrypted Telegram API (Art. 6 para. 1 lit. f GDPR).",
+            mapsTitle: "External Media (YouTube Nocookie), Maps (OpenStreetMap) & AI Services",
             mapsText:
-              "On our website, we use Leaflet in combination with OpenStreetMap (OSM) to display interactive maps. These services are hosted locally or provided via OSM servers and do not collect personal data from you. No cookies are set and no tracking data is transmitted to third parties.",
-            calendlyTitle: "Calendly (Appointment Scheduling)",
+              "External videos are only loaded after your consent in enhanced privacy mode (youtube-nocookie.com, Google Ireland Limited). Interactive maps use Leaflet and OpenStreetMap without tracking cookies. For our chatbot (RecruitBot), AI hiring analysis, and candidate matching, inputs are processed via encrypted API connections to LLM providers (Google Gemini / xAI / OpenRouter); personal data is not used to train public AI models.",
+            calendlyTitle:
+              "Appointment Scheduling (Calendly) & Third-Country Transfers (Art. 44 ff. GDPR)",
             calendlyText:
-              "For appointment scheduling, we use the Calendly service (Calendly LLC, 271 17th Street NW, 10th Floor, Atlanta, GA 30363, USA). When you book an appointment, your information (name, email, selected appointment) is transmitted to Calendly. The legal basis is Art. 6 para. 1 lit. b GDPR (performance of pre-contractual measures). Further information can be found in Calendly's privacy policy: https://calendly.com/privacy",
+              "For appointment scheduling, we use Calendly LLC (USA) based on Art. 6 para. 1 lit. b GDPR. Because DMF Vietnam Joint Stock Company is headquartered in Vietnam, data transfers necessary for pre-contractual measures and international recruitment between Vietnam and Germany take place pursuant to Art. 49 para. 1 lit. b GDPR and appropriate safeguards under Art. 46 GDPR.",
           },
           rights: {
             title: "6. Your Rights as a Data Subject",
@@ -1483,16 +1489,16 @@ export const TRANSLATIONS = {
             number: "3603878495",
           },
           responsibleContent: {
-            title: "Responsible for Content according to § 55 Para. 2 RStV",
+            title: "Responsible for Content according to § 18 Para. 2 MStV",
             description:
-              "NGUYỄN HUỲNH ĐĂNG KHOA, A11 KDC Quang Vinh, Khu phố 3, Phường Quang Vinh, Biên Hoà City, Đồng Nai Province, Vietnam",
+              "NGUYỄN HUỲNH ĐĂNG KHOA (Vietnam HQ: A11 KDC Quang Vinh, Khu phố 3, Phường Quang Vinh, Biên Hoà City, Đồng Nai Province, Vietnam) and Mr. Umit Elezov (Direct Representation in Germany: Tübinger Str. 6, 72108 Rottenburg am Neckar, Germany)",
           },
           disputeResolution: {
-            title: "Dispute Resolution",
+            title: "Dispute Resolution (§ 36 VSBG)",
             description:
-              "The European Commission provides a platform for online dispute resolution (OS). You can find our email address above in the imprint.",
-            platformLink: "https://ec.europa.eu/consumers/odr/",
-            platformText: "EU Online Dispute Resolution Platform",
+              "The services on dmf-talents.de are directed exclusively at commercial employers, clinics, and training enterprises (B2B). Note: The former EU Online Dispute Resolution (ODR) platform was permanently discontinued on July 20, 2025 pursuant to Regulation (EU) 2024/3228.",
+            platformLink: "",
+            platformText: "",
             disclaimer:
               "We are not willing or obliged to participate in dispute resolution proceedings before a consumer arbitration board.",
           },
@@ -1723,17 +1729,17 @@ export const TRANSLATIONS = {
       retention_sub: "After 3 years",
       partners: "Partners in Germany",
       partners_sub: "Hospitals & Companies",
-      iso: "ISO 9001 Certified",
-      gov: "Govt. Recognized",
-      exp: "10+ Years Experience",
+      iso: "§ 296a SGB III & FEG Compliant",
+      gov: "Direct Representation in Germany",
+      exp: "In-House Language Academy in Vietnam",
     },
     service_pages: {
       overview: SERVICE_OVERVIEWS.en,
       azubi: {
         hero: {
           badge: "Training §16a Residence Act",
-          headline: "Long-term Staff Security",
-          headline_accent: "through motivated trainees.",
+          headline: "Hire Trainees from Vietnam",
+          headline_accent: "Legally compliant under § 16a.",
           subheadline:
             "Combine German training quality with Vietnamese diligence. An investment in loyalty and future.",
           cta1: "Discover Trainee Profiles",
@@ -1754,7 +1760,7 @@ export const TRANSLATIONS = {
           advantage_2_title: "Long-term Commitment",
           advantage_2_desc:
             "Vietnamese trainees seek a new home. High retention rate after training instead of job-hopping.",
-          advantage_2_highlight: "90% Retention Rate",
+          advantage_2_highlight: "95% Retention Rate",
           advantage_2_highlight_desc: "No Job-Hopping",
           advantage_3_title: "Comprehensive Support",
           advantage_3_desc:
@@ -1846,14 +1852,14 @@ export const TRANSLATIONS = {
           subtitle: "Invest today in motivated trainees from Vietnam.",
           cta1: "Request Trainee Profiles",
           cta2: "Schedule Consultation",
-          highlight: "Next Training Start: September 2026",
+          highlight: "Next Training Start: Spring / Autumn 2027",
         },
       },
       skilled_workers: {
         hero: {
           badge: "§18a/b Skilled Worker Immigration",
-          headline: "Qualified Professionals.",
-          headline_accent: "Recognized Qualifications. Ready to Work.",
+          headline: "Hire Skilled Workers from Vietnam",
+          headline_accent: "Recognized, B1/B2 & § 81a Fast-Track.",
           subheadline:
             "End the bureaucratic jungle. We place engineers, IT professionals and nurses from Vietnam – legally compliant under §18a/b Residence Act.",
           cta1: "Check Available Experts",
@@ -1881,7 +1887,7 @@ export const TRANSLATIONS = {
           new_subtitle: "With DMF Vietnam",
           new_badge: "Recommended",
           new_item1: "Pre-check of Equivalence (Immediately)",
-          new_item2: "Visa Guarantee Thanks to §81a Procedure",
+          new_item2: "Structured § 81a Fast-Track Visa Support",
           new_item3: "Transparent Package Fee – No Extras",
           new_item4: "B1/B2 Certificate + Specialized Language Included",
           new_item5: "12 Months Integration Support",
@@ -1948,13 +1954,13 @@ export const TRANSLATIONS = {
       seasonal: {
         hero: {
           badge: "100% ZAV-Compliant",
-          headline: "Harvest Workers & Service Staff",
-          headline_accent: "Quickly Available.",
+          headline: "Seasonal Staff from Vietnam",
+          headline_accent: "ZAV-Compliant & Ready Quickly.",
           subheadline:
             "Secure your harvest and service. Physically resilient staff for peak season – ready to work in 4-8 weeks.",
           cta1: "Check Availability Now",
           cta2: "Request Callback",
-          urgency_badge: "Season 2026 – Secure Now!",
+          urgency_badge: "Season 2027 – Secure Now!",
         },
         timeline: {
           badge: "Fast Process",
@@ -2016,7 +2022,7 @@ export const TRANSLATIONS = {
           stat3_label: "Weeks Until Deployment",
         },
         cta: {
-          title: "Ready for Season 2026?",
+          title: "Ready for Season 2027?",
           subtitle: "Secure staff today for a successful season.",
           cta1: "Request Quote",
           cta2: "Request Callback",
@@ -2115,7 +2121,7 @@ export const TRANSLATIONS = {
           "Complete support in the first week ensures a stress-free arrival and minimizes dropout risk.",
         cta_title: "Ready for Qualified Apprentices?",
         cta_subtitle: "Invest in the future of your company.",
-        cta_highlight: "Next Training Start: September 2026",
+        cta_highlight: "Next Training Start: Spring / Autumn 2027",
         language_training: "Language Training",
         certified_courses: "Certified German Courses",
         technical_prep: "Technical Preparation",
@@ -2342,6 +2348,7 @@ export const TRANSLATIONS = {
       title: "ROI Calculator",
       subtitle: "Check the economic efficiency of recruiting Vietnamese professionals immediately.",
       label_salary_de: "Monthly Salary (Gross) - German Candidate",
+      label_salary_de_hint: "Average market salary in Germany",
       label_salary_dmf: "Monthly Salary (Gross) - DMF Candidate",
       label_salary_dmf_hint: "Expected salary for Vietnamese professionals",
       label_fee: "One-time Recruitment Fee",
@@ -2444,9 +2451,9 @@ export const TRANSLATIONS = {
       roi_calculator: "Tính hiệu quả đầu tư",
     },
     hero: {
-      title: "Xây dựng cầu nối Việt Nam - Đức",
+      title: "Cung ứng Nhân sự Tay nghề & Học viên Nghề Việt Nam cho Doanh nghiệp Đức",
       subtitle:
-        "DMF Vietnam kết nối các chuyên gia và thực tập sinh chất lượng cao từ Việt Nam với doanh nghiệp Đức.",
+        "DMF Vietnam kết nối các chuyên gia và học viên du học nghề chất lượng cao từ Việt Nam với doanh nghiệp Đức.",
       cta_primary: "Liên hệ ngay",
       cta_secondary: "Hồ sơ năng lực (PDF)",
       stats_candidates: "Ứng viên",
@@ -2468,17 +2475,17 @@ export const TRANSLATIONS = {
       stat_candidates: "Ứng viên",
       stat_partners: "Đối tác",
       stat_success: "Tỷ lệ thành công",
-      reps_title: "Pháp nhân đại diện tại Đức & Việt Nam",
+      reps_title: "Đại diện trực tiếp tại Đức & Việt Nam",
       reps_subtitle:
         "Đại diện trực tiếp tại hai quốc gia, đảm bảo tính pháp lý minh bạch và đồng hành sát sao cùng doanh nghiệp.",
-      rep_de_badge: "Pháp nhân đại diện trực tiếp tại Đức",
+      rep_de_badge: "Đại diện trực tiếp tại Đức",
       rep_de_name: "Ông Umit Elezov",
       rep_de_role: "Đại diện trực tiếp tại Đức",
       rep_de_desc:
         "Trực tiếp tư vấn cho doanh nghiệp Đức, hỗ trợ thủ tục pháp lý, cơ quan chức năng và đồng hành tại CHLB Đức.",
-      rep_vn_badge: "Pháp nhân đại diện tại Việt Nam",
+      rep_vn_badge: "Trưởng đại diện tại Việt Nam",
       rep_vn_name: "Ông Achim Betticher",
-      rep_vn_role: "Đại diện pháp nhân & Giám đốc đào tạo tại Việt Nam",
+      rep_vn_role: "Trưởng đại diện & Giám đốc đào tạo tại Việt Nam",
       rep_vn_desc:
         "Giám sát chất lượng đào tạo tiếng Đức, kỹ năng nghề theo tiêu chuẩn Đức và tuyển chọn ứng viên trực tiếp tại Việt Nam.",
     },
@@ -2557,9 +2564,9 @@ export const TRANSLATIONS = {
     legal: {
       datenschutz: {
         title: "Chính sách Bảo mật",
-        subtitle: "Thông tin về Bảo mật",
+        subtitle: "Thông tin về Bảo mật dữ liệu theo chuẩn DSGVO (GDPR) & TDDDG",
         backToHome: "Về trang chủ",
-        lastUpdated: "Cập nhật: Tháng 1 năm 2024",
+        lastUpdated: "Cập nhật: Tháng 11 năm 2026",
         sections: {
           overview: {
             title: "1. Tổng quan về Bảo mật",
@@ -2568,7 +2575,7 @@ export const TRANSLATIONS = {
               "Thông tin sau đây cung cấp cái nhìn tổng quan đơn giản về những gì xảy ra với dữ liệu cá nhân của bạn khi bạn truy cập website này. Dữ liệu cá nhân là bất kỳ dữ liệu nào có thể được sử dụng để nhận dạng bạn.",
             responsibleTitle: "Bên chịu trách nhiệm",
             responsibleText:
-              "Bên chịu trách nhiệm xử lý dữ liệu trên website này là DMF Vietnam. Bên chịu trách nhiệm quyết định một mình hoặc cùng với các bên khác về mục đích và phương tiện xử lý dữ liệu cá nhân.",
+              "Đơn vị kiểm soát và chịu trách nhiệm xử lý dữ liệu trên website này là CÔNG TY CỔ PHẦN TƯ VẤN DU HỌC DMF VIETNAM (DMF VIETNAM JOINT STOCK COMPANY), A11 KDC Quang Vinh, Khu phố 3, Phường Quang Vinh, TP. Biên Hoà, Tỉnh Đồng Nai, Việt Nam (Đại diện trực tiếp tại Đức: Ông Umit Elezov, Tübinger Str. 6, 72108 Rottenburg am Neckar, CHLB Đức, Email: contact@dmf-talents.de).",
           },
           dataCollection: {
             title: "2. Thu thập Dữ liệu trên Website này",
@@ -2598,7 +2605,7 @@ export const TRANSLATIONS = {
             title: "4. Biểu mẫu Liên hệ và Chatbot",
             processingTitle: "Xử lý Dữ liệu khi Liên hệ",
             processingText:
-              "Khi bạn gửi yêu cầu cho chúng tôi qua biểu mẫu liên hệ hoặc chatbot (RecruitBot), thông tin của bạn từ biểu mẫu yêu cầu bao gồm thông tin liên hệ bạn đã cung cấp (tên, email, tin nhắn) sẽ được chúng tôi lưu trữ để xử lý yêu cầu và trong trường hợp có câu hỏi tiếp theo. Dữ liệu được xử lý bảo mật và không chia sẻ với bên thứ ba.",
+              "Khi bạn gửi yêu cầu qua biểu mẫu liên hệ, phân tích nhu cầu tuyển dụng, Phòng dữ liệu Doanh nghiệp, Cổng Học viên hoặc qua chatbot (RecruitBot), thông tin của bạn sẽ được lưu trữ bảo mật để xử lý yêu cầu và hỗ trợ tư vấn tiếp theo, không chia sẻ trái phép cho bên thứ ba.",
             legalBasisTitle: "Cơ sở Pháp lý",
             legalBasisText:
               "Việc xử lý dữ liệu này được thực hiện dựa trên Điều 6 Khoản 1 Mục b GDPR, nếu yêu cầu của bạn liên quan đến việc thực hiện hợp đồng. Dữ liệu sẽ được xóa ngay khi không còn cần thiết để đạt được mục đích thu thập.",
@@ -2610,19 +2617,19 @@ export const TRANSLATIONS = {
               "Để gửi dữ liệu biểu mẫu, chúng tôi sử dụng dịch vụ SMTP của Gmail thông qua thư viện Nodemailer. Dữ liệu bạn nhập được truyền mã hóa qua TLS/SSL đến địa chỉ email của chúng tôi. Người nhận email chỉ là DMF Vietnam.",
           },
           thirdParty: {
-            title: "5. Công cụ Bên thứ ba và Chuyển Dữ liệu",
-            hostingTitle: "Hosting (Vercel Inc.)",
+            title: "5. Đơn vị Xử lý Dữ liệu, Công cụ Bên thứ ba & Chuyển dữ liệu Quốc tế",
+            hostingTitle: "Hosting (Cloudflare, Inc.) & Cơ sở dữ liệu Đám mây (Supabase Inc.)",
             hostingText:
-              "Website này được lưu trữ trên máy chủ của Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA. Khi truy cập website của chúng tôi, dữ liệu kết nối được tự động truyền đến máy chủ của Vercel. Cơ sở pháp lý cho việc này là Điều 6 Khoản 1 Mục f GDPR (lợi ích hợp pháp trong việc cung cấp kỹ thuật website).",
-            telegramTitle: "Telegram API (Thông báo Nội bộ)",
+              "Website được vận hành và phân phối trên nền tảng Cloudflare Workers và mạng lưới biên của Cloudflare, Inc. (101 Townsend St., San Francisco, CA 94107, Hoa Kỳ / cụm máy chủ EU). Dữ liệu yêu cầu tuyển dụng B2B, tài khoản Phòng dữ liệu Doanh nghiệp và hồ sơ Cổng Học viên được lưu trữ bảo mật trên Supabase (Supabase Inc., Singapore / hạ tầng máy chủ EU) theo Hợp đồng xử lý dữ liệu, Điều khoản hợp đồng tiêu chuẩn EU (Điều 28, Điều 46 GDPR) và khung EU-US Data Privacy Framework (nếu áp dụng).",
+            telegramTitle: "Phân tích Web (Google Analytics 4) & Thông báo Nội bộ (Telegram API)",
             telegramText:
-              "Để thông báo nội bộ cho nhân viên của chúng tôi về các yêu cầu đến (ví dụ: qua biểu mẫu liên hệ hoặc chatbot), chúng tôi sử dụng Telegram API. Dữ liệu của bạn (tên, email, tin nhắn) chỉ được sử dụng để chuyển tiếp yêu cầu đến nhóm của chúng tôi và không được sử dụng cho mục đích khác. Việc truyền dữ liệu được mã hóa qua Telegram API. Telegram không được sử dụng như hệ thống CRM, mà chỉ cho thông báo nội bộ.",
-            mapsTitle: "Leaflet/OpenStreetMap (Bản đồ)",
+              "Chỉ khi bạn đồng ý rõ ràng trên biểu ngữ Cookie (Điều 6 Khoản 1 Mục a GDPR, § 25 Khoản 1 TDDDG), chúng tôi mới kích hoạt Google Analytics 4 (Google Ireland Limited) với chế độ ẩn danh IP. Bạn có thể rút lại sự đồng ý bất kỳ lúc nào tại mục Cài đặt quyền riêng tư ở chân trang. Để thông báo nội bộ theo thời gian thực cho đội ngũ tư vấn, chúng tôi sử dụng Telegram API mã hóa (Điều 6 Khoản 1 Mục f GDPR).",
+            mapsTitle: "Nội dung ngoài (YouTube Nocookie), Bản đồ (OpenStreetMap) & Hệ thống AI",
             mapsText:
-              "Trên website của chúng tôi, chúng tôi sử dụng Leaflet kết hợp với OpenStreetMap (OSM) để hiển thị bản đồ tương tác. Các dịch vụ này được lưu trữ cục bộ hoặc được cung cấp qua máy chủ OSM và không thu thập dữ liệu cá nhân từ bạn. Không có cookie nào được đặt và không có dữ liệu theo dõi nào được truyền cho bên thứ ba.",
-            calendlyTitle: "Calendly (Đặt lịch hẹn)",
+              "Video chỉ được tải sau khi bạn đồng ý ở chế độ bảo mật nâng cao (youtube-nocookie.com). Bản đồ tương tác sử dụng Leaflet và OpenStreetMap không đặt cookie theo dõi. Đối với Chatbot (RecruitBot), công cụ phân tích JD và gợi ý ứng viên bằng AI, dữ liệu đầu vào được xử lý qua kết nối API mã hóa tới nhà cung cấp mô hình ngôn ngữ (Google Gemini / xAI / OpenRouter) và không được dùng để huấn luyện mô hình AI công cộng.",
+            calendlyTitle: "Đặt lịch hẹn (Calendly) & Chuyển dữ liệu Quốc tế (Điều 44–49 GDPR)",
             calendlyText:
-              "Để đặt lịch hẹn, chúng tôi sử dụng dịch vụ Calendly (Calendly LLC, 271 17th Street NW, 10th Floor, Atlanta, GA 30363, USA). Khi bạn đặt lịch hẹn, thông tin của bạn (tên, email, lịch hẹn đã chọn) được truyền đến Calendly. Cơ sở pháp lý là Điều 6 Khoản 1 Mục b GDPR (thực hiện các biện pháp trước hợp đồng). Thông tin thêm có thể được tìm thấy trong chính sách bảo mật của Calendly: https://calendly.com/privacy",
+              "Để đặt lịch hẹn trực tuyến, chúng tôi sử dụng Calendly LLC (Hoa Kỳ) theo Điều 6 Khoản 1 Mục b GDPR. Do trụ sở chính của DMF Vietnam đặt tại Việt Nam, việc truyền dữ liệu phục vụ các biện pháp tiền hợp đồng và kết nối tuyển dụng giữa Việt Nam và CHLB Đức được thực hiện theo Điều 49 Khoản 1 Mục b GDPR và các biện pháp bảo đảm phù hợp theo Điều 46 GDPR.",
           },
           rights: {
             title: "6. Quyền của Bạn với tư cách là Người bị ảnh hưởng",
@@ -2678,8 +2685,8 @@ export const TRANSLATIONS = {
           },
           contact: {
             title: "Liên hệ",
-            vietnamHQ: "Trụ sở & Pháp nhân đại diện tại Việt Nam",
-            germanContact: "Pháp nhân đại diện trực tiếp tại Đức",
+            vietnamHQ: "Trụ sở & Đại diện tại Việt Nam",
+            germanContact: "Đại diện trực tiếp tại Đức",
           },
           registerEntry: {
             title: "Đăng ký kinh doanh",
@@ -2691,16 +2698,16 @@ export const TRANSLATIONS = {
             number: "3603878495",
           },
           responsibleContent: {
-            title: "Chịu trách nhiệm nội dung theo § 55 Khoản 2 RStV",
+            title: "Chịu trách nhiệm nội dung theo § 18 Khoản 2 MStV",
             description:
-              "NGUYỄN HUỲNH ĐĂNG KHOA, A11 KDC Quang Vinh, Khu phố 3, Phường Quang Vinh, Thành phố Biên Hoà, Tỉnh Đồng Nai, Việt Nam",
+              "NGUYỄN HUỲNH ĐĂNG KHOA (Trụ sở Việt Nam: A11 KDC Quang Vinh, Khu phố 3, Phường Quang Vinh, TP. Biên Hoà, Tỉnh Đồng Nai, Việt Nam) và Ông Umit Elezov (Đại diện trực tiếp tại Đức: Tübinger Str. 6, 72108 Rottenburg am Neckar, CHLB Đức)",
           },
           disputeResolution: {
-            title: "Giải quyết tranh chấp",
+            title: "Giải quyết tranh chấp (§ 36 VSBG)",
             description:
-              "Ủy ban Châu Âu cung cấp nền tảng giải quyết tranh chấp trực tuyến (OS). Bạn có thể tìm địa chỉ email của chúng tôi ở phần trên của trang thông tin pháp lý.",
-            platformLink: "https://ec.europa.eu/consumers/odr/",
-            platformText: "Nền tảng Giải quyết Tranh chấp Trực tuyến EU",
+              "Các dịch vụ trên dmf-talents.de hướng tới khách hàng doanh nghiệp, bệnh viện và cơ sở đào tạo tại Đức (B2B). Lưu ý: Nền tảng giải quyết tranh chấp trực tuyến (ODR) cũ của EU đã chính thức ngừng hoạt động từ ngày 20/07/2025 theo Quy định (EU) 2024/3228.",
+            platformLink: "",
+            platformText: "",
             disclaimer:
               "Chúng tôi không sẵn sàng hoặc không có nghĩa vụ tham gia các thủ tục giải quyết tranh chấp trước hội đồng trọng tài người tiêu dùng.",
           },
@@ -2931,17 +2938,17 @@ export const TRANSLATIONS = {
       retention_sub: "Học viên tiếp tục làm việc sau 3 năm",
       partners: "Đối tác tại Đức",
       partners_sub: "Bệnh viện, Viện dưỡng lão và Doanh nghiệp",
-      iso: "Chứng nhận ISO 9001",
-      gov: "Được nhà nước công nhận",
-      exp: "10+ năm kinh nghiệm",
+      iso: "Tuân thủ § 296a SGB III & Luật FEG",
+      gov: "Đại diện trực tiếp tại CHLB Đức",
+      exp: "Học viện đào tạo tiếng Đức nội bộ",
     },
     service_pages: {
       overview: SERVICE_OVERVIEWS.vn,
       azubi: {
         hero: {
           badge: "Du học nghề §16a AufenthG",
-          headline: "Đảm bảo nhân sự dài hạn",
-          headline_accent: "qua học viên đầy động lực.",
+          headline: "Tuyển Học viên Nghề từ Việt Nam",
+          headline_accent: "Đúng chuẩn pháp lý § 16a.",
           subheadline:
             "Kết hợp chất lượng đào tạo Đức với sự cần cù Việt Nam. Một khoản đầu tư vào sự trung thành và tương lai.",
           cta1: "Khám phá hồ sơ học viên",
@@ -2962,7 +2969,7 @@ export const TRANSLATIONS = {
           advantage_2_title: "Gắn bó lâu dài",
           advantage_2_desc:
             "Học viên Việt Nam tìm kiếm một ngôi nhà mới. Tỷ lệ ở lại cao sau đào tạo thay vì nhảy việc.",
-          advantage_2_highlight: "90% ở lại",
+          advantage_2_highlight: "95% ở lại",
           advantage_2_highlight_desc: "Không nhảy việc",
           advantage_3_title: "Hỗ trợ toàn diện",
           advantage_3_desc:
@@ -3053,14 +3060,14 @@ export const TRANSLATIONS = {
           subtitle: "Đầu tư hôm nay vào học viên Việt Nam đầy động lực.",
           cta1: "Yêu cầu hồ sơ học viên",
           cta2: "Đặt lịch tư vấn",
-          highlight: "Kỳ đào tạo tiếp theo: Tháng 9/2026",
+          highlight: "Kỳ nhập học tiếp theo: Xuân / Thu 2027",
         },
       },
       skilled_workers: {
         hero: {
           badge: "§18a/b Visa lao động tay nghề",
-          headline: "Nhân sự chất lượng.",
-          headline_accent: "Bằng cấp công nhận. Sẵn sàng làm việc.",
+          headline: "Tuyển Lao động Tay nghề từ Việt Nam",
+          headline_accent: "Công nhận bằng, B1/B2 & Visa nhanh § 81a.",
           subheadline:
             "Chấm dứt mê cung thủ tục. Chúng tôi giới thiệu Kỹ sư, IT và Điều dưỡng từ Việt Nam – hợp pháp theo §18a/b AufenthG.",
           cta1: "Xem chuyên gia sẵn sàng",
@@ -3088,7 +3095,7 @@ export const TRANSLATIONS = {
           new_subtitle: "Với DMF Vietnam",
           new_badge: "Khuyên dùng",
           new_item1: "Kiểm tra tương đương trước (Ngay lập tức)",
-          new_item2: "Đảm bảo Visa nhờ quy trình §81a",
+          new_item2: "Đồng hành thủ tục § 81a & hỗ trợ hồ sơ Visa trọn gói",
           new_item3: "Phí trọn gói minh bạch – không phụ phí",
           new_item4: "Chứng chỉ B1/B2 + Ngôn ngữ chuyên ngành",
           new_item5: "Đồng hành hội nhập 12 tháng",
@@ -3155,13 +3162,13 @@ export const TRANSLATIONS = {
       seasonal: {
         hero: {
           badge: "100% đạt chuẩn ZAV",
-          headline: "Nhân sự thu hoạch & phục vụ",
-          headline_accent: "Sẵn sàng nhanh chóng.",
+          headline: "Nhân sự Thời vụ từ Việt Nam",
+          headline_accent: "Đạt chuẩn ZAV & Sẵn sàng nhanh chóng.",
           subheadline:
             "Đảm bảo mùa vụ và dịch vụ của bạn. Nhân sự khỏe mạnh cho mùa cao điểm – sẵn sàng làm việc trong 4-8 tuần.",
           cta1: "Kiểm tra ngay",
           cta2: "Yêu cầu gọi lại",
-          urgency_badge: "Mùa vụ 2026 – Đặt ngay!",
+          urgency_badge: "Mùa vụ 2027 – Đặt ngay!",
         },
         timeline: {
           badge: "Quy trình nhanh",
@@ -3222,7 +3229,7 @@ export const TRANSLATIONS = {
           stat3_label: "Tuần đến khi làm việc",
         },
         cta: {
-          title: "Sẵn sàng cho mùa vụ 2026?",
+          title: "Sẵn sàng cho mùa vụ 2027?",
           subtitle: "Đặt nhân sự ngay hôm nay để đảm bảo mùa vụ thành công.",
           cta1: "Yêu cầu báo giá",
           cta2: "Gọi lại cho tôi",
@@ -3320,7 +3327,7 @@ export const TRANSLATIONS = {
           "Hỗ trợ hoàn toàn trong tuần đầu tiên đảm bảo quá trình đến Đức suôn sẻ.",
         cta_title: "Sẵn sàng cho Học viên Chất lượng?",
         cta_subtitle: "Đầu tư vào tương lai doanh nghiệp của bạn.",
-        cta_highlight: "Đợt Đào tạo Tiếp theo: Tháng 9/2026",
+        cta_highlight: "Kỳ nhập học tiếp theo: Xuân / Thu 2027",
         language_training: "Đào tạo Ngôn ngữ",
         certified_courses: "Khóa học Tiếng Đức Chứng nhận",
         technical_prep: "Chuẩn bị Chuyên môn",
@@ -3456,15 +3463,15 @@ export const TRANSLATIONS = {
           "Chúng tôi hỗ trợ nhân sự chuyên môn trong việc công nhận bằng cấp và gia nhập thành công thị trường lao động Đức.",
         stat1_label: "Hỗ trợ",
         stat2_label: "Dịch vụ",
-        stat3_label: "Hậu mãi",
+        stat3_label: "Đồng hành",
         quality_title: "4 Cổng Chất lượng cho Thành công Bền vững",
         quality_subtitle:
-          "Từ công nhận đến hậu mãi - chúng tôi hỗ trợ toàn bộ quy trình và đảm bảo tỷ lệ nghỉ việc thấp qua Work Skills Training chuyên nghiệp.",
+          "Từ công nhận bằng cấp đến hỗ trợ sau nhập cảnh - chúng tôi đồng hành toàn bộ quy trình và đảm bảo tỷ lệ gắn bó cao qua Work Skills Training chuyên nghiệp.",
         settlement_subtitle:
           "Hỗ trợ hoàn toàn trong tuần đầu tiên đảm bảo khởi đầu suôn sẻ và giảm thiểu rủi ro nghỉ việc sớm.",
         cta_title: "Sẵn sàng cho Nhân sự Chất lượng?",
         cta_subtitle:
-          "Chúng tôi hỗ trợ toàn bộ quy trình - từ công nhận đến hội nhập thành công. Dịch vụ tuyển dụng và 12 tháng hậu mãi.",
+          "Chúng tôi hỗ trợ toàn bộ quy trình - từ công nhận đến hội nhập thành công. Dịch vụ tuyển dụng và 12 tháng đồng hành sau nhập cảnh.",
         cta_highlight: "Đợt Nhập cảnh Tiếp theo: Q2 2026",
         // Hero card
         recognition: "Công nhận",
@@ -3484,8 +3491,8 @@ export const TRANSLATIONS = {
         gate3_title: "Dịch vụ Tuyển dụng",
         gate3_desc: "Kết nối chuyên nghiệp với nhà tuyển dụng",
         gate3_items: "Phân tích yêu cầu|Giới thiệu ứng viên|Đàm phán hợp đồng",
-        gate4_title: "Hậu mãi",
-        gate4_desc: "12 tháng hỗ trợ cho thành công bền vững",
+        gate4_title: "Hỗ trợ sau nhập cảnh",
+        gate4_desc: "12 tháng đồng hành cho thành công bền vững",
         gate4_items: "Đầu mối cho chủ lao động|Hòa giải xung đột|Quản lý giữ chân nhân sự",
         work_skills_text:
           "Nhân sự của chúng tôi không chỉ có chuyên môn mà còn được chuẩn bị cho văn hóa làm việc Đức. Điều này đảm bảo năng suất từ ngày 1 và tỷ lệ nghỉ việc thấp.",
@@ -3499,7 +3506,7 @@ export const TRANSLATIONS = {
         // Result stats
         turnover_rate: "Tỷ lệ nghỉ việc năm đầu",
         onboarding_success: "Hội nhập thành công",
-        aftercare_months: "Hậu mãi bao gồm",
+        aftercare_months: "Đồng hành sau nhập cảnh",
         // Service modules
         p1_1_service: "Tuyển dụng & Sàng lọc",
         p1_1_desc: "Nhân sự chuyên môn theo yêu cầu của bạn",
@@ -3527,8 +3534,8 @@ export const TRANSLATIONS = {
         p3_5_desc: "Hỗ trợ trong những tuần làm việc đầu tiên",
         p3_6_service: "Chăm sóc Văn hóa",
         p3_6_desc: "Sự kiện cộng đồng, mentoring, phòng chống nhớ nhà",
-        p3_7_service: "Hậu mãi",
-        p3_7_desc: "12 tháng đầu mối cho chủ lao động và nhân sự",
+        p3_7_service: "Đồng hành sau nhập cảnh",
+        p3_7_desc: "12 tháng đầu mối hỗ trợ cho chủ lao động và nhân sự",
         // Sectors
         sectors_badge: "Ngành nghề",
         sectors_title: "Nhân sự cho Ngành của bạn",
@@ -3549,6 +3556,7 @@ export const TRANSLATIONS = {
       title: "Máy tính hiệu quả kinh tế",
       subtitle: "Kiểm tra ngay lợi nhuận khi tuyển dụng nhân sự Việt Nam.",
       label_salary_de: "Lương tháng (Gộp) - Ứng viên Đức",
+      label_salary_de_hint: "Mức lương trung bình tại thị trường Đức",
       label_salary_dmf: "Lương tháng (Gộp) - Ứng viên DMF",
       label_salary_dmf_hint: "Mức lương dự kiến cho nhân sự Việt Nam",
       label_fee: "Phí tuyển dụng một lần",

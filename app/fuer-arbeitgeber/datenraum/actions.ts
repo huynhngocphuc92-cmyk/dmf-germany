@@ -7,6 +7,7 @@ import { mergeWithDmfPoolCandidates } from "@/lib/candidates/dmf-pool-data";
 import type { PublicCandidate } from "@/lib/candidates/public-profile";
 import { createIntakeClient } from "@/lib/supabase/intake";
 import { getMailTransporter } from "@/lib/email/transporter";
+import { isNotificationDeliveryEnabled } from "@/lib/env/runtime";
 import { escapeHtml } from "@/lib/sanitize";
 import { SITE_URL } from "@/lib/site";
 
@@ -118,15 +119,15 @@ export async function getEmployerDataRoomBundle(): Promise<EmployerDataRoomBundl
         const intakeDb = createIntakeClient();
         const { data: rows } = await intakeDb
           .from("inquiries")
-          .select("id, name, company, message, status, created_at")
-          .ilike("email", user.email)
+          .select("id, client_name, company, message, status, created_at")
+          .eq("email", user.email.toLowerCase())
           .order("created_at", { ascending: false })
           .limit(20);
 
         if (Array.isArray(rows)) {
           inquiries = rows.map((r) => ({
             id: String(r.id),
-            name: String(r.name || ""),
+            name: String(r.client_name || ""),
             company: r.company ? String(r.company) : null,
             message: r.message ? String(r.message) : null,
             status: String(r.status || "new"),
@@ -427,11 +428,13 @@ export async function requestCandidateActionFromDataRoom(input: {
   try {
     const intakeDb = createIntakeClient();
     await intakeDb.from("inquiries").insert({
-      name: currentProfile.contactPerson || currentProfile.companyName,
-      email: currentProfile.email,
+      client_name: currentProfile.contactPerson || currentProfile.companyName || "Arbeitgeber",
+      email: currentProfile.email.toLowerCase(),
       phone: currentProfile.phone || null,
       company: currentProfile.companyName,
       message: composedMessage,
+      type: "profile",
+      candidate_code: input.candidateCode.slice(0, 20),
       status: "new",
     });
   } catch {
@@ -456,10 +459,7 @@ async function notifyAdminEmployerDataRoomAction(
   item: EmployerInterviewRequestItem,
   actionLabelDe: string
 ): Promise<void> {
-  if (
-    process.env.VERCEL_ENV === "preview" ||
-    (process.env.VERCEL_ENV !== "production" && process.env.NOTIFICATION_DELIVERY !== "enabled")
-  ) {
+  if (!isNotificationDeliveryEnabled()) {
     return;
   }
 

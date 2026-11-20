@@ -1,0 +1,31 @@
+{
+  "scope": "isolated PGlite using checked-in admin helper and current local portal migration, no production access",
+  "call1": [
+    {
+      "result": {
+        "code": "AUDIT-LOCAL-ONLY",
+        "success": true
+      }
+    }
+  ],
+  "profile": [
+    {
+      "ai_enabled": false,
+      "invite_code_used": null
+    }
+  ],
+  "call2": [
+    {
+      "result": {
+        "code": "AUDIT-LOCAL-ONLY",
+        "success": true
+      }
+    }
+  ],
+  "code": [
+    {
+      "used_count": 2,
+      "max_uses": 3
+    }
+  ]
+}

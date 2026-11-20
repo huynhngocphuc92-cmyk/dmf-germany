@@ -28,7 +28,7 @@ export const successStories: CityPlacement[] = [
     city: "München",
     position: [48.1351, 11.582],
     candidateCount: 8,
-    jobTypes: ["Krankenschwester", "Fullstack Developer", "Industriemechaniker"],
+    jobTypes: ["Pflegefachkraft", "Fullstack Developer", "Industriemechaniker"],
   },
   {
     id: "hamburg",
@@ -63,21 +63,21 @@ export const successStories: CityPlacement[] = [
     city: "Essen",
     position: [51.4556, 7.0116],
     candidateCount: 4,
-    jobTypes: ["Krankenpfleger", "Elektriker"],
+    jobTypes: ["Pflegefachkraft", "Elektriker"],
   },
   {
     id: "leipzig",
     city: "Leipzig",
     position: [51.3397, 12.3731],
     candidateCount: 5,
-    jobTypes: ["Krankenschwester", "Fliesenleger"],
+    jobTypes: ["Pflegefachkraft", "Fliesenleger"],
   },
   {
     id: "cologne",
     city: "Köln",
     position: [50.9375, 6.9603],
     candidateCount: 6,
-    jobTypes: ["Kinderkrankenpflegerin", "Schreiner", "Industriemechaniker"],
+    jobTypes: ["Kinderpflegefachkraft", "Schreiner", "Industriemechaniker"],
   },
   {
     id: "dresden",

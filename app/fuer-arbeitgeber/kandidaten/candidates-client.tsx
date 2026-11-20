@@ -289,11 +289,19 @@ export function CandidatesClient({ initialCandidates, error }: CandidatesClientP
             <div className="inline-flex items-center gap-2 rounded-full bg-white/15 border border-white/20 px-4 py-1.5 text-xs font-semibold tracking-wide uppercase mb-5">
               <ShieldCheck className="w-4 h-4 text-emerald-300" />
               <span>
-                {initialCandidates.length} Geprüfte DMF-Talente • Kohorten K1–K57 • DSGVO-konform
+                {lang === "vn"
+                  ? `${initialCandidates.length} Học viên & Nhân sự DMF • Khóa K1–K57 • Chuẩn DSGVO`
+                  : lang === "en"
+                    ? `${initialCandidates.length} Verified DMF Talents • Cohorts K1–K57 • GDPR-Compliant`
+                    : `${initialCandidates.length} Geprüfte DMF-Talente • Kohorten K1–K57 • DSGVO-konform`}
               </span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight">
-              DMF Kandidaten-Pool
+              {lang === "vn"
+                ? "Hồ sơ Ứng viên & Học viên DMF"
+                : lang === "en"
+                  ? "DMF Candidate Pool"
+                  : "DMF Kandidaten-Pool"}
             </h1>
             <p className="text-base md:text-lg opacity-90 max-w-3xl mx-auto leading-relaxed">
               {lang === "de"
@@ -647,10 +655,10 @@ export function CandidatesClient({ initialCandidates, error }: CandidatesClientP
               className="text-xs text-emerald-300 hover:underline self-start sm:self-auto"
             >
               {lang === "de"
-                ? "Alle 296 Kandidaten anzeigen"
+                ? `Alle ${initialCandidates.length} Kandidaten anzeigen`
                 : lang === "en"
-                  ? "Show all 296 candidates"
-                  : "Xem toàn bộ 296 ứng viên"}
+                  ? `Show all ${initialCandidates.length} candidates`
+                  : `Xem toàn bộ ${initialCandidates.length} ứng viên`}
             </button>
           </div>
         </section>
@@ -675,18 +683,35 @@ export function CandidatesClient({ initialCandidates, error }: CandidatesClientP
             <div className="text-center py-16">
               <Users className="h-16 w-16 text-gray-300 mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                Aktuell keine passenden öffentlichen Profile
+                {lang === "vn"
+                  ? "Hiện không có hồ sơ công khai phù hợp với bộ lọc"
+                  : lang === "en"
+                    ? "No matching public profiles found"
+                    : "Aktuell keine passenden öffentlichen Profile"}
               </h3>
               <p className="text-gray-600 mb-4">
-                Für diese Filterkombination liegen keine Treffer vor. Setzen Sie die Filter zurück
-                oder senden Sie uns Ihren Personalbedarf.
+                {lang === "vn"
+                  ? "Không tìm thấy hồ sơ nào khớp với tổ hợp bộ lọc này. Vui lòng đặt lại bộ lọc hoặc gửi trực tiếp yêu cầu nhân sự cho chúng tôi."
+                  : lang === "en"
+                    ? "No candidates match this filter combination. Reset your filters or send us your staffing request."
+                    : "Für diese Filterkombination liegen keine Treffer vor. Setzen Sie die Filter zurück oder senden Sie uns Ihren Personalbedarf."}
               </p>
               <div className="flex justify-center gap-3">
                 <Button variant="outline" onClick={handleResetAllFilters}>
-                  Filter zurücksetzen
+                  {lang === "vn"
+                    ? "Đặt lại bộ lọc"
+                    : lang === "en"
+                      ? "Reset filters"
+                      : "Filter zurücksetzen"}
                 </Button>
                 <Button asChild>
-                  <Link href="/#contact">Personalbedarf besprechen</Link>
+                  <Link href="/#contact">
+                    {lang === "vn"
+                      ? "Trao đổi nhu cầu nhân sự"
+                      : lang === "en"
+                        ? "Discuss staffing needs"
+                        : "Personalbedarf besprechen"}
+                  </Link>
                 </Button>
               </div>
             </div>

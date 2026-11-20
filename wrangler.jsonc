@@ -1,0 +1,94 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "dmf-talents",
+  "account_id": "cd2355b1655a8bf991ab9faaa0d14d5f",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-11-20",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "workers_dev": false,
+  "routes": [
+    {
+      "pattern": "www.dmf-talents.de",
+      "custom_domain": true
+    }
+  ],
+  "placement": {
+    "mode": "smart"
+  },
+  "observability": {
+    "enabled": true,
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true,
+      "head_sampling_rate": 1
+    },
+    "traces": {
+      "enabled": true,
+      "head_sampling_rate": 0.05
+    }
+  },
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "images": {
+    "binding": "IMAGES"
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "dmf-talents"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "NEXT_INC_CACHE_R2_BUCKET",
+      "bucket_name": "dmf-talents-next-cache"
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "NEXT_CACHE_DO_QUEUE",
+        "class_name": "DOQueueHandler"
+      },
+      {
+        "name": "NEXT_TAG_CACHE_DO_SHARDED",
+        "class_name": "DOShardedTagCache"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["DOQueueHandler", "DOShardedTagCache"]
+    }
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "UNSUBSCRIBES_KV",
+      "id": "dc467c8b3c3e463fb2df061e8869274f"
+    }
+  ],
+  "vars": {
+    "APP_ENV": "production",
+    "NEXT_PUBLIC_SITE_URL": "https://www.dmf-talents.de",
+    "NEXT_PUBLIC_DEBUG_MODE": "false",
+    "NEXT_PUBLIC_SENTRY_ENABLE_REPLAY": "false",
+    "NOTIFICATION_DELIVERY": "enabled",
+    "SMTP_HOST": "smtp.resend.com",
+    "SMTP_PORT": "465",
+    "SMTP_USER": "resend",
+    "SMTP_FROM": "contact@dmf-talents.de",
+    "CONTACT_EMAIL": "contact@dmf-talents.de",
+    "OPENROUTER_PRIMARY_MODEL": "google/gemma-4-26b-a4b-it:free",
+    "OPENROUTER_FREE_FALLBACK_MODEL": "nvidia/nemotron-3.5-super-vl:free",
+    "OPENROUTER_PAID_BACKUP_MODEL": "deepseek/deepseek-v4.1-flash",
+    "GEMINI_MODEL": "gemini-3.1-flash-lite-preview",
+    "NEXT_PUBLIC_SUPABASE_URL": "https://iihprcuhmilmymlbktpy.supabase.co",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "sb_publishable_xYIoiJIgepiCQDa2d4tOjw_5voIT82e",
+    "NEXT_PUBLIC_GA_ID": "G-0P6ECEDSWG",
+    "SENTRY_ORG": "dmf-ys",
+    "SENTRY_PROJECT": "dmf-germany"
+  }
+}

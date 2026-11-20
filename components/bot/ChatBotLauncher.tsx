@@ -2,6 +2,7 @@
 
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { withDeadline } from "@/lib/requests/deadline";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import type { SmartChatBotProps } from "./SmartChatBot";
 import type { ComponentType } from "react";
@@ -82,6 +83,19 @@ export function ChatBotLauncher() {
       load();
     }
   };
+
+  const pathname = usePathname();
+  if (
+    pathname === "/admin" ||
+    pathname?.startsWith("/admin/") ||
+    pathname === "/portal" ||
+    pathname?.startsWith("/portal/") ||
+    pathname === "/login" ||
+    pathname?.startsWith("/login/") ||
+    pathname?.startsWith("/auth/")
+  ) {
+    return null;
+  }
 
   return (
     <>

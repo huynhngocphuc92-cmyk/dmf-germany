@@ -43,10 +43,9 @@ import {
 } from "lucide-react";
 import { CandidateForm } from "@/components/admin/CandidateForm";
 import { StudentDossierReviewPanel } from "@/components/admin/StudentDossierReviewPanel";
-import { deleteCandidate, getCandidates } from "./actions";
+import { deleteCandidate, getAdminMergedCandidates } from "./actions";
 import type { Candidate, CandidateCategory, CandidatePoolStage } from "./types";
 import { categoryLabels, categoryColors, poolStageLabels, poolStageColors } from "./types";
-import { mergeWithDmfAdminCandidates } from "@/lib/candidates/dmf-pool-data";
 import type {
   StudentDocument,
   StudentInviteCode,
@@ -104,8 +103,7 @@ export function CandidatesClient({
   // Refresh data
   const handleRefresh = async () => {
     setIsLoading(true);
-    const { data, error: fetchError } = await getCandidates();
-    const merged = mergeWithDmfAdminCandidates(data);
+    const { data: merged, error: fetchError } = await getAdminMergedCandidates();
     if (merged.length > 0) {
       setCandidates(merged);
       setError(null);
