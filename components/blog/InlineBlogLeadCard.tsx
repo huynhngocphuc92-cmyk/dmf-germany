@@ -1,9 +1,14 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, Mail, MapPin, ShieldCheck } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import {
+  isTurnstileEnabled,
+  TurnstileWidget,
+  type TurnstileWidgetHandle,
+} from "@/components/security/TurnstileWidget";
 import type { BlogClusterConfig } from "@/lib/blog/seo-taxonomy";
 import { useSubmissionKey } from "@/lib/intake/client";
 import { currentRequestContext } from "@/lib/intake/context";
@@ -99,10 +104,13 @@ export function InlineBlogLeadCard({
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileRef = useRef<TurnstileWidgetHandle>(null);
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     setErrorMessage(null);
+    if (isTurnstileEnabled && !turnstileToken) return;
 
     const trimmedEmail = email.trim();
     if (!trimmedEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
@@ -138,7 +146,9 @@ export function InlineBlogLeadCard({
           "Content-Type": "application/json",
           "Idempotency-Key": submissionKey.forPayload(payload),
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(
+          turnstileToken ? { ...payload, "cf-turnstile-response": turnstileToken } : payload
+        ),
       });
       const result = await response.json().catch(() => null);
       if (!response.ok || !result?.success) {
@@ -150,6 +160,8 @@ export function InlineBlogLeadCard({
     } catch {
       setErrorMessage(copy.errorSubmit);
     } finally {
+      turnstileRef.current?.reset();
+      setTurnstileToken("");
       setSubmitting(false);
     }
   };
@@ -250,6 +262,14 @@ export function InlineBlogLeadCard({
             </span>
           </label>
 
+          <TurnstileWidget
+            ref={turnstileRef}
+            action="lead"
+            theme="dark"
+            language={lang}
+            onToken={setTurnstileToken}
+          />
+
           {errorMessage && (
             <p role="alert" className="text-xs font-medium text-amber-300">
               {errorMessage}
@@ -259,7 +279,7 @@ export function InlineBlogLeadCard({
           <div className="flex flex-col sm:flex-row sm:items-center gap-3 pt-1">
             <button
               type="submit"
-              disabled={submitting}
+              disabled={submitting || (isTurnstileEnabled && !turnstileToken)}
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-500 disabled:opacity-60 px-5 py-3 text-sm font-bold text-white shadow-md transition-colors cursor-pointer"
             >
               <Mail className="w-4 h-4 shrink-0" />

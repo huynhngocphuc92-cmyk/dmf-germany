@@ -1,10 +1,15 @@
 "use client";
-import { useId, useState, useEffect, type ReactNode } from "react";
+import { useId, useRef, useState, useEffect, type ReactNode } from "react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckCircle2, ArrowRight, Loader2, Sparkles, UserCheck, PlusCircle } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import {
+  isTurnstileEnabled,
+  TurnstileWidget,
+  type TurnstileWidgetHandle,
+} from "@/components/security/TurnstileWidget";
 import { EMPLOYER_COPY } from "@/lib/content/employers";
 import {
   hiringFormSchema,
@@ -75,6 +80,8 @@ export function HiringRequestForm({
   const { forPayload, reset: resetKey } = useSubmissionKey();
   const [saved, setSaved] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileRef = useRef<TurnstileWidgetHandle>(null);
   const [detailsOpen, setDetailsOpen] = useState(
     Boolean(initialLocation || initialHeadcount || initialTiming)
   );
@@ -183,6 +190,7 @@ export function HiringRequestForm({
   }
   async function submit(values: HiringFormValues) {
     if (saved) return;
+    if (isTurnstileEnabled && !turnstileToken) return;
     setError(null);
     const body = {
       ...values,
@@ -195,7 +203,9 @@ export function HiringRequestForm({
       const response = await fetch("/api/hiring", {
         method: "POST",
         headers: { "Content-Type": "application/json", "Idempotency-Key": key },
-        body: JSON.stringify(body),
+        body: JSON.stringify(
+          turnstileToken ? { ...body, "cf-turnstile-response": turnstileToken } : body
+        ),
       });
       const result = await response.json();
       if (!response.ok || !result.success || !result.saved) {
@@ -210,6 +220,9 @@ export function HiringRequestForm({
         });
     } catch {
       setError(t.error);
+    } finally {
+      turnstileRef.current?.reset();
+      setTurnstileToken("");
     }
   }
   if (saved)
@@ -584,9 +597,16 @@ export function HiringRequestForm({
             </p>
           )}
         </div>
+        <TurnstileWidget
+          ref={turnstileRef}
+          action="hiring"
+          language={lang}
+          onToken={setTurnstileToken}
+        />
+
         <button
           data-agent-action="submit-hiring-request"
-          disabled={isSubmitting}
+          disabled={isSubmitting || (isTurnstileEnabled && !turnstileToken)}
           type="submit"
           className="inline-flex min-h-12 w-full sm:w-auto justify-center items-center gap-3 rounded-lg bg-primary px-6 py-3 text-primary-foreground font-semibold disabled:opacity-60"
         >

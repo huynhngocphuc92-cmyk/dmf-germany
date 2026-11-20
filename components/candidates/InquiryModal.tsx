@@ -3,6 +3,11 @@ import { useSubmissionKey } from "@/lib/intake/client";
 
 import { trackEvent } from "@/components/analytics/GoogleAnalytics";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import {
+  isTurnstileEnabled,
+  TurnstileWidget,
+  type TurnstileWidgetHandle,
+} from "@/components/security/TurnstileWidget";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -28,7 +33,7 @@ import {
   User,
 } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 
 interface InquiryModalProps {
@@ -114,6 +119,8 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
   const copy = INQUIRY_MODAL_COPY[locale];
   const [status, setStatus] = useState<"success" | "error" | null>(null);
   const [statusMessage, setStatusMessage] = useState<string>("");
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileRef = useRef<TurnstileWidgetHandle>(null);
 
   const {
     register,
@@ -143,6 +150,7 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
 
   const onSubmit = async (data: InquiryFormData) => {
     if (status === "success") return;
+    if (isTurnstileEnabled && !turnstileToken) return;
     // Early validation - if no candidate, don't submit
     if (!candidate) {
       setStatus("error");
@@ -153,6 +161,17 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
     setStatus(null);
     setStatusMessage("");
 
+    const payload = {
+      name: data.name,
+      email: data.email,
+      phone: data.phone || "",
+      message: data.message,
+      privacy: data.privacy,
+      type: "profile" as const,
+      candidateId: candidate.id,
+      candidateCode: candidateCode,
+    };
+
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -160,16 +179,9 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
           "Content-Type": "application/json",
           "Idempotency-Key": submissionKey({ ...data, candidateId: candidate.id }),
         },
-        body: JSON.stringify({
-          name: data.name,
-          email: data.email,
-          phone: data.phone || "",
-          message: data.message,
-          privacy: data.privacy,
-          type: "profile",
-          candidateId: candidate.id,
-          candidateCode: candidateCode,
-        }),
+        body: JSON.stringify(
+          turnstileToken ? { ...payload, "cf-turnstile-response": turnstileToken } : payload
+        ),
       });
 
       const result = await response.json();
@@ -188,10 +200,15 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
       console.error("Error submitting inquiry:", error);
       setStatus("error");
       setStatusMessage(copy.genericError);
+    } finally {
+      turnstileRef.current?.reset();
+      setTurnstileToken("");
     }
   };
 
   const handleClose = () => {
+    turnstileRef.current?.reset();
+    setTurnstileToken("");
     resetSubmissionKey();
     reset();
     setStatus(null);
@@ -368,6 +385,15 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
             {errors.privacy && <p className="text-sm text-red-500">{errors.privacy.message}</p>}
           </div>
 
+          {isOpen && status !== "success" && (
+            <TurnstileWidget
+              ref={turnstileRef}
+              action="profile"
+              language={locale}
+              onToken={setTurnstileToken}
+            />
+          )}
+
           {/* Submit Button */}
           <div className="flex gap-3 pt-2">
             <Button
@@ -382,7 +408,9 @@ export const InquiryModal = ({ candidate, isOpen, onClose }: InquiryModalProps) 
             <Button
               type="submit"
               className="flex-1 bg-blue-600 hover:bg-blue-700"
-              disabled={isSubmitting || status === "success"}
+              disabled={
+                isSubmitting || status === "success" || (isTurnstileEnabled && !turnstileToken)
+              }
             >
               {isSubmitting ? (
                 <>

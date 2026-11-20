@@ -22,16 +22,21 @@ export async function validateContactPhone(phone: string) {
   return phone.length <= 50 && isValidBusinessPhone(phone) ? null : BUSINESS_PHONE_ERROR_MESSAGE;
 }
 
-export async function submitContactForm(data: ReturnType<typeof readContactForm>, key: string) {
+export async function submitContactForm(
+  data: ReturnType<typeof readContactForm>,
+  key: string,
+  turnstileToken?: string
+) {
   let response: Response;
   let result;
+  const bodyPayload = turnstileToken ? { ...data, "cf-turnstile-response": turnstileToken } : data;
   try {
     ({ response, result } = await withDeadline(async (signal) => {
       const response = await fetch("/api/contact", {
         method: "POST",
         signal,
         headers: { "Content-Type": "application/json", "Idempotency-Key": key },
-        body: JSON.stringify(data),
+        body: JSON.stringify(bodyPayload),
       });
       const result = await response.json();
       return { response, result };

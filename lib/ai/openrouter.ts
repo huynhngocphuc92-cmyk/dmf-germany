@@ -1,3 +1,4 @@
+import { resolveAiGatewayEndpoint } from "./cloudflare-gateway";
 import {
   ProviderError,
   providerHttpError,
@@ -63,7 +64,12 @@ async function requestOpenRouterCompletion(
   options: ProviderRequestOptions = {}
 ): Promise<OpenRouterResponseData> {
   const [primaryModel] = models;
-  const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+  const endpoint = resolveAiGatewayEndpoint(
+    "openrouter",
+    "https://openrouter.ai/api/v1/chat/completions",
+    { cacheTtlSeconds: 3600 }
+  );
+  const response = await fetch(endpoint.url, {
     method: "POST",
     signal,
     headers: {
@@ -71,6 +77,7 @@ async function requestOpenRouterCompletion(
       Authorization: `Bearer ${apiKey}`,
       "HTTP-Referer": SITE_URL,
       "X-Title": "DMF Talents",
+      ...endpoint.headers,
     },
     body: JSON.stringify({
       model: primaryModel,

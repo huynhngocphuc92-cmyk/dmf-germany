@@ -1,3 +1,4 @@
+import { resolveAiGatewayEndpoint } from "./cloudflare-gateway";
 import {
   ProviderError,
   providerHttpError,
@@ -65,12 +66,16 @@ export async function runWithGrokModelFallback(
 
   for (const modelName of getCandidateModels()) {
     try {
-      const response = await fetch("https://api.x.ai/v1/chat/completions", {
+      const endpoint = resolveAiGatewayEndpoint("grok", "https://api.x.ai/v1/chat/completions", {
+        cacheTtlSeconds: 300,
+      });
+      const response = await fetch(endpoint.url, {
         method: "POST",
         signal,
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${apiKey}`,
+          ...endpoint.headers,
         },
         body: JSON.stringify({
           model: modelName,

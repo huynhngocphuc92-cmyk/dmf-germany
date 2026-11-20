@@ -19,6 +19,11 @@ import { renderMessageContent } from "@/lib/chatbot/message-content";
 import { useSubmissionKey } from "@/lib/intake/client";
 
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import {
+  isTurnstileEnabled,
+  TurnstileWidget,
+  type TurnstileWidgetHandle,
+} from "@/components/security/TurnstileWidget";
 import { cn } from "@/lib/utils";
 import { BUSINESS_PHONE_ERROR_MESSAGE, isValidBusinessPhone } from "@/lib/validations/phone-rules";
 import { AnimatePresence, motion } from "framer-motion";
@@ -185,6 +190,8 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
   );
   const [isLeadSaving, setIsLeadSaving] = useState(false);
   const [leadFormError, setLeadFormError] = useState<string | null>(null);
+  const [leadTurnstileToken, setLeadTurnstileToken] = useState("");
+  const leadTurnstileRef = useRef<TurnstileWidgetHandle>(null);
   const [sessionId] = useState(() => `chat-${Date.now()}-${Math.random().toString(36).slice(2)}`);
 
   const [cooldownUntil, setCooldownUntil] = useState(0);
@@ -533,6 +540,7 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
     e.preventDefault();
 
     if (!leadData.email || !openRef.current) return;
+    if (isTurnstileEnabled && !leadTurnstileToken) return;
 
     if (leadData.phone && !isValidBusinessPhone(leadData.phone)) {
       setLeadFormError(
@@ -567,12 +575,15 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
         };
       }
       const intakePayload = leadAttemptRef.current.payload;
+      const bodyPayload = leadTurnstileToken
+        ? { ...intakePayload, "cf-turnstile-response": leadTurnstileToken }
+        : intakePayload;
       const { response: leadsResponse, data: result } = await withDeadline(
         (signal) =>
           postJson<{
             success?: boolean;
             saved?: boolean;
-          }>("/api/leads", intakePayload, signal, {
+          }>("/api/leads", bodyPayload, signal, {
             "Idempotency-Key": submissionKey(intakePayload),
           }),
         LEAD_DEADLINE_MS,
@@ -603,6 +614,8 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
       if (leadLane.current.owns(controller) && openRef.current && languageRef.current === language)
         setLeadFormError(t.error);
     } finally {
+      leadTurnstileRef.current?.reset();
+      setLeadTurnstileToken("");
       if (leadLane.current.owns(controller)) {
         leadLane.current.finish(controller);
         setIsLeadSaving(false);
@@ -611,6 +624,8 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
   };
 
   const closeLeadForm = () => {
+    leadTurnstileRef.current?.reset();
+    setLeadTurnstileToken("");
     leadLane.current.cancel();
     setIsLeadSaving(false);
     setLeadFormError(null);
@@ -975,6 +990,14 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
                   />
                 </div>
 
+                <TurnstileWidget
+                  ref={leadTurnstileRef}
+                  action="lead"
+                  size="flexible"
+                  language={lang}
+                  onToken={setLeadTurnstileToken}
+                />
+
                 {leadFormError && (
                   <div
                     role="alert"
@@ -994,8 +1017,12 @@ export const SmartChatBot = ({ open, onClose }: SmartChatBotProps = {}) => {
                   </button>
                   <button
                     type="submit"
-                    disabled={isLeadSaving || leadCooldownUntil !== 0}
-                    className="flex-1 px-4 py-2.5 bg-primary hover:bg-primary/90 text-white rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2"
+                    disabled={
+                      isLeadSaving ||
+                      leadCooldownUntil !== 0 ||
+                      (isTurnstileEnabled && !leadTurnstileToken)
+                    }
+                    className="flex-1 px-4 py-2.5 bg-primary hover:bg-primary/90 text-white rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2 disabled:opacity-60"
                   >
                     <CheckCircle className="w-4 h-4" />
                     {t.leadForm.submit}

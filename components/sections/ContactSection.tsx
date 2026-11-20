@@ -2,6 +2,11 @@
 
 import { trackEvent } from "@/components/analytics/GoogleAnalytics";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import {
+  isTurnstileEnabled,
+  TurnstileWidget,
+  type TurnstileWidgetHandle,
+} from "@/components/security/TurnstileWidget";
 import { AssetImageWithDebug } from "@/components/ui/AssetImageWithDebug";
 import { GERMANY_CONTACT, VIETNAM_OFFICE_CONTACT } from "@/lib/company/contact";
 import { useSubmissionKey } from "@/lib/intake/client";
@@ -27,6 +32,8 @@ export default function ContactSection({
   const { forPayload: submissionKey, reset: resetSubmissionKey } = useSubmissionKey();
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileRef = useRef<TurnstileWidgetHandle>(null);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const submitting = useRef(false);
@@ -35,6 +42,7 @@ export default function ContactSection({
     event.preventDefault();
     const form = event.currentTarget;
     if (submitting.current || !form.reportValidity()) return;
+    if (isTurnstileEnabled && !turnstileToken) return;
     const data = readContactForm(new FormData(form));
     if (data.bot_check) return;
 
@@ -49,10 +57,19 @@ export default function ContactSection({
         phone.reportValidity();
         return;
       }
-      const result = await submitContactForm(data, submissionKey(data));
-      setIsSuccess(true);
-      form.reset();
-      if (!result.duplicate) trackEvent("generate_lead", { form: "contact" });
+      try {
+        const result = await submitContactForm(
+          data,
+          submissionKey(data),
+          turnstileToken || undefined
+        );
+        setIsSuccess(true);
+        form.reset();
+        if (!result.duplicate) trackEvent("generate_lead", { form: "contact" });
+      } finally {
+        turnstileRef.current?.reset();
+        setTurnstileToken("");
+      }
     } catch (err) {
       setSubmitError(
         err instanceof Error
@@ -240,6 +257,13 @@ export default function ContactSection({
                   </div>
                 </div>
 
+                <TurnstileWidget
+                  ref={turnstileRef}
+                  action="contact"
+                  language={lang}
+                  onToken={setTurnstileToken}
+                />
+
                 {submitError && (
                   <div role="alert" className="p-3 bg-red-50 text-red-600 text-sm rounded-lg">
                     {submitError}
@@ -248,7 +272,7 @@ export default function ContactSection({
 
                 <button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || (isTurnstileEnabled && !turnstileToken)}
                   className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition-all shadow-lg hover:shadow-xl flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (

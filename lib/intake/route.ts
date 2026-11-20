@@ -1,4 +1,9 @@
 import { withDeadline } from "@/lib/requests/deadline";
+import {
+  extractTurnstileToken,
+  verifyTurnstileToken,
+  type TurnstileAction,
+} from "@/lib/cloudflare/turnstile";
 import { checkRateLimit, getClientIp, RATE_LIMITS } from "@/lib/rate-limit";
 import { findDmfPoolCandidateById } from "@/lib/candidates/dmf-pool-data";
 import { createIntakeClient } from "@/lib/supabase/intake";
@@ -27,6 +32,7 @@ export async function acceptIntake(
 ) {
   try {
     const body = await readJsonBody(request);
+    const turnstileToken = extractTurnstileToken(body, request);
     const schema =
       route === "hiring"
         ? hiringIntakeSchema
@@ -50,11 +56,35 @@ export async function acceptIntake(
         { success: false, error: "Ungültige Anfragekennung." },
         { status: 400, headers: responseHeaders }
       );
-    const rate = await checkRateLimit(`intake:${getClientIp(request)}`, RATE_LIMITS.CONTACT);
+    const clientIp = getClientIp(request);
+    const rate = await checkRateLimit(`intake:${clientIp}`, RATE_LIMITS.CONTACT);
     if (!rate.success)
       return NextResponse.json(
         { success: false, error: "Zu viele Anfragen. Bitte versuchen Sie es später erneut." },
         { status: 429, headers: { ...responseHeaders, "Retry-After": String(rate.resetIn) } }
+      );
+    const expectedAction: TurnstileAction =
+      route === "hiring"
+        ? "hiring"
+        : route === "lead"
+          ? "lead"
+          : route === "profile"
+            ? "profile"
+            : "type" in parsed.data && parsed.data.type === "profile"
+              ? "profile"
+              : "contact";
+    const turnstile = await verifyTurnstileToken({
+      token: turnstileToken,
+      expectedAction,
+      remoteIp: clientIp,
+    });
+    if (!turnstile.ok)
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Sicherheitsprüfung fehlgeschlagen. Bitte bestätigen Sie die Prüfung erneut.",
+        },
+        { status: 403, headers: responseHeaders }
       );
     const rawPayload: IntakePayload =
       route === "hiring" ? { ...parsed.data, requestPurpose: "hiring" } : parsed.data;
