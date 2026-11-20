@@ -13,30 +13,35 @@ afterEach(() => {
   vi.unstubAllEnvs();
 });
 describe("bounded provider transport", () => {
-  it("builds the 3-tier OpenRouter model chain (2 free + DeepSeek V4.1 Flash backup)", () => {
+  it("builds the 3-tier OpenRouter model chain (DeepSeek V4.1 Flash 1017 + Gemma 4 paid ZDR + Gemma 4 free)", () => {
     vi.stubEnv("OPENROUTER_PRIMARY_MODEL", "");
     vi.stubEnv("OPENROUTER_FREE_FALLBACK_MODEL", "");
     vi.stubEnv("OPENROUTER_PAID_BACKUP_MODEL", "");
     expect(getOpenRouterCandidateModels()).toEqual([
       DEFAULT_OPENROUTER_PRIMARY_MODEL,
-      DEFAULT_OPENROUTER_FREE_FALLBACK_MODEL,
       DEFAULT_OPENROUTER_PAID_BACKUP_MODEL,
+      DEFAULT_OPENROUTER_FREE_FALLBACK_MODEL,
+    ]);
+    expect(getOpenRouterCandidateModels()).toEqual([
+      "deepseek/deepseek-v4.1-flash-1017",
+      "google/gemma-4-26b-a4b-it",
+      "google/gemma-4-26b-a4b-it:free",
     ]);
   });
 
-  it("sends the OpenRouter 3-model fallback array with reasoning disabled and falls back to paid backup if needed", async () => {
-    vi.stubEnv("OPENROUTER_PRIMARY_MODEL", "google/gemma-4-26b-a4b-it:free");
-    vi.stubEnv("OPENROUTER_FREE_FALLBACK_MODEL", "nvidia/nemotron-3.5-super-vl:free");
-    vi.stubEnv("OPENROUTER_PAID_BACKUP_MODEL", "deepseek/deepseek-v4.1-flash");
+  it("enforces ZDR provider routing and price ceiling on paid OpenRouter models and falls back to :free on error", async () => {
+    vi.stubEnv("OPENROUTER_PRIMARY_MODEL", "deepseek/deepseek-v4.1-flash-1017");
+    vi.stubEnv("OPENROUTER_PAID_BACKUP_MODEL", "google/gemma-4-26b-a4b-it");
+    vi.stubEnv("OPENROUTER_FREE_FALLBACK_MODEL", "google/gemma-4-26b-a4b-it:free");
 
     const fetch = vi
       .fn()
-      .mockResolvedValueOnce(new Response("{}", { status: 429 }))
+      .mockResolvedValueOnce(new Response("{}", { status: 402 }))
       .mockResolvedValueOnce(
         new Response(
           JSON.stringify({
-            model: "deepseek/deepseek-v4.1-flash",
-            choices: [{ message: { content: "Antwort von DeepSeek Backup" } }],
+            model: "google/gemma-4-26b-a4b-it:free",
+            choices: [{ message: { content: "Antwort von Gemma Free Fallback" } }],
             usage: { prompt_tokens: 42, completion_tokens: 18 },
           }),
           { status: 200 }
@@ -46,23 +51,32 @@ describe("bounded provider transport", () => {
 
     const result = await runWithOpenRouterFallback("fixture-or-key", messages);
     expect(result).toEqual({
-      text: "Antwort von DeepSeek Backup",
+      text: "Antwort von Gemma Free Fallback",
       usage: { inputTokens: 42, outputTokens: 18 },
-      modelName: "deepseek/deepseek-v4.1-flash",
+      modelName: "google/gemma-4-26b-a4b-it:free",
     });
     expect(fetch).toHaveBeenCalledTimes(2);
     const firstPayload = JSON.parse(fetch.mock.calls[0][1].body);
+    expect(firstPayload.model).toBe("deepseek/deepseek-v4.1-flash-1017");
     expect(firstPayload.models).toEqual([
-      "google/gemma-4-26b-a4b-it:free",
-      "nvidia/nemotron-3.5-super-vl:free",
-      "deepseek/deepseek-v4.1-flash",
+      "deepseek/deepseek-v4.1-flash-1017",
+      "google/gemma-4-26b-a4b-it",
     ]);
     expect(firstPayload.reasoning).toEqual({ effort: "none" });
     expect(firstPayload.max_tokens).toBe(450);
+    expect(firstPayload.provider).toMatchObject({
+      zdr: true,
+      data_collection: "deny",
+      max_price: { prompt: 0.25, completion: 1.0 },
+    });
+    expect(firstPayload.provider.ignore).toEqual(
+      expect.arrayContaining(["baidu", "alibaba", "deepseek"])
+    );
 
     const secondPayload = JSON.parse(fetch.mock.calls[1][1].body);
-    expect(secondPayload.model).toBe("deepseek/deepseek-v4.1-flash");
+    expect(secondPayload.model).toBe("google/gemma-4-26b-a4b-it:free");
     expect(secondPayload.models).toBeUndefined();
+    expect(secondPayload.provider).toBeUndefined();
   });
 
   it("honors the configured model before fallbacks and never exposes raw error details", async () => {

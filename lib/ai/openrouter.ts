@@ -7,9 +7,39 @@ import {
 } from "./provider-runtime";
 import { SITE_URL } from "@/lib/site";
 
-export const DEFAULT_OPENROUTER_PRIMARY_MODEL = "google/gemma-4-26b-a4b-it:free";
-export const DEFAULT_OPENROUTER_FREE_FALLBACK_MODEL = "nvidia/nemotron-3.5-super-vl:free";
-export const DEFAULT_OPENROUTER_PAID_BACKUP_MODEL = "deepseek/deepseek-v4.1-flash";
+export const DEFAULT_OPENROUTER_PRIMARY_MODEL = "deepseek/deepseek-v4.1-flash-1017";
+export const DEFAULT_OPENROUTER_PAID_BACKUP_MODEL = "google/gemma-4-26b-a4b-it";
+export const DEFAULT_OPENROUTER_FREE_FALLBACK_MODEL = "google/gemma-4-26b-a4b-it:free";
+
+export const OPENROUTER_IGNORED_PROVIDERS = [
+  "alibaba",
+  "antdigital",
+  "baidu",
+  "deepseek",
+  "novita",
+  "siliconflow",
+  "stepfun",
+] as const;
+
+export interface OpenRouterProviderPreferences {
+  zdr?: boolean;
+  data_collection?: "allow" | "deny";
+  ignore?: string[];
+  max_price?: {
+    prompt?: number;
+    completion?: number;
+  };
+}
+
+export const OPENROUTER_ZDR_PROVIDER_PREFERENCES: OpenRouterProviderPreferences = {
+  zdr: true,
+  data_collection: "deny",
+  ignore: [...OPENROUTER_IGNORED_PROVIDERS],
+  max_price: {
+    prompt: 0.25,
+    completion: 1.0,
+  },
+};
 
 export interface OpenRouterMessage {
   role: "system" | "user" | "assistant";
@@ -27,18 +57,18 @@ export interface OpenRouterResponseData {
 
 /**
  * Returns up to 3 deduplicated models in priority order:
- * 1. Primary Free Model (:free)
- * 2. Secondary Free Model from an independent upstream provider (:free)
- * 3. Ultra-low-cost Paid Backup Model (DeepSeek V4.1 Flash)
+ * 1. Primary Model (DeepSeek V4.1 Flash 1017 with ZDR routing)
+ * 2. Paid ZDR Backup Model (Gemma 4 26B A4B)
+ * 3. Emergency Free Fallback Model (:free)
  */
 export function getOpenRouterCandidateModels(): string[] {
   const primary = process.env.OPENROUTER_PRIMARY_MODEL?.trim() || DEFAULT_OPENROUTER_PRIMARY_MODEL;
-  const freeFallback =
-    process.env.OPENROUTER_FREE_FALLBACK_MODEL?.trim() || DEFAULT_OPENROUTER_FREE_FALLBACK_MODEL;
   const paidBackup =
     process.env.OPENROUTER_PAID_BACKUP_MODEL?.trim() || DEFAULT_OPENROUTER_PAID_BACKUP_MODEL;
+  const freeFallback =
+    process.env.OPENROUTER_FREE_FALLBACK_MODEL?.trim() || DEFAULT_OPENROUTER_FREE_FALLBACK_MODEL;
 
-  return Array.from(new Set([primary, freeFallback, paidBackup].filter(Boolean))).slice(0, 3);
+  return Array.from(new Set([primary, paidBackup, freeFallback].filter(Boolean))).slice(0, 3);
 }
 
 export function isOpenRouterRetryableError(error: unknown): boolean {
@@ -52,7 +82,12 @@ export function isOpenRouterRetryableError(error: unknown): boolean {
   }
   const status = (error as { status?: number })?.status;
   return (
-    status === 400 || status === 404 || status === 408 || status === 429 || (status ?? 0) >= 500
+    status === 400 ||
+    status === 402 ||
+    status === 404 ||
+    status === 408 ||
+    status === 429 ||
+    (status ?? 0) >= 500
   );
 }
 
@@ -61,7 +96,8 @@ async function requestOpenRouterCompletion(
   models: string[],
   messages: OpenRouterMessage[],
   signal: AbortSignal,
-  options: ProviderRequestOptions = {}
+  options: ProviderRequestOptions = {},
+  provider?: OpenRouterProviderPreferences
 ): Promise<OpenRouterResponseData> {
   const [primaryModel] = models;
   const endpoint = resolveAiGatewayEndpoint(
@@ -82,6 +118,7 @@ async function requestOpenRouterCompletion(
     body: JSON.stringify({
       model: primaryModel,
       ...(models.length > 1 ? { models } : {}),
+      ...(provider ? { provider } : {}),
       messages,
       max_tokens: options.maxTokens ?? 450,
       temperature: options.temperature ?? 0.3,
@@ -123,10 +160,9 @@ async function requestOpenRouterCompletion(
 }
 
 /**
- * Executes an OpenRouter chat completion using OpenRouter's native 3-model routing array
- * (`[primaryFree, secondaryFree, paidDeepSeekBackup]`). If the native multi-model array fails
- * due to a model-specific parameter/availability issue or empty completion, falls back
- * directly to the paid backup model before throwing.
+ * Executes an OpenRouter chat completion enforcing DSGVO-safe ZDR routing when the primary
+ * model is paid (`[primary, paidBackup]` with ZDR + price cap), falling back to `:free`
+ * models without ZDR constraints on credits exhaustion (`402`), rate limiting, or upstream errors.
  */
 export async function runWithOpenRouterFallback(
   apiKey: string,
@@ -140,17 +176,56 @@ export async function runWithOpenRouterFallback(
 
   const signal = providerSignal(options);
 
+  if (!candidates[0].endsWith(":free")) {
+    const zdrCandidates = candidates.filter((m) => !m.endsWith(":free"));
+    const freeCandidates = candidates.filter((m) => m.endsWith(":free"));
+
+    try {
+      return await requestOpenRouterCompletion(
+        apiKey,
+        zdrCandidates,
+        messages,
+        signal,
+        options,
+        OPENROUTER_ZDR_PROVIDER_PREFERENCES
+      );
+    } catch (firstError) {
+      if (!signal.aborted && isOpenRouterRetryableError(firstError)) {
+        if (freeCandidates.length > 0) {
+          return await requestOpenRouterCompletion(
+            apiKey,
+            freeCandidates,
+            messages,
+            signal,
+            options
+          );
+        }
+        if (zdrCandidates.length > 1) {
+          return await requestOpenRouterCompletion(
+            apiKey,
+            [zdrCandidates[zdrCandidates.length - 1]],
+            messages,
+            signal,
+            options,
+            OPENROUTER_ZDR_PROVIDER_PREFERENCES
+          );
+        }
+      }
+      throw firstError;
+    }
+  }
+
   try {
     return await requestOpenRouterCompletion(apiKey, candidates, messages, signal, options);
   } catch (firstError) {
-    const paidBackup = candidates[candidates.length - 1];
+    const fallbackModel = candidates[candidates.length - 1];
     if (
       !signal.aborted &&
       candidates.length > 1 &&
-      paidBackup &&
+      fallbackModel &&
       isOpenRouterRetryableError(firstError)
     ) {
-      return await requestOpenRouterCompletion(apiKey, [paidBackup], messages, signal, options);
+      return await requestOpenRouterCompletion(apiKey, [fallbackModel], messages, signal, options);
     }
     throw firstError;
   }
